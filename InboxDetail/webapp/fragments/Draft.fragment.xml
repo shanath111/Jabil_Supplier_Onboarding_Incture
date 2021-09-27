@@ -1,0 +1,22 @@
+
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"  
+   
+    xmlns:l="sap.ui.layout"
+
+     xmlns:html="http://www.w3.org/1999/xhtml">
+<Panel width="auto" expandable="false" expanded="true" class="cl_VRPanelClass sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
+						<content>
+                        <VBox class="VRVboxStyle1 sapUiTinyMarginBegin" width="20%">
+									<Label text="{i18n>BPECompanyCode}:" class="cl_VRLablCls "></Label>
+                                    <ComboBox width="95%" items="{oBPLookUpMdl>/Country}"   valueState="{JMBPCreate>/countrye}" valueStateText="{JMBPCreate>/countrym}"
+											filterSecondaryValues="true" enabled="{oConfigMdl>/screenEditable}" change="fnLiveChangeCountry" showSecondaryValues="true" selectedKey="{JMBPCreate>/country}"
+											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
+										</ComboBox>
+									
+								</VBox>
+                      <html:input type="text" id="iCountry" class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin cl_HTMLInput" />
+                         <html:input type="text" id="iAddress1" class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin cl_HTMLInput" />
+                    </content>
+					</Panel>
+</core:FragmentDefinition>

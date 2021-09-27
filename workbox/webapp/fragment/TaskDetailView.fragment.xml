@@ -1,0 +1,164 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout">
+	<VBox renderType="Bare" class="sapUiSizeCompact" width="100%" height="100%">
+		<HBox renderType="Bare" alignItems="Center" width="100%" justifyContent="SpaceBetween" class="wbTaskDetailHeaderClass">
+			<Text text="{i18n>SUB_TEXT}: {oAppModel>/taskObjectDetails/subject}" class="wbTaskDetailHeaderText"/>
+			<HBox renderType="Bare" alignItems="Center" justifyContent="End" width="5%">
+				<Button text="{i18n>UPDATE_TEXT}" type="Emphasized" class="wbEmphasizedButtonStyleClass sapUiSmallMarginEnd" press="updateAttributesFn"
+					visible="false"/>
+				<Button text="{i18n>CLOSE_TEXT}" type="Transparent" class="wbTransparentButtonStyleClass sapUiTinyMarginEnd" press="closePPDAAction"
+					visible="{= ${oAppModel>/currentViewPage}==='CompletedTasks' &amp;&amp; ${oAppModel>/taskObjectDetails/processName}==='ProjectProposalDocumentApproval' &amp;&amp; ${oTaskDetailModel>/isClosePPDA}}"/>
+				<Button text="{i18n>RESUBMIT_TEXT}" type="Emphasized" class="wbEmphasizedButtonStyleClass sapUiSmallMarginEnd" press="resubmitFn"
+					enabled="{= ${oTaskDetailModel>/isUpdated}===true}"
+					visible="{= ${oAppModel>/currentViewPage}==='CompletedTasks' &amp;&amp; ${oAppModel>/taskObjectDetails/processName}==='ProjectProposalDocumentApproval' &amp;&amp; ${oTaskDetailModel>/isResubmitPPDA} ? true:!true}"/>
+				<core:Icon src="sap-icon://arrow-top" class="wbTaskDetailHeaderIconClass" visible="false"/>
+				<core:Icon src="sap-icon://arrow-bottom" class="wbTaskDetailHeaderIconClass" visible="false"/>
+				<core:Icon src="sap-icon://decline" class="wbTaskDetailHeaderIconClass" press="closeTaskDetailPage" tooltip="{i18n>CLOSE_TEXT}"/>
+			</HBox>
+		</HBox>
+		<VBox renderType="Bare" width="100%" visible="{= ${oAppModel>/taskObjectDetails/url} !== null}" height="96%">
+			<core:HTML
+				content="&lt;div id=&quot;frameContentDiv&quot;&gt; &lt;iframe id=&quot;frameId&quot; width=&quot;100%&quot; height=&quot;100%&quot; class=&quot;wbTaskDetailiFrameClass&quot; seamless&gt;&lt;/iframe&gt; &lt;/div&gt;"></core:HTML>
+		</VBox>
+		<VBox renderType="Bare" width="100%" visible="{= ${oAppModel>/taskObjectDetails/url} === null}">
+			<HBox renderType="Bare" alignItems="Center" width="100%">
+				<VBox renderType="Bare" width="100%" class="wbTaskDetailCreatedInfoClass" busy="{oTaskDetailModel>/enableBusyIndicators/taskContent}"
+					busyIndicatorDelay="0">
+					<HBox renderType="Bare" alignItems="Center" width="100%" class="wbTaskDetailCreatedByContentClass wbTaskDetailCreatedByBorderClass">
+						<Avatar src="test-resources/sap/tnt/images/Woman_avatar_01.png" displaySize="XS"/>
+						<VBox renderType="Bare" width="100%" class="sapUiTinyMarginBegin">
+							<Text text="{i18n>CREATED_BY_TEXT}" class="wbTaskDetailCreatedByTextClass"/>
+							<HBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween">
+								<Text text="{oAppModel>/taskObjectDetails/startedByDisp}" class="wbTaskDetailCreatedByNameClass"/>
+								<Text
+									text="{path : 'oAppModel>/taskObjectDetails/createdAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbDateFormatter'}, {path : 'oAppModel>/taskObjectDetails/createdAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbTimeFormatter'}"/>
+							</HBox>
+						</VBox>
+					</HBox>
+					<HBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween" width="100%" class="wbTaskDetailCreatedByContentClass">
+						<HBox>
+							<Text text="{i18n>DESCRIPTION_TEXT}"/>
+							<Text text=": {oAppModel>/taskObjectDetails/taskDescription}" class="wbTextBoldClass"/>
+						</HBox>
+						<HBox>
+							<Link text="{i18n>VIEW_MORE_DETAILS}" press="openGUI"
+								visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseOrderApprovalProcess' ? true : false}"/>
+						</HBox>
+					</HBox>
+				</VBox>
+			</HBox>
+			<VBox id="WB_TASK_DETAIL_CONTENT"/>
+			<VBox renderType="Bare" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop wbTaskDetailContentClass" alignItems="Center"
+				visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' || ${oAppModel>/taskObjectDetails/processName} === 'PurchaseOrderApprovalProcess' ? true : false}">
+				<HBox alignItems="Center" renderType="Bare" width="100%" class="wbTaskDetailSubHeaderClass">
+					<Text text="{i18n>LINE_ITEM_TEXT}"/>
+				</HBox>
+				<Table width="99.5%" class="wbCustomTableClass wbTaskDetailAribaTableClass" items="{oTaskDetailModel>/purchaseProcessLineItem}">
+					<columns>
+						<Column>
+							<Label text="{i18n>ITEM_NUMBER_TEXT}" class="wbTransformToUpperCase"/>
+						</Column>
+						<Column>
+							<Label text="{i18n>MATERIAL_TEXT} {i18n>DESCRIPTION_TEXT}" class="wbTransformToUpperCase"/>
+						</Column>
+						<Column visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? true : false}">
+							<Label text="{i18n>VALUE_TEXT} {i18n>PRICE_TEXT}" class="wbTransformToUpperCase"/>
+						</Column>
+						<Column>
+							<Label text="{i18n>QUANTITY_TEXT}" class="wbTransformToUpperCase"/>
+						</Column>
+						<Column visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? false : true}">
+							<Label text="{i18n>NET_TEXT} {i18n>PRICE_TEXT} {i18n>UNIT_TEXT}" class="wbTransformToUpperCase"/>
+						</Column>
+						<Column>
+							<Label text="{i18n>UNIT_OF_MEASURE_TEXT}" class="wbTransformToUpperCase"/>
+						</Column>
+						<Column>
+							<Label text="{i18n>TOTAL_TEXT} {i18n>VALUE_TEXT}" class="wbTransformToUpperCase"/>
+						</Column>
+						<Column>
+							<Label text="{i18n>DELIVERY_DATE_TEXT}" class="wbTransformToUpperCase"/>
+						</Column>
+						<Column visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? true : false}">
+							<Label text="{i18n>COST_CENTER_TEXT}" class="wbTransformToUpperCase"/>
+						</Column>
+						<Column visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? true : false}">
+							<Label text="{i18n>ACTION_TEXT}" class="wbTransformToUpperCase"/>
+						</Column>
+						<Column visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? false : true}">
+							<Label text="{i18n>PLANT_TEXT}" class="wbTransformToUpperCase"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<VBox renderType="Bare">
+									<Text text="{oTaskDetailModel>Bnfpo}" visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? true : false}"/>
+									<Text text="{oTaskDetailModel>Ebelp}" visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? false : true}"/>
+								</VBox>
+								<Text text="{oTaskDetailModel>Maktx}"/>
+								<Text text="{oTaskDetailModel>Preis}"/>
+								<VBox renderType="Bare">
+									<Text text="{oTaskDetailModel>Menge}" visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? false : true}"/>
+									<Input visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? true : false}" value="{oTaskDetailModel>Menge}"
+										class="sapUiSizeCompact wbDefaultCustomInputWrapper"
+										editable='{parts:["oTaskDetailModel>Bnfpo","oTaskDetailModel>/selectedLineItem"], formatter:"oneapp.incture.workbox.util.formatter.wbSetEditableForQtyTDetail"}'/>
+								</VBox>
+								<Text text="{oTaskDetailModel>Netpr}"/>
+								<VBox renderType="Bare">
+									<Text text="{oTaskDetailModel>Meins}" visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? true : false}"/>
+									<Text text="{oTaskDetailModel>Gewei}" visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? false : true}"/>
+								</VBox>
+								<VBox renderType="Bare">
+									<Text text="{oTaskDetailModel>TotalValue} {oTaskDetailModel>Waers}"
+										visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? true : false}"/>
+									<Text text="{oTaskDetailModel>Netwr} {oTaskDetailModel>Waers}"
+										visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? false : true}"/>
+								</VBox>
+								<VBox renderType="Bare">
+									<Text text="{path : 'oTaskDetailModel>Lfdat' ,formatter: 'oneapp.incture.workbox.util.formatter.wbFormatDeliveryDateTDetail'}"
+										visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? true : false}"/>
+									<Text text="{path : 'oTaskDetailModel>Eindt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbFormatDeliveryDateTDetail'}"
+										visible="{= ${oAppModel>/taskObjectDetails/processName} === 'PurchaseRequisition' ? false : true}"/>
+								</VBox>
+								<VBox>
+									<Text text="{oTaskDetailModel>Sakto}"/>
+									<Text text="{oTaskDetailModel>GlDesc}"/>
+								</VBox>
+								<Button text="{i18n>UPDATE_TEXT}" type="Transparent" class="wbCustomButtonClass sapUiSizeCompact" press="onQuantityUpdate"
+									enabled='{parts:["oTaskDetailModel>Bnfpo","oTaskDetailModel>/selectedLineItem"], formatter:"oneapp.incture.workbox.util.formatter.wbSetEditableForQtyTDetail"}'/>
+								<Text text="{oTaskDetailModel>Werks}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+			<VBox renderType="Bare" width="100%" visible="{= ${oAppModel>/taskObjectDetails/processName} === 'ApprovalForAwardforRFQ' ? true : false}"
+				busy="{oTaskDetailModel>/enableBusyIndicators/aribaContent}" busyIndicatorDelay="0">
+				<VBox renderType="Bare" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop wbTaskDetailContentClass" alignItems="Center">
+					<HBox alignItems="Center" renderType="Bare" width="100%" class="wbTaskDetailSubHeaderClass">
+						<Text text="{i18n>PARTICIPANTS_BID_TEXT}"/>
+					</HBox>
+					<Table id="WB_TASK_DETAIL_SUPPLIER_TABLE" width="99.5%" class="wbCustomTableClass wbTaskDetailAribaTableClass"/>
+				</VBox>
+				<VBox renderType="Bare" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop wbTaskDetailContentClass" alignItems="Center">
+					<HBox alignItems="Center" renderType="Bare" width="100%" class="wbTaskDetailSubHeaderClass">
+						<Text text="{i18n>AWARD_ALLOCATION_TEXT}"/>
+					</HBox>
+					<Table id="WB_TASK_DETAIL_AWARD_TABLE" width="99.5%" class="wbCustomTableClass wbTaskDetailAribaTableClass"/>
+				</VBox>
+				<VBox renderType="Bare" class="wbTaskDetailContentClass wbTaskDetailPaddingClass">
+					<HBox alignItems="Center" renderType="Bare" class="wbTaskDetailAttachmentClass">
+						<Text text="{i18n>SAVINGS_TEXT}"/>
+					</HBox>
+					<HBox renderType="Bare" alignItems="Start" class="sapUiTinyMarginTop" items="{oTaskDetailModel>/aribaDetails/reportDetails}"
+						justifyContent="SpaceBetween">
+						<VBox renderType="Bare">
+							<Label text="{oTaskDetailModel>header}" class="wbTextBoldClass wbTransformCapitalise sapUiTinyMarginBottom"/>
+							<Text text="{oTaskDetailModel>values}"/>
+						</VBox>
+					</HBox>
+				</VBox>
+			</VBox>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

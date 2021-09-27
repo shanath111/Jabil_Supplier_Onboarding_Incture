@@ -1,0 +1,93 @@
+{
+	"_version": "3.0.0",
+	"identification": {
+		"id": "dcc63dac-1516-4c1a-8466-6ec175001697",
+		"entityType": "bundle"
+	},
+	"payload": {
+		"catalogs": [{
+			"_version": "3.0.0",
+			"identification": {
+				"id": "defaultCatalogId",
+				"title": "{{title}}",
+				"entityType": "catalog",
+				"i18n": "i18n/defaultCatalogId.properties"
+			},
+			"payload": {
+				"viz": []
+			}
+		}],
+		"groups": [{
+			"_version": "3.0.0",
+			"identification": {
+				"id": "defaultGroupId",
+				"title": "{{title}}",
+				"entityType": "group",
+				"i18n": "i18n/defaultGroupId.properties"
+			},
+			"payload": {
+				"viz": [{
+					"id": "ns.BuyerRegistration-0-1622034664713",
+					"appId": "ns.BuyerRegistration",
+					"vizId": "buyerRegistration-Display"
+				}, {
+					"id": "oneapp.incture.workbox-2-1622640147226",
+					"appId": "oneapp.incture.workbox",
+					"vizId": "inbox-Approve"
+				}, {
+					"id": "oneapp.incture.report.reports-2-1626082202996",
+					"appId": "oneapp.incture.report.reports",
+					"vizId": "reports-display"
+				}, {
+					"id": "InboxDetail-3-1629721323711",
+					"appId": "InboxDetail",
+					"vizId": "InboxDetail-Display"
+				}, {
+					"id": "oneapp.incture.processFlow.processFlow-4-1629991070376",
+					"appId": "oneapp.incture.processFlow.processFlow",
+					"vizId": "processFlow-display"
+				}]
+			}
+		}],
+		"sites": [{
+			"_version": "3.0.0",
+			"identification": {
+				"id": "0fc6e303-eb66-42a3-a719-f0da5ace8422",
+				"entityType": "site",
+				"title": "SAP Fiori launchpad site on Cloud Foundry",
+				"description": "SAP Fiori launchpad site on Cloud Foundry, deployed from WING"
+			},
+			"payload": {
+				"config": {
+					"ushellConfig": {
+						"renderers": {
+							"fiori2": {
+								"componentData": {
+									"config": {
+										"applications": {
+											"Shell-home": {}
+										},
+										"enableSearch": false,
+										"enablePersonalization": true,
+										"enableSetTheme": true,
+										"enableSetLanguage": true,
+										"enableAutomaticSignout": true,
+										"sessionTimeoutIntervalInMinutes": 15,
+										"sessionTimeoutReminderInMinutes": 3
+									}
+								}
+							}
+						}
+					}
+				},
+				"groupsOrder": ["defaultGroupId"],
+				"sap.cloud.portal": {
+					"config": {
+						"theme.id": "sap_fiori_3",
+						"theme.active": ["sap_fiori_3", "sap_fiori_3_dark", "sap_belize_hcb", "sap_belize_hcw"]
+					}
+				}
+			}
+		}]
+	}
+}

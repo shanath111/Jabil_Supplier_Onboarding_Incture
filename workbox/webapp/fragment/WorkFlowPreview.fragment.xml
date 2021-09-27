@@ -1,0 +1,84 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:NG="sap.suite.ui.commons.networkgraph"
+	xmlns:layout="sap.suite.ui.commons.networkgraph.layout" xmlns:mvc="sap.ui.core.mvc">
+	<VBox renderType="Bare" class="sapUiSizeCompact wbMasterPageStyle" width="100%" height="100%">
+		<VBox renderType="Bare" width="100%" class="wbTaskDetailHeaderClass">
+			<HBox renderType="Bare" alignItems="Center" justifyContent="End">
+				<core:Icon src="sap-icon://decline" class="wbTaskDetailHeaderIconClass" press="closePreviewPage" tooltip="{i18n>CLOSE_TEXT}"/>
+			</HBox>
+			<ScrollContainer horizontal="true" vertical="false" width="100%">
+				<HBox justifyContent="Start" renderType="Bare" alignItems="Center"
+					class="wbPreviewGraph wbAdminPreviewGraphContainer wbAdminWfGraphContainer">
+					<NG:Graph graphReady="refreshGraphFn" enableWheelZoom="false" enableZoom="false" orientation="LeftRight"
+						nodes="{oDefaultDataModel>/previewTaskDto}" lines="{oDefaultDataModel>/mappingLinesPreview}" renderType="Svg">
+						<NG:layoutData>
+							<FlexItemData growFactor="1" shrinkFactor="1" baseSize="0%" minWidth="auto"/>
+						</NG:layoutData>
+						<NG:layoutAlgorithm>
+							<layout:LayeredLayout mergeEdges="false" nodePlacement="Simple" nodeSpacing="55"/>
+						</NG:layoutAlgorithm>
+						<NG:nodes>
+							<NG:Node showDetailButton="false" showActionLinksButton="false" descriptionLineSize="0" key="{oDefaultDataModel>templateId}"
+								title="{oDefaultDataModel>eventName}" shape="Circle" status="Success" press="showTaskDetailsPreviewFn"/>
+						</NG:nodes>
+						<NG:lines>
+							<NG:Line arrowPosition="End" arrowOrientation="ParentOf" from="{oDefaultDataModel>from}" to="{oDefaultDataModel>to}" stretchToCenter="true"
+								press="linePress"></NG:Line>
+						</NG:lines>
+					</NG:Graph>
+				</HBox>
+			</ScrollContainer>
+			<HBox renderType="Bare" alignItems="Center">
+				<Text text="{i18n>SUB_TEXT}: {oDefaultDataModel>/previewHeaderDto/subject}" class="wbTaskDetailHeaderText"/>
+			</HBox>
+		</VBox>
+		<HBox renderType="Bare" alignItems="Center" width="100%">
+			<VBox renderType="Bare" width="100%" class="wbTaskDetailCreatedInfoClass">
+				<HBox renderType="Bare" alignItems="Center" width="100%" class="wbTaskDetailCreatedByContentClass wbTaskDetailCreatedByBorderClass">
+					<Avatar src="test-resources/sap/tnt/images/Woman_avatar_01.png" displaySize="XS"/>
+					<VBox renderType="Bare" width="100%" class="sapUiTinyMarginBegin">
+						<Text text="{i18n>CREATED_BY_TEXT}" class="wbTaskDetailCreatedByTextClass"/>
+						<HBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween">
+							<Text text="{oAppModel>/loginUserName}" class="wbTaskDetailCreatedByNameClass"/>
+							<Text
+								text="{path : 'oDefaultDataModel>/previewHeaderDto/description' ,formatter: 'oneapp.incture.workbox.util.formatter.wbTaskDetailDateFormatter'}"/>
+						</HBox>
+					</VBox>
+				</HBox>
+				<HBox renderType="Bare" alignItems="Center" width="100%" class="wbTaskDetailCreatedByContentClass">
+					<Text text="{i18n>DESCRIPTION_TEXT}"/>
+					<Text text=": {oDefaultDataModel>/previewHeaderDto/description}" class="wbTextBoldClass"/>
+				</HBox>
+			</VBox>
+		</HBox>
+		<l:VerticalLayout width="100%" visible="{= ${oDefaultDataModel>/previewGridDto}.length > 0}">
+			<l:Grid defaultSpan="L3 M6 S12" vSpacing="0.5" class="wbTaskDetailContentClass wbTaskDetailPaddingClass"
+				content="{oDefaultDataModel>/previewGridDto}">
+				<VBox renderType="Bare" height="auto" class="sapUiTinyMarginTop">
+					<Label text="{oDefaultDataModel>label}" required="{oDefaultDataModel>isMandatory}"/>
+					<Input width="80%" class="wbTaskDetailInputWrapper" editable="false"/>
+				</VBox>
+			</l:Grid>
+		</l:VerticalLayout>
+		<VBox renderType="Bare" class="wbTaskDetailContentClass wbTaskDetailPaddingClass"
+			visible="{= ${oDefaultDataModel>/previewAttachmentDto}.length > 0}">
+			<HBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween" class="wbTaskDetailAttachmentClass" width="102.25%">
+				<Text text="{i18n>ATTACHMENTS_TEXT}"/>
+				<Button text="{i18n>DOWNLOAD_ALL_TEXT}" class="wbCustomButtonClass" type="Emphasized" enabled="false"/>
+			</HBox>
+			<HBox renderType="Bare" alignItems="Center" items="{oDefaultDataModel>/previewAttachmentDto}">
+				<HBox width="25%" renderType="Bare" alignItems="Center">
+					<Image src="images/AttachmentPDF.png" class="wbCreateTaskFragmentAttachmentImage"/>
+					<VBox renderType="Bare" class="sapUiTinyMarginBegin">
+						<Label text="{oDefaultDataModel>label}" required="{oDefaultDataModel>isMandatory}" class="wbTaskDetailFileNameClass"/>
+						<Text text="filesize" class="sapUiTinyMarginTop wbTaskDetailFileSizeClass"/>
+					</VBox>
+				</HBox>
+			</HBox>
+		</VBox>
+		<VBox renderType="Bare"
+			visible="{= ${oDefaultDataModel>/previewHeaderDto/url} || ${oDefaultDataModel>/createWorkFlowData/processDetail/url} ? true : false}">
+			<core:HTML
+				content="&lt;div height=&quot;100%&quot;&gt; &lt;iframe id=&quot;ID_FRAME_DETAIL&quot; width=&quot;100%&quot; height=&quot;100%&quot; class=&quot;wbTaskDetailiFrameClass&quot; seamless&gt;&lt;/iframe&gt; &lt;/div&gt;"></core:HTML>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

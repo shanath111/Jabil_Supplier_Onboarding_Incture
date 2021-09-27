@@ -1,0 +1,500 @@
+<mvc:View controllerName="InboxDetail.controller.BPExtend" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	displayBlock="true" xmlns="sap.m" height = "100%" 	xmlns:u="sap.ui.table" 	xmlns:f="sap.f" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout">
+<Page id="id_BPExtendH" class="cl_VRPageBackGrnd sapUiSizeCompact" enableScrolling="false" showHeader="false">
+				
+				<content>
+                	<f:FlexibleColumnLayout  id="flexibleColumnLayout" backgroundDesign="Solid">
+		<f:beginColumnPages>
+        <f:DynamicPage  fitContent="true" height="100%" showFooter="true" 
+				   toggleHeaderOnTitleClick="false" class="cl_DynamicPage">
+		<f:content>
+        <VBox fitContainer="true" id="id_FilterHeight"> 
+	  <Panel width="auto" expandable="true"  id="id_FilterPanel"  expanded="true" class="cl_VRPanelClass cl_PanelMargonTop sapUiTinyMarginBegin sapUiTinyMarginEnd">
+						<headerToolbar >
+							<Toolbar height="2rem" class="cl_VRHeaderBackGrndPnl">
+								<Title text="{i18n>VRFilter}"/>
+								<ToolbarSpacer/>
+								<Button text="{i18n>VRClear}" enabled="{oConfigMdl>/searchEnable}" press="fnClearSearch" class="cl_VRActnBtnClear"/>
+								<Button text="{i18n>VRApply}" enabled="{oConfigMdl>/searchEnable}" press="fnLoadPartnerData" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
+							</Toolbar>
+						</headerToolbar>
+						<content>
+							<l:Grid  defaultSpan="XL2 L2 M6 S12" class="sapUiSizeCompact cl_ExtendSearchGrid">
+								<VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPEAccountGroup}:" class="cl_VRLablCls "></Label>
+									<ComboBox width="100%" items="{oStaticData>/AccGrpLp}" enabled="{oConfigMdl>/searchEnable}" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}"
+											filterSecondaryValues="true" change="fnChangeDropDown" showSecondaryValues="true" selectedKey="{JMSearchFilter>/accountingGroup}"
+											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oStaticData>}" text="{oStaticData>}" />
+										</ComboBox>
+								</VBox>
+                              
+                            <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPEDUNSNumber}:" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/duns}" class="cl_VRInputCls"></Input>
+							</VBox>
+                              <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPEVendorName}:" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/vendorName}" class="cl_VRInputCls"></Input>
+							</VBox>
+                            <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPEVendorNumber}:" class="cl_VRLablCls"></Label>
+								<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/vendorNumber}" class="cl_VRInputCls"></Input>
+                                    </VBox>
+                                      <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPECountry}:" class="cl_VRLablCls "></Label>
+									
+                                        	<ComboBox width="100%" items="{oBPLookUpMdl>/Country}" enabled="{oConfigMdl>/searchEnable}"  valueState="{JMBPCreate>/countrye}" valueStateText="{JMBPCreate>/countrym}"
+											filterSecondaryValues="true" change="fnChangeDropDown" showSecondaryValues="true" 
+											class="cl_VRInputCls" selectedKey="{JMSearchFilter>/country}" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
+										</ComboBox>
+							</VBox>
+								<VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPECity}:" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/city}" class="cl_VRInputCls"></Input>
+								</VBox>
+                              <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPEStreet}:" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/street}" class="cl_VRInputCls"></Input>
+							</VBox>
+                               <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPEPostalCode}:" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/postalCode}" class="cl_VRInputCls"></Input>
+							</VBox>
+                            <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPECentralDelFlag}:" class="cl_VRLablCls "></Label>
+									<ComboBox width="100%" items="{oStaticData>/FlagLp}" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}"
+											filterSecondaryValues="true" enabled="{oConfigMdl>/searchEnable}" change="fnChangeDropDown" showSecondaryValues="true" 
+											class="cl_VRInputCls" selectedKey="{JMSearchFilter>/centralDeletionFlag}" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oStaticData>}" text="{oStaticData>}" />
+										</ComboBox>
+								</VBox>
+                            	<VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPECompanyCode}:" class="cl_VRLablCls "></Label>
+                                    	<ComboBox width="100%" items="{oBPLookUpMdl>/CompanyCode}" enabled="{oConfigMdl>/searchEnable}"  autocomplete="false" valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
+											filterSecondaryValues="true"  change="fnChangeDropDown" showSecondaryValues="true" 
+											class="cl_VRInputCls"  selectedKey="{JMSearchFilter>/companyCode}" editable="{oBTHeaderMdl>/EDITABLE}" >
+											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
+										</ComboBox>
+									
+								</VBox>
+                                	<VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPEPurchasingOrg}:" class="cl_VRLablCls "></Label>
+
+                                        <ComboBox width="100%" items="{oBPLookUpMdl>/PurOrg}" enabled="{oConfigMdl>/searchEnable}" valueState="{JMBPCreate>/purchasingOrge}" valueStateText="{JMBPCreate>/purchasingOrgm}"
+											filterSecondaryValues="true" change="fnChangeDropDown" showSecondaryValues="true" 
+											class="cl_VRInputCls" selectedKey="{JMSearchFilter>/purchasingOrg}" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
+										</ComboBox>
+								</VBox>
+                                
+                                 <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPECentralPostingBlock}:" class="cl_VRLablCls "></Label>
+								
+                                        <ComboBox width="100%" items="{oStaticData>/FlagLp}" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}"
+											filterSecondaryValues="true" enabled="{oConfigMdl>/searchEnable}" change="fnChangeDropDown" showSecondaryValues="true" 
+											class="cl_VRInputCls" selectedKey="{JMSearchFilter>/centralPostingBlock}" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oStaticData>}" text="{oStaticData>}" />
+										</ComboBox>
+								</VBox>
+                                <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPECentralPurchasingBlock}:" class="cl_VRLablCls "></Label>
+									
+                                        <ComboBox width="100%" items="{oStaticData>/FlagLp}" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}"
+											filterSecondaryValues="true" enabled="{oConfigMdl>/searchEnable}" change="fnChangeDropDown" showSecondaryValues="true" 
+											class="cl_VRInputCls" selectedKey="{JMSearchFilter>/centralPurchasingBlock}" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oStaticData>}" text="{oStaticData>}" />
+										</ComboBox>
+                                        
+								</VBox>
+                                 <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPEBlockFunction}:" class="cl_VRLablCls "></Label>
+									<ComboBox width="100%" items="{oBPLookUpMdl>/BlockFunction}" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}"
+											filterSecondaryValues="true" enabled="{oConfigMdl>/searchEnable}" change="fnChangeDropDown" showSecondaryValues="true" selectedKey="{JMSearchFilter>/blockFunction}"
+											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBTLookUpMdl>FIELD_02}"/>
+										</ComboBox>
+								</VBox>
+                                  <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPECompanyCode/PostingBlock}:" class="cl_VRLablCls "></Label>
+									
+                                           <ComboBox width="100%" items="{oStaticData>/FlagLp}" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}"
+											filterSecondaryValues="true" enabled="{oConfigMdl>/searchEnable}" change="fnChangeDropDown" showSecondaryValues="true" 
+											class="cl_VRInputCls" selectedKey="{JMSearchFilter>/companyCodePostingBlock}" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oStaticData>}" text="{oStaticData>}" />
+										</ComboBox>
+								</VBox>
+                                 <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPEPurchasingOrgBlock}:" class="cl_VRLablCls "></Label>
+									
+                                           <ComboBox width="100%" items="{oStaticData>/FlagLp}" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}"
+											filterSecondaryValues="true" enabled="{oConfigMdl>/searchEnable}" change="fnChangeDropDown" showSecondaryValues="true" 
+											class="cl_VRInputCls" selectedKey="{JMSearchFilter>/purchaingOrgBlock}" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oStaticData>}" text="{oStaticData>}" />
+										</ComboBox>
+								</VBox>
+                                 <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPECompanyCodeDelFlag}:" class="cl_VRLablCls "></Label>
+
+                                           <ComboBox width="100%" items="{oStaticData>/FlagLp}" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}"
+											filterSecondaryValues="true" enabled="{oConfigMdl>/searchEnable}" change="fnChangeDropDown" showSecondaryValues="true" 
+											class="cl_VRInputCls" selectedKey="{JMSearchFilter>/companyCodeDeletionFlag}" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oStaticData>}" text="{oStaticData>}" />
+										</ComboBox>
+								</VBox>
+                                 <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPEPurchasingOrgDelFalg}:" class="cl_VRLablCls "></Label>
+                                          <ComboBox width="100%" items="{oStaticData>/FlagLp}" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}"
+											filterSecondaryValues="true" enabled="{oConfigMdl>/searchEnable}" change="fnChangeDropDown" showSecondaryValues="true" 
+											class="cl_VRInputCls" selectedKey="{JMSearchFilter>/purchasingOrgDelFlag}" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oStaticData>}" text="{oStaticData>}" />
+										</ComboBox>
+                                        
+								</VBox>
+                                 <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPEPrimaryDup}:" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/primary}" class="cl_VRInputCls"></Input>
+							</VBox>
+               	
+							</l:Grid>
+						</content>
+					</Panel>
+					<Panel width="auto" class="cl_VRPanelClass sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
+						<content>
+                          <!-- visibleRowCount="{oConfigMdl>/visibleRowCnt}" -->
+			<VBox fitContainer="true" >
+            	<u:Table
+				rows="{oVendorListModel>/data}"
+				selectionMode="Single"
+               rowSelectionChange="fnCaseListPressNav"
+               selectionBehavior="RowOnly"
+               id="id_SearchResultTb"
+               visibleRowCount="{oConfigMdl>/visibleRowCnt}"
+              
+                class="cl_UITableExtn"
+				ariaLabelledBy="title">
+				<u:extension>
+			
+											<OverflowToolbar class="VRTableTBHeight">
+												<Text text="{oVendorListModel>/headerText}"/>
+												<ToolbarSpacer/>
+                                               
+											
+										        	 <Button text="{i18n>BPNewBuisnessPartner}" enabled="{oConfigMdl>/searchEnable}" press="fnNewBuinessPartner" class="cl_VRActnBtnApply sapUiSizeCompact"  />
+			<Button text="{i18n>BPSendToGBS}"   press="fnSendToGBS" enabled="{oConfigMdl>/searchEnable}" class="cl_VRActnBtnApply sapUiTinyarginBegin sapUiSizeCompact" />
+              	 <Button icon="sap-icon://action-settings"  press="fnPersonaliseColumns" class="cl_VRActnBtnApply sapUiSizeCompact"  />
+										</OverflowToolbar>
+				</u:extension>
+				<u:columns>
+                   
+                <u:Column width="3rem">
+						<CheckBox  id="id_SelectAllCheck" visible="false" class="sapUiSizeCompact cl_ChkBoxHeight"  select="fnSelectAllTable" />
+						<u:template>
+							<CheckBox select="fnHadleTableSelection"  selected="{oVendorListModel>isSelect}" />
+						</u:template>
+					</u:Column>
+					
+                    <u:Column sortProperty="PendingChangeRequest" filterProperty="PendingChangeRequest" width="11rem" visible="{path: 'personalizationModel>/columnList/0/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                        <Label text="{i18n>BPEPendingRequest}" class="cl_VRLablCls "/>
+                        <u:template>
+                        <Text text="{oVendorListModel>PendingChangeRequest}"  class="cl_ListNameClass"/>
+                        </u:template>
+                    </u:Column>
+                    <u:Column width="7rem" sortProperty="COMPANY_CODE" filterProperty="COMPANY_CODE" visible="{path: 'personalizationModel>/columnList/1/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECompanyCode}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>COMPANY_CODE}"  class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="10rem" sortProperty="COMPANY_CODE" filterProperty="COMPANY_CODE" visible="{path: 'personalizationModel>/columnList/2/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECompanyCodeDesc}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{ parts: [
+      {path: 'oVendorListModel>COMPANY_CODE'},
+      {path: 'i18n>COMPANY_CODE'}
+    ], formatter: 'InboxDetail.util.formatter.fnFetchDescription'}"   class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="7rem" sortProperty="PURCHASING_ORG" filterProperty="PURCHASING_ORG" visible="{path: 'personalizationModel>/columnList/3/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEPurchasingOrg}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>PURCHASING_ORG}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="7rem" sortProperty="VENDOR_NUMBER" filterProperty="VENDOR_NUMBER" visible="{path: 'personalizationModel>/columnList/4/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEVendorNumber}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>VENDOR_NUMBER}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="8rem" sortProperty="ACCOUNT_GROUP" filterProperty="ACCOUNT_GROUP" visible="{path: 'personalizationModel>/columnList/5/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEAccountGroup}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>ACCOUNT_GROUP}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="10rem" sortProperty="RELATIONSHIP_INDICATOR" filterProperty="RELATIONSHIP_INDICATOR" visible="{path: 'personalizationModel>/columnList/6/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPERelationShipInd}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>RELATIONSHIP_INDICATOR}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="16rem" sortProperty="VENDOR_NAME" filterProperty="VENDOR_NAME" visible="{path: 'personalizationModel>/columnList/7/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEVendorName}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>VENDOR_NAME}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="16rem" sortProperty="STREET" filterProperty="STREET" visible="{path: 'personalizationModel>/columnList/8/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEStreet}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>STREET}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="CITY" filterProperty="CITY" visible="{path: 'personalizationModel>/columnList/9/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECity}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>CITY}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="10rem" sortProperty="REGION_STATE_PROVINCE" filterProperty="REGION_STATE_PROVINCE" visible="{path: 'personalizationModel>/columnList/10/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPERegion/State/Province}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>REGION_STATE_PROVINCE}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="COUNTRY" filterProperty="COUNTRY" visible="{path: 'personalizationModel>/columnList/11/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECountry}" class="cl_VRLablCls "/>
+                    <u:template>
+                      <Text text="{ parts: [
+      {path: 'oVendorListModel>COUNTRY'},
+      {path: 'i18n>COUNTRY'}
+    ], formatter: 'InboxDetail.util.formatter.fnFetchDescription'}"   class="cl_ListNameClass"/>
+                   
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="6rem" sortProperty="POSTAL_CODE" filterProperty="POSTAL_CODE" visible="{path: 'personalizationModel>/columnList/12/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEPostalCode}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>POSTAL_CODE}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="PRIMARY_PHONE_NUMBER" filterProperty="PRIMARY_PHONE_NUMBER" visible="{path: 'personalizationModel>/columnList/13/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEPrimaryPhoneNumber}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>PRIMARY_PHONE_NUMBER}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="EMAIL_ADDRESS" filterProperty="EMAIL_ADDRESS" visible="{path: 'personalizationModel>/columnList/14/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEEmailAddress}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>EMAIL_ADDRESS}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="8rem" sortProperty="DUNS" filterProperty="DUNS" visible="{path: 'personalizationModel>/columnList/15/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEDUNSNumber}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>DUNS}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="VendorCreationDate" filterProperty="VendorCreationDate" visible="{path: 'personalizationModel>/columnList/16/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEVendorCreaionDate}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>VendorCreationDate}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="FI_PAYMENT_TERMS" filterProperty="FI_PAYMENT_TERMS" visible="{path: 'personalizationModel>/columnList/17/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>FIPaymentTerms}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>FI_PAYMENT_TERMS}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="PU_PAYMENT_TERMS" filterProperty="PU_PAYMENT_TERMS" visible="{path: 'personalizationModel>/columnList/18/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>PUPaymentTerms}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>PU_PAYMENT_TERMS}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="CENTRAL_DELETION_FLAG" filterProperty="CENTRAL_DELETION_FLAG" visible="{path: 'personalizationModel>/columnList/19/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECentralDeletionFlag}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>CENTRAL_DELETION_FLAG}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="BLOCK_FUNCTION" filterProperty="BLOCK_FUNCTION" visible="{path: 'personalizationModel>/columnList/20/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEBlockFunction}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>BLOCK_FUNCTION}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="COMPANY_CODE_DEL_FLAG" filterProperty="COMPANY_CODE_DEL_FLAG" visible="{path: 'personalizationModel>/columnList/21/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECompanyCodeDelFlag}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>COMPANY_CODE_DEL_FLAG}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="PURCHASING_ORG_DEL_FLAG" filterProperty="PURCHASING_ORG_DEL_FLAG" visible="{path: 'personalizationModel>/columnList/22/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEPurchasingOrgDelFalg}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>PURCHASING_ORG_DEL_FLAG}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="CENTRAL_POSTING_BLOCK" filterProperty="CENTRAL_POSTING_BLOCK" visible="{path: 'personalizationModel>/columnList/23/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECentralPostingBlock}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>CENTRAL_POSTING_BLOCK}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="CENTRAL_PURCHASING_BLOCK" filterProperty="CENTRAL_PURCHASING_BLOCK" visible="{path: 'personalizationModel>/columnList/24/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECentralPurchasingBlock}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>CENTRAL_PURCHASING_BLOCK}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="CENTRAL_BLOCK_CODE" filterProperty="CENTRAL_BLOCK_CODE" visible="{path: 'personalizationModel>/columnList/25/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECentralBlockCode}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>CENTRAL_BLOCK_CODE}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="COMPANY_CODE_POSTING_BLOCK" filterProperty="COMPANY_CODE_POSTING_BLOCK" visible="{path: 'personalizationModel>/columnList/26/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECompanyCode/PostingBlock}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>COMPANY_CODE_POSTING_BLOCK}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="PURCHASING_ORG_BLOCK" filterProperty="PURCHASING_ORG_BLOCK" visible="{path: 'personalizationModel>/columnList/27/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEPurchasingOrgBlock}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>PURCHASING_ORG_BLOCK}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="PAYMENT_METHOD" filterProperty="PAYMENT_METHOD" visible="{path: 'personalizationModel>/columnList/28/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEPaymentMethod}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>PAYMENT_METHOD}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="PAYMENT_TERMS" filterProperty="PAYMENT_TERMS" visible="{path: 'personalizationModel>/columnList/29/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEPaymentTerms}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>PAYMENT_TERMS}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="CURRENCY" filterProperty="CURRENCY" visible="{path: 'personalizationModel>/columnList/30/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECurrency}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>CURRENCY}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="INCO_TERMS" filterProperty="INCO_TERMS" visible="{path: 'personalizationModel>/columnList/31/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEIncoterms}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>INCO_TERMS}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="BANK_COUNTRY" filterProperty="BANK_COUNTRY" visible="{path: 'personalizationModel>/columnList/32/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEBankCountry}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>BANK_COUNTRY}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="BANK_KEY" filterProperty="BANK_KEY" visible="{path: 'personalizationModel>/columnList/33/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEBankKey}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>BANK_KEY}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="BANK_ACCOUNT" filterProperty="BANK_ACCOUNT" visible="{path: 'personalizationModel>/columnList/34/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEBankAccount}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>BANK_ACCOUNT}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="BANK_ACC_HOLDERS_NAME" filterProperty="BANK_ACC_HOLDERS_NAME" visible="{path: 'personalizationModel>/columnList/35/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEBankAccHoldersName}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>BANK_ACC_HOLDERS_NAME}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="CONTROL_KEY" filterProperty="CONTROL_KEY" visible="{path: 'personalizationModel>/columnList/36/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEControlKey}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>CONTROL_KEY}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="BankType" filterProperty="BankType" visible="{path: 'personalizationModel>/columnList/37/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEBankType}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>BankType}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="IBAN" filterProperty="IBAN" visible="{path: 'personalizationModel>/columnList/38/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEIBAN}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>IBAN}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="BUSINESS_PARTNER_NUMBER" filterProperty="BUSINESS_PARTNER_NUMBER" visible="{path: 'personalizationModel>/columnList/39/isSelect' ,formatter: 'InboxDetail.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEBusinessPartnerNumber}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>BUSINESS_PARTNER_NUMBER}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+</u:columns>
+                	<u:layoutData>
+								<FlexItemData styleClass="chngLogGridTblItemClass"/>
+							</u:layoutData>
+                            	<u:footer>
+				<Toolbar class="sapUiSizeCompact cl_VRPagntnClr1">
+									<ToolbarSpacer></ToolbarSpacer>
+								<Text text="Showing Page {oVendorListModel>/currentPage}  of {oVendorListModel>/totalPage}" class="cl_VRPageTextClr" ></Text>
+									<Button icon="sap-icon://navigation-left-arrow" press="fnPreviousPage" enabled="{oVendorListModel>/renable}" class="cl_PaginationBtnCls"/>
+									<Button icon="sap-icon://navigation-right-arrow" press="fnNextPage" enabled="{oVendorListModel>/fenable}" class="cl_PaginationBtnCls"/>
+								</Toolbar>			
+				</u:footer>
+			</u:Table>
+				
+					
+							
+							</VBox>
+						</content>
+					</Panel>
+				</VBox>
+                </f:content>
+                	<f:footer   >
+			<OverflowToolbar visible="false" class="cl_BPCFooterClr sapUiSizeCompact">
+				<ToolbarSpacer/>
+				
+            </OverflowToolbar>
+		</f:footer>
+                </f:DynamicPage>
+		</f:beginColumnPages>
+		<f:midColumnPages>
+	 <f:DynamicPage  fitContent="true" showFooter="true"
+				   toggleHeaderOnTitleClick="false" class="cl_DynamicPage">
+		<f:content>
+         <Panel expandable="false"  expanded="true"
+						class="cl_VRPanelClass1 cl_PanelMargonTop">
+						<content>	
+                         	<core:Fragment fragmentName="InboxDetail.fragments.ExtendBuisnessPartnerApprove" type="XML"/>
+						</content>
+					</Panel>
+        </f:content>
+        	<f:footer   >
+			<OverflowToolbar visible="true" class="cl_BPCFooterClr sapUiSizeCompact">
+				<ToolbarSpacer/>
+				<Button text="{i18n>BPCCancel}"  press="fnCancelAction" visible="{oConfigMdl>/ActnBtnEnable1}" class="cl_BPCDraft sapUiSizeCompact"  />
+				<Button text="{i18n>BPCDraft}" enabled="{oConfigMdl>/ActnBtnEnable}"  type="Accept" press="fnCreateBP" class="cl_BPCDraft sapUiSmallMarginBegin sapUiSizeCompact" />
+                	
+					<Button text="{i18n>BPCSubmit}" press="fnCreateBPWF" enabled="{oConfigMdl>/ActnBtnEnable}" type="Accept" class="sapUiSmallMarginBegin sapUiSmallMarginEnd cl_BPCDraft sapUiSizeCompact" />
+			</OverflowToolbar>
+		</f:footer>
+                </f:DynamicPage>
+		</f:midColumnPages>
+	</f:FlexibleColumnLayout>
+			</content>
+            
+			</Page>					
+</mvc:View>

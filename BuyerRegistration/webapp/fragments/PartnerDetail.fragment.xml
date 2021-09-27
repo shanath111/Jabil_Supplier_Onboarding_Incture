@@ -1,0 +1,227 @@
+<core:FragmentDefinition
+  xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true"
+	xmlns="sap.m"  xmlns:l="sap.ui.layout">	
+    <l:Grid defaultSpan="XL12 L12 M12 S12" class="sapUiSizeCompact ">
+        <VBox class="cl_BPExctendBlock  " >
+       <Toolbar class="cl_ToolbarBorder" visible="{oConfigMdl>/closeFullScreenButton}">
+       <ToolbarSpacer ></ToolbarSpacer>
+       	<Button type="Transparent" visible="{oConfigMdl>/enterFullScreen}" icon="sap-icon://full-screen"  press="fnPressFullScreen" class="sapUiSizeCompact" tooltip="{i18n>BPCEnterFullScreen}" />
+		  	<Button type="Transparent" visible="{oConfigMdl>/exitFullScreen}" icon="sap-icon://exit-full-screen"  press="fnExitFullScreen" class="sapUiSizeCompact" tooltip="{i18n>BPCExitFullScreen}" />		
+                    		<Button type="Transparent" visible="{oConfigMdl>/closeFullScreenButton}" icon="sap-icon://decline" class="sapUiSizeCompact" press="fnCloseFullScreen"/>
+       </Toolbar>
+                        		<Label class="  cl_BPCrSectHeaderExtend sapUiSmallMarginBegin sapUiSmallMarginTop" wrapping="true" text="{i18n>GBMBPDetails}"></Label>
+								<l:Grid defaultSpan="XL2 L2 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+                                    <VBox>
+										<Label text="{i18n>PDPendingChangeReq}" class="cl_GBSLablCls "></Label>
+										<Label text="{JMBPCreate>/PENDING_CHANGE_REQUEST}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									<VBox>
+										<Label text="{i18n>PDCompanyCode}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/COMPANY_CODE}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									<VBox>
+										<Label text="{i18n>PDCompanyCodeDesc}" class="cl_GBSLablCls"></Label>
+										<Label text="{ parts: [
+      {path: 'JMBPCreate>/COMPANY_CODE'},
+      {path: 'i18n>COMPANY_CODE'}
+    ], formatter: 'ns.BuyerRegistration.util.formatter.fnFetchDescription'}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>PDPurchasingOrg}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/PURCHASING_ORG}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+								<!-- </l:Grid> -->
+                                
+                                <!-- <l:Grid defaultSpan="XL2 L2 M3 S12" class="sapUiSizeCompact sapUiSmallMarginBegin cl_extendBuyerRegGrid"> -->
+									<VBox>
+										<Label text="{i18n>PDVendoeNumbr}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/VENDOR_NUMBER}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									<VBox>
+										<Label text="{i18n>PDAccGroup}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/ACCOUNT_GROUP}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									<VBox>
+										<Label text="{i18n>PDRelationshipIndicator}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/RELATIONSHIP_INDICATOR}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									<VBox>
+										<Label text="{i18n>PDVendorName}" required="false" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/VENDOR_NAME}"  class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    
+								<!-- </l:Grid>
+                                    <HBox class="cl_HBoxBlockSep">
+                                </HBox>
+                                	<Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>PDAddress}"></Label>
+								<l:Grid defaultSpan="XL2 L2 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid"> -->
+									<VBox>
+										<Label text="{i18n>PDStreet}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/STREET}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									
+									<VBox>
+										<Label text="{i18n>PDCity}" required="false" class="cl_GBSLablCls"></Label>
+									    <Label text="{JMBPCreate>/CITY}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									<VBox>
+										<Label text="{i18n>PDStateProvince}" required="false" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/REGION_STATE_PROVINCE}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									<VBox>
+										<Label text="{i18n>PDCountry}" required="false" class="cl_GBSLablCls"></Label>
+										<Label text="{ parts: [
+      {path: 'JMBPCreate>/COUNTRY'},
+      {path: 'i18n>COUNTRY'}
+    ], formatter: 'ns.BuyerRegistration.util.formatter.fnFetchDescription'}" class="cl_VRLablClsValue "></Label>
+									
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>PDPostalCode}" required="false" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/POSTAL_CODE}" class="cl_VRLablClsValue "></Label>
+									
+									</VBox>
+									<VBox>
+										<Label text="{i18n>PDPrimaryPhnNmbr}" required="false" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/PRIMARY_PHONE_NUMBER}" class="cl_VRLablClsValue "></Label>								
+									</VBox>
+                                    	
+                                    <VBox>
+										<Label text="{i18n>PDEmailAdd}" required="false" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/EMAIL_ADDRESS}" class="cl_VRLablClsValue "></Label>								
+									</VBox>
+                                    
+                                <!-- </l:Grid>
+                                <HBox class="cl_HBoxBlockSep">
+                                </HBox>
+                                                                    
+								<l:Grid defaultSpan="XL2 L2 M3 S12"  class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid"> -->
+									<VBox>
+										<Label text="{i18n>PDVendorCreationDate}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/VendorCreationDate}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>DUNS}" class="cl_GBSLablCls "></Label>
+										<Label text="{JMBPCreate>/DUNS}" class="cl_VRLablClsValue"></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>PDFIPaymentTerms}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/FI_PAYMENT_TERMS}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									<VBox>
+										<Label text="{i18n>PDPUPaymentTerms}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/PU_PAYMENT_TERMS}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									<VBox>
+										<Label text="{i18n>PDCentralDeletionFlg}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/CENTRAL_DELETION_FLAG}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+
+									<VBox>
+										<Label text="{i18n>PDCompanyCodeDelFlag}" class="cl_GBSLablCls"></Label>
+									    <Label text="{JMBPCreate>/COMPANY_CODE_DEL_FLAG}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>PDPurOrgDelFlag}" class="cl_GBSLablCls "></Label>
+									    <Label text="{JMBPCreate>/PURCHASING_ORG_DEL_FLAG}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>PDCentralPostBlock}" class="cl_GBSLablCls "></Label>
+									    <Label text="{JMBPCreate>/CENTRAL_POSTING_BLOCK}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>BPECentralPurchasingBlock}" class="cl_GBSLablCls "></Label>
+									    <Label text="{JMBPCreate>/CENTRAL_PURCHASING_BLOCK}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+
+                                    <VBox>
+										<Label text="{i18n>PDCentralBlockCode}" class="cl_GBSLablCls"></Label>
+									    <Label text="{JMBPCreate>/CENTRAL_BLOCK_CODE}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>PDCompCodePostingBlock}" class="cl_GBSLablCls"></Label>
+									    <Label text="{JMBPCreate>/COMPANY_CODE_POSTING_BLOCK}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>PDPurchOrgBlock}" class="cl_GBSLablCls"></Label>
+									    <Label text="{JMBPCreate>/PURCHASING_ORG_BLOCK}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>PDBlockFunction}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/BLOCK_FUNCTION}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+								<!-- </l:Grid>
+                                   <HBox class="cl_HBoxBlockSep">
+                                </HBox>
+                                	<Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>PDPaymentDetails}"></Label>
+								<l:Grid defaultSpan="XL2 L2 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid"> -->
+									<VBox>
+										<Label text="{i18n>PDPaymentMethod}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/PAYMENT_METHOD}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+
+									<VBox>
+										<Label text="{i18n>PDPaymentTerms}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/PAYMENT_TERMS}" class="cl_VRLablClsValue"></Label>
+									</VBox>
+									<VBox>
+										<Label text="{i18n>PDCurrency}" class="cl_GBSLablCls"></Label>
+									    <Label text="{JMBPCreate>/CURRENCY}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>PDIncoterms}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/INCO_TERMS}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									
+									<VBox>
+										<Label text="{i18n>PDBankCountry}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/BANK_COUNTRY}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									<VBox>
+										<Label text="{i18n>PDBankkey}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/BANK_KEY}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>PDBankAcc}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/BANK_ACCOUNT}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>PDBankAccHldrName}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/BANK_ACC_HOLDERS_NAME}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>PDCntrlKey}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/CONTROL_KEY}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>PDBankType}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/BankType}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox>
+										<Label text="{i18n>PDIban}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/IBAN}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+								<!-- </l:Grid>
+                                   <HBox class="cl_HBoxBlockSep">
+                                </HBox>
+                               
+                                
+								<l:Grid defaultSpan="XL2 L2 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid"> -->
+									 <VBox>
+										<Label text="{i18n>PDBusinessPrtnrNmbr}" class="cl_GBSLablCls"></Label>
+										<Label text="{JMBPCreate>/BUSINESS_PARTNER_NUMBER}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    
+								</l:Grid>
+                                   <HBox class="cl_HBoxBlockSep">
+                                </HBox>
+
+                                	
+									
+                                	
+          </VBox>
+          
+        
+         	
+    </l:Grid>
+</core:FragmentDefinition>

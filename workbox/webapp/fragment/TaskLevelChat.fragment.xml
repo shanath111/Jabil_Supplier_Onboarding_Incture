@@ -1,0 +1,254 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:l="sap.ui.layout">
+	<VBox class="wbTLChatMainContent">
+		<VBox class="wbTLChatHeader" height="13%">
+			<HBox justifyContent="SpaceBetween">
+				<!--Start - By karishma-->
+				<!--<Label text="{i18n>CHAT_TEXT} - {oTaskLevelChat>/taskDetails/requestId}" class="wbTLChatHeaderText"/>-->
+				<Label text="{oTaskLevelChat>/sTaskDescription}" class="wbTLChatHeaderText" width="11rem"
+					tooltip="{oTaskLevelChat>/taskDetails/taskDescription}"/>
+				<!--End - By karishma-->
+				<core:Icon src="sap-icon://decline" class="wbTLChatCloseIcon" press="closeChat"></core:Icon>
+			</HBox>
+			<!--Start - By karishma-->
+			<HBox justifyContent="SpaceBetween">
+				<Text text="{oTaskLevelChat>/sParticipants}" maxLines="2" tooltip="{oTaskLevelChat>/sTooltip}" class="wbTLChatParticipantsText"/>
+				<core:Icon src="sap-icon://overflow" class="wbTLChatCloseIcon" press="onParticipantAction"
+					visible="{= ${oTaskLevelChat>/sParticipants}==='No particpants'?false:true}"></core:Icon>
+			</HBox>
+			<!--End - By karishma-->
+		</VBox>
+		<!-- Action on Members starts- By Karishma-->
+		<VBox visible="{oTaskLevelChat>/bMemberBox}" class="wbTaskLevelMemberBox">
+			<HBox visible="{= ${oTaskLevelChat>/bSearchBar}?true:false}">
+				<VBox>
+					<SearchField id="ID_TASKLEVEL_SEARCHFIELD" width="93%"
+						class="wbAdminMGroupsSearch wbChatScreenSerchStyles sapUiTinyMarginTop sapUiTinyMarginBeginEnd" suggest="onLiveSearch"
+						placeholder="{i18n>CHAT_SEARCH_PLACEHOLDER}" enableSuggestions="true" suggestionItems="{oTaskLevelChat>/chatUsers}"
+						value="{oTaskLevelChat>/searchValue}" search="onSelectName">
+						<SuggestionItem text="{oTaskLevelChat>displayName}" description="{oTaskLevelChat>id}"/>
+					</SearchField>
+					<CheckBox text="{i18n>INCLUDE_PREVIOUS_HISTORY_TEXT}" selected="{oTaskLevelChat>/bHasAccess}" class="wbChatCheckbox"
+						select="onTLSelectCheckbox"/>
+				</VBox>
+				<Button icon="images/DeclineReject.svg" class="wbTLRemoveSearch" press="onCloseSearchField" tooltip="{oTaskLevelChat>status}"/>
+			</HBox>
+			<HBox justifyContent="SpaceBetween" class="sapUiTinyMarginTop" visible="{= ${oTaskLevelChat>/bSearchBar}?false:true}">
+				<Text text="{i18n>PARTICIPANTS_TEXT}" class="wbRecentChatText sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+				<core:Icon src="sap-icon://add-employee" class="wbTLAddMemberIcon sapUiTinyMarginEnd" press="onPressAddMember"
+					visible="{= ${oTaskLevelChat>/bIsOwner} ? true:false}"></core:Icon>
+			</HBox>
+			<VBox>
+				<ScrollContainer height="22rem" vertical="true">
+					<List items="{oTaskLevelChat>/aActivemembers}">
+						<CustomListItem class="wbTLCustomList">
+							<HBox justifyContent="SpaceBetween" class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop">
+								<HBox class="wbTLCustomList sapUiTinyMarginTop">
+									<Avatar initials="{path: 'oTaskLevelChat>displayName',formatter: 'oneapp.incture.workbox.util.formatter.wbGetAvatarInitials'}"
+										displaySize="XS" class="wbChatAvatar"/>
+									<Label text="{oTaskLevelChat>displayName}" tooltip="{oTaskLevelChat>displayName}" class="sapUiTinyMarginBegin" width="9rem"/>
+								</HBox>
+								<Button icon="images/DeclineReject.svg" class="wbTLRemoveMember" press="onRemoveMember"
+									enabled="{= ${oTaskLevelChat>id} === ${oAppModel>/loggedInUserDetails/userId} ? false:true}"
+									visible="{= ${oTaskLevelChat>/bIsOwner} ? true:false}"/>
+							</HBox>
+						</CustomListItem>
+					</List>
+				</ScrollContainer>
+			</VBox>
+		</VBox>
+		<!-- Action on Members End- By Karishma-->
+		<!-- Binding Changes, Message Status in chat window start- by Karishma-->
+		<VBox height="86.7%" busy="{oTaskLevelChat>/busy}" busyIndicatorDelay="0" visible="{=${oTaskLevelChat>/bMemberBox}?false:true}">
+			<VBox id="ID_TASK_LEVEL_CHAT_SCROLL"
+				visible="{parts: ['oTaskLevelChat>/messages','oTaskLevelChat>/currentPage','oTaskLevelChat>/pageCount','oTaskLevelChat>/scrollable'],formatter: 'oneapp.incture.workbox.util.formatter.wbTLChatScroll'}"
+				height="{= ${oTaskLevelChat>/isAttachment} ? '100%':'100%' }" class="wbOverflowVertical">
+				<Button text="{i18n>SWITCH_TO_CHAT_BOT_TEXT}" visible="false" type="Emphasized" press="openChatBot"
+					class="wbTLChatSwitchBtn sapUiSizeCompact wbEmphasizedButtonStyleClass"/>
+				<!--<HBox justifyContent="End">-->
+				<!--	<BusyIndicator class="WbChatBusyIndicator" visible="{oTaskLevelChat>/growingBusy}" busyIndicatorDelay="0"/>-->
+				<!--</HBox>-->
+				<VBox items="{ path : 'oTaskLevelChat>/messages'}" class="wbChatScrollContent">
+					<VBox>
+						<!--START-->
+						<HBox>
+							<HBox class="wbChatMsgHeader sapUiTinyMarginBottom" width="100%">
+								<Avatar initials="{path: 'oTaskLevelChat>sendersName',formatter: 'oneapp.incture.workbox.util.formatter.wbGetAvatarInitials'}"
+									class="wbTLChatAvatar" visible="{= ${oTaskLevelChat>sentBy} !== ${oAppModel>/loggedInUserDetails/userId}}"/>
+								<VBox width="100%" justifyContent="{= ${oTaskLevelChat>sentBy} === ${oAppModel>/loggedInUserDetails/userId} ? 'End':'Start'}"
+									alignItems="{= ${oTaskLevelChat>sentBy} === ${oAppModel>/loggedInUserDetails/userId} ? 'End':'Start'}">
+									<VBox class="wbTLChatMsgVBox"
+										renderType="{parts: ['oTaskLevelChat>sentBy','oAppModel>/loggedInUserDetails/userId'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbChatMsgBoxStyle'}"
+										visible="{= (${oTaskLevelChat>comment} === '' || ${oTaskLevelChat>comment} === null) ? false :true}">
+										<HBox renderType="Bare" alignItems="Center" justifyContent="Start" width="100%">
+											<Label text="{oTaskLevelChat>sendersName}" visible="{= ${oTaskLevelChat>sentBy} !== ${oAppModel>/loggedInUserDetails/userId}}"
+												class="wbTLChatSentByName wbTextBoldClass sapUiSmallMarginEnd"/>
+											<Label text="{path: 'oTaskLevelChat>sentAt' ,formatter: 'oneapp.incture.workbox.util.formatter.WbGetTime'}" class="wbTLChatSentByName"/>
+										</HBox>
+										<VBox
+											visible="{parts:['oTaskLevelChat>isReply','oTaskLevelChat>sentBy','oAppModel>/loggedInUserDetails/userId'], formatter:'oneapp.incture.workbox.util.formatter.wbGetReplyToCss'}"
+											class="replyToMessageCss sapUiTinyMarginBottom">
+											<Label
+												text="{parts:['oTaskLevelChat>replyDetails/senderName','oTaskLevelChat>replyDetails/sentBy','oAppModel>/loggedInUserDetails/userId'], formatter:'oneapp.incture.workbox.util.formatter.wbGetReplyToSenderName'}"
+												design="Bold" class="wbSentTimeStyle sapUiTinyMarginBeginEnd"/>
+											<Text text="{oTaskLevelChat>replyDetails/comment}" class="wbMessageStyle sapUiTinyMarginBottom sapUiTinyMarginBeginEnd"/>
+										</VBox>
+										<Text text="{oTaskLevelChat>comment}" class="wbChatRecdMsg"
+											visible="{path: 'oTaskLevelChat>tagged' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetTextVisibility'}"/>
+										<FormattedText
+											htmlText="{parts:['oTaskLevelChat>comment','oTaskLevelChat>tagged','oTaskLevelChat>/aMemberDetails'], formatter:'oneapp.incture.workbox.util.formatter.wbGetformattedText'}"
+											class="wbChatRecdMsg"
+											visible="{path: 'oTaskLevelChat>tagged' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetFormattedTextVisibility'}"/>
+										<!--<FormattedText-->
+										<!--	htmlText="{parts:['oTaskLevelChat>comment','oTaskLevelChat>tagged','oTaskLevelChat>/aMemberList'], formatter:'oneapp.incture.workbox.util.formatter.wbGetformattedText'}"-->
+										<!--	class="wbChatRecdMsg"/>-->
+										<HBox justifyContent="End" class="wbStarHBoxStyle">
+											<core:Icon src="sap-icon://overflow" press="onTLMessageAction" class="wbChatStarStyle sapUiSmallMarginEnd"/>
+											<core:Icon src="{= ${oTaskLevelChat>isFavourite} ? 'sap-icon://favorite': 'sap-icon://unfavorite'}"
+												tooltip="{= ${oTaskLevelChat>isFavourite} ? 'UnFavorite': 'Favorite'}" press="onTaskLevelFavouritePress" class="wbChatStarStyle"/>
+										</HBox>
+									</VBox>
+									<!--<HBox class="sapUiTinyMarginTop wbTLChatMsgVBox"-->
+									<!--	renderType="{parts: ['oTaskLevelChat>sentBy','oAppModel>/loggedInUserDetails/userId'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbChatMsgBoxStyle'}"-->
+									<!--	visible="{parts:['oTaskLevelChat>actionItems','oTaskLevelChat>sentBy','oAppModel>/loggedInUserDetails/userId','oTaskLevelChat>comment'],formatter:'oneapp.incture.workbox.util.formatter.wbGetActionButtons'}">-->
+									<!--	<Text class="wbChatRecdMsg" text="Would you like to approve or reject the request?" wrapping="true"/>-->
+									<!--</HBox>-->
+									<!--<HBox class="sapUiMediumMarginBeginEnd"-->
+									<!--	visible="{parts:['oTaskLevelChat>actionItems','oTaskLevelChat>sentBy','oAppModel>/loggedInUserDetails/userId','oTaskLevelChat>comment'],formatter:'oneapp.incture.workbox.util.formatter.wbGetActionButtons'}"-->
+									<!--	items="{oTaskLevelChat>aActionButtons}">-->
+									<!--	<Button type="Transparent" class="sapUiSizeCompact wbChatBotQRButtons wbTransparentButtonStyleClass" width="5rem"-->
+									<!--		text="{oTaskLevelChat>button}" press="onPressChatButtonAction"/>-->
+									<!--</HBox>-->
+									<VBox class="wbTLChatMsgVBox"
+										renderType="{parts: ['oTaskLevelChat>sentBy','oAppModel>/loggedInUserDetails/userId'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbChatMsgBoxStyle'}"
+										visible="{path: 'oTaskLevelChat>attachmentDetails' ,formatter: 'oneapp.incture.workbox.util.formatter.wbTLChatIsAttachmentVisible'}">
+										<HBox renderType="Bare" alignItems="Center"
+											visible="{= (${oTaskLevelChat>comment} === '' || ${oTaskLevelChat>comment} === null) ? true :false}">
+											<Label visible="{= ${oTaskLevelChat>sentBy} !== ${oAppModel>/loggedInUserDetails/userId}}" text="{oTaskLevelChat>sentByName}"
+												class="wbTLChatSentByName wbTextBoldClass sapUiSmallMarginEnd"/>
+											<Label text="{path: 'oTaskLevelChat>sentAt' ,formatter: 'oneapp.incture.workbox.util.formatter.WbGetTime'}" class="wbTLChatSentByName"/>
+										</HBox>
+										<grid:CSSGrid class="wbChatAttachmentGrid" gridTemplateColumns="repeat( 1, minmax(3rem, 1fr) )" items="{oTaskLevelChat>attachmentDetails}"
+											gridTemplateRows="auto" gridGap="0.5rem">
+											<CustomListItem type="Active" press="onAttachmentDownload" class="sapUiSizeCompact wbTLChatAttachmentCLI">
+												<VBox wrap="Wrap" width="8rem" height="5.5rem" justifyContent="Center" alignItems="Center"
+													visible="{path: 'oTaskLevelChat>fileType',formatter: 'oneapp.incture.workbox.util.formatter.wbChatCheckImage'}">
+													<Image
+														src="{parts: ['oTaskLevelChat>compressed','oTaskLevelChat>fileType'],formatter: 'oneapp.incture.workbox.util.formatter.wbParseAttachmentType'}"
+														tooltip="{oTaskLevelChat>fileName}" class="wbChatImage"/>
+												</VBox>
+												<HBox height="3rem" width="100%" justifyContent="Start" alignItems="Center" class="wbChatAttachmentTile"
+													visible="{path: 'oTaskLevelChat>fileType',formatter: 'oneapp.incture.workbox.util.formatter.wbChatCheckNotImage'}">
+													<Image
+														src="{parts: ['oTaskLevelChat>compressed','oTaskLevelChat>fileType'],formatter: 'oneapp.incture.workbox.util.formatter.wbParseAttachmentType'}"
+														height="2.1rem" width="2.1rem" tooltip="{oTaskLevelChat>fileName}"/>
+													<VBox justifyContent="Start" alignItems="Start">
+														<Text class="wbChatAttachmentName wbTextBoldClass"
+															text="{parts: ['oTaskLevelChat>fileName','oTaskLevelChat>fileType'],formatter: 'oneapp.incture.workbox.util.formatter.wbChatAttachmentName'}"/>
+														<Text text="{path: 'oTaskLevelChat>attachmentSize',formatter: 'oneapp.incture.workbox.util.formatter.wbAttachmentSizeParser'}"
+															class="wbChatAttachmentName"/>
+													</VBox>
+												</HBox>
+											</CustomListItem>
+										</grid:CSSGrid>
+										<HBox justifyContent="End" class="wbStarHBoxStyle">
+											<core:Icon src="sap-icon://overflow" press="onTLMessageAction" class="wbChatStarStyle sapUiSmallMarginEnd"/>
+											<core:Icon src="{= ${oTaskLevelChat>isFavourite} ? 'sap-icon://favorite': 'sap-icon://unfavorite'}"
+												tooltip="{= ${oTaskLevelChat>isFavourite} ? 'UnFavorite': 'Favorite'}" press="onTaskLevelFavouritePress" class="wbChatStarStyle"/>
+										</HBox>
+										<!--<l:Grid containerQuery="true" content="{oTaskLevelChat>attachments}" defaultSpan="XL3 L3 M6 S12" class="wbChatAttachmentGridList">-->
+										<!--	<CustomListItem type="Active" press="onAttachmentDownload" class="sapUiSizeCompact wbTLChatAttachmentCLI">-->
+										<!--		<VBox wrap="Wrap" width="auto" height="5.5rem" justifyContent="Center" alignItems="Center"-->
+										<!--			visible="{path: 'oTaskLevelChat>attachmentType',formatter: 'oneapp.incture.workbox.util.formatter.wbChatCheckImage'}">-->
+										<!--			<Image-->
+										<!--				src="{parts: ['oTaskLevelChat>attachment','oTaskLevelChat>attachmentType'],formatter: 'oneapp.incture.workbox.util.formatter.wbParseAttachmentType'}"-->
+										<!--				tooltip="{oTaskLevelChat>attachmentName}" class="wbChatImage"/>-->
+										<!--		</VBox>-->
+										<!--		<HBox height="3rem" width="100%" justifyContent="Start" alignItems="Center" class="wbChatAttachmentTile"-->
+										<!--			visible="{path: 'oTaskLevelChat>attachmentType',formatter: 'oneapp.incture.workbox.util.formatter.wbChatCheckNotImage'}">-->
+										<!--			<Image-->
+										<!--				src="{parts: ['oTaskLevelChat>attachment','oTaskLevelChat>attachmentType'],formatter: 'oneapp.incture.workbox.util.formatter.wbParseAttachmentType'}"-->
+										<!--				height="2.1rem" width="2.1rem" tooltip="{oTaskLevelChat>attachmentName}"/>-->
+										<!--			<VBox justifyContent="Start" alignItems="Start">-->
+										<!--				<Text class="wbChatAttachmentName wbTextBoldClass"-->
+										<!--					text="{parts: ['oTaskLevelChat>attachmentName','oTaskLevelChat>attachmentType'],formatter: 'oneapp.incture.workbox.util.formatter.wbChatAttachmentName'}"/>-->
+										<!--				<Text text="{path: 'oTaskLevelChat>attachmentSize',formatter: 'oneapp.incture.workbox.util.formatter.wbAttachmentSizeParser'}"-->
+										<!--					class="wbChatAttachmentName"/>-->
+										<!--			</VBox>-->
+										<!--		</HBox>-->
+										<!--	</CustomListItem>-->
+										<!--</l:Grid>-->
+									</VBox>
+								</VBox>
+							</HBox>
+							<!--Start - By Karishma-->
+							<HBox width="1rem" direction="ColumnReverse" visible="{= ${oTaskLevelChat>sentBy} === ${oAppModel>/loggedInUserDetails/userId}}">
+								<core:Icon src="{parts:['oTaskLevelChat>commentStatus'],formatter:'oneapp.incture.workbox.util.formatter.wbGetMessagestatus'}"
+									height=".5rem" class="sapUiTinyMarginBegin wbMicrophoneStyle" tooltip="{oTaskLevelChat>commentStatus}"
+									visible="{= ${oTaskLevelChat>commentStatus}?true:false}"/>
+							</HBox>
+						</HBox>
+						<!--End - By Karishma-->
+					</VBox>
+				</VBox>
+			</VBox>
+			<!--<HBox justifyContent="End">-->
+			<!--	<BusyIndicator class="WbChatBusyIndicator" visible="{oTaskLevelChat>/msgSentBusy}" busyIndicatorDelay="0"/>-->
+			<!--</HBox>-->
+			<VBox class="wbTLChatFooterHbox">
+				<HBox >
+					<Carousel class="wbTLChatCarousel" width="60px" height="auto" pages="{ path: 'oTaskLevelChat>/aAttachment' }"
+						visible="{oTaskLevelChat>/isAttachment}" showPageIndicator="false">
+						<customLayout>
+							<CarouselLayout visiblePagesCount="5"/>
+						</customLayout>
+						<HBox>
+							<Image class="wbChatAttachedImg"
+								src="{parts: ['oTaskLevelChat>attachment','oTaskLevelChat>attachmentType'],formatter: 'oneapp.incture.workbox.util.formatter.wbParseAttachmentType'}"
+								height="30px" width="30px" tooltip="{oTaskLevelChat>attachmentName}"/>
+							<core:Icon src="sap-icon://decline" class="wbChatDeleteAttachmentIcon" press="deleteChatAttachment"></core:Icon>
+						</HBox>
+					</Carousel>
+				</HBox>
+				<Text text="{i18n>NOT_MEMBER_TEXT}" visible="{oTaskLevelChat>/bIsMember}" class="wbChatRecdMsg"/>
+				<!-- reply to message-->
+				<VBox class="wbChatAttachmentsBoxStyle" visible="{oTaskLevelChat>/bReplyToBox}">
+					<HBox class="sapUiSmallMarginBegin">
+						<Text text="{oTaskLevelChat>/sReplyToSenderName}" maxLines="2" class="wbDetailUsernameStyle sapUiSmallMarginEnd"/>
+						<Label text="{path: 'oTaskLevelChat>/sReplyToSentAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetDateTime'}"
+							class="wbReceivedTimeStyle"/>
+					</HBox>
+					<core:Icon src="sap-icon://decline" class="wbCloseReplyBtn" press="onCloseTLReplyToBox" visible="{oTaskLevelChat>/bReplyToBox}"/>
+					<Text text="{oTaskLevelChat>/sReplyToText}" visible="{oTaskLevelChat>/bReplyToBox}" class="sapUiSmallMarginBegin"/>
+				</VBox>
+				<!-- reply to message End-->
+				<HBox renderType="Bare" alignItems="Center" justifyContent="Start">
+					<!--uploadChatAttachment-->
+					<!--<core:Icon src="sap-icon://add" class="wbTLSendArrowStyle" press="onTLSendAction"/>-->
+					<Button icon="sap-icon://add" press="onTLSendAction" class="wbInboxCardActionButton wbCardHoverActionBtnStyle wbTLSendArrowStyle"
+						enabled="{= ${oTaskLevelChat>/bIsMember}===true ?false:true}"/>
+					<!--<Image src="images/EmojiSelector.png" height="15px" class="sapUiTinyMarginBegin sapUiTinyMarginEnd" press="openEmojiTLChat"/>-->
+					<!--<u:FileUploader class="wbTransparentButtonStyleClass wbTLCFileUploader sapUiSizeCompact" name="myFileUpload" uploadUrl="upload/"-->
+					<!--	tooltip="{i18n>UPLOAD_FILE_TEXT}" typeMissmatch="handleTypeMissmatchChat" style="Emphasized" multiple="true"-->
+					<!--	fileType="jpg,jpeg,png,xlsx,ods,xls,docx,zip,ppt,pdf" enabled="{= ${oTaskLevelChat>/msgSentBusy}===true ?false:true}" buttonOnly="true"-->
+					<!--	iconOnly="true" icon="sap-icon://add" change="uploadChatAttachment"/>-->
+					<HBox class="wbTLChatFooterInputHBox" renderType="Bare" alignItems="Center" justifyContent="SpaceBetween">
+						<Input class="wbTLChatTypeMessageInput" value="{oTaskLevelChat>/newMessage}" submit="sendMessage"
+							suggestionItemSelected="onSelectingSuggestionItem" suggestionItems="{oTaskLevelChat>/aSuggestionTagging}" showSuggestion="true"
+							liveChange="onTagging" editable="{= ${oTaskLevelChat>/msgSentBusy}===true ?false:true}" id="ID_TASK_LEVEL_INPUT"
+							enabled="{= ${oTaskLevelChat>/bIsMember}===true ?false:true}">
+							<suggestionItems>
+								<core:Item text="{oTaskLevelChat>displayName}" class="wbTaskLevelSuggestion"/>
+							</suggestionItems>
+						</Input>
+						<!--<core:Icon src="sap-icon://customfont/sendArrow" class="wbTLSendArrowStyle" press="sendMessage"/>-->
+						<!--<Image src="images/EmojiSelector.png" height="15px" class="sapUiTinyMarginBegin" press="openEmojiTLChat"/>-->
+					</HBox>
+					<Button icon="sap-icon://customfont/sendArrow" press="sendMessage"
+						class="wbInboxCardActionButton wbCardHoverActionBtnStyle wbTLSendArrowStyle" enabled="{= ${oTaskLevelChat>/bIsMember}===true ?false:true}"/>
+				</HBox>
+			</VBox>
+		</VBox>
+		<!-- Binding Changes, Message Status in chat window end- by Karishma-->
+	</VBox>
+</core:FragmentDefinition>

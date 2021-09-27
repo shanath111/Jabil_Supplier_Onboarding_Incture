@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<ResponsivePopover showHeader="false" placement="Bottom">
+		<VBox class="sapUiSizeCompact" renderType="Bare" alignItems="Center">
+			<TextArea class="sapUiSmallMargin wbDefaultCustomInputWrapper" value="{oDefaultDataModel>/createWorkFlowData/processDetail/description}"/>
+		</VBox>
+	</ResponsivePopover>
+</core:FragmentDefinition>

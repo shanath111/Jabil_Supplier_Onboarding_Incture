@@ -1,0 +1,164 @@
+_schema-version: "3.2"
+ID: supplierOnboarding
+version: 0.0.1
+modules:
+- name: supplieronboarding-approuter
+  type: approuter.nodejs
+  path: supplieronboarding-approuter
+  requires:
+  - name: supplierOnboarding_html_repo_runtime
+  - name: plcm_xsuaa
+  - name: plcm_destination
+  - name: plcm_connectivity
+  - name: portal_resources_jabilSupplierOnboarding
+  # - name: dest_wm
+  # - name: wm_workflow
+  parameters:
+    disk-quota: 512M
+    memory: 512M
+   
+- name: supplierOnboarding_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: supplierOnboarding_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - surveyform-content.zip
+      name: surveyform
+      target-path: resources/
+    - artifacts:
+      - BuyerRegistration-content.zip
+      name: BuyerRegistration
+      target-path: resources/
+    - artifacts:
+      - InboxDetail-content.zip
+      name: InboxDetail
+      target-path: resources/
+    - artifacts:
+      - workbox-content.zip
+      name: workbox
+      target-path: resources/
+    - artifacts:
+      - reports-content.zip
+      name: reports
+      target-path: resources/
+    - artifacts:
+      - processFlow-content.zip
+      name: processFlow
+      target-path: resources/
+- name: surveyform
+  type: html5
+  path: surveyform
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+- name: BuyerRegistration
+  type: html5
+  path: BuyerRegistration
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+- name: InboxDetail
+  type: html5
+  path: InboxDetail
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+- name: workbox
+  type: html5
+  path: workbox
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+- name: reports
+  type: html5
+  path: reports
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+- name: processFlow
+  type: html5
+  path: processFlow
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+- name: FLP
+  type: com.sap.application.content
+  path: FLP
+  requires:
+  - name: portal_resources_jabilSupplierOnboarding
+    parameters:
+      content-target: true
+      service-key:
+        config:
+          content-endpoint: developer
+        name: content-deploy-key
+  - name: supplierOnboarding_html_repo_host
+  - name: supplierOnboarding_ui_deployer
+  - name: plcm_xsuaa
+resources:
+- name: supplierOnboarding_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: supplierOnboarding_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: plcm_destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-plan: lite
+# - name: dest_wm
+#   type: org.cloudfoundry.managed-service
+#   parameters:
+#     service: destination
+#     service-plan: lite
+# - name: wm_workflow
+#   type: org.cloudfoundry.managed-service
+#   parameters:
+#     service: workflow
+#     service-plan: standard
+- name: plcm_connectivity
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite
+- name: plcm_xsuaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: supplierOnboarding-xsuaa-service
+    service-plan: application
+- name: portal_resources_jabilSupplierOnboarding
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: portal
+    service-plan: standard
+
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install

@@ -1,0 +1,220 @@
+{
+    "_version": "1.12.0",
+    "sap.app": {
+        "id": "com.jabil.surveyform",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "ach": "ach",
+        "sourceTemplate": {
+            "id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
+            "version": "1.40.12"
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "intent1": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "surveyform",
+                    "action": "Display"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "fullWidth": true,
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "fullWidth": true,
+        "rootView": {
+            "viewName": "com.jabil.surveyform.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "app"
+        },
+        "dependencies": {
+            "minUI5Version": "1.60.1",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.ui.layout": {},
+                "sap.f": {},
+                "sap.ui.unified": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.jabil.surveyform.i18n.i18n"
+                }
+            },
+            "oi18n_En": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.jabil.surveyform.i18n.i18n_en",
+                    "async": true
+                }
+            },
+            "oDataModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/dataModel.json"
+            },
+            "oVisibilityModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/visibility.json"
+            },
+            "oErrorModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/errorModel.json"
+            },
+            "oLookUpModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/dropDownData.json"
+            },
+            "oAttachmentList": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/attachmentData.json"
+            },
+            "oPopoverModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/infoPopoverData.json"
+            },
+            "oUserModel": {
+                "type": "sap.ui.model.json.JSONModel"
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                },
+                {
+                    "uri": "formatter/ServiceObj.css"
+                }
+            ],
+            "js": [
+                {
+                    "uri": "formatter/ServiceObj.js"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "com.jabil.surveyform.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "App",
+                    "pattern": "",
+                    "target": [
+                        "App"
+                    ]
+                },
+                {
+                    "name": "MainView",
+                    "pattern": "Home/{contextPath}",
+                    "target": [
+                        "MainView"
+                    ]
+                },
+                {
+                    "name": "Welcome",
+                    "pattern": "Welcome/{contextPath}",
+                    "target": [
+                        "Welcome"
+                    ]
+                },
+                {
+                    "name": "VendorSurvey",
+                    "pattern": "VendorSurvey/{Name}/{contextPath}",
+                    "target": [
+                        "VendorSurvey"
+                    ]
+                },
+                {
+                    "name": "BankInfo",
+                    "pattern": "BankInfo/{Name}/{contextPath}",
+                    "target": [
+                        "BankInfo"
+                    ]
+                }
+            ],
+            "targets": {
+                "App": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "App",
+                    "viewName": "App"
+                },
+                "MainView": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "MainView",
+                    "viewName": "MainView"
+                },
+                "Welcome": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "Welcome",
+                    "viewName": "Welcome"
+                },
+                "VendorSurvey": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "VendorSurvey",
+                    "viewName": "VendorSurvey"
+                },
+                "BankInfo": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "BankInfo",
+                    "viewName": "BankInfo"
+                }
+            }
+        }
+    },
+    "sap.platform.cf": {
+        "oAuthScopes": [
+            "$XSAPPNAME.Surveyform"
+        ]
+    }
+}

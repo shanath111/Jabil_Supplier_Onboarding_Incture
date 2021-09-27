@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:g="sap.f" xmlns:grid="sap.ui.layout.cssgrid" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified">
+     
+   <l:VerticalLayout width="100%" class="sapUiSizeCompact" enabled="{=${oEnableMdl>/orderfromAddrEnb} &amp;&amp; ${companyInfoModel>/isOrderFromAddress}}">
+    <CheckBox wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>orderfromAddr}:${oi18n_En>orderfromAddr}+ '/ ' +${i18n>orderfromAddr}}" selected="{oDataModel>/comInfoDto/isOrderToAddress}"  class="fontBold inputStyle sapUiTinyMarginTop sapUiTinyMarginBottom" />
+      <!-- <Button text="Click here to clear the Data and re-Enter" press="fnCompanyOFAClick" class="sapUiTinyMarginBegin" visible="{=${companyInfoModel>/oAddress1} || ${companyInfoModel>/oCity} || ${companyInfoModel>/oPostalCode} || ${companyInfoModel>/oRegion} ? true: false}"/> -->
+      <!-- <VBox visible="{oDataModel>/comInfoDto/isOrderToAddress}"> -->
+      <html:input type="text" id="iAddress1" placeholder="Search here to auto-populate address based on country" class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin cl_HTMLInput" />
+         <!-- <layoutData>
+						<FlexItemData growFactor="1" minWidth="100%"/> 
+					</layoutData>
+      </VBox> -->
+      <l:Grid containerQuery="true" visible="{oDataModel>/comInfoDto/isOrderToAddress}" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiMediumMarginTop">
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>name}:${oi18n_En>name}+ '&#xA;' +${i18n>name}}" wrapping="true" required="true" />
+            <Input value="{oDataModel>/comInfoDto/address/0/postal/0/name}" valueState="{oErrorModel>/oFANameE}" valueStateText="{oErrorModel>/oFANameM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1}+ '&#xA;' +${i18n>addressL1}}" wrapping="true" required="true" />
+          <Input value="{oDataModel>/comInfoDto/address/0/postal/0/address1}"/>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2}+ '&#xA;' +${i18n>addressL2}}" wrapping="true" />
+           <Input value="{oDataModel>/comInfoDto/address/0/postal/0/address2}"/>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dist}:${oi18n_En>dist}+ '&#xA;' +${i18n>dist}}" wrapping="true" required="false" />
+             <Input value="{oDataModel>/comInfoDto/address/0/postal/0/district}"/>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postalCode}:${oi18n_En>postalCode}+ '&#xA;' +${i18n>postalCode}}" wrapping="true" required="true" />
+            <Input value="{oDataModel>/comInfoDto/address/0/postal/0/postalCode}"/>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>city}:${oi18n_En>city}+ '&#xA;' +${i18n>city}}" wrapping="true" required="true" />
+            <Input value="{oDataModel>/comInfoDto/address/0/postal/0/city}"/>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey}+ '&#xA;' +${i18n>countrykey}}" wrapping="true" required="true" />
+        <ComboBox width="100%" items="{oLookUpModel>/Country}" showSecondaryValues="true" filterSecondaryValues="true"  placeholder="{i18n>select}" value="{oDataModel>/comInfoDto/address/0/postal/0/country}" valueState="{oErrorModel>/oFACounE}" valueStateText="{oErrorModel>/oFACounM}" selectionChange="fnChangeOFACountry" change="fnLiveValueChange" class="inputStyle">
+                                    <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                    </ComboBox> 
+            <!-- <html:input type="text" id="iCountry" class="cl_HTMLInput" /> -->
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>region}:${oi18n_En>region}+ '&#xA;' +${i18n>region}}" wrapping="true" required="false" />
+           <Input value="{oDataModel>/comInfoDto/address/0/postal/0/region}"/>
+            <!-- <html:input type="text" id="iState" class="cl_HTMLInput" /> -->
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>teleNum}:${oi18n_En>teleNum}+ '&#xA;' +${i18n>teleNum}}" wrapping="true" required="true" />
+            <Input value="{oDataModel>/comInfoDto/address/0/postal/0/telephone/0/telephoneNum}" valueState="{oErrorModel>/oFATeleNumE}" valueStateText="{oErrorModel>/oFATeleNumM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+            <!-- <html:input type="text" id="iTeleNum"   class="cl_HTMLInput" ></html:input>  -->
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>faxNum}:${oi18n_En>faxNum}+ '&#xA;'+${i18n>faxNum}}" wrapping="true" />
+            <Input value="{oDataModel>/comInfoDto/address/0/postal/0/fax/0/faxNum}" class="inputStyle" />
+            <!-- <html:input type="text" id="iFaxNum"   class="cl_HTMLInput" ></html:input>  -->
+         </VBox>
+         <!-- <VBox class="fontStyle">
+								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postOfcBox}:${oi18n_En>postOfcBox}+ '&#10;' +${i18n>postOfcBox}}" wrapping="true"></Label>
+									<Input value="{companyInfoModel>/oPostOffBox}" class="inputStyle"></Input>  -->
+         <!-- <html:input type="text" id="iPostOfBx"   class="cl_HTMLInput" ></html:input>  -->
+         <!-- </VBox>
+                                 <VBox class="fontStyle">
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postOfcBoxZipCode}:${oi18n_En>postOfcBoxZipCode}+ '&#10;' +${i18n>postOfcBoxZipCode}}" wrapping="true"></Label>
+									<Input value="{companyInfoModel>/oPostOffZipCode}" class="inputStyle"></Input> -->
+         <!-- <html:input type="text" id="iPostOfZip"   class="cl_HTMLInput" ></html:input>  -->
+         <!-- </VBox> -->
+      </l:Grid>
+   </l:VerticalLayout>
+ 
+   <l:VerticalLayout width="100%" class="sapUiSizeCompact" enabled="{=${oEnableMdl>/orderfromAddrEnb} &amp;&amp; ${companyInfoModel>/isRemitToAddress}}">
+       <CheckBox wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>remittoAddr}:${oi18n_En>remittoAddr}+ '/ ' +${i18n>remittoAddr}}"  selected="{oDataModel>/comInfoDto/isRemitToAddress}"  class="fontBold inputStyle sapUiTinyMarginTop sapUiTinyMarginBottom" />
+       <!-- <Button text="Click here to clear the Data and re-Enter" press="fnCompanyRTAClick" class="sapUiTinyMarginBegin" visible="{=${remitModel>/rAddress1} || ${remitModel>/rCity} || ${remitModel>/rPostalCode} || ${remitModel>/rRegion} ? true: false}"/> -->
+      <!-- <VBox visible="{oDataModel>/comInfoDto/isRemitToAddress}">  -->
+      <html:input type="text" id="iAddress1R" placeholder="Search here to auto-populate address based on country" class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin cl_HTMLInput" />
+           <html:input type="hidden" id="iCountryR"/>
+         <!-- <layoutData>
+						<FlexItemData growFactor="1" minWidth="100%"/> 
+					</layoutData>
+                    </VBox> -->
+      <l:Grid visible="{oDataModel>/comInfoDto/isRemitToAddress}" containerQuery="true"  defaultSpan="XL3 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiMediumMarginTop">
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>name}:${oi18n_En>name} + '&#xA;' +${i18n>name}}" wrapping="true" required="true" />
+            <Input value="{oDataModel>/comInfoDto/address/1/postal/0/name}" valueState="{oErrorModel>/rTANameE}" valueStateText="{oErrorModel>/rTANameM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1}+ '&#xA;' +${i18n>addressL1}}" wrapping="true" required="true" />
+             <Input value="{oDataModel>/comInfoDto/address/1/postal/0/address1}"/>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2}+ '&#xA;' +${i18n>addressL2}}" wrapping="true" />
+             <Input value="{oDataModel>/comInfoDto/address/1/postal/0/address2}"/>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dist}:${oi18n_En>dist}+'&#xA;'+${i18n>dist}}" wrapping="true" required="false" />
+            <Input value="{oDataModel>/comInfoDto/address/1/postal/0/district}" enabled="{oEnableMdl>/rNameEnb}" class="inputStyle" />
+            <!-- <ComboBox width="100%" value="{oDataModel>/comInfoDto/address/1/postal/0/district}" placeholder="{i18n>select}" class="inputStyle"></ComboBox> -->
+            <!-- <html:input type="text" id="iDistR"   class="cl_HTMLInput" ></html:input>  -->
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postalCode}:${oi18n_En>postalCode}+'&#xA;'+${i18n>postalCode}}" wrapping="true" required="true" />
+            <Input value="{oDataModel>/comInfoDto/address/1/postal/0/postalCode}"/>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>city}:${oi18n_En>city}+'&#xA;'+${i18n>city}}" wrapping="true" required="true" />
+             <Input value="{oDataModel>/comInfoDto/address/1/postal/0/city}"/>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey}+ '&#xA;' +${i18n>countrykey}}" wrapping="true" required="true" />
+            <ComboBox width="100%" value="{oDataModel>/comInfoDto/address/1/postal/0/country}" items="{oLookUpModel>/Country}" filterSecondaryValues="true" showSecondaryValues="true" valueState="{oErrorModel>/rTACounE}" valueStateText="{oErrorModel>/rTACounM}" selectionChange="fnChangeRTACountry" change="fnLiveValueChange" placeholder="{i18n>select}" class="inputStyle">
+                                    <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                    </ComboBox>
+            <!-- <html:input type="text" id="iCountryR" class="cl_HTMLInput"/> -->
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>region}:${oi18n_En>region}+'&#xA;'+${i18n>region}}" wrapping="true" required="false" />
+             <Input value="{oDataModel>/comInfoDto/address/1/postal/0/region}"/>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>teleNum}:${oi18n_En>teleNum}+'&#xA;'+${i18n>teleNum}}" wrapping="true" required="true" />
+            <Input value="{oDataModel>/comInfoDto/address/1/postal/0/telephone/0/telephoneNum}" enabled="{oEnableMdl>/rTeleNumEnb}" valueState="{oErrorModel>/rTATeleNumE}" valueStateText="{oErrorModel>/rTATeleNumM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+            <!-- <html:input type="text" id="iTeleNumR"   class="cl_HTMLInput" ></html:input>  -->
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>faxNum}:${oi18n_En>faxNum}+'&#xA;'+${i18n>faxNum}}" wrapping="true" />
+            <Input value="{oDataModel>/comInfoDto/address/1/postal/0/fax/0/faxNum}" enabled="{oEnableMdl>/rFaxNumEnb}" class="inputStyle" />
+            <!-- <html:input type="text" id="iFaxNumR"   class="cl_HTMLInput" ></html:input>  -->
+         </VBox>
+         <!-- <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postOfcBox}:${oi18n_En>postOfcBox}+'&#xA;'+${i18n>postOfcBox}}" wrapping="true" />
+            <Input value="{companyInfoModel>/rPostOffBox}" enabled="{oEnableMdl>/rPostOffBoxEnb}" class="inputStyle" /> -->
+            <!-- <html:input type="text" id="iPostOfBxR"   class="cl_HTMLInput" ></html:input>  -->
+         <!-- </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postOfcBoxZipCode}:${oi18n_En>postOfcBoxZipCode}+'&#xA;'+${i18n>postOfcBoxZipCode}}" wrapping="true" />
+            <Input value="{companyInfoModel>/rPostOffZipCode}" enabled="{oEnableMdl>/rPostOffZipCodeEnb}" class="inputStyle" /> -->
+            <!-- <html:input type="text" id="iPostOfZipR"   class="cl_HTMLInput" ></html:input>  -->
+         <!-- </VBox> -->
+      </l:Grid>
+   </l:VerticalLayout>
+   <VBox visible="{=${companyInfoModel>/oCountry} === 'United States'? true: false}" class="fontStyle sapUiSizeCompact">
+      <Label labelFor="divCert" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>divCertText}:${oi18n_En>divCertText}+'/ '+${i18n>divCertText}}" wrapping="true" class="sapUiTinyMarginTop sapUiTinyMarginBegin" />
+      <RadioButtonGroup id="divCert" columns="2" class="inputStyle" enabled="{oEnableMdl>/haveDiversityCertificationsEnb}">
+         <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes}+'/ '+${i18n>yes}}" selected="{companyInfoModel>/haveDiversityCertifications}" />
+         <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no}+'/ '+${i18n>no}}" selected="{=!${companyInfoModel>/haveDiversityCertifications}}" />
+      </RadioButtonGroup>
+      <g:GridList items="{oLookUpModel>/enterprise}" visible="{companyInfoModel>/haveDiversityCertifications}" class="gList sapUiTinyMarginTop sapUiSizeCompact">
+         <g:customLayout>
+            <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" />
+         </g:customLayout>
+         <g:GridListItem>
+            <VBox>
+               <HBox>
+                  <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/enterpriseisSelectedEnb}" />
+                  <Text text="{oLookUpModel>value}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiLargeMarginEnd" visible="{=${oLookUpModel>firstItem} ? true: false}" />
+                  <Text text="{oLookUpModel>value}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiLargeMarginEnd" visible="{=!${oLookUpModel>firstItem} ? true: false}" />
+                  <Label visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business'? true: false}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>smallBusWeb}:${oi18n_En>smallBusWeb}+'&#xA;'+${i18n>smallBusWeb}}" wrapping="true" required="true" class="fontStyle sapUiTinyMarginTop" />
+                  <Link visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business'? true: false}" text="https://www.sba.gov/" target="_blank" href="https://www.sba.gov/" wrapping="true" class="sapUiTinyMarginTop" />
+                  <!-- <Link text="{i18n>moreInfo}" target="_blank" href="" wrapping="true" visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business'? true: false}" class="sapUiTinyMarginBegin sapUiTinyMarginTop"/> -->
+                  <VBox>
+                     <TextArea value="{oLookUpModel>otherValue}" enabled="{oEnableMdl>/enterpriseotherValueEnb}" visible="{=${oLookUpModel>value} === 'Other'? true: false}" maxLength="1000" class="inputStyle inputStyleTA sapUiSizeCompact" />
+                     <layoutData>
+                        <FlexItemData growFactor="1" />
+                     </layoutData>
+                  </VBox>
+               </HBox>
+               <g:GridList items="{oLookUpModel>/smallDisadvantagedBusiness}" visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business' &amp;&amp; ${oLookUpModel>isSelected}}" class="gList sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSizeCompact">
+                  <g:customLayout>
+                     <grid:GridBasicLayout gridTemplateColumns="1fr 1fr" gridGap="0.5rem" />
+                  </g:customLayout>
+                  <g:GridListItem>
+                     <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/smallDisadvantagedBusinessisSelectedEnb}" />
+                     <Text text="{oLookUpModel>value}" class="fontStyle sapUiTinyMarginTop" />
+                  </g:GridListItem>
+                  <g:layoutData>
+                     <FlexItemData growFactor="1" />
+                  </g:layoutData>
+               </g:GridList>
+               <!-- <HBox width="100%">
+      
+         </HBox>
+     -->
+              
+            </VBox>
+         </g:GridListItem>
+         <!-- <g:GridListItem>	
+         <CheckBox class="inputStyle"></CheckBox>
+        <Text text="Minority Business Enterprise" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiLargeMarginEnd"/>
+        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>smallBusWeb}:${oi18n_En>smallBusWeb}+'&#10;'+${i18n>smallBusWeb}}" wrapping="true" required="true" class="fontStyle sapUiTinyMarginTop"/>
+          <Link text="https://www.sba.gov/" target="_blank" href="https://www.sba.gov/" wrapping="true" class="sapUiTinyMarginTop"/>
+        </g:GridListItem>
+        <g:GridListItem> -->
+         <!-- <g:layoutData>
+        <grid:GridItemLayoutData gridColumn="2" /> 
+        </g:layoutData> -->
+         <!-- </g:GridListItem>
+        <g:GridListItem>	
+         <CheckBox class="inputStyle"></CheckBox>
+        <Text text="Women-Owned Business Enterprise" class="fontStyle sapUiTinyMarginTop"/>
+        </g:GridListItem>
+        <g:GridListItem> -->
+         <!-- <VBox>
+        <HBox>	
+         <CheckBox select="fnAddSmallDisAdvBusi" class="inputStyle" selected="{oVisibilityModel>/smallDisAdvBusiness}"></CheckBox>
+        <Text text="Small Disadvantaged Business" class="fontStyle sapUiTinyMarginTop"/>
+       <Link text="{i18n>moreInfo}" target="_blank" href="" wrapping="true" class="sapUiTinyMarginBegin sapUiTinyMarginTop"/>
+      </HBox>
+        <g:GridList visible="{oVisibilityModel>/smallDisAdvBusiness}" class="gList sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSizeCompact">
+     	<g:customLayout>
+			  <grid:GridBasicLayout gridTemplateColumns="1fr 1fr" gridGap="0.5rem" /> 
+			
+        </g:customLayout> 
+        
+     	<g:GridListItem>	
+         <CheckBox class="inputStyle"></CheckBox>
+        <Text text="Woman-Owned Small Business" class="fontStyle sapUiTinyMarginTop"/> 
+        </g:GridListItem>
+        <g:GridListItem>	
+         <CheckBox class="inputStyle"></CheckBox>
+        <Text text="HUBZone Small Business" class="fontStyle sapUiTinyMarginTop"/>
+        </g:GridListItem>    
+        <g:GridListItem>	
+         <CheckBox class="inputStyle"></CheckBox>
+        <Text text="Veteran-Owned Small Business" class="fontStyle sapUiTinyMarginTop"/> 
+        </g:GridListItem>
+        <g:GridListItem>	
+         <CheckBox class="inputStyle"></CheckBox>
+        <Text text="Service-Disabled Veteran-Owned Small Business" class="fontStyle sapUiTinyMarginTop"/>
+        </g:GridListItem> -->
+         <!-- <g:layoutData>
+        <FlexItemData growFactor="1"></FlexItemData></g:layoutData>
+        </g:GridList> -->
+         <!-- </VBox>
+        </g:GridListItem>
+       
+         <g:GridListItem>	
+         <CheckBox class="inputStyle"></CheckBox>
+        <Text text="Lesbian, Gay, Bisexual and/or Transgender Owned Business" class="fontStyle sapUiTinyMarginTop"/>
+        </g:GridListItem>
+         <g:GridListItem>	
+         <CheckBox class="inputStyle"></CheckBox>
+        <Text text="Business Enterprises Owned by People with Disabilities" class="fontStyle sapUiTinyMarginTop"/>
+        </g:GridListItem>
+         <g:GridListItem>	
+         <VBox width="100%">
+        <Text text="{i18n>Other}" class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginTop"/>
+        <TextArea width="45%" class="inputStyle sapUiSizeCompact sapUiTinyMarginBegin"/>
+        </VBox>
+        </g:GridListItem> -->
+      </g:GridList>
+   </VBox>
+   <HBox class="fontStyle sapUiMediumMarginBottom sapUiSizeCompact">
+      <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>companyWeb}:${oi18n_En>companyWeb}+'/ '+${i18n>companyWeb}}" class="fontStyle sapUiTinyMarginBegin sapUiMediumMarginTop" />
+      <VBox>
+         <Input width="45%" class="inputStyle sapUiSizeCompact sapUiMediumMarginTop sapUiTinyMarginBegin" value="{companyInfoModel>/companyWebsite}" enabled="{oEnableMdl>/companyWebsiteEnb}" />
+         <!-- <Text text="{i18n>Attachments}" class="fontBold gridSpacing sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+									<u:FileUploader buttonOnly="true" iconOnly="true" icon="sap-icon://add" change="" sameFilenameAllowed="true" class="sapUiTinyMarginBegin"></u:FileUploader> -->
+      <layoutData>
+            <FlexItemData growFactor="1" />
+         </layoutData>
+      </VBox> </HBox>
+       <VBox>
+         <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>Attachments}:${oi18n_En>Attachments}+'/&#160;'+${i18n>Attachments}}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>
+			<Label visible="{oVisibilityModel>/buyerSurveyAttach}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>compInfoVerbiage}:${oi18n_En>compInfoVerbiage}+ '/&#160;'+${i18n>compInfoVerbiage}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+            <HBox wrap="Wrap">
+				<u:FileUploader id="fileUploader_CO" buttonOnly="true" buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"
+					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{oEnableMdl>/companyInfoAttachmentEnb}"
+					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"></u:FileUploader>
+				<g:GridList width="auto" items="{oAttachmentList>/0/compDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">
+					<g:customLayout>
+						<grid:GridResponsiveLayout>
+							<grid:layoutS>
+								<grid:GridSettings gridTemplateColumns="1fr" gridGap="1rem"/>
+							</grid:layoutS>
+							<grid:layoutM>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr" gridGap="1rem"/>
+							</grid:layoutM>
+							<grid:layoutL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutL>
+							<grid:layoutXL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutXL>
+						</grid:GridResponsiveLayout>
+					</g:customLayout>
+					<g:GridListItem>
+						<HBox>
+							<HBox width="90%" class="sapUiTinyMarginBegin sapUiSizeCompact">
+								<core:Icon src="{path:'oAttachmentList>fileExt',formatter:'com.jabil.surveyform.formatter.formatter.mediaTypeformatter'}"
+									class="attachmentIcon sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom" size="2.5rem" color="#48639d"/>
+							<VBox>	<Text text="{oAttachmentList>name}" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+						<Text text="{oAttachmentList>fileSize}" class="sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+                      </VBox>  	</HBox>
+							<VBox alignItems="Center" class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">
+								<core:Icon src="sap-icon://decline" class="docIconStyle" press="fnOnCancelAttachment"/>
+								<core:Icon src="sap-icon://download" class="docIconStyle" press="fnOnDownlAttachment"/>
+							</VBox>
+						</HBox>
+					</g:GridListItem>
+				</g:GridList>
+			</HBox> 
+         <layoutData>
+            <FlexItemData growFactor="1" />
+         </layoutData>
+      </VBox>
+
+</core:FragmentDefinition>

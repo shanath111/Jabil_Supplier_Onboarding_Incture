@@ -1,0 +1,103 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns="sap.m"
+	xmlns:ExtVbox="oneapp.incture.workbox.controlExtension">
+	<VBox visible="{path: 'oChatBotModel>/screen' ,formatter: 'oneapp.incture.workbox.util.formatter.wbChatBotVBox'}">
+		<Bar class="wbChatDetailHeaderStyle sapUiTinyMarginBottom" visible="{= ${oChatBotModel>/screen}==='chat'}">
+			<contentLeft>
+				<Avatar src="images/ChatbotIcon.svg" displaySize="XS" class="wbChatAvatar"/>
+				<Label text="{i18n>CHAT_BOT_TEXT}" tooltip="{i18n>CHAT_BOT_TEXT}" class="wbChatUserNameStyle"/>
+				<core:Icon src="{=${oChatBotModel>/bMuteAudio}?'sap-icon://customfont/VolumeOff':'sap-icon://customfont/volume-up'}" class="wbChatImage" press="chatbotAudio"/>
+			</contentLeft>
+		</Bar>
+		<VBox class="wbTLChatBotHeader" visible="{= ${oChatBotModel>/screen}==='unifiedInbox'}">
+			<HBox justifyContent="SpaceBetween">
+				<Label text="{i18n>CHAT_BOT_TEXT}" class="wbTLChatHeaderText"/>
+				<core:Icon src="sap-icon://decline" class="wbTLChatCloseIcon" press="closeChatBot"></core:Icon>
+			</HBox>
+		</VBox>
+		<VBox height="90%" width="100%" justifyContent="SpaceAround" class="wbAlignAuto" renderType="Bare">
+			<VBox height="100%" id="ID_CHATBOT_SCROLLBAR" items="{oChatBotModel>/messages}"
+				width="{= ${oChatBotModel>/screen}==='chat' ?'100%' :'100%'}" class="wbHAlignAuto wbChatScrollContent wbOverflowVertical">
+				<HBox width="{= ${oChatBotModel>/screen}==='chat' ?'70%' :'100%'}" class="wbHAlignAuto">
+					<!--______________________________________________TEXT MESSAGES______________________________________________-->
+					<HBox width="100%" visible="{=${oChatBotModel>type}==='text'}" justifyContent="{= ${oChatBotModel>sentBy}==='USER' ? 'End':'Start'}">
+						<VBox justifyContent="End" alignItems="End" class="wbChatBotMsgAvatar" width="{= ${oChatBotModel>/screen}==='chat' ?'3%' :'11%'}">
+							<Avatar src="images/ChatbotIcon.svg" displaySize="XS" class="wbChatAvatar" visible="{= ${oChatBotModel>showAvatar}=== true}"/>
+						</VBox>
+						<VBox class="wbChatBotMsgVBox" visible="{path: 'oChatBotModel>sentBy' ,formatter: 'oneapp.incture.workbox.util.formatter.wbChatBotMsgBox'}">
+							<HBox alignItems="Center" justifyContent="{= ${oChatBotModel>sentBy}==='USER' ? 'Start':'End'}"
+								visible="{= ${oChatBotModel>sentAt}!== undefined}">
+								<Label text="{path: 'oChatBotModel>sentAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbTLChatTime'}" class="wbTLChatSentByName"/>
+							</HBox>
+							<Text text="{oChatBotModel>content}" class="wbChatRecdMsg"/>
+						</VBox>
+					</HBox>
+					<!--______________________________________________QUICK REPLIES______________________________________________-->
+					<HBox width="100%" visible="{=${oChatBotModel>type}==='quickReplies'}">
+						<VBox justifyContent="End" alignItems="End" class="wbChatBotMsgAvatar" width="{= ${oChatBotModel>/screen}==='chat' ?'3%' :'11%'}">
+							<Avatar src="images/ChatbotIcon.svg" displaySize="XS" class="wbChatAvatar"/>
+						</VBox>
+						<VBox class="wbChatBotMsgVBox wbChatRecdMsgVbox">
+							<HBox alignItems="Center" justifyContent="{= ${oChatBotModel>sentBy}==='USER' ? 'Start':'End'}"
+								visible="{= ${oChatBotModel>sentAt}!== undefined}">
+								<Label text="{path: 'oChatBotModel>sentAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbTLChatTime'}" class="wbTLChatSentByName"/>
+							</HBox>
+							<Text text="{oChatBotModel>content/title}" class="wbChatRecdMsg"/>
+							<HBox class="sapUiSizeCompact" justifyContent="Start" wrap="Wrap" renderType="Bare" items="{oChatBotModel>content/buttons}">
+								<Button text="{oChatBotModel>title}" press="onChatActionBtnPress" type="Transparent"
+									class="sapUiSizeCompact wbChatBotQRButtons wbTransparentButtonStyleClass"/>
+							</HBox>
+						</VBox>
+					</HBox>
+					<!--______________________________________________PICTURE______________________________________________-->
+					<!--<HBox width="100%" visible="{=${oChatBotModel>type}==='picture'}">-->
+					<!--	<VBox justifyContent="End" alignItems="End" class="wbChatBotMsgAvatar" width="{= ${oChatBotModel>/screen}==='chat' ?'3%' :'11%'}">-->
+					<!--		<Avatar src="images/ChatbotIcon.svg" displaySize="XS" class="wbChatAvatar"/>-->
+					<!--	</VBox>-->
+					<!--	<VBox class="wbChatBotMsgVBox wbChatRecdMsgVbox">-->
+					<!--		<HBox alignItems="Center" justifyContent="{= ${oChatBotModel>sentBy}==='USER' ? 'Start':'End'}"-->
+					<!--			visible="{= ${oChatBotModel>sentAt}!== undefined}">-->
+					<!--			<Label text="{path: 'oChatBotModel>sentAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbTLChatTime'}" class="wbTLChatSentByName"/>-->
+					<!--		</HBox>-->
+					<!--		<HBox class="sapUiSizeCompact" justifyContent="Start" wrap="Wrap" renderType="Bare" items="{oChatBotModel>content/buttons}">-->
+					<!--			<Button text="{oChatBotModel>title}" press="onChatActionBtnPress" type="Transparent"-->
+					<!--				class="sapUiSizeCompact wbChatBotQRButtons wbTransparentButtonStyleClass"/>-->
+					<!--		</HBox>-->
+					<!--	</VBox>-->
+					<!--</HBox>-->
+				</HBox>
+			</VBox>
+			<HBox width="{= ${oChatBotModel>/screen}==='chat' ?'70%' :'90%'}" class="wbHAlignAuto" visible="{oChatBotModel>/typing}">
+				<Avatar src="images/ChatbotIcon.svg" displaySize="XS" class="wbChatAvatar sapUiTinyMarginEnd"
+					visible="{= ${oChatBotModel>/screen}==='chat'}"/>
+				<HBox class="wbTypingContainer" renderType="Bare" alignItems="Center">
+					<HBox class="wbTypingBlock" renderType="Bare" alignItems="Center" justifyContent="Start">
+						<HBox class="wbTypingDot"/><HBox class="wbTypingDot"/><HBox class="wbTypingDot"/>
+					</HBox>
+				</HBox>
+			</HBox>
+			<VBox width="{= ${oChatBotModel>/screen}==='chat' ?'70%' :'100%'}" class="wbHAlignAuto" visible="{= ${oChatBotModel>/screen}==='chat'}">
+				<HBox class=" wbTextAreaStyle">
+					<!--Start - By Karishma-->
+					<core:Icon src="sap-icon://customfont/Microphone" height="22px" class="sapUiTinyMarginBeginEn sapUiSmallMarginTop wbMicrophoneStyle" press="onVoiceAssistant"/>
+					<!--End - By Karishma-->
+					<VBox width="100%">
+						<TextArea rows="1" cols="100" width="100%" value="{oChatBotModel>/sTypedMessage}" id="ID_CHATBOT_TEXTAREA"/>
+					</VBox>
+					<core:Icon src="sap-icon://customfont/sendArrow" class="wbChatSendArrowStyle" press="sendChatBotMsg"/>
+				</HBox>
+			</VBox>
+			<VBox class="wbTLChatFooterHbox" visible="{= ${oChatBotModel>/screen}==='unifiedInbox'}">
+				<HBox renderType="Bare" alignItems="Center" justifyContent="Start">
+					<u:FileUploader class="wbTransparentButtonStyleClass wbTLCFileUploader sapUiSizeCompact" name="myFileUpload" uploadUrl="upload/"
+						tooltip="{i18n>UPLOAD_FILE_TEXT}" typeMissmatch="handleTypeMissmatchChat" style="Emphasized" multiple="true"
+						fileType="jpg,jpeg,png,xlsx,ods,xls,docx,zip,ppt,pdf" enabled="false" buttonOnly="true" iconOnly="true" icon="sap-icon://add"
+						change="uploadChatAttachment"/>
+					<HBox class="wbTLChatFooterInputHBox" renderType="Bare" alignItems="Center" justifyContent="SpaceBetween">
+						<Input class="wbTLChatTypeMessageInput" value="{oChatBotModel>/sTypedMessage}" submit="sendChatBotMsg"/>
+						<Image src="images/EmojiSelector.png" height="15px" class="sapUiTinyMarginBegin" press="openEmojiTLChat"/>
+					</HBox>
+				</HBox>
+			</VBox>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

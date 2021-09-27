@@ -1,0 +1,247 @@
+{
+	"advancefilterMetaData": {
+		"queryText": "",
+		"queryList": [
+
+		],
+		"listOfAdvancedFilters": [{
+			"advancedFilter": [{
+				"key": "operator",
+				"label": "{i18n>OPERATOR_TEXT}",
+				"filterType": "OPERATORCOMBOBOX",
+				"value": "AND",
+				"colWidth": "13.5%",
+				"headerWidth": "16%",
+				"selectedKey": "",
+				"dropdownList": [{
+					"columnName": "AND",
+					"label": "AND"
+				}, {
+					"columnName": "OR",
+					"label": "OR"
+				}]
+			}, {
+				"key": "filterName",
+				"label": "{i18n>FILTER_NAME_TEXT}",
+				"filterType": "FILTERCOMBOBOX",
+				"headerWidth": "22%",
+				"colWidth": "21%",
+				"value": "",
+				"selectedKey": "",
+				"dropdownList": [
+
+				]
+			}, {
+				"key": "condition",
+				"label": "Condition",
+				"headerWidth": "13%",
+				"filterType": "OPERATORCOMBOBOX",
+				"colWidth": "12%",
+				"value": "AND",
+				"selectedKey": "",
+				"dropdownList": [{
+					"columnName": "AND",
+					"label": "="
+				}, {
+					"columnName": "NOT",
+					"label": "!="
+				}]
+			}, {
+				"key": "value",
+				"label": "Value",
+				"headerWidth": "44%",
+				"colWidth": "13%",
+				"filterType": "INPUT",
+				"value": "",
+				"selectedKey": "",
+				"dropdownList": [
+
+				],
+				"enabled": false
+			}, {
+				"key": "delete",
+				"label": "",
+				"headerWidth": "8.5%",
+				"filterType": "DELETEICON",
+				"colWidth": "13%",
+				"value": "",
+				"selectedKey": "",
+				"isEnabled": true,
+				"dropdownList": [
+
+				]
+			}]
+		}],
+		"subjectIndex": "",
+		"oFilterMap": {
+			"operator": "AND",
+			"condition": "equals",
+			"value": "",
+			"upperLimit": "",
+			"lowerLimit": "",
+			"dataType": "",
+			"level": ""
+		},
+		"checkboxDto": {
+			"filterType": "CHECKBOX",
+			"dropdownList": [
+
+			]
+		},
+		"isView": false,
+		"isActive": false,
+		"filterType": "CUSTOM",
+		"filterId": "",
+		"filterName": "",
+		"viewName": "",
+		"manageFilterMode": "View",
+		"manageFilterBusy": false,
+		"subjectTokenIndex": -1,
+		"busy": false,
+		"showAdvancedFilter": true,
+		"enableAddRow": false,
+		"searchInboxType": "MyInbox",
+		"appController": "this",
+		"customTileClicked": false,
+		"editTileFilter": false,
+		"description": ""
+	},
+	"oSubsParams": {
+		"isVisible": true,
+		"onBehalfOf": "",
+		"createdByDisp": "",
+		"createdBy": "",
+		"startDate": "",
+		"endDate": "",
+		"active": true,
+		"processList": [],
+		"disableButton": true,
+		"enabled": false,
+		"substitutingUser": "",
+		"substitutingUserName": "",
+		"substitutedUser": "",
+		"substitutedUserName": ""
+	},
+	"notification": {
+		"dropdownListsCustom": [{
+			"key": "Day",
+			"value": "Day"
+		}],
+		"dropdownListsEveryWeek": [{
+			"key": "Sun",
+			"value": "Sunday"
+		}, {
+			"key": "Mon",
+			"value": "Monday"
+		}, {
+			"key": "Tue",
+			"value": "Tuesday"
+		}, {
+			"key": "Wed",
+			"value": "Wednesday"
+		}, {
+			"key": "Thu",
+			"value": "Thursday"
+		}, {
+			"key": "Fri",
+			"value": "Friday"
+		}, {
+			"key": "Sat",
+			"value": "Saturday"
+		}],
+		"dropdownListsEveryMonth": [{
+			"key": "01",
+			"value": "1st"
+		}, {
+			"key": "02",
+			"value": "2nd"
+		}, {
+			"key": "03",
+			"value": "3rd"
+		}, {
+			"key": "04",
+			"value": "4th"
+		}, {
+			"key": "05",
+			"value": "5th"
+		}, {
+			"key": "06",
+			"value": "6th"
+		}, {
+			"key": "07",
+			"value": "7th"
+		}, {
+			"key": "08",
+			"value": "8th"
+		}, {
+			"key": "09",
+			"value": "9th"
+		}, {
+			"key": "10",
+			"value": "10th"
+		}, {
+			"key": "11",
+			"value": "11th"
+		}, {
+			"key": "12",
+			"value": "12th"
+		}, {
+			"key": "13",
+			"value": "13th"
+		}, {
+			"key": "14",
+			"value": "14th"
+		}, {
+			"key": "15",
+			"value": "15th"
+		}, {
+			"key": "16",
+			"value": "16th"
+		}, {
+			"key": "17",
+			"value": "17th"
+		}, {
+			"key": "18",
+			"value": "18th"
+		}, {
+			"key": "19",
+			"value": "19th"
+		}, {
+			"key": "20",
+			"value": "20th"
+		}, {
+			"key": "21",
+			"value": "21th"
+		}, {
+			"key": "22",
+			"value": "22th"
+		}, {
+			"key": "23",
+			"value": "23th"
+		}, {
+			"key": "24",
+			"value": "24th"
+		}, {
+			"key": "25",
+			"value": "25th"
+		}, {
+			"key": "26",
+			"value": "26th"
+		}, {
+			"key": "27",
+			"value": "27th"
+		}, {
+			"key": "28",
+			"value": "28th"
+		}, {
+			"key": "29",
+			"value": "29th"
+		}, {
+			"key": "30",
+			"value": "30th"
+		}, {
+			"key": "31",
+			"value": "31th"
+		}]
+	}
+}

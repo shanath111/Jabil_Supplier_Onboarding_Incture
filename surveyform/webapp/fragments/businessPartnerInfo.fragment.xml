@@ -1,0 +1,396 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified" xmlns:uc="sap.ui.unified.calendar" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f" xmlns:upload="sap.m.upload" async="true">
+	<VBox class=" sapUiTinyMarginTop">
+		<Panel width="100%" class="panelPadding">
+			<Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>businessPartInfo}:${oi18n_En>businessPartInfo} +'&#10;&#10;' +${i18n>businessPartInfo}}" class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+		</Panel>
+		<Panel visible="{=!${oUserModel>/isNew}}" width="100%" class="sapUiTinyMarginTop panelPadding">
+				<Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>information}:${oi18n_En>information} +'/&#160;' +${i18n>information}}" class="fontBold sapUiTinyMarginBegin"/>
+				<l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M3 S12"
+					class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+					<VBox class="fontStyle">
+						<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>legalName}: ${oi18n_En>legalName} +'&#10;' + ${i18n>legalName}}" required="true"></Label>
+						<Input value="{oDataModel>/bpInfoDto/legalName}" class="inputStyle" required="true"  valueState="{oErrorModel>/legalNameE}" valueStateText="{oErrorModel>/legalNameM}" change="fnLiveValueChange" enabled="{=!${oDataModel>/bpInfoDto/isLegalCorrect}}"></Input>
+					</VBox>
+					<VBox class="fontStyle sapUiSizeCompact">
+						<Label wrapping= "true" labelFor="legal" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isCorrect}:${oi18n_En>isCorrect} +'&#10;' +${i18n>isCorrect}}"/>
+						<RadioButtonGroup id="legal" columns="2" selectedIndex="0" select="fnIsLegalCorrect" class="inputStyle" enabled="{oEnableMdl>/isLegalCorrectEnb}">
+							<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/bpInfoDto/isLegalCorrect}"/>
+							<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" selected="{=!${oDataModel>/bpInfoDto/isLegalCorrect}}"/>
+						</RadioButtonGroup>
+					</VBox>
+					<VBox class="fontStyle sapUiSizeCompact">
+						<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsNum}:${oi18n_En>dunsNum} +'&#10;' +${i18n>dunsNum}}"></Label>
+						<Input maxLength="9" value="{oDataModel>/bpInfoDto/dunsNumber}" enabled="{=!${oDataModel>/bpInfoDto/isDunsCorrect}}"  valueState="{oErrorModel>/dunsNumE}" valueStateText="{oErrorModel>/dunsNumM}" change="fnLiveValueChange" class="inputStyle"></Input>
+					</VBox>
+					<VBox class="fontStyle">
+						<Label wrapping= "true" labelFor="dunsNum" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isCorrect}:${oi18n_En>isCorrect} +'&#10;' +${i18n>isCorrect}}"/>
+						<RadioButtonGroup id="dunsNum" columns="2" selectedIndex="0" select="fnIsDunsNumCorrect" class="inputStyle" enabled="{oEnableMdl>/isDunsCorrectEnb}">
+							<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/bpInfoDto/isDunsCorrect}"/>
+							<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" selected="{=!${oDataModel>/bpInfoDto/isDunsCorrect}}"/>
+						</RadioButtonGroup>
+					</VBox>
+				</l:Grid>
+			<layoutData>
+				<FlexItemData minWidth="100%"/>
+			</layoutData>
+		</Panel>
+		<Panel visible="{oUserModel>/isNew}" width="100%" class="panelPadding sapUiTinyMarginBottom">
+			<HBox class="fontStyle sapUiSizeCompact">
+				<Label required="true" labelFor="site" class="fontBold sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSizeCompact" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isSiteRegwithDunandBrad}:${oi18n_En>isSiteRegwithDunandBrad} +'&#10;' +${i18n>isSiteRegwithDunandBrad}}"
+					wrapping="true"></Label>
+				<RadioButtonGroup id="site" columns="2" selectedIndex="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === true? 0 :(${oDataModel>/bpInfoDto/siteHaveDunsNumber}=== false ?1: -1)}" class="inputStyle" enabled="{oEnableMdl>/siteHaveDunsNumberEnb}" valueState="{oErrorModel>/siteHaveDunsNumberE}" select="fnClearValueState">
+					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/bpInfoDto/siteHaveDunsNumber}"/>
+					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}"  select="fnSelectionChange"/>
+				</RadioButtonGroup>
+			</HBox>
+			<VBox alignContent="Start" visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === true}" class="fontStyle">
+				<l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M4 S12" class="gridSpacing">
+					<VBox class="fontStyle sapUiSizeCompact">
+						<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsRegNum}:${oi18n_En>dunsRegNum} +'&#10;' +${i18n>dunsRegNum}}" ></Label>
+						<Input maxLength="9" value="{oDataModel>/bpInfoDto/dunsRegistrationNum}"  valueState="{oErrorModel>/dunsRegistrationNumE}" valueStateText="{oErrorModel>/dunsRegistrationNumM}" change="fnLiveValueChange" enabled="{oEnableMdl>/dunsRegistrationNumEnb}" class="inputStyle"></Input>
+					</VBox>
+					<VBox class="fontStyle sapUiSizeCompact">
+						<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dandBLegalName}:${oi18n_En>dandBLegalName} +'&#10;' +${i18n>dandBLegalName}}" ></Label>
+						<Input value="{oDataModel>/bpInfoDto/dnbLegalBusinessName}" enabled="{oEnableMdl>/dnbLegalBusinessNameEnb}" class="inputStyle"></Input>
+					</VBox>
+				</l:Grid>
+			</VBox>
+			<VBox visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber}=== false}" fitContainer="true" class="fontStyle sapUiSizeCompact">
+				<!-- <Label labelFor="regnew" wrapping="true" class="sapUiTinyMarginBegin" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isSiteNotRegwithDunandBradText}:${oi18n_En>isSiteNotRegwithDunandBradText} +'&#10;&#10;' +${i18n>isSiteNotRegwithDunandBradText}}" required="true"></Label>
+				<RadioButtonGroup id="regnew" columns="2" selectedIndex="0" class="inputStyle">
+					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" valueState="{oErrorModel>/dunsNumE}" selected="{oDataModel>/bpInfoDto/encourgeDunsNumberReg}"/>
+					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" selected="{=!${oDataModel>/bpInfoDto/encourgeDunsNumberReg}}"/>
+				</RadioButtonGroup> -->
+                <Text  text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsReg}:${oi18n_En>dunsReg} +'&#10;' +${i18n>dunsReg}}" wrapping="true" class="fontStyle fontStyleItalic sapUiTinyMarginBegin"/>
+                <Link enabled="{oEnableMdl>/encourgeDunsNumberRegEnb}" text="https://www.dnb.com/duns-number/get-a-duns.html"
+						target="_blank"
+						href="https://www.dnb.com/duns-number/get-a-duns.html"
+                        class="fontStyle sapUiTinyMarginBegin sapUiContentPadding"
+                        wrapping="true"/>
+                         <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsUnsure}:${oi18n_En>dunsUnsure} +'&#10;' +${i18n>dunsUnsure}}" wrapping="true" class="fontStyle  fontStyleItalic sapUiTinyMarginBegin"/>
+                <Link enabled="{oEnableMdl>/encourgeDunsNumberRegEnb}" text="https://www.dnb.com/duns-number/lookup.html"
+						target="_blank"
+						href="https://www.dnb.com/duns-number/lookup.html"
+                        class="fontStyle sapUiTinyMarginBegin sapUiContentPadding"
+                        wrapping="true"/>
+				<Label wrapping= "true" labelFor="corpHead" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isSiteTheCorpHead}:${oi18n_En>isSiteTheCorpHead} +'&#10;&#10;' +${i18n>isSiteTheCorpHead}}" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin" required="true"></Label>
+				<RadioButtonGroup id="corpHead" enabled="{oEnableMdl>/isSiteCorporateHeadquatersEnb}" columns="2" selectedIndex="{=${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters} === true? 0 :(${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}=== false ?1: -1)}" class="inputStyle" valueState="{oErrorModel>/isSiteCorporateHeadquatersE}" select="fnClearValueState">
+					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" valueState="{oErrorModel>/corpHQE}" selected="{oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}"/>
+					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"/>
+				</RadioButtonGroup>
+				<l:Grid containerQuery="true" class="gridSpacing fontStyle" width="90%" defaultSpan="XL3 L3 M4 S12">
+					<VBox class="fontStyle sapUiSizeCompact">
+						<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>numOfEmployees}:${oi18n_En>numOfEmployees} +'&#10;' +${i18n>numOfEmployees}}" wrapping="true" required="true" ></Label>
+						<ComboBox width="100%" placeholder="{i18n>select}" selectedKey="{oDataModel>/bpInfoDto/noOfEmployees}" enabled="{oEnableMdl>/noOfEmployeesEnb}" items="{oLookUpModel>/employeeCount}" valueState="{oErrorModel>/numOfEmpE}" valueStateText="{oErrorModel>/numOfEmpM}" class="inputStyle" change="fnLiveValueChange">
+							<core:Item key="{oLookUpModel>key}" text="{oLookUpModel>value}"/>
+						</ComboBox>
+					</VBox>
+					<VBox class="fontStyle sapUiSizeCompact">
+						<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>compStartYear}:${oi18n_En>compStartYear} +'&#10;' +${i18n>compStartYear}}" required="true"></Label>
+                      
+						<DatePicker value="{oDataModel>/bpInfoDto/year}"  enabled="{oEnableMdl>/yearEnb}"  placeholder="{i18n>startedYR}" displayFormat="yyyy" valueFormat="yyyy" minDate="{path: 'oLookUpModel>/startYear/minYear',formatter:'com.jabil.surveyform.formatter.formatter.formatYear'}" maxDate="{path: 'oLookUpModel>/startYear/maxYear',formatter:'com.jabil.surveyform.formatter.formatter.formatYear'}" 
+                        valueState="{oErrorModel>/yearE}" valueStateText="{oErrorModel>/yearM}" change="fnLiveValueChange" class="inputStyle"></DatePicker>
+					
+                    
+                    </VBox>
+				</l:Grid>
+			</VBox>
+			<layoutData>
+				<FlexItemData minWidth="100%"/>
+			</layoutData>
+		</Panel>
+		<!-- <Panel width="100%" class="sapUiTinyMarginTop panelPadding">
+			<content>
+				<l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M4 S12" class="gridSpacing">
+					<VBox class="fontStyle sapUiSizeCompact">
+						<Label wrapping= "true" labelFor="cfrCompliant" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>zCFRCompliant}:${oi18n_En>zCFRCompliant} +'&#10;' +${i18n>zCFRCompliant}}" ></Label>
+						<RadioButtonGroup id="cfrCompliant" columns="2" selectedIndex="{=${oDataModel>/bpInfoDto/cfrComplaint} === true? 0 :(${oDataModel>/bpInfoDto/cfrComplaint}=== false ?1: -1)}" class="inputStyle" enabled="{oEnableMdl>/cfrComplaintEnb}" >
+							<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/bpInfoDto/cfrComplaint}"/>
+							<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"/></RadioButtonGroup>
+					
+					</VBox>
+					<VBox class="fontStyle sapUiSizeCompact">
+						<Label wrapping= "true" labelFor="iTARCInd" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>iTARCertIndtr}:${oi18n_En>iTARCertIndtr} +'&#10;' +${i18n>iTARCertIndtr}}" class="fontStyle"></Label>
+						<RadioButtonGroup id="iTARCInd" columns="2" selectedIndex="{=${oDataModel>/bpInfoDto/itarCertifiedIndicator} === true? 0 :(${oDataModel>/bpInfoDto/itarCertifiedIndicator}=== false ?1: -1)}" class="inputStyle" enabled="{oEnableMdl>/itarCertifiedIndicatorEnb}">
+							<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/bpInfoDto/itarCertifiedIndicator}"/>
+							<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"/></RadioButtonGroup>
+					</VBox>
+				</l:Grid>
+			</content>
+			<layoutData>
+				<FlexItemData minWidth="100%"/>
+			</layoutData>
+		</Panel> -->
+        <Panel width="100%" class="sapUiTinyMarginTop panelPadding sapUiSmallMarginBottom">
+        <VBox class="fontStyle sapUiSizeCompact">
+        <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>comRegInfo}:${oi18n_En>comRegInfo} +'&#10;&#10;' +${i18n>comRegInfo}}" class="sapUiTinyMarginBegin fontBold"/>
+        <CheckBox text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>naturalPerson}:${oi18n_En>naturalPerson}+ '/ ' +${i18n>naturalPerson}}" selected="{oDataModel>/bpCentral/0/naturalPersonalIndicator}" enabled="{oEnableMdl>/naturalPersonEnb}" class=" sapUiTinyMarginTop fontStyle inputStyle" />
+        </VBox>
+               <Table items="{oDataModel>/bpInfoDto/tax}" class="taxTableMargin sapUiSizeCompact sapUiTinyMarginTop">
+               <columns>
+                <Column minScreenWidth="Desktop" 
+				demandPopin="true" class="sapUiSizeCompact"></Column>
+                  <Column minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact"></Column>
+                    <Column minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact"></Column>
+                  <Column minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact"></Column>
+                  <Column  minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact"></Column>
+                </columns>
+                
+                <ColumnListItem class="sapUiSizeCompact">
+            <cells >
+            	
+            <VBox class="fontStyle sapUiSizeCompact">
+					<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>country}:${oi18n_En>country} +'&#10;' +${i18n>country}}"></Label>
+					<ComboBox width="100%" items="{oLookUpModel>/Country}" filterSecondaryValues="true"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>country}" enabled="{oEnableMdl>/taxCountryEnb}" change="fnChangeTaxCountryLookUp">
+<core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+			</ComboBox>
+            </VBox>
+            <VBox class="fontStyle sapUiSizeCompact">
+					<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>type}:${oi18n_En>type} +'&#10;' +${i18n>type}}"></Label>
+					<!-- <ComboBox width="100%" items="{oLookUpModel>/TaxType}" filterSecondaryValues="true"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>type}" enabled="{oEnableMdl>/typeEnb}" change="fnLiveValueChange">
+<core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox> -->
+                    <ComboBox width="100%" items="{oLookUpModel>/taxType1}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType1'}" filterSecondaryValues="true"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>type}" enabled="{oEnableMdl>/typeEnb}" change="fnChangeTaxTypeLookup" id="taxTypeId1">
+                        <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+                    <ComboBox width="100%" items="{oLookUpModel>/taxType2}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType2'}" filterSecondaryValues="true"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>type}" enabled="{oEnableMdl>/typeEnb}" change="fnChangeTaxTypeLookup" id="taxTypeId2">
+                        <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+                    <ComboBox width="100%" items="{oLookUpModel>/taxType3}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType3'}" filterSecondaryValues="true"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>type}" enabled="{oEnableMdl>/typeEnb}" change="fnChangeTaxTypeLookup" id="taxTypeId3">
+                        <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+                    <ComboBox width="100%" items="{oLookUpModel>/taxType4}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType4'}" filterSecondaryValues="true"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>type}" enabled="{oEnableMdl>/typeEnb}" change="fnChangeTaxTypeLookup" id="taxTypeId4">
+                        <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+                    <ComboBox width="100%" items="{oLookUpModel>/taxType5}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType5'}" filterSecondaryValues="true"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>type}" enabled="{oEnableMdl>/typeEnb}" change="fnChangeTaxTypeLookup" id="taxTypeId5">
+                        <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+                    <ComboBox width="100%" items="{oLookUpModel>/taxType6}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType6'}" filterSecondaryValues="true"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>type}" enabled="{oEnableMdl>/typeEnb}" change="fnChangeTaxTypeLookup" id="taxTypeId6">
+                        <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+                    <ComboBox width="100%" items="{oLookUpModel>/taxType7}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType7'}" filterSecondaryValues="true"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>type}" enabled="{oEnableMdl>/typeEnb}" change="fnChangeTaxTypeLookup" id="taxTypeId7">
+                        <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+                    <ComboBox width="100%" items="{oLookUpModel>/taxType8}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType8'}" filterSecondaryValues="true"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>type}" enabled="{oEnableMdl>/typeEnb}" change="fnChangeTaxTypeLookup" id="taxTypeId8">
+                        <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+                     <layoutData>
+						<l:GridData span="XL3 L3 M3 S12"></l:GridData>
+					</layoutData>
+				</VBox>
+		
+			
+            <VBox class="fontStyle sapUiSizeCompact">
+					<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>taxID}:${oi18n_En>taxID} +'&#10;' +${i18n>taxID}}"></Label>
+					<Input maxLength="{oLookUpModel>/taxIDValidation1/taxMaxLength}" placeholder="{oLookUpModel>/taxIDValidation1/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType1'}" editable="{=${oLookUpModel>/taxIDValidation1/taxMaxLength}===0 ? false:true}"></Input>
+                    <Input maxLength="{oLookUpModel>/taxIDValidation2/taxMaxLength}" placeholder="{oLookUpModel>/taxIDValidation2/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType2'}" editable="{=${oLookUpModel>/taxIDValidation2/taxMaxLength}===0 ? false:true}" ></Input>
+                    <!-- <MaskInput width="100%" mask="{oLookUpModel>/taxIDValidation2/tooltip}" placeholder="{oLookUpModel>/taxIDValidation2/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType2'}" editable="{=${oLookUpModel>/taxIDValidation2/taxMaxLength}===0 ? false:true}" >
+                    	<rules>
+						<MaskInputRule maskFormatSymbol="x" regex="[a-zA-Z0-9]"/>
+                        <MaskInputRule maskFormatSymbol="X" regex="[a-zA-Z0-9]"/>
+                        <MaskInputRule maskFormatSymbol="~" regex="[^_]"/>
+					</rules>
+                    </MaskInput> -->
+                    <Input maxLength="{oLookUpModel>/taxIDValidation3/taxMaxLength}" placeholder="{oLookUpModel>/taxIDValidation3/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType3'}" editable="{=${oLookUpModel>/taxIDValidation3/taxMaxLength}===0 ? false:true}" ></Input>
+                    <Input maxLength="{oLookUpModel>/taxIDValidation4/taxMaxLength}" placeholder="{oLookUpModel>/taxIDValidation4/tooltip}"  class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType4'}" editable="{=${oLookUpModel>/taxIDValidation4/taxMaxLength}===0 ? false:true}" ></Input>
+                    <Input maxLength="{oLookUpModel>/taxIDValidation5/taxMaxLength}" placeholder="{oLookUpModel>/taxIDValidation5/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType5'}" editable="{=${oLookUpModel>/taxIDValidation5/taxMaxLength}===0 ? false:true}" ></Input>
+                    <Input maxLength="{oLookUpModel>/taxIDValidation6/taxMaxLength}" placeholder="{oLookUpModel>/taxIDValidation6/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType6'}" editable="{=${oLookUpModel>/taxIDValidation6/taxMaxLength}===0 ? false:true}" ></Input>
+                    <Input maxLength="{oLookUpModel>/taxIDValidation7/taxMaxLength}" placeholder="{oLookUpModel>/taxIDValidation7/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType7'}" editable="{=${oLookUpModel>/taxIDValidation7/taxMaxLength}===0 ? false:true}" ></Input>
+                    <Input maxLength="{oLookUpModel>/taxIDValidation8/taxMaxLength}" placeholder="{oLookUpModel>/taxIDValidation8/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType8'}" editable="{=${oLookUpModel>/taxIDValidation8/taxMaxLength}===0 ? false:true}" ></Input>
+                    
+                    <layoutData>
+						<l:GridData span="XL3 L3 M3 S12"></l:GridData>
+					</layoutData>
+				</VBox>
+				
+				<VBox class="fontStyle sapUiSizeCompact">
+					<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>other}:${oi18n_En>other} +'&#10;' +${i18n>other}}"></Label>
+					<Input class="inputStyle" value="{oDataModel>ifOther}" enabled="{oEnableMdl>/ifOtherEnb}"></Input>
+				</VBox>
+				<VBox class="sapUiSizeCompact">
+					<Label/>
+					<Button icon="sap-icon://add" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckFirstItem'}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addMore}:${oi18n_En>addMore} +'/&#160;' +${i18n>addMore}}" type="Transparent" iconFirst="true" press="addTaxRegistration" enabled="{oEnableMdl>/addMoreEnb}" class="addMoreBtn"/>
+						<Button icon="sap-icon://delete" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckOtherItem'}" type="Transparent" press="fnDeleteContainerlayout" enabled="{oEnableMdl>/deleteBtnEnb}"  class="addMoreBtn"/>
+                    <layoutData>
+						<l:GridData span="XL3 L3 M3 S12"></l:GridData>
+					</layoutData>
+				</VBox>
+                
+            </cells>
+            </ColumnListItem></Table>
+            <layoutData>
+				<FlexItemData minWidth="100%"/>
+			</layoutData>
+		</Panel>
+		<!-- <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="fontStyle gridMargin gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+        <VBox class="sapUiTinyMarginBegin fontStyle">
+				<Label text="{i18n>ownerShipType}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact"/>
+                <Label wrapping="true" text="{oi18n_En>ownerShipType}&#10;{i18n>ownerShipType}" required="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="sapUiSizeCompact"/>
+				<ComboBox width="100%" placeholder="{i18n>select}" class="inputStyle" showSecondaryValues="true" valueState="{oErrorModel>/ownershipTypeE}" valueStateText="{oErrorModel>/ownershipTypeM}" value="{oDataModel>/ownerShipInfoDto/ownershipType}" change="fnLiveValueChange" items="{oLookUpModel>/ownerShipTypeData}" selectionChange="fnHandleOwnshpType">
+                <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>value}"/>
+                </ComboBox>
+			
+			</VBox>
+            <VBox  visible="{=${oDataModel>/ownerShipInfoDto/ownershipType} === 'other'? true : false}" class="sapUiTinyMarginBegin fontStyle">
+				<Label text="{i18n>otherText}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact"/>
+                <Label text="{oi18n_En>otherText}&#10;{i18n>otherText}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="sapUiSizeCompact"/>
+			<Input class="inputStyle" value="{oDataModel>/ownerShipInfoDto/ownershipTypeOtherValue}"/>
+				
+			</VBox>
+            
+        </l:Grid>
+        <l:Grid containerQuery="true" defaultSpan="XL12 L12 M12 S12" class="fontStyle gridMargin gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+         <VBox>
+             <HBox class="fontStyle" fitContainer="true">
+			<Label labelFor="isPublicTrade1" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isOrgPubliclyTraded}:${oi18n_En>isOrgPubliclyTraded} +'&#10;' +${i18n>isOrgPubliclyTraded}}" wrapping="true" class="fontStyle sapUiTinyMarginBegin sapUiSizeCompact sapUiTinyMarginEnd"/>
+			<Button tooltip="publiclyTradedInfo" icon="sap-icon://message-information" type="Transparent" class="sapUiSizeCompact infoBtn1" press="fnOnPressInfoIcon"/>
+		</HBox>
+            	<RadioButtonGroup id="isPublicTrade1" columns="2" selectedIndex="0" class="inputStyle fontStyle">
+			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/ownerShipInfoDto/isEntityTradedCompany}"></RadioButton>
+			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" selected="{=!${oDataModel>/ownerShipInfoDto/isEntityTradedCompany}}"></RadioButton>
+		</RadioButtonGroup>
+      
+        </VBox>
+          </l:Grid>
+          <VBox class="sapUiTinyMarginBegin sapUiTinyMarginTop fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>publicTradeText}:${oi18n_En>publicTradeText} +'/&#160;' +${i18n>publicTradeText}}" class="fontStyle fontStyleItalic sapUiSizeCompact"/></VBox> -->
+		<VBox>
+        <l:VerticalLayout width="100%">
+							<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>ppoc}:${oi18n_En>ppoc} +'/&#160;' + ${i18n>ppoc}}" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+                            <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
+								<VBox>
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstNameG}:${oi18n_En>firstNameG} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>firstNameG}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<!-- <Input maxLength="35" value="{oDataModel>/surveyInfoDto/authorityContact/firstName}" valueState="{oErrorModel>/authorityFNameE}" valueStateText="{oErrorModel>/authorityFNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input> -->
+     	<Input maxLength="35" value="{oDataModel>/bpInfoDto/pointOfContact/firstName}" enabled="{oEnableMdl>/ppocFNameEnb}" valueState="{oErrorModel>/ppocFNameE}" valueStateText="{oErrorModel>/ppocFNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"/>
+								</VBox>
+								<VBox >
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastNameG}:${oi18n_En>lastNameG} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>lastNameG}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>lastNameG}&#10;{i18n>lastNameG}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<!-- <Input maxLength="35" value="{oDataModel>/surveyInfoDto/authorityContact/lastName}"  valueState="{oErrorModel>/authorityLNameE}" valueStateText="{oErrorModel>/authorityLNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input> -->
+							<Input maxLength="35" value="{oDataModel>/bpInfoDto/pointOfContact/lastName}" enabled="{oEnableMdl>/ppocLNameEnb}" valueState="{oErrorModel>/ppocLNameE}" valueStateText="{oErrorModel>/ppocLNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
+                                </VBox>
+								<VBox >
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>jobTitle}:${oi18n_En>jobTitle} +'&#10;' + ${i18n>jobTitle}}" class="fontStyle"></Label> -->
+                                    <Label text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+									<!-- <Input value="{oDataModel>/surveyInfoDto/authorityContact/jobTitle}"  valueState="{oErrorModel>/authorityJobTitleE}" valueStateText="{oErrorModel>/authorityJobTitleM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input> -->
+									<Input value="{oDataModel>/bpInfoDto/pointOfContact/jobTitle}" enabled="{oEnableMdl>/ppocJobTitleEnb}"  class="inputStyle"/>
+                                </VBox>
+								<VBox >
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<!-- <Input maxLength="242" value="{oDataModel>/surveyInfoDto/authorityContact/email}"  valueState="{oErrorModel>/authorityEmailE}" valueStateText="{oErrorModel>/authorityEmailM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input> -->
+									<Input maxLength="242" value="{oDataModel>/bpInfoDto/pointOfContact/email}" enabled="{oEnableMdl>/ppocEmailEnb}" valueState="{oErrorModel>/ppocEmailE}" valueStateText="{oErrorModel>/ppocEmailM}" liveChange="fnLiveEmailJValid" class="inputStyle"/>	
+                                </VBox>
+                                <VBox>
+									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
+									 <VBox>
+										<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="true" items="{oLookUpModel>/countryContactCode}" value="{oDataModel>/bpInfoDto/pointOfContact/countryContactCode}" enabled="{oEnableMdl>/ppocCountryContEnb}" class="inputStyle" valueState="{oErrorModel>/ppocCountryContCodeE}" valueStateText="{oErrorModel>/ppocCountryContCodeM}" change="fnLiveValueChange">
+                                            <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>code}" additionalText="{oLookUpModel>description}"/>
+                                        </ComboBox>
+                                    </VBox>
+                                  <layoutData>
+                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                       </VBox>
+								<VBox>
+                                <Label text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true"></Label>
+                                <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+											<Input maxLength="31"  value="{oDataModel>/bpInfoDto/pointOfContact/contact}" enabled="{oEnableMdl>/ppocContEnb}" valueState="{oErrorModel>/ppocContE}" valueStateText="{oErrorModel>/ppocContM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"/>
+                                <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
+                                <layoutData>
+                                  <l:GridData spanM="2" spanL="2" spanXL="1"></l:GridData></layoutData>
+                                        </VBox>
+                                
+                                                       
+									
+								
+						 <VBox >
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>extension}:${oi18n_En>extension} +'/&#10;' + ${i18n>extension}}" class="fontStyle"></Label> -->
+                                    <Label text="{i18n>extension}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" ></Label>
+                                    <Label text="{oi18n_En>extension}&#10;{i18n>extension}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+								<!-- <Input maxLength="11" value="{oDataModel>/surveyInfoDto/authorityContact/extension}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input> -->
+                                  <Input maxLength="11" value="{oDataModel>/bpInfoDto/pointOfContact/extension}" enabled="{oEnableMdl>/ppocExtensionEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
+								</VBox>
+                                  <VBox>
+                                <!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>mobPhone}:${oi18n_En>mobPhone} +'/&#10;' + ${i18n>mobPhone}}" class="fontStyle" required="true"></Label> -->
+                                <Label text="{i18n>mobPhone}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+											<!-- <Input maxLength="31" value="{oDataModel>/surveyInfoDto/authorityContact/mobile}" valueState="{oErrorModel>/authorityMobE}" valueStateText="{oErrorModel>/authorityMobM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input> -->
+                        <Input maxLength="31" value="{oDataModel>/bpInfoDto/pointOfContact/mobile}" enabled="{oEnableMdl>/ppocMobEnb}" valueState="{oErrorModel>/ppocMobE}" valueStateText="{oErrorModel>/ppocMobM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"/>
+                            
+                                        </VBox> 
+							</l:Grid>
+                            
+						</l:VerticalLayout>
+			<Text text="{i18n>Attachments}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>
+            <Text text="{oi18n_En>Attachments}/&#160;{i18n>Attachments}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>
+			<HBox wrap="Wrap">
+				<u:FileUploader id="fileUploader" buttonOnly="true" buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"
+					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" enabled="{oEnableMdl>/bpInfoAttachmentEnb}"
+					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"></u:FileUploader>
+				<g:GridList width="auto" items="{oAttachmentList>/0/bPDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">
+					<g:customLayout>
+						<!-- <grid:GridBasicLayout gridTemplateColumns="repeat(auto-fit, minmax(16rem, 1fr))" gridAutoFlow="Column" gridGap="0.5rem" /> -->
+						<!-- <grid:GridBasicLayout gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem" />  -->
+						<grid:GridResponsiveLayout>
+							<grid:layoutS>
+								<grid:GridSettings gridTemplateColumns="1fr" gridGap="1rem"/>
+							</grid:layoutS>
+							<grid:layoutM>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr" gridGap="1rem"/>
+							</grid:layoutM>
+							<grid:layoutL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutL>
+							<grid:layoutXL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutXL>
+						</grid:GridResponsiveLayout>
+					</g:customLayout>
+					<g:GridListItem>
+						<HBox>
+							<HBox width="90%" class="sapUiTinyMarginBegin sapUiSizeCompact">
+								<core:Icon src="{path:'oAttachmentList>fileExt',formatter:'com.jabil.surveyform.formatter.formatter.mediaTypeformatter'}"
+									class="attachmentIcon sapUiTinyMarginTop sapUiTinyMarginBottom" size="2.5rem" color="#48639d"/>
+								<VBox>
+                                <Text text="{oAttachmentList>name}" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+							<Text text="{oAttachmentList>fileSize}" class="sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+                            </VBox>
+                            </HBox>
+							<VBox alignItems="Center" class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">
+								<core:Icon src="sap-icon://decline" class="docIconStyle sapUiTinyMarginBottom" press="fnOnCancelAttachment" visible="{oEnableMdl>/deletDocVsb}"/>
+                                <core:Icon src="sap-icon://download" class="docIconStyle" press="fnOnDownlAttachment"/>
+							</VBox>
+						</HBox>
+					</g:GridListItem>
+				</g:GridList>
+			</HBox>
+		</VBox>
+		<!-- <upload:UploadSet instantUpload="true"
+				showIcons="true"
+				uploadEnabled="true"
+                uploadUrl="../../../../upload"
+				items="{path: 'oAttachmentList>/', templateShareable: false}"
+                class="attachmentList sapUiTinyMarginEnd"
+                uploadCompleted="fnOnUploadComplete">
+                 <upload:toolbar>
+				<OverflowToolbar>
+					 
+				</OverflowToolbar>
+			</upload:toolbar> 
+                	<upload:items>
+				 <upload:UploadSetItem fileName="{oAttachmentList>fullName}" visibleEdit="false" enabledEdit="false"
+                >
+              <upload:attributes> 
+						<ObjectAttribute
+								title="{MediaType}"
+								/> 
+					</upload:attributes>
+                 </upload:UploadSetItem>
+                
+                </upload:items>
+      
+                        </upload:UploadSet>   -->
+	</VBox>
+</core:FragmentDefinition>

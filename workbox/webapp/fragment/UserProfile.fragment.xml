@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.f">
+	<Popover class="profilePopover" showHeader="false" showArrow="true" placement="Bottom" contentWidth="20%">
+		<VBox  class="userProfileSectionStyleClass">
+			<HBox>
+				<f:Avatar src="" displaySize="Custom" customDisplaySize="3rem" displayShape="Circle" class="userNameLogoutStyle"
+					initials="{path: 'oAppModel>/loggedInUserName',formatter: 'oneapp.incture.workbox.util.formatter.wbGetAvatarInitials'}"/>
+				<VBox class="userProfileNameSectionStyleClass">
+					<Text text="{oAppModel>/loggedInUserName}" class="loggedInUserNameStyleClass"/>
+					<Text text="{oAppModel>/loggedInUserDetails/userEmail}" class="loggedInUserEmailStyleClass"/>
+				</VBox>
+			</HBox>
+			<HBox class="logoutLineStyle" />
+			<HBox justifyContent="End" renderType="Bare" width="100%" class="logoutBoxStyleClass sapUiSizeCompact">
+				<Button text="{i18n>LOGOUT_TEXT}" type="Emphasized" class=" wbTransformToUpperCase sapUiSizeCompact wbEmphasizedButtonStyleClass" press="onLogout"/>
+			</HBox>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

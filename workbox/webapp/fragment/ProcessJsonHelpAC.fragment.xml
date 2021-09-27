@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<ResponsivePopover showHeader="false" placement="Right" contentWidth="25%">
+		<VBox class="sapUiSizeCompact sapUiSmallMargin" renderType="Bare">
+			<Label text="{i18n>PROCESS_TECHNICAL_NAME_TEXT}" required="true"/>
+			<Input class="wbDefaultCustomInputWrapper" value="{oDefaultDataModel>/modelProcessName}"/>
+			<HBox renderType="Bare" alignItems="Center" justifyContent="End">
+				<Button text="{i18n>GET_PROCESS_JSON_TEXT}" press="downloadProcessJsonFn" type="Emphasized" class="wbCustomButtonClass sapUiTinyMarginTop"/>
+			</HBox>
+		</VBox>
+	</ResponsivePopover>
+</core:FragmentDefinition>

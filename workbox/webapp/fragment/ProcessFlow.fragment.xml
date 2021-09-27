@@ -1,0 +1,79 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:ExtVbox="oneapp.incture.workbox.controlExtension">
+	<VBox class="wbProcessFlowMainContent" height="99%">
+		<VBox class="wbProcessFlowHeader" height="12%" visible="{= ${oProcessFlowModel>/showDetails}===false}">
+			<HBox justifyContent="SpaceBetween">
+				<Label text="{i18n>REQUEST_ID_TEXT} - {oProcessFlowModel>/taskDetails/process/requestId}"
+					tooltip="{oProcessFlowModel>/taskDetails/process/requestId}" class="wbProcessFlowHeaderText"/>
+				<core:Icon src="sap-icon://decline" class="wbProcessFlowCloseIcon" press="closeProcessFlow"></core:Icon>
+			</HBox>
+			<Text text="{i18n>CREATED_BY_TEXT} {oProcessFlowModel>/taskDetails/process/startedByDisplayName}" class="wbProcessFlowParticipantsText"/>
+		</VBox>
+		<VBox renderType="Bare" busy="{oProcessFlowModel>/taskDetailsBusy}" height="{= ${oProcessFlowModel>/showDetails} ? '100%':'88%'}" width="100%"
+			busyIndicatorDelay="0">
+			<HBox renderType="Bare" height="{= ${oProcessFlowModel>/showDetails} ? '101%':'93%'}">
+				<VBox class="wbProcessFlowContents wbOverflowVertical" renderType="Bare"	width="{= ${oProcessFlowModel>/showDetails} === true ? '100%': '100%'}">
+					<HBox>
+						<VBox width="14%" renderType="Bare" alignItems="Center" justifyContent="Start">
+							<core:Icon src="sap-icon://accept" class="wbProcessFlowIconCompletedState wbProcessFlowIcon" tooltip="{i18n>STARTED_TEXT}"></core:Icon>
+							<VBox class="wbProcessFlowBar wbProcessFlowBarCompletedState"></VBox>
+						</VBox>
+						<HBox width="83%" class="wbProcessFlowStartState wbProcessFlowTaskHBoxPadding wbProcessFlowTaskBackground sapUiSmallMarginBottom"
+							renderType="Bare" justifyContent="SpaceBetween">
+							<Text text="{i18n>PROCESS_STARTED_TEXT}" class="wbProcessFlowSubjectLabel wbProcessFlowSubjectLabelHeader wbTextBoldClass"/>
+							<Text textAlign="Right" class="wbProcessFlowCreatedAtTime"
+								text="{path: 'oProcessFlowModel>/taskDetails/process/startedAtInString' ,formatter: 'oneapp.incture.workbox.util.formatter.wbProcessFlowTime'}"/>
+						</HBox>
+					</HBox>
+					<VBox items="{ path : 'oProcessFlowModel>/taskDetails/tasks'}">
+						<CustomListItem class="wbProcessFlowContentsMCLI"
+							type="{parts: ['oProcessFlowModel>/showDetails','oProcessFlowModel>status'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetShowDetailsPS'}"
+							press="fetchEventClicked">
+							<HBox >
+								<VBox width="14%" renderType="Bare" alignItems="Center" justifyContent="Start">
+									<core:Icon src="{path: 'oProcessFlowModel>status' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetProcessFlowStatusIcon'}"
+										class="wbProcessFlowIcon" tooltip="{oProcessFlowModel>status}"></core:Icon>
+									<VBox class="wbProcessFlowBar"
+										visible="{parts: ['oProcessFlowModel>showConnectingBar','oProcessFlowModel>status'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetProcessFlowConnectingBar'}"></VBox>
+								</VBox>
+								<VBox class="wbProcessFlowTaskBackground sapUiSmallMarginBottom" width="83%"
+									visible="{path: 'oProcessFlowModel>status' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetProcessFlowTaskBackground'}">
+									<HBox renderType="Bare" width="100%" justifyContent="SpaceBetween" class="wbProcessFlowTaskHBoxPadding"
+										visible="{path: 'oProcessFlowModel>status' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetProcessFlowTaskHBoxUnderline'}">
+										<Text text="{= (${oProcessFlowModel>ownersName} === '' || ${oProcessFlowModel>ownersName} === null) ? ${i18n>NA_TEXT}: ${oProcessFlowModel>ownersName}}"
+											tooltip="{= ${oProcessFlowModel>ownersName} === '' ? ${i18n>NA_TEXT}: ${oProcessFlowModel>ownersName}}"
+											class="wbProcessFlowSubjectLabel wbProcessFlowSubjectLabelHeader wbTextBoldClass" maxLines="2"/>
+										<Text text="{path: 'oProcessFlowModel>createdAtInString' ,formatter: 'oneapp.incture.workbox.util.formatter.wbProcessFlowTime'}"
+											class="wbProcessFlowCreatedAtTime" textAlign="Right"/>
+									</HBox>
+									<Text text="{oProcessFlowModel>subject}" tooltip="{oProcessFlowModel>subject}"
+										class="wbProcessFlowSubjectLabel wbTextBoldClass wbProcessFlowTaskHBoxPadding"/>
+									<Text text="{oProcessFlowModel>description}" class=" wbProcessFlowDescText wbProcessFlowTaskHBoxPadding"/>
+									<HBox class=" wbProcessFlowTaskHBoxPadding">
+										<Text text="{i18n>TASK_COMPLETION_TIME_TEXT}:"
+											visible="{parts: ['oProcessFlowModel>status','oProcessFlowModel>totalTime'],formatter: 'oneapp.incture.workbox.util.formatter.wbSetProcessFlowCompletionTime'}"/>
+										<Text text="{oProcessFlowModel>totalTime}"
+											visible="{parts: ['oProcessFlowModel>status','oProcessFlowModel>totalTime'],formatter: 'oneapp.incture.workbox.util.formatter.wbSetProcessFlowCompletionTime'}"
+											class="wbTextBoldClass"/>
+									</HBox>
+									<!--<Text text="Amit: 'Approved your request'" class="wbProcessFlowSubjectLabel wbProcessFlowTaskHBoxPadding"/>-->
+								</VBox>
+							</HBox>
+						</CustomListItem>
+					</VBox>
+				</VBox>
+				<!--{oProcessFlowModel>/showDetails}    '50%':'0'-->
+				
+			</HBox>
+			
+			<VBox height="6%" visible="{= ${oProcessFlowModel>/showDetails}===false}">
+				<CustomListItem type="Active" press="showMoreProcessFlow" class="wbProcessFlowFooterHbox" tooltip="{i18n>SHOW_MORE_TEXT}">
+					<HBox justifyContent="SpaceAround" renderType="Bare" alignItems="Center">
+						<Text text="{i18n>SHOW_MORE_TEXT}" class="wbProcessFlowShowMoreText wbTextBoldClass"/>
+						<!--<core:Icon src="sap-icon://customfont/MoreIcon" color="red"/>-->
+					</HBox>
+				</CustomListItem>
+			</VBox>
+		</VBox >
+	</VBox>
+</core:FragmentDefinition>

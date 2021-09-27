@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
+	<Dialog draggable="false" class="wbDialog" afterClose="afterCloseImageViewer">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Title class="wbDialogTitle" text="{i18n>PREVIEW_IMAGE_TEXT}"/>
+				</contentLeft>
+				<contentRight>
+					<core:Icon src="sap-icon://decline" class="wbDialogCloseIcon" tooltip="{i18n>CLOSE_TEXT}" press="closeImageViewer"></core:Icon>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<BusyIndicator visible="{= ${oAppModel>/previewImage}===false}" class="wbImagePreviewBI"/>
+			<VBox visible="{= ${oAppModel>/previewImage}===true}">
+				<VBox class=" wbImagePreviewImageCont">
+					<!--wbImagePreviewImageCont - in case you need -->
+					<Image src="data:image/{oImageViewModel>/extension};base64,{oImageViewModel>/attachmentValue}" class="wbImagePreviewImageCont"/>
+				</VBox>
+				<HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiSmallMarginBeginEnd sapUiTinyMarginTopBottom">
+					<VBox>
+						<Text text="{oImageViewModel>/attachmentName}.{oImageViewModel>/extension}"/>
+						<Text text="{path: 'oImageViewModel>/attachmentSize' ,formatter: 'oneapp.incture.workbox.util.formatter.wbAttachmentSizeParser'}"/>
+					</VBox>
+					<Button text="{i18n>DOWNLOAD_TEXT}" type="Emphasized" class="wbEmphasizedButtonStyleClass sapUiSizeCompact"
+						press="downloadAttachment(${oImageViewModel>/attachmentId}, ${oImageViewModel>/fileType},${oImageViewModel>/attachmentName},${oImageViewModel>/attachmentValue})"/>
+				</HBox>
+			</VBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

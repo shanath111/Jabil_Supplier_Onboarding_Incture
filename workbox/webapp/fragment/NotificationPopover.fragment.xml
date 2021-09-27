@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m"
+	xmlns:custom="oneapp.incture.workbox.controlExtension">
+	<ResponsivePopover showHeader="false" showArrow="true" placement="Bottom" contentWidth="30%">
+		<HBox width="auto" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMarginBeginEnd">
+			<Text text="{i18n>NOTIFICATIONS_TEXT}" visible="{= ${oUserSettingsModel>/settings/notification/count}>0}"/>
+			<Text text="No New Notifications" visible="{= ${oUserSettingsModel>/settings/notification/count}===0}" textAlign="Center"
+				class="sapUiTinyMarginTop"/>
+			<Button text="{i18n>CLEAR_ALL_TEXT}" class="wbCustomButtonClass sapUiSizeCompact" press="removeNotification('ALL',null)"
+				visible="{= ${oUserSettingsModel>/settings/notification/count}>0}"/>
+		</HBox>
+		<VBox class="wbNotificationListVBox" items="{oUserSettingsModel>/settings/notification/notificationList}"
+			busy="{oUserSettingsModel>/settings/notification/notificationBusy}" busyIndicatorDelay="0">
+			<NotificationListItem class="wbNLI wbCustomButtonClass sapUiSizeCompact"
+				title="{parts: ['oUserSettingsModel>description','oUserSettingsModel>notificationType','oUserSettingsModel>requestId','oUserSettingsModel>userName','oAppModel>/loggedInUserName'],formatter: 'oneapp.incture.workbox.util.formatter.wbNotificationDesc'}"
+				description="{oUserSettingsModel>title} - {oUserSettingsModel>description}" showCloseButton="true"
+				datetime="{path: 'oUserSettingsModel>createdAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetNotificationTime'}"
+				authorName="{oUserSettingsModel>eventName}" type="Active" press="showTaskDetails"
+				close="removeNotification('SINGLE',${oUserSettingsModel>notificationId})"
+				authorInitials="{path: 'oUserSettingsModel>userName',formatter: 'oneapp.incture.workbox.util.formatter.wbGetAvatarInitials'}"
+				visible="{path: 'oUserSettingsModel>priority' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetNotificationPriority'}"></NotificationListItem>
+		</VBox>
+	</ResponsivePopover>
+</core:FragmentDefinition>

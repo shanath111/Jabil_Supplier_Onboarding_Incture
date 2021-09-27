@@ -1,0 +1,225 @@
+{
+    "_version": "1.12.0",
+    "sap.cloud": {
+        "service": "supplierOnboarding"
+    },
+    "sap.app": {
+        "id": "ns.BuyerRegistration",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "Supplier Onboarding Request",
+        "description": "",
+        "resources": "resources.json",
+        "ach": "ach",
+        "sourceTemplate": {
+            "id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
+            "version": "1.40.12"
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "intent1": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "buyerRegistration",
+                    "action": "Display",
+                    "title": "Supplier Onboarding Request",
+                    "subTitle": "",
+                    "icon": "sap-icon://create"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "fullWidth": true,
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "fullWidth": true,
+        "rootView": {
+            "viewName": "ns.BuyerRegistration.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        },
+        "dependencies": {
+            "minUI5Version": "1.60.1",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ns.BuyerRegistration.i18n.i18n"
+                }
+            },
+            "oDataModel": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+             "oVisibilityModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/visibility.json"
+            },
+            "oBPLookUpMdl": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "oConfigMdl": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "oStaticData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/StaticData.json"
+            },
+            "oAttachmentList": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "oAttachmentListBank": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/attachmentData.json"
+            }
+        },
+        "resources": {
+           "css": [
+                {
+                    "uri": "css/style.css"
+                } , {
+                    "uri": "util/ServiceObj.css"
+                }
+            ],
+            "js": [
+                {
+                    "uri": "util/ServiceObj.js"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "ns.BuyerRegistration.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "App",
+                    "pattern": "App",
+                    "target": "App"
+                },
+                {
+                    "name": "VendorRequest",
+                    "pattern": "",
+                    "target": "VendorRequest"
+                },
+                {
+                    "name": "BPExtend",
+                    "pattern": "Extend/{Name}/{Id}",
+                    "target": "BPExtend"
+                },
+                {
+                    "name": "BPCreate",
+                    "pattern": "Create/{Id}",
+                    "target": [
+                        "BPCreate"
+                    ]
+                },
+                {
+                    "name": "GBSDetail",
+                    "pattern": "GBSDetail/{contextPath}",
+                    "target": "GBSDetail"
+                },
+                {
+                    "name": "Reviewer",
+                    "pattern": "Reviewer/{Name}{Id}",
+                    "target": "Reviewer"
+                },
+                {
+                    "name": "LegalApprove",
+                    "pattern": "Approval/{Name}/{Id}",
+                    "target": "LegalApprove"
+                },
+                {
+                    "name": "ExceptionFlow",
+                    "pattern": "ExceptionFlow/{Name}/{Id}",
+                    "target": "ExceptionFlow"
+                },
+                {
+                    "name": "BuyerRem",
+                    "pattern": "BuyerRem/{contextPath}",
+                    "target": "BuyerRem"
+                }
+            ],
+            "targets": {
+                "App": {
+                    "viewType": "XML",
+                    "viewName": "App"
+                },
+                "BPExtend": {
+                    "viewType": "XML",
+                    "viewName": "BPExtend"
+                },
+                "VendorRequest": {
+                    "viewType": "XML",
+                    "viewName": "VendorRequest"
+                },
+                "BPCreate": {
+                    "viewType": "XML",
+                    "viewName": "BPCreate"
+                },
+                "GBSDetail": {
+                    "viewType": "XML",
+                    "viewName": "GBSDetail"
+                },
+                "Reviewer": {
+                    "viewType": "XML",
+                    "viewName": "Reviewer"
+                },
+                "LegalApprove": {
+                    "viewType": "XML",
+                    "viewName": "LegalApprove"
+                },
+                "ExceptionFlow": {
+                    "viewType": "XML",
+                    "viewName": "ExceptionFlow"
+                },
+                 "BuyerRem": {
+                    "viewType": "XML",
+                    "viewName": "BuyerRem"
+                }
+            }
+        }
+    },
+    "sap.platform.cf": {
+        "oAuthScopes": [
+            "$XSAPPNAME.BuyerRegistration"
+        ]
+    }
+}

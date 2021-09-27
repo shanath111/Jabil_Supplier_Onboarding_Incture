@@ -1,0 +1,20 @@
+<!--<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="12" viewBox="0 0 12 12" class="wbIcons">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_124" data-name="Rectangle 124" width="12" height="12" transform="translate(595 216)" fill="#E51616" stroke="#E51616" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_63" data-name="Mask Group 63" transform="translate(-595 -216)" clip-path="url(#clip-path)">
+    <g id="check" transform="translate(595 217.526)">
+      <path id="Path_108" data-name="Path 108" d="M4.076,11.061l-3.9-3.9a.6.6,0,0,1,0-.849l.849-.849a.6.6,0,0,1,.849,0L4.5,8.092l5.627-5.627a.6.6,0,0,1,.849,0l.849.849a.6.6,0,0,1,0,.849l-6.9,6.9a.6.6,0,0,1-.849,0Z" transform="translate(0 -2.289)"/>
+    </g>
+  </g>
+</svg>
+-->
+
+
+<svg class="icon icon-ApproveAccept"><use xlink:href="#icon-ApproveAccept">
+	<symbol id="icon-ApproveAccept" viewBox="0 0 32 32">
+<path d="M10.869 27.461l-10.4-10.4c-0.29-0.29-0.469-0.69-0.469-1.132s0.179-0.842 0.469-1.132v0l2.264-2.264c0.29-0.29 0.69-0.469 1.132-0.469s0.842 0.179 1.132 0.469l7.003 7.011 15.005-15.005c0.29-0.29 0.69-0.469 1.132-0.469s0.842 0.179 1.132 0.469v0l2.264 2.264c0.29 0.29 0.469 0.69 0.469 1.132s-0.179 0.842-0.469 1.132v0l-18.4 18.4c-0.29 0.29-0.69 0.469-1.132 0.469s-0.842-0.179-1.132-0.469v0z"></path>
+</symbol>
+</use></svg>

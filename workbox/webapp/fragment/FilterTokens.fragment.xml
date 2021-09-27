@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m"
+	xmlns:custom="oneapp.incture.workbox.controlExtension">
+	<ResponsivePopover showHeader="false" placement="Bottom" class="wbFilterPopOverClass ">
+		<VBox class="sapUiSizeCompact" renderType="Bare" alignItems="Center">
+			<Tokenizer tokens="{path:'oAppModel>/filterTokens'}">
+				<Token key="{oAppModel>key}" text="{oAppModel>value}" tooltip="{oAppModel>key}"
+					editable="{= ${oAppModel>/currentView} !== 'processFlow' &amp;&amp; ${oAppModel>/currentView} !== 'taskDetailPage' }"
+					delete="removeFilterTokenFn" class="wbCustomTokenClass"/>
+			</Tokenizer>
+		</VBox>
+	</ResponsivePopover>
+</core:FragmentDefinition>

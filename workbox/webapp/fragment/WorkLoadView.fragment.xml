@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<HBox renderType="Bare" alignItems="Center" class="sapUiSmallMargin sapUiSizeCompact">
+		<HBox alignItems="Center" width="72%" justifyContent="SpaceBetween" renderType="Bare" busy="{oDefaultDataModel>/enableBusyIndicators}"
+			busyIndicatorDelay="0">
+			<VBox renderType="Bare" class="wbCustomContentWrapperStyle" justifyContent="Start">
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMargin sapUiSmallMarginTop" justifyContent="Start">
+					<HBox renderType="Bare" class="wbAdminWorkLoadHighClass"></HBox>
+					<Label text="{i18n>WORKLOAD_HIGH_TEXT}" class="wbAdminCustLabelProcess wbAdminWorkLoadLabel sapUiTinyMarginBegin"/>
+				</HBox>
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMargin" justifyContent="Start">
+					<Label text="{i18n>THRESHOLD_TEXT}"/>
+					<Input editable="false" name="hmin"
+						class="wbDefaultCustomInputWrapper sapUiTinyMarginBegin wbAdminWorkloadInputWrapper sapUiSmallMarginBottom" width="62%"
+						liveChange="countWorkLoad" value="{oDefaultDataModel>/workLoadDetails/countDetails/hmin}" placeholder="{i18n>ENTER_TEXT}"/>
+				</HBox>
+			</VBox>
+			<VBox renderType="Bare" class="wbCustomContentWrapperStyle" justifyContent="Start">
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMargin sapUiSmallMarginTop" justifyContent="Start">
+					<HBox renderType="Bare" class="wbAdminWorkLoadNormalClass"></HBox>
+					<Label text="{i18n>WORKLOAD_NORMAL_TEXT}" class="wbAdminCustLabelProcess wbAdminWorkLoadLabel sapUiTinyMarginBegin"/>
+				</HBox>
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMargin" justifyContent="Start">
+					<Label text="{i18n>THRESHOLD_TEXT}"/>
+					<Input name="nmax" class="wbDefaultCustomInputWrapper sapUiTinyMarginBegin wbAdminWorkloadInputWrapper sapUiSmallMarginBottom" width="62%"
+						liveChange="countWorkLoad" value="{oDefaultDataModel>/workLoadDetails/countDetails/nmax}" placeholder="{i18n>ENTER_TEXT}"/>
+				</HBox>
+			</VBox>
+			<VBox renderType="Bare" class="wbCustomContentWrapperStyle" justifyContent="Start">
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMargin sapUiSmallMarginTop" justifyContent="Start">
+					<HBox renderType="Bare" class="wbAdminWorkLoadLowClass"></HBox>
+					<Label text="{i18n>WORKLOAD_LOW_TEXT}" class="wbAdminCustLabelProcess wbAdminWorkLoadLabel sapUiTinyMarginBegin"/>
+				</HBox>
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMargin" justifyContent="Start">
+					<Label text="{i18n>THRESHOLD_TEXT}"/>
+					<Input name="lmax" class="wbDefaultCustomInputWrapper sapUiTinyMarginBegin wbAdminWorkloadInputWrapper sapUiSmallMarginBottom"
+						liveChange="countWorkLoad" width="62%" value="{oDefaultDataModel>/workLoadDetails/countDetails/lmax}" placeholder="{i18n>ENTER_TEXT}"/>
+				</HBox>
+			</VBox>
+		</HBox>
+	</HBox>
+</core:FragmentDefinition>

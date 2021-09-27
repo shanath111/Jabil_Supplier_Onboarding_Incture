@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:f="sap.f"
+	xmlns:grid="sap.ui.layout.cssgrid" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+	<VBox renderType="Bare" alignItems="Center" width="100%" class="wbDashboardChartClass" visible="{oGraphDataModel>/graphStatus}">
+		<layoutData>
+			<grid:GridItemLayoutData gridColumn="span 1"/>
+		</layoutData>
+		<HBox renderType="Bare" alignItems="Center" width="100%" justifyContent="SpaceBetween" class="wbDashboardHeaderComboClass">
+			<Text text="{i18n>STATUS_GRAPH_TEXT}" class="wbDashboardTitleTextClass"/>
+			<!--<HBox renderType="Bare" alignItems="Center">
+								<HBox renderType="Bare" alignItems="Center" class="wbDashboardLegendBreachedClass sapUiTinyMarginEnd"></HBox>
+								<Text text="Ready" class="sapUiTinyMarginEnd wbDashboardLegendTextClass"/>
+								<HBox renderType="Bare" alignItems="Center" class="wbDashboardLegendCriticalClass sapUiTinyMarginEnd"></HBox>
+								<Text text="Resolved" class="sapUiTinyMarginEnd wbDashboardLegendTextClass"/>
+							</HBox>-->
+		</HBox>
+		<viz:VizFrame busy="{oGraphDataModel>/enableBusyIndicators/userGraph}" busyIndicatorDelay="0" xmlns="sap.viz"
+			id="WB_STACKED_COLUMNBAR_GRAPH_Dummy" uiConfig="{applicationSet:'fiori'}" selectData="fetchGraphDetailFn" vizType="column"
+			legendVisible="false" class="wbDashboardScrollClass wbDashboardScrollHeightClass" width="100%"
+			height="{path : '/' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGraphHeight'}"/>
+	</VBox>
+</core:FragmentDefinition>

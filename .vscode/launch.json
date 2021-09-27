@@ -1,0 +1,113 @@
+{
+  "configurations": [
+    {
+      "name": "Run jabilSupplierOnboarding-workbox",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/oneappinctureworkbox/index.html",
+        "--ui5",
+        "{\"version\":\".\"}"
+      ],
+      "cwd": "${workspaceFolder}/workbox",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/jabilSupplierOnboarding/workbox\"}"
+      },
+      "envFile": "${workspaceFolder}/workbox/.env4",
+      "preLaunchTask": "Build jabilSupplierOnboarding"
+    },
+    {
+      "name": "Run jabilSupplierOnboarding-BuyerRegistration",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/nsBuyerRegistration/index.html",
+        "--ui5",
+        "{\"version\":\".\"}"
+      ],
+      "cwd": "${workspaceFolder}/BuyerRegistration",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/jabilSupplierOnboarding/BuyerRegistration\"}"
+      },
+      "envFile": "${workspaceFolder}/BuyerRegistration/.env50",
+      "preLaunchTask": "Build jabilSupplierOnboarding"
+    },
+    {
+      "name": "Run jabilSupplierOnboarding-reports",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/oneappincturereportreports/index.html",
+        "--ui5",
+        "{\"version\":\"1.90.4\"}"
+      ],
+      "cwd": "${workspaceFolder}/reports",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/jabilSupplierOnboarding/reports\"}"
+      },
+      "envFile": "${workspaceFolder}/reports/.env6",
+      "preLaunchTask": "Build jabilSupplierOnboarding"
+    },
+    {
+      "name": "Run jabilSupplierOnboarding-processFlow",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/oneappinctureprocessFlowprocessFlow/index.html",
+        "--ui5",
+        "{\"version\":\".\"}"
+      ],
+      "cwd": "${workspaceFolder}/processFlow",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/jabilSupplierOnboarding/processFlow\"}"
+      },
+      "envFile": "${workspaceFolder}/processFlow/.env3",
+      "preLaunchTask": "Build jabilSupplierOnboarding"
+    },
+    {
+      "name": "Run jabilSupplierOnboarding-surveyform",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/comjabilsurveyform/index.html",
+        "--ui5",
+        "{\"version\":\".\"}"
+      ],
+      "cwd": "${workspaceFolder}/surveyform",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/jabilSupplierOnboarding/surveyform\"}"
+      },
+      "envFile": "${workspaceFolder}/surveyform/.env3",
+      "preLaunchTask": "Build jabilSupplierOnboarding"
+    }
+  ],
+  "compounds": [],
+  "inputs": [
+    {
+      "id": "UI5Version",
+      "type": "command",
+      "command": "sap.ux.appGenerator.ui5Version"
+    }
+  ],
+  "version": "0.2.0"
+}

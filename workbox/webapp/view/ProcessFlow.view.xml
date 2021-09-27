@@ -1,0 +1,15 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="oneapp.incture.workbox.controller.ProcessFlow"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page showHeader="false">
+		<content>
+			<VBox height="100%">
+				<HBox class="wbProcessFlowHeaderBar" alignItems="Center" justifyContent="SpaceBetween">
+					<Label text="{i18n>PROCESS_FLOW_TEXT} - {oProcessFlowModel>/taskDetails/process/requestId}" tooltip="{i18n>PROCESS_FLOW_TEXT}"
+						class="wbTextBoldClass"/>
+					<core:Icon src="sap-icon://decline" class="wbProcessFlowCloseIconDetail" press="closeProcessFlow"></core:Icon>
+				</HBox>
+				<core:Fragment  fragmentName="oneapp.incture.workbox.fragment.ProcessStory" type="XML"></core:Fragment>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,31 @@
+/node_modules/
+package-lock.json
+
+
+
+
+
+# auto generated wildcard
+BuyerRegistration/.env
+supplieronboarding-approuter/.env
+# auto generated wildcard
+surveyform/.env
+
+# auto generated wildcard
+gbsinbox/.env
+# auto generated wildcard
+TaskInbox/.env
+# auto generated wildcard
+buyerextinbox/.env
+# auto generated wildcard
+workbox/.env
+# auto generated wildcard
+InboxDetail/.env
+# auto generated wildcard
+surveyform/.env2
+reports/.env
+# auto generated wildcard
+processFlow/.env7
+
+# auto generated wildcard
+processFlow/.env

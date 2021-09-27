@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:custom="oneapp.incture.workbox.controlExtension">
+	<Dialog draggable="false" class="wbDialog">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Title class="wbDialogTitle" text="{oUserSettingsModel>/settings/notification/addConfigHeader}"/>
+				</contentLeft>
+				<contentRight>
+					<core:Icon src="sap-icon://decline" class="wbDialogCloseIcon" tooltip="{i18n>CLOSE_TEXT}" press="closeAddNotifSettings"></core:Icon>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<VBox class="wbCustomDialogBackground">
+				<VBox class="sapUiSmallMargin " renderType="Bare" justifyContent="Start"
+					visible="{= ${oUserSettingsModel>/settings/notification/configType}=== 'ADDPROFILE'}">
+					<!--TILE_NAME_TEXT TILE_NAME_TEXT-->
+					<Label required="true" text="{i18n>PROFILE_NAME_TEXT}" class=" wbTextBoldClass"/>
+					<Input value="{oUserSettingsModel>/settings/notification/oNewConfiguration/profileName}" liveChange="validateFilterName"
+						class="sapUiTinyMarginTop wbSaveFilterInputWrapper "/>
+					<VBox renderType="Bare" visible="{= ${oUserSettingsModel>/settings/selectedSetting} !=='SETTINGS_ADMIN_NOTIFICATIONS'}">
+						<HBox class="sapUiSizeCompact" renderType="Bare" alignItems="Center" justifyContent="Start">
+							<Label text="{i18n>ACTIVATE_PROFILE_TEXT}" class="wbTextBoldClass"/>
+							<CheckBox selected="{oUserSettingsModel>/settings/notification/oNewConfiguration/isActive}" class=" sapUiSmallMarginBegin "/>
+						</HBox>
+						<Label text="{i18n>SCHEDULE_PROFILE_SETTINGS_TEXT}" class="sapUiSmallMarginTop wbTextBoldClass"/>
+						<HBox renderType="Bare" justifyContent="Start">
+							<DateTimePicker value="{oUserSettingsModel>/settings/notification/oNewConfiguration/scheduledFrom}" valueFormat="yyyy-MM-ddTHH:mm:ss"
+								displayFormat="dd MMM yyyy hh:mm a"
+								maxDate="{path : 'oUserSettingsModel>/settings/notification/oNewConfiguration/scheduledTo', formatter: 'oneapp.incture.workbox.util.formatter.wbReturnDatePickerDateObj'}"
+								minutesStep="30" class="wbCustomTimePicker sapUiSizeCompact wbNotifDefaultCustomInputWrapper sapUiTinyMarginEnd"/>
+							<DateTimePicker value="{oUserSettingsModel>/settings/notification/oNewConfiguration/scheduledTo}" valueFormat="yyyy-MM-ddTHH:mm:ss"
+								displayFormat="dd MMM yyyy hh:mm a"
+								minDate="{path : 'oUserSettingsModel>/settings/notification/oNewConfiguration/scheduledFrom', formatter: 'oneapp.incture.workbox.util.formatter.wbReturnDatePickerDateObj'}"
+								minutesStep="30" class="sapUiSizeCompact wbNotifDefaultCustomInputWrapper wbCustomTimePicker"/>
+						</HBox>
+					</VBox>
+					<HBox justifyContent="End" renderType="Bare">
+						<Button text="Create" press="updateProfile($event,'CREATE')" class=" sapUiSizeCompact wbEmphasizedButtonStyleClass " type="Emphasized"
+							enabled="{= ${oUserSettingsModel>/settings/notification/oNewConfiguration/profileName} !== '' &amp;&amp; ((${oUserSettingsModel>/settings/notification/oNewConfiguration/scheduledTo} !== null &amp;&amp; ${oUserSettingsModel>/settings/notification/oNewConfiguration/scheduledFrom} !== null &amp;&amp; ${oUserSettingsModel>/settings/selectedSetting} !=='SETTINGS_ADMIN_NOTIFICATIONS') || ${oUserSettingsModel>/settings/selectedSetting} ==='SETTINGS_ADMIN_NOTIFICATIONS')}"></Button>
+					</HBox>
+				</VBox>
+				<VBox class="sapUiSmallMargin " renderType="Bare" justifyContent="Start"
+					visible="{= ${oUserSettingsModel>/settings/notification/configType}=== 'ADDGROUP' || ${oUserSettingsModel>/settings/notification/configType}=== 'ADDCHANNEL'}">
+					<Label required="true"
+						text="{= ${oUserSettingsModel>/settings/notification/configType}=== 'ADDGROUP' ? ${i18n>EVENT_GROUP_NAME_TEXT} : ${i18n>CHANNEL_NAME_TEXT}}"
+						class=" wbTextBoldClass"/>
+					<Input value="{oUserSettingsModel>/settings/notification/oNewConfiguration/viewName}" liveChange="validateFilterName"
+						class="sapUiTinyMarginTop wbSaveFilterInputWrapper "/>
+					<HBox justifyContent="End" renderType="Bare">
+						<Button text="{i18n>CREATE_TEXT}" press="updateGeneralSettings($event,'CREATE')" class=" sapUiSizeCompact wbEmphasizedButtonStyleClass "
+							type="Emphasized" enabled="{= ${oUserSettingsModel>/settings/notification/oNewConfiguration/viewName} !== ''}"></Button>
+					</HBox>
+				</VBox>
+			</VBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

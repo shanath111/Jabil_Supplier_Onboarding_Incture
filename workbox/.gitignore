@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.scp/
+.env
+Makefile*.mta
+mta_archives
+mta-*
+resources
+archive.zip
+# auto generated wildcard
+surveyform/.env2
+# auto generated wildcard
+processFlow/.env7

@@ -1,0 +1,123 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns="sap.m"
+	xmlns:custom="oneapp.incture.workbox.controlExtension" xmlns:l="sap.ui.layout">
+	<IconTabBar expandable="false" class="wbAdminMGroupsIconTabBackground sapUiSizeCompact" select="versionControlTabClick">
+		<items>
+			<IconTabFilter text="{i18n>VERSION_HISTORY}" key="versionHistory"
+				visible="{= ${oUserSettingsModel>/settings/allVersions}.length>0 ? true: false}">
+				<HBox alignItems="Start" renderType="Bare" height="73vh" width="100%">
+					<VBox class="wbCustomContentWrapperStyle wbOverflowVertical sapUiSmallMargin" width="25%" renderType="Bare" height="100%"
+						items="{oUserSettingsModel>/settings/allVersions}">
+						<CustomListItem selected="{= ${oUserSettingsModel>versionNumber}=== ${oUserSettingsModel>/settings/selectedVersion}}" type="Active"
+							press="loadVersions" class="sapUiSizeCompact wbVersionControlSelectList">
+							<HBox justifyContent="SpaceBetween" class="sapUiSmallMarginBeginEnd" renderType="Bare" height="2rem" alignItems="Center">
+								<Text text="{oUserSettingsModel>versionNumber}"/>
+								<Text text="{path: 'oUserSettingsModel>dateofRelease', formatter:'oneapp.incture.workbox.util.formatter.wbDateFormatter'}"/>
+							</HBox>
+						</CustomListItem>
+					</VBox>
+					<VBox class="wbCustomContentWrapperStyle sapUiSmallMarginTopBottom sapUiSmallMarginEnd" height="73vh" renderType="Bare" width="75%">
+						<core:Fragment fragmentName="oneapp.incture.workbox.fragment.VersionDetails" type="XML"></core:Fragment>
+					</VBox>
+				</HBox>
+			</IconTabFilter>
+			<IconTabFilter text="{i18n>CREATE_NEW_VERSION_TEXT}" key="createVersion">
+				<VBox renderType="Bare" justifyContent="Start" alignItems="Start">
+					<Label text="{i18n>TECHNICAL_INFORMATION_TEXT}" class="sapUiSmallMarginBeginEnd sapUiTinyMarginTop"></Label>
+					<l:Grid containerQuery="true" defaultSpan="XL3 L4 M6 S12" class=" wbTaskDetailContentClass wbTaskDetailPaddingClass wbWidthWebkitAvailable">
+						<VBox renderType="Bare" alignItems="Start" class="sapUiTinyMarginTop">
+							<Label text="{i18n>VERSION_TEXT}:" class="wbSettingsNotifLabel" width="80%" required="true"/>
+							<MaskInput mask="Workbox CC.CC" placeholderSymbol=" " placeholder="{i18n>VERSION_CONTROL_EX}"
+								value="{oUserSettingsModel>/settings/newVersion/technicalInformation/versionNumber}" class="wbTaskDetailInputWrapperUI" width="80%">
+								<rules>
+									<MaskInputRule maskFormatSymbol="C" regex="[0-9]"/>
+								</rules>
+							</MaskInput>
+						</VBox>
+						<VBox renderType="Bare" alignItems="Start" class="sapUiTinyMarginTop">
+							<Label text="{i18n>FRONTEND_VERSION_TEXT}:" class="wbSettingsNotifLabel " width="80%" required="true"/>
+							<!--<Input value="{oUserSettingsModel>/settings/newVersion/technicalInformation/frontendVersion}" class="wbTaskDetailInputWrapperUI" width="80%"/>-->
+							<MaskInput mask="DD.DD" placeholderSymbol=" " placeholder="{i18n>EXAMPLE_VERSION}"
+								value="{oUserSettingsModel>/settings/newVersion/technicalInformation/frontendVersion}" class="wbTaskDetailInputWrapperUI" width="80%">
+								<rules>
+									<MaskInputRule maskFormatSymbol="D" regex="[0-9]"/>
+								</rules>
+							</MaskInput>
+						</VBox>
+						<VBox renderType="Bare" alignItems="Start" class="sapUiTinyMarginTop">
+							<Label text="{i18n>BACKEND_VERSION_TEXT}:" class="wbSettingsNotifLabel" width="80%" required="true"/>
+							<!--<Input value="{oUserSettingsModel>/settings/newVersion/technicalInformation/gitDetails}" class="wbTaskDetailInputWrapperUI" width="80%"/>-->
+							<MaskInput mask="EE.EE" placeholderSymbol=" " placeholder="{i18n>EXAMPLE_VERSION}"
+								value="{oUserSettingsModel>/settings/newVersion/technicalInformation/gitDetails}" class="wbTaskDetailInputWrapperUI" width="80%">
+								<rules>
+									<MaskInputRule maskFormatSymbol="E" regex="[0-9]"/>
+								</rules>
+							</MaskInput>
+						</VBox>
+						<VBox renderType="Bare" alignItems="Start" class="sapUiTinyMarginTop">
+							<Label text="{i18n>DATE_OF_RELEASE_TEXT}:" class="wbSettingsNotifLabel" width="80%" required="true"/>
+							<Input
+								value="{path:'oUserSettingsModel>/settings/newVersion/technicalInformation/dateofRelease', formatter:'oneapp.incture.workbox.util.formatter.wbDateFormatter'} {path:'oUserSettingsModel>/settings/newVersion/technicalInformation/dateofRelease', formatter:'oneapp.incture.workbox.util.formatter.wbTimeFormatter'}"
+								class="wbTaskDetailInputWrapperUI" width="80%" editable="false"/>
+						</VBox>
+						<VBox renderType="Bare" alignItems="Start" class="sapUiTinyMarginTop">
+							<Label text="{i18n>OS_DETAILS_TEXT}:" class="wbSettingsNotifLabel " width="80%" required="true"/>
+							<Input value="{oUserSettingsModel>/settings/newVersion/technicalInformation/osDetails}" class="wbTaskDetailInputWrapperUI"
+								placeholder="{i18n>VC_PLATFORMS}" width="80%"/>
+						</VBox>
+						<VBox renderType="Bare" alignItems="Start" class="sapUiTinyMarginTop">
+							<Label text="{i18n>LANGUAGE_TEXT}:" class="wbSettingsNotifLabel " width="80%" required="true"/>
+							<Input value="{oUserSettingsModel>/settings/newVersion/technicalInformation/language}" class="wbTaskDetailInputWrapperUI" width="80%"/>
+						</VBox>
+					</l:Grid>
+					<HBox renderType="Bare" justifyContent="SpaceBetween" alignItems="Center" class="sapUiSmallMarginBeginEnd wbWidthWebkitAvailable">
+						<Label text="{i18n>WHATS_NEW_TEXT}"></Label>
+						<Button icon="sap-icon://add" text="{i18n>ADD_TEXT}" class="wbDefaultButtonClass" press="addVersionDetails('whatsNew')"/>
+					</HBox>
+					<VBox renderType="Bare" justifyContent="Start" class="wbTaskDetailContentClass wbTaskDetailPaddingClass wbWidthWebkitAvailable"
+						items="{oUserSettingsModel>/settings/newVersion/whatsNew}"
+						visible="{= ${oUserSettingsModel>/settings/newVersion/whatsNew}.length>0 ? true: false}">
+						<HBox renderType="Bare">
+							<Input value="{oUserSettingsModel>description}" class="wbTaskDetailInputWrapperUI"/>
+							<HBox renderType="Bare" visible="{oUserSettingsModel>/settings/enableAttachmentInVC}">
+								<Input value="{oUserSettingsModel>link}" class="wbTaskDetailInputWrapperUI" placeholder="Add link" width="19vh"
+									visible="{= ${oUserSettingsModel>linkLabel}.length===0 ? true: false}"/>
+								<Text text="{oUserSettingsModel>linkLabel}" width="16vh" class="sapUiTinyMarginBeginEnd wbFont13" maxLines="2"
+									visible="{= ${oUserSettingsModel>linkLabel}.length===0 ? false: true}"/>
+								<u:FileUploader class="wbCustomButtonClass wbTaskDetailInputWrapperUI sapUiSizeCompact sapUiTinyMarginBegin" name="myFileUpload"
+									uploadUrl="upload/" placeholder="{i18n>UPLOAD_FILE_TEXT}" text="{i18n>UPLOAD_FILE_TEXT}" typeMissmatch="handleTypeMissmatchChat"
+									style="Emphasized" multiple="false" useMultipart="true" fileType="jpg,jpeg,png,mp4" icon="sap-icon://customfont/ChatEmojiIcon"
+									change="uploadVersionAttachment" iconOnly="true" buttonOnly="true"/>
+							</HBox>
+							<Button icon="sap-icon://delete" type="Reject" class="wbAdminMGroupsRemoveBtn" press="deleteVersionDetails"/>
+						</HBox>
+					</VBox>
+					<HBox renderType="Bare" justifyContent="SpaceBetween" alignItems="Center" class="sapUiSmallMarginBeginEnd wbWidthWebkitAvailable">
+						<Label text="{i18n>BUG_FIXES_TEXT}"></Label>
+						<Button icon="sap-icon://add" text="{i18n>ADD_TEXT}" class="wbDefaultButtonClass" press="addVersionDetails('bugFixes')"/>
+					</HBox>
+					<VBox renderType="Bare" justifyContent="Start" class="wbTaskDetailContentClass wbTaskDetailPaddingClass wbWidthWebkitAvailable"
+						items="{oUserSettingsModel>/settings/newVersion/bugFixes}"
+						visible="{= ${oUserSettingsModel>/settings/newVersion/bugFixes}.length>0 ? true: false}">
+						<HBox renderType="Bare">
+							<Input value="{oUserSettingsModel>description}" class="wbTaskDetailInputWrapperUI"/>
+							<Button icon="sap-icon://delete" type="Reject" class="wbAdminMGroupsRemoveBtn" press="deleteVersionDetails"/>
+						</HBox>
+					</VBox>
+					<HBox renderType="Bare" justifyContent="SpaceBetween" alignItems="Center" class="sapUiSmallMarginBeginEnd wbWidthWebkitAvailable">
+						<Label text="{i18n>IMPROVEMENTS_TEXT}"></Label>
+						<Button icon="sap-icon://add" text="{i18n>ADD_TEXT}" class="wbDefaultButtonClass" press="addVersionDetails('improvements')"/>
+					</HBox>
+					<VBox renderType="Bare" justifyContent="Start" class="wbTaskDetailContentClass wbTaskDetailPaddingClass wbWidthWebkitAvailable"
+						items="{oUserSettingsModel>/settings/newVersion/improvements}"
+						visible="{= ${oUserSettingsModel>/settings/newVersion/improvements}.length>0 ? true: false}">
+						<HBox renderType="Bare">
+							<Input value="{oUserSettingsModel>description}" class="wbTaskDetailInputWrapperUI"/>
+							<Button icon="sap-icon://delete" type="Reject" class="wbAdminMGroupsRemoveBtn" press="deleteVersionDetails"/>
+						</HBox>
+					</VBox>
+					<!--</VBox>-->
+				</VBox>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+</core:FragmentDefinition>

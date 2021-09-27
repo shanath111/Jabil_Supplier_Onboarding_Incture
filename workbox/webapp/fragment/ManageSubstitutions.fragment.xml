@@ -1,0 +1,81 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns="sap.m"
+	xmlns:custom="oneapp.incture.workbox.controlExtension">
+	<HBox justifyContent="SpaceBetween" renderType="Bare" alignItems="Center" class=" sapUiSizeCompact wbSettingsSubsLabel" height="7%">
+		<Label text="{i18n>MANAGE_SUBSTITUTIONS_TEXT}" class="wbSettingsLabel wbTextBoldClass "/>
+		<HBox justifyContent="End" renderType="Bare" alignItems="Center" class=" sapUiSizeCompact ">
+			<Button icon="sap-icon://add" text="{i18n>ADD_NEW_TEXT}" class="wbCustomButtonClass wbTextBoldClass"
+				enabled="{oUserSettingsModel>/settings/substitutionSettings/addRow}" press="addSubstitute"/>
+			<Button press="discardChanges('allSubs',null,null)" text="{i18n>DISCARD_TEXT}" type="Reject" class="wbInboxRemoveBtnClass"/>
+		</HBox>
+	</HBox>
+	<VBox renderType="Bare" busyIndicatorDelay="0" busy="{oUserSettingsModel>/settings/busy}">
+		<HBox class="wbCustomHeaderClass" renderType="Bare">
+			<Label required="true" text="{i18n>SUBSTITUTED_BY_TEXT}" width="16%" class="sapUiTinyMarginBegin wbSettingsLabel wbTransformToUpperCase"/>
+			<Label required="true" text="{i18n>SUBSTITUTED_TO_TEXT}" width="16%" class="sapUiTinyMarginBegin wbSettingsLabel wbTransformToUpperCase"/>
+			<Label required="true" text="{i18n>VALIDITY_PERIOD_TEXT}" width="27.5%" class="wbSettingsLabel wbTransformToUpperCase"/>
+			<Label text="{i18n>PROCESSES_TEXT}" class="wbSettingsLabel wbTransformToUpperCase"/>
+		</HBox>
+		<Text textAlign="Center" text="{i18n>NO_DATA_SUBS}" visible="{oUserSettingsModel>/settings/substitutionSettings/noDataTextallSubs}"
+			class="wbSettingsSubsNoDataText"/>
+		<VBox class="sapUiTinyMarginBeginEnd" width="98%">
+			<VBox items="{path:'oUserSettingsModel>/settings/substitutionSettings/allSubs/dtoList', templateShareable:true}" height="{oUserSettingsModel>/settings/substitutionSettings/manageSubsScrollHeight}" class="wbOverflowVertical wbSettingsSubsMargin">
+				<HBox class="sapUiSizeCompact wbSeparatorLine" renderType="Bare" alignItems="Center" justifyContent="SpaceBetween">
+					<HBox renderType="Bare" width="19%" justifyContent="Start" alignItems="Start" class="sapUiSmallMarginEnd">
+						<Input placeholder="{i18n>FILTER_PLACEHOLDER_CREATEDBY}" suggestionItems="{path:'oConstantsModel>/allUsers', templateShareable:true}"
+							autocomplete="false" value="{oUserSettingsModel>substitutedUserName}" suggest="handleSubstitutionSuggests($event,'substitutingUser')"
+							selectedKey="{oUserSettingsModel>substitutedUser}" class="wbDefaultCustomInputWrapper wbSettingsSubsName" startSuggestion="0" showSuggestion="true"
+							filterSuggests="true">
+							<suggestionItems>
+								<core:Item key="{oConstantsModel>userId}" text="{oConstantsModel>userFirstName} {oConstantsModel>userLastName}"/>
+							</suggestionItems>
+						</Input>
+					</HBox>
+					<HBox renderType="Bare" width="19%" justifyContent="Start" alignItems="Start" class="sapUiSmallMarginEnd">
+						<Input placeholder="{i18n>FILTER_PLACEHOLDER_CREATEDBY}" suggestionItems="{path:'oConstantsModel>/allUsers', templateShareable:true}"
+							value="{oUserSettingsModel>substitutingUserName}" suggest="handleSubstitutionSuggests($event,'substitutedUser')"
+							selectedKey="{oUserSettingsModel>substitutingUser}" class="wbDefaultCustomInputWrapper wbSettingsSubsName" startSuggestion="0" showSuggestion="true"
+							filterSuggests="true">
+							<suggestionItems>
+								<core:Item key="{oConstantsModel>userId}" text="{oConstantsModel>userFirstName} {oConstantsModel>userLastName}"/>
+							</suggestionItems>
+						</Input>
+						
+					</HBox>
+					<HBox renderType="Bare" class="sapUiSmallMarginEnd" justifyContent="Start" alignItems="Center" width="34%">
+						<custom:ExtDateRangeSelection displayFormat="dd MMM yyyy" placeholder="dd MMM yyyy" enabled="true" change="isSubsEdited($event,'DateRange')"
+							minDate="{path: 'oUserSettingsModel>/settings/selectedSetting',type:'sap.ui.model.type.Object' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetMinDateSubsRule'}"
+							maxDate="{path: 'oUserSettingsModel>/settings/selectedSetting',type:'sap.ui.model.type.Object' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetMaxDateSubsRule'}"
+							dateValue="{path: 'oUserSettingsModel>startDate' , type:'sap.ui.model.type.Object', formatter: 'oneapp.incture.workbox.util.formatter.wbReturnDatePickerDateObj'}"
+							secondDateValue="{path: 'oUserSettingsModel>endDate' , type:'sap.ui.model.type.Object', formatter: 'oneapp.incture.workbox.util.formatter.wbReturnDatePickerDateObj'}"
+							class="sapUiSizeCompact wbDefaultCustomInputWrapper"/>
+					</HBox>
+					<HBox renderType="Bare" justifyContent="Start" alignItems="Start" width="30.5%">
+						<MultiComboBox class="sapUiSizeCompact wbDefaultCustomInputWrapper wbSettingsSubsTokenizer" selectedKeys="{oUserSettingsModel>processList}"
+							selectionChange="isSubsEdited($event,'ProcessFilter')" tooltip="{= ${oUserSettingsModel>processList}.toString()}"
+							items="{ path: 'oConstantsModel>/processNames', sorter: {path: 'processDisplayName'} , templateShareable:true}" showButton="true"
+							editable="true" enabled="true">
+							<core:Item key="{oConstantsModel>processName}" text="{oConstantsModel>processDisplayName}"/>
+						</MultiComboBox>
+					</HBox>
+					<HBox width="18%" justifyContent="End" renderType="Bare" alignItems="End">
+						<!--Create Substitution Button-->
+						<Button icon="sap-icon://add" visible="{= ${oUserSettingsModel>isVisible}===true}" tooltip="{i18n>CREATE_TEXT}"
+							press="onUpdateSubstitute('Create',$event)" type="Transparent" class="wbTransparentButtonStyleClass sapUiTinyMarginEnd"/>
+						<!--Update Substitution Button-->
+						<Button text="✔"
+							enabled="{= (${oUserSettingsModel>isEdited} ===true) &amp;&amp; (${oUserSettingsModel>substitutingUserName} !== '' &amp;&amp; ${oUserSettingsModel>substitutedUserName} !== '') }"
+							visible="{= ${oUserSettingsModel>isVisible}===undefined}" press="onUpdateSubstitute('Update',$event)" type="Transparent"
+							class="wbTransparentButtonStyleClass sapUiTinyMarginEnd" tooltip="{i18n>UPDATE_TEXT}"/>
+						<!--Delete Substitution Button-->
+						<Button press="onUpdateSubstitute('Delete',$event)" icon="sap-icon://delete"
+							visible="{= (${oUserSettingsModel>isEdited}===false || ${oUserSettingsModel>isEdited}===undefined) &amp;&amp; ${oUserSettingsModel>isVisible}===undefined}" type="Reject" class="wbInboxRemoveBtnClass"/>
+						<!--Delete Substitution Button-->
+						<Button press="onUpdateSubstitute('Discard',$event)" text="✘" visible="{= ${oUserSettingsModel>isEdited}===true || ${oUserSettingsModel>isVisible}===true}" type="Reject"
+							class="wbInboxRemoveBtnClass" tooltip="{i18n>DISCARD_TEXT}"/>
+					</HBox>
+				</HBox>
+			</VBox>
+		</VBox>
+
+	</VBox>
+</core:FragmentDefinition>

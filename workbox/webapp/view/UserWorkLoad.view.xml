@@ -1,0 +1,58 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="oneapp.incture.workbox.controller.UserWorkLoad"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:layout="sap.ui.layout" xmlns:ExtVbox="oneapp.incture.workbox.controlExtension">
+	<Page showHeader="false" class="wbWorkloadBackground">
+		<content>
+			<Toolbar class="wbWorkloadToolbarStyle" visible="{= ${oAppModel>/viewWorkLoadTable} === false ? true : false}">
+				<!--items="{oUserWorkLoadData>/segmentedBtnData}"-->
+				<SegmentedButton items="{oUserWorkLoadData>/segmentedBtnData}" selectedKey="{oUserWorkLoadData>/userWorkloadTaskType}"
+					selectionChange="onTabSelect" class="sapUiSizeCompact sapUiSmallMarginBegin wbWorkLoadSegementedBtnStyle">
+					<items>
+						<SegmentedButtonItem key="{oUserWorkLoadData>key}" text="{oUserWorkLoadData>value}" class="wbWorkloadSegBtnItemStyle"/>
+						<!--<SegmentedButtonItem text="{i18n>ALL_TEXT}" key="ALL" class="wbWorkloadSegBtnItemStyle"/>
+						<SegmentedButtonItem text="{i18n>INPROGRESS_TEXT}" key="RESERVED" class="wbWorkloadSegBtnItemStyle"/>
+						<SegmentedButtonItem text="{i18>NEW_TEXT}" key="READY" class="wbWorkloadSegBtnItemStyle"/>-->
+					</items>
+				</SegmentedButton>
+			</Toolbar>
+			<layout:Grid defaultSpan="L4 M6 S12" vSpacing="0" content='{oUserWorkLoadData>/workLoadDto}'
+				visible="{= ${oAppModel>/viewWorkLoadTable} === false ? true : false}" busy="{oUserWorkLoadData>/enableBusyIndicators}"
+				busyIndicatorDelay="0">
+				<layout:content>
+					<VBox class="sapUiMediumMarginBegin">
+						<Text text="{oUserWorkLoadData>loadHeader} ({= ${oUserWorkLoadData>loadData}.length})" class="wbWorkloadTextClass sapUiSmallMarginTopBottom"/>
+						<VBox items="{oUserWorkLoadData>loadData}">
+							<ExtVbox:ExtVbox click="openTableDetailFn">
+								<HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" renderType="Bare" alignItems="Center">
+									<HBox class="sapUiMediumMarginEnd sapUiSmallMarginBegin" justifyContent="SpaceBetween" renderType="Bare" alignItems="Center">
+										<!--<Avatar src="test-resources/sap/tnt/images/Woman_avatar_01.png" displaySize="XS" class="wbWorkloadTileAvatarClass"/>-->
+										<Avatar initials="{path: 'oUserWorkLoadData>userName', formatter: 'oneapp.incture.workbox.util.formatter.wbGetAvatarInitials'}"
+											displaySize="XS" displayShape="Circle" class="wbWorkloadTileAvatarClass"/>
+										<Label
+											text="{parts:['oUserWorkLoadData>userName', 'oUserWorkLoadData>taskType', 'i18n>WORKLOAD_TEXT_CHANGE'], formatter:'oneapp.incture.workbox.util.formatter.wbWorkloadTextColor'}"
+											class="sapUiSmallMarginBegin"/>
+									</HBox>
+									<Label
+										text="{parts:['oUserWorkLoadData>noOfTask', 'oUserWorkLoadData>taskType', 'i18n>PARENT_VALUE_CHANGE'], formatter:'oneapp.incture.workbox.util.formatter.wbWorkloadTextColor'} {i18n>TASK_TEXT}"
+										class="sapUiSmallMarginEnd"/>
+								</HBox>
+							</ExtVbox:ExtVbox>
+						</VBox>
+					</VBox>
+				</layout:content>
+			</layout:Grid>
+			<VBox renderType="Bare" height="100%" visible="{oAppModel>/viewWorkLoadTable}">
+				<HBox renderType="Bare" alignItems="Center" width="100%" class="wbTaskDetailHeaderClass sapUiTinyMarginBottom">
+					<core:Icon src="sap-icon://arrow-left" class="wbTaskDetailHeaderIconClass sapUiSmallMarginEnd" press="exitTableDetailFn"/>
+					<HBox renderType="Bare" alignItems="Center">
+						<Text text="{oUserWorkLoadData>/userWorkloadUserName} 's {i18n>TASK_TEXT}" class="wbUserWorkLoadUserText sapUiSmallMarginEnd"/>
+						<Text text="{oAppModel>/UWLProcessSelectedProcess}" class="sapUiSmallMarginEnd wbUserWorkLoadChipText"
+							visible="{= ${oAppModel>/UWLProcessSelected} !== 'ALL' ? true : false}"/>
+						<Text text="{oUserWorkLoadData>/userWorkloadTaskType}" class="sapUiSmallMarginEnd wbUserWorkLoadChipText"
+							visible="{= ${oUserWorkLoadData>/userWorkloadTaskType} !== 'ALL' ? true : false}"/>
+					</HBox>
+				</HBox>
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.TaskTableView" type="XML"></core:Fragment>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,77 @@
+<mvc:View controllerName="InboxDetail.controller.ResubmitCR" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout">
+			
+            <Page id="id_Container" class="cl_VRPageBackGrnd" enableScrolling="true" showHeader="false">
+			
+           
+           <subHeader>
+					<Toolbar class="cl_VRHeaderBackGrnd sapUiSizeCompact">
+						<Link text="{i18n>Home}" press="fnNavToHome" class="sapUiSmallMarginBegin cl_TIHomeLink"></Link>
+						
+					</Toolbar>
+				</subHeader>
+          
+			
+				<content>
+                <VBox >
+
+					<Panel width="auto" id="id_FitlerPanel"  expandable="false" expanded="true" class="cl_VRPanelClass cl_PanelMargonTop  sapUiTinyMarginBegin sapUiTinyMarginEnd">
+						<!-- <headerToolbar>
+							<Toolbar class="cl_VRHeaderBackGrndPnl">
+								<Title text="{i18n>VRFilter}"/>
+								<ToolbarSpacer/>
+								<Button text="{i18n>VRClear}" press="fnClearSearch" class="cl_VRActnBtnClear"/>
+								<Button text="{i18n>VRApply}" press="fnLoadSupplierList" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
+							</Toolbar>
+						</headerToolbar> -->
+						<content>
+                        <HBox alignContent="Center" alignItems="Center" class="sapUiSizeCompact sapUiTinyMarginTop" justifyContent="Center">		
+                        		<VBox class="VRVboxStyle1" width="20%" >
+									<Label text="{i18n>VRRequestID}" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" value="{JMSuppReqListHeader>/caseId}" id="id_CaseId" change="fnLoadCaseHistory" class="cl_VRInputCls"></Input>
+								</VBox>
+                                </HBox>
+		
+						</content>
+					</Panel>
+					
+			<VBox >
+								<List class="" items="{JMCaseHistory>/}">
+	<CustomListItem class=" sapUiSmallMarginTop sapUiSmallMarginEnd sapUiSmallMarginBegin cl_CRHistoryList">
+		<Toolbar class="Toolbarcolorcss">
+		    <Text text="{i18n>CRNumber}:"></Text>
+			<Text class=" cl_caseHistoryTxt"  text="{JMCaseHistory>crNumber}"/>
+			<ToolbarSpacer/>
+             <Text text="{i18n>Scenario}:"></Text>
+				<Text class=" cl_caseHistoryTxt" text="{JMCaseHistory>scenario}"/>
+		</Toolbar>
+        	<Toolbar class="Toolbarcolorcss">
+		       <Text text="{i18n>CaseID}:"></Text>
+			<Text class=" cl_caseHistoryTxt" text="{JMCaseHistory>caseId}"/>
+			<ToolbarSpacer/>
+                   <Text text="{i18n>ChildCaseID}:"></Text>
+				<Text class=" cl_caseHistoryTxt" text="{JMCaseHistory>childId}"/>
+		</Toolbar>
+        	<Toolbar class="Toolbarcolorcss">
+		       <Text text="{i18n>CRStatus}:"></Text>
+			<Text class=" cl_caseHistoryTxt" text="{JMCaseHistory>status}"/>
+			<ToolbarSpacer/>
+			<Button text="{i18n>Retrigger}" press="fnPressRetrigger" enabled="{path: 'JMCaseHistory>status', formatter: 'InboxDetail.util.formatter.fnEnableRetriggerBtn' }" class="sapUiSizeCompact" icon="sap-icon://activate"></Button>
+		</Toolbar>
+
+
+
+	
+
+
+
+		
+	</CustomListItem>
+</List>
+							</VBox>
+		
+					
+                    </VBox>
+				</content>
+			</Page>
+</mvc:View>

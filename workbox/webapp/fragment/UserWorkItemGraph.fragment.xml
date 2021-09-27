@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:f="sap.f"
+	xmlns:grid="sap.ui.layout.cssgrid" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+	<VBox renderType="Bare" alignItems="Center" width="100%" class="wbDashboardChartClass" visible="{oGraphDataModel>/graphUserWorkItemText}">
+		<layoutData>
+			<grid:GridItemLayoutData gridColumn="span 1"/>
+		</layoutData>
+		<HBox renderType="Bare" alignItems="Center" width="100%" justifyContent="SpaceBetween" class="wbDashboardHeaderComboClass">
+			<Text text="{i18n>USER_WORK_ITEM_TEXT}" class="wbDashboardTitleTextClass"/>
+			<HBox renderType="Bare" alignItems="Center" class="sapUiSmallMarginBegin wbDashboardLegendBreachedClass sapUiTinyMarginEnd"/>
+			<Text text="{i18n>SLA_BREACHED_LEGEND_TEXT}" class="sapUiTinyMarginEnd wbDashboardLegendTextClass"/>
+			<HBox renderType="Bare" alignItems="Center" class="wbDashboardLegendCriticalClass sapUiTinyMarginEnd"/>
+			<Text text="{i18n>CRITICAL_LEGEND_TEXT}" class="sapUiTinyMarginEnd wbDashboardLegendTextClass"/>
+			<HBox renderType="Bare" alignItems="Center" class="wbDashboardLegendOnTimeClass sapUiTinyMarginEnd"/>
+			<Text text="{i18n>ON_TIME_LEGEND_TEXT}" class="sapUiTinyMarginEnd wbDashboardLegendTextClass"/>
+			<HBox width="33%" renderType="Bare" alignItems="Center">
+				<Select items="{oConstantsModel>/processNames}" selectedKey="{oConstantsModel>/selectedProcess}"
+					class="wbDashBoardFilterSelect sapUiTinyMarginEnd" change="fnGetUserWorkItemGraphData">
+					<core:Item key="{oConstantsModel>processName}" text="{oConstantsModel>processDisplayName}"/>
+				</Select>
+			</HBox>
+		</HBox>
+		<viz:VizFrame busy="{oGraphDataModel>/enableBusyIndicators/userGraph}" busyIndicatorDelay="0" xmlns="sap.viz"
+			id="WB_STACKED_COLUMNBAR_GRAPH" uiConfig="{applicationSet:'fiori'}" selectData="fetchGraphDetailFn" vizType="column" legendVisible="false"
+			class="wbDashboardScrollClass wbDashboardScrollHeightClass" width="100%"
+			height="{path : '/' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGraphHeight'}"/>
+	</VBox>
+</core:FragmentDefinition>

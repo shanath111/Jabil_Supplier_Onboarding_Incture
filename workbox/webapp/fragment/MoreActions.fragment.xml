@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Popover showHeader="false" showArrow="false" class="wbRightClickPopoverStyle" placement="Bottom">
+		<List class="wbRightClickMenuStyle" items="{oActionHeader>/dtoMoreCopy}">
+			<StandardListItem title="{oActionHeader>name}" icon="{oActionHeader>icon}" visible="{oActionHeader>visible}" type="Active" class="wbMoreIconStyle wbRightClickIconStyle sapUiSizeCompact"/>
+		</List>
+	</Popover>
+</core:FragmentDefinition>

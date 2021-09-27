@@ -1,0 +1,521 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="oneapp.incture.workbox.controller.Chat"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:grid="sap.ui.layout.cssgrid" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.f">
+	<Page title="Title" showHeader="false">
+		<content>
+			<SplitContainer visible="{= (${oCollaborationModel>/selectedScreen} !== 'chatBot') ? true : false}">
+				<detailPages>
+					<Page showHeader="false" class="wbChatDetailPageBackground">
+						<content>
+							<!--<Bar class="wbChatDetailHeaderStyle">
+								<contentLeft>
+									<Avatar initials="{path: 'oCollaborationModel>/selectedUserName', formatter: 'oneapp.incture.workbox.util.formatter.wbGetChatAvatarInitials'}"
+										displaySize="XS" class="wbChatAvatar"/>
+									<Label text="{oCollaborationModel>/selectedUserName}" tooltip="{oCollaborationModel>/selectedUserName}" class="wbChatUserNameStyle"/>
+									<Text text="{oCollaborationModel>/chatMembers}" class="wbGroupMembersStyle" tooltip="{oCollaborationModel>/chatMembers}"/>
+								</contentLeft>
+							</Bar>-->
+							<Panel class="wbChatPanel">
+								<content>
+									<VBox>
+										<l:HorizontalLayout >
+											<Avatar
+												initials="{path: 'oCollaborationModel>/selectedUserName', formatter: 'oneapp.incture.workbox.util.formatter.wbGetChatAvatarInitials'}"
+												displaySize="XS" class="wbChatAvatar"/>
+											<!--By Karishma-->
+											<VBox>
+												<Label text="{oCollaborationModel>/selectedUserName}" tooltip="{oCollaborationModel>/selectedUserName}"
+													class="wbChatUserNameStyle sapUiTinyMarginBegin"/>
+												<!--<Text text="{path: 'oCollaborationModel>/aMemberDetails', formatter: 'oneapp.incture.workbox.util.formatter.wbGetMemberName'}"-->
+												<!--	class="wbGroupMembersStyle sapUiTinyMarginBegin" tooltip="{oCollaborationModel>/chatMembers}"-->
+												<!--	visible="{= (${oCollaborationModel>/sSelectedChatType} ==='context' || ${oCollaborationModel>/sSelectedChatType} ==='group')?true:false}"/>-->
+												<Text text="{oCollaborationModel>/sParticipantsName}" class="wbGroupMembersStyle sapUiTinyMarginBegin"
+													tooltip="{oCollaborationModel>/sMembersNameToolTip}"
+													visible="{= (${oCollaborationModel>/sSelectedChatType} ==='context' || ${oCollaborationModel>/sSelectedChatType} ==='group')?true:false}"/>
+											</VBox>
+											<core:Icon src="sap-icon://bullet-text" class="wbChatMemberPanel" press="showSideContent"
+												visible="{= (${oCollaborationModel>/sSelectedChatType} ==='context'||${oCollaborationModel>/sSelectedChatType} ==='group')?true:false}"></core:Icon>
+											<Button icon="sap-icon://action" text="{i18n>TASK_DETAILS_TEXT}" press="goToTask" class="wbChatGoToBtn wbInboxCardActionButton"
+												visible="{= (${oCollaborationModel>/sSelectedChatType} ==='context' &amp;&amp; ${oCollaborationModel>/bNotGroupMember}===false)?true:false}"/>
+											<!--By Karishma End-->
+										</l:HorizontalLayout>
+										<!--By Karishma-->
+										<!--<Text text="{path: 'oCollaborationModel>/aMemberDetails', formatter: 'oneapp.incture.workbox.util.formatter.wbGetMemberName'}"-->
+										<!--	class="wbGroupMembersStyle" tooltip="{oCollaborationModel>/chatMembers}"-->
+										<!--	visible="{= (${oCollaborationModel>/selectedScreen} === 'groups'|| ${oCollaborationModel>/selectedScreen} === 'channelsTasks')? true : false}"/>-->
+										<!--<Text text="{oCollaborationModel>/chatMembers}" class="wbGroupMembersStyle sapUiMediumMarginBegin"-->
+										<!--	tooltip="{oCollaborationModel>/chatMembers}"/>-->
+										<!--By Karishma-->
+									</VBox>
+								</content>
+							</Panel>
+							<!--Start - By Karishma-->
+							<l:DynamicSideContent showSideContent="{oCollaborationModel>/bShowSideContent}">
+								<VBox height="91%" busy="{oCollaborationModel>/bChatScreenLoader}">
+									<ScrollContainer vertical="true" height="76%" id="ID_CHAT_SCROLLCONTAINER">
+										<VBox height="80%" id="ID_CHAT_SCROLLBAR" items="{ path : 'oCollaborationModel>/aChat'}" class="wbChatScrollContent wbOverflowHidden">
+											<VBox>
+												<HBox>
+													<VBox alignItems="{= ${oCollaborationModel>sentBy} === ${oAppModel>/loggedInUserDetails/userId} ? 'End':'Start'}"
+														justifyContent="{= ${oCollaborationModel>sentBy} === ${oAppModel>/loggedInUserDetails/userId} ? 'End':'Start'}"
+														class="wbChatreceivedMsgHeader wbChatMsgBoxWrapper">
+														<!--visible="{= (${oCollaborationModel>message} === '' || ${oCollaborationModel>message} === null) ? false :true}"-->
+														<VBox class="wbChatMsgWrapper"
+															renderType="{parts: ['oCollaborationModel>sentBy','oAppModel>/loggedInUserDetails/userId'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbChatMsgBoxStyle'}"
+															visible="{= (${oCollaborationModel>comment} === '' || ${oCollaborationModel>comment} === null) ? false :true}">
+															<HBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween">
+																<HBox visible="{= ${oCollaborationModel>sentBy} !== ${oAppModel>/loggedInUserDetails/userId}}">
+																	<Text text="{oCollaborationModel>sendersName}" maxLines="2" class="wbDetailUsernameStyle sapUiSmallMarginEnd"/>
+																	<Label text="{path: 'oCollaborationModel>sentAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetDateTime'}"
+																		class="wbReceivedTimeStyle"/>
+																</HBox>
+																<HBox visible="{= ${oCollaborationModel>sentBy} === ${oAppModel>/loggedInUserDetails/userId}}">
+																	<Label text="{i18n>YOU_TEXT}" class="wbSentTimeStyle sapUiSmallMarginEnd"/>
+																	<Label text="{path: 'oCollaborationModel>sentAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetDateTime'}" class="wbSentTimeStyle"/>
+																</HBox>
+															</HBox>
+															<VBox
+																visible="{parts:['oCollaborationModel>isReply','oCollaborationModel>sentBy','oAppModel>/loggedInUserDetails/userId'], formatter:'oneapp.incture.workbox.util.formatter.wbGetReplyToCss'}"
+																class="replyToMessageCss sapUiTinyMarginBottom">
+																<Label
+																	text="{parts:['oCollaborationModel>replyDetails/senderName','oCollaborationModel>replyDetails/sentBy','oAppModel>/loggedInUserDetails/userId'], formatter:'oneapp.incture.workbox.util.formatter.wbGetReplyToSenderName'}"
+																	design="Bold" class="wbSentTimeStyle sapUiTinyMarginBeginEnd"/>
+																<Text text="{oCollaborationModel>replyDetails/comment}" class="wbMessageStyle sapUiTinyMarginBottom sapUiTinyMarginBeginEnd"
+																	visible="{= (${oCollaborationModel>replyDetails/comment}) ? true :false}"/>
+																<Text
+																	text="{path: 'oCollaborationModel>replyDetails/attachmentDetails' ,formatter: 'oneapp.incture.workbox.util.formatter.wbReplyForAttachment'}"
+																	class="wbMessageStyle sapUiTinyMarginBottom sapUiTinyMarginBeginEnd"
+																	visible="{= (${oCollaborationModel>replyDetails/comment}) ? false :true}"/>
+															</VBox>
+															<Text text="{oCollaborationModel>comment}" class="wbMessageStyle"
+																visible="{path: 'oCollaborationModel>tagged' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetTextVisibility'}"/>
+															<FormattedText
+																htmlText="{parts:['oCollaborationModel>comment','oCollaborationModel>tagged','oCollaborationModel>/aMemberDetails'], formatter:'oneapp.incture.workbox.util.formatter.wbGetformattedText'}"
+																class="wbMessageStyle"
+																visible="{path: 'oCollaborationModel>tagged' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetFormattedTextVisibility'}"/>
+															<HBox items="{oCollaborationModel>botInfo/buttons}"
+																visible="{parts:['oCollaborationModel>botInfo/buttons'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetChatbotBtnVisibility'}">
+																<Button text="{oCollaborationModel>title}" press="onChatButtonClick" type="Transparent"
+																	class="sapUiSizeCompact wbChatBotQRButtons wbTransparentButtonStyleClass sapUiTinyMarginEnd"></Button>
+															</HBox>
+															<HBox justifyContent="End" class="wbStarHBoxStyle">
+																<core:Icon src="sap-icon://overflow" press="onMessageAction" class="wbChatStarStyle sapUiSmallMarginEnd"/>
+																<core:Icon src="{= ${oCollaborationModel>isFavourite} ? 'sap-icon://favorite': 'sap-icon://unfavorite'}"
+																	tooltip="{= ${oCollaborationModel>isFavourite} ? 'UnFavorite': 'Favorite'}" press="onFavouritePress" class="wbChatStarStyle"/>
+															</HBox>
+														</VBox>
+														<VBox class="wbChatMsgWrapper"
+															renderType="{parts: ['oCollaborationModel>sentBy','oAppModel>/loggedInUserDetails/userId'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbChatMsgBoxStyle'}"
+															visible="{path: 'oCollaborationModel>attachmentDetails' ,formatter: 'oneapp.incture.workbox.util.formatter.wbTLChatIsAttachmentVisible'}">
+															<HBox visible="{= (${oCollaborationModel>comment} === '' || ${oCollaborationModel>comment} === null) ? true :false}" renderType="Bare"
+																alignItems="Center" justifyContent="SpaceBetween">
+																<HBox visible="{= ${oCollaborationModel>sentBy} !== ${oAppModel>/loggedInUserDetails/userId}}">
+																	<Label text="{oCollaborationModel>sendersName}" class="wbDetailUsernameStyle sapUiSmallMarginEnd"/>
+																	<Label text="{path: 'oCollaborationModel>sentAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetDateTime'}"
+																		class="wbReceivedTimeStyle"/>
+																</HBox>
+																<HBox visible="{= ${oCollaborationModel>sentBy} === ${oAppModel>/loggedInUserDetails/userId}}">
+																	<Label text="{i18n>YOU_TEXT}" class="wbSentTimeStyle sapUiSmallMarginEnd"/>
+																	<Label text="{path: 'oCollaborationModel>sentAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetDateTime'}" class="wbSentTimeStyle"/>
+																</HBox>
+															</HBox>
+															<grid:CSSGrid class="wbChatAttachmentGrid"
+																gridTemplateColumns="{path: 'oCollaborationModel>attachmentDetails' ,formatter: 'oneapp.incture.workbox.util.formatter.wbTLChatSetGridTemplateColumns'}"
+																items="{oCollaborationModel>attachmentDetails}" gridTemplateRows="auto" gridGap="0.5rem">
+																<CustomListItem type="Active" press="onAttachmentDownload" class="sapUiSizeCompact wbChatAttachmentCLI">
+																	<VBox wrap="Wrap" width="100%" height="5.5rem" justifyContent="Center" alignItems="Center"
+																		visible="{path: 'oCollaborationModel>fileType',formatter: 'oneapp.incture.workbox.util.formatter.wbChatCheckImage'}">
+																		<Image
+																			src="{parts: ['oCollaborationModel>compressed','oCollaborationModel>fileType'],formatter: 'oneapp.incture.workbox.util.formatter.wbParseAttachmentType'}"
+																			tooltip="{oCollaborationModel>fileName}" class="wbChatImage"/>
+																	</VBox>
+																	<HBox height="3rem" width="100%" justifyContent="Start" alignItems="Center"
+																		visible="{path: 'oCollaborationModel>fileType',formatter: 'oneapp.incture.workbox.util.formatter.wbChatCheckNotImage'}">
+																		<Image
+																			src="{parts: ['oCollaborationModel>compressed','oCollaborationModel>fileType'],formatter: 'oneapp.incture.workbox.util.formatter.wbParseAttachmentType'}"
+																			height="2.1rem" width="2.1rem" tooltip="{oCollaborationModel>fileName}"/>
+																		<VBox justifyContent="Start" alignItems="Start" class="wbChatAttachmentTile">
+																			<Text class="wbChatAttachmentName wbTextBoldClass" wrapping="true"
+																				text="{parts: ['oCollaborationModel>fileName','oCollaborationModel>fileType'],formatter: 'oneapp.incture.workbox.util.formatter.wbChatAttachmentName'}"/>
+																			<Text text="{path: 'oCollaborationModel>attachmentSize',formatter: 'oneapp.incture.workbox.util.formatter.wbAttachmentSizeParser'}"
+																				class="wbChatAttachmentName"/>
+																		</VBox>
+																	</HBox>
+																</CustomListItem>
+															</grid:CSSGrid>
+															<HBox justifyContent="End" class="wbStarHBoxStyle">
+																<core:Icon src="sap-icon://overflow" press="onMessageAction" class="wbChatStarStyle sapUiSmallMarginEnd"/>
+																<core:Icon src="{= ${oCollaborationModel>isFavourite} ? 'sap-icon://favorite': 'sap-icon://unfavorite'}"
+																	tooltip="{= ${oCollaborationModel>isFavourite} ? 'UnFavorite': 'Favorite'}" press="onFavouritePress" class="wbChatStarStyle"/>
+															</HBox>
+														</VBox>
+													</VBox>
+													<HBox width="1rem" direction="ColumnReverse" visible="{= ${oCollaborationModel>sentBy} === ${oAppModel>/loggedInUserDetails/userId}}">
+														<core:Icon src="{parts:['oCollaborationModel>commentStatus'],formatter:'oneapp.incture.workbox.util.formatter.wbGetMessagestatus'}"
+															height=".5rem" class="sapUiTinyMarginBegin wbMicrophoneStyle " tooltip="{oCollaborationModel>commentStatus}"
+															visible="{= ${oCollaborationModel>commentStatus}?true:false}"/>
+													</HBox>
+												</HBox>
+											</VBox>
+										</VBox>
+										<Text text="{i18n>NOT_PARTICIPANT_TEXT}" visible="{oCollaborationModel>/bNotGroupMember}"
+											class="wbChatGroupMemberText wbRecentChatText sapUiSmallMarginTop"/>
+									</ScrollContainer>
+									<VBox class="wbChatTextAreaWrapper" id="ID_CHAT_FOOTER">
+										<HBox visible="{oCollaborationModel>/bTypingIndicator}">
+											<Text text="{oCollaborationModel>/aTypingSender} is typing..." class="wbDetailUsernameStyle"
+												visible="{oCollaborationModel>/bTypingIndicator}"/>
+										</HBox>
+										<HBox justifyContent="End">
+											<BusyIndicator class="WbChatBusyIndicator sapUiTinyMarginBottom" visible="{oCollaborationModel>/BusyIndicator}"/>
+										</HBox>
+										<HBox visible="{oCollaborationModel>/isAttachments}">
+											<Carousel class="wbTLChatCarousel" width="100%" height="auto" pages="{ path: 'oCollaborationModel>/aAttachment' }" showPageIndicator="false">
+												<customLayout>
+													<CarouselLayout visiblePagesCount="5"/>
+												</customLayout>
+												<HBox>
+													<Image class="wbChatAttachedImg"
+														src="{parts: ['oCollaborationModel>attachment','oCollaborationModel>attachmentType'],formatter: 'oneapp.incture.workbox.util.formatter.wbParseAttachmentType'}"
+														height="30px" width="30px" tooltip="{oCollaborationModel>attachmentName}"/>
+													<core:Icon src="sap-icon://decline" class="wbChatDeleteAttachmentIcon" press="deleteChatAttachment"></core:Icon>
+												</HBox>
+											</Carousel>
+										</HBox>
+										<VBox class="wbChatAttachmentsBoxStyle" visible="{oCollaborationModel>/bReplyToBox}">
+											<HBox visible="{oCollaborationModel>/bReplyToBox}" class="sapUiSmallMarginBegin">
+												<Text text="{oCollaborationModel>/sReplyToSenderName}" maxLines="2" class="wbDetailUsernameStyle sapUiSmallMarginEnd"/>
+												<Label text="{path: 'oCollaborationModel>/sReplyToSentAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetDateTime'}"
+													class="wbReceivedTimeStyle"/>
+											</HBox>
+											<core:Icon src="sap-icon://decline" class="wbCloseReplyBtn" press="onCloseReplyToBox" visible="{oCollaborationModel>/bReplyToBox}"/>
+											<Text text="{oCollaborationModel>/sReplyToText}" visible="{oCollaborationModel>/bReplyToBox}" class="sapUiSmallMarginBegin"/>
+										</VBox>
+										<HBox class="wbChatAttachmentsBoxStyle">
+											<core:Icon src="sap-icon://customfont/ChatAttchmentIcon" height="45%" class="wbEmojiBtnStyle sapUiTinyMarginBegin" press="openEmojiChat"/>
+											<u:FileUploader icon="sap-icon://customfont/ChatEmojiIcon" name="myFileUpload" uploadUrl="upload/" tooltip="{i18n>ADD_ATTACHMENT_TEXT}"
+												change="uploadChatAttachment" typeMissmatch="handleTypeMissmatchChat" style="Transparent"
+												fileType="jpg,jpeg,png,xlsx,ods,xls,docx,zip,ppt,pdf" buttonOnly="true" iconOnly="true" multiple="true"
+												class="wbCustomButtonClass wbChatAttachmentsStyle sapUiSizeCompact" enabled="{= ${oCollaborationModel>/noData}===false}"/>
+										</HBox>
+										<HBox class="wbTextAreaStyle">
+											<VBox width="100%">
+												<TextArea rows="1" enabled="{= ${oCollaborationModel>/noData}===false}" cols="100" width="100%" liveChange="onMessageEnter"
+													value="{oCollaborationModel>/sTypedMessage}" id="ID_TEXTAREA"/>
+											</VBox>
+											<core:Icon src="sap-icon://customfont/sendArrow" class="wbChatSendArrowStyle" press="onSendPress"/>
+										</HBox>
+									</VBox>
+								</VBox>
+								<l:sideContent>
+									<VBox>
+										<HBox visible="{= ${oCollaborationModel>/bSearchBar}?true:false}">
+											<VBox>
+												<SearchField id="ID_CHAT_SIDEPANEL_SEARCHFIELD" width="93%"
+													class="wbAdminMGroupsSearch wbChatScreenSerchStyles sapUiTinyMarginTop sapUiTinyMarginBeginEnd" suggest="onLiveSearchSidePanel"
+													placeholder="{i18n>CHAT_SEARCH_PLACEHOLDER}" enableSuggestions="true" suggestionItems="{oCollaborationModel>/aUserList}"
+													value="{oCollaborationModel>/sidePanelSearchValue}" search="onSelectNameSidePanel">
+													<SuggestionItem text="{oCollaborationModel>displayName}" description="{oCollaborationModel>id}"/>
+												</SearchField>
+												<CheckBox text="{i18n>PREV_HISTORY_TEXT}" selected="{oCollaborationModel>/bHasAccess}" class="wbChatCheckbox" select="onSelectCheckbox"/>
+											</VBox>
+											<Button icon="images/DeclineReject.svg" class="wbTLRemoveSearch" press="onCloseSearchField" tooltip="{oTaskLevelChat>status}"/>
+										</HBox>
+										<HBox justifyContent="SpaceBetween" class="sapUiTinyMarginTop" visible="{= ${oTaskLevelChat>/bSearchBar}?false:true}">
+											<Text text="{i18n>PARTICIPANT_TEXT}" class="wbRecentChatText sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+											<core:Icon src="sap-icon://add-employee" class="wbTLAddMemberIcon sapUiTinyMarginEnd" press="onPressAddMember"
+												visible="{= (${oCollaborationModel>/bNotGroupMember}||${oCollaborationModel>/bIsTaskOwner}===false)? false:true}"></core:Icon>
+										</HBox>
+										<List items="{oCollaborationModel>/aMemberDetails}">
+											<CustomListItem class="wbTLCustomList">
+												<HBox justifyContent="SpaceBetween" class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop">
+													<HBox class="wbTLCustomList sapUiTinyMarginTop">
+														<Avatar initials="{path: 'oCollaborationModel>displayName',formatter: 'oneapp.incture.workbox.util.formatter.wbGetChatAvatarInitials'}"
+															displaySize="XS" class="wbChatAvatar"/>
+														<Label text="{oCollaborationModel>displayName}" tooltip="{oCollaborationModel>displayName}" class="sapUiTinyMarginBegin" width="9rem"/>
+													</HBox>
+													<Button icon="images/DeclineReject.svg" class="wbTLRemoveMember" press="onRemoveMember"
+														enabled="{= ${oCollaborationModel>id} === ${oAppModel>/loggedInUserDetails/userId} ? false:true}"
+														visible="{= (${oCollaborationModel>/bNotGroupMember}||${oCollaborationModel>/bIsTaskOwner}===false)? false:true}"/>
+												</HBox>
+											</CustomListItem>
+										</List>
+									</VBox>
+								</l:sideContent>
+							</l:DynamicSideContent>
+							<!--End - By Karishma-->
+						</content>
+					</Page>
+				</detailPages>
+				<masterPages class="wbChatHeader">
+					<Page class="sapUiStdPage wbMasterPageStyle" showHeader="false">
+						<content>
+							<VBox visible="{= (${oCollaborationModel>/bGlobalSearch}) ? false : true}">
+								<!--By Karishma-->
+								<HBox justifyContent="SpaceBetween" visible="{= ${oCollaborationModel>/bChatListSearchBar}?true:false}">
+									<SearchField id="ID_SEARCHFIELD" class="wbAdminMGroupsSearch wbChatScreenSerchStyles sapUiTinyMarginTop sapUiTinyMarginBeginEnd" width="93%"
+										suggest="onLiveSearch" placeholder="{oCollaborationModel>/searchfieldPlaceholder}" enableSuggestions="true"
+										suggestionItems="{oCollaborationModel>/chatUsers}" value="{oCollaborationModel>/searchValue}" search="onSelectName">
+										<SuggestionItem text="{oCollaborationModel>searchName}"/>
+									</SearchField>
+									<core:Icon src="sap-icon://decline" class="wbSearchIcon sapUiSmallMarginTop sapUiTinyMarginEnd" press="onHideSearchBar"/>
+								</HBox>
+								<HBox justifyContent="SpaceBetween" visible="{= ${oCollaborationModel>/bChatListSearchBar}?false:true}" class="sapUiSmallMarginTop">
+									<Label text="{i18n>RECENT_CHAT_TEXT}" class="wbRecentChatText sapUiTinyMarginBegin sapUiSmallMarginBottom"
+										visible="{= (${oCollaborationModel>/selectedScreen}==='directMessage'||${oCollaborationModel>/selectedScreen}==='channelsTasks'||${oCollaborationModel>/selectedScreen}==='groups') ? true : false}"/>
+									<Label text="{i18n>PINNED_CHAT}" class="wbRecentChatText sapUiTinyMarginBegin sapUiSmallMarginBottom"
+										visible="{= ${oCollaborationModel>/selectedScreen}==='pinned'?true:false}"/>
+									<Label text="{i18n>FAVOURITES_TEXT}" class="wbRecentChatText sapUiTinyMarginBegin sapUiSmallMarginBottom"
+										visible="{= ${oCollaborationModel>/selectedScreen}==='favorites'?true:false}"/>
+									<core:Icon src="sap-icon://search" class="wbSearchIcon sapUiTinyMarginEnd" press="onShowSearchBar"/>
+								</HBox>
+								<!--By Karishma-->
+							</VBox>
+							<!--<VBox class="wbGroupChatListBox wbOverflowVertical">-->
+							<!--<ScrollContainer vertical="true" height="75%">-->
+							<!--	<List id="idChatList" items="{oCollaborationModel>/userList}" mode="SingleSelectMaster" itemPress="onChatSelect">-->
+							<!--		<CustomListItem class="wbChatMasterListItem" type="Active">-->
+							<!--			<HBox justifyContent="SpaceBetween" class="sapUiSmallMarginBeginEnd sapUiTinyMarginTop">-->
+							<!--				<HBox>-->
+							<!--src="test-resources/sap/tnt/images/Woman_avatar_01.png"-->
+							<!--					<Avatar initials="{path: 'oCollaborationModel>sentByName',formatter: 'oneapp.incture.workbox.util.formatter.wbGetChatAvatarInitials'}"-->
+							<!--						displaySize="XS" class="wbChatAvatar"/>-->
+							<!--					<VBox class="wbClipTextVBox sapUiTinyMarginBegin">-->
+							<!--						<Label text="{oCollaborationModel>chatName}" class="wbChatMasterUserNameStyle sapUiTinyMarginEnd" width="10rem"/>-->
+							<!--						<Label text="{oCollaborationModel>message}" class="wbMasterMessageTextSTyle" width="10rem"/>-->
+							<!--					</VBox>-->
+							<!--				</HBox>-->
+							<!--				<Label text="{path: 'oCollaborationModel>time', formatter:'oneapp.incture.workbox.util.formatter.wbRemoveSecondsFromTime'}"-->
+							<!--					class="wbMasterTimeTextStyle"/>-->
+							<!--				<Button icon="{path: 'oCollaborationModel>isPinned', formatter: 'oneapp.incture.workbox.util.formatter.wbChatPinUnpinIcon'}"-->
+							<!--					tooltip="{path: 'oCollaborationModel>isPinned', formatter: 'oneapp.incture.workbox.util.formatter.wbChatPinUnpin'}" press="onPinPress"-->
+							<!--					class="sapUiTinyMarginEnd wbChatPinStyle wbInboxCardActionButton"/>-->
+							<!--{= ${oCollaborationModel>isPinned} === true ? ${i18n>UNPINCHAT_TEXT} : ${i18n>PINCHAT_TEXT}}-->
+							<!--			</HBox>-->
+							<!--		</CustomListItem>-->
+							<!--	</List>-->
+							<!--</ScrollContainer>-->
+							<!--</VBox>-->
+							<!--By Karishma-->
+							<VBox class="wbGroupChatListBox wbOverflowVertical"
+								visible="{parts: ['oCollaborationModel>/selectedScreen','oCollaborationModel>/bGlobalSearch'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetPanelContent'}"
+								id="ID_CHAT_LIST" busy="{oCollaborationModel>/bChatListBusyIndicator}">
+								<!--<ScrollContainer vertical="true" height="75%">-->
+								<List id="idChatList" items="{oCollaborationModel>/userList}" mode="SingleSelectMaster" itemPress="onChatSelect">
+									<CustomListItem class="wbChatMasterListItem" type="Active">
+										<HBox justifyContent="SpaceBetween" class="sapUiSmallMarginBeginEnd sapUiTinyMarginTop">
+											<HBox>
+												<Avatar
+													initials="{parts:['oCollaborationModel>senderDetails/0/displayName','oCollaborationModel>chatName'],formatter: 'oneapp.incture.workbox.util.formatter.wbGetChatAvatarInitials'}"
+													displaySize="XS" class="wbChatAvatar"/>
+												<VBox class="wbClipTextVBox sapUiTinyMarginBegin">
+													<!--<Label text="{oCollaborationModel>senderDetails/0/displayName}" class="wbChatMasterUserNameStyle sapUiTinyMarginEnd" width="9rem"-->
+													<!--	visible="{= ${oCollaborationModel>/selectedScreen} === 'directMessage'? true : false}"/>-->
+													<!--<Label text="{oCollaborationModel>chatName}" class="wbChatMasterUserNameStyle sapUiTinyMarginEnd" width="9rem"-->
+													<!--	visible="{= ${oCollaborationModel>/selectedScreen} === 'groups'? true : false}"/>-->
+													<!--<HBox visible="{=${oCollaborationModel>/selectedScreen}=== 'pinned' ?true:false}">-->
+													<Label text="{oCollaborationModel>senderDetails/0/firstName} {oCollaborationModel>senderDetails/0/lastName}"
+														class="wbChatMasterUserNameStyle sapUiTinyMarginEnd" width="9rem" visible="{=${oCollaborationModel>chatType}=== 'personal' ?true:false}"/>
+													<Label text="{oCollaborationModel>chatName}"
+														visible="{=(${oCollaborationModel>chatType}=== 'group' || ${oCollaborationModel>chatType}=== 'context') ?true:false}"
+														class="wbChatMasterUserNameStyle sapUiTinyMarginEnd" width="9rem"/>
+													<!--</HBox>-->
+													<Label
+														text="{parts: ['oCollaborationModel>lastMessageDetails/sentBy','oCollaborationModel>lastMessageDetails/sendersName','oAppModel>/loggedInUserDetails/userId','oCollaborationModel>lastMessageDetails/comment'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetSearchMessagComment'}"
+														class="wbMasterMessageTextSTyle" width="9rem"/>
+												</VBox>
+											</HBox>
+											<Label text="{path: 'oCollaborationModel>lastMessageTime', formatter:'oneapp.incture.workbox.util.formatter.WbGetTime'}"
+												class="wbMasterTimeTextStyle"/>
+											<Button icon="{path: 'oCollaborationModel>isPinned', formatter: 'oneapp.incture.workbox.util.formatter.wbChatPinUnpinIcon'}"
+												tooltip="{path: 'oCollaborationModel>isPinned', formatter: 'oneapp.incture.workbox.util.formatter.wbChatPinUnpin'}" press="onPinPress"
+												class="sapUiTinyMarginEnd wbChatPinStyle wbInboxCardActionButton"/>
+											<!--<HBox class="wbChatNotificationCountStyle" justifyContent="Center" visible="{= ${oCollaborationModel>unreadMessageCount}>0}" alignItems="Center">-->
+											<!--	<Label text="{oCollaborationModel>unreadMessageCount}" class="wbChatNotificationTextStyle"/>-->
+											<!--</HBox>-->
+										</HBox>
+									</CustomListItem>
+								</List>
+								<!--</ScrollContainer>-->
+							</VBox>
+							<VBox class="wbGroupChatListBox wbOverflowVertical"
+								visible="{parts: ['oCollaborationModel>/selectedScreen','oCollaborationModel>/bGlobalSearch'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetChannelContent'}"
+								items="{oCollaborationModel>/userList}" id="ID_CHAT_CHANNEL_PANEL_VBOX" busy="{oCollaborationModel>/bChatListBusyIndicator}">
+								<Panel expandable="true" tooltip="{oCollaborationModel>processDisplayName}" expanded="{oCollaborationModel>bExpandPanel}"
+									headerText="{oCollaborationModel>processDisplayName}" width="auto" class="wbChatChannelsPannel" expand="OnExpandPanel">
+									<content>
+										<List items="{oCollaborationModel>tasks}" mode="SingleSelectMaster" itemPress="onChatSelect" width="100%">
+											<CustomListItem class="wbChatMasterListItem" type="Active">
+												<HBox renderType="Bare" justifyContent="SpaceBetween" width="93%" class="sapUiSmallMarginBeginEnd sapUiTinyMarginTop">
+													<HBox renderType="Bare" alignItems="Center" width="65%">
+														<!--<Avatar initials="{path: 'oCollaborationModel>chatName',formatter: 'oneapp.incture.workbox.util.formatter.wbGetChatAvatarInitials'}"-->
+														<!--	displaySize="XS" class="wbChatAvatar"/>-->
+														<VBox width="100%" renderType="Bare" class="wbClipTextVBox sapUiTinyMarginBegin">
+															<Label text="{oCollaborationModel>chatName}" tooltip="{oCollaborationModel>chatName}" class="wbChatMasterUserNameStyle sapUiTinyMarginEnd"/>
+															<Label
+																text="{parts: ['oCollaborationModel>lastMessageDetails/sentBy','oCollaborationModel>lastMessageDetails/sendersName','oAppModel>/loggedInUserDetails/userId','oCollaborationModel>lastMessageDetails/comment'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetSearchMessagComment'}"
+																class="wbMasterMessageTextSTyle"/>
+														</VBox>
+													</HBox>
+													<Label text="{path: 'oCollaborationModel>lastMessageTime', formatter:'oneapp.incture.workbox.util.formatter.WbGetTime'}"
+														class="wbMasterTimeTextStyle"/>
+													<Button icon="{path: 'oCollaborationModel>isPinned', formatter: 'oneapp.incture.workbox.util.formatter.wbChatPinUnpinIcon'}"
+														tooltip="{path: 'oCollaborationModel>isPinned', formatter: 'oneapp.incture.workbox.util.formatter.wbChatPinUnpin'}" press="onPinPress"
+														class="sapUiTinyMarginEnd wbChatPinStyle wbInboxCardActionButton"/>
+													<!--<HBox class="wbChatNotificationCountStyle" justifyContent="Center" visible="{= ${oCollaborationModel>unreadMessageCount}>0}" alignItems="Center">-->
+													<!--	<Label text="{oCollaborationModel>unreadMessageCount}" class="wbChatNotificationTextStyle"/>-->
+													<!--</HBox>-->
+													<!--{= ${oCollaborationModel>isPinned} === true ? ${i18n>UNPINCHAT_TEXT} : ${i18n>PINCHAT_TEXT}}-->
+												</HBox>
+											</CustomListItem>
+										</List>
+									</content>
+								</Panel>
+							</VBox>
+							<VBox class="wbOverflowVertical" visible="{= ${oCollaborationModel>/bGlobalSearch} === true? true : false}"
+								busy="{oCollaborationModel>/bGlobalSearchBusy}">
+								<IconTabBar class="wbChatIconTab" select="onSelectTab" selectedKey="{oCollaborationModel>/sSelectedSearchTab}">
+									<items>
+										<IconTabFilter text="{i18n>MESSAGES_TEXT}" key="Mesaages">
+											<ScrollContainer vertical="true" class="wbChatIconTabScroll" id="ID_MESSAGE_TAB">
+												<List class="sapUiTinyMarginTop groupchatListCss" itemPress="onChatSelect" mode="SingleSelectMaster"
+													items="{oCollaborationModel>/aSearchMessage}">
+													<CustomListItem type="Active" class="wbChatMasterListItem">
+														<HBox class="sapUiSmallMarginBeginEnd sapUiTinyMarginTop">
+															<!--src="test-resources/sap/tnt/images/Woman_avatar_01.png"-->
+															<Avatar initials="{path: 'oCollaborationModel>sentByName',formatter: 'oneapp.incture.workbox.util.formatter.wbGetChatAvatarInitials'}"
+																displaySize="XS" class="wbChatAvatar"/>
+															<VBox class="wbClipTextVBox sapUiTinyMarginBegin">
+																<Label
+																	text="{parts: ['oCollaborationModel>chatName','oCollaborationModel>senderDetails/0/displayName'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetSearchMessageHeading'}"
+																	class="wbChatMasterUserNameStyle sapUiTinyMarginEnd"/>
+																<Label
+																	text="{parts: ['oCollaborationModel>sentBy','oCollaborationModel>senderName','oAppModel>/loggedInUserDetails/userId','oCollaborationModel>comment','oCollaborationModel>/sGlobalSearchTerm'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetSearchMessagComment'}"
+																	class="wbMasterMessageTextSTyle" width="9rem"/>
+																<!--<FormattedText-->
+																<!--	htmlText="{parts: ['oCollaborationModel>sentBy','oCollaborationModel>senderName','oAppModel>/loggedInUserDetails/userId','oCollaborationModel>comment','oCollaborationModel>/sGlobalSearchTerm'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetSearchMessagComment'}"-->
+																<!--	class="wbMasterMessageTextSTyle"/>-->
+															</VBox>
+														</HBox>
+													</CustomListItem>
+												</List>
+											</ScrollContainer>
+										</IconTabFilter>
+										<IconTabFilter text="{i18n>GROUPS_TEXT}" key="Groups">
+											<ScrollContainer vertical="true" class="wbChatIconTabScroll" id="ID_GROUP_TAB">
+												<List class="sapUiTinyMarginTop groupchatListCss" mode="SingleSelectMaster" itemPress="onChatSelect"
+													items="{oCollaborationModel>/aSearchGroup}">
+													<CustomListItem type="Active" class="wbChatMasterListItem">
+														<HBox class="sapUiSmallMarginBeginEnd sapUiTinyMarginTop">
+															<!--src="test-resources/sap/tnt/images/Woman_avatar_01.png"-->
+															<Avatar initials="{path: 'oCollaborationModel>chatName',formatter: 'oneapp.incture.workbox.util.formatter.wbGetChatAvatarInitials'}"
+																displaySize="XS" class="wbChatAvatar"/>
+															<VBox class="wbClipTextVBox sapUiTinyMarginBegin">
+																<Label text="{oCollaborationModel>chatName}" class="wbChatMasterUserNameStyle sapUiTinyMarginEnd"/>
+																<!--<Label text="{oCollaborationModel>chatName}" class="wbChatMasterUserNameStyle sapUiTinyMarginEnd" width="9rem"-->
+																<!--	visible="{= ${oCollaborationModel>/selectedScreen} === 'groups'? true : false}"/>-->
+																<Label text=" " class="wbMasterMessageTextSTyle"/>
+															</VBox>
+														</HBox>
+													</CustomListItem>
+												</List>
+											</ScrollContainer>
+										</IconTabFilter>
+										<IconTabFilter text="People" key="People">
+											<ScrollContainer vertical="true" class="wbChatIconTabScroll" id="ID_PEOPLE_TAB">
+												<List class="sapUiTinyMarginTop groupchatListCss" mode="{oCurrentUserModel>/mode}" itemPress="onSelectName"
+													items="{oCollaborationModel>/aSearchPeople}">
+													<CustomListItem type="Active" class="wbChatMasterListItem">
+														<HBox class="sapUiSmallMarginBeginEnd sapUiTinyMarginTop">
+															<Avatar initials="{path: 'oCollaborationModel>sentByName',formatter: 'oneapp.incture.workbox.util.formatter.wbGetChatAvatarInitials'}"
+																displaySize="XS" class="wbChatAvatar"/>
+															<VBox class="wbClipTextVBox sapUiTinyMarginBegin">
+																<Label text="{oCollaborationModel>displayName}" class="wbChatMasterUserNameStyle sapUiTinyMarginEnd"/>
+																<Label text=" " class="wbMasterMessageTextSTyle"/>
+																<!--<Label text="{oCollaborationModel>comment}" class="wbMasterMessageTextSTyle" width="9rem"/>-->
+															</VBox>
+														</HBox>
+													</CustomListItem>
+												</List>
+											</ScrollContainer>
+										</IconTabFilter>
+									</items>
+								</IconTabBar>
+							</VBox>
+							<VBox class="wbGroupChatListBox wbOverflowVertical" busy="{oCollaborationModel>/bChatListBusyIndicator}"
+								visible="{= (${oCollaborationModel>/selectedScreen} === 'favorites' &amp;&amp; ${oCollaborationModel>/bGlobalSearch}===false) ? true : false}">
+								<List class="sapUiTinyMarginTop groupchatListCss" itemPress="onChatSelect" mode="SingleSelectMaster"
+									items="{oCollaborationModel>/favMessages}">
+									<CustomListItem type="Active" class="wbChatMasterListItem">
+										<HBox class="sapUiSmallMarginBeginEnd sapUiTinyMarginTop">
+											<Avatar initials="{path: 'oCollaborationModel>sentByName',formatter: 'oneapp.incture.workbox.util.formatter.wbGetChatAvatarInitials'}"
+												displaySize="XS" class="wbChatAvatar"/>
+											<VBox class="wbClipTextVBox sapUiTinyMarginBegin" width="78%">
+												<Label
+													text="{parts: ['oCollaborationModel>chatName','oCollaborationModel>senderDetails/0/displayName'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetSearchMessageHeading'}"
+													class="wbChatMasterUserNameStyle sapUiTinyMarginEnd"/>
+												<!--<Label text="{oCollaborationModel>chatName}" class="wbChatMasterUserNameStyle sapUiTinyMarginEnd" width="9rem"-->
+												<!--	visible="{= ${oCollaborationModel>/selectedScreen} === 'groups'? true : false}"/>-->
+												<FormattedText
+													htmlText="{parts: ['oCollaborationModel>sentBy','oCollaborationModel>senderName','oAppModel>/loggedInUserDetails/userId','oCollaborationModel>comment','oCollaborationModel>/sGlobalSearchTerm'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetSearchMessagComment'}"
+													class="wbMasterMessageTextSTyle"/>
+											</VBox>
+											<core:Icon src="{= ${oCollaborationModel>isFavourite} ? 'sap-icon://favorite': 'sap-icon://unfavorite'}"
+												tooltip="{= ${oCollaborationModel>isFavourite} ? 'UnFavorite': 'Favorite'}" press="onFavouritePress" class="wbFavouriteIcon"/>
+										</HBox>
+									</CustomListItem>
+								</List>
+							</VBox>
+							<!--By Karishma-->
+							<VBox class="wbGroupCreationSectionStyle"
+								visible="{parts: ['oCollaborationModel>/selectedScreen','oCollaborationModel>/bGlobalSearch'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetFooterButton'}"
+								renderType="Bare" alignItems="Center" justifyContent="Center">
+								<VBox visible="{= ${oCollaborationModel>/createGroupBtn} === false}" class="sapUiSizeCompact">
+									<Input value="{oCollaborationModel>/sGroupName}" width="94%" placeholder="{i18n>ENTER_GRPNAME_TEXT}" class="sapUiTinyMarginBegin"/>
+									<HBox class="sapUiTinyMarginBeginEnd">
+										<Button text="{i18n>DISCARD_TEXT}" class="wbDiscardBtnStyle sapUiSmallMarginEnd" press="onDiscardGroup"/>
+										<Button text="{i18n>CREATE_TEXT}" class="wbCreateTextBtnStyle" press="onCreateGroupPress"/>
+									</HBox>
+								</VBox>
+								<Button text="{i18n>CREATE_GROUP}" class="wbCreateGroupBtnStyle" press="onGroupCreate" visible="{oCollaborationModel>/createGroupBtn}"/>
+							</VBox>
+						</content>
+					</Page>
+				</masterPages>
+			</SplitContainer>
+			<!-- Start - Favorite Screen-->
+			<!--<VBox visible="{= ${oCollaborationModel>/selectedScreen} === 'favorites'? true : false}" items="{path : 'oCollaborationModel>/favMessages'}"-->
+			<!--	class="sapUiSmallMarginTop wbChatFavoriteMsgStyle">-->
+			<!--	<VBox class="wbFavMsgDividerStyle">-->
+			<!--		<HBox class="wbFavMsgAvatarUserNameWrapper">-->
+			<!--			<Avatar initials="{path: 'oCollaborationModel>sentBy',formatter: 'oneapp.incture.workbox.util.formatter.wbGetChatAvatarInitials'}"-->
+			<!--				displaySize="XS" class="wbChatAvatar sapUiTinyMarginEnd"/>-->
+			<!--			<Label text="{oCollaborationModel>senderDetails/0/firstName} {oCollaborationModel>senderDetails/0/lastName}" class="wbDetailUsernameStyle"-->
+			<!--				visible="{=${oCollaborationModel>chatType}=== 'personal' ?true:false}"/>-->
+			<!--			<Label text="{oCollaborationModel>chatName}" class="wbDetailUsernameStyle"-->
+			<!--				visible="{=${oCollaborationModel>chatType}=== 'group' ?true:false}"/>-->
+			<!--		</HBox>-->
+			<!--		<VBox class="wbFavMsgWrapperStyle sapUiSmallMarginBottom">-->
+			<!--			<HBox justifyContent="SpaceBetween" class="wbFavMsgUserNameWrapper">-->
+			<!--				<Label text="{oCollaborationModel>senderName}" class="wbSentTimeStyle"/>-->
+			<!--				<HBox>-->
+			<!--					<Label text="{path: 'oCollaborationModel>sentAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetDateTime'}"-->
+			<!--						class="wbSentTimeStyle sapUiSmallMarginEnd"/>-->
+			<!--					<core:Icon src="{= ${oCollaborationModel>isFavorite} ? 'sap-icon://favorite': 'sap-icon://unfavorite'}"-->
+			<!--						tooltip="{= ${oCollaborationModel>isFavorite} ? 'UnFavorite': 'Favorite'}" press="onFavouritePress"-->
+			<!--						class="wbChatFavStarStyle sapUiTinyMarginTop"/>-->
+			<!--				</HBox>-->
+			<!--			</HBox>-->
+			<!--			<Text text="{oCollaborationModel>comment}" class="wbFavMsgMessageStyle"/>-->
+			<!--		</VBox>-->
+			<!--	</VBox>-->
+			<!--</VBox>-->
+			<!-- End - Favorite Screen-->
+			<!-- Start - Chat Bot Screen-->
+			<VBox visible="{= ${oCollaborationModel>/selectedScreen} === 'chatBot'? true : false}" height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.ChatBot" type="XML"/>
+			</VBox>
+			<!-- End - Chat Bot Screen-->
+		</content>
+	</Page>
+</mvc:View>
