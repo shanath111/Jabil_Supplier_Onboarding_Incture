@@ -69,5 +69,5 @@
       "command": "sap.ux.appGenerator.ui5Version"
     }
   ],
-  "version": ""
+  "version": "0.2.0"
 }
