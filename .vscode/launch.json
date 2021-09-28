@@ -19,6 +19,26 @@
       },
       "envFile": "${workspaceFolder}/surveyform/.env",
       "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
+    },
+    {
+      "name": "Run Partner Lifecycle Supplier Portal-BuyerRegistration",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/nsBuyerRegistration/index.html",
+        "--ui5",
+        "{\"version\":\".\"}"
+      ],
+      "cwd": "${workspaceFolder}/BuyerRegistration",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/BuyerRegistration\"}"
+      },
+      "envFile": "${workspaceFolder}/BuyerRegistration/.env51",
+      "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
     }
   ],
   "compounds": [],

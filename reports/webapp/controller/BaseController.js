@@ -2049,7 +2049,7 @@ sap.ui.define([
 						"filterMap": {
 							"te.EVENT_ID": {
 								"operator": "AND",
-								"condition": "equals",
+								"condition": "contains",
 								"value": oNotification.id,
 								"upperLimit": "",
 								"lowerLimit": "",

@@ -404,7 +404,7 @@ sap.ui.define([
 			bindingObject.upperLimit = "";
 			bindingObject.dropdownList = [];
 			bindingObject.operator = "AND";
-			bindingObject.condition = "equals";
+			bindingObject.condition = "contains";
 			bindingObject.enabled = true;
 			bindingObject.displayValue = "";
 			bindingObject.index = index.toString();
@@ -3061,7 +3061,7 @@ sap.ui.define([
 			if (parameter.toLowerCase() === "userlist" || category.toLowerCase() === "userlist") {
 				filterPayload.filterMap["tw.TASK_OWNER"] = {
 					"operator": "AND",
-					"condition": "equals",
+					"condition": "contains",
 					"value": "",
 					"upperLimit": "",
 					"lowerLimit": "",
@@ -3073,7 +3073,7 @@ sap.ui.define([
 			if (category.toLowerCase() === "grouplist" || parameter.toLowerCase() === "grouplist") {
 				filterPayload.filterMap["tw.GROUP_ID"] = {
 					"operator": "AND",
-					"condition": "equals",
+					"condition": "contains",
 					"value": "",
 					"upperLimit": "",
 					"lowerLimit": "",
@@ -3538,7 +3538,7 @@ sap.ui.define([
 				oStandardFilter.selectedKey = oFilterMap.condition;
 				oFilterMap.condition = "DateRange";
 				if (oFilterMap.condition === "Today" || oFilterMap.condition === "Yesterday") {
-					// oFilterMap.condition = "equals";
+					// oFilterMap.condition = "contains";
 					oStandardFilter.value = this.formatter.wbDateFormatter(new Date(oFilterMap.lowerLimit));
 					oStandardFilter.lowerLimit = "";
 					oStandardFilter.upperLimit = "";
