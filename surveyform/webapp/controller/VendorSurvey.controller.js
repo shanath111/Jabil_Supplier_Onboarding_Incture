@@ -4434,6 +4434,7 @@ sap.ui.define([
                         oEvent.getSource().setValueState("None");
                         oEvent.getSource().setValueStateText("");
                     }
+                    
 
                 }
                 if (this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.bankControlKeyLogic == "IBAN") {

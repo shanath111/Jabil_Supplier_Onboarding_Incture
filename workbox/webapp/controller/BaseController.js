@@ -2083,7 +2083,7 @@ sap.ui.define([
 						"filterMap": {
 							"pe.REQUEST_ID": {
 								"operator": "AND",
-								"condition": "equals",
+								"condition": "contains",
 								"value": oNotification.title,
 								"upperLimit": "",
 								"lowerLimit": "",
