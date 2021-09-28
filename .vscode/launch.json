@@ -39,6 +39,26 @@
       },
       "envFile": "${workspaceFolder}/BuyerRegistration/.env51",
       "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
+    },
+    {
+      "name": "Run Partner Lifecycle Supplier Portal-workbox",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/oneappinctureworkbox/index.html",
+        "--ui5",
+        "{\"version\":\".\"}"
+      ],
+      "cwd": "${workspaceFolder}/workbox",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/workbox\"}"
+      },
+      "envFile": "${workspaceFolder}/workbox/.env6",
+      "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
     }
   ],
   "compounds": [],
@@ -49,5 +69,5 @@
       "command": "sap.ux.appGenerator.ui5Version"
     }
   ],
-  "version": "0.2.0"
+  "version": ""
 }

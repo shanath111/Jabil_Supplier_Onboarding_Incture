@@ -66,6 +66,25 @@ sap.ui.define([
                 });
             },
 
+             fnLoadTaskClaimed: function (vTaskId) {
+                var oModel = new JSONModel();
+                var that = this;
+                var sUrl = "/comjabilsurveyform/WorkboxJavaService/inbox/isClaimed?eventId=" + vTaskId;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        if (oEvent.getSource().getData().isTaskCompleted == true) {
+                            that.getOwnerComponent().getModel("oVisibilityModel").getData()._FinanceReviewEdit = false
+                        that.getOwnerComponent().getModel("oVisibilityModel").getData()._CompletedTask = false
+                        }else{
+                              that.getOwnerComponent().getModel("oVisibilityModel").getData()._CompletedTask = true
+                        }
+                    }
+                    that.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                });
+            },
             _fnHandleRouteMatched: function (oEvent) {
                 var that = this;
                 this._fnLoadCountry();
@@ -73,6 +92,7 @@ sap.ui.define([
                 this._fnLoadCountryContactCode();
                 this.getUser();
                 var taskId = oEvent.getParameter("arguments").contextPath;
+                
                 vAppName = oEvent.getParameter("arguments").Name;
                 var oContactInfo = {
                     "firstName": "",
@@ -124,7 +144,9 @@ sap.ui.define([
                                     that.getOwnerComponent().getModel("oVisibilityModel").getData().FinanceSaveVis1 = false;
                                     that.getOwnerComponent().getModel("oVisibilityModel").getData()._SupplierBankEdit = false;
                                 }
+                                that.fnLoadTaskClaimed(taskId);
                                 that.getOwnerComponent().getModel("oVisibilityModel").refresh();
+
                             }
 
                             else {
