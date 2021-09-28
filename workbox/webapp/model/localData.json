@@ -75,7 +75,7 @@
 		"subjectIndex": "",
 		"oFilterMap": {
 			"operator": "AND",
-			"condition": "equals",
+			"condition": "contains",
 			"value": "",
 			"upperLimit": "",
 			"lowerLimit": "",
