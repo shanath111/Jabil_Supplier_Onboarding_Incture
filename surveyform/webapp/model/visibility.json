@@ -26,6 +26,7 @@
     "claimedTask": false,
     "isTaskCompleted": false,
     "FinanceReviewVis1":false,
+      "_CompletedTask":false,
     "bankValidation": {
         "bankMatrixId": "",
         "companyCodeCountry": "",
@@ -54,5 +55,6 @@
         "bankControlKeyDigitsLogic": null,
         "supplierBankCtryComparator": "",
         "purchaseOrderCurrComparator": ""
+      
     }
 }

@@ -351,7 +351,7 @@
 				</content>
                     <footer>
 			<OverflowToolbar  class="cl_BPCFooterClr sapUiSizeCompact">
-             <Label text="{i18n>claimActnTxt}" visible="{=!${oConfigMdl>/isClaimed}}" class="sapUiTinyMarginBegin"/>
+              <Label text="{i18n>claimActnTxt}" visible="{=!${oConfigMdl>/isTaskCompleted} &amp;&amp;!${oConfigMdl>/isClaimed}}"   class="sapUiTinyMarginBegin"/>
 				<ToolbarSpacer/>
                
                
