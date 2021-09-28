@@ -229,7 +229,7 @@ sap.ui.define([
                 this.fnLoadTaskClaimed(oContext.Id);
 
             },
-            
+
             fnActivateBankScreen: function () {
                 var that = this;
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry) {
@@ -325,8 +325,15 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
-                        oView.getModel("oConfigMdl").getData().isClaimed = oEvent.getSource().getData().isClaimed;
-                        if (oEvent.getSource().getData().isClaimed == false) {
+                        if (oEvent.getSource().getData().isTaskCompleted == true) {
+                            oView.getModel("oConfigMdl").getData().isClaimed = false;
+                        } else {
+                            oView.getModel("oConfigMdl").getData().isClaimed = oEvent.getSource().getData().isClaimed;
+                        }
+
+
+                        oView.getModel("oConfigMdl").getData().isTaskCompleted = oEvent.getSource().getData().isTaskCompleted;
+                        if (oView.getModel("oConfigMdl").getData().isClaimed == false) {
                             oView.getModel("oConfigMdl").getData().defaultEnable = false;
                         }
                         oView.getModel("oConfigMdl").refresh();
@@ -803,33 +810,33 @@ sap.ui.define([
                                     } else {
                                         temp.manualAddressOverrideSupplierIndicators = 1;
                                     }
-                                
-                                var oBPCreateModel = new sap.ui.model.json.JSONModel();
-                                oBPCreateModel.setData(temp);
-                                oView.setModel(oBPCreateModel, "JMBPCreate");
-                                that.fnLoadCompanyCode(true);
-                                that.fnLoadPlant(true);
-                                that.fnLoadPurOrg(temp.companyCode, that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, temp.companyCode, "CompanyCode"));
-                                // that.fnLoadPurOrg(true);
-                                // this.fnLoadPurGroup();
-                                that.fnLoadWorkCell(true);
-                                // that.fnLoadIncoterms(true);
-                                that.fnLoadCountry(true);
-                                that.fnLoadState(temp.country);
-                                //that.fnLoadPayemntTerms(true);
-                                if (oView.getModel("oConfigMdl").getData().contextPath.Name == "NDARejectLegal") {
-                                    that._fnReadDocumentList(temp.caseId, that);
-                                }
-                                if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GBSBank") {
-                                    that._fnReadDocumentList1(temp.caseId, that);
-                                }
-                                if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
-                                    that.fnLoadPartnerData(temp.caseId);
-                                    that.fnLoadValidationDone(temp.caseId);
-                                }
 
-                                that.fnLoadSurveyFormDetail(temp.caseId, that);
-                            }
+                                    var oBPCreateModel = new sap.ui.model.json.JSONModel();
+                                    oBPCreateModel.setData(temp);
+                                    oView.setModel(oBPCreateModel, "JMBPCreate");
+                                    that.fnLoadCompanyCode(true);
+                                    that.fnLoadPlant(true);
+                                    that.fnLoadPurOrg(temp.companyCode, that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, temp.companyCode, "CompanyCode"));
+                                    // that.fnLoadPurOrg(true);
+                                    // this.fnLoadPurGroup();
+                                    that.fnLoadWorkCell(true);
+                                    // that.fnLoadIncoterms(true);
+                                    that.fnLoadCountry(true);
+                                    that.fnLoadState(temp.country);
+                                    //that.fnLoadPayemntTerms(true);
+                                    if (oView.getModel("oConfigMdl").getData().contextPath.Name == "NDARejectLegal") {
+                                        that._fnReadDocumentList(temp.caseId, that);
+                                    }
+                                    if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GBSBank") {
+                                        that._fnReadDocumentList1(temp.caseId, that);
+                                    }
+                                    if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
+                                        that.fnLoadPartnerData(temp.caseId);
+                                        that.fnLoadValidationDone(temp.caseId);
+                                    }
+
+                                    that.fnLoadSurveyFormDetail(temp.caseId, that);
+                                }
 
 
                             } else {
@@ -856,9 +863,9 @@ sap.ui.define([
                 });
 
             },
-            fnLiveChangeBankKey:function(){
-  oView.byId("id_BankKey").setValueState("None");
-                      oView.byId("id_BankKey").setValueStateText("");
+            fnLiveChangeBankKey: function () {
+                oView.byId("id_BankKey").setValueState("None");
+                oView.byId("id_BankKey").setValueStateText("");
             },
 
             fnOpenBankCommentsApp: function () {
@@ -941,11 +948,11 @@ sap.ui.define([
                     }
 
 
-                }else if(oView.getModel("oConfigMdl").getData().contextPath.Name == "GBSBank"){
-                    if(!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankKey){
-                     oView.byId("id_BankKey").setValueState("Error");
-                      oView.byId("id_BankKey").setValueStateText(oi18n.getProperty("pleaseProvideBankKey"));
-                      return;
+                } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GBSBank") {
+                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankKey) {
+                        oView.byId("id_BankKey").setValueState("Error");
+                        oView.byId("id_BankKey").setValueStateText(oi18n.getProperty("pleaseProvideBankKey"));
+                        return;
                     }
                 }
                 if (vError == false) {
@@ -1663,8 +1670,8 @@ sap.ui.define([
                 // if (vSelected == false) {
                 //     oEvent.getSource().setValue("");
                 // }
-                
-                 oView.getModel("oDataModel").getData().defaultValuesDto.reqPurchasingOrg = "";
+
+                oView.getModel("oDataModel").getData().defaultValuesDto.reqPurchasingOrg = "";
                 oView.getModel("oDataModel").refresh();
                 if (oView.getModel("JMValidateDefault").getData().reqCompanyCodee == "Error") {
                     oView.getModel("JMValidateDefault").getData().reqCompanyCodee = "None";
@@ -1673,7 +1680,7 @@ sap.ui.define([
                 }
                 this.fnLoadPurOrg(oView.getModel("oDataModel").getData().defaultValuesDto.reqCompanyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
             },
-            
+
             fnLiveChangePurchOrg: function (oEvent) {
 
                 var vSelected = oEvent.getParameter("itemPressed");

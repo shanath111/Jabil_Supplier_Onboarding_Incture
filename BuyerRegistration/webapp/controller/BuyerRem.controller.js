@@ -79,8 +79,15 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
-                        oView.getModel("oConfigMdl").getData().isClaimed = oEvent.getSource().getData().isClaimed;
-                        if (oEvent.getSource().getData().isClaimed == false) {
+                       if (oEvent.getSource().getData().isTaskCompleted == true) {
+                            oView.getModel("oConfigMdl").getData().isClaimed = false;
+                        } else {
+                            oView.getModel("oConfigMdl").getData().isClaimed = oEvent.getSource().getData().isClaimed;
+                        }
+
+
+                        oView.getModel("oConfigMdl").getData().isTaskCompleted = oEvent.getSource().getData().isTaskCompleted;
+                        if (oView.getModel("oConfigMdl").getData().isClaimed == false) {
                             oView.getModel("oConfigMdl").getData().defaultEnable = false;
                         }
                         oView.getModel("oConfigMdl").refresh();
