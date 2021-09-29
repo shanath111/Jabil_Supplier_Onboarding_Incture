@@ -138,8 +138,8 @@ sap.ui.define([
                                         existingData.bpInfoDto.dunsNumber = oEvent.getSource().oData.bpInfoDto.dunsNumber;
                                         existingData.bpInfoDto.dunsRegistrationNum = oEvent.getSource().oData.bpInfoDto.dunsRegistrationNum;
                                         existingData.dateUpdated = oEvent.getSource().oData.dateUpdated;
-                                        existingData.surveyInfoDto.isAuthority = true;
-                                        existingData.surveyInfoDto.isJabilMainContact = true;
+                                        existingData.surveyInfoDto.isAuthority = null;
+                                        existingData.surveyInfoDto.isJabilMainContact = null;
                                         existingData.shippingInfoDto = oEvent.getSource().oData.shippingInfoDto;
                                         existingData.defaultValuesDto = oEvent.getSource().oData.defaultValuesDto;
 
