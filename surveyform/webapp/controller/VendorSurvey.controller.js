@@ -762,7 +762,7 @@ sap.ui.define([
                                                     "oFaxNum": "",
                                                     "oPostOffBox": "",
                                                     "oPostOffZipCode": "",
-                                                    "haveDiversityCertifications": false,
+                                                    "haveDiversityCertifications": null,
                                                     "companyWebsite": oView.getModel("oDataModel").getData().comInfoDto.companyWebsite
                                                 });
                                             rModel.setData({
@@ -901,7 +901,7 @@ sap.ui.define([
                                         "oFaxNum": "",
                                         "oPostOffBox": "",
                                         "oPostOffZipCode": "",
-                                        "haveDiversityCertifications": false,
+                                        "haveDiversityCertifications": null,
                                         "companyWebsite": ""
                                     });
                                 rModel.setData({
@@ -3260,66 +3260,7 @@ sap.ui.define([
                     oView.getModel("oErrorModel").getData().orgMaintainProcessDataFromJabilE = "Error";
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem) {
-
-
-                    $.each(olist, function (index, value) {
-                        if (value.isSelected) {
-                            oListLength.push(value);
-                        }
-                    });
-                    if (oListLength.length === 0) {
-                        iError = true;
-
-                        if (isDefaultLan) {
-                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("selectAtleastAnItemJBN")), {
-                                icon: sap.m.MessageBox.Icon.ERROR,
-                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                                contentWidth: "30%",
-                                styleClass: "sapUiSizeCompact"
-                            });
-                        } else {
-                            sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.selectAtleastAnItemJBN + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("selectAtleastAnItemJBN")), {
-                                icon: sap.m.MessageBox.Icon.ERROR,
-                                title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                                contentWidth: "30%",
-                                styleClass: "sapUiSizeCompact"
-                            });
-                        }
-
-                    }
-                }
-                if (oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil) {
-
-
-                    $.each(olist1, function (index, value) {
-                        if (value.isSelected) {
-                            oListLength1.push(value);
-                        }
-                    });
-                    if (oListLength1.length === 0) {
-                        iError = true;
-
-                        if (isDefaultLan) {
-                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("selectAtleastAnItemBA")), {
-                                icon: sap.m.MessageBox.Icon.ERROR,
-                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                                contentWidth: "30%",
-                                styleClass: "sapUiSizeCompact"
-                            });
-                        } else {
-                            sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.selectAtleastAnItemBA + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("selectAtleastAnItemBA")), {
-                                icon: sap.m.MessageBox.Icon.ERROR,
-                                title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                                contentWidth: "30%",
-                                styleClass: "sapUiSizeCompact"
-                            });
-                        }
-
-                    }
-
-                }
-                if (oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem === true || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil === true) {
+                 if (oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil) {
                     if (oView.getModel("oDataModel").getData().itCyberDto.certifiedForInfoSecurity === null) {
                         oView.getModel("oErrorModel").getData().certifiedForInfoSecurityE = "Error";
                         iError = true;
@@ -3332,8 +3273,6 @@ sap.ui.define([
                         oView.getModel("oErrorModel").getData().responsibleForInforSecurityE = "Error";
                         iError = true;
                     }
-                }
-                if (!iError && oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil) {
                     if (!oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.firstName) {
                         oView.getModel("oErrorModel").getData().cyberSurveyFNE = "Error";
                         oView.getModel("oErrorModel").getData().cyberSurveyFNM = oi18n.getText("mandatoryFName");
@@ -3389,8 +3328,9 @@ sap.ui.define([
                     }
                     if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.extension && oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.extension.length > 10) {
                         iError = true;
-                    }
-                    if (oListLength.length >= 1 && oListLength1.length >= 1 && iError) {
+                    }              
+                }
+                 if (iError) {
 
                         if (isDefaultLan) {
                             sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
@@ -3408,7 +3348,66 @@ sap.ui.define([
                             });
                         }
                     }
+                if (oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem && !iError) {
+
+
+                    $.each(olist, function (index, value) {
+                        if (value.isSelected) {
+                            oListLength.push(value);
+                        }
+                    });
+                    if (oListLength.length === 0) {
+                        iError = true;
+
+                        if (isDefaultLan) {
+                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("selectAtleastAnItemJBN")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        } else {
+                            sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.selectAtleastAnItemJBN + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("selectAtleastAnItemJBN")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        }
+
+                    }
                 }
+                if (oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil && !iError) {
+
+
+                    $.each(olist1, function (index, value) {
+                        if (value.isSelected) {
+                            oListLength1.push(value);
+                        }
+                    });
+                    if (oListLength1.length === 0) {
+                        iError = true;
+
+                        if (isDefaultLan) {
+                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("selectAtleastAnItemBA")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        } else {
+                            sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.selectAtleastAnItemBA + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("selectAtleastAnItemBA")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        }
+
+                    }
+
+                }
+               
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("cyberSecInfo").setValidated(false);
