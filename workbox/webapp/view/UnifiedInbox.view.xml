@@ -7,13 +7,13 @@
 					<CheckBox class="wbInboxCheckBoxAlign" select="onSelectBulkCheckBox" selected="{oTaskInboxModel>/checkBoxState}"
 						visible="{= ${oAppModel>/currentViewPage} === 'CompletedTasks' || ${oAppModel>/currentViewPage} === 'RequestorCompletedTasks' || ${oAppModel>/WB_TASK_BOARD_VIEW} || ${oAppModel>/WB_CALENDAR_VIEW} ? false : true}"/>
 				</HBox>
-				<HBox width="7rem" renderType="Bare" class="wbInboxFilterClass"
+				<HBox width="5rem" renderType="Bare" class="wbInboxFilterClass"
 					justifyContent="SpaceBetween">
 					<!-- <Button icon="sap-icon://customfont/TableSettings" press="onClickTableSettings" visible="{oAppModel>/WB_TABLE_VIEW}"
 						tooltip="{i18n>TABLE_SETTINGS_TEXT}" class="wbTransparentButtonStyleClass" type="Transparent"/> -->
 					<Button icon="sap-icon://refresh" type="Transparent" class="wbTransparentButtonStyleClass" press="refreshInboxFn"/>
                     <Button tooltip="{i18n>Sort}" icon="sap-icon://sort" press="fnSortDiloag" class="wbTransparentButtonStyleClass" ariaHasPopup="Dialog"/>
-                    <Button icon="sap-icon://customfont/ExportIcon" tooltip="Export" type="Transparent" class="wbTransparentButtonStyleClass" visible="false" press="exportData"/>
+                    <!-- <Button icon="sap-icon://customfont/ExportIcon" tooltip="Export" type="Transparent" class="wbTransparentButtonStyleClass" visible="false" press="exportData"/> -->
                 </HBox>
 			</HBox>
 			<IconTabBar class="wbInboxIconTabBackground sapUiSmallMarginBeginEnd" selectedKey="{oAppModel>/inboxType}" expandable="false"
