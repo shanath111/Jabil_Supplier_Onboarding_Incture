@@ -72,7 +72,7 @@
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPInstructionKey}" required="true" class="cl_VRLablCls "></Label>
-									<ComboBox width="95%" items="{oStaticData>/InstructionKey}" enabled="{oConfigMdl>/searchEnable}" valueState="{JMBPCreate>/instructionKeye}" valueStateText="{JMBPCreate>/instructionKeym}"
+									<ComboBox width="95%" items="{oStaticData>/InstructionKey}" enabled="{oConfigMdl>/screenEditable}" valueState="{JMBPCreate>/instructionKeye}" valueStateText="{JMBPCreate>/instructionKeym}"
 											filterSecondaryValues="true" change="fnInstructionKeyChange" showSecondaryValues="true" selectedKey="{JMBPCreate>/instructionKey}"
 											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
                                           

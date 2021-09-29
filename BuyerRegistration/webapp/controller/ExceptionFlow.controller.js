@@ -43,14 +43,24 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis = false;
                     oView.getModel("oConfigMdl").getData().COIVis = false;
+                    oView.getModel("oConfigMdl").getData().MitgationVis = false;
+
                 } else if (oContext.Name == "LegalExp") {
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis = false;
                     oView.getModel("oConfigMdl").getData().COIVis = false;
+                    oView.getModel("oConfigMdl").getData().MitgationVis = false;
                 } else if (oContext.Name == "COISupp") {
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis = false;
                     oView.getModel("oConfigMdl").getData().COIVis = false;
+                    oView.getModel("oConfigMdl").getData().MitgationVis = true;
+                }
+                else if (oContext.Name == "COIBuyer") {
+                    oView.getModel("oConfigMdl").getData().LegalVis = false;
+                    oView.getModel("oConfigMdl").getData().GTSVis = false;
+                    oView.getModel("oConfigMdl").getData().COIVis = false;
+                    oView.getModel("oConfigMdl").getData().MitgationVis = false;
                 }
                 oView.getModel("oConfigMdl").getData().contextPath = oContext;
                 oView.getModel("oConfigMdl").refresh();
@@ -66,7 +76,7 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
-                       if (oEvent.getSource().getData().isTaskCompleted == true) {
+                        if (oEvent.getSource().getData().isTaskCompleted == true) {
                             oView.getModel("oConfigMdl").getData().isClaimed = false;
                         } else {
                             oView.getModel("oConfigMdl").getData().isClaimed = oEvent.getSource().getData().isClaimed;
@@ -165,6 +175,11 @@ sap.ui.define([
                                 oView.getModel("oConfigMdl").getData().GTSVis = false;
                                 oView.getModel("oConfigMdl").getData().COIVis = false;
                             } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COISupp") {
+                                oView.getModel("oConfigMdl").getData().LegalVis = false;
+                                oView.getModel("oConfigMdl").getData().GTSVis = false;
+                                oView.getModel("oConfigMdl").getData().COIVis = true;
+                            }
+                            else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COIBuyer") {
                                 oView.getModel("oConfigMdl").getData().LegalVis = false;
                                 oView.getModel("oConfigMdl").getData().GTSVis = false;
                                 oView.getModel("oConfigMdl").getData().COIVis = true;
@@ -678,18 +693,48 @@ sap.ui.define([
                 else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COISupp") {
 
                     var vCommentsActn, vContextActn;
-                    if (vAprActn) {
-                        vCommentsActn = "approve";
+
+                    if (vBtn == "AP") {
                         vContextActn = "approved";
-                    } else {
-                        vCommentsActn = "reject";
+                        vCommentsActn = "approve";
+                    } else if (vBtn == "RJ") {
                         vContextActn = "rejected";
+                        vCommentsActn = "reject";
+                    } else {
+                        vContextActn = "mitigation";
+                        vCommentsActn = "mitigation";
                     }
                     var oPayload = {
                         "context": {
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "legal_action_supplier_coi": vContextActn
+                        },
+                        "status": "",
+                        "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                        "action": vCommentsActn,
+                        "comments": oView.getModel("JMAppvrComments").getData().Comments
+                    }
+                }
+                else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COIBuyer") {
+
+                    var vCommentsActn, vContextActn;
+
+                    if (vBtn == "AP") {
+                        vContextActn = "approved";
+                        vCommentsActn = "approve";
+                    } else if (vBtn == "RJ") {
+                        vContextActn = "rejected";
+                        vCommentsActn = "reject";
+                    } else {
+                        vContextActn = "mitigation";
+                        vCommentsActn = "mitigation";
+                    }
+                    var oPayload = {
+                        "context": {
+                            "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
+                            "caseId": oView.getModel("JMEulaComments").getData().caseId,
+                            "buyerActionOnSupplierCOI": vContextActn
                         },
                         "status": "",
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,

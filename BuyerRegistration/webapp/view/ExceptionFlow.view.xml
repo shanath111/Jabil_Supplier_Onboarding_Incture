@@ -357,7 +357,7 @@
                
                 
 					<Button text="{i18n>Reject}"  press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
-                    
+                    	<Button text="{i18n>Mitigation}" visible="{oConfigMdl>/MitgationVis}" press="fnMitigate"  type="Accept" class="  cl_BPCDraft sapUiSizeCompact" enabled="{oConfigMdl>/isClaimed}" />
                 <Button text="{i18n>Approve}" enabled="{oConfigMdl>/isClaimed}"    type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft sapUiSmallMarginEnd sapUiSizeCompact" />
 			</OverflowToolbar>
 		</footer>
