@@ -981,13 +981,13 @@ html.sap-desktop .sapMBtn:focus>.sapMFocusable {
     margin-right: 0.5rem;
 }
 
-.wbHeaderSearchClass .sapMInputBaseInner:hover,
+/* .wbHeaderSearchClass .sapMInputBaseInner:hover,
 .wbFilterScrollContainer.sapMScrollCont {
     background-color: rgba(var(--root-color), 0.09) !important;
     /*background-color: white !important;*/
     padding: 0 0.5rem;
 
-}
+} */
 
 .wbFilterHeaderClass:hover .wbFilterCarouselBtn {
     visibility: visible;

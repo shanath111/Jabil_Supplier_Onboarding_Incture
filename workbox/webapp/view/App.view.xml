@@ -42,10 +42,11 @@
 								<!-- <Text text="{oAppModel>/currentViewDisplayText}" visible="{= ${oAppModel>/currentView} === 'adminConsole'}"/> -->
 								<ToolbarSpacer/>
                                 	<HBox width="38.8rem" renderType="Bare" alignItems="Center" class="wbHeaderSeachField" visible="{= ${oAppModel>/currentView} === 'unifiedInbox' || ${oAppModel>/currentView} !== 'taskDetailPage' ? true : false}">
-                                    <Input
+                                  <Input value="Search" enabled="false"  width="71%" class="wbHeaderSearchClass sapUiSizeCompact"/>
+                                    <!-- <Input
                                         visible="{parts: ['oAdvanceFilterModel>/subjectIndex','oAppModel>/currentViewPage','oAppModel>/filterTokens'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetSearchSubject'}"
-                                        class="wbHeaderSearchClass" placeholder="{i18n>SEARCH_TEXT}" enabled="false" liveChange="onChangeGlobalSearch" width="71%" submit="applyFilter"
-                                        id="ID_GLOBAL_SEARCH"></Input>
+                                        class="wbHeaderSearchClass" placeholder="{i18n>SEARCH_TEXT}" value="{i18n>SEARCH_TEXT}" enabled="false" liveChange="onChangeGlobalSearch" width="71%" submit="applyFilter"
+                                        id="ID_GLOBAL_SEARCH"></Input> -->
                                     <!--on adding of filter tokens get added-->
                                     <HBox renderType="Bare" width="71%" height="2.25rem" visible="{= ${oAppModel>/filterTokens}.length > 0 ? true : false}"
                                         class="wbFilterHeaderClass" justifyContent="SpaceBetween" alignContent="Center">
