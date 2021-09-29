@@ -3986,7 +3986,7 @@ sap.ui.define([
                     oEvent.getSource().setValueStateText("");
                 }
 
-                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed")) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");
@@ -4050,7 +4050,7 @@ sap.ui.define([
                     oEvent.getSource().setValueStateText("");
                 }
 
-                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed")) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");
@@ -4518,7 +4518,7 @@ sap.ui.define([
                     oEvent.getSource().setValueStateText("");
                 }
 
-                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed")) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");
@@ -4860,7 +4860,7 @@ sap.ui.define([
                     oEvent.getSource().setValueStateText("");
                 }
 
-                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed")) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");
