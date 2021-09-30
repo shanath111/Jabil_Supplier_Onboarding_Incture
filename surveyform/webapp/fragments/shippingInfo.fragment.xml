@@ -12,7 +12,7 @@
 				<VBox  class="fontStyle">
 					<Label text="{i18n>incoterm}" visible= "{oVisibilityModel>/isdefaultLan}" required="true"></Label>
                     <Label text="{oi18n_En>incoterm}&#10;{i18n>incoterm}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-					<ComboBox width="100%" items="{oLookUpModel>/Incoterm}" showSecondaryValues="true" filterSecondaryValues="true"  placeholder="{i18n>select}" selectedKey="{oDataModel>/shippingInfoDto/incoterm}" enabled="{oEnableMdl>/incotermEnb}" valueState="{oErrorModel>/incotermE}" valueStateText="{oErrorModel>/incotermM}" change="fnLiveValueChange" class="inputStyle">
+					<ComboBox width="100%" items="{oLookUpModel>/Incoterm}" showSecondaryValues="true" filterSecondaryValues="true"  placeholder="{i18n>select}" selectedKey="{oDataModel>/shippingInfoDto/incoterm}" enabled="{oEnableMdl>/incotermEnb}" valueState="{oErrorModel>/incotermE}" valueStateText="{oErrorModel>/incotermM}" selectionChange="fnLiveValueChange" class="inputStyle">
                      <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
                      </ComboBox>
 				</VBox>

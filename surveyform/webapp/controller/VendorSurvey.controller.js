@@ -1337,6 +1337,19 @@ sap.ui.define([
             },
 
             fnChangeSupplierCountry: function (oEvent) {
+                 if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                    oView.getModel("oDataModel").refresh();
+                }
+
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].region = "";
                 oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].regionCode = "";
                 oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].country = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().SupplierCountry, oEvent.getParameter("selectedItem").getKey());
@@ -1345,6 +1358,19 @@ sap.ui.define([
                 this._fnLoadSupplierRegion(vCountry);
             },
             fnChangeSupplierRegion: function (oEvent) {
+                 if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                    oView.getModel("oDataModel").refresh();
+                }
+
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].region = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().SupplierRegion, oEvent.getParameter("selectedItem").getKey());
                 oView.getModel("oDataModel").refresh();
             },
@@ -4584,6 +4610,8 @@ sap.ui.define([
                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
+                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                    oView.getModel("oDataModel").refresh();
                 }
 
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
@@ -4857,6 +4885,8 @@ sap.ui.define([
                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
+                      oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                    oView.getModel("oDataModel").refresh();
                 }
 
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
@@ -4890,6 +4920,8 @@ sap.ui.define([
                 oView.getModel("oErrorModel").getData().benifAccCurrM = "";
                 oView.getModel("oErrorModel").getData().bankCtrlKeyE = "None";
                 oView.getModel("oErrorModel").getData().bankCtrlKeyM = "";
+                oView.getModel("oErrorModel").getData().paymentCurrE = "None";
+                oView.getModel("oErrorModel").getData().paymentCurrM = "";
                 oView.getModel("oErrorModel").refresh();
                 this.fnActivateBankScreen();
 
