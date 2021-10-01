@@ -110,7 +110,7 @@
         <!-- </VBox> -->
         </g:GridListItem>
    </g:GridList>
-   <VBox class="fontStyle sapUiSizeCompact" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem} || ${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}}">
+   <VBox class="fontStyle sapUiSizeCompact" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem} === true || ${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil} === true}">
     <!-- <core:HTML
 						content='&lt;p style=&quot;font-size:0.875rem;letter-spacing: 0.17px;&quot;class=&quot;fontStyle1 sapUiTinyMarginBegin&quot;&gt;{i18n>orgCertificate1}&lt;a target=&quot;_blank&quot; href=&quot;http://en.wikipedia.org/wiki/Lorem_ipsum&quot;&gt;{i18n>orgCertificateLink}&lt;/a&gt;{i18n>orgCertificate2}&lt;/p&gt;'></core:HTML> -->
     <HBox class="fontStyle sapUiSizeCompact">
