@@ -325,7 +325,7 @@
 			<VBox class="fontStyle">
 				<Label required="true" text="{i18n>eMail}"  visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 <Label required="true" text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input maxLength="241" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/email}" valueState="{oErrorModel>/closegovtEntityJobTitleE}" valueStateText="{oErrorModel>/closegovtEntityJobTitleM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtFamilyemailEnb}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
+				<Input maxLength="241" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/email}" valueState="{oErrorModel>/closegovtEntityEmailE}" valueStateText="{oErrorModel>/closegovtEntityJobTitleM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtFamilyemailEnb}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
 			</VBox>
 			<VBox class="fontStyle">
 				<Label  text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
