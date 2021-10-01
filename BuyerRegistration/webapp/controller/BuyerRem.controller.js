@@ -177,12 +177,13 @@ sap.ui.define([
                             });
                         }
                     },
-                      fnDoneSubmit: function () {
-                window.parent.location.reload();
-            },
+                     
 
                 });
 
+            },
+             fnDoneSubmit: function () {
+                window.parent.location.reload();
             },
 
         });
