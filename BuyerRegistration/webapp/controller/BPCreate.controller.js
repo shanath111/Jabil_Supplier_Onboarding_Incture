@@ -890,13 +890,13 @@ sap.ui.define([
                             dataType: 'json',
                             success: function (data) {
                                 if (data.AddressInfo.Status !== "Valid") {
-                                    validMessage = false;
+                                    validMessage = true;
                                 }
 
                             },
                             async: false,
                             error: function (data) {
-                                validMessage = false;
+                                validMessage = true;
 
                             }
                         });
