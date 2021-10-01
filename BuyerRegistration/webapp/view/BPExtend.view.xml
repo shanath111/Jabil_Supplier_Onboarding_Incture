@@ -313,10 +313,10 @@
                     </u:Column>
                     
 
+                    <!-- not mentioned in reordering list -->
 
 
-
-                    <!-- <u:Column sortProperty="PENDING_CHANGE_REQUEST" filterProperty="PENDING_CHANGE_REQUEST" width="11rem" visible="{path: 'personalizationModel>/columnList/0/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <u:Column sortProperty="PENDING_CHANGE_REQUEST" filterProperty="PENDING_CHANGE_REQUEST" width="11rem" visible="{path: 'personalizationModel>/columnList/0/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                         <Label text="{i18n>BPEPendingRequest}" class="cl_VRLablCls "/>
                         <u:template>
                         <Text text="{oVendorListModel>PENDING_CHANGE_REQUEST}"  class="cl_ListNameClass"/>
@@ -343,8 +343,8 @@
                     <u:template>
                     <Text text="{oVendorListModel>PRIMARY_PHONE_NUMBER}" class="cl_ListNameClass"/>
                     </u:template>
-                    </u:Column> -->
-                    <!-- <u:Column width="9rem" sortProperty="EMAIL_ADDRESS" filterProperty="EMAIL_ADDRESS" visible="{path: 'personalizationModel>/columnList/14/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="EMAIL_ADDRESS" filterProperty="EMAIL_ADDRESS" visible="{path: 'personalizationModel>/columnList/14/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEEmailAddress}" class="cl_VRLablCls "/>
                     <u:template>
                     <Text text="{oVendorListModel>EMAIL_ADDRESS}" class="cl_ListNameClass"/>
@@ -367,8 +367,8 @@
                     <u:template>
                     <Text text="{oVendorListModel>PU_PAYMENT_TERMS}" class="cl_ListNameClass"/>
                     </u:template>
-                    </u:Column> -->
-                   <!-- <u:Column width="11rem" sortProperty="CENTRAL_BLOCK_CODE" filterProperty="CENTRAL_BLOCK_CODE" visible="{path: 'personalizationModel>/columnList/25/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    </u:Column>
+                   <u:Column width="11rem" sortProperty="CENTRAL_BLOCK_CODE" filterProperty="CENTRAL_BLOCK_CODE" visible="{path: 'personalizationModel>/columnList/25/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPECentralBlockCode}" class="cl_VRLablCls "/>
                     <u:template>
                     <Text text="{oVendorListModel>CENTRAL_BLOCK_CODE}" class="cl_ListNameClass"/>
@@ -391,8 +391,8 @@
                     <u:template>
                     <Text text="{oVendorListModel>CURRENCY}" class="cl_ListNameClass"/>
                     </u:template>
-                    </u:Column> -->
-                    <!-- <u:Column width="9rem" sortProperty="INCO_TERMS" filterProperty="INCO_TERMS" visible="{path: 'personalizationModel>/columnList/31/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="INCO_TERMS" filterProperty="INCO_TERMS" visible="{path: 'personalizationModel>/columnList/31/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEIncoterms}" class="cl_VRLablCls "/>
                     <u:template>
                     <Text text="{oVendorListModel>INCO_TERMS}" class="cl_ListNameClass"/>
@@ -427,8 +427,8 @@
                     <u:template>
                     <Text text="{oVendorListModel>CONTROL_KEY}" class="cl_ListNameClass"/>
                     </u:template>
-                    </u:Column> -->
-                    <!-- <u:Column width="9rem" sortProperty="BankType" filterProperty="BankType" visible="{path: 'personalizationModel>/columnList/37/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="BankType" filterProperty="BankType" visible="{path: 'personalizationModel>/columnList/37/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEBankType}" class="cl_VRLablCls "/>
                     <u:template>
                     <Text text="{oVendorListModel>BankType}" class="cl_ListNameClass"/>
@@ -445,7 +445,7 @@
                     <u:template>
                     <Text text="{oVendorListModel>BUSINESS_PARTNER_NUMBER}" class="cl_ListNameClass"/>
                     </u:template>
-                    </u:Column> -->
+                    </u:Column>
 </u:columns>
                 	<u:layoutData>
 								<FlexItemData styleClass="chngLogGridTblItemClass"/>
