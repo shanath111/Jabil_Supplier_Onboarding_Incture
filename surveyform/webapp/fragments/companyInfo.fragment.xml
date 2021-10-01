@@ -4,7 +4,7 @@
    <l:VerticalLayout width="100%" class="sapUiSizeCompact" enabled="{=${oEnableMdl>/orderfromAddrEnb} &amp;&amp; ${companyInfoModel>/isOrderFromAddress}}">
     <CheckBox wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>orderfromAddr}:${oi18n_En>orderfromAddr}+ '/ ' +${i18n>orderfromAddr}}" selected="{companyInfoModel>/isOrderFromAddress}"  class="fontBold inputStyle sapUiTinyMarginTop sapUiTinyMarginBottom" />
      
-       <VBox fitContainer="true" width="49%" visible="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${oEnableMdl>/orderFromAddrSearchVsb} &amp;&amp; ${companyInfoModel>/isOrderFromAddress}}" class="fontStyle sapUiTinyMarginBegin">
+       <VBox fitContainer="true" width="49%"  visible="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} &amp;&amp; ${oEnableMdl>/orderFromAddrSearchVsb}}" class="fontStyle sapUiTinyMarginBegin">
          <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>address}:${oi18n_En>address} + '&#xA;' +${i18n>address}}" class="fontStyle sapUiTinyMarginTop" wrapping="true"></Label>
                                  	<html:input placeholder="Search here for Address" width="50%" type="text" id="iOAddress" class="cl_HTMLInput" />
                                 <layoutData>
@@ -100,7 +100,7 @@
    <l:VerticalLayout width="100%" class="sapUiSizeCompact" enabled="{=${oEnableMdl>/remitToAddrEnb} &amp;&amp; ${remitModel>/isRemitToAddress}}">
         <CheckBox wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>remittoAddr}:${oi18n_En>remittoAddr}+ '/ ' +${i18n>remittoAddr}}" selected="{remitModel>/isRemitToAddress}" class="fontBold inputStyle sapUiTinyMarginTop sapUiTinyMarginBottom" />
       
-       <VBox fitContainer="true"  width="49%" visible="{=${remitModel>/rCountry} === 'USA' &amp;&amp; ${oEnableMdl>/remitToAddrSearchVsb} &amp;&amp; ${remitModel>/isRemitToAddress}}" class="fontStyle sapUiTinyMarginBegin">
+       <VBox fitContainer="true"  width="49%" visible="{=${remitModel>/rCountry} === 'USA' &amp;&amp; ${remitModel>/isRemitToAddress} &amp;&amp;  ${oEnableMdl>/remitToAddrSearchVsb}}" class="fontStyle sapUiTinyMarginBegin">
         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>address}:${oi18n_En>address} + '&#xA;' +${i18n>address}}" class="fontStyle sapUiTinyMarginTop" wrapping="true"></Label>
                                  <html:input placeholder="Search here for Address" type="text" id="iRAddress" class="cl_HTMLInput" />
                                <layoutData>
@@ -190,7 +190,7 @@
          </VBox>
       </l:Grid>
    </l:VerticalLayout>
-   <VBox visible="{=${companyInfoModel>/oCountry} === 'USA'? true: false}" class="fontStyle sapUiSizeCompact">
+   <VBox visible="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} ? true: false}" class="fontStyle sapUiSizeCompact">
       <Label required="true" labelFor="divCert" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>divCertText}:${oi18n_En>divCertText}+'/ '+${i18n>divCertText}}" wrapping="true" class="sapUiTinyMarginTop sapUiTinyMarginBegin" />
       <RadioButtonGroup id="divCert" columns="2" class="inputStyle" selectedIndex="{=${companyInfoModel>/haveDiversityCertifications} === true? 0 :(${companyInfoModel>/haveDiversityCertifications}=== false ?1: -1)}" enabled="{oEnableMdl>/haveDiversityCertificationsEnb}"  valueState="{oErrorModel>/haveDiversityCertificationsE}" select="fnClearValueState">
          <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes}+'/ '+${i18n>yes}}" selected="{companyInfoModel>/haveDiversityCertifications}" />
