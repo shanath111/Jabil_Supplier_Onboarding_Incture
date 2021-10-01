@@ -193,12 +193,51 @@
 							<CheckBox select="fnHadleTableSelection"  selected="{oVendorListModel>isSelect}" />
 						</u:template>
 					</u:Column> -->
-					
-                    <u:Column sortProperty="PENDING_CHANGE_REQUEST" filterProperty="PENDING_CHANGE_REQUEST" width="11rem" visible="{path: 'personalizationModel>/columnList/0/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                        <Label text="{i18n>BPEPendingRequest}" class="cl_VRLablCls "/>
-                        <u:template>
-                        <Text text="{oVendorListModel>PENDING_CHANGE_REQUEST}"  class="cl_ListNameClass"/>
-                        </u:template>
+					<u:Column width="16rem" sortProperty="VENDOR_NAME" filterProperty="VENDOR_NAME" visible="{path: 'personalizationModel>/columnList/7/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEVendorName}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>VENDOR_NAME}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="7rem" sortProperty="VENDOR_NUMBER" filterProperty="VENDOR_NUMBER" visible="{path: 'personalizationModel>/columnList/4/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEVendorNumber}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>VENDOR_NUMBER}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="16rem" sortProperty="STREET" filterProperty="STREET" visible="{path: 'personalizationModel>/columnList/8/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEStreet}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>STREET}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="6rem" sortProperty="POSTAL_CODE" filterProperty="POSTAL_CODE" visible="{path: 'personalizationModel>/columnList/12/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEPostalCode}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>POSTAL_CODE}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="CITY" filterProperty="CITY" visible="{path: 'personalizationModel>/columnList/9/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECity}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>CITY}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="COUNTRY" filterProperty="COUNTRY" visible="{path: 'personalizationModel>/columnList/11/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECountry}" class="cl_VRLablCls "/>
+                    <u:template>
+                      <Text text="{ parts: [
+      {path: 'oVendorListModel>COUNTRY'},
+      {path: 'i18n>COUNTRY'}
+    ], formatter: 'ns.BuyerRegistration.util.formatter.fnFetchDescription'}"   class="cl_ListNameClass"/>
+                   
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="8rem" sortProperty="DUNS" filterProperty="DUNS" visible="{path: 'personalizationModel>/columnList/15/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEDUNSNumber}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>DUNS}" class="cl_ListNameClass"/>
+                    </u:template>
                     </u:Column>
                     <u:Column width="7rem" sortProperty="COMPANY_CODE" filterProperty="COMPANY_CODE" visible="{path: 'personalizationModel>/columnList/1/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPECompanyCode}" class="cl_VRLablCls "/>
@@ -206,25 +245,10 @@
                     <Text text="{oVendorListModel>COMPANY_CODE}"  class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
-                    <u:Column width="10rem" sortProperty="COMPANY_CODE" filterProperty="COMPANY_CODE" visible="{path: 'personalizationModel>/columnList/2/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECompanyCodeDesc}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{ parts: [
-      {path: 'oVendorListModel>COMPANY_CODE'},
-      {path: 'i18n>COMPANY_CODE'}
-    ], formatter: 'ns.BuyerRegistration.util.formatter.fnFetchDescription'}"   class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
                     <u:Column width="7rem" sortProperty="PURCHASING_ORG" filterProperty="PURCHASING_ORG" visible="{path: 'personalizationModel>/columnList/3/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEPurchasingOrg}" class="cl_VRLablCls "/>
                     <u:template>
                     <Text text="{oVendorListModel>PURCHASING_ORG}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="7rem" sortProperty="VENDOR_NUMBER" filterProperty="VENDOR_NUMBER" visible="{path: 'personalizationModel>/columnList/4/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEVendorNumber}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>VENDOR_NUMBER}" class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
                     <u:Column width="8rem" sortProperty="ACCOUNT_GROUP" filterProperty="ACCOUNT_GROUP" visible="{path: 'personalizationModel>/columnList/5/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
@@ -239,44 +263,79 @@
                     <Text text="{oVendorListModel>RELATIONSHIP_INDICATOR}" class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
-                    <u:Column width="16rem" sortProperty="VENDOR_NAME" filterProperty="VENDOR_NAME" visible="{path: 'personalizationModel>/columnList/7/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEVendorName}" class="cl_VRLablCls "/>
+                     <u:Column width="9rem" sortProperty="BLOCK_FUNCTION" filterProperty="BLOCK_FUNCTION" visible="{path: 'personalizationModel>/columnList/20/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEBlockFunction}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>VENDOR_NAME}" class="cl_ListNameClass"/>
+                    <Text text="{oVendorListModel>BLOCK_FUNCTION}" class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
-                    <u:Column width="16rem" sortProperty="STREET" filterProperty="STREET" visible="{path: 'personalizationModel>/columnList/8/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEStreet}" class="cl_VRLablCls "/>
+                    <u:Column width="11rem" sortProperty="CENTRAL_POSTING_BLOCK" filterProperty="CENTRAL_POSTING_BLOCK" visible="{path: 'personalizationModel>/columnList/23/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECentralPostingBlock}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>STREET}" class="cl_ListNameClass"/>
+                    <Text text="{oVendorListModel>CENTRAL_POSTING_BLOCK}" class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
-                    <u:Column width="9rem" sortProperty="CITY" filterProperty="CITY" visible="{path: 'personalizationModel>/columnList/9/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECity}" class="cl_VRLablCls "/>
+                    <u:Column width="11rem" sortProperty="CENTRAL_PURCHASING_BLOCK" filterProperty="CENTRAL_PURCHASING_BLOCK" visible="{path: 'personalizationModel>/columnList/24/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECentralPurchasingBlock}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>CITY}" class="cl_ListNameClass"/>
+                    <Text text="{oVendorListModel>CENTRAL_PURCHASING_BLOCK}" class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
+                    <u:Column width="11rem" sortProperty="COMPANY_CODE_POSTING_BLOCK" filterProperty="COMPANY_CODE_POSTING_BLOCK" visible="{path: 'personalizationModel>/columnList/26/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECompanyCode/PostingBlock}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>COMPANY_CODE_POSTING_BLOCK}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="PURCHASING_ORG_BLOCK" filterProperty="PURCHASING_ORG_BLOCK" visible="{path: 'personalizationModel>/columnList/27/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEPurchasingOrgBlock}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>PURCHASING_ORG_BLOCK}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="CENTRAL_DELETION_FLAG" filterProperty="CENTRAL_DELETION_FLAG" visible="{path: 'personalizationModel>/columnList/19/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECentralDeletionFlag}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>CENTRAL_DELETION_FLAG}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="COMPANY_CODE_DEL_FLAG" filterProperty="COMPANY_CODE_DEL_FLAG" visible="{path: 'personalizationModel>/columnList/21/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECompanyCodeDelFlag}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>COMPANY_CODE_DEL_FLAG}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                     <u:Column width="11rem" sortProperty="PURCHASING_ORG_DEL_FLAG" filterProperty="PURCHASING_ORG_DEL_FLAG" visible="{path: 'personalizationModel>/columnList/22/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEPurchasingOrgDelFalg}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>PURCHASING_ORG_DEL_FLAG}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    
+
+
+
+
+                    <!-- <u:Column sortProperty="PENDING_CHANGE_REQUEST" filterProperty="PENDING_CHANGE_REQUEST" width="11rem" visible="{path: 'personalizationModel>/columnList/0/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                        <Label text="{i18n>BPEPendingRequest}" class="cl_VRLablCls "/>
+                        <u:template>
+                        <Text text="{oVendorListModel>PENDING_CHANGE_REQUEST}"  class="cl_ListNameClass"/>
+                        </u:template>
+                    </u:Column>
+                    <u:Column width="10rem" sortProperty="COMPANY_CODE" filterProperty="COMPANY_CODE" visible="{path: 'personalizationModel>/columnList/2/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECompanyCodeDesc}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{ parts: [
+      {path: 'oVendorListModel>COMPANY_CODE'},
+      {path: 'i18n>COMPANY_CODE'}
+    ], formatter: 'ns.BuyerRegistration.util.formatter.fnFetchDescription'}"   class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    
                     <u:Column width="10rem" sortProperty="REGION_STATE_PROVINCE" filterProperty="REGION_STATE_PROVINCE" visible="{path: 'personalizationModel>/columnList/10/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPERegion/State/Province}" class="cl_VRLablCls "/>
                     <u:template>
                     <Text text="{oVendorListModel>REGION_STATE_PROVINCE}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="9rem" sortProperty="COUNTRY" filterProperty="COUNTRY" visible="{path: 'personalizationModel>/columnList/11/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECountry}" class="cl_VRLablCls "/>
-                    <u:template>
-                      <Text text="{ parts: [
-      {path: 'oVendorListModel>COUNTRY'},
-      {path: 'i18n>COUNTRY'}
-    ], formatter: 'ns.BuyerRegistration.util.formatter.fnFetchDescription'}"   class="cl_ListNameClass"/>
-                   
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="6rem" sortProperty="POSTAL_CODE" filterProperty="POSTAL_CODE" visible="{path: 'personalizationModel>/columnList/12/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEPostalCode}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>POSTAL_CODE}" class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
                     <u:Column width="11rem" sortProperty="PRIMARY_PHONE_NUMBER" filterProperty="PRIMARY_PHONE_NUMBER" visible="{path: 'personalizationModel>/columnList/13/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
@@ -284,17 +343,11 @@
                     <u:template>
                     <Text text="{oVendorListModel>PRIMARY_PHONE_NUMBER}" class="cl_ListNameClass"/>
                     </u:template>
-                    </u:Column>
-                    <u:Column width="9rem" sortProperty="EMAIL_ADDRESS" filterProperty="EMAIL_ADDRESS" visible="{path: 'personalizationModel>/columnList/14/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    </u:Column> -->
+                    <!-- <u:Column width="9rem" sortProperty="EMAIL_ADDRESS" filterProperty="EMAIL_ADDRESS" visible="{path: 'personalizationModel>/columnList/14/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEEmailAddress}" class="cl_VRLablCls "/>
                     <u:template>
                     <Text text="{oVendorListModel>EMAIL_ADDRESS}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="8rem" sortProperty="DUNS" filterProperty="DUNS" visible="{path: 'personalizationModel>/columnList/15/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEDUNSNumber}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>DUNS}" class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
                     <u:Column width="11rem" sortProperty="VendorCreationDate" filterProperty="VendorCreationDate" visible="{path: 'personalizationModel>/columnList/16/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
@@ -314,59 +367,11 @@
                     <u:template>
                     <Text text="{oVendorListModel>PU_PAYMENT_TERMS}" class="cl_ListNameClass"/>
                     </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="CENTRAL_DELETION_FLAG" filterProperty="CENTRAL_DELETION_FLAG" visible="{path: 'personalizationModel>/columnList/19/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECentralDeletionFlag}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>CENTRAL_DELETION_FLAG}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="9rem" sortProperty="BLOCK_FUNCTION" filterProperty="BLOCK_FUNCTION" visible="{path: 'personalizationModel>/columnList/20/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEBlockFunction}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>BLOCK_FUNCTION}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="COMPANY_CODE_DEL_FLAG" filterProperty="COMPANY_CODE_DEL_FLAG" visible="{path: 'personalizationModel>/columnList/21/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECompanyCodeDelFlag}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>COMPANY_CODE_DEL_FLAG}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="PURCHASING_ORG_DEL_FLAG" filterProperty="PURCHASING_ORG_DEL_FLAG" visible="{path: 'personalizationModel>/columnList/22/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEPurchasingOrgDelFalg}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>PURCHASING_ORG_DEL_FLAG}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="CENTRAL_POSTING_BLOCK" filterProperty="CENTRAL_POSTING_BLOCK" visible="{path: 'personalizationModel>/columnList/23/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECentralPostingBlock}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>CENTRAL_POSTING_BLOCK}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="CENTRAL_PURCHASING_BLOCK" filterProperty="CENTRAL_PURCHASING_BLOCK" visible="{path: 'personalizationModel>/columnList/24/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECentralPurchasingBlock}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>CENTRAL_PURCHASING_BLOCK}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="CENTRAL_BLOCK_CODE" filterProperty="CENTRAL_BLOCK_CODE" visible="{path: 'personalizationModel>/columnList/25/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    </u:Column> -->
+                   <!-- <u:Column width="11rem" sortProperty="CENTRAL_BLOCK_CODE" filterProperty="CENTRAL_BLOCK_CODE" visible="{path: 'personalizationModel>/columnList/25/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPECentralBlockCode}" class="cl_VRLablCls "/>
                     <u:template>
                     <Text text="{oVendorListModel>CENTRAL_BLOCK_CODE}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="COMPANY_CODE_POSTING_BLOCK" filterProperty="COMPANY_CODE_POSTING_BLOCK" visible="{path: 'personalizationModel>/columnList/26/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECompanyCode/PostingBlock}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>COMPANY_CODE_POSTING_BLOCK}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="PURCHASING_ORG_BLOCK" filterProperty="PURCHASING_ORG_BLOCK" visible="{path: 'personalizationModel>/columnList/27/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEPurchasingOrgBlock}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>PURCHASING_ORG_BLOCK}" class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
                     <u:Column width="9rem" sortProperty="PAYMENT_METHOD" filterProperty="PAYMENT_METHOD" visible="{path: 'personalizationModel>/columnList/28/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
@@ -386,8 +391,8 @@
                     <u:template>
                     <Text text="{oVendorListModel>CURRENCY}" class="cl_ListNameClass"/>
                     </u:template>
-                    </u:Column>
-                    <u:Column width="9rem" sortProperty="INCO_TERMS" filterProperty="INCO_TERMS" visible="{path: 'personalizationModel>/columnList/31/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    </u:Column> -->
+                    <!-- <u:Column width="9rem" sortProperty="INCO_TERMS" filterProperty="INCO_TERMS" visible="{path: 'personalizationModel>/columnList/31/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEIncoterms}" class="cl_VRLablCls "/>
                     <u:template>
                     <Text text="{oVendorListModel>INCO_TERMS}" class="cl_ListNameClass"/>
@@ -422,8 +427,8 @@
                     <u:template>
                     <Text text="{oVendorListModel>CONTROL_KEY}" class="cl_ListNameClass"/>
                     </u:template>
-                    </u:Column>
-                    <u:Column width="9rem" sortProperty="BankType" filterProperty="BankType" visible="{path: 'personalizationModel>/columnList/37/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    </u:Column> -->
+                    <!-- <u:Column width="9rem" sortProperty="BankType" filterProperty="BankType" visible="{path: 'personalizationModel>/columnList/37/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEBankType}" class="cl_VRLablCls "/>
                     <u:template>
                     <Text text="{oVendorListModel>BankType}" class="cl_ListNameClass"/>
@@ -440,7 +445,7 @@
                     <u:template>
                     <Text text="{oVendorListModel>BUSINESS_PARTNER_NUMBER}" class="cl_ListNameClass"/>
                     </u:template>
-                    </u:Column>
+                    </u:Column> -->
 </u:columns>
                 	<u:layoutData>
 								<FlexItemData styleClass="chngLogGridTblItemClass"/>

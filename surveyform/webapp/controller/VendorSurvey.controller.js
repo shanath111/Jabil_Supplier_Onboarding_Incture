@@ -5347,6 +5347,7 @@ sap.ui.define([
             nextStep: function (event) {
                 // @ts-ignore
                 this.oWizard = this.getView().byId("surveyWizard");
+                if(!oView.getModel("oEnableMdl").getData().nextBtnExtensionDisplayVsb) {
                 if (this.oWizard._getProgressNavigator()._iCurrentStep == 1) {
                     this._fnValidateBasicInfo();
 
@@ -5422,8 +5423,25 @@ sap.ui.define([
                         });
                     }
                 }
+            } else {
+                this.getView().byId("surveyWizard")._oScroller.scrollTo(0, 0);
+                    
+                    oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
+                    oView.getModel("oEnableMdl").refresh();
+                    this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
+    
+            }
 
 
+            },
+
+            nextStepDisplayOnly: function() {
+                this.oWizard = this.getView().byId("surveyWizard");
+                this.getView().byId("surveyWizard")._oScroller.scrollTo(0, 0);
+                    
+                    oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
+                    oView.getModel("oEnableMdl").refresh();
+                    this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
             },
             // @ts-ignore
             previousStep: function (event) {
@@ -6891,14 +6909,15 @@ sap.ui.define([
                         "comCyberSecurityInfoAttachmentEnb": false,
                         "isFormAcceptedEnb": false,
                         "submitBtnEnb": false,
-                        "deletDocVsb": false
+                        "deletDocVsb": false,
+                        "nextBtnExtensionDisplayVsb": true
 
 
 
 
                     };
                     oView.getModel("oEnableMdl").setData(temp);
-
+                    // var gridlist = oView.byId("operServList");
                     if (that.getView().byId("surveyWizard")._getProgressNavigator()._iCurrentStep == 1) {
                         oView.getModel("oEnableMdl").getData().BackBtnEnb = false;
                     } else {

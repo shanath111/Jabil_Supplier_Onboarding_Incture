@@ -16,7 +16,7 @@
      	<g:customLayout>
 			<grid:GridBasicLayout gridTemplateColumns="repeat(auto-fit, minmax(16rem, 1fr))" gridGap="0.5rem" />
 		</g:customLayout>
-        <g:GridListItem class="inputStyle">
+        <g:GridListItem class="inputStyle" >
         <HBox>
         <Label text="{oLookUpModel>value}" tooltip="{oLookUpModel>tooltip}" class="sapUiTinyMarginTop" labelFor="OprServId"/>
         <Input id="OprServId" value="{oLookUpModel>otherValue}" visible="{=${oLookUpModel>value} === 'Other'? true: false}" enabled="{oEnableMdl>/operationServicesotherValueEnb}" required="{=${oLookUpModel>value} === 'Other' &amp;&amp; ${oDataModel>/comProductsUiDto/isoperServOtherSelected}===true ? true: false}" valueState="{oErrorModel>/operServOtherValE}" valueStateText="{oErrorModel>/operServOtherValM}" change="onEnterOtherValueOperServ" class="otherStyle" />
