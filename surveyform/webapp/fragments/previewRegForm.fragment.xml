@@ -254,7 +254,16 @@
                     <ColumnListItem class="sapUiSizeCompact">
                     <cells >
                      <Text text="{parts:['oLookUpModel>/Country','oDataModel>country'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}"  class="cl_PreviewLablClsValue "/>
-                        <Text text="{parts:['oLookUpModel>/TaxType','oDataModel>type'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" wrapping="true" class="cl_PreviewLablClsValue " />                     
+                      <VBox >
+                        <Text text="{parts:['oLookUpModel>/taxType1','oDataModel>type'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType1'}" wrapping="true" class="cl_PreviewLablClsValue " />       
+                          <Text text="{parts:['oLookUpModel>/taxType2','oDataModel>type'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType2'}" wrapping="true" class="cl_PreviewLablClsValue " /> 
+                            <Text text="{parts:['oLookUpModel>/taxType3','oDataModel>type'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType3'}" wrapping="true" class="cl_PreviewLablClsValue " /> 
+                              <Text text="{parts:['oLookUpModel>/taxType4','oDataModel>type'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType4'}" wrapping="true" class="cl_PreviewLablClsValue " /> 
+                                <Text text="{parts:['oLookUpModel>/taxType5','oDataModel>type'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType5'}" wrapping="true" class="cl_PreviewLablClsValue " /> 
+                                  <Text text="{parts:['oLookUpModel>/taxType6','oDataModel>type'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType6'}" wrapping="true" class="cl_PreviewLablClsValue " /> 
+                                    <Text text="{parts:['oLookUpModel>/taxType7','oDataModel>type'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType7'}" wrapping="true" class="cl_PreviewLablClsValue " /> 
+                                      <Text text="{parts:['oLookUpModel>/taxType8','oDataModel>type'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType8'}" wrapping="true" class="cl_PreviewLablClsValue " />                   
+                           </VBox>
                         <Text text="{=${oDataModel>taxNum}?${oDataModel>taxNum}:'---'}" class="cl_PreviewLablClsValue "/>
                         <Text text="{=${oDataModel>ifOther}?${oDataModel>ifOther}:'---'}" class="cl_PreviewLablClsValue "/>
                         

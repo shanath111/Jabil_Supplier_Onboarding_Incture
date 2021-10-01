@@ -243,23 +243,23 @@
 			<VBox class="fontStyle">
 				<Label required="true"  text="{i18n>govtEntityName}" visible= "{oVisibilityModel>/isdefaultLan}" ></Label>
                 <Label required="true"  text="{oi18n_En>govtEntityName}&#10;{i18n>govtEntityName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input maxLength="35" value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/entityName}" valueState="{oErrorModel>/govtEntityNameE}" valueStateText="{oErrorModel>/govtEntityNameM}" change="fnLiveValueChange" enabled="{oEnableMdl>/managedByGovtContactentityNameEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				<Input maxLength="35" value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/entityName}" valueState="{oErrorModel>/govtEntityNameE}" valueStateText="{oErrorModel>/govtEntityNameM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtContactentityNameEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 			</VBox>
 			<VBox class="fontStyle">
 				<Label required="true"  text="{i18n>firstNameG}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 <Label required="true"  text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input  maxLength="35" value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/firstName}" valueState="{oErrorModel>/govtEntityFNameE}" valueStateText="{oErrorModel>/govtEntityFNameM}" change="fnLiveValueChange" enabled="{oEnableMdl>/managedByGovtContactfirstNameEnb}"   liveChange="fnLiveInputAlphaValueChange"  class="inputStyle"></Input>
+				<Input  maxLength="35" value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/firstName}" valueState="{oErrorModel>/govtEntityFNameE}" valueStateText="{oErrorModel>/govtEntityFNameM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtContactfirstNameEnb}"   liveChange="fnLiveInputAlphaValueChange"  class="inputStyle"></Input>
 			</VBox>
 			<VBox class="fontStyle">
 				<Label required="true"  text="{i18n>lastNameG}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 <Label required="true"  text="{oi18n_En>lastNameG}&#10;{i18n>lastNameG}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input maxLength="34" value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/lastName}" valueState="{oErrorModel>/govtEntityLNameE}" valueStateText="{oErrorModel>/govtEntityLNameM}" change="fnLiveValueChange" enabled="{oEnableMdl>/managedByGovtContactlastNameEnb}" class="inputStyle"></Input>
+				<Input maxLength="34" value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/lastName}" valueState="{oErrorModel>/govtEntityLNameE}" valueStateText="{oErrorModel>/govtEntityLNameM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtContactlastNameEnb}" class="inputStyle"></Input>
 				
 			</VBox>
 			<VBox class="fontStyle">
 				<Label required="true"  text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 <Label required="true"  text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input maxLength="241" value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/email}" valueState="{oErrorModel>/govtEntityEmailE}" valueStateText="{oErrorModel>/govtEntityEmailM}" change="fnLiveValueChange" enabled="{oEnableMdl>/managedByGovtContactemailEnb}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
+				<Input maxLength="241" value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/email}" valueState="{oErrorModel>/govtEntityEmailE}" valueStateText="{oErrorModel>/govtEntityEmailM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtContactemailEnb}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
 			</VBox>
 			<VBox class="fontStyle">
 				<Label  text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
@@ -276,7 +276,7 @@
 			<VBox class="fontStyle">
 			<Label required="true"  text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
             <Label required="true"  text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input maxLength="31" class="inputStyle" value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/contact}" valueState="{oErrorModel>/govtEntityContE}" valueStateText="{oErrorModel>/govtEntityContM}" change="fnLiveValueChange" enabled="{oEnableMdl>/managedByGovtContactcontactEnb}" liveChange="fnLiveInputNumericValueChange"></Input>
+				<Input maxLength="31" class="inputStyle" value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/contact}" valueState="{oErrorModel>/govtEntityContE}" valueStateText="{oErrorModel>/govtEntityContM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtContactcontactEnb}" liveChange="fnLiveInputNumericValueChange"></Input>
             <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
 				<layoutData>
 					<l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
@@ -290,7 +290,7 @@
 			<VBox class="fontStyle">
 				<Label required="true" text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 <Label required="true" text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/jobTitle}" valueState="{oErrorModel>/govtEntityJobTitleE}" valueStateText="{oErrorModel>/govtEntityJobTitleM}" change="fnLiveValueChange" enabled="{oEnableMdl>/managedByGovtContactjobTitleEnb}" class="inputStyle"></Input>
+				<Input value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/jobTitle}" valueState="{oErrorModel>/govtEntityJobTitleE}" valueStateText="{oErrorModel>/govtEntityJobTitleM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtContactjobTitleEnb}" class="inputStyle"></Input>
 			</VBox>
 		</l:Grid>
 	</l:VerticalLayout>
@@ -309,23 +309,23 @@
 			<VBox class="fontStyle">
 				<Label required="true"  text="{i18n>govtEntityName}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 <Label required="true" text="{oi18n_En>govtEntityName}&#10;{i18n>govtEntityName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input maxLength="35" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/entityName}" valueState="{oErrorModel>/closegovtEntityNameE}" valueStateText="{oErrorModel>/closegovtEntityNameM}" change="fnLiveValueChange" enabled="{oEnableMdl>/managedByGovtFamilyentityNameEnb}" liveChange="fnLiveInputValueChange"  class="inputStyle"></Input>
+				<Input maxLength="35" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/entityName}" valueState="{oErrorModel>/closegovtEntityNameE}" valueStateText="{oErrorModel>/closegovtEntityNameM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtFamilyentityNameEnb}" liveChange="fnLiveInputValueChange"  class="inputStyle"></Input>
 			</VBox>
 			<VBox class="fontStyle">
 				<Label required="true" text="{i18n>firstNameG}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 <Label required="true" text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input maxLength="35" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/firstName}" valueState="{oErrorModel>/closegovtEntityFNameE}" valueStateText="{oErrorModel>/closegovtEntityFNameM}" change="fnLiveValueChange" enabled="{oEnableMdl>/managedByGovtFamilyfirstNameEnb}"  liveChange="fnLiveInputAlphaValueChange"  class="inputStyle"></Input>
+				<Input maxLength="35" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/firstName}" valueState="{oErrorModel>/closegovtEntityFNameE}" valueStateText="{oErrorModel>/closegovtEntityFNameM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtFamilyfirstNameEnb}"  liveChange="fnLiveInputAlphaValueChange"  class="inputStyle"></Input>
 			</VBox>
 			<VBox class="fontStyle">
 				<Label required="true" text="{i18n>lastNameG}"  visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 	<Label required="true" text="{oi18n_En>lastNameG}&#10;{i18n>lastNameG}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input maxLength="34" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/lastName}" valueState="{oErrorModel>/closegovtEntityLNameE}" valueStateText="{oErrorModel>/closegovtEntityLNameM}" change="fnLiveValueChange"  enabled="{oEnableMdl>/managedByGovtFamilylastNameEnb}" class="inputStyle"></Input>
+				<Input maxLength="34" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/lastName}" valueState="{oErrorModel>/closegovtEntityLNameE}" valueStateText="{oErrorModel>/closegovtEntityLNameM}" change="fnValueChange"  enabled="{oEnableMdl>/managedByGovtFamilylastNameEnb}" class="inputStyle"></Input>
 				
 			</VBox>
 			<VBox class="fontStyle">
 				<Label required="true" text="{i18n>eMail}"  visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 <Label required="true" text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input maxLength="241" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/email}" valueState="{oErrorModel>/closegovtEntityJobTitleE}" valueStateText="{oErrorModel>/closegovtEntityJobTitleM}" change="fnLiveValueChange" enabled="{oEnableMdl>/managedByGovtFamilyemailEnb}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
+				<Input maxLength="241" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/email}" valueState="{oErrorModel>/closegovtEntityJobTitleE}" valueStateText="{oErrorModel>/closegovtEntityJobTitleM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtFamilyemailEnb}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
 			</VBox>
 			<VBox class="fontStyle">
 				<Label  text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
@@ -342,7 +342,7 @@
 			<VBox class="fontStyle">
 			<Label required="true" text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
             <Label required="true" text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input maxLength="31" class="inputStyle" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/contact}" valueState="{oErrorModel>/closegovtEntityContE}" valueStateText="{oErrorModel>/closegovtEntityContM}" change="fnLiveValueChange" enabled="{oEnableMdl>/managedByGovtFamilycontactEnb}"  liveChange="fnLiveInputNumericValueChange"></Input>
+				<Input maxLength="31" class="inputStyle" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/contact}" valueState="{oErrorModel>/closegovtEntityContE}" valueStateText="{oErrorModel>/closegovtEntityContM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtFamilycontactEnb}"  liveChange="fnLiveInputNumericValueChange"></Input>
                 <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
 				<layoutData>
 					<l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
@@ -356,7 +356,7 @@
 			<VBox class="fontStyle">
 				<Label required="true" text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 <Label required="true" text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/jobTitle}" valueState="{oErrorModel>/closegovtEntityJobTitleE}" valueStateText="{oErrorModel>/closegovtEntityJobTitleM}" change="fnLiveValueChange" enabled="{oEnableMdl>/managedByGovtFamilyjobTitleEnb}" class="inputStyle"></Input>
+				<Input value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/jobTitle}" valueState="{oErrorModel>/closegovtEntityJobTitleE}" valueStateText="{oErrorModel>/closegovtEntityJobTitleM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtFamilyjobTitleEnb}" class="inputStyle"></Input>
 			</VBox>
 		</l:Grid>
 	</l:VerticalLayout>

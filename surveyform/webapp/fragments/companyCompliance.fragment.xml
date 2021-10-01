@@ -162,7 +162,7 @@
 								<VBox class="fontStyle" >
 									<Label required="true" text="{i18n>empName}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                       <Label required="true" text="{oi18n_En>empName}&#10;{i18n>empName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input value="{oDataModel>/comComplianceDto/employeeName}" valueState="{oErrorModel>/empFNameE}" valueStateText="{oErrorModel>/empFNameM}" change="fnLiveValueChange" enabled="{oEnableMdl>/comComplianceDtoemployeeNameEnb}" class="inputStyle"></Input>
+									<Input value="{oDataModel>/comComplianceDto/employeeName}" valueState="{oErrorModel>/empFNameE}" valueStateText="{oErrorModel>/empFNameM}" change="fnValueChange" enabled="{oEnableMdl>/comComplianceDtoemployeeNameEnb}" class="inputStyle"></Input>
      	
 								</VBox>
 								<VBox class="fontStyle" >
@@ -180,7 +180,7 @@
 								<VBox class="fontStyle" >
 									<Label required="true"  text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                       <Label required="true"  text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input value="{oDataModel>/comComplianceDto/jobTitle}" enabled="{oEnableMdl>/comComplianceDtojobTitleEnb}" valueState="{oErrorModel>/empJBE}" valueStateText="{oErrorModel>/empJBM}" change="fnLiveValueChange" class="inputStyle"></Input>
+									<Input value="{oDataModel>/comComplianceDto/jobTitle}" enabled="{oEnableMdl>/comComplianceDtojobTitleEnb}" valueState="{oErrorModel>/empJBE}" valueStateText="{oErrorModel>/empJBM}" change="fnValueChange" class="inputStyle"></Input>
 									
                                 </VBox>
 								<VBox class="fontStyle" >

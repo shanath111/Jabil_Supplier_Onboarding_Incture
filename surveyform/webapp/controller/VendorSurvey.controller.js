@@ -2208,11 +2208,12 @@ sap.ui.define([
 
                             iError = true;
                         }
-                    }
-                    if (oView.getModel("companyInfoModel").getData().oCountry === 'USA' && oView.getModel("companyInfoModel").getData().haveDiversityCertifications === null) {
+                        if (oView.getModel("companyInfoModel").getData().oCountry === 'USA' && oView.getModel("companyInfoModel").getData().haveDiversityCertifications === null) {
                         oView.getModel("oErrorModel").getData().haveDiversityCertificationsE = "Error";
                         iError = true;
                     }
+                    }
+                    
                     if (oView.getModel("remitModel").getData().isRemitToAddress) {
                         if (!oView.getModel("remitModel").getData().rName) {
                             oView.getModel("oErrorModel").getData().rTANameE = "Error";
@@ -3850,8 +3851,9 @@ sap.ui.define([
             },
 
             _fnValidateDraftShippingInfo: function () {
+                var iError = false;
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isDeliver) {
-                    var iError = false;
+                    
                     if (this.emailValidResult) {
                         iError = true;
                     }
@@ -3873,8 +3875,9 @@ sap.ui.define([
             },
 
             _fnValidateDraftComplianceInfo: function () {
-                if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectations === false) {
                     var iError = false;
+                if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectations === false) {
+                
                     if (this.emailValidResult) {
                         iError = true;
                     }
@@ -4621,6 +4624,12 @@ sap.ui.define([
                     }
                 }
 
+            },
+             fnValueChange: function (oEvent) {
+                if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                }
             },
             fnClearValueState: function (oEvent) {
                 var selectedIndex = oEvent.getParameter("selectedIndex");
@@ -5432,7 +5441,16 @@ sap.ui.define([
 
                     oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
                     oView.getModel("oEnableMdl").refresh();
+                    // if(this.oWizard._getProgressNavigator()._iCurrentStep == 2){
+                    //  var isCreation = oView.getModel("oUserModel").getData().isNew;
+                    //  if(isCreation){
+                    //        this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
+                    //  } else {
+                    //        this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep].sId).nextStep();
+                    //  }
+                    // } else{
                     this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
+                  //  }
                 } else if (this.oWizard._getProgressNavigator()._iCurrentStep !== 5 && this.oWizard._getProgressNavigator()._iCurrentStep !== 8 && this.oWizard._getProgressNavigator()._iCurrentStep !== 10) {
                     var that = this;
                     var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
@@ -5637,7 +5655,7 @@ sap.ui.define([
                     this._fnValidateDraftOwnershipInfo();
                 }
                 if (this.oWizard._getProgressNavigator()._iCurrentStep == 5) {
-                    this._fnValidateDraftCompanyInfo();
+                    //this._fnValidateDraftCompanyInfo();
                 }
                 if (this.oWizard._getProgressNavigator()._iCurrentStep == 6) {
                     this._fnValidateDraftBankInfo();
@@ -6264,6 +6282,17 @@ sap.ui.define([
                 oView.byId("iRAddress").addEventDelegate({
                     onAfterRendering: this.onActivateCompanyInfoRTA
                 }, this);
+            },
+            onActivateOperAndManuServ1: function(){
+                 oView.byId("operServList").addEventDelegate({
+                     onAfterRendering: function() {
+      var cb = $.find('.sapMCbBg');
+     // cb[0].addClass('sapMCbBgDis');
+      cb[0].click(function(event) {
+        event.stopPropagation();
+      });
+    }
+                 });
             },
             onActivateCompanyInfoOFA: function () {
                 var that = this;
