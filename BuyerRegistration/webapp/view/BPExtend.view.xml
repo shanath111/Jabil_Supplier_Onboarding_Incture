@@ -54,7 +54,7 @@
 									<Label text="{i18n>BPEDUNSNumber}:" class="cl_VRLablCls "></Label>
 									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/duns}" class="cl_VRInputCls"></Input>
 							</VBox>
-                            <VBox class="VRVboxStyle1">
+                            <!-- <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPECompanyCode}:" class="cl_VRLablCls "></Label>
                                     	<ComboBox width="100%" items="{oBPLookUpMdl>/CompanyCode}" enabled="{oConfigMdl>/searchEnable}"  autocomplete="false" valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
 											filterSecondaryValues="true"  change="fnChangeDropDownComp" showSecondaryValues="true" 
@@ -82,8 +82,8 @@
                                         class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
                                         <core:ListItem key="{oStaticData>}" text="{oStaticData>}" />
                                 </ComboBox>
-							</VBox>
-                            <VBox class="VRVboxStyle1">
+							</VBox> -->
+                            <!-- <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPEPrimaryDup}:" class="cl_VRLablCls "></Label>
 									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/relationshipIndicator}" class="cl_VRInputCls"></Input>
 							</VBox>
@@ -110,8 +110,8 @@
                                     class="cl_VRInputCls" selectedKey="{JMSearchFilter>/centralPurchasingBlock}" editable="{oBTHeaderMdl>/EDITABLE}">
                                     <core:ListItem key="{oStaticData>}" text="{oStaticData>}" />
                                 </ComboBox>         
-							</VBox>
-                            <VBox class="VRVboxStyle1">
+							</VBox> -->
+                            <!-- <VBox class="VRVboxStyle1">
 								<Label text="{i18n>BPECompanyCode/PostingBlock}:" class="cl_VRLablCls "></Label>	
                                 <ComboBox width="100%" items="{oStaticData>/FlagLp}" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}"
                                     filterSecondaryValues="true" enabled="{oConfigMdl>/searchEnable}" change="fnChangeDropDown" showSecondaryValues="true" 
@@ -135,8 +135,8 @@
                                         class="cl_VRInputCls" selectedKey="{JMSearchFilter>/centralDeletionFlag}" editable="{oBTHeaderMdl>/EDITABLE}">
                                         <core:ListItem key="{oStaticData>}" text="{oStaticData>}" />
                                     </ComboBox>
-                            </VBox>	
-                             <VBox class="VRVboxStyle1">
+                            </VBox>	 -->
+                             <!-- <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPECompanyCodeDelFlag}:" class="cl_VRLablCls "></Label>
 
                                            <ComboBox width="100%" items="{oStaticData>/FlagLp}" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}"
@@ -154,7 +154,7 @@
 										</ComboBox>
                                         
 							</VBox> 
-                            
+                             -->
                             
 							</l:Grid>
 						</content>
