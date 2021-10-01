@@ -884,7 +884,7 @@
 									</VBox>
                         
 								</l:Grid>
-                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="{=${companyInfoModel>/oCountry} === 'USA'? true: false}"> 
+                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} ? true: false }"> 
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>divCertText}"  visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
 										<Label text="{oi18n_En>divCertText}/&#160;{i18n>divCertText}"  visible="{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="cl_PreviewLablCls "></Label>
@@ -909,7 +909,7 @@
 				</VBox>
 			</gl:GridListItem>
 		</gl:GridList> -->
-        <gl:GridList class="gList sapUiTinyMarginTop sapUiSizeCompact" items="{oLookUpModel>/enterprise}" visible="{companyInfoModel>/haveDiversityCertifications}">
+        <gl:GridList class="gList sapUiTinyMarginTop sapUiSizeCompact" items="{oLookUpModel>/enterprise}" visible="{=${companyInfoModel>/haveDiversityCertifications} &amp;&amp; ${companyInfoModel>/isOrderFromAddress}}">
             <gl:customLayout>
                 <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" /> 
             </gl:customLayout> 
@@ -1133,13 +1133,13 @@
 									<Label text="{oDataModel>/bankDto/financeContact1/email}" class="cl_PreviewLablClsValue"></Label> 
                                 </VBox>
 
-                                <VBox class="fontStyle">
+                                <VBox>
                                     <Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                     <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
 									<Label text="{oDataModel>/bankDto/financeContact1/countryContactCode}" class="cl_PreviewLablClsValue"></Label>
                                         
                                 </VBox>
-                                <VBox class="fontStyle">
+                                <VBox>
                                     <Label text="{i18n>phoneNum}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                     <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
 									<Label text="{oDataModel>/bankDto/financeContact1/contact}" class="cl_PreviewLablClsValue"></Label>
@@ -1185,20 +1185,20 @@
 									<Label text="{oDataModel>/bankDto/financeContact2/email}" class="cl_PreviewLablClsValue"></Label> 
                                 </VBox>
 
-                                <VBox class="fontStyle">
+                                <VBox>
                                     <Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
-                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls"></Label>
 									<Label text="{oDataModel>/bankDto/financeContact2/countryContactCode}" class="cl_PreviewLablClsValue"></Label>
                                         
                                 </VBox>
-                                <VBox class="fontStyle">
+                                <VBox>
                                     <Label text="{i18n>phoneNum}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
-                                    <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+                                    <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls"></Label>
 									<Label text="{oDataModel>/bankDto/financeContact2/contact}" class="cl_PreviewLablClsValue"></Label>
                                 </VBox>
                                 <VBox >
                                      <Label text="{i18n>extension}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
-                                    <Label text="{oi18n_En>extension}&#10;{i18n>extension}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+                                    <Label text="{oi18n_En>extension}&#10;{i18n>extension}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls"></Label>
 									<Label text="{=${oDataModel>/bankDto/financeContact2/extension}?${oDataModel>/bankDto/financeContact2/extension}:'---'}" class="cl_PreviewLablClsValue"></Label> 
 									
 								</VBox>
@@ -1742,13 +1742,13 @@
                                         <Label text="{=${oDataModel>/itCyberDto/responsibleForInforSecurity}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>  
-                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiSmallMarginTop">
+                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiSmallMarginTop" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem}||${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}? true: false}">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>infoSecurityContact}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{oi18n_En>infoSecurityContact}/&#160;{i18n>infoSecurityContact}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
 									</VBox>
 								</l:Grid>  
-                                 <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid">
+                                 <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem}||${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}? true: false}">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>firstNameG}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" visible="{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="cl_PreviewLablCls "></Label>
