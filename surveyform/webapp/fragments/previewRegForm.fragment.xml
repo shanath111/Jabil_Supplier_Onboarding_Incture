@@ -81,13 +81,23 @@
 									<Label text="{oDataModel>/surveyInfoDto/authorityContact/email}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
-								    <Label text="{i18n>contact}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
-                                     <Label text="{oi18n_En>contact}&#10;{i18n>contact}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+										<Label text="{i18n>countryCode}" wrapping="true" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                        <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
+									<Label text="{oDataModel>/surveyInfoDto/authorityContact/countryContactCode}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
+                                    <VBox class="VRVboxStyle1">
+								    <Label text="{i18n>phoneNum}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                     <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
 									<Label text="{oDataModel>/surveyInfoDto/authorityContact/contact}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
-								    <Label text="{i18n>mobile}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
-                                     <Label text="{oi18n_En>mobile}&#10;{i18n>mobile}"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
+								    <Label text="{i18n>extension}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                     <Label text="{oi18n_En>extension}&#10;{i18n>extension}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+									<Label text="{oDataModel>/surveyInfoDto/authorityContact/extension}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
+                                    <VBox class="VRVboxStyle1">
+								    <Label text="{i18n>mobPhone}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                     <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
 									<Label text="{oDataModel>/surveyInfoDto/authorityContact/mobile}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>
@@ -110,9 +120,12 @@
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" wrapping="true"  class="cl_PreviewLablCls "></Label>
 									<Label text="{oDataModel>/surveyInfoDto/mainContact/email}" class="cl_PreviewLablClsValue "/>
 								</VBox>
-							
+                                <VBox>
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countryCode}:${oi18n_En>countryCode} +'&#10;' + ${i18n>countryCode}}" wrapping="true"  class="cl_PreviewLablCls "></Label>
+									<Label text="{oDataModel>/surveyInfoDto/mainContact/countryContactCode}" class="cl_PreviewLablClsValue "/>
+								</VBox>
 								<VBox>
-                                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>contact}:${oi18n_En>contact} +'&#10;' + ${i18n>contact}}" wrapping="true" class="cl_PreviewLablCls "></Label>
+                                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" wrapping="true" class="cl_PreviewLablCls "></Label>
                                     <Label text="{oDataModel>/surveyInfoDto/mainContact/contact}" class="cl_PreviewLablClsValue "/>
                                     
                                 </VBox> 
@@ -121,9 +134,14 @@
 									<Label text="{=${oDataModel>/surveyInfoDto/mainContact/extension}?${oDataModel>/surveyInfoDto/mainContact/extension}:'---'}" class="cl_PreviewLablClsValue "/>
                                   
 								</VBox>
+                                <VBox>
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>mobPhone}:${oi18n_En>mobPhone} +'&#10;' + ${i18n>mobPhone}}" wrapping="true"  class="cl_PreviewLablCls "></Label>
+									<Label text="{oDataModel>/surveyInfoDto/mainContact/mobile}" class="cl_PreviewLablClsValue "/>
+                                  
+								</VBox>
 							</l:Grid>
-<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>altCompanyContact}:${oi18n_En>altCompanyContact} +'/&#10;' + ${i18n>altCompanyContact}}"  class="cl_PreviewPageSubHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
-    <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop">
+                            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>altCompanyContact}:${oi18n_En>altCompanyContact} +'/&#10;' + ${i18n>altCompanyContact}}"  class="cl_PreviewPageSubHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
+                            <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop">
 								<VBox>
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" wrapping="true" class="cl_PreviewLablCls "></Label>
 									<Label text="{oDataModel>/surveyInfoDto/altContact/firstName}" class="cl_PreviewLablClsValue " />
@@ -144,7 +162,10 @@
 									<Label text="{oDataModel>/surveyInfoDto/altContact/email}" class="cl_PreviewLablClsValue "/>
 										
                                 </VBox>
-							
+                                <VBox >
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countryCode}:${oi18n_En>countryCode} +'&#10;' + ${i18n>countryCode}}" wrapping="true" class="cl_PreviewLablCls "></Label>
+									<Label text="{oDataModel>/surveyInfoDto/altContact/countryContactCode}" class="cl_PreviewLablClsValue "/>	
+                                </VBox>
                                 <VBox>
                                 <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" wrapping="true" class="cl_PreviewLablCls "></Label>
 											<Label text="{oDataModel>/surveyInfoDto/altContact/contact}" class="cl_PreviewLablClsValue "/>
@@ -289,6 +310,11 @@
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
 									<Label text="{oDataModel>/bpInfoDto/pointOfContact/email}" class="cl_PreviewLablClsValue "/>	
                                 </VBox>
+                                <VBox>
+                                    <Label text="{i18n>countryCode}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+								    <Label text="{oDataModel>/bpInfoDto/pointOfContact/countryContactCode}" class="cl_PreviewLablClsValue "/>
+                                </VBox> 
 							<VBox>
                                 <!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" class="cl_PreviewLablCls " ></Label> -->
                                  <Label text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
@@ -564,8 +590,13 @@
 										<Label text="{=${oDataModel>/ownerShipInfoDto/managedByGovtContact/email}?${oDataModel>/ownerShipInfoDto/managedByGovtContact/email}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
-									 <Label text="{i18n>contact}"  visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewLablCls "></Label> 
-                                      <Label text="{oi18n_En>contact}&#10;{i18n>contact}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label> 
+										<Label text="{i18n>countryCode}"  visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewLablCls "></Label>
+                                        <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+										<Label text="{=${oDataModel>/ownerShipInfoDto/managedByGovtContact/countryContactCode}?${oDataModel>/ownerShipInfoDto/managedByGovtContact/countryContactCode}:'---'}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
+                                    <VBox class="VRVboxStyle1">
+									 <Label text="{i18n>phoneNum}"  visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewLablCls "></Label> 
+                                      <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label> 
 										<Label text="{=${oDataModel>/ownerShipInfoDto/managedByGovtContact/contact}?${oDataModel>/ownerShipInfoDto/managedByGovtContact/contact}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                      <VBox class="VRVboxStyle1">
@@ -616,8 +647,13 @@
 										<Label text="{=${oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/email}?${oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/email}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
-										 <Label text="{i18n>contact}" visible="{oVisibilityModel>/isdefaultLan}"   class="cl_PreviewLablCls "></Label>
-                                          <Label text="{oi18n_En>contact}&#10;{i18n>contact}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+										 <Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}"   class="cl_PreviewLablCls "></Label>
+                                          <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+										<Label text="{=${oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/countryContactCode}?${oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/countryContactCode}:'---'}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
+                                    <VBox class="VRVboxStyle1">
+										 <Label text="{i18n>phoneNum}" visible="{oVisibilityModel>/isdefaultLan}"   class="cl_PreviewLablCls "></Label>
+                                          <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
 										<Label text="{=${oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/contact}?${oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/contact}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                      <VBox class="VRVboxStyle1">
@@ -1245,24 +1281,26 @@
 										<Label text="{i18n>companyName}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>companyName}&#10;{i18n>companyName}"  wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
 										<Label text="{oDataModel>/shippingInfoDto/deliverRepName}" class="cl_PreviewLablClsValue "></Label>
-									</VBox>
-
-							
-                                    
+									</VBox>    
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>supplierLogis1}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>supplierLogis1}&#10;{i18n>supplierLogis1}"  wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
-										<Label text="{=${oDataModel>/shippingInfoDto/supplierContactInLogistics}?${oDataModel>/shippingInfoDto/supplierContactInLogistics}:'---'}" class="cl_PreviewLablClsValue "></Label>
+										<Label text="{oDataModel>/shippingInfoDto/supplierContactInLogistics}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                      <VBox class="VRVboxStyle1">
 										<Label text="{i18n>eMail}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}"  wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
 										<Label text="{oDataModel>/shippingInfoDto/deliverRepEmail}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
+                                    <VBox class="VRVboxStyle1">
+										 <Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                          <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}"  wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+										<Label text="{oDataModel>/shippingInfoDto/deliverRepCountryContactCode}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
                                       <VBox class="VRVboxStyle1">
 										 <Label text="{i18n>phoneNum}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                           <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}"  wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
-										<Label text="{=${oDataModel>/shippingInfoDto/deliverRepContact}?${oDataModel>/shippingInfoDto/deliverRepContact}:'---'}" class="cl_PreviewLablClsValue "></Label>
+										<Label text="{oDataModel>/shippingInfoDto/deliverRepContact}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     
                                     
@@ -1447,9 +1485,14 @@
                                         <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls "></Label>
 										<Label text="{=${oDataModel>/comComplianceDto/commitedToExpectationsContact/email}?${oDataModel>/comComplianceDto/commitedToExpectationsContact/email}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
+                                    <VBox class="VRVboxStyle1">
+										<Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                        <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls "></Label>
+										<Label text="{=${oDataModel>/comComplianceDto/commitedToExpectationsContact/countryContactCode}?${oDataModel>/comComplianceDto/commitedToExpectationsContact/countryContactCode}:'---'}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
                                     	<VBox class="VRVboxStyle1">
-										<Label text="{i18n>contact}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
-                                        <Label text="{oi18n_En>contact}&#10;{i18n>contact}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls "></Label>
+										<Label text="{i18n>phoneNum}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                        <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls "></Label>
 										<Label text="{=${oDataModel>/comComplianceDto/commitedToExpectationsContact/contact}?${oDataModel>/comComplianceDto/commitedToExpectationsContact/contact}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     	<VBox class="VRVboxStyle1">
@@ -1699,9 +1742,14 @@
                                         <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true"  visible="{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
 										<Label text="{=${oDataModel>/itCyberDto/itcyberSecurityContact/email}?${oDataModel>/itCyberDto/itcyberSecurityContact/email}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
+                                    <VBox class="VRVboxStyle1">
+										<Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewLablCls "></Label>
+                                        <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true"  visible="{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
+										<Label text="{=${oDataModel>/itCyberDto/itcyberSecurityContact/countryContactCode}?${oDataModel>/itCyberDto/itcyberSecurityContact/countryContactCode}:'---'}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
                                     	<VBox class="VRVboxStyle1">
-										 <Label text="{i18n>contact}" visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewLablCls "></Label>
-                                         <Label text="{oi18n_En>contact}&#10;{i18n>contact}" wrapping="true"  visible="{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
+										 <Label text="{i18n>phoneNum}" visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewLablCls "></Label>
+                                         <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true"  visible="{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
 										<Label text="{=${oDataModel>/itCyberDto/itcyberSecurityContact/contact}?${oDataModel>/itCyberDto/itcyberSecurityContact/contact}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     	<VBox class="VRVboxStyle1">
