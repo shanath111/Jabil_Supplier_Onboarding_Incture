@@ -47,6 +47,7 @@ sap.ui.define([
                 oView.getModel("oConfigMdl").getData().screenEditable = false;
                 oView.getModel("oConfigMdl").getData().contextPath = oContext;
                 oView.getModel("oConfigMdl").getData().searchAddress = false;
+                    oView.getModel("oConfigMdl").getData().CommentsVis = false;
 
                 if (oContext.Name == "COILegal") {
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = false;
@@ -72,7 +73,10 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
-
+ if (oEvent.getSource().getData().comments) {
+                            oView.getModel("oConfigMdl").getData().CommentsVis = true;
+                            oView.getModel("oConfigMdl").getData().comments = oEvent.getSource().getData().comments;
+                        }
                        if (oEvent.getSource().getData().isTaskCompleted == true) {
                             oView.getModel("oConfigMdl").getData().isClaimed = false;
                         } else {
@@ -676,7 +680,8 @@ sap.ui.define([
                                         "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                                         "caseId": oView.getModel("JMEulaComments").getData().caseId,
                                         "coiLegalApproved": vAprActn,
-                                        "COIComments": oView.getModel("JMAppvrComments").getData().Comments
+                                        "COIComments": oView.getModel("JMAppvrComments").getData().Comments,
+                                        "legal_coi_comment":oView.getModel("JMAppvrComments").getData().Comments
                                     },
                                     "status": "",
                                     "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
@@ -700,7 +705,8 @@ sap.ui.define([
                                     "context": {
                                         "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                                         "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                                        "buyerActionOnRemediation": vActn
+                                        "buyerActionOnRemediation": vActn,
+                                        "buyer_coi_comment":oView.getModel("JMAppvrComments").getData().Comments
                                     },
                                     "status": "",
                                     "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
@@ -720,7 +726,8 @@ sap.ui.define([
                                     "context": {
                                         "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                                         "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                                        "isBuyerApprovedonEULA": vAprActn
+                                        "isBuyerApprovedonEULA": vAprActn,
+                                        "buyer_eula_comment":oView.getModel("JMAppvrComments").getData().Comments
                                     },
                                     "status": "",
                                     "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,

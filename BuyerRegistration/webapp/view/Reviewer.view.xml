@@ -21,9 +21,9 @@
 										<Button text="{i18n>TIViewDetails}"  press="fnViewDetails" class="cl_VRActnBtnClear sapUiTinyMarginBottom"/>
                                         	
 									</Toolbar>
-                                     <VBox class="" visible="{oConfigMdl>/NDAVisible}" >
-										<Label text="{i18n>TTINDARejectionReason}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
-										 <Label text="{JMEulaComments>/docusignResponse/rejectReason}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
+                                     <VBox class="" visible="{oConfigMdl>/CommentsVis}" >
+										<Label text="{i18n>Comments}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
+										 <Label text="{oConfigMdl>/comments}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
 									<!-- <Label text="Not Agreeing NDA" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label> -->
                                      <HBox class="cl_HBoxBlockSep">
                                 </HBox>
@@ -233,12 +233,12 @@
 												</VBox>
                                                 <VBox class="VRVboxStyle1">
 													<Label text="{i18n>TISearchTerm1}" required="true" class="cl_VRLablCls "></Label>
-													<Input width="95%" class="cl_VRInputCls" liveChange="fnChangeSearchTerm" valueState="{JMValidateDefault>/searchTerm1e}" valueStateText="{JMValidateDefault>/searchTerm1m}" enabled="{oConfigMdl>/defaultEnable}" maxLength="200" value="{oDataModel>/defaultValuesDto/searchTerm1}"></Input>
+													<Input width="95%" class="cl_VRInputCls" liveChange="fnChangeSearchTerm" valueState="{JMValidateDefault>/searchTerm1e}" valueStateText="{JMValidateDefault>/searchTerm1m}" enabled="{oConfigMdl>/defaultEnable}" maxLength="20" value="{oDataModel>/defaultValuesDto/searchTerm1}"></Input>
 												</VBox>
 												<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TISearchTerm2}" required="false" class="cl_VRLablCls "></Label>
 													<Input width="95%" class="cl_VRInputCls" liveChange="fnLiveChangeIncoTerms" valueState="{JMBPCreate>/incoTermse}"
-														valueStateText="{JMBPCreate>/incoTermm}" enabled="{oConfigMdl>/defaultEnable}" maxLength="200" value="{oDataModel>/defaultValuesDto/searchTerm2}"></Input>
+														valueStateText="{JMBPCreate>/incoTermm}" enabled="{oConfigMdl>/defaultEnable}" maxLength="20" value="{oDataModel>/defaultValuesDto/searchTerm2}"></Input>
 												</VBox>
                                                 <VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIAccNoAltPay}" wrapping="false" required="false" class="cl_VRLablCls "></Label>

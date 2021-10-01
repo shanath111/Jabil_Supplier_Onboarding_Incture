@@ -10,3 +10,7 @@ archive.zip
 .*_mta_build_tmp
 # auto generated wildcard
 surveyform/.env2
+# auto generated wildcard
+Partner Lifecycle Supplier Portal/surveyform/.env1
+# auto generated wildcard
+Partner Lifecycle Supplier Portal/BuyerRegistration/.env52

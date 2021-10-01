@@ -39,7 +39,7 @@ sap.ui.define([
             },
 
             fnSetConfigModel: function (oContext) {
-
+                oView.getModel("oConfigMdl").getData().CommentsVis = false;
                 if (oContext.Name == "Buyer") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = true;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;
@@ -326,6 +326,11 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
+                        if (oEvent.getSource().getData().comments) {
+                            oView.getModel("oConfigMdl").getData().CommentsVis = true;
+                            oView.getModel("oConfigMdl").getData().comments = oEvent.getSource().getData().comments;
+                        }
+
                         if (oEvent.getSource().getData().isTaskCompleted == true) {
                             oView.getModel("oConfigMdl").getData().isClaimed = false;
                         } else {
@@ -1102,7 +1107,8 @@ sap.ui.define([
                                 "orderBpNumber": oView.getModel("JMAppvrComments").getData().orderBpNumber.replace(/^0+/, ''),
                                 "invoiceBpNumber": oView.getModel("JMAppvrComments").getData().invoiceBpNumber.replace(/^0+/, ''),
                                 "company_code": oView.getModel("oDataModel").getData().defaultValuesDto.reqCompanyCode,
-                                "purchasing_code": oView.getModel("oDataModel").getData().defaultValuesDto.reqPurchasingOrg
+                                "purchasing_code": oView.getModel("oDataModel").getData().defaultValuesDto.reqPurchasingOrg,
+                                "buyer_review_comment": oView.getModel("JMAppvrComments").getData().Comments
                             },
                             "status": "",
                             "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
@@ -1118,7 +1124,8 @@ sap.ui.define([
                                 // "orderBpNumber": oView.getModel("JMAppvrComments").getData().orderBpNumber.replace(/^0+/, ''),
                                 // "invoiceBpNumber": oView.getModel("JMAppvrComments").getData().invoiceBpNumber.replace(/^0+/, ''),
                                 "company_code": oView.getModel("oDataModel").getData().defaultValuesDto.reqCompanyCode,
-                                "purchasing_code": oView.getModel("oDataModel").getData().defaultValuesDto.reqPurchasingOrg
+                                "purchasing_code": oView.getModel("oDataModel").getData().defaultValuesDto.reqPurchasingOrg,
+                                "buyer_review_comment": oView.getModel("JMAppvrComments").getData().Comments
                             },
                             "status": "",
                             "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
@@ -1138,7 +1145,8 @@ sap.ui.define([
                         "context": {
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                            "isLegalApprovedNDARej": vAprActn
+                            "isLegalApprovedNDARej": vAprActn,
+                            "legal_nds_comment": oView.getModel("JMAppvrComments").getData().Comments
                         },
                         "status": "",
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
@@ -1165,7 +1173,8 @@ sap.ui.define([
                         "context": {
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                            "isGBSApprovedBank": vAprActn
+                            "isGBSApprovedBank": vAprActn,
+                            "gbs_bank_not_found_comment": oView.getModel("JMAppvrComments").getData().Comments
                         },
                         "status": "",
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
@@ -1188,7 +1197,8 @@ sap.ui.define([
                         "context": {
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                            "isApprover1Approved": vAprActn
+                            "isApprover1Approved": vAprActn,
+                            "operational_approver1_comment": oView.getModel("JMAppvrComments").getData().Comments
                         },
                         "status": "",
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
@@ -1211,7 +1221,8 @@ sap.ui.define([
                         "context": {
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                            "isApprover2Approved": vAprActn
+                            "isApprover2Approved": vAprActn,
+                            "operational_approver2_comment": oView.getModel("JMAppvrComments").getData().Comments
                         },
                         "status": "",
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
@@ -1234,7 +1245,8 @@ sap.ui.define([
                         "context": {
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                            "isApprover3Approved": vAprActn
+                            "isApprover3Approved": vAprActn,
+                            "operational_approver3_comment": oView.getModel("JMAppvrComments").getData().Comments
                         },
                         "status": "",
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
@@ -1257,7 +1269,8 @@ sap.ui.define([
                         "context": {
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                            "isApprover4Approved": vAprActn
+                            "isApprover4Approved": vAprActn,
+                            "operational_approver4_comment": oView.getModel("JMAppvrComments").getData().Comments
                         },
                         "status": "",
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
@@ -1280,7 +1293,8 @@ sap.ui.define([
                         "context": {
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                            "isApprover5Approved": vAprActn
+                            "isApprover5Approved": vAprActn,
+                            "operational_approver5_comment": oView.getModel("JMAppvrComments").getData().Comments
                         },
                         "status": "",
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
