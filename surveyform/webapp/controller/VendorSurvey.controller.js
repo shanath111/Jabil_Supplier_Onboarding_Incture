@@ -1749,7 +1749,7 @@ sap.ui.define([
                         } else {
                             oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "None";
                             oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
-                            iError = false;
+                          //  iError = false;
                         }
                     }
 
@@ -2208,11 +2208,12 @@ sap.ui.define([
 
                             iError = true;
                         }
-                    }
-                    if (oView.getModel("companyInfoModel").getData().oCountry === 'USA' && oView.getModel("companyInfoModel").getData().haveDiversityCertifications === null) {
+                        if (oView.getModel("companyInfoModel").getData().oCountry === 'USA' && oView.getModel("companyInfoModel").getData().haveDiversityCertifications === null) {
                         oView.getModel("oErrorModel").getData().haveDiversityCertificationsE = "Error";
                         iError = true;
                     }
+                    }
+                    
                     if (oView.getModel("remitModel").getData().isRemitToAddress) {
                         if (!oView.getModel("remitModel").getData().rName) {
                             oView.getModel("oErrorModel").getData().rTANameE = "Error";
@@ -3130,7 +3131,7 @@ sap.ui.define([
                             oView.getModel("oErrorModel").getData().cocE = "None";
                             oView.getModel("oErrorModel").getData().cocM = "";
 
-                            iError = false;
+                           // iError = false;
                         }
                     }
                     if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact && oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact.length > 30) {
@@ -3485,6 +3486,24 @@ sap.ui.define([
 
                     }
                 });
+                var aCompanyContact = oView.getModel("oLookUpModel").getData().tabledata;
+                for (var i = 0; i < aCompanyContact.length; i++) {
+                    if (aCompanyContact[i].email && aCompanyContact[i].email.length > 241) {
+                        iError = true;
+                    }
+                    if (aCompanyContact[i].firstName && aCompanyContact[i].firstName.length > 34) {
+                        iError = true;
+                    }
+                    if (aCompanyContact[i].lastName && aCompanyContact[i].lastName.length > 34) {
+                        iError = true;
+                    }
+                    if (aCompanyContact[i].contact && aCompanyContact[i].contact.length > 30) {
+                        iError = true;
+                    }
+                    if (aCompanyContact[i].extension && aCompanyContact[i].extension.length > 10) {
+                        iError = true;
+                    }
+                }
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("contactInfo").setValidated(false);
@@ -3578,18 +3597,18 @@ sap.ui.define([
                 var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
                 if (email) {
                     if (!email.match(mailregex)) {
-                        oView.getModel("oErrorModel").getData().cocE = "Error";
-                        oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
+                        oView.getModel("oErrorModel").getData().ppocEmailE = "Error";
+                        oView.getModel("oErrorModel").getData().ppocEmailM = oi18n.getText("invalidEmail");
 
                         iError = true;
                     } else if (!email.toUpperCase().includes("JABIL.COM")) {
-                        oView.getModel("oErrorModel").getData().cocE = "Error";
-                        oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
+                        oView.getModel("oErrorModel").getData().ppocEmailE = "Error";
+                        oView.getModel("oErrorModel").getData().ppocEmailM = oi18n.getText("invalidEmail");
 
                         iError = true;
                     } else {
-                        oView.getModel("oErrorModel").getData().cocE = "None";
-                        oView.getModel("oErrorModel").getData().cocM = "";
+                        oView.getModel("oErrorModel").getData().ppocEmailE = "None";
+                        oView.getModel("oErrorModel").getData().ppocEmailM = "";
 
                         iError = iError || false;
                     }
@@ -3602,7 +3621,7 @@ sap.ui.define([
                     } else {
                         oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "None";
                         oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
-                        iError = false;
+                       // iError = false;
                     }
                 }
 
@@ -3639,7 +3658,7 @@ sap.ui.define([
                     iError = true;
                 }
                 var aCompanyContact = oView.getModel("oLookUpModel").getData().tabledata;
-                for (var i = 0; i < 11; i++) {
+                for (var i = 0; i < aCompanyContact.length; i++) {
                     if (aCompanyContact[i].email && aCompanyContact[i].email.length > 241) {
                         iError = true;
                     }
@@ -3850,8 +3869,9 @@ sap.ui.define([
             },
 
             _fnValidateDraftShippingInfo: function () {
+                var iError = false;
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isDeliver) {
-                    var iError = false;
+                    
                     if (this.emailValidResult) {
                         iError = true;
                     }
@@ -3873,8 +3893,9 @@ sap.ui.define([
             },
 
             _fnValidateDraftComplianceInfo: function () {
-                if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectations === false) {
                     var iError = false;
+                if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectations === false) {
+                
                     if (this.emailValidResult) {
                         iError = true;
                     }
@@ -3886,7 +3907,7 @@ sap.ui.define([
                             oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
 
                             iError = true;
-                        } else if (!email1.toUpperCase().includes("JABIL.COM")) {
+                        } else if (email1.toUpperCase().includes("JABIL.COM")) {
                             oView.getModel("oErrorModel").getData().cocE = "Error";
                             oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
 
@@ -3903,17 +3924,17 @@ sap.ui.define([
                     var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
                     if (email2) {
                         if (!email2.match(mailregex)) {
-                            oView.getModel("oErrorModel").getData().cocE = "Error";
+                            oView.getModel("oErrorModel").getData().pEmpE = "Error";
                             oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
 
                             iError = true;
                         } else if (!email2.toUpperCase().includes("JABIL.COM")) {
-                            oView.getModel("oErrorModel").getData().cocE = "Error";
+                            oView.getModel("oErrorModel").getData().pEmpE = "Error";
                             oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
 
                             iError = true;
                         } else {
-                            oView.getModel("oErrorModel").getData().cocE = "None";
+                            oView.getModel("oErrorModel").getData().pEmpE = "None";
                             oView.getModel("oErrorModel").getData().cocM = "";
 
                             iError = iError || false;
@@ -3952,18 +3973,18 @@ sap.ui.define([
                 var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
                 if (email) {
                     if (!email.match(mailregex)) {
-                        oView.getModel("oErrorModel").getData().cocE = "Error";
-                        oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
+                        oView.getModel("oErrorModel").getData().cyberSurveyE = "Error";
+                        oView.getModel("oErrorModel").getData().cyberSurveyM = oi18n.getText("invalidEmail");
 
                         iError = true;
-                    } else if (!email.toUpperCase().includes("JABIL.COM")) {
-                        oView.getModel("oErrorModel").getData().cocE = "Error";
-                        oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
+                    } else if (email.toUpperCase().includes("JABIL.COM")) {
+                        oView.getModel("oErrorModel").getData().cyberSurveyE = "Error";
+                        oView.getModel("oErrorModel").getData().cyberSurveyM = oi18n.getText("invalidEmail");
 
                         iError = true;
                     } else {
-                        oView.getModel("oErrorModel").getData().cocE = "None";
-                        oView.getModel("oErrorModel").getData().cocM = "";
+                        oView.getModel("oErrorModel").getData().cyberSurveyE = "None";
+                        oView.getModel("oErrorModel").getData().cyberSurveyM = "";
 
                         iError = iError || false;
                     }
@@ -4622,6 +4643,12 @@ sap.ui.define([
                 }
 
             },
+             fnValueChange: function (oEvent) {
+                if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                }
+            },
             fnClearValueState: function (oEvent) {
                 var selectedIndex = oEvent.getParameter("selectedIndex");
                 if (selectedIndex !== -1) {
@@ -4710,6 +4737,7 @@ sap.ui.define([
                         if (oEvent.getSource().getValue().length == oEvent.getSource().getMaxLength()) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                             that.emailValidResult = true;
                         } else {
                             oEvent.getSource().setValueState("None");
                             oEvent.getSource().setValueStateText("");
@@ -5433,7 +5461,16 @@ sap.ui.define([
 
                     oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
                     oView.getModel("oEnableMdl").refresh();
+                    // if(this.oWizard._getProgressNavigator()._iCurrentStep == 2){
+                    //  var isCreation = oView.getModel("oUserModel").getData().isNew;
+                    //  if(isCreation){
+                    //        this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
+                    //  } else {
+                    //        this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep].sId).nextStep();
+                    //  }
+                    // } else{
                     this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
+                  //  }
                 } else if (this.oWizard._getProgressNavigator()._iCurrentStep !== 5 && this.oWizard._getProgressNavigator()._iCurrentStep !== 8 && this.oWizard._getProgressNavigator()._iCurrentStep !== 10) {
                     var that = this;
                     var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
@@ -5655,7 +5692,7 @@ sap.ui.define([
                     this._fnValidateDraftOwnershipInfo();
                 }
                 if (this.oWizard._getProgressNavigator()._iCurrentStep == 5) {
-                    this._fnValidateDraftCompanyInfo();
+                    //this._fnValidateDraftCompanyInfo();
                 }
                 if (this.oWizard._getProgressNavigator()._iCurrentStep == 6) {
                     this._fnValidateDraftBankInfo();
@@ -5772,10 +5809,14 @@ sap.ui.define([
                         oPayload.bankDto.bankInfoDto[0].bankBranch = "";
                         oPayload.bankDto.bankInfoDto[0].benefAccHolderName = "";
                         oPayload.bankDto.bankInfoDto[0].bankAccNum = "";
+                        oPayload.bankDto.bankInfoDto[0].refBankDetails = "";
                         oPayload.bankDto.bankInfoDto[0].swiftCode = "";
+                        oPayload.bankDto.bankInfoDto[0].bankNumber = "";
                         oPayload.bankDto.bankInfoDto[0].ibanNum = "";
+                        oPayload.bankDto.bankInfoDto[0].bankCode = "";
+                        oPayload.bankDto.bankInfoDto[0].partnerBankType = "";
                         oPayload.bankDto.bankInfoDto[0].bankControlKey = "";
-                        oPayload.bankDto.bankInfoDto[0].instructionKey = "";
+                       // oPayload.bankDto.bankInfoDto[0].instructionKey = ""; // commented since the key is default value in all screens- siva ---- date:01/10/2021
                         oPayload.bankDto.financeContact1.contactInSection = "FinanceSupplier";
                         oPayload.bankDto.financeContact2.contactInSection = "Reviewer";
                     } else {
@@ -6282,6 +6323,17 @@ sap.ui.define([
                 oView.byId("iRAddress").addEventDelegate({
                     onAfterRendering: this.onActivateCompanyInfoRTA
                 }, this);
+            },
+            onActivateOperAndManuServ1: function(){
+                 oView.byId("operServList").addEventDelegate({
+                     onAfterRendering: function() {
+      var cb = $.find('.sapMCbBg');
+     // cb[0].addClass('sapMCbBgDis');
+      cb[0].click(function(event) {
+        event.stopPropagation();
+      });
+    }
+                 });
             },
             onActivateCompanyInfoOFA: function () {
                 var that = this;

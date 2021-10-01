@@ -23,7 +23,7 @@
                         	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 								<VBox>
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1} +'&#10;' + ${i18n>addressL1}}" wrapping="true" required="true" class="fontStyle "></Label>
-<Input enabled="{oEnableMdl>/address1Enb}" value="{oDataModel>/surveyInfoDto/address/0/postal/0/address1}"  editable="{oUserModel>/isNew}"  valueState="{oErrorModel>/address1E}" valueStateText="{oErrorModel>/address1M}" change="fnLiveValueChange" class="inputStyle" maxLength="35" />
+<Input enabled="{oEnableMdl>/address1Enb}" value="{oDataModel>/surveyInfoDto/address/0/postal/0/address1}"  editable="{oUserModel>/isNew}"  valueState="{oErrorModel>/address1E}" valueStateText="{oErrorModel>/address1M}" change="fnValueChange" class="inputStyle" maxLength="35" />
 								</VBox>
 								<VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2} +'&#10;' + ${i18n>addressL2}}" wrapping="true" class="fontStyle"></Label>
@@ -403,7 +403,7 @@
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.shippingInfo" type="XML"/>
 					</WizardStep>
 					<WizardStep id="prodAndServInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepProductsAndServices}:${oi18n_En>wizardStepProductsAndServices} +'/&#160;' +${i18n>wizardStepProductsAndServices}}"
-						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
+						activate="onActivateOperAndManuServ" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyProductsAndServices" type="XML"/>
 					</WizardStep>
 					

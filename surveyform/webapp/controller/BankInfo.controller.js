@@ -1035,17 +1035,17 @@ sap.ui.define([
                 var fileUploadId = oEvt.oSource.sId.split("VendorSurvey--")[1];
 
 
-                if (!that.oPopup) {
-                    that.oPopup = sap.ui.xmlfragment(
-                        "com.jabil.surveyform.fragments.date", that);
-                    oView.addDependent(that.oPopup);
-                }
-                that.oPopup.open();
-                that.oPopup.attachAfterClose(function (oEvt) {
-                    var expiryDate = this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].getValue();
-                    var reminderDays = Number(this.oPopup.getContent().getAggregation("content")[0].getItems()[1].getAggregation("items")[1].getValue());
+                // if (!that.oPopup) {
+                //     that.oPopup = sap.ui.xmlfragment(
+                //         "com.jabil.surveyform.fragments.date", that);
+                //     oView.addDependent(that.oPopup);
+                // }
+                // that.oPopup.open();
+                // that.oPopup.attachAfterClose(function (oEvt) {
+                //     var expiryDate = this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].getValue();
+                //     var reminderDays = Number(this.oPopup.getContent().getAggregation("content")[0].getItems()[1].getAggregation("items")[1].getValue());
                     // @ts-ignore
-                    if (expiryDate && reminderDays) {
+                 //   if (expiryDate && reminderDays) {
                         var oFormData = new FormData(),
                             fileUpload = oView.byId("fileUploader_BA"),
                             domRef = fileUpload.getFocusDomRef(),
@@ -1064,8 +1064,8 @@ sap.ui.define([
                         oFormData.append("docInSection", secName);
                         oFormData.append("fileExt", file.name.split(".")[1]);
                         oFormData.append("type", "application/octet-stream");
-                        oFormData.append("expiryDate", expiryDate);
-                        oFormData.append("reminderDays", reminderDays);
+                     //   oFormData.append("expiryDate", expiryDate);
+                    //    oFormData.append("reminderDays", reminderDays);
                         oFormData.append("overwriteFlag", false);
 
                         if (oView.getModel("oUserModel")) {
@@ -1155,13 +1155,13 @@ sap.ui.define([
 
                             }
                         });
-                        this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].setValue("");
-                        this.oPopup.getContent().getAggregation("content")[0].getItems()[1].getAggregation("items")[1].setValue("");
-                    } else {
-                        this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].setValue("");
-                        this.oPopup.getContent().getAggregation("content")[0].getItems()[1].getAggregation("items")[1].setValue("");
-                    }
-                });
+                    //     this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].setValue("");
+                    //     this.oPopup.getContent().getAggregation("content")[0].getItems()[1].getAggregation("items")[1].setValue("");
+                    // } else {
+                    //     this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].setValue("");
+                    //     this.oPopup.getContent().getAggregation("content")[0].getItems()[1].getAggregation("items")[1].setValue("");
+                    // }
+                // });
             },
             // @ts-ignore
             fnOnCancelAttachment: function (oEvt) {

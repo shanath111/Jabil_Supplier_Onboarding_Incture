@@ -47,6 +47,7 @@ sap.ui.define([
                 oView.getModel("oConfigMdl").getData().screenEditable = false;
                 oView.getModel("oConfigMdl").getData().contextPath = oContext;
                 oView.getModel("oConfigMdl").getData().searchAddress = false;
+                
                     oView.getModel("oConfigMdl").getData().CommentsVis = false;
 
                 if (oContext.Name == "COILegal") {
@@ -143,6 +144,7 @@ sap.ui.define([
                                         "jobTitle": data.bpRequestScope.bpRequestScopeAddlDetails.jobTitle,
                                         "email": data.bpRequestScope.bpRequestScopeAddlDetails.email,
                                         "contactCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.contactCountryCode,
+                                "altContactCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.altContactCountryCode,
                                         "contactNumber": data.bpRequestScope.bpRequestScopeAddlDetails.contactNumber,
                                         "extension": data.bpRequestScope.bpRequestScopeAddlDetails.extension,
                                         "address1": data.bpRequestScope.bpRequestScopeAddlDetails.address1,
@@ -190,7 +192,9 @@ sap.ui.define([
                                         "requestorCOIName": data.bpRequestScope.bpRequestScopeAddlDetails.requestorCOIName,
                                         "requestorCOIPhoneNumber": data.bpRequestScope.bpRequestScopeAddlDetails.requestorCOIPhoneNumber,
                                         "requestorCOIReason": data.bpRequestScope.bpRequestScopeAddlDetails.requestorCOIReason,
-                                        "addlSurveyForSupplier": data.bpRequestScope.bpRequestScopeAddlDetails.addlSurveyForSupplier
+                                        "addlSurveyForSupplier": data.bpRequestScope.bpRequestScopeAddlDetails.addlSurveyForSupplier,
+                                           "instructionKey": data.bpRequestScope.bpRequestScopeAddlDetails.instructionKey,
+                                "materialGroup": data.bpRequestScope.materialGroup
                                     };
 
                                 }
@@ -265,10 +269,27 @@ sap.ui.define([
                                 var oBPCreateModel = new sap.ui.model.json.JSONModel();
                                 oBPCreateModel.setData(temp);
                                 oView.setModel(oBPCreateModel, "JMBPCreate");
+
+                                           if (oView.getModel("JMBPCreate").getData().plant == "CN30" || oView.getModel("JMBPCreate").getData().plant == "CN81") {
+                                oView.getModel("JMBPCreate").getData().materialGroupVis = true;
+                                var vMTData = oView.getModel("oStaticData").getData().wuxi;
+                                var aData = [];
+                                for (var i = 0; i < vMTData.length; i++) {
+                                    if (vMTData[i].plant == oView.getModel("JMBPCreate").getData().plant) {
+                                        aData.push(vMTData[i]);
+                                    }
+                                }
+                                oView.getModel("oBPLookUpMdl").setProperty("/materialGroup", aData);
+                                oView.getModel("oBPLookUpMdl").refresh();
+                            } else {
+                                oView.getModel("JMBPCreate").getData().materialGroupVis = false;
+                                oView.getModel("JMBPCreate").refresh();
+                            }
                                 // that.fnLoadWorkCell(true);
                                 // that.fnLoadIncoterms(true);
                                 // that.fnLoadCountry(true);
                                 that.fnLoadState(temp.country);
+                                     that.fnLoadPurOrg(temp.companyCode, that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, temp.companyCode, "CompanyCode"));
                                 // that.fnLoadPayemntTerms(true);
                                 }
                             } else {
@@ -300,14 +321,29 @@ sap.ui.define([
                 oView.getModel("oBPLookUpMdl").setSizeLimit(10000);
                 this.fnLoadCompanyCode();
                 this.fnLoadPlant();
-                this.fnLoadPurOrg();
+              //  this.fnLoadPurOrg();
                 this.fnLoadPurGroup();
 
                 that.fnLoadPayemntTerms();
                 that.fnLoadWorkCell();
                 that.fnLoadIncoterms();
                 that.fnLoadCountry();
+                  this.fnLoadCountryCode();
 
+            },
+                fnLoadCountryCode: function () {
+                var oModel = new JSONModel();
+                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/contactCode";
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/countryContactCode", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+
+                    }
+                });
             },
             fnLoadPayemntTerms: function (vBind) {
                 var oModel = new JSONModel();
@@ -387,20 +423,43 @@ sap.ui.define([
                 });
 
             },
-            fnLoadPurOrg: function () {
+          fnLoadPurOrg: function (vCompCode, vDescription) {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/purchasing-orgs";
+                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/purchasingOrg/" + vCompCode;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
                         oView.getModel("oBPLookUpMdl").setProperty("/PurOrg", oEvent.getSource().getData());
+                        if (oEvent.getSource().getData().length == 0) {
+                            if (vDescription) {
+                                if (vDescription.includes("Nypro")) {
+                                    var temp = [{
+                                        "code": "0155",
+                                        "description": "Nypro Inc."
+                                    }]
+                                    oView.getModel("oBPLookUpMdl").setProperty("/PurOrg", temp);
+                                }
+                            }
+                        }
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    } else {
+                        if (vDescription) {
+                            if (vDescription.includes("Nypro")) {
+                                var temp = [{
+                                    "code": "0155",
+                                    "description": "Nypro Inc."
+                                }]
+                                oView.getModel("oBPLookUpMdl").setProperty("/PurOrg", temp);
+                            }
+                        }
                         oView.getModel("oBPLookUpMdl").refresh();
                     }
                 });
 
             },
+           
             fnLoadIncoterms: function (vBind) {
                 var oModel = new JSONModel();
                 var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/incoterms";
@@ -505,7 +564,8 @@ sap.ui.define([
                         "reqCoIFields": false,
                         "BPCreate": true,
                         "BPExtend": false,
-                        "buyerAttachmentVis": false
+                        "buyerAttachmentVis": false,
+                      "materialGroupVis":false
                     };
 
                     var oBPCreateModel = new sap.ui.model.json.JSONModel();

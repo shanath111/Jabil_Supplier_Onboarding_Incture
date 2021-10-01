@@ -1146,7 +1146,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isLegalApprovedNDARej": vAprActn,
-                            "legal_nds_comment": oView.getModel("JMAppvrComments").getData().Comments
+                            "legal_nda_comment": oView.getModel("JMAppvrComments").getData().Comments
                         },
                         "status": "",
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
