@@ -17,7 +17,7 @@
         "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
         "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/surveyform\"}"
       },
-      "envFile": "${workspaceFolder}/surveyform/.env",
+      "envFile": "${workspaceFolder}/surveyform/.env1",
       "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
     },
     {
@@ -37,7 +37,7 @@
         "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
         "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/BuyerRegistration\"}"
       },
-      "envFile": "${workspaceFolder}/BuyerRegistration/.env51",
+      "envFile": "${workspaceFolder}/BuyerRegistration/.env52",
       "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
     },
     {

@@ -148,7 +148,8 @@ sap.ui.define([
                             "caseId": wView.getModel("oUserModel").getData().caseId,
                             "eulaComments": wView.getModel("commentModel").getData()[0].comment,
                             "isEULAAccepted": false,
-                            "supplierAction" : "EULA_rejected"
+                            "supplierAction" : "EULA_rejected",
+                            "supplier_eula_comment":wView.getModel("commentModel").getData()[0].comment
                         },
                         "status": "",
                         "action": "reject",
