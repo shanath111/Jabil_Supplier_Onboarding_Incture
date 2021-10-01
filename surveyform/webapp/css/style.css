@@ -838,6 +838,10 @@ outline: none !important;
 .attachmentWithoutBorder .sapUiFupInputMask{
     border: 0px !important;
 }
+.hideWizard .sapMWizardStepContainer {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
 /* .boxStyle.sapMCb {
     height: 2rem;
     line-height: 2rem;

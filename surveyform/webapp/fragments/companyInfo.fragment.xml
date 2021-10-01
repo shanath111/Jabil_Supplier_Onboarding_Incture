@@ -301,7 +301,7 @@
         </g:GridListItem> -->
       </g:GridList>
    </VBox>
-   <HBox class="fontStyle sapUiMediumMarginBottom sapUiSizeCompact">
+   <!-- <HBox class="fontStyle sapUiMediumMarginBottom sapUiSizeCompact">
       <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>companyWeb}:${oi18n_En>companyWeb}+'/ '+${i18n>companyWeb}}" class="fontStyle sapUiTinyMarginBegin sapUiMediumMarginTop" />
       <VBox>
          <Input width="45%" class="inputStyle sapUiSizeCompact sapUiMediumMarginTop sapUiTinyMarginBegin" value="{companyInfoModel>/companyWebsite}" enabled="{oEnableMdl>/companyWebsiteEnb}" />
@@ -309,7 +309,7 @@
       <layoutData>
             <FlexItemData growFactor="1" />
          </layoutData>
-      </VBox> </HBox>
+      </VBox> </HBox> -->
        <!-- <VBox>
          <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>Attachments}:${oi18n_En>Attachments}+'/&#160;'+${i18n>Attachments}}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>
 			<Label visible="{oVisibilityModel>/buyerSurveyAttach}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>compInfoVerbiage}:${oi18n_En>compInfoVerbiage}+ '/&#160;'+${i18n>compInfoVerbiage}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>

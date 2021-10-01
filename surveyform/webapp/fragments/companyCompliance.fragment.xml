@@ -125,7 +125,7 @@
 						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/comComplianceDto/companyRelationWithJabilEmp}"></RadioButton>
 						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 					</RadioButtonGroup>
-                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>quesDirectPOC}:${oi18n_En>quesDirectPOC} +'&#10;' +${i18n>quesDirectPOC}}" wrapping="true" visible="{oDataModel>/comComplianceDto/companyRelationWithJabilEmp}" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>quesDirectPOC}:${oi18n_En>quesDirectPOC} +'&#10;' +${i18n>quesDirectPOC}}" wrapping="true" visible="{=${oDataModel>/comComplianceDto/companyRelationWithJabilEmp}=== true}"  class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
                  <l:Grid containerQuery="true" defaultSpan="XL2 L2 M3 S12" visible="{=${oDataModel>/comComplianceDto/companyRelationWithJabilEmp}=== true}" class=" gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 								<VBox class="fontStyle" >
 									<Label text="{i18n>name}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
@@ -157,7 +157,7 @@
 						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/comComplianceDto/companyContactWithPreviouseJabilEmp}"></RadioButton>
 						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 					</RadioButtonGroup>
-                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>provideEmpDetails}:${oi18n_En>provideEmpDetails} +'&#10;' +${i18n>provideEmpDetails}}" visible="{oDataModel>/comComplianceDto/companyContactWithPreviouseJabilEmp}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>provideEmpDetails}:${oi18n_En>provideEmpDetails} +'&#10;' +${i18n>provideEmpDetails}}" visible="{=${oDataModel>/comComplianceDto/companyContactWithPreviouseJabilEmp}=== true}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
                  <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" visible="{=${oDataModel>/comComplianceDto/companyContactWithPreviouseJabilEmp}=== true}" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 								<VBox class="fontStyle" >
 									<Label required="true" text="{i18n>empName}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>

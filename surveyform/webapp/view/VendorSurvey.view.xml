@@ -43,14 +43,14 @@
                                 </VBox>
 								<VBox >
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey} +'&#10;' + ${i18n>countrykey}}" wrapping="true"  required="true" class="fontStyle "></Label>
-                                    	<ComboBox width="100%" items="{oLookUpModel>/SupplierCountry}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/countryEnb}"  valueState="{oErrorModel>/countryE}" valueStateText="{oErrorModel>/countryM}" filterSecondaryValues="true" selectionChange="fnChangeSupplierCountry" showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/countryCode}"  change="fnLiveValueChange">
+                                    	<ComboBox width="100%" items="{oLookUpModel>/SupplierCountry}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/countryEnb}"  valueState="{oErrorModel>/countryE}" valueStateText="{oErrorModel>/countryM}" filterSecondaryValues="true" selectionChange="fnChangeSupplierCountry" showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/countryCode}">
 <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
 			</ComboBox>
                                     <!-- <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/country}" class="inputStyle" /> -->
                                 </VBox>
 								<VBox >
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>region}:${oi18n_En>region} +'&#10;' + ${i18n>region}}" wrapping="true"   required="true" class="fontStyle "></Label>
-                                    <ComboBox width="100%" items="{oLookUpModel>/SupplierRegion}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/regionEnb}"  valueState="{oErrorModel>/stateE}" valueStateText="{oErrorModel>/stateM}"  filterSecondaryValues="true" showSecondaryValues="true" selectionChange="fnChangeSupplierRegion"  placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/regionCode}" change="fnLiveValueChange">
+                                    <ComboBox width="100%" items="{oLookUpModel>/SupplierRegion}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/regionEnb}"  valueState="{oErrorModel>/stateE}" valueStateText="{oErrorModel>/stateM}"  filterSecondaryValues="true" showSecondaryValues="true" selectionChange="fnChangeSupplierRegion"  placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/regionCode}">
 <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
 			</ComboBox>
                                     <!-- <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/region}" class="inputStyle" /> -->
@@ -382,7 +382,7 @@
 					<core:Fragment fragmentName="com.jabil.surveyform.fragments.businessPartnerInfo" type="XML"/>
 					</WizardStep>
                     <WizardStep id="contactInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcontactInfo}:${oi18n_En>wizardStepcontactInfo} +'/&#160;' +${i18n>wizardStepcontactInfo}}"
-						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" >
+						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop hideWizard" >
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyContactInfo" type="XML"/>
 					</WizardStep>
 					<WizardStep id="ownerShipInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepOwnInfo}:${oi18n_En>wizardStepOwnInfo} +'/&#160;' +${i18n>wizardStepOwnInfo}}" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop"

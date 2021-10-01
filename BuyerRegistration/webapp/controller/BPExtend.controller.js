@@ -766,7 +766,7 @@ sap.ui.define([
             fnClearData: function () {
 
                 var temp = {
-                    "accountingGroup": "",
+                    "accountingGroup": "ZVEN",
                     "blockFunction": "",
                     "centralDeletionFlag": "",
                     "centralPostingBlock": "",
