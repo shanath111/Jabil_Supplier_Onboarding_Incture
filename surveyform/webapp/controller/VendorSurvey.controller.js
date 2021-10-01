@@ -5809,10 +5809,14 @@ sap.ui.define([
                         oPayload.bankDto.bankInfoDto[0].bankBranch = "";
                         oPayload.bankDto.bankInfoDto[0].benefAccHolderName = "";
                         oPayload.bankDto.bankInfoDto[0].bankAccNum = "";
+                        oPayload.bankDto.bankInfoDto[0].refBankDetails = "";
                         oPayload.bankDto.bankInfoDto[0].swiftCode = "";
+                        oPayload.bankDto.bankInfoDto[0].bankNumber = "";
                         oPayload.bankDto.bankInfoDto[0].ibanNum = "";
+                        oPayload.bankDto.bankInfoDto[0].bankCode = "";
+                        oPayload.bankDto.bankInfoDto[0].partnerBankType = "";
                         oPayload.bankDto.bankInfoDto[0].bankControlKey = "";
-                        oPayload.bankDto.bankInfoDto[0].instructionKey = "";
+                       // oPayload.bankDto.bankInfoDto[0].instructionKey = ""; // commented since the key is default value in all screens- siva ---- date:01/10/2021
                         oPayload.bankDto.financeContact1.contactInSection = "FinanceSupplier";
                         oPayload.bankDto.financeContact2.contactInSection = "Reviewer";
                     } else {
