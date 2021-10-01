@@ -1749,7 +1749,7 @@ sap.ui.define([
                         } else {
                             oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "None";
                             oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
-                            iError = false;
+                          //  iError = false;
                         }
                     }
 
@@ -3131,7 +3131,7 @@ sap.ui.define([
                             oView.getModel("oErrorModel").getData().cocE = "None";
                             oView.getModel("oErrorModel").getData().cocM = "";
 
-                            iError = false;
+                           // iError = false;
                         }
                     }
                     if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact && oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact.length > 30) {
@@ -3486,6 +3486,24 @@ sap.ui.define([
 
                     }
                 });
+                var aCompanyContact = oView.getModel("oLookUpModel").getData().tabledata;
+                for (var i = 0; i < aCompanyContact.length; i++) {
+                    if (aCompanyContact[i].email && aCompanyContact[i].email.length > 241) {
+                        iError = true;
+                    }
+                    if (aCompanyContact[i].firstName && aCompanyContact[i].firstName.length > 34) {
+                        iError = true;
+                    }
+                    if (aCompanyContact[i].lastName && aCompanyContact[i].lastName.length > 34) {
+                        iError = true;
+                    }
+                    if (aCompanyContact[i].contact && aCompanyContact[i].contact.length > 30) {
+                        iError = true;
+                    }
+                    if (aCompanyContact[i].extension && aCompanyContact[i].extension.length > 10) {
+                        iError = true;
+                    }
+                }
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("contactInfo").setValidated(false);
@@ -3579,18 +3597,18 @@ sap.ui.define([
                 var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
                 if (email) {
                     if (!email.match(mailregex)) {
-                        oView.getModel("oErrorModel").getData().cocE = "Error";
-                        oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
+                        oView.getModel("oErrorModel").getData().ppocEmailE = "Error";
+                        oView.getModel("oErrorModel").getData().ppocEmailM = oi18n.getText("invalidEmail");
 
                         iError = true;
                     } else if (!email.toUpperCase().includes("JABIL.COM")) {
-                        oView.getModel("oErrorModel").getData().cocE = "Error";
-                        oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
+                        oView.getModel("oErrorModel").getData().ppocEmailE = "Error";
+                        oView.getModel("oErrorModel").getData().ppocEmailM = oi18n.getText("invalidEmail");
 
                         iError = true;
                     } else {
-                        oView.getModel("oErrorModel").getData().cocE = "None";
-                        oView.getModel("oErrorModel").getData().cocM = "";
+                        oView.getModel("oErrorModel").getData().ppocEmailE = "None";
+                        oView.getModel("oErrorModel").getData().ppocEmailM = "";
 
                         iError = iError || false;
                     }
@@ -3603,7 +3621,7 @@ sap.ui.define([
                     } else {
                         oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "None";
                         oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
-                        iError = false;
+                       // iError = false;
                     }
                 }
 
@@ -3640,7 +3658,7 @@ sap.ui.define([
                     iError = true;
                 }
                 var aCompanyContact = oView.getModel("oLookUpModel").getData().tabledata;
-                for (var i = 0; i < 11; i++) {
+                for (var i = 0; i < aCompanyContact.length; i++) {
                     if (aCompanyContact[i].email && aCompanyContact[i].email.length > 241) {
                         iError = true;
                     }
@@ -3889,7 +3907,7 @@ sap.ui.define([
                             oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
 
                             iError = true;
-                        } else if (!email1.toUpperCase().includes("JABIL.COM")) {
+                        } else if (email1.toUpperCase().includes("JABIL.COM")) {
                             oView.getModel("oErrorModel").getData().cocE = "Error";
                             oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
 
@@ -3906,17 +3924,17 @@ sap.ui.define([
                     var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
                     if (email2) {
                         if (!email2.match(mailregex)) {
-                            oView.getModel("oErrorModel").getData().cocE = "Error";
+                            oView.getModel("oErrorModel").getData().pEmpE = "Error";
                             oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
 
                             iError = true;
                         } else if (!email2.toUpperCase().includes("JABIL.COM")) {
-                            oView.getModel("oErrorModel").getData().cocE = "Error";
+                            oView.getModel("oErrorModel").getData().pEmpE = "Error";
                             oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
 
                             iError = true;
                         } else {
-                            oView.getModel("oErrorModel").getData().cocE = "None";
+                            oView.getModel("oErrorModel").getData().pEmpE = "None";
                             oView.getModel("oErrorModel").getData().cocM = "";
 
                             iError = iError || false;
@@ -3955,18 +3973,18 @@ sap.ui.define([
                 var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
                 if (email) {
                     if (!email.match(mailregex)) {
-                        oView.getModel("oErrorModel").getData().cocE = "Error";
-                        oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
+                        oView.getModel("oErrorModel").getData().cyberSurveyE = "Error";
+                        oView.getModel("oErrorModel").getData().cyberSurveyM = oi18n.getText("invalidEmail");
 
                         iError = true;
-                    } else if (!email.toUpperCase().includes("JABIL.COM")) {
-                        oView.getModel("oErrorModel").getData().cocE = "Error";
-                        oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
+                    } else if (email.toUpperCase().includes("JABIL.COM")) {
+                        oView.getModel("oErrorModel").getData().cyberSurveyE = "Error";
+                        oView.getModel("oErrorModel").getData().cyberSurveyM = oi18n.getText("invalidEmail");
 
                         iError = true;
                     } else {
-                        oView.getModel("oErrorModel").getData().cocE = "None";
-                        oView.getModel("oErrorModel").getData().cocM = "";
+                        oView.getModel("oErrorModel").getData().cyberSurveyE = "None";
+                        oView.getModel("oErrorModel").getData().cyberSurveyM = "";
 
                         iError = iError || false;
                     }
@@ -4719,6 +4737,7 @@ sap.ui.define([
                         if (oEvent.getSource().getValue().length == oEvent.getSource().getMaxLength()) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                             that.emailValidResult = true;
                         } else {
                             oEvent.getSource().setValueState("None");
                             oEvent.getSource().setValueStateText("");
