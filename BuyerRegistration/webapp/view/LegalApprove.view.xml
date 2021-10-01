@@ -8,10 +8,11 @@
 						<content>
 
 								<VBox class="cl_TIVBoxShadow" visible="{JMBPCreate>/BPCreate}">
-                               <VBox class="" visible="{oConfigMdl>/EulaCommentsVis}" >
-										<Label text="{i18n>TTIRejectionReason}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
-										<Label text="{JMEulaComments>/eulaComments}" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
-									 <HBox class="cl_HBoxBlockSep">
+                            <VBox class="" visible="{oConfigMdl>/CommentsVis}" >
+										<Label text="{i18n>Comments}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
+										 <Label text="{oConfigMdl>/comments}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
+									<!-- <Label text="Not Agreeing NDA" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label> -->
+                                     <HBox class="cl_HBoxBlockSep">
                                 </HBox>
                                     </VBox>
                                  <VBox>
@@ -20,10 +21,11 @@
 	</VBox>
       
                          <VBox  class="cl_TIVBoxShadow" visible="{JMBPCreate>/BPExtend}" >
-							 <VBox class="" visible="{oConfigMdl>/EulaCommentsVis}" >
-										<Label text="{i18n>TTIRejectionReason}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
-										<Label text="{JMEulaComments>/eulaComments}" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
-									 <HBox class="cl_HBoxBlockSep">
+							 <VBox class="" visible="{oConfigMdl>/CommentsVis}" >
+										<Label text="{i18n>Comments}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
+										 <Label text="{oConfigMdl>/comments}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
+									<!-- <Label text="Not Agreeing NDA" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label> -->
+                                     <HBox class="cl_HBoxBlockSep">
                                 </HBox>
                                     </VBox>
                             <core:Fragment fragmentName="ns.BuyerRegistration.fragments.ExtendBuisnessPartner" type="XML"/>              
