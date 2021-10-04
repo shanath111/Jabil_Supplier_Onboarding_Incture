@@ -3276,6 +3276,7 @@ sap.ui.define([
                 var olist = oView.getModel("oLookUpModel").getData().orgEstablishConnection;
                 var olist1 = oView.getModel("oLookUpModel").getData().orgBusinessActivities;
                 var oListLength = [], oListLength1 = [];
+                var oSelectedList = [], oSelectedList1 = []; 
                 if (this.emailValidResult) {
                     iError = true;
                 }
@@ -3385,7 +3386,7 @@ sap.ui.define([
                     });
                     if (oListLength.length === 0) {
                         iError = true;
-
+                        
                         if (isDefaultLan) {
                             sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("selectAtleastAnItemJBN")), {
                                 icon: sap.m.MessageBox.Icon.ERROR,
@@ -3434,7 +3435,30 @@ sap.ui.define([
                     }
 
                 }
-               
+
+                if(oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem){
+                    $.each(olist, function (index, value) {
+                        if (value.isSelected) {
+                            oSelectedList.push(value);
+                        }
+                    });
+                    if(oSelectedList.length === 0){
+                        oView.getModel("oErrorModel").getData().orgEstablishConnectionSelectedE = "Error";
+                    }
+                    
+                }
+
+                if (oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil) {
+                    $.each(olist1, function (index, value) {
+                        if (value.isSelected) {
+                            oSelectedList1.push(value);
+                        }
+                    });
+                    if(oSelectedList1.length === 0){
+                        oView.getModel("oErrorModel").getData().orgBusinessActivitiesisSelectedE = "Error";
+                    }
+                     
+                } 
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("cyberSecInfo").setValidated(false);
@@ -3443,6 +3467,18 @@ sap.ui.define([
                 }
 
 
+            },
+            onSelectOrgEstablishConnection: function(oEvent) {
+                if(oEvent.getParameters().selected) {
+                    oView.getModel("oErrorModel").getData().orgEstablishConnectionSelectedE = "None";
+                    oView.getModel("oErrorModel").refresh();
+                }
+            },
+            onSelectOrgBusinessActivities:function(oEvent) {
+                if(oEvent.getParameters().selected) {
+                    oView.getModel("oErrorModel").getData().orgBusinessActivitiesisSelectedE = "None";
+                    oView.getModel("oErrorModel").refresh();
+                }
             },
             _fnValidateContactInfo: function () {
                 var iError = false;
