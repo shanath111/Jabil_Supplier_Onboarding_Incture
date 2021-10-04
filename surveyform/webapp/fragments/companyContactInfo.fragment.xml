@@ -73,8 +73,8 @@
             <cells >
             <Text text="{oLookUpModel>contactType}" tooltip="{oLookUpModel>tooltip}" wrapping="true" />
             <Input maxLength="242" value="{oLookUpModel>email}" enabled="{oEnableMdl>/comContactemailEnb}" liveChange="fnLiveEmailNotJValid" class="inputStyle" />
-            <Input maxLength="35" value="{oLookUpModel>firstName}" enabled="{oEnableMdl>/comContactfirstNameEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
-            <Input maxLength="35" value="{oLookUpModel>lastName}" enabled="{oEnableMdl>/comContactlastNameEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
+            <Input maxLength="41" value="{oLookUpModel>firstName}" enabled="{oEnableMdl>/comContactfirstNameEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
+            <Input maxLength="41" value="{oLookUpModel>lastName}" enabled="{oEnableMdl>/comContactlastNameEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
             <Input value="{oLookUpModel>jobTitle}" enabled="{oEnableMdl>/comContactjobTitleEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
             <HBox fitContainer="true" alignItems="Start">
             <ComboBox width="100%" items="{oLookUpModel>/countryContactCode}" showSecondaryValues="true" filterSecondaryValues="true"  value="{oLookUpModel>countryContactCode}" class="inputStyle" change="fnLiveValueChange" enabled="{oEnableMdl>/comContactCountryContactEnb}">

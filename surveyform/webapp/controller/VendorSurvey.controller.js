@@ -71,7 +71,7 @@ sap.ui.define([
                 var that = this;
                 var taskId = oEvent.getParameter("arguments").contextPath;
                 vAppName = oEvent.getParameter("arguments").Name;
-                oBusyDialogLoadData.open();
+
                 if (vAppName == "Supplier") {
                     if (oView.getModel("oUserModel").getData().language == undefined || oView.getModel("oUserModel").getData().language == 'en' || oView.getModel("oUserModel").getData().language == 'en-US') {
                         that.getView().getModel("oVisibilityModel").getData().isdefaultLan = true;
@@ -117,6 +117,7 @@ sap.ui.define([
                 this._fnLoadBusinessActList();
 
                 oDeferred.done(function () {
+                    oBusyDialogLoadData.open();
                     if (oView.getModel("oUserModel").getData().caseId !== "") {
                         var sUrl = "/comjabilsurveyform/plcm_portal_services/supplier/read/" + oView.getModel("oUserModel").getData().caseId;
                         var oModel = new JSONModel();
@@ -802,10 +803,10 @@ sap.ui.define([
                                     that._fnLoadManServList(oEvent.getSource().oData);
 
                                     that._fnReadDocumentList(oEvent.getSource().oData.caseId, that);
-                                   
+
 
                                 }
-oBusyDialogLoadData.close();
+                                oBusyDialogLoadData.close();
 
                             }
 
@@ -1597,12 +1598,17 @@ oBusyDialogLoadData.close();
                     iError = true;
                 }
 
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName && oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName.length > 34) {
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName && oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName.length > 100) {
 
 
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.lastName && oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.lastName.length > 34) {
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName && oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName.length > 40) {
+
+
+                    iError = true;
+                }
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.lastName && oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.lastName.length > 40) {
 
                     iError = true;
                 }
@@ -1703,12 +1709,12 @@ oBusyDialogLoadData.close();
                         iError = true;
                     }
 
-                    if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName && oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName && oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName.length > 40) {
 
 
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.lastName && oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.lastName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.lastName && oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.lastName.length > 40) {
 
                         iError = true;
                     }
@@ -1724,6 +1730,19 @@ oBusyDialogLoadData.close();
                     }
 
 
+                }
+
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.firstName.length > 40) {
+                    iError = true;
+                }
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.lastName.length > 40) {
+                    iError = true;
+                }
+                // if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.email.length > 241) {
+                //     iError = true;
+                // }
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact.length > 30) {
+                    iError = true;
                 }
 
                 oView.getModel("oErrorModel").refresh();
@@ -1825,12 +1844,12 @@ oBusyDialogLoadData.close();
                     iError = true;
                 }
 
-                if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName.length > 34) {
+                if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName.length > 40) {
 
 
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.lastName && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.lastName.length > 34) {
+                if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.lastName && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.lastName.length > 40) {
 
                     iError = true;
                 }
@@ -1998,15 +2017,11 @@ oBusyDialogLoadData.close();
 
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact.length > 30) {
-                    iError = true;
-                }
+
                 if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact.length > 30) {
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.extension && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.extension.length > 10) {
-                    iError = true;
-                }
+
                 if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.extension && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.extension.length > 10) {
                     iError = true;
                 }
@@ -2097,6 +2112,24 @@ oBusyDialogLoadData.close();
 
                         iError = true;
                     }
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.firstName && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.firstName.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.lastName && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.lastName.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.email && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.email.length > 241) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact.length > 30) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.extension && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.extension.length > 10) {
+                        iError = true;
+                    }
 
                 }
                 if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily === null) {
@@ -2146,7 +2179,24 @@ oBusyDialogLoadData.close();
 
                         iError = true;
                     }
-
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.firstName && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.firstName.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.lastName && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.lastName.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.email && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.email.length > 241) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact.length > 30) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.extension && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.extension.length > 10) {
+                        iError = true;
+                    }
 
                 }
 
@@ -2500,16 +2550,22 @@ oBusyDialogLoadData.close();
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress.length > 35) {
                         iError = true;
                     }
-                    // if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum.length > 18) {
-                    //     iError = true;
-                    // }
+                    if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum.length > 18) {
+                        iError = true;
+                    }
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName.length > 60) {
                         iError = true;
                     }
-                    // if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode.length > 11) {
-                    //     iError = true;
-                    // }
+                    if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].refBankDetails && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].refBankDetails.length > 20) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode.length > 11) {
+                        iError = true;
+                    }
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode.length > 4) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber.length > 15) {
                         iError = true;
                     }
                     if (this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.ibanLength) {
@@ -2706,12 +2762,12 @@ oBusyDialogLoadData.close();
 
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName && oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName && oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName.length > 40) {
 
 
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().bankDto.financeContact1.lastName && oView.getModel("oDataModel").getData().bankDto.financeContact1.lastName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().bankDto.financeContact1.lastName && oView.getModel("oDataModel").getData().bankDto.financeContact1.lastName.length > 40) {
 
                         iError = true;
                     }
@@ -2767,12 +2823,12 @@ oBusyDialogLoadData.close();
 
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName && oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName.length > 34) {
+                if (oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName && oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName.length > 40) {
 
 
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().bankDto.financeContact2.lastName && oView.getModel("oDataModel").getData().bankDto.financeContact2.lastName.length > 34) {
+                if (oView.getModel("oDataModel").getData().bankDto.financeContact2.lastName && oView.getModel("oDataModel").getData().bankDto.financeContact2.lastName.length > 40) {
 
                     iError = true;
                 }
@@ -2921,6 +2977,18 @@ oBusyDialogLoadData.close();
                         oView.getModel("oErrorModel").getData().dRespEmailE = "Error";
                         oView.getModel("oErrorModel").getData().dRespEmailM = oi18n.getText("mandatoryEmail");
 
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepName.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.supplierContactInLogistics.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepEmail.length > 241) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepContact.length > 30) {
                         iError = true;
                     }
                 }
@@ -3176,6 +3244,21 @@ oBusyDialogLoadData.close();
 
                         iError = true;
                     }
+                    if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.firstName.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.lastName.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.email.length > 241) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact.length > 30) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.extension.length > 10) {
+                        iError = true;
+                    }
 
                 }
 
@@ -3354,6 +3437,15 @@ oBusyDialogLoadData.close();
 
                         }
                     }
+                    if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.firstName && oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.firstName.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.lastName && oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.lastName.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.email && oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.email.length > 241) {
+                        iError = true;
+                    }
                     if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.contact && oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.length > 30) {
                         iError = true;
                     }
@@ -3495,10 +3587,10 @@ oBusyDialogLoadData.close();
                     if (aCompanyContact[i].email && aCompanyContact[i].email.length > 241) {
                         iError = true;
                     }
-                    if (aCompanyContact[i].firstName && aCompanyContact[i].firstName.length > 34) {
+                    if (aCompanyContact[i].firstName && aCompanyContact[i].firstName.length > 40) {
                         iError = true;
                     }
-                    if (aCompanyContact[i].lastName && aCompanyContact[i].lastName.length > 34) {
+                    if (aCompanyContact[i].lastName && aCompanyContact[i].lastName.length > 40) {
                         iError = true;
                     }
                     if (aCompanyContact[i].contact && aCompanyContact[i].contact.length > 30) {
@@ -3521,13 +3613,18 @@ oBusyDialogLoadData.close();
                 if (this.emailValidResult) {
                     iError = true;
                 }
-
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName.length > 34) {
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName.length > 100) {
 
 
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.lastName.length > 34) {
+
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName.length > 40) {
+
+
+                    iError = true;
+                }
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.lastName.length > 40) {
 
 
                     iError = true;
@@ -3553,10 +3650,10 @@ oBusyDialogLoadData.close();
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.isJabilMainContact === false) {
-                    if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName.length > 40) {
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.lastName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.lastName.length > 40) {
                         iError = true;
                     }
                     if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.email.length > 241) {
@@ -3570,10 +3667,10 @@ oBusyDialogLoadData.close();
                     }
                 }
 
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.firstName.length > 34) {
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.firstName.length > 40) {
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.lastName.length > 34) {
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.lastName.length > 40) {
                     iError = true;
                 }
                 // if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.email.length > 241) {
@@ -3630,10 +3727,10 @@ oBusyDialogLoadData.close();
                 }
 
 
-                if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName.length > 34) {
+                if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName.length > 40) {
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.lastName.length > 34) {
+                if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.lastName.length > 40) {
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.email.length > 241) {
@@ -3666,10 +3763,10 @@ oBusyDialogLoadData.close();
                     if (aCompanyContact[i].email && aCompanyContact[i].email.length > 241) {
                         iError = true;
                     }
-                    if (aCompanyContact[i].firstName && aCompanyContact[i].firstName.length > 34) {
+                    if (aCompanyContact[i].firstName && aCompanyContact[i].firstName.length > 40) {
                         iError = true;
                     }
-                    if (aCompanyContact[i].lastName && aCompanyContact[i].lastName.length > 34) {
+                    if (aCompanyContact[i].lastName && aCompanyContact[i].lastName.length > 40) {
                         iError = true;
                     }
                     if (aCompanyContact[i].contact && aCompanyContact[i].contact.length > 30) {
@@ -3692,16 +3789,16 @@ oBusyDialogLoadData.close();
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt) {
-                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName.length > 40) {
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.firstName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.firstName.length > 40) {
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.lastName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.lastName.length > 40) {
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.email.length > 240) {
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.email.length > 241) {
                         iError = true;
                     }
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact.length > 30) {
@@ -3712,16 +3809,16 @@ oBusyDialogLoadData.close();
                     }
                 }
                 if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily) {
-                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName.length > 40) {
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.firstName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.firstName.length > 40) {
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.lastName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.lastName.length > 40) {
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.email.length > 240) {
+                    if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.email.length > 241) {
                         iError = true;
                     }
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact.length > 30) {
@@ -3758,6 +3855,21 @@ oBusyDialogLoadData.close();
                 //         iError = true;
                 //     }
                 // }
+                 if (iError) {
+                    oView.byId("companyInfo").setValidated(false);
+                } else {
+                    oView.byId("companyInfo").setValidated(true);
+                }
+
+            },
+             _fnValidateDraftOperAndManu: function () {
+                var iError = false;
+               
+                 if (iError) {
+                    oView.byId("prodAndServInfo").setValidated(false);
+                } else {
+                    oView.byId("prodAndServInfo").setValidated(true);
+                }
 
             },
 
@@ -3774,6 +3886,13 @@ oBusyDialogLoadData.close();
                 if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress.length > 35) {
 
 
+                    iError = true;
+                }
+
+                if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].refBankDetails && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].refBankDetails.length > 20) {
+                    iError = true;
+                }
+                if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber.length > 15) {
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum.length > 18) {
@@ -3825,10 +3944,10 @@ oBusyDialogLoadData.close();
                 if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey.length > 3) {
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName.length > 34) {
+                if (oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName.length > 40) {
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().bankDto.financeContact1.lastName.length > 34) {
+                if (oView.getModel("oDataModel").getData().bankDto.financeContact1.lastName.length > 40) {
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().bankDto.financeContact1.email.length > 241) {
@@ -3843,10 +3962,10 @@ oBusyDialogLoadData.close();
                 if (oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile.length > 30) {
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName.length > 34) {
+                if (oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName.length > 40) {
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().bankDto.financeContact2.lastName.length > 34) {
+                if (oView.getModel("oDataModel").getData().bankDto.financeContact2.lastName.length > 40) {
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().bankDto.financeContact2.contact.length > 30) {
@@ -3879,10 +3998,16 @@ oBusyDialogLoadData.close();
                     if (this.emailValidResult) {
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepName.length > 40) {
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepEmail.length > 240) {
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.supplierContactInLogistics.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepEmail.length > 241) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepContact.length > 30) {
                         iError = true;
                     }
                 }
@@ -3944,13 +4069,13 @@ oBusyDialogLoadData.close();
                             iError = iError || false;
                         }
                     }
-                    if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.firstName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.firstName.length > 40) {
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.lastName.length > 34) {
+                    if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.lastName.length > 40) {
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.email.length > 240) {
+                    if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.email.length > 241) {
                         iError = true;
                     }
                     if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact.length > 30) {
@@ -3970,45 +4095,46 @@ oBusyDialogLoadData.close();
 
             _fnValidateDraftCyberSecurityInfo: function () {
                 var iError = false;
-                if (this.emailValidResult) {
-                    iError = true;
-                }
-                var email = oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.email
-                var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
-                if (email) {
-                    if (!email.match(mailregex)) {
-                        oView.getModel("oErrorModel").getData().cyberSurveyE = "Error";
-                        oView.getModel("oErrorModel").getData().cyberSurveyM = oi18n.getText("invalidEmail");
-
+                if (oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil) {
+                    if (this.emailValidResult) {
                         iError = true;
-                    } else if (email.toUpperCase().includes("JABIL.COM")) {
-                        oView.getModel("oErrorModel").getData().cyberSurveyE = "Error";
-                        oView.getModel("oErrorModel").getData().cyberSurveyM = oi18n.getText("invalidEmail");
+                    }
+                    var email = oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.email
+                    var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
+                    if (email) {
+                        if (!email.match(mailregex)) {
+                            oView.getModel("oErrorModel").getData().cyberSurveyE = "Error";
+                            oView.getModel("oErrorModel").getData().cyberSurveyM = oi18n.getText("invalidEmail");
 
+                            iError = true;
+                        } else if (email.toUpperCase().includes("JABIL.COM")) {
+                            oView.getModel("oErrorModel").getData().cyberSurveyE = "Error";
+                            oView.getModel("oErrorModel").getData().cyberSurveyM = oi18n.getText("invalidEmail");
+
+                            iError = true;
+                        } else {
+                            oView.getModel("oErrorModel").getData().cyberSurveyE = "None";
+                            oView.getModel("oErrorModel").getData().cyberSurveyM = "";
+
+                            iError = iError || false;
+                        }
+                    }
+                    if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.firstName.length > 40) {
                         iError = true;
-                    } else {
-                        oView.getModel("oErrorModel").getData().cyberSurveyE = "None";
-                        oView.getModel("oErrorModel").getData().cyberSurveyM = "";
-
-                        iError = iError || false;
+                    }
+                    if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.lastName.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.email.length > 241) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.contact.length > 30) {
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.extension.length > 10) {
+                        iError = true;
                     }
                 }
-                if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.firstName.length > 34) {
-                    iError = true;
-                }
-                if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.lastName.length > 34) {
-                    iError = true;
-                }
-                if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.email.length > 240) {
-                    iError = true;
-                }
-                if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.contact.length > 30) {
-                    iError = true;
-                }
-                if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.extension.length > 10) {
-                    iError = true;
-                }
-
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("cyberSecInfo").setValidated(false);
@@ -4657,6 +4783,24 @@ oBusyDialogLoadData.close();
                 var selectedIndex = oEvent.getParameter("selectedIndex");
                 if (selectedIndex !== -1) {
                     oEvent.getSource().setValueState("None");
+                } if (selectedIndex == 1) {
+                    var selPath = oEvent.getSource().getButtons()[0].getBindingPath("selected");
+                    if (selPath) {
+                        oView.getModel("oDataModel").setProperty(selPath, false);
+                        oView.getModel("oDataModel").refresh(true);
+                    }
+                }
+            },
+            fnClearValueStateDiv: function (oEvent) {
+                var selectedIndex = oEvent.getParameter("selectedIndex");
+                if (selectedIndex !== -1) {
+                    oEvent.getSource().setValueState("None");
+                } if (selectedIndex == 1) {
+                    var selPath = oEvent.getSource().getButtons()[0].getBindingPath("selected");
+                    if (selPath) {
+                        oView.getModel("companyInfoModel").setProperty(selPath, false);
+                        oView.getModel("companyInfoModel").refresh(true);
+                    }
                 }
             },
             fnLiveEmailChange: function (oEvent) {
@@ -5696,13 +5840,16 @@ oBusyDialogLoadData.close();
                     this._fnValidateDraftOwnershipInfo();
                 }
                 if (this.oWizard._getProgressNavigator()._iCurrentStep == 5) {
-                    //this._fnValidateDraftCompanyInfo();
+                    this._fnValidateDraftCompanyInfo();
                 }
                 if (this.oWizard._getProgressNavigator()._iCurrentStep == 6) {
                     this._fnValidateDraftBankInfo();
                 }
                 if (this.oWizard._getProgressNavigator()._iCurrentStep == 7) {
                     this._fnValidateDraftShippingInfo();
+                }
+                 if (this.oWizard._getProgressNavigator()._iCurrentStep == 8) {
+                    this._fnValidateDraftOperAndManu();
                 }
                 if (this.oWizard._getProgressNavigator()._iCurrentStep == 9) {
                     this._fnValidateDraftComplianceInfo();
@@ -6329,26 +6476,26 @@ oBusyDialogLoadData.close();
                 }, this);
             },
             onActivateOperAndManuServ: function () {
-                var isDisplay= oView.getModel("oEnableMdl").getData().nextBtnExtensionDisplayVsb;
-                if(!isDisplay){}
-                else{
-                oView.byId("operServList").addEventDelegate({
-                    onAfterRendering: function () {
-                        var cb = $.find('.sapMCbBg');
-                        for(var j=1; j< cb.length-1; j++){
-                       $("#"+ cb[j].id).click(function(event){event.stopPropagation()});
+                var isDisplay = oView.getModel("oEnableMdl").getData().nextBtnExtensionDisplayVsb;
+                if (!isDisplay) { }
+                else {
+                    oView.byId("operServList").addEventDelegate({
+                        onAfterRendering: function () {
+                            var cb = $.find('.sapMCbBg');
+                            for (var j = 1; j < cb.length - 1; j++) {
+                                $("#" + cb[j].id).click(function (event) { event.stopPropagation() });
+                            }
                         }
-                    }
-                }, this);
-                 oView.byId("manServList").addEventDelegate({
-                    onAfterRendering: function () {
-                        var cbg= $.find('.sapMCbBg');
-                        for(var k=1; k< cbg.length-1; k++){
-                       $("#"+ cbg[k].id).click(function(event){event.stopPropagation()});
+                    }, this);
+                    oView.byId("manServList").addEventDelegate({
+                        onAfterRendering: function () {
+                            var cbg = $.find('.sapMCbBg');
+                            for (var k = 1; k < cbg.length - 1; k++) {
+                                $("#" + cbg[k].id).click(function (event) { event.stopPropagation() });
+                            }
                         }
-                    }
-                }, this);
-            }
+                    }, this);
+                }
             },
             onActivateCompanyInfoOFA: function () {
                 var that = this;
@@ -7176,7 +7323,7 @@ oBusyDialogLoadData.close();
             fnSelectionChangeDiversity: function (oEvent) {
                 var selPath = oEvent.getSource().getParent().getButtons()[0].getBindingPath("selected");
                 oView.getModel("companyInfoModel").setProperty(selPath, false);
-                oView.getModel("oDataModel").refresh(true);
+                oView.getModel("companyInfoModel").refresh(true);
             }
         });
     });
