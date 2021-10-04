@@ -38,7 +38,7 @@
         <g:GridListItem>
          	 <!-- <VBox> -->
          <HBox width="{deviceModel>/hBoxWidth}">
-         <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/orgEstablishConnectionisSelectedEnb}"></CheckBox>
+         <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/orgEstablishConnectionisSelectedEnb}" valueState="{oErrorModel>/orgEstablishConnectionSelectedE}" select="onSelectOrgEstablishConnection"></CheckBox>
         <Text text="{oLookUpModel>value}" class="sapUiTinyMarginTop" wrapping="true"/>
         <Button visible="{=${oLookUpModel>value} === 'Other connection type'? false: true}" tooltip="{oLookUpModel>tooltip}" icon="sap-icon://message-information" type="Transparent" press="fnOnPressInfoIcon" class="sapUiSizeCompact infoBtn"/>
        </HBox>
@@ -103,7 +103,7 @@
    <g:GridListItem>
          <!-- <VBox> -->
          <HBox width="{deviceModel>/hBoxWidth}">	
-         <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/orgBusinessActivitiesisSelectedEnb}" ></CheckBox>
+         <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/orgBusinessActivitiesisSelectedEnb}" valueState="{oErrorModel>/orgBusinessActivitiesisSelectedE}" select="onSelectOrgBusinessActivities"></CheckBox>
         <Text text="{oLookUpModel>value}" class="sapUiTinyMarginTop"/>
         <Button visible="{=${oLookUpModel>tooltip} === ''? false: true}" tooltip="{oLookUpModel>tooltip}" icon="sap-icon://message-information" type="Transparent" press="fnOnPressInfoIcon" class="sapUiSizeCompact infoBtn"/>
       </HBox>  <TextArea value="{oLookUpModel>otherValue}" placeholder="{i18n>otherData}" enabled="{oEnableMdl>/orgBusinessActivitiesotherValueEnb}" visible="{=${oLookUpModel>value} === 'Other data type'? true: false}" maxLength="255" class="inputStyle inputStyleTA2 sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin" />

@@ -28,9 +28,11 @@ sap.ui.define([
 			this.oAppModel.setProperty("/currentPageTray", "1");
 			this.oAppModel.setProperty("/inboxTab", "MyInbox");
             this.oAppModel.refresh(true);
+            if(componentData){
             if (componentData.startupParameters.params){
                 oAppModel.setProperty("/graphClicked", true);
             }
+        }
 			this.setChatDto();
 			this.fnGetChatUsers();
 			oRouter.attachRoutePatternMatched(function (oEvent) {

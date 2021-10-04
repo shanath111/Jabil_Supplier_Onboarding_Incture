@@ -44,7 +44,6 @@ sap.ui.define([
 
 
                 oBusyDialog = new sap.m.BusyDialog({ text: "Posting data" });
-                oBusyDialogLoadData = new sap.m.BusyDialog({ text: "...please wait while the data is loading" });
                 oBusyDialogFile = new sap.m.BusyDialog({ text: "Uploading File" });
                 oView = this.getView();
                 oi18n = this.getOwnerComponent().getModel("i18n").getResourceBundle();
@@ -71,7 +70,6 @@ sap.ui.define([
                 var that = this;
                 var taskId = oEvent.getParameter("arguments").contextPath;
                 vAppName = oEvent.getParameter("arguments").Name;
-
                 if (vAppName == "Supplier") {
                     if (oView.getModel("oUserModel").getData().language == undefined || oView.getModel("oUserModel").getData().language == 'en' || oView.getModel("oUserModel").getData().language == 'en-US') {
                         that.getView().getModel("oVisibilityModel").getData().isdefaultLan = true;
@@ -93,7 +91,7 @@ sap.ui.define([
                     aModel.attachRequestCompleted(function (oEvent) {
                         if (oEvent.getParameter("success")) {
                             that.getOwnerComponent().getModel("oVisibilityModel").getData().claimedTask = oEvent.getSource().getData().isClaimed;
-                            that.getOwnerComponent().getModel("oVisibilityModel").getData().isTaskCompleted = oEvent.getSource().getData().isTaskCompleted;
+                               that.getOwnerComponent().getModel("oVisibilityModel").getData().isTaskCompleted = oEvent.getSource().getData().isTaskCompleted;
                             that.getOwnerComponent().getModel("oVisibilityModel").refresh();
                         }
                         else {
@@ -702,9 +700,9 @@ sap.ui.define([
                                                 "rName": oEvent.getSource().oData.comInfoDto.address[0].postal[0].name,
                                                 "rAddress1": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address1,
                                                 "rAddress2": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address2,
-                                                "rAddress3": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address3,
-                                                "rAddress4": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address4,
-                                                "rAddress5": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address5,
+                                                "rAddress3": oEvent.getSource().oData.comInfoDto.address[1].postal[0].address3,
+                                                "rAddress4": oEvent.getSource().oData.comInfoDto.address[1].postal[0].address4,
+                                                "rAddress5": oEvent.getSource().oData.comInfoDto.address[1].postal[0].address5,
                                                 "rDist": oEvent.getSource().oData.comInfoDto.address[0].postal[0].district,
                                                 "rPostalCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postalCode,
                                                 "rCity": oEvent.getSource().oData.comInfoDto.address[0].postal[0].city,
@@ -933,14 +931,14 @@ sap.ui.define([
                                 oView.setModel(cModel, "companyInfoModel");
                                 oView.setModel(rModel, "remitModel");
                                 that._fnReadDocumentList(oView.getModel("oUserModel").getData().caseId, that);
-                                oBusyDialogLoadData.close();
+ oBusyDialogLoadData.close();
                             } else {
                                 var sErMsg = oEvent.getParameter("errorobject").responseText;
                                 MessageBox.show(sErMsg, {
                                     icon: MessageBox.Icon.ERROR,
                                     title: oi18n.getText("error")
                                 });
-                                oBusyDialogLoadData.close();
+                                 oBusyDialogLoadData.close();
                             }
 
                         }
@@ -1021,7 +1019,7 @@ sap.ui.define([
                         });
                     });
                 }
-                if (resultModel.comInfoDto.address[0] && resultModel.comInfoDto.address[0].postal[0].country == "USA") {
+                if (resultModel.comInfoDto.address[0] && resultModel.comInfoDto.address[0].postal[0].country == "United States") {
                     var enterpriseList = oView.getModel("oLookUpModel").getData().enterprise;
                     var resultData1 = resultModel.comInfoDto.enterprise;
                     if (resultData1 && resultData1.length > 0) {
@@ -1086,7 +1084,7 @@ sap.ui.define([
             _fnLoadDropDownModel: function () {
                 oView.getModel("oLookUpModel").setSizeLimit(10000);
                 this._fnLoadCountry();
-                //this._fnLoadTax();
+                this._fnLoadTax();
                 this._fnLoadIncoterms();
                 this._fnLoadPaymentTerms();
                 this._fnLoadPaymentMethod();
@@ -1126,20 +1124,20 @@ sap.ui.define([
                     }
                 });
             },
-            // _fnLoadTax: function () {
-            //     var oModel = new JSONModel();
-            //     var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/tax-types";
-            //     oModel.loadData(sUrl, {
-            //         "Content-Type": "application/json"
-            //     });
-            //     oModel.attachRequestCompleted(function (oEvent) {
-            //         if (oEvent.getParameter("success")) {
-            //             oView.getModel("oLookUpModel").setProperty("/TaxType", oEvent.getSource().getData());
-            //             oView.getModel("oLookUpModel").refresh();
-            //         }
-            //     });
+            _fnLoadTax: function () {
+                var oModel = new JSONModel();
+                var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/tax-types";
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oLookUpModel").setProperty("/TaxType", oEvent.getSource().getData());
+                        oView.getModel("oLookUpModel").refresh();
+                    }
+                });
 
-            // },
+            },
             _fnLoadIncoterms: function () {
                 var oModel = new JSONModel();
                 var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/incoterms";
@@ -1342,7 +1340,7 @@ sap.ui.define([
             },
 
             fnChangeSupplierCountry: function (oEvent) {
-                if (oEvent.getSource().getValue()) {
+                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
                     oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
@@ -1363,7 +1361,7 @@ sap.ui.define([
                 this._fnLoadSupplierRegion(vCountry);
             },
             fnChangeSupplierRegion: function (oEvent) {
-                if (oEvent.getSource().getValue()) {
+                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
                     oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
@@ -1772,7 +1770,7 @@ sap.ui.define([
                         } else {
                             oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "None";
                             oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
-                            //  iError = false;
+                          //  iError = false;
                         }
                     }
 
@@ -2263,11 +2261,11 @@ sap.ui.define([
                             iError = true;
                         }
                         if (oView.getModel("companyInfoModel").getData().oCountry === 'USA' && oView.getModel("companyInfoModel").getData().haveDiversityCertifications === null) {
-                            oView.getModel("oErrorModel").getData().haveDiversityCertificationsE = "Error";
-                            iError = true;
-                        }
+                        oView.getModel("oErrorModel").getData().haveDiversityCertificationsE = "Error";
+                        iError = true;
                     }
-
+                    }
+                    
                     if (oView.getModel("remitModel").getData().isRemitToAddress) {
                         if (!oView.getModel("remitModel").getData().rName) {
                             oView.getModel("oErrorModel").getData().rTANameE = "Error";
@@ -3203,7 +3201,7 @@ sap.ui.define([
                             oView.getModel("oErrorModel").getData().cocE = "None";
                             oView.getModel("oErrorModel").getData().cocM = "";
 
-                            // iError = false;
+                           // iError = false;
                         }
                     }
                     if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact && oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact.length > 30) {
@@ -3363,6 +3361,7 @@ sap.ui.define([
                 var olist = oView.getModel("oLookUpModel").getData().orgEstablishConnection;
                 var olist1 = oView.getModel("oLookUpModel").getData().orgBusinessActivities;
                 var oListLength = [], oListLength1 = [];
+                var oSelectedList = [], oSelectedList1 = []; 
                 if (this.emailValidResult) {
                     iError = true;
                 }
@@ -3374,7 +3373,7 @@ sap.ui.define([
                     oView.getModel("oErrorModel").getData().orgMaintainProcessDataFromJabilE = "Error";
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil) {
+                 if (oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil) {
                     if (oView.getModel("oDataModel").getData().itCyberDto.certifiedForInfoSecurity === null) {
                         oView.getModel("oErrorModel").getData().certifiedForInfoSecurityE = "Error";
                         iError = true;
@@ -3451,26 +3450,26 @@ sap.ui.define([
                     }
                     if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.extension && oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.extension.length > 10) {
                         iError = true;
-                    }
+                    }              
                 }
-                if (iError) {
+                 if (iError) {
 
-                    if (isDefaultLan) {
-                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
-                            icon: sap.m.MessageBox.Icon.ERROR,
-                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                            contentWidth: "30%",
-                            styleClass: "sapUiSizeCompact"
-                        });
-                    } else {
-                        sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.validationDefaultMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
-                            icon: sap.m.MessageBox.Icon.ERROR,
-                            title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                            contentWidth: "30%",
-                            styleClass: "sapUiSizeCompact"
-                        });
+                        if (isDefaultLan) {
+                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        } else {
+                            sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.validationDefaultMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        }
                     }
-                }
                 if (oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem && !iError) {
 
 
@@ -3481,7 +3480,7 @@ sap.ui.define([
                     });
                     if (oListLength.length === 0) {
                         iError = true;
-
+                        
                         if (isDefaultLan) {
                             sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("selectAtleastAnItemJBN")), {
                                 icon: sap.m.MessageBox.Icon.ERROR,
@@ -3531,6 +3530,29 @@ sap.ui.define([
 
                 }
 
+                if(oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem){
+                    $.each(olist, function (index, value) {
+                        if (value.isSelected) {
+                            oSelectedList.push(value);
+                        }
+                    });
+                    if(oSelectedList.length === 0){
+                        oView.getModel("oErrorModel").getData().orgEstablishConnectionSelectedE = "Error";
+                    }
+                    
+                }
+
+                if (oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil) {
+                    $.each(olist, function (index, value) {
+                        if (value.isSelected) {
+                            oSelectedList1.push(value);
+                        }
+                    });
+                    if(oSelectedList1.length === 0){
+                        oView.getModel("oErrorModel").getData().orgBusinessActivitiesisSelectedE = "Error";
+                    }
+                     
+                } 
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("cyberSecInfo").setValidated(false);
@@ -3539,6 +3561,18 @@ sap.ui.define([
                 }
 
 
+            },
+            onSelectOrgEstablishConnection: function(oEvent) {
+                if(oEvent.getParameters().selected) {
+                    oView.getModel("oErrorModel").getData().orgEstablishConnectionSelectedE = "None";
+                    oView.getModel("oErrorModel").refresh();
+                }
+            },
+            onSelectOrgBusinessActivities:function(oEvent) {
+                if(oEvent.getParameters().selected) {
+                    oView.getModel("oErrorModel").getData().orgBusinessActivitiesisSelectedE = "None";
+                    oView.getModel("oErrorModel").refresh();
+                }
             },
             _fnValidateContactInfo: function () {
                 var iError = false;
@@ -3722,7 +3756,7 @@ sap.ui.define([
                     } else {
                         oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "None";
                         oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
-                        // iError = false;
+                       // iError = false;
                     }
                 }
 
@@ -3994,7 +4028,7 @@ sap.ui.define([
             _fnValidateDraftShippingInfo: function () {
                 var iError = false;
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isDeliver) {
-
+                    
                     if (this.emailValidResult) {
                         iError = true;
                     }
@@ -4022,9 +4056,9 @@ sap.ui.define([
             },
 
             _fnValidateDraftComplianceInfo: function () {
-                var iError = false;
+                    var iError = false;
                 if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectations === false) {
-
+                
                     if (this.emailValidResult) {
                         iError = true;
                     }
@@ -4574,7 +4608,7 @@ sap.ui.define([
                     }
                 }
                 var firstDigit = "", secondDigit = "";
-                var bankCountryDesc = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().Country, oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry);
+                var bankCountryDesc =formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().Country, oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry);
                 if (bankCountryDesc == "Russian Fed.") {
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum) {
                         oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum.substring(2, 0);
@@ -4610,7 +4644,7 @@ sap.ui.define([
                         oEvent.getSource().setValueState("None");
                         oEvent.getSource().setValueStateText("");
                     }
-
+                    
 
                 }
                 if (this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.bankControlKeyLogic == "IBAN") {
@@ -4773,7 +4807,7 @@ sap.ui.define([
                 }
 
             },
-            fnValueChange: function (oEvent) {
+             fnValueChange: function (oEvent) {
                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
@@ -4885,7 +4919,7 @@ sap.ui.define([
                         if (oEvent.getSource().getValue().length == oEvent.getSource().getMaxLength()) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
-                            that.emailValidResult = true;
+                             that.emailValidResult = true;
                         } else {
                             oEvent.getSource().setValueState("None");
                             oEvent.getSource().setValueStateText("");
@@ -5061,7 +5095,7 @@ sap.ui.define([
                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
-                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                      oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
                     oView.getModel("oDataModel").refresh();
                 }
 
@@ -5554,110 +5588,110 @@ sap.ui.define([
             nextStep: function (event) {
                 // @ts-ignore
                 this.oWizard = this.getView().byId("surveyWizard");
-                if (!oView.getModel("oEnableMdl").getData().nextBtnExtensionDisplayVsb) {
-                    if (this.oWizard._getProgressNavigator()._iCurrentStep == 1) {
-                        this._fnValidateBasicInfo();
+                if(!oView.getModel("oEnableMdl").getData().nextBtnExtensionDisplayVsb) {
+                if (this.oWizard._getProgressNavigator()._iCurrentStep == 1) {
+                    this._fnValidateBasicInfo();
 
-                    }
-                    else if (this.oWizard._getProgressNavigator()._iCurrentStep == 2) {
-                        this._fnValidateBusinessPartner();
+                }
+                else if (this.oWizard._getProgressNavigator()._iCurrentStep == 2) {
+                    this._fnValidateBusinessPartner();
 
-                    }
-                    else if (this.oWizard._getProgressNavigator()._iCurrentStep == 3) {
-                        this._fnValidateContactInfo();
+                }
+                else if (this.oWizard._getProgressNavigator()._iCurrentStep == 3) {
+                    this._fnValidateContactInfo();
 
-                    }
-                    else if (this.oWizard._getProgressNavigator()._iCurrentStep == 4) {
-                        this._fnValidateOwnerInfo();
+                }
+                else if (this.oWizard._getProgressNavigator()._iCurrentStep == 4) {
+                    this._fnValidateOwnerInfo();
 
-                    }
-                    else if (this.oWizard._getProgressNavigator()._iCurrentStep == 5) {
-                        this._fnValidateCompanyInfo();
-
-
-
-                    }
-                    else if (this.oWizard._getProgressNavigator()._iCurrentStep == 6) {
-                        this._fnValidateBankInfo();
+                }
+                else if (this.oWizard._getProgressNavigator()._iCurrentStep == 5) {
+                    this._fnValidateCompanyInfo();
 
 
-                    }
-                    else if (this.oWizard._getProgressNavigator()._iCurrentStep == 7) {
-                        this._fnValidateShippingInfo();
 
-                    }
-                    else if (this.oWizard._getProgressNavigator()._iCurrentStep == 8) {
-                        this._fnValidateComProductServiceInfo();
-                    }
-                    else if (this.oWizard._getProgressNavigator()._iCurrentStep == 9) {
-                        this._fnValidateCompanyCompliance();
-                    }
-                    else if (this.oWizard._getProgressNavigator()._iCurrentStep == 10) {
-
-                        this._fnValidateCyberSec();
+                }
+                else if (this.oWizard._getProgressNavigator()._iCurrentStep == 6) {
+                    this._fnValidateBankInfo();
 
 
-                    }
-                    else if (this.oWizard._getProgressNavigator()._iCurrentStep == 11) {
+                }
+                else if (this.oWizard._getProgressNavigator()._iCurrentStep == 7) {
+                    this._fnValidateShippingInfo();
+
+                }
+                else if (this.oWizard._getProgressNavigator()._iCurrentStep == 8) {
+                    this._fnValidateComProductServiceInfo();
+                }
+                else if (this.oWizard._getProgressNavigator()._iCurrentStep == 9) {
+                    this._fnValidateCompanyCompliance();
+                }
+                else if (this.oWizard._getProgressNavigator()._iCurrentStep == 10) {
+
+                    this._fnValidateCyberSec();
 
 
-                    }
+                }
+                else if (this.oWizard._getProgressNavigator()._iCurrentStep == 11) {
 
-
-                    if (this.getView().byId(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).getValidated()) {
-                        this.getView().byId("surveyWizard")._oScroller.scrollTo(0, 0);
-
-                        oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
-                        oView.getModel("oEnableMdl").refresh();
-                        // if(this.oWizard._getProgressNavigator()._iCurrentStep == 2){
-                        //  var isCreation = oView.getModel("oUserModel").getData().isNew;
-                        //  if(isCreation){
-                        //        this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
-                        //  } else {
-                        //        this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep].sId).nextStep();
-                        //  }
-                        // } else{
-                        this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
-                        //  }
-                    } else if (this.oWizard._getProgressNavigator()._iCurrentStep !== 5 && this.oWizard._getProgressNavigator()._iCurrentStep !== 8 && this.oWizard._getProgressNavigator()._iCurrentStep !== 10) {
-                        var that = this;
-                        var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
-                        var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
-                        if (isDefaultLan) {
-                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
-                                icon: sap.m.MessageBox.Icon.ERROR,
-                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                                contentWidth: "30%",
-                                styleClass: "sapUiSizeCompact"
-                            });
-                        } else {
-                            sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.validationDefaultMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
-                                icon: sap.m.MessageBox.Icon.ERROR,
-                                title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                                contentWidth: "30%",
-                                styleClass: "sapUiSizeCompact"
-                            });
-                        }
-                    }
-                } else {
-                    this.getView().byId("surveyWizard")._oScroller.scrollTo(0, 0);
-
-                    oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
-                    oView.getModel("oEnableMdl").refresh();
-                    this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
 
                 }
 
 
+                if (this.getView().byId(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).getValidated()) {
+                    this.getView().byId("surveyWizard")._oScroller.scrollTo(0, 0);
+
+                    oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
+                    oView.getModel("oEnableMdl").refresh();
+                    // if(this.oWizard._getProgressNavigator()._iCurrentStep == 2){
+                    //  var isCreation = oView.getModel("oUserModel").getData().isNew;
+                    //  if(isCreation){
+                    //        this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
+                    //  } else {
+                    //        this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep].sId).nextStep();
+                    //  }
+                    // } else{
+                    this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
+                  //  }
+                } else if (this.oWizard._getProgressNavigator()._iCurrentStep !== 5 && this.oWizard._getProgressNavigator()._iCurrentStep !== 8 && this.oWizard._getProgressNavigator()._iCurrentStep !== 10) {
+                    var that = this;
+                    var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
+                    var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                    if (isDefaultLan) {
+                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                    } else {
+                        sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.validationDefaultMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                    }
+                }
+            } else {
+                this.getView().byId("surveyWizard")._oScroller.scrollTo(0, 0);
+                    
+                    oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
+                    oView.getModel("oEnableMdl").refresh();
+                    this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
+    
+            }
+
+
             },
 
-            nextStepDisplayOnly: function () {
+            nextStepDisplayOnly: function() {
                 this.oWizard = this.getView().byId("surveyWizard");
                 this.getView().byId("surveyWizard")._oScroller.scrollTo(0, 0);
-
-                oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
-                oView.getModel("oEnableMdl").refresh();
-                this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
+                    
+                    oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
+                    oView.getModel("oEnableMdl").refresh();
+                    this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
             },
             // @ts-ignore
             previousStep: function (event) {
@@ -5967,7 +6001,7 @@ sap.ui.define([
                         oPayload.bankDto.bankInfoDto[0].bankCode = "";
                         oPayload.bankDto.bankInfoDto[0].partnerBankType = "";
                         oPayload.bankDto.bankInfoDto[0].bankControlKey = "";
-                        // oPayload.bankDto.bankInfoDto[0].instructionKey = ""; // commented since the key is default value in all screens- siva ---- date:01/10/2021
+                       // oPayload.bankDto.bankInfoDto[0].instructionKey = ""; // commented since the key is default value in all screens- siva ---- date:01/10/2021
                         oPayload.bankDto.financeContact1.contactInSection = "FinanceSupplier";
                         oPayload.bankDto.financeContact2.contactInSection = "Reviewer";
                     } else {
@@ -6636,7 +6670,7 @@ sap.ui.define([
                         }
 
                         ]
-                        if (oPayload.comInfoDto.address[0] && oPayload.comInfoDto.address[0].postal[0].country == "USA") {
+                        if (oPayload.comInfoDto.address[0] && oPayload.comInfoDto.address[0].postal[0].country == "United States") {
                             if (oPayload.comInfoDto.enterprise) {
                                 var enterpriseList = oView.getModel("oLookUpModel").getData().enterprise;
 
@@ -6908,11 +6942,11 @@ sap.ui.define([
                     that.getOwnerComponent().getModel("oVisibilityModel").getData()._SupplierBankEdit = false;
 
                 }
-                if (vAppName.split(":")[0] == "Display" || that.getOwnerComponent().getModel("oVisibilityModel").getData().isTaskCompleted) {
-                    if (that.getOwnerComponent().getModel("oVisibilityModel").getData().isTaskCompleted) {
+                if (vAppName.split(":")[0] == "Display" || that.getOwnerComponent().getModel("oVisibilityModel").getData().isTaskCompleted ) {
+                    if(that.getOwnerComponent().getModel("oVisibilityModel").getData().isTaskCompleted){
                         that.getOwnerComponent().getModel("oVisibilityModel").getData()._HomeBtnVis = false;
-                    } else {
-                        that.getOwnerComponent().getModel("oVisibilityModel").getData()._HomeBtnVis = true;
+                    } else{
+                    that.getOwnerComponent().getModel("oVisibilityModel").getData()._HomeBtnVis = true;
                     }
                     that.getOwnerComponent().getModel("oVisibilityModel").getData()._finalStepSave = false;
                     that.getOwnerComponent().getModel("oVisibilityModel").getData()._FinanceReviewEdit = false;
@@ -7179,7 +7213,7 @@ sap.ui.define([
             },
             fnNavBackToHome: function () {
                 var vName = vAppName.split(":")[1];
-                if (vName == "LegalExp" || vName == "GTS" || vName == "COISupp" || vName == "COIBuyer") {
+                if (vName == "LegalExp" || vName == "GTS" || vName ==  "COISupp" || vName ==  "COIBuyer") {
                     var vUrl = window.location.origin + "/nsBuyerRegistration/index.html#/ExceptionFlow/" + vName + "/" + oView.getModel("oUserModel").getData().taskId
                 } else {
                     var vUrl = window.location.origin + "/nsBuyerRegistration/index.html#/Reviewer/" + vName + "/" + oView.getModel("oUserModel").getData().taskId
