@@ -44,6 +44,7 @@ sap.ui.define([
 
 
                 oBusyDialog = new sap.m.BusyDialog({ text: "Posting data" });
+                oBusyDialogLoadData = new sap.m.BusyDialog({ text: "...please wait while the data is loading"});
                 oBusyDialogFile = new sap.m.BusyDialog({ text: "Uploading File" });
                 oView = this.getView();
                 oi18n = this.getOwnerComponent().getModel("i18n").getResourceBundle();
