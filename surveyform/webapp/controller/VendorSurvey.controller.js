@@ -3449,7 +3449,7 @@ sap.ui.define([
                 }
 
                 if (oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil) {
-                    $.each(olist1, function (index, value) {
+                    $.each(olist, function (index, value) {
                         if (value.isSelected) {
                             oSelectedList1.push(value);
                         }
