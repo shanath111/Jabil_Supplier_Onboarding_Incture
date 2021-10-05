@@ -1989,7 +1989,7 @@ sap.ui.define([
 
                 }
 
-                if (vCount == 0) {
+                if (vCount == 1) {
                     sap.m.MessageToast.show(oi18n.getProperty("BPEEnterAtLeastOneFiltr"))
                 } else {
                     oBusyDilog.open();
