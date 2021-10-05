@@ -77,12 +77,12 @@
 							visible="{= ${oAppModel>/currentViewPage} === 'CompletedTasks' || ${oAppModel>/currentViewPage} === 'RequestorCompletedTasks' ? false : true}"
 							width="{= ${oAppModel>/isRightPaneVisible} === true ? '9.5%' : '8%'}"
 							class="wbShowTimeClass wbInboxTextCreatedAtClass sapUiTinyMarginBegin sapUiTinyMarginEnd"  maxLines="1"
-							text="{path:'oTaskInboxModel>createdAt ', formatter:'oneapp.incture.workbox.util.formatter.wbTimeFormatter'}"/>
+							text="{path:'oTaskInboxModel>createdAt', formatter:'oneapp.incture.workbox.util.formatter.wbTimeFormatter'}"/>
 						<Text
 							visible="{= ${oAppModel>/currentViewPage} === 'CompletedTasks' || ${oAppModel>/currentViewPage} === 'RequestorCompletedTasks' ? false : true}"
 							width="{= ${oAppModel>/isRightPaneVisible} === true ? '9.5%' : '8%'}"  maxLines="1"
 							class="wbShowDateClass wbInboxTextCreatedAtClass sapUiTinyMarginBegin sapUiTinyMarginEnd"
-							text="{path:'oTaskInboxModel>createdAt ', formatter:'oneapp.incture.workbox.util.formatter.wbDateFormatter'}"/>
+							text="{path:'oTaskInboxModel>createdAt', formatter:'oneapp.incture.workbox.util.formatter.wbDateFormatter'}"/>
 						<core:Icon src="sap-icon://feeder-arrow" tooltip="{i18n>SHOW_MORE_TEXT}" class="wbInboxMoreIconClass sapUiTinyMarginEnd"/>
 					</ExtHbox:ExtHbox>
 				</CustomListItem>
