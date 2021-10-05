@@ -256,5 +256,7 @@
 "orgMaintainProcessDataFromJabilE":"None",
 "certifiedForInfoSecurityE":"None",
 "validateCertificateE":"None",
-"responsibleForInforSecurityE":"None"
+"responsibleForInforSecurityE":"None",
+"orgEstablishConnectionSelectedE":"None",
+"orgBusinessActivitiesisSelectedE":"None"
 }

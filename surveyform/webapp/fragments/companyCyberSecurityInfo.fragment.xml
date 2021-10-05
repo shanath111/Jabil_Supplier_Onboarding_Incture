@@ -38,11 +38,11 @@
         <g:GridListItem>
          	 <!-- <VBox> -->
          <HBox width="{deviceModel>/hBoxWidth}">
-         <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/orgEstablishConnectionisSelectedEnb}"></CheckBox>
+         <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/orgEstablishConnectionisSelectedEnb}" valueState="{oErrorModel>/orgEstablishConnectionSelectedE}" select="onSelectOrgEstablishConnection"></CheckBox>
         <Text text="{oLookUpModel>value}" class="sapUiTinyMarginTop" wrapping="true"/>
         <Button visible="{=${oLookUpModel>value} === 'Other connection type'? false: true}" tooltip="{oLookUpModel>tooltip}" icon="sap-icon://message-information" type="Transparent" press="fnOnPressInfoIcon" class="sapUiSizeCompact infoBtn"/>
        </HBox>
-       <TextArea value="{oLookUpModel>otherValue}" placeholder="{i18n>otherData}" enabled="{oEnableMdl>/orgEstablishConnectionotherValueEnb}" visible="{=${oLookUpModel>value} === 'Other connection type'? true: false}" maxLength="1000" class="inputStyle inputStyleTA2 sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin"/>
+       <TextArea value="{oLookUpModel>otherValue}" placeholder="{i18n>otherData}" enabled="{oEnableMdl>/orgEstablishConnectionotherValueEnb}" visible="{=${oLookUpModel>value} === 'Other connection type'? true: false}" maxLength="255" class="inputStyle inputStyleTA2 sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin"/>
         <!-- </VBox> -->
          </g:GridListItem>
      	<!-- <g:GridListItem>
@@ -103,10 +103,10 @@
    <g:GridListItem>
          <!-- <VBox> -->
          <HBox width="{deviceModel>/hBoxWidth}">	
-         <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/orgBusinessActivitiesisSelectedEnb}" ></CheckBox>
+         <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/orgBusinessActivitiesisSelectedEnb}" valueState="{oErrorModel>/orgBusinessActivitiesisSelectedE}" select="onSelectOrgBusinessActivities"></CheckBox>
         <Text text="{oLookUpModel>value}" class="sapUiTinyMarginTop"/>
         <Button visible="{=${oLookUpModel>tooltip} === ''? false: true}" tooltip="{oLookUpModel>tooltip}" icon="sap-icon://message-information" type="Transparent" press="fnOnPressInfoIcon" class="sapUiSizeCompact infoBtn"/>
-      </HBox>  <TextArea value="{oLookUpModel>otherValue}" placeholder="{i18n>otherData}" enabled="{oEnableMdl>/orgBusinessActivitiesotherValueEnb}" visible="{=${oLookUpModel>value} === 'Other data type'? true: false}" maxLength="1000" class="inputStyle inputStyleTA2 sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin" />
+      </HBox>  <TextArea value="{oLookUpModel>otherValue}" placeholder="{i18n>otherData}" enabled="{oEnableMdl>/orgBusinessActivitiesotherValueEnb}" visible="{=${oLookUpModel>value} === 'Other data type'? true: false}" maxLength="255" class="inputStyle inputStyleTA2 sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin" />
         <!-- </VBox> -->
         </g:GridListItem>
    </g:GridList>
@@ -137,23 +137,23 @@
 								<VBox>
 									<Label text="{i18n>firstNameG}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" wrapping="true" required="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input maxLength="35" value="{oDataModel>/itCyberDto/itcyberSecurityContact/firstName}" valueState="{oErrorModel>/cyberSurveyFNE}" valueStateText="{oErrorModel>/cyberSurveyFNM}"  enabled="{oEnableMdl>/itcyberSecurityContactfirstNameEnb}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
+									<Input maxLength="41" value="{oDataModel>/itCyberDto/itcyberSecurityContact/firstName}" valueState="{oErrorModel>/cyberSurveyFNE}" valueStateText="{oErrorModel>/cyberSurveyFNM}"  enabled="{oEnableMdl>/itcyberSecurityContactfirstNameEnb}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
 								</VBox>
 								<VBox>
 									<Label text="{i18n>lastNameG}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>lastNameG}&#10;{i18n>lastNameG}" wrapping="true" required="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input maxLength="34" value="{oDataModel>/itCyberDto/itcyberSecurityContact/lastName}" valueState="{oErrorModel>/cyberSurveyLNE}" valueStateText="{oErrorModel>/cyberSurveyLNM}" enabled="{oEnableMdl>/itcyberSecurityContactlastNameEnb}" liveChange="fnValueChange"  class="inputStyle"></Input>
+									<Input maxLength="41" value="{oDataModel>/itCyberDto/itcyberSecurityContact/lastName}" valueState="{oErrorModel>/cyberSurveyLNE}" valueStateText="{oErrorModel>/cyberSurveyLNM}" enabled="{oEnableMdl>/itcyberSecurityContactlastNameEnb}" liveChange="fnLiveInputValueChange"  class="inputStyle"></Input>
 								
 								</VBox>
 								<VBox>
 									<Label text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input maxLength="241" value="{oDataModel>/itCyberDto/itcyberSecurityContact/jobTitle}" enabled="{oEnableMdl>/itcyberSecurityContactjobTitleEnb}" class="inputStyle"></Input>
+									<Input value="{oDataModel>/itCyberDto/itcyberSecurityContact/jobTitle}" enabled="{oEnableMdl>/itcyberSecurityContactjobTitleEnb}" class="inputStyle"></Input>
 								</VBox>
 								<VBox>
 									<Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" required="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input value="{oDataModel>/itCyberDto/itcyberSecurityContact/email}" enabled="{oEnableMdl>/itcyberSecurityContactemailEnb}" valueState="{oErrorModel>/cyberSurveyE}" valueStateText="{oErrorModel>/cyberSurveyM}" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
+									<Input maxLength="242" value="{oDataModel>/itCyberDto/itcyberSecurityContact/email}" enabled="{oEnableMdl>/itcyberSecurityContactemailEnb}" valueState="{oErrorModel>/cyberSurveyE}" valueStateText="{oErrorModel>/cyberSurveyM}" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
 								</VBox>
 								<VBox>
 									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
