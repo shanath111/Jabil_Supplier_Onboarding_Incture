@@ -97,12 +97,12 @@
              <VBox  class="fontStyle sapUiSizeCompact sapUiSmallMarginEnd">
 					<Label text="{i18n>firstNameG}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinylMarginEnd"/>
                     <Label text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinylMarginEnd"/>
-					<Input value="{oDataModel>firstName}" maxLength="40" liveChange="fnValueChange"  class="sapUiSmallMarginEnd inputStyle" enabled="{oEnableMdl>/sdnlistContactfirstNameEnb}"/>
+					<Input value="{oDataModel>firstName}" maxLength="41" liveChange="fnLiveInputValueChange"  class="sapUiSmallMarginEnd inputStyle" enabled="{oEnableMdl>/sdnlistContactfirstNameEnb}"/>
                     </VBox>
                     <VBox  class="fontStyle sapUiSizeCompact sapUiSmallMarginEnd">
 					<Label text="{i18n>lastNameG}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinylMarginEnd"/>
                     <Label text="{oi18n_En>lastNameG}&#10;{i18n>lastNameG}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinylMarginEnd"/>
-					<Input value="{oDataModel>lastName}" maxLength="40" liveChange="fnValueChange"  class="sapUiSmallMarginEnd inputStyle" enabled="{oEnableMdl>/sdnlistContactlastNameEnb}"/>
+					<Input value="{oDataModel>lastName}" maxLength="41" liveChange="fnLiveInputValueChange"  class="sapUiSmallMarginEnd inputStyle" enabled="{oEnableMdl>/sdnlistContactlastNameEnb}"/>
 					
                     </VBox>
                     <VBox class="sapUiSizeCompact sapUiSmallMarginEnd">
@@ -175,12 +175,12 @@
              <VBox  class="fontStyle sapUiSizeCompact sapUiSmallMarginEnd">
 					<Label text="{i18n>firstNameG}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"  class="sapUiTinylMarginEnd"/>
                     <Label text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinylMarginEnd"/>
-					<Input value="{oDataModel>firstName}" maxLength="40"  enabled="{oEnableMdl>/regInCISNKContactfirstNameEnb}" liveChange="fnValueChange"  class="sapUiSmallMarginEnd inputStyle"/>
+					<Input value="{oDataModel>firstName}" maxLength="41"  enabled="{oEnableMdl>/regInCISNKContactfirstNameEnb}" liveChange="fnLiveInputValueChange"  class="sapUiSmallMarginEnd inputStyle"/>
                     </VBox>
                     <VBox  class="fontStyle sapUiSizeCompact sapUiSmallMarginEnd">
 					<Label text="{i18n>lastNameG}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinylMarginEnd"/>
                     	<Label text="{oi18n_En>lastNameG}&#10;{i18n>lastNameG}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinylMarginEnd"/>
-					<Input value="{oDataModel>lastName}" maxLength="40" enabled="{oEnableMdl>/regInCISNKContactlastNameEnb}" liveChange="fnValueChange" class="sapUiSmallMarginEnd inputStyle"/>
+					<Input value="{oDataModel>lastName}" maxLength="41" enabled="{oEnableMdl>/regInCISNKContactlastNameEnb}" liveChange="fnLiveInputValueChange" class="sapUiSmallMarginEnd inputStyle"/>
 					
                     </VBox>
                     <VBox class="sapUiSizeCompact sapUiSmallMarginEnd">
@@ -342,7 +342,7 @@
 			<VBox class="fontStyle">
 			<Label required="true" text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
             <Label required="true" text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input maxLength="31" class="inputStyle" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/contact}" valueState="{oErrorModel>/closegovtEntityContE}" valueStateText="{oErrorModel>/closegovtEntityContM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtFamilycontactEnb}"  liveChange="fnLiveInputNumericValueChange"></Input>
+				<Input maxLength="31" class="inputStyle" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/contact}" valueState="{oErrorModel>/closegovtEntityContE}" valueStateText="{oErrorModel>/closegovtEntityContM}" enabled="{oEnableMdl>/managedByGovtFamilycontactEnb}"  liveChange="fnLiveInputNumericValueChange"></Input>
                 <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
 				<layoutData>
 					<l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
