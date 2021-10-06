@@ -9,8 +9,8 @@
               <Title text="{oi18n_En>businessPartnerReg}/&#160;{i18n>businessPartnerReg}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="toolbarfont sapUiSizeCompact sapUiMediumMarginBegin"/>
             </Toolbar>
             
-				<Wizard id="surveyWizard" finishButtonText="Finish" currentStep="basicInfo" class="sapUiResponsivePadding--header sapUiResponsivePadding--content wizNavbackground" showNextButton="false">
-					<WizardStep id="basicInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBasicInfo}:${oi18n_En>wizardStepBasicInfo} +'/&#160;' +${i18n>wizardStepBasicInfo}}" class="titleDisplay sapUiSizeCompact stepBackground sapUiContentPadding" >
+				<Wizard id="surveyWizard" finishButtonText="Finish" enableBranching="true" class="sapUiResponsivePadding--header sapUiResponsivePadding--content wizNavbackground" showNextButton="false">
+					<WizardStep id="basicInfo"  nextStep="businessPartnerInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBasicInfo}:${oi18n_En>wizardStepBasicInfo} +'/&#160;' +${i18n>wizardStepBasicInfo}}" class="titleDisplay sapUiSizeCompact stepBackground sapUiContentPadding" >
 				<Panel width="100%" class="sapUiTinyMarginTop panelPadding">	<l:VerticalLayout width="100%" >
                     	
                         <VBox class="sapUiSizeCompact fontBold sapUiTinyMarginBegin" width="50%">
@@ -377,32 +377,32 @@
                       
                  
 					</WizardStep>
-					<WizardStep id="businessPartnerInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBusPart}:${oi18n_En>wizardStepBusPart} +'/&#160;' +${i18n>wizardStepBusPart}}"
-						activate="onActivateBPInfo" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
+					<WizardStep id="businessPartnerInfo"  title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBusPart}:${oi18n_En>wizardStepBusPart} +'/&#160;' +${i18n>wizardStepBusPart}}"
+						activate="onActivateBPInfo" nextStep="contactInfo" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
 					<core:Fragment fragmentName="com.jabil.surveyform.fragments.businessPartnerInfo" type="XML"/>
 					</WizardStep>
-                    <WizardStep id="contactInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcontactInfo}:${oi18n_En>wizardStepcontactInfo} +'/&#160;' +${i18n>wizardStepcontactInfo}}"
-						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop hideWizard" >
+                    <WizardStep id="contactInfo" nextStep="ownerShipInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcontactInfo}:${oi18n_En>wizardStepcontactInfo} +'/&#160;' +${i18n>wizardStepcontactInfo}}"
+						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" >
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyContactInfo" type="XML"/>
 					</WizardStep>
-					<WizardStep id="ownerShipInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepOwnInfo}:${oi18n_En>wizardStepOwnInfo} +'/&#160;' +${i18n>wizardStepOwnInfo}}" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop"
+					<WizardStep id="ownerShipInfo" nextStep="companyInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepOwnInfo}:${oi18n_En>wizardStepOwnInfo} +'/&#160;' +${i18n>wizardStepOwnInfo}}" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop"
 						>
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.ownershipInfo" type="XML"/>
 					</WizardStep>
-					<WizardStep id="companyInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepCompanyInfo}:${oi18n_En>wizardStepCompanyInfo} +'/&#160;' +${i18n>wizardStepCompanyInfo}}"
+					<WizardStep id="companyInfo" nextStep="bankInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepCompanyInfo}:${oi18n_En>wizardStepCompanyInfo} +'/&#160;' +${i18n>wizardStepCompanyInfo}}"
 						 activate="onActivateCompanyInfo" complete="onCompleteCompanyInfo" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" >
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyInfo" type="XML"/>
 					</WizardStep>
-					<WizardStep id="bankInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBankInfo}:${oi18n_En>wizardStepBankInfo} +'/&#160;' +${i18n>wizardStepBankInfo}}"
+					<WizardStep id="bankInfo" nextStep="shippingInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBankInfo}:${oi18n_En>wizardStepBankInfo} +'/&#160;' +${i18n>wizardStepBankInfo}}"
                      class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" activate="fnActivateBankScreen"
 						>
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.bankInfo" type="XML"/>
 					</WizardStep>
-                    <WizardStep id="shippingInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepShippingInfo}:${oi18n_En>wizardStepShippingInfo} +'/&#160;' +${i18n>wizardStepShippingInfo}}" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop"
+                    <WizardStep id="shippingInfo" nextStep="prodAndServInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepShippingInfo}:${oi18n_En>wizardStepShippingInfo} +'/&#160;' +${i18n>wizardStepShippingInfo}}" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop"
 						>
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.shippingInfo" type="XML"/>
 					</WizardStep>
-					<WizardStep id="prodAndServInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepProductsAndServices}:${oi18n_En>wizardStepProductsAndServices} +'/&#160;' +${i18n>wizardStepProductsAndServices}}"
+					<WizardStep id="prodAndServInfo" nextStep="cComplianceInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepProductsAndServices}:${oi18n_En>wizardStepProductsAndServices} +'/&#160;' +${i18n>wizardStepProductsAndServices}}"
 						activate="onActivateOperAndManuServ" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyProductsAndServices" type="XML"/>
 					</WizardStep>
@@ -411,11 +411,11 @@
 						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyFinInfo" type="XML"/>
 					</WizardStep> -->
-					<WizardStep id="cComplianceInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcompanyCompliance}:${oi18n_En>wizardStepcompanyCompliance} +'/&#160;' +${i18n>wizardStepcompanyCompliance}}"
+					<WizardStep id="cComplianceInfo" nextStep="cyberSecInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcompanyCompliance}:${oi18n_En>wizardStepcompanyCompliance} +'/&#160;' +${i18n>wizardStepcompanyCompliance}}"
 						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" >
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyCompliance" type="XML"/>
 					</WizardStep>
-					<WizardStep id="cyberSecInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcyberSecurityInfo}:${oi18n_En>wizardStepcyberSecurityInfo} +'/&#160;' +${i18n>wizardStepcyberSecurityInfo}}"
+					<WizardStep id="cyberSecInfo" nextStep="previewRegForm" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcyberSecurityInfo}:${oi18n_En>wizardStepcyberSecurityInfo} +'/&#160;' +${i18n>wizardStepcyberSecurityInfo}}"
 						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyCyberSecurityInfo" type="XML"/>
 					</WizardStep>
