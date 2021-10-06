@@ -2959,7 +2959,7 @@ sap.ui.define([
                     oView.getModel("oErrorModel").getData().isDeliverE = "Error";
                     iError = true;
                 }
-                 if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.vendor > 30) {
+                 if (oView.getModel("oDataModel").getData().shippingInfoDto.vendor > 30) {
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.length > 20) {
@@ -4048,7 +4048,7 @@ sap.ui.define([
 
             _fnValidateDraftShippingInfo: function () {
                 var iError = false;
-                 if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.vendor > 30) {
+                 if (oView.getModel("oDataModel").getData().shippingInfoDto.vendor > 30) {
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.length > 20) {
