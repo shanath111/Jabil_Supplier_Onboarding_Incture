@@ -1809,7 +1809,7 @@ sap.ui.define([
             },
             fnLiveChangeAddress1: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length
-                if (vLength > 100) {
+                if (vLength > 35) {
                     oView.getModel("JMBPCreate").getData().address1e = "Error";
                     oView.getModel("JMBPCreate").getData().address1m = oi18n.getProperty("BPCMaxLengthExceeds");
                     oView.getModel("JMBPCreate").refresh();
@@ -1823,7 +1823,7 @@ sap.ui.define([
             },
             fnLiveChangeAddress2: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
-                if (vLength > 100) {
+                if (vLength > 35) {
                     oView.getModel("JMBPCreate").getData().address2e = "Error";
                     oView.getModel("JMBPCreate").getData().address2m = oi18n.getProperty("BPCMaxLengthExceeds");
                     oView.getModel("JMBPCreate").refresh();

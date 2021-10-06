@@ -965,9 +965,11 @@ sap.ui.define([
                                 "selectedSupplier": JSON.stringify(temp)
                             }
                         };
+
                         var oBPCreateModel = new sap.ui.model.json.JSONModel();
                         oBPCreateModel.setData(temp1);
                         oView.setModel(oBPCreateModel, "JMBPCreate");
+                        that.fnLoadPurOrg(temp1.companyCode, that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, temp1.companyCode, "CompanyCode"));
 
                         that.fnLoadState(temp1.country);
                         that.getView().getModel("oAttachmentList").setProperty("/buyerAttachment", []);
@@ -1989,7 +1991,7 @@ sap.ui.define([
 
                 }
 
-                if (vCount == 0) {
+                if (vCount == 1) {
                     sap.m.MessageToast.show(oi18n.getProperty("BPEEnterAtLeastOneFiltr"))
                 } else {
                     oBusyDilog.open();
