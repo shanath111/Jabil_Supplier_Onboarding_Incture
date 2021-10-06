@@ -1508,7 +1508,7 @@ sap.ui.define([
                 if (this.emailValidResult) {
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName || oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName == " " ) {
                     oView.getModel("oErrorModel").getData().supplierNameE = "Error";
                     oView.getModel("oErrorModel").getData().supplierNameM = oi18n.getText("mandatoryFName");
 
@@ -2959,6 +2959,12 @@ sap.ui.define([
                     oView.getModel("oErrorModel").getData().isDeliverE = "Error";
                     iError = true;
                 }
+                 if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.vendor > 30) {
+                    iError = true;
+                }
+                if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.length > 20) {
+                    iError = true;
+                }
 
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isDeliver) {
                     //check field validation
@@ -4042,6 +4048,12 @@ sap.ui.define([
 
             _fnValidateDraftShippingInfo: function () {
                 var iError = false;
+                 if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.vendor > 30) {
+                    iError = true;
+                }
+                if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.length > 20) {
+                    iError = true;
+                }
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isDeliver) {
 
                     if (this.emailValidResult) {
