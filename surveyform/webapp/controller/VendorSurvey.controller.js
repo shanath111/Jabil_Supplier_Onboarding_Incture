@@ -2959,10 +2959,10 @@ sap.ui.define([
                     oView.getModel("oErrorModel").getData().isDeliverE = "Error";
                     iError = true;
                 }
-                 if (oView.getModel("oDataModel").getData().shippingInfoDto.vendor > 30) {
+                 if (oView.getModel("oDataModel").getData().shippingInfoDto.vendor && oView.getModel("oDataModel").getData().shippingInfoDto.vendor.length > 30) {
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.length > 20) {
+                if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation && oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.length > 20) {
                     iError = true;
                 }
 
@@ -4048,10 +4048,10 @@ sap.ui.define([
 
             _fnValidateDraftShippingInfo: function () {
                 var iError = false;
-                 if (oView.getModel("oDataModel").getData().shippingInfoDto.vendor > 30) {
+                 if (oView.getModel("oDataModel").getData().shippingInfoDto.vendor  && oView.getModel("oDataModel").getData().shippingInfoDto.vendor.length > 30) {
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.length > 20) {
+                if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation && oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.length > 20) {
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isDeliver) {
