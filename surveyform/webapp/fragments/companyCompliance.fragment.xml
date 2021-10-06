@@ -21,7 +21,7 @@
             <l:VerticalLayout width="100%" class="fontStyle sapUiSizeCompact sapUiTinyMarginBottom sapUiTinyMarginTop " visible="{=${oDataModel>/comComplianceDto/isSrmReceived} === false}">
             <Label required="true" text="{i18n>prvdExplanation}" visible= "{oVisibilityModel>/isdefaultLan}"  class="fontStyle sapUiTinyMarginBegin"></Label>
                <Label  required="true"  text="{oi18n_En>prvdExplanation}/&#160;{i18n>prvdExplanation}"  visible= "{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="fontStyle sapUiTinyMarginBegin"></Label>
-					<TextArea value="{oDataModel>/comComplianceDto/supplierReqManualExplanation}" valueState="{oErrorModel>/isSrmReceivedE}" valueStateText="{oErrorModel>/isSrmReceivedM}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/notCompliedSRMExplanationEnb}" width="60%" maxLength="1000" class="inputStyle sapUiSizeCompact sapUiTinyMarginBegin">
+					<TextArea value="{oDataModel>/comComplianceDto/supplierReqManualExplanation}" valueState="{oErrorModel>/isSrmReceivedExplanationE}" valueStateText="{oErrorModel>/isSrmReceivedExplanationM}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/notCompliedSRMExplanationEnb}" width="60%" maxLength="1000" class="inputStyle sapUiSizeCompact sapUiTinyMarginBegin">
                  </TextArea>
                  
                     </l:VerticalLayout>

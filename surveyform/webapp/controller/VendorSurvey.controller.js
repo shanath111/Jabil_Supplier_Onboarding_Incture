@@ -1503,108 +1503,108 @@ sap.ui.define([
 
             },
             _fnValidateBasicInfo: function (oEvent) {
-
+                var spaceRegex = /^\s+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName || oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName == " " ) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName)) {
                     oView.getModel("oErrorModel").getData().supplierNameE = "Error";
                     oView.getModel("oErrorModel").getData().supplierNameM = oi18n.getText("mandatoryFName");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName)) {
                     oView.getModel("oErrorModel").getData().authorityFNameE = "Error";
                     oView.getModel("oErrorModel").getData().authorityFNameM = oi18n.getText("mandatoryFName");
 
                     iError = true;
-                } if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.lastName) {
+                } if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.lastName)) {
                     oView.getModel("oErrorModel").getData().authorityLNameE = "Error";
                     oView.getModel("oErrorModel").getData().authorityLNameM = oi18n.getText("mandatoryLName");
 
                     iError = true;
                 }
 
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.email) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.email || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.email)) {
 
                     oView.getModel("oErrorModel").getData().authorityEmailE = "Error";
                     oView.getModel("oErrorModel").getData().authorityEmailM = oi18n.getText("mandatoryEmail");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.countryContactCode) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.countryContactCode)) {
                     oView.getModel("oErrorModel").getData().authorityCountryContactCodeE = "Error";
                     oView.getModel("oErrorModel").getData().authorityCountryContactCodeM = oi18n.getText("mandatoryCountryConatactCode");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contact) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contact || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contact)) {
                     oView.getModel("oErrorModel").getData().authorityContE = "Error";
                     oView.getModel("oErrorModel").getData().authorityContM = oi18n.getText("mandatoryContact");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile)) {
                     oView.getModel("oErrorModel").getData().authorityMobE = "Error";
                     oView.getModel("oErrorModel").getData().authorityMobM = oi18n.getText("mandatoryMContact");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1 || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1)) {
                     oView.getModel("oErrorModel").getData().address1E = "Error";
                     oView.getModel("oErrorModel").getData().adrress1M = oi18n.getText("mandatoryAddr1");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode)) {
                     oView.getModel("oErrorModel").getData().countryE = "Error";
                     oView.getModel("oErrorModel").getData().countryM = oi18n.getText("mandatoryCountry");
 
                     iError = true;
-                } if (!oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].regionCode) {
+                } if (!oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].regionCode || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].regionCode)) {
                     oView.getModel("oErrorModel").getData().stateE = "Error";
                     oView.getModel("oErrorModel").getData().stateM = oi18n.getText("mandatoryState");
 
                     iError = true;
                 }
 
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].city) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].city || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].city)) {
                     oView.getModel("oErrorModel").getData().cityE = "Error";
                     oView.getModel("oErrorModel").getData().cityM = oi18n.getText("mandatoryCity");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode)) {
                     oView.getModel("oErrorModel").getData().poE = "Error";
                     oView.getModel("oErrorModel").getData().poM = oi18n.getText("mandatoryPostalCode");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.altContact.firstName) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.altContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.firstName)) {
                     oView.getModel("oErrorModel").getData().altNameE = "Error";
                     oView.getModel("oErrorModel").getData().altNameM = oi18n.getText("mandatoryFName");
 
                     iError = true;
-                } if (!oView.getModel("oDataModel").getData().surveyInfoDto.altContact.lastName) {
+                } if (!oView.getModel("oDataModel").getData().surveyInfoDto.altContact.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.lastName)) {
                     oView.getModel("oErrorModel").getData().altLNameE = "Error";
                     oView.getModel("oErrorModel").getData().altLNameM = oi18n.getText("mandatoryLName");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.altContact.email) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.altContact.email || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.email)) {
                     oView.getModel("oErrorModel").getData().altEmailE = "Error";
                     oView.getModel("oErrorModel").getData().altEmailM = oi18n.getText("mandatoryEmail");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.altContact.countryContactCode) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.altContact.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.countryContactCode)) {
                     oView.getModel("oErrorModel").getData().altCountryContactCodeE = "Error";
                     oView.getModel("oErrorModel").getData().altCountryContactCodeM = oi18n.getText("mandatoryCountryConatactCode");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact) {
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact)) {
                     oView.getModel("oErrorModel").getData().altContactE = "Error";
                     oView.getModel("oErrorModel").getData().altContactM = oi18n.getText("mandatoryContact");
 
@@ -1644,36 +1644,36 @@ sap.ui.define([
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.isAuthority === false) {
-                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.firstName) {
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.firstName)) {
                         oView.getModel("oErrorModel").getData().ackNameE = "Error";
                         oView.getModel("oErrorModel").getData().ackNameM = oi18n.getText("mandatoryFName");
 
                         iError = true;
-                    } if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.lastName) {
+                    } if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.lastName)) {
                         oView.getModel("oErrorModel").getData().ackLNameE = "Error";
                         oView.getModel("oErrorModel").getData().ackLNameM = oi18n.getText("mandatoryLName");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.email) {
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.email || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.email)) {
                         oView.getModel("oErrorModel").getData().ackEmailE = "Error";
                         oView.getModel("oErrorModel").getData().ackEmailM = oi18n.getText("mandatoryEmail");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.countryContactCode) {
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.countryContactCode)) {
                         oView.getModel("oErrorModel").getData().ackCountryContactCodeE = "Error";
                         oView.getModel("oErrorModel").getData().ackCountryContactCodeM = oi18n.getText("mandatoryCountryConatactCode");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact) {
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact)) {
                         oView.getModel("oErrorModel").getData().ackContactE = "Error";
                         oView.getModel("oErrorModel").getData().ackContactM = oi18n.getText("mandatoryContact");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile) {
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile)) {
                         oView.getModel("oErrorModel").getData().ackPhoneE = "Error";
                         oView.getModel("oErrorModel").getData().ackPhoneM = oi18n.getText("mandatoryMContact");
 
@@ -1685,37 +1685,37 @@ sap.ui.define([
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.isJabilMainContact === false) {
-                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName) {
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName  || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName)) {
                         oView.getModel("oErrorModel").getData().mcFNameE = "Error";
                         oView.getModel("oErrorModel").getData().mcFNameM = oi18n.getText("mandatoryFName");
 
                         iError = true;
-                    } if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.lastName) {
+                    } if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.lastName  || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.lastName)) {
                         oView.getModel("oErrorModel").getData().mcLNameE = "Error";
                         oView.getModel("oErrorModel").getData().mcLNameM = oi18n.getText("mandatoryLName");
 
                         iError = true;
                     }
 
-                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.email) {
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.email  || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.email)) {
                         oView.getModel("oErrorModel").getData().mcEmailE = "Error";
                         oView.getModel("oErrorModel").getData().mcEmailM = oi18n.getText("mandatoryEmail");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.countryContactCode) {
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.countryContactCode  || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.countryContactCode)) {
                         oView.getModel("oErrorModel").getData().mcCountryContactCodeE = "Error";
                         oView.getModel("oErrorModel").getData().mcCountryContactCodeM = oi18n.getText("mandatoryCountryConatactCode");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact) {
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact  || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact)) {
                         oView.getModel("oErrorModel").getData().mcContE = "Error";
                         oView.getModel("oErrorModel").getData().mcContM = oi18n.getText("mandatoryContact");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile) {
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile)) {
                         oView.getModel("oErrorModel").getData().mcPhoneE = "Error";
                         oView.getModel("oErrorModel").getData().mcPhoneM = oi18n.getText("mandatoryContact");
 
@@ -1766,19 +1766,19 @@ sap.ui.define([
                 }
             },
             _fnValidateBusinessPartner: function (oEvent) {
-
+                var spaceRegex = /^\s+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
                 }
                 if (!oView.getModel("oUserModel").getData().isNew) {
-                    if (!oView.getModel("oDataModel").getData().bpInfoDto.isLegalCorrect && !oView.getModel("oDataModel").getData().bpInfoDto.legalName) {
+                    if (!oView.getModel("oDataModel").getData().bpInfoDto.isLegalCorrect && (!oView.getModel("oDataModel").getData().bpInfoDto.legalName || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.legalName))) {
                         oView.getModel("oErrorModel").getData().legalNameE = "Error";
                         oView.getModel("oErrorModel").getData().legalNameM = oi18n.getText("mandatoryLegalName");
                         iError = true;
                     }
                     if (!oView.getModel("oDataModel").getData().bpInfoDto.isDunsCorrect) {
-                        if (oView.getModel("oDataModel").getData().bpInfoDto.dunsNumber && oView.getModel("oDataModel").getData().bpInfoDto.dunsNumber.length != 9) {
+                        if (oView.getModel("oDataModel").getData().bpInfoDto.dunsNumber && !spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.dunsNumber) && oView.getModel("oDataModel").getData().bpInfoDto.dunsNumber.length != 9) {
                             oView.getModel("oErrorModel").getData().dunsNumE = "Error";
                             oView.getModel("oErrorModel").getData().dunsNumM = oi18n.getText("DunsNumberLengthValidation");
                             iError = true;
@@ -1822,35 +1822,35 @@ sap.ui.define([
 
                     }
                 }
-                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName) {
+                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName)) {
                     oView.getModel("oErrorModel").getData().ppocFNameE = "Error";
                     oView.getModel("oErrorModel").getData().ppocFNameM = oi18n.getText("mandatoryFName");
                     iError = true;
-                } if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.lastName) {
+                } if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.lastName)) {
                     oView.getModel("oErrorModel").getData().ppocLNameE = "Error";
                     oView.getModel("oErrorModel").getData().ppocLNameM = oi18n.getText("mandatoryLName");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.email) {
+                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.email || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.email)) {
                     oView.getModel("oErrorModel").getData().ppocEmailE = "Error";
                     oView.getModel("oErrorModel").getData().ppocEmailM = oi18n.getText("mandatoryEmail");
 
                     iError = iError || false;
                 }
-                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryContactCode) {
+                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryContactCode)) {
                     oView.getModel("oErrorModel").getData().ppocCountryContCodeE = "Error";
                     oView.getModel("oErrorModel").getData().ppocCountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact) {
+                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact)) {
                     oView.getModel("oErrorModel").getData().ppocContE = "Error";
                     oView.getModel("oErrorModel").getData().ppocContM = oi18n.getText("mandatoryContact");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile) {
+                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile)) {
                     oView.getModel("oErrorModel").getData().ppocMobE = "Error";
                     oView.getModel("oErrorModel").getData().ppocMobM = oi18n.getText("mandatoryMContact");
 
@@ -2003,7 +2003,7 @@ sap.ui.define([
                 }
             },
             _fnValidateOwnerInfo: function (oEvent) {
-
+                var spaceRegex = /^\s+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -2017,7 +2017,7 @@ sap.ui.define([
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().ownerShipInfoDto.doesOtherEntityOwnSite && !oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum)
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.companyName) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.companyName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.companyName)) {
                         oView.getModel("oErrorModel").getData().compNameE = "Error";
                         oView.getModel("oErrorModel").getData().compNameM = oi18n.getText("mandatoryCompName");
 
@@ -2047,11 +2047,11 @@ sap.ui.define([
                     var oItems = oView.byId("sdnLC").getItems();
                     $.each(sdnList, function (index, row) {
                         var item = oView.byId("sdnLC").getItems()[index].getAggregation("cells");
-                        if (row.firstName == null || row.firstName == "") {
+                        if (row.firstName == null || row.firstName == "" || spaceRegex.test(row.firstName)) {
                             item[0].getAggregation("items")[2].setValueState("Error");
                             item[0].getAggregation("items")[2].setValueStateText(oi18n.getText("mandatoryFName"));
                             iError = true;
-                        } if (row.lastName == null || row.lastName == "") {
+                        } if (row.lastName == null || row.lastName == "" || spaceRegex.test(row.lastName)) {
                             item[1].getAggregation("items")[2].setValueState("Error");
                             item[1].getAggregation("items")[2].setValueStateText(oi18n.getText("mandatoryLName"));
                             iError = true;
@@ -2067,11 +2067,11 @@ sap.ui.define([
                     var oItems = oView.byId("cisnkLC").getItems();
                     $.each(cisnkList, function (index, row) {
                         var item = oView.byId("cisnkLC").getItems()[index].getAggregation("cells");
-                        if (row.firstName == null || row.firstName == "") {
+                        if (row.firstName == null || row.firstName == "" || spaceRegex.test(row.firstName)) {
                             item[0].getAggregation("items")[2].setValueState("Error");
                             item[0].getAggregation("items")[2].setValueStateText(oi18n.getText("mandatoryFName"));
                             iError = true;
-                        } if (row.lastName == null || row.lastName == "") {
+                        } if (row.lastName == null || row.lastName == "" || spaceRegex.test(row.lastName)) {
                             item[1].getAggregation("items")[2].setValueState("Error");
                             item[1].getAggregation("items")[2].setValueStateText(oi18n.getText("mandatoryLName"));
                             iError = true;
@@ -2083,43 +2083,43 @@ sap.ui.define([
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt) {
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName)) {
                         oView.getModel("oErrorModel").getData().govtEntityNameE = "Error";
                         oView.getModel("oErrorModel").getData().govtEntityNameM = oi18n.getText("mandatoryGEName");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.firstName) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.firstName)) {
                         oView.getModel("oErrorModel").getData().govtEntityFNameE = "Error";
                         oView.getModel("oErrorModel").getData().govtEntityFNameM = oi18n.getText("mandatoryFName");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.lastName) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.lastName)) {
                         oView.getModel("oErrorModel").getData().govtEntityLNameE = "Error";
                         oView.getModel("oErrorModel").getData().govtEntityLNameM = oi18n.getText("mandatoryLName");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.email) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.email || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.email)) {
                         oView.getModel("oErrorModel").getData().govtEntityEmailE = "Error";
                         oView.getModel("oErrorModel").getData().govtEntityEmailM = oi18n.getText("mandatoryEmail");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact)) {
                         oView.getModel("oErrorModel").getData().govtEntityContE = "Error";
                         oView.getModel("oErrorModel").getData().govtEntityContM = oi18n.getText("mandatoryContact");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.jobTitle) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.jobTitle || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.jobTitle)) {
                         oView.getModel("oErrorModel").getData().govtEntityJobTitleE = "Error";
                         oView.getModel("oErrorModel").getData().govtEntityJobTitleM = oi18n.getText("mandatoryJobTitle");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.countryContactCode) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.countryContactCode)) {
                         oView.getModel("oErrorModel").getData().govtEntityCountryCodeE = "Error";
                         oView.getModel("oErrorModel").getData().govtEntityCountryCodeM = oi18n.getText("mandatoryCountryConatactCode");
 
@@ -2150,43 +2150,43 @@ sap.ui.define([
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily) {
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName)) {
                         oView.getModel("oErrorModel").getData().closegovtEntityNameE = "Error";
                         oView.getModel("oErrorModel").getData().closegovtEntityNameM = oi18n.getText("mandatoryGEName");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.firstName) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.firstName)) {
                         oView.getModel("oErrorModel").getData().closegovtEntityFNameE = "Error";
                         oView.getModel("oErrorModel").getData().closegovtEntityFNameM = oi18n.getText("mandatoryFName");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.lastName) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.lastName)) {
                         oView.getModel("oErrorModel").getData().closegovtEntityLNameE = "Error";
                         oView.getModel("oErrorModel").getData().closegovtEntityLNameM = oi18n.getText("mandatoryLName");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.email) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.email || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.email)) {
                         oView.getModel("oErrorModel").getData().closegovtEntityEmailE = "Error";
                         oView.getModel("oErrorModel").getData().closegovtEntityEmailM = oi18n.getText("mandatoryEmail");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact)) {
                         oView.getModel("oErrorModel").getData().closegovtEntityContE = "Error";
                         oView.getModel("oErrorModel").getData().closegovtEntityContM = oi18n.getText("mandatoryContact");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.jobTitle) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.jobTitle || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.jobTitle)) {
                         oView.getModel("oErrorModel").getData().closegovtEntityJobTitleE = "Error";
                         oView.getModel("oErrorModel").getData().closegovtEntityJobTitleM = oi18n.getText("mandatoryJobTitle");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.countryContactCode) {
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.countryContactCode)) {
                         oView.getModel("oErrorModel").getData().closegovtEntityCountryCodeE = "Error";
                         oView.getModel("oErrorModel").getData().closegovtEntityCountryCodeM = oi18n.getText("mandatoryCountryConatactCode");
 
@@ -2222,19 +2222,20 @@ sap.ui.define([
             },
             _fnValidateCompanyInfo: function (oEvent) {
                 if (oView.getModel("companyInfoModel")) {
+                    var spaceRegex = /^\s+$/;
                     var iError = false;
                     var aError = false, that = this;
                     var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
                         isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                     if (oView.getModel("companyInfoModel").getData().isOrderFromAddress) {
-                        if (!oView.getModel("companyInfoModel").getData().oName) {
+                        if (!oView.getModel("companyInfoModel").getData().oName || spaceRegex.test(oView.getModel("companyInfoModel").getData().oName)) {
                             oView.getModel("oErrorModel").getData().oFANameE = "Error";
                             oView.getModel("oErrorModel").getData().oFANameM = oi18n.getText("mandatoryName");
 
                             iError = true;
                         }
 
-                        if (!oView.getModel("companyInfoModel").getData().oAddress1) {
+                        if (!oView.getModel("companyInfoModel").getData().oAddress1 || spaceRegex.test(oView.getModel("companyInfoModel").getData().oAddress1)) {
                             oView.getModel("oErrorModel").getData().oFAAddr1E = "Error";
                             oView.getModel("oErrorModel").getData().oFAAddr1M = oi18n.getText("mandatoryAddr1");
 
@@ -2242,7 +2243,7 @@ sap.ui.define([
                         }
 
 
-                        if (!oView.getModel("companyInfoModel").getData().oPostalCode) {
+                        if (!oView.getModel("companyInfoModel").getData().oPostalCode || spaceRegex.test(oView.getModel("companyInfoModel").getData().oPostalCode)) {
                             oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
                             oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("mandatoryPostalCode");
 
@@ -2252,7 +2253,7 @@ sap.ui.define([
                         }
 
 
-                        if (!oView.getModel("companyInfoModel").getData().oCity) {
+                        if (!oView.getModel("companyInfoModel").getData().oCity || spaceRegex.test(oView.getModel("companyInfoModel").getData().oCity)) {
                             oView.getModel("oErrorModel").getData().oFACityE = "Error";
                             oView.getModel("oErrorModel").getData().oFACityM = oi18n.getText("mandatoryCity");
 
@@ -2261,7 +2262,7 @@ sap.ui.define([
 
 
                         }
-                        if (!oView.getModel("companyInfoModel").getData().oCountry) {
+                        if (!oView.getModel("companyInfoModel").getData().oCountry || spaceRegex.test(oView.getModel("companyInfoModel").getData().oCountry)) {
                             oView.getModel("oErrorModel").getData().oFACounE = "Error";
                             oView.getModel("oErrorModel").getData().oFACounM = oi18n.getText("mandatoryCountry");
 
@@ -2269,7 +2270,7 @@ sap.ui.define([
 
                         }
 
-                        if (!oView.getModel("companyInfoModel").getData().oTeleNum) {
+                        if (!oView.getModel("companyInfoModel").getData().oTeleNum || spaceRegex.test(oView.getModel("companyInfoModel").getData().oTeleNum)) {
                             oView.getModel("oErrorModel").getData().oFATeleNumE = "Error";
                             oView.getModel("oErrorModel").getData().oFATeleNumM = oi18n.getText("mandatoryTel");
 
@@ -2282,14 +2283,14 @@ sap.ui.define([
                     }
 
                     if (oView.getModel("remitModel").getData().isRemitToAddress) {
-                        if (!oView.getModel("remitModel").getData().rName) {
+                        if (!oView.getModel("remitModel").getData().rName || spaceRegex.test(oView.getModel("remitModel").getData().rName)) {
                             oView.getModel("oErrorModel").getData().rTANameE = "Error";
                             oView.getModel("oErrorModel").getData().rTANameM = oi18n.getText("mandatoryName");
 
                             iError = true;
                         }
 
-                        if (!oView.getModel("remitModel").getData().rAddress1) {
+                        if (!oView.getModel("remitModel").getData().rAddress1 || spaceRegex.test(oView.getModel("remitModel").getData().rAddress1)) {
                             oView.getModel("oErrorModel").getData().rTAAddr1E = "Error";
                             oView.getModel("oErrorModel").getData().rTAAddr1M = oi18n.getText("mandatoryAddr1");
 
@@ -2297,26 +2298,26 @@ sap.ui.define([
 
 
                         }
-                        if (!oView.getModel("remitModel").getData().rPostalCode) {
+                        if (!oView.getModel("remitModel").getData().rPostalCode || spaceRegex.test(oView.getModel("remitModel").getData().rPostalCode)) {
                             oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
                             oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("mandatoryPostalCode");
 
                             iError = true;
                         }
-                        if (!oView.getModel("remitModel").getData().rCity) {
+                        if (!oView.getModel("remitModel").getData().rCity || spaceRegex.test(oView.getModel("remitModel").getData().rCity)) {
                             oView.getModel("oErrorModel").getData().rTACityE = "Error";
                             oView.getModel("oErrorModel").getData().rTACityM = oi18n.getText("mandatoryCity");
 
                             iError = true;
 
                         }
-                        if (!oView.getModel("remitModel").getData().rCountry) {
+                        if (!oView.getModel("remitModel").getData().rCountry || spaceRegex.test(oView.getModel("remitModel").getData().rCountry)) {
                             oView.getModel("oErrorModel").getData().rTACounE = "Error";
                             oView.getModel("oErrorModel").getData().rTACounM = oi18n.getText("mandatoryCountry");
 
                             iError = true;
                         }
-                        if (!oView.getModel("remitModel").getData().rTeleNum) {
+                        if (!oView.getModel("remitModel").getData().rTeleNum || spaceRegex.test(oView.getModel("remitModel").getData().rTeleNum)) {
                             oView.getModel("oErrorModel").getData().rTATeleNumE = "Error";
                             oView.getModel("oErrorModel").getData().rTATeleNumM = oi18n.getText("mandatoryTel");
 
@@ -2437,7 +2438,7 @@ sap.ui.define([
                 }
             },
             _fnValidateBankInfo: function (oEvent) {
-
+                var spaceRegex = /^\s+$/;
                 var iError = false;
                 var bankFields = this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
                 if (this.emailValidResult) {
@@ -2471,86 +2472,86 @@ sap.ui.define([
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry) {
+                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry)) {
                         oView.getModel("oErrorModel").getData().bankCountryE = "Error";
                         oView.getModel("oErrorModel").getData().bankCountryM = oi18n.getText("mandatoryCountry");
 
                         iError = true;
                     }
 
-                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName && bankFields.bankName) {
+                    if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName && bankFields.bankName) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName)) {
                         oView.getModel("oErrorModel").getData().bankNameE = "Error";
                         oView.getModel("oErrorModel").getData().bankNameM = oi18n.getText("mandatoryBName");
 
                         iError = true;
                     }
 
-                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress && bankFields.bankStreet) {
+                    if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress && bankFields.bankStreet) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress)) {
                         oView.getModel("oErrorModel").getData().bankAddrE = "Error";
                         oView.getModel("oErrorModel").getData().bankAddrM = oi18n.getText("mandatoryBAddress");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity && bankFields.bankCity) {
+                    if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity && bankFields.bankCity) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity)) {
                         oView.getModel("oErrorModel").getData().bankCityE = "Error";
                         oView.getModel("oErrorModel").getData().bankCityM = oi18n.getText("mandatoryCity");
 
                         iError = true;
                     }
 
-                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum && bankFields.benificiaryAccountNumber) {
+                    if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum && bankFields.benificiaryAccountNumber) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum)) {
                         oView.getModel("oErrorModel").getData().bankAccNumE = "Error";
                         oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("mandatoryAccNum");
 
                         iError = true;
                     }
 
-                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName && bankFields.benificiaryAccHolderName) {
+                    if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName && bankFields.benificiaryAccHolderName) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry)) {
                         oView.getModel("oErrorModel").getData().benifAccHNameE = "Error";
                         oView.getModel("oErrorModel").getData().benifAccHNameM = oi18n.getText("mandatoryHolderName");
 
                         iError = true;
                     }
 
-                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode && bankFields.swiftCode) {
+                    if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode && bankFields.swiftCode) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode)) {
                         oView.getModel("oErrorModel").getData().bankSwiftE = "Error";
                         oView.getModel("oErrorModel").getData().bankSwiftM = oi18n.getText("mandatorySwftCd");
 
                         iError = true;
                     }
 
-                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch && bankFields.bankBranch) {
+                    if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch && bankFields.bankBranch) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch)) {
                         // if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry == "CN" && !oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch) {
                         oView.getModel("oErrorModel").getData().bankBranchE = "Error";
                         oView.getModel("oErrorModel").getData().bankBranchM = oi18n.getText("mandatoryBranch");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].refBankDetails && bankFields.referenceDetails) {
+                    if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].refBankDetails && bankFields.referenceDetails) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].refBankDetails)) {
                         oView.getModel("oErrorModel").getData().bankRefE = "Error";
                         oView.getModel("oErrorModel").getData().bankRefM = oi18n.getText("mandatoryRefDet");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber && bankFields.bankNumber) {
+                    if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber && bankFields.bankNumber) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber)) {
                         oView.getModel("oErrorModel").getData().bankNumE = "Error";
                         oView.getModel("oErrorModel").getData().bankNumM = oi18n.getText("mandatoryBankNum");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum && bankFields.iban) {
+                    if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum && bankFields.iban) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum)) {
                         oView.getModel("oErrorModel").getData().ibanE = "Error";
                         oView.getModel("oErrorModel").getData().ibanM = oi18n.getText("mandatoryIban");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].partnerBankType && bankFields.benificiaryAccCurrency) {
+                    if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].partnerBankType && bankFields.benificiaryAccCurrency) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].partnerBankType)) {
                         oView.getModel("oErrorModel").getData().benifAccCurrE = "Error";
                         oView.getModel("oErrorModel").getData().benifAccCurrM = oi18n.getText("mandatoryAccCurr");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey && bankFields.bankControlKey) {
+                    if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey && bankFields.bankControlKey) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey)) {
                         oView.getModel("oErrorModel").getData().bankCtrlKeyE = "Error";
                         oView.getModel("oErrorModel").getData().bankCtrlKeyM = oi18n.getText("mandatoryctrlKey");
 
@@ -2739,37 +2740,37 @@ sap.ui.define([
                     oView.byId("fileUploader_BA").removeStyleClass("attachmentWithBorder");
                 }
                 if (visiblility.isBankProvided === false) {
-                    if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName) {
+                    if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName)) {
                         oView.getModel("oErrorModel").getData().finance1FNameE = "Error";
                         oView.getModel("oErrorModel").getData().finance1FNameM = oi18n.getText("mandatoryFName");
 
                         iError = true;
-                    } if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.lastName) {
+                    } if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.lastName)) {
                         oView.getModel("oErrorModel").getData().finance1LNameE = "Error";
                         oView.getModel("oErrorModel").getData().finance1LNameM = oi18n.getText("mandatoryLName");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.email) {
+                    if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.email || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.email)) {
 
                         oView.getModel("oErrorModel").getData().finance1EmailE = "Error";
                         oView.getModel("oErrorModel").getData().finance1EmailM = oi18n.getText("mandatoryEmail");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.countryContactCode) {
+                    if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.countryContactCode)) {
                         oView.getModel("oErrorModel").getData().finance1CountryContCodeE = "Error";
                         oView.getModel("oErrorModel").getData().finance1CountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.contact) {
+                    if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.contact || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.contact)) {
                         oView.getModel("oErrorModel").getData().finance1ContE = "Error";
                         oView.getModel("oErrorModel").getData().finance1ContM = oi18n.getText("mandatoryContact");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile) {
+                    if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile)) {
                         oView.getModel("oErrorModel").getData().finance1MobE = "Error";
                         oView.getModel("oErrorModel").getData().finance1MobM = oi18n.getText("mandatoryMContact");
 
@@ -2800,37 +2801,37 @@ sap.ui.define([
                     }
                 }
 
-                if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName) {
+                if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName)) {
                     oView.getModel("oErrorModel").getData().finance2FNameE = "Error";
                     oView.getModel("oErrorModel").getData().finance2FNameM = oi18n.getText("mandatoryFName");
 
                     iError = true;
-                } if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.lastName) {
+                } if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.lastName)) {
                     oView.getModel("oErrorModel").getData().finance2LNameE = "Error";
                     oView.getModel("oErrorModel").getData().finance2LNameM = oi18n.getText("mandatoryLName");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.email) {
+                if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.email || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.email)) {
 
                     oView.getModel("oErrorModel").getData().finance2EmailE = "Error";
                     oView.getModel("oErrorModel").getData().finance2EmailM = oi18n.getText("mandatoryEmail");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.countryContactCode) {
+                if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.countryContactCode)) {
                     oView.getModel("oErrorModel").getData().finance2CountryContCodeE = "Error";
                     oView.getModel("oErrorModel").getData().finance2CountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.contact) {
+                if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.contact || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.contact)) {
                     oView.getModel("oErrorModel").getData().finance2ContE = "Error";
                     oView.getModel("oErrorModel").getData().finance2ContM = oi18n.getText("mandatoryContact");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile) {
+                if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile)) {
                     oView.getModel("oErrorModel").getData().finance2MobE = "Error";
                     oView.getModel("oErrorModel").getData().finance2MobM = oi18n.getText("mandatoryMContact");
 
@@ -2932,7 +2933,7 @@ sap.ui.define([
                 }
             },
             _fnValidateShippingInfo: function (oEvent) {
-
+                var spaceRegex = /^\s+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -2943,13 +2944,13 @@ sap.ui.define([
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().shippingInfoDto.vendor) {
+                if (!oView.getModel("oDataModel").getData().shippingInfoDto.vendor || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.vendor)) {
                     oView.getModel("oErrorModel").getData().vendorE = "Error";
                     oView.getModel("oErrorModel").getData().vendorM = oi18n.getText("mandatoryVendor");
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace) {
+                if (!oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace)) {
                     oView.getModel("oErrorModel").getData().incotermNPE = "Error";
                     oView.getModel("oErrorModel").getData().incotermNPM = oi18n.getText("mandatoryIncotermNL");
 
@@ -2968,13 +2969,13 @@ sap.ui.define([
 
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isDeliver) {
                     //check field validation
-                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepName) {
+                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepName || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepName)) {
                         oView.getModel("oErrorModel").getData().dRespNameE = "Error";
                         oView.getModel("oErrorModel").getData().dRespNameM = oi18n.getText("mandatoryCompName");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.supplierContactInLogistics) {
+                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.supplierContactInLogistics || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepName)) {
                         oView.getModel("oErrorModel").getData().dRespLogistE = "Error";
                         oView.getModel("oErrorModel").getData().dRespLogistM = oi18n.getText("mandatorySupplierLogis");
 
@@ -2986,13 +2987,13 @@ sap.ui.define([
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepContact) {
+                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepContact || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepContact)) {
                         oView.getModel("oErrorModel").getData().dRespContactE = "Error";
                         oView.getModel("oErrorModel").getData().dRespContactM = oi18n.getText("mandatoryContact");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepEmail) {
+                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepEmail || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepEmail)) {
                         oView.getModel("oErrorModel").getData().dRespEmailE = "Error";
                         oView.getModel("oErrorModel").getData().dRespEmailM = oi18n.getText("mandatoryEmail");
 
@@ -3053,6 +3054,7 @@ sap.ui.define([
             },
 
             _fnValidateComProductServiceInfo: function () {
+                var spaceRegex = /^\s+$/;
                 var that = this;
                 var iError = false;
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
@@ -3083,7 +3085,7 @@ sap.ui.define([
 
                     if (arrOperService) {
                         for (var i = 0; i < arrOperService.length; i++) {
-                            if (arrOperService[i].value == "Other" && arrOperService[i].otherValue == "" && arrOperService[i].isSelected == true) {
+                            if (arrOperService[i].value == "Other" && (arrOperService[i].otherValue == "" || spaceRegex.test(arrOperService[i].otherValue)) && arrOperService[i].isSelected == true) {
                                 oView.getModel("oErrorModel").getData().operServOtherValE = "Error";
                                 oView.getModel("oErrorModel").getData().operServOtherValM = oi18n.getText("mandatoryText");
                                 // oView.byId("OprServId").removeStyleClass("otherStyle");
@@ -3116,7 +3118,7 @@ sap.ui.define([
                     var arrManProd = oView.getModel("oDataModel").getData().comProductsUiDto.manufacturingProcessSupplies;
                     if (arrManProd) {
                         for (var i = 0; i < arrManProd.length; i++) {
-                            if (arrManProd[i].value == "Other" && arrManProd[i].otherValue == "" && arrManProd[i].isSelected == true) {
+                            if (arrManProd[i].value == "Other" && (arrManProd[i].otherValue == "" || spaceRegex.test(arrManProd[i].otherValue)) && arrManProd[i].isSelected == true) {
                                 oView.getModel("oErrorModel").getData().manProOtherValE = "Error";
                                 oView.getModel("oErrorModel").getData().manProOtherValM = oi18n.getText("mandatoryText");
 
@@ -3171,6 +3173,7 @@ sap.ui.define([
 
             },
             _fnValidateCompanyCompliance: function () {
+                var spaceRegex = /^\s+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -3233,7 +3236,7 @@ sap.ui.define([
                         iError = true;
                     }
 
-                    if (!oView.getModel("oDataModel").getData().comComplianceDto.notCommitedExplanation) {
+                    if (!oView.getModel("oDataModel").getData().comComplianceDto.notCommitedExplanation || spaceRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.notCommitedExplanation)) {
                         oView.getModel("oErrorModel").getData().notCommitedExplanationE = "Error";
                         oView.getModel("oErrorModel").getData().notCommitedExplanationM = oi18n.getText("mandatoryExplanation");
 
@@ -3282,27 +3285,27 @@ sap.ui.define([
                 }
 
                 if (oView.getModel("oDataModel").getData().comComplianceDto.isSrmReceived === false) {
-                    if (!oView.getModel("oDataModel").getData().comComplianceDto.supplierReqManualExplanation) {
-                        oView.getModel("oErrorModel").getData().isSrmReceivedE = "Error";
-                        oView.getModel("oErrorModel").getData().isSrmReceivedM = oi18n.getText("mandatoryExplanation");
+                    if (!oView.getModel("oDataModel").getData().comComplianceDto.supplierReqManualExplanation || spaceRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.supplierReqManualExplanation)) {
+                        oView.getModel("oErrorModel").getData().isSrmReceivedExplanationE = "Error";
+                        oView.getModel("oErrorModel").getData().isSrmReceivedExplanationM = oi18n.getText("mandatoryExplanation");
 
                         iError = true;
                     }
                 }
                 if (oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmp) {
-                    if (!oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmpContact.firstName) {
+                    if (!oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmpContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmpContact.firstName)) {
                         oView.getModel("oErrorModel").getData().relationFNameE = "Error";
                         oView.getModel("oErrorModel").getData().relationFNameM = oi18n.getText("mandatoryName");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmpContact.department) {
+                    if (!oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmpContact.department || spaceRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmpContact.department)) {
                         oView.getModel("oErrorModel").getData().relationDeptE = "Error";
                         oView.getModel("oErrorModel").getData().relationDeptM = oi18n.getText("mandatoryDepartment");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmpContact.jobTitle) {
+                    if (!oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmpContact.jobTitle || spaceRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmpContact.jobTitle)) {
                         oView.getModel("oErrorModel").getData().relationJobTE = "Error";
                         oView.getModel("oErrorModel").getData().relationJobTM = oi18n.getText("mandatoryJobTitle");
 
@@ -3331,31 +3334,31 @@ sap.ui.define([
                     }
                 }
                 if (oView.getModel("oDataModel").getData().comComplianceDto.companyContactWithPreviouseJabilEmp) {
-                    if (!oView.getModel("oDataModel").getData().comComplianceDto.employeeName) {
+                    if (!oView.getModel("oDataModel").getData().comComplianceDto.employeeName || spaceRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.employeeName)) {
                         oView.getModel("oErrorModel").getData().empFNameE = "Error";
                         oView.getModel("oErrorModel").getData().empFNameM = oi18n.getText("mandatoryEmpName");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().comComplianceDto.startDate) {
+                    if (!oView.getModel("oDataModel").getData().comComplianceDto.startDate || spaceRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.startDate)) {
                         oView.getModel("oErrorModel").getData().empSDateE = "Error";
                         oView.getModel("oErrorModel").getData().empSDateM = oi18n.getText("mandatoryStartDate");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().comComplianceDto.endDate) {
+                    if (!oView.getModel("oDataModel").getData().comComplianceDto.endDate || spaceRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.endDate)) {
                         oView.getModel("oErrorModel").getData().empEDateE = "Error";
                         oView.getModel("oErrorModel").getData().empEDateM = oi18n.getText("mandatoryEndDate");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().comComplianceDto.jobTitle) {
+                    if (!oView.getModel("oDataModel").getData().comComplianceDto.jobTitle || spaceRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.jobTitle)) {
                         oView.getModel("oErrorModel").getData().empJBE = "Error";
                         oView.getModel("oErrorModel").getData().empJBM = oi18n.getText("mandatoryJobTitle");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().comComplianceDto.region) {
+                    if (!oView.getModel("oDataModel").getData().comComplianceDto.region || spaceRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.region)) {
                         oView.getModel("oErrorModel").getData().empRegionE = "Error";
                         oView.getModel("oErrorModel").getData().empRegionM = oi18n.getText("mandatoryLocation");
 
@@ -3374,7 +3377,7 @@ sap.ui.define([
                 }
             },
             _fnValidateCyberSec: function () {
-
+                var spaceRegex = /^\s+$/;
                 var that = this;
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
                 var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
@@ -3413,7 +3416,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.lastName) {
+                    if (!oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.lastName)) {
                         oView.getModel("oErrorModel").getData().cyberSurveyLNE = "Error";
                         oView.getModel("oErrorModel").getData().cyberSurveyLNM = oi18n.getText("mandatoryLName");
 
@@ -3596,6 +3599,7 @@ sap.ui.define([
                 }
             },
             _fnValidateContactInfo: function () {
+                var spaceRegex = /^\s+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -3604,32 +3608,32 @@ sap.ui.define([
                 var oItems = oView.byId("contTable").getItems();
                 $.each(vcontactList, function (index, row) {
                     var item = oView.byId("contTable").getItems()[index].getAggregation("cells");
-                    if (row.email == null || row.email == "") {
+                    if (row.email == null || row.email == "" || spaceRegex.test(row.email)) {
                         item[1].setValueState("Error");
                         item[1].setValueStateText(oi18n.getText("mandatoryEmail"));
                         iError = true;
-                    } if (row.firstName == null || row.firstName == "") {
+                    } if (row.firstName == null || row.firstName == "" || spaceRegex.test(row.firstName)) {
                         item[2].setValueState("Error");
                         item[2].setValueStateText(oi18n.getText("mandatoryFName"));
                         iError = true;
                     }
-                    if (row.lastName == null || row.lastName == "") {
+                    if (row.lastName == null || row.lastName == "" || spaceRegex.test(row.lastName)) {
                         item[3].setValueState("Error");
                         item[3].setValueStateText(oi18n.getText("mandatoryLName"));
                         iError = true;
                     }
-                    if (row.jobTitle == null || row.jobTitle == "") {
+                    if (row.jobTitle == null || row.jobTitle == "" || spaceRegex.test(row.jobTitle)) {
                         item[4].setValueState("Error");
                         item[4].setValueStateText(oi18n.getText("mandatoryJobTitle"));
                         iError = true;
                     }
-                    if (row.countryContactCode == null || row.countryContactCode == "") {
+                    if (row.countryContactCode == null || row.countryContactCode == "" || spaceRegex.test(row.countryContactCode)) {
                         item[5].mAggregations.items[0].setValueState("Error")
                         item[5].mAggregations.items[0].setValueStateText(oi18n.getText("mandatoryCountryConatactCode"));
                         iError = true;
 
                     }
-                    if (row.contact == null || row.contact == "") {
+                    if (row.contact == null || row.contact == "" || spaceRegex.test(row.contact)) {
                         item[5].mAggregations.items[1].setValueState("Error")
                         item[5].mAggregations.items[1].setValueStateText(oi18n.getText("mandatoryContact"));
 
