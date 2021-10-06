@@ -9,13 +9,13 @@
               <Title text="{oi18n_En>businessPartnerReg}/&#160;{i18n>businessPartnerReg}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="toolbarfont sapUiSizeCompact sapUiMediumMarginBegin"/>
             </Toolbar>
             
-				<Wizard id="surveyWizard" finishButtonText="Finish" currentStep="basicInfo" class="sapUiResponsivePadding--header sapUiResponsivePadding--content wizNavbackground" showNextButton="false">
-					<WizardStep id="basicInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBasicInfo}:${oi18n_En>wizardStepBasicInfo} +'/&#160;' +${i18n>wizardStepBasicInfo}}" class="titleDisplay sapUiSizeCompact stepBackground sapUiContentPadding" >
+				<Wizard id="surveyWizard" finishButtonText="Finish" enableBranching="true" class="sapUiResponsivePadding--header sapUiResponsivePadding--content wizNavbackground" showNextButton="false">
+					<WizardStep id="basicInfo"  nextStep="businessPartnerInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBasicInfo}:${oi18n_En>wizardStepBasicInfo} +'/&#160;' +${i18n>wizardStepBasicInfo}}" class="titleDisplay sapUiSizeCompact stepBackground sapUiContentPadding" >
 				<Panel width="100%" class="sapUiTinyMarginTop panelPadding">	<l:VerticalLayout width="100%" >
                     	
                         <VBox class="sapUiSizeCompact fontBold sapUiTinyMarginBegin" width="50%">
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>SupplierName}:${oi18n_En>SupplierName} +'/&#160;' + ${i18n>SupplierName}}" class="fontStyle" required="true"></Label>
-									<Input maxLength="35" enabled="{oEnableMdl>/contactNameEnb}" value="{oDataModel>/surveyInfoDto/authorityContact/contactName}" valueState="{oErrorModel>/supplierNameE}" valueStateText="{oErrorModel>/supplierNameM}" liveChange="fnLiveInputAlphaSpaceValueChange" class="inputStyle"></Input>
+									<Input maxLength="101" enabled="{oEnableMdl>/contactNameEnb}" value="{oDataModel>/surveyInfoDto/authorityContact/contactName}" valueState="{oErrorModel>/supplierNameE}" valueStateText="{oErrorModel>/supplierNameM}" liveChange="fnLiveInputAlphaSpaceValueChange" class="inputStyle"></Input>
      	
 						</VBox>
                         
@@ -58,16 +58,16 @@
 							
                                 <VBox>
                                	<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dist}:${oi18n_En>dist} +'&#10;' + ${i18n>dist}}" wrapping="true" required="false" class="fontStyle "></Label>
-                                   <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/district}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/districtEnb}" class="inputStyle" />
+                                   <Input maxLength="40" value="{oDataModel>/surveyInfoDto/address/0/postal/0/district}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/districtEnb}" class="inputStyle" />
                                         </VBox> 
                                                  <VBox >
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>city}:${oi18n_En>city} +'&#10;' + ${i18n>city}}" wrapping="true"  required="true" class="fontStyle "></Label>
-                                     <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/city}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/cityEnb}" valueState="{oErrorModel>/cityE}" valueStateText="{oErrorModel>/cityM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+                                     <Input maxLength="40" value="{oDataModel>/surveyInfoDto/address/0/postal/0/city}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/cityEnb}" valueState="{oErrorModel>/cityE}" valueStateText="{oErrorModel>/cityM}" liveChange="fnValueChange" class="inputStyle" />
                                 </VBox>
 							
                                 <VBox>
                                	<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>PostalCode}:${oi18n_En>PostalCode} +'&#10;' + ${i18n>PostalCode}}" wrapping="true"  required="true" class="fontStyle "></Label>
-                                     <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/postalCode}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/postalCodeEnb}" valueState="{oErrorModel>/poE}" valueStateText="{oErrorModel>/poM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+                                     <Input maxLength="10" value="{oDataModel>/surveyInfoDto/address/0/postal/0/postalCode}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/postalCodeEnb}" valueState="{oErrorModel>/poE}" valueStateText="{oErrorModel>/poM}" liveChange="fnValueChange" class="inputStyle" />
                                   
                                         </VBox>       
                                             <VBox>
@@ -78,12 +78,12 @@
                                            <VBox>
                               
                                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>faxNum}:${oi18n_En>faxNum} +'&#10;' + ${i18n>faxNum}}" wrapping="true" required="false" class="fontStyle "></Label>
-                                     <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/fax/0/faxNum}"  editable="{oUserModel>/isNew}"  class="inputStyle" enabled="{oEnableMdl>/faxNumEnb}"/>
+                                     <Input maxLength="30" value="{oDataModel>/surveyInfoDto/address/0/postal/0/fax/0/faxNum}"  editable="{oUserModel>/isNew}"  class="inputStyle" enabled="{oEnableMdl>/faxNumEnb}"/>
                                         </VBox>    
                                              <VBox>
                               
                                  	<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>SupUrl}:${oi18n_En>SupUrl} +'&#10;' + ${i18n>SupUrl}}" wrapping="true" required="false" class="fontStyle "></Label>
-                                       <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/url/0/websiteUrl}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/websiteUrlEnb}" class="inputStyle" />
+                                       <Input maxLength="2048" value="{oDataModel>/surveyInfoDto/address/0/postal/0/url/0/websiteUrl}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/websiteUrlEnb}" class="inputStyle" />
                                         </VBox>
 									
 								
@@ -101,14 +101,14 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;'+${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="35" value="{oDataModel>/surveyInfoDto/authorityContact/firstName}" enabled="{oEnableMdl>/firstNameEnb}" valueState="{oErrorModel>/authorityFNameE}" valueStateText="{oErrorModel>/authorityFNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
+									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/authorityContact/firstName}" enabled="{oEnableMdl>/firstNameEnb}" valueState="{oErrorModel>/authorityFNameE}" valueStateText="{oErrorModel>/authorityFNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
      	
 								</VBox>
 								<VBox >
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>lastName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>lastName}&#10;{i18n>lastName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="35" value="{oDataModel>/surveyInfoDto/authorityContact/lastName}" enabled="{oEnableMdl>/lastNameEnb}" valueState="{oErrorModel>/authorityLNameE}" valueStateText="{oErrorModel>/authorityLNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/authorityContact/lastName}" enabled="{oEnableMdl>/lastNameEnb}" valueState="{oErrorModel>/authorityLNameE}" valueStateText="{oErrorModel>/authorityLNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 							
                                 </VBox>
 								<VBox >
@@ -190,13 +190,13 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} + '&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="35" value="{oDataModel>/surveyInfoDto/ackContact/firstName}" class="inputStyle"  valueState="{oErrorModel>/ackNameE}" valueStateText="{oErrorModel>/ackNameM}" liveChange="fnLiveInputValueChange"></Input>
+									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/ackContact/firstName}" class="inputStyle"  valueState="{oErrorModel>/ackNameE}" valueStateText="{oErrorModel>/ackNameM}" liveChange="fnLiveInputValueChange"></Input>
 								</VBox>
                                 <VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>lastName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>lastName}&#10;{i18n>lastName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="35" value="{oDataModel>/surveyInfoDto/ackContact/lastName}" class="inputStyle"  valueState="{oErrorModel>/ackLNameE}" valueStateText="{oErrorModel>/ackLNameM}" liveChange="fnLiveInputValueChange"></Input>
+									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/ackContact/lastName}" class="inputStyle"  valueState="{oErrorModel>/ackLNameE}" valueStateText="{oErrorModel>/ackLNameM}" liveChange="fnLiveInputValueChange"></Input>
 								</VBox>
                                 	<!-- <VBox>
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>jobTitle}:${oi18n_En>jobTitle} +'/&#160;' + ${i18n>jobTitle}}" class="fontStyle" required="true"></Label>
@@ -249,13 +249,13 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="35" value="{oDataModel>/surveyInfoDto/mainContact/firstName}" enabled="{oEnableMdl>/mainContactfirstNameEnb}"  class="inputStyle"  valueState="{oErrorModel>/mcFNameE}" valueStateText="{oErrorModel>/mcFNameM}" liveChange="fnLiveInputValueChange"></Input>
+									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/mainContact/firstName}" enabled="{oEnableMdl>/mainContactfirstNameEnb}"  class="inputStyle"  valueState="{oErrorModel>/mcFNameE}" valueStateText="{oErrorModel>/mcFNameM}" liveChange="fnLiveInputValueChange"></Input>
 								</VBox>
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>lastName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>lastName}&#10;{i18n>lastName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="35" value="{oDataModel>/surveyInfoDto/mainContact/lastName}" enabled="{oEnableMdl>/mainContactlastNameEnb}" class="inputStyle"  valueState="{oErrorModel>/mcLNameE}" valueStateText="{oErrorModel>/mcLNameM}" liveChange="fnLiveInputValueChange"></Input>
+									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/mainContact/lastName}" enabled="{oEnableMdl>/mainContactlastNameEnb}" class="inputStyle"  valueState="{oErrorModel>/mcLNameE}" valueStateText="{oErrorModel>/mcLNameM}" liveChange="fnLiveInputValueChange"></Input>
 								</VBox>
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>jobTitle}:${oi18n_En>jobTitle} +'&#10;' + ${i18n>jobTitle}}" class="fontStyle"></Label> -->
@@ -313,14 +313,14 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="35" value="{oDataModel>/surveyInfoDto/altContact/firstName}" enabled="{oEnableMdl>/altContactfirstNameEnb}" valueState="{oErrorModel>/altNameE}" valueStateText="{oErrorModel>/altNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
+									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/altContact/firstName}" enabled="{oEnableMdl>/altContactfirstNameEnb}" valueState="{oErrorModel>/altNameE}" valueStateText="{oErrorModel>/altNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
      	
 								</VBox>
 								<VBox >
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>lastName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>lastName}&#10;{i18n>lastName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="35" value="{oDataModel>/surveyInfoDto/altContact/lastName}"  enabled="{oEnableMdl>/altContactlastNameEnb}" valueState="{oErrorModel>/altLNameE}" valueStateText="{oErrorModel>/altLNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/altContact/lastName}"  enabled="{oEnableMdl>/altContactlastNameEnb}" valueState="{oErrorModel>/altLNameE}" valueStateText="{oErrorModel>/altLNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 							
                                 </VBox>
 								<VBox >
@@ -334,7 +334,7 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input value="{oDataModel>/surveyInfoDto/altContact/email}" enabled="{oEnableMdl>/altContactemailEnb}"  valueState="{oErrorModel>/altEmailE}" valueStateText="{oErrorModel>/altEmailM}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
+									<Input maxLength="241" value="{oDataModel>/surveyInfoDto/altContact/email}" enabled="{oEnableMdl>/altContactemailEnb}"  valueState="{oErrorModel>/altEmailE}" valueStateText="{oErrorModel>/altEmailM}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
 										
                                 </VBox>
                                 <VBox>
@@ -377,32 +377,32 @@
                       
                  
 					</WizardStep>
-					<WizardStep id="businessPartnerInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBusPart}:${oi18n_En>wizardStepBusPart} +'/&#160;' +${i18n>wizardStepBusPart}}"
-						activate="onActivateBPInfo" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
+					<WizardStep id="businessPartnerInfo"  title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBusPart}:${oi18n_En>wizardStepBusPart} +'/&#160;' +${i18n>wizardStepBusPart}}"
+						activate="onActivateBPInfo" nextStep="contactInfo" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
 					<core:Fragment fragmentName="com.jabil.surveyform.fragments.businessPartnerInfo" type="XML"/>
 					</WizardStep>
-                    <WizardStep id="contactInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcontactInfo}:${oi18n_En>wizardStepcontactInfo} +'/&#160;' +${i18n>wizardStepcontactInfo}}"
-						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop hideWizard" >
+                    <WizardStep id="contactInfo" nextStep="ownerShipInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcontactInfo}:${oi18n_En>wizardStepcontactInfo} +'/&#160;' +${i18n>wizardStepcontactInfo}}"
+						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" >
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyContactInfo" type="XML"/>
 					</WizardStep>
-					<WizardStep id="ownerShipInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepOwnInfo}:${oi18n_En>wizardStepOwnInfo} +'/&#160;' +${i18n>wizardStepOwnInfo}}" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop"
+					<WizardStep id="ownerShipInfo" nextStep="companyInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepOwnInfo}:${oi18n_En>wizardStepOwnInfo} +'/&#160;' +${i18n>wizardStepOwnInfo}}" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop"
 						>
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.ownershipInfo" type="XML"/>
 					</WizardStep>
-					<WizardStep id="companyInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepCompanyInfo}:${oi18n_En>wizardStepCompanyInfo} +'/&#160;' +${i18n>wizardStepCompanyInfo}}"
+					<WizardStep id="companyInfo" nextStep="bankInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepCompanyInfo}:${oi18n_En>wizardStepCompanyInfo} +'/&#160;' +${i18n>wizardStepCompanyInfo}}"
 						 activate="onActivateCompanyInfo" complete="onCompleteCompanyInfo" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" >
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyInfo" type="XML"/>
 					</WizardStep>
-					<WizardStep id="bankInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBankInfo}:${oi18n_En>wizardStepBankInfo} +'/&#160;' +${i18n>wizardStepBankInfo}}"
+					<WizardStep id="bankInfo" nextStep="shippingInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBankInfo}:${oi18n_En>wizardStepBankInfo} +'/&#160;' +${i18n>wizardStepBankInfo}}"
                      class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" activate="fnActivateBankScreen"
 						>
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.bankInfo" type="XML"/>
 					</WizardStep>
-                    <WizardStep id="shippingInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepShippingInfo}:${oi18n_En>wizardStepShippingInfo} +'/&#160;' +${i18n>wizardStepShippingInfo}}" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop"
+                    <WizardStep id="shippingInfo" nextStep="prodAndServInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepShippingInfo}:${oi18n_En>wizardStepShippingInfo} +'/&#160;' +${i18n>wizardStepShippingInfo}}" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop"
 						>
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.shippingInfo" type="XML"/>
 					</WizardStep>
-					<WizardStep id="prodAndServInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepProductsAndServices}:${oi18n_En>wizardStepProductsAndServices} +'/&#160;' +${i18n>wizardStepProductsAndServices}}"
+					<WizardStep id="prodAndServInfo" nextStep="cComplianceInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepProductsAndServices}:${oi18n_En>wizardStepProductsAndServices} +'/&#160;' +${i18n>wizardStepProductsAndServices}}"
 						activate="onActivateOperAndManuServ" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyProductsAndServices" type="XML"/>
 					</WizardStep>
@@ -411,11 +411,11 @@
 						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyFinInfo" type="XML"/>
 					</WizardStep> -->
-					<WizardStep id="cComplianceInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcompanyCompliance}:${oi18n_En>wizardStepcompanyCompliance} +'/&#160;' +${i18n>wizardStepcompanyCompliance}}"
+					<WizardStep id="cComplianceInfo" nextStep="cyberSecInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcompanyCompliance}:${oi18n_En>wizardStepcompanyCompliance} +'/&#160;' +${i18n>wizardStepcompanyCompliance}}"
 						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" >
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyCompliance" type="XML"/>
 					</WizardStep>
-					<WizardStep id="cyberSecInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcyberSecurityInfo}:${oi18n_En>wizardStepcyberSecurityInfo} +'/&#160;' +${i18n>wizardStepcyberSecurityInfo}}"
+					<WizardStep id="cyberSecInfo" nextStep="previewRegForm" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcyberSecurityInfo}:${oi18n_En>wizardStepcyberSecurityInfo} +'/&#160;' +${i18n>wizardStepcyberSecurityInfo}}"
 						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyCyberSecurityInfo" type="XML"/>
 					</WizardStep>
