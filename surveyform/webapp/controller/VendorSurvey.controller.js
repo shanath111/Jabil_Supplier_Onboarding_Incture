@@ -1704,31 +1704,31 @@ sap.ui.define([
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.isJabilMainContact === false) {
-                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName  || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName)) {
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName)) {
                         oView.getModel("oErrorModel").getData().mcFNameE = "Error";
                         oView.getModel("oErrorModel").getData().mcFNameM = oi18n.getText("mandatoryFName");
 
                         iError = true;
-                    } if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.lastName  || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.lastName)) {
+                    } if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.lastName)) {
                         oView.getModel("oErrorModel").getData().mcLNameE = "Error";
                         oView.getModel("oErrorModel").getData().mcLNameM = oi18n.getText("mandatoryLName");
 
                         iError = true;
                     }
 
-                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.email  || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.email)) {
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.email || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.email)) {
                         oView.getModel("oErrorModel").getData().mcEmailE = "Error";
                         oView.getModel("oErrorModel").getData().mcEmailM = oi18n.getText("mandatoryEmail");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.countryContactCode  || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.countryContactCode)) {
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.countryContactCode)) {
                         oView.getModel("oErrorModel").getData().mcCountryContactCodeE = "Error";
                         oView.getModel("oErrorModel").getData().mcCountryContactCodeM = oi18n.getText("mandatoryCountryConatactCode");
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact  || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact)) {
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact)) {
                         oView.getModel("oErrorModel").getData().mcContE = "Error";
                         oView.getModel("oErrorModel").getData().mcContM = oi18n.getText("mandatoryContact");
 
@@ -1808,7 +1808,9 @@ sap.ui.define([
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].faxNum && oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].faxNum.length > 30) {
                     iError = true;
                 }
-
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].poBoxPostalCode && oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].poBoxPostalCode.length > 10) {
+                    iError = true;
+                }
 
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
@@ -2460,6 +2462,12 @@ sap.ui.define([
                             iError = true;
                         }
                         if (oView.getModel("remitModel").getData().rFaxNum && oView.getModel("remitModel").getData().rFaxNum.length > 30) {
+                            iError = true;
+                        }
+                        if (oView.getModel("remitModel").getData().rPostOffBox && oView.getModel("remitModel").getData().rPostOffBox.length > 40) {
+                            iError = true;
+                        }
+                        if (oView.getModel("remitModel").getData().rPostOffZipCode && oView.getModel("remitModel").getData().rPostOffZipCode.length > 10) {
                             iError = true;
                         }
                     }
@@ -3936,6 +3944,9 @@ sap.ui.define([
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].faxNum && oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].faxNum.length > 30) {
                     iError = true;
                 }
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].poBoxPostalCode && oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].poBoxPostalCode.length > 10) {
+                    iError = true;
+                }
 
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
@@ -4209,6 +4220,12 @@ sap.ui.define([
                         iError = true;
                     }
                     if (oView.getModel("remitModel").getData().rFaxNum && oView.getModel("remitModel").getData().rFaxNum.length > 30) {
+                        iError = true;
+                    }
+                    if (oView.getModel("remitModel").getData().rPostOffBox && oView.getModel("remitModel").getData().rPostOffBox.length > 40) {
+                        iError = true;
+                    }
+                    if (oView.getModel("remitModel").getData().rPostOffZipCode && oView.getModel("remitModel").getData().rPostOffZipCode.length > 10) {
                         iError = true;
                     }
                 }

@@ -180,12 +180,12 @@
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postOfcBox}:${oi18n_En>postOfcBox}+'&#xA;'+${i18n>postOfcBox}}" wrapping="true" />
-            <Input value="{remitModel>/rPostOffBox}" enabled="{oEnableMdl>/rPostOffBoxEnb}" class="inputStyle" />
+            <Input maxLength="41" value="{remitModel>/rPostOffBox}" enabled="{oEnableMdl>/rPostOffBoxEnb}" liveChange="fnLiveInputValueChange" class="inputStyle" />
            
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postOfcBoxZipCode}:${oi18n_En>postOfcBoxZipCode}+'&#xA;'+${i18n>postOfcBoxZipCode}}" wrapping="true" />
-            <Input value="{remitModel>/rPostOffZipCode}" enabled="{oEnableMdl>/rPostOffZipCodeEnb}" class="inputStyle" />
+            <Input maxLength="11" value="{remitModel>/rPostOffZipCode}" enabled="{oEnableMdl>/rPostOffZipCodeEnb}" liveChange="fnLiveInputValueChange" class="inputStyle" />
             <!-- <html:input type="text" id="iPostOfZipR"   class="cl_HTMLInput" ></html:input>  -->
          </VBox>
       </l:Grid>

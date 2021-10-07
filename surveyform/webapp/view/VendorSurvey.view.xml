@@ -73,7 +73,7 @@
                                             <VBox>
                               
                                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>POBox}:${oi18n_En>POBox} +'&#10;' + ${i18n>POBox}}" wrapping="true" required="false" class="fontStyle "></Label>
-                                     <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/poBoxPostalCode}" class="inputStyle" enabled="{oEnableMdl>/poBoxPostalCodeEnb}"/>
+                                     <Input maxLength="11" value="{oDataModel>/surveyInfoDto/address/0/postal/0/poBoxPostalCode}" liveChange="fnLiveInputValueChange" class="inputStyle" enabled="{oEnableMdl>/poBoxPostalCodeEnb}"/>
                                         </VBox>    
                                            <VBox>
                               
