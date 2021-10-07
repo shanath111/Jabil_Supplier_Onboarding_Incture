@@ -1504,6 +1504,7 @@ sap.ui.define([
             },
             _fnValidateBasicInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
+                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -1545,11 +1546,21 @@ sap.ui.define([
 
                     iError = true;
                 }
+                 if(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contact)){
+                    oView.getModel("oErrorModel").getData().authorityContE = "Error";
+                    oView.getModel("oErrorModel").getData().authorityContM = oi18n.getText("invalidContact");
+                      iError = true;
+                }
                 if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile)) {
                     oView.getModel("oErrorModel").getData().authorityMobE = "Error";
                     oView.getModel("oErrorModel").getData().authorityMobM = oi18n.getText("mandatoryMContact");
 
                     iError = true;
+                }
+                 if(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile !=="" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile)){
+                    oView.getModel("oErrorModel").getData().authorityMobE = "Error";
+                    oView.getModel("oErrorModel").getData().authorityMobM = oi18n.getText("invalidMContact");
+                      iError = true;
                 }
                 if (!oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1 || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1)) {
                     oView.getModel("oErrorModel").getData().address1E = "Error";
@@ -1581,6 +1592,12 @@ sap.ui.define([
 
                     iError = true;
                 }
+                // var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
+                // if(!nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode){
+                //     oView.getModel("oErrorModel").getData().poE = "Error";
+                //     oView.getModel("oErrorModel").getData().poM = oi18n.getText("mandatoryPostalCode");
+                //       iError = true;
+                // }
                 if (!oView.getModel("oDataModel").getData().surveyInfoDto.altContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.firstName)) {
                     oView.getModel("oErrorModel").getData().altNameE = "Error";
                     oView.getModel("oErrorModel").getData().altNameM = oi18n.getText("mandatoryFName");
@@ -1609,6 +1626,11 @@ sap.ui.define([
                     oView.getModel("oErrorModel").getData().altContactM = oi18n.getText("mandatoryContact");
 
                     iError = true;
+                }
+                  if(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact)){
+                    oView.getModel("oErrorModel").getData().altContactE = "Error";
+                    oView.getModel("oErrorModel").getData().altContactM = oi18n.getText("invalidContact");
+                      iError = true;
                 }
 
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName && oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName.length > 100) {
@@ -1673,12 +1695,24 @@ sap.ui.define([
 
                         iError = true;
                     }
+                      if(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact)){
+                    oView.getModel("oErrorModel").getData().ackContactE = "Error";
+                    oView.getModel("oErrorModel").getData().ackContactM = oi18n.getText("invalidContact");
+                      iError = true;
+                }
+
                     if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile)) {
                         oView.getModel("oErrorModel").getData().ackPhoneE = "Error";
                         oView.getModel("oErrorModel").getData().ackPhoneM = oi18n.getText("mandatoryMContact");
 
                         iError = true;
                     }
+                      if(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile)){
+                    oView.getModel("oErrorModel").getData().ackPhoneE = "Error";
+                    oView.getModel("oErrorModel").getData().ackPhoneM = oi18n.getText("invalidMContact");
+                      iError = true;
+                }
+
                     if (oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.firstName && oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.firstName.length > 40) {
 
 
@@ -1734,12 +1768,22 @@ sap.ui.define([
 
                         iError = true;
                     }
+                      if(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact)){
+                    oView.getModel("oErrorModel").getData().mcContE = "Error";
+                    oView.getModel("oErrorModel").getData().mcContM = oi18n.getText("invalidContact");
+                      iError = true;
+                }
                     if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile)) {
                         oView.getModel("oErrorModel").getData().mcPhoneE = "Error";
                         oView.getModel("oErrorModel").getData().mcPhoneM = oi18n.getText("mandatoryContact");
 
                         iError = true;
                     }
+                      if(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile)){
+                    oView.getModel("oErrorModel").getData().mcPhoneE = "Error";
+                    oView.getModel("oErrorModel").getData().mcPhoneM = oi18n.getText("invalidMContact");
+                      iError = true;
+                }
 
                     if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName && oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.firstName.length > 40) {
 
@@ -1821,6 +1865,7 @@ sap.ui.define([
             },
             _fnValidateBusinessPartner: function (oEvent) {
                 var spaceRegex = /^\s+$/;
+                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -1909,6 +1954,17 @@ sap.ui.define([
                     oView.getModel("oErrorModel").getData().ppocMobM = oi18n.getText("mandatoryMContact");
 
                     iError = true;
+                }
+                  if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact)) {
+                        oView.getModel("oErrorModel").getData().ppocContE = "Error";
+                        oView.getModel("oErrorModel").getData().ppocContM = oi18n.getText("invalidContact");
+
+                        iError = true;
+                    }
+                      if(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile)){
+                    oView.getModel("oErrorModel").getData().ppocMobE = "Error";
+                    oView.getModel("oErrorModel").getData().ppocMobM = oi18n.getText("invalidMContact");
+                      iError = true;
                 }
 
                 if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName.length > 40) {
@@ -2058,6 +2114,7 @@ sap.ui.define([
             },
             _fnValidateOwnerInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
+                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -2176,6 +2233,14 @@ sap.ui.define([
 
                         iError = true;
                     }
+                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact)) {
+                        oView.getModel("oErrorModel").getData().govtEntityContE = "Error";
+                        oView.getModel("oErrorModel").getData().govtEntityContM = oi18n.getText("invalidContact");
+
+                        iError = true;
+                    }
+                     
+
                     if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.jobTitle || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.jobTitle)) {
                         oView.getModel("oErrorModel").getData().govtEntityJobTitleE = "Error";
                         oView.getModel("oErrorModel").getData().govtEntityJobTitleM = oi18n.getText("mandatoryJobTitle");
@@ -2243,6 +2308,12 @@ sap.ui.define([
 
                         iError = true;
                     }
+                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact)) {
+                        oView.getModel("oErrorModel").getData().closegovtEntityContE = "Error";
+                        oView.getModel("oErrorModel").getData().closegovtEntityContM = oi18n.getText("invalidContact");
+
+                        iError = true;
+                    }
                     if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.jobTitle || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.jobTitle)) {
                         oView.getModel("oErrorModel").getData().closegovtEntityJobTitleE = "Error";
                         oView.getModel("oErrorModel").getData().closegovtEntityJobTitleM = oi18n.getText("mandatoryJobTitle");
@@ -2286,6 +2357,7 @@ sap.ui.define([
             _fnValidateCompanyInfo: function (oEvent) {
                 if (oView.getModel("companyInfoModel")) {
                     var spaceRegex = /^\s+$/;
+                    var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                     var iError = false;
                     var aError = false, that = this;
                     var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
@@ -2339,6 +2411,12 @@ sap.ui.define([
 
                             iError = true;
                         }
+                         if (oView.getModel("companyInfoModel").getData().oTeleNum !== "" && !nonZeroRegex.test(oView.getModel("companyInfoModel").getData().oTeleNum)) {
+                        oView.getModel("oErrorModel").getData().oFATeleNumE = "Error";
+                        oView.getModel("oErrorModel").getData().oFATeleNumM = oi18n.getText("invalidTel");
+
+                        iError = true;
+                    }
                         if (oView.getModel("companyInfoModel").getData().oCountry === 'USA' && oView.getModel("companyInfoModel").getData().haveDiversityCertifications === null) {
                             oView.getModel("oErrorModel").getData().haveDiversityCertificationsE = "Error";
                             iError = true;
@@ -2425,6 +2503,12 @@ sap.ui.define([
 
                             iError = true;
                         }
+                         if (oView.getModel("remitModel").getData().rTeleNum !== "" && !nonZeroRegex.test(oView.getModel("remitModel").getData().rTeleNum)) {
+                        oView.getModel("oErrorModel").getData().rTATeleNumE = "Error";
+                        oView.getModel("oErrorModel").getData().rTATeleNumM = oi18n.getText("invalidTel");
+
+                        iError = true;
+                    }
                         if (oView.getModel("remitModel").getData().rName && oView.getModel("remitModel").getData().rName.length > 40) {
 
 
@@ -2586,6 +2670,7 @@ sap.ui.define([
             },
             _fnValidateBankInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
+                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var iError = false;
                 var bankFields = this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
                 if (this.emailValidResult) {
@@ -2917,9 +3002,21 @@ sap.ui.define([
 
                         iError = true;
                     }
+                    if (oView.getModel("oDataModel").getData().bankDto.financeContact1.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.contact)) {
+                        oView.getModel("oErrorModel").getData().finance1ContE = "Error";
+                        oView.getModel("oErrorModel").getData().finance1ContM = oi18n.getText("invalidContact");
+
+                        iError = true;
+                    }
                     if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile)) {
                         oView.getModel("oErrorModel").getData().finance1MobE = "Error";
                         oView.getModel("oErrorModel").getData().finance1MobM = oi18n.getText("mandatoryMContact");
+
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile)) {
+                        oView.getModel("oErrorModel").getData().finance1MobE = "Error";
+                        oView.getModel("oErrorModel").getData().finance1MobM = oi18n.getText("invalidMContact");
 
                         iError = true;
                     }
@@ -2978,12 +3075,24 @@ sap.ui.define([
 
                     iError = true;
                 }
+                 if (oView.getModel("oDataModel").getData().bankDto.financeContact2.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.contact)) {
+                        oView.getModel("oErrorModel").getData().finance2ContE = "Error";
+                        oView.getModel("oErrorModel").getData().finance2ContM = oi18n.getText("invalidContact");
+
+                        iError = true;
+                    }
                 if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile)) {
                     oView.getModel("oErrorModel").getData().finance2MobE = "Error";
                     oView.getModel("oErrorModel").getData().finance2MobM = oi18n.getText("mandatoryMContact");
 
                     iError = true;
-                }
+                }            
+                    if (oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile)) {
+                        oView.getModel("oErrorModel").getData().finance2MobE = "Error";
+                        oView.getModel("oErrorModel").getData().finance2MobM = oi18n.getText("invalidMContact");
+
+                        iError = true;
+                    }
                 if (oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName && oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName.length > 40) {
 
 
@@ -3081,6 +3190,7 @@ sap.ui.define([
             },
             _fnValidateShippingInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
+                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -3137,6 +3247,13 @@ sap.ui.define([
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepContact || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepContact)) {
                         oView.getModel("oErrorModel").getData().dRespContactE = "Error";
                         oView.getModel("oErrorModel").getData().dRespContactM = oi18n.getText("mandatoryContact");
+
+                        iError = true;
+                    }
+                               
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepContact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepContact)) {
+                        oView.getModel("oErrorModel").getData().dRespContactE = "Error";
+                        oView.getModel("oErrorModel").getData().dRespContactM = oi18n.getText("invalidContact");
 
                         iError = true;
                     }
@@ -3321,6 +3438,7 @@ sap.ui.define([
             },
             _fnValidateCompanyCompliance: function () {
                 var spaceRegex = /^\s+$/;
+                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -3397,6 +3515,12 @@ sap.ui.define([
                     if (!oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact || spaceRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact)) {
                         oView.getModel("oErrorModel").getData().cocContactE = "Error";
                         oView.getModel("oErrorModel").getData().cocContactM = oi18n.getText("mandatoryContact");
+
+                        iError = true;
+                    }
+                     if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact)) {
+                        oView.getModel("oErrorModel").getData().cocContactE = "Error";
+                        oView.getModel("oErrorModel").getData().cocContactM = oi18n.getText("invalidContact");
 
                         iError = true;
                     }
@@ -3531,6 +3655,7 @@ sap.ui.define([
             },
             _fnValidateCyberSec: function () {
                 var spaceRegex = /^\s+$/;
+                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var that = this;
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
                 var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
@@ -3584,6 +3709,12 @@ sap.ui.define([
                     if (!oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.contact || spaceRegex.test(oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.contact)) {
                         oView.getModel("oErrorModel").getData().cyberSurveyMNE = "Error";
                         oView.getModel("oErrorModel").getData().cyberSurveyMNM = oi18n.getText("mandatoryContact");
+
+                        iError = true;
+                    }
+                     if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.contact)) {
+                        oView.getModel("oErrorModel").getData().cyberSurveyMNE = "Error";
+                        oView.getModel("oErrorModel").getData().cyberSurveyMNM = oi18n.getText("invalidContact");
 
                         iError = true;
                     }
@@ -3753,6 +3884,7 @@ sap.ui.define([
             },
             _fnValidateContactInfo: function () {
                 var spaceRegex = /^\s+$/;
+                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -3789,6 +3921,13 @@ sap.ui.define([
                     if (row.contact == null || row.contact == "" || spaceRegex.test(row.contact)) {
                         item[5].mAggregations.items[1].setValueState("Error")
                         item[5].mAggregations.items[1].setValueStateText(oi18n.getText("mandatoryContact"));
+
+                        iError = true;
+
+                    }
+                    if (row.contact !== "" && !nonZeroRegex.test(row.contact)) {
+                        item[5].mAggregations.items[1].setValueState("Error")
+                        item[5].mAggregations.items[1].setValueStateText(oi18n.getText("invalidContact"));
 
                         iError = true;
 
