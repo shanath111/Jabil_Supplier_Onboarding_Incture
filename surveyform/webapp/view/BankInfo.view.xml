@@ -242,7 +242,7 @@
 	</Panel>
    <VBox class="sapUiMediumMarginTop">
 		<Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>Attachments}:${oi18n_En>Attachments}+ '/&#160;'+${i18n>Attachments}}" class="fontBold  sapUiTinyMarginBegin"/>
-<HBox><Label required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankAttachText}:${oi18n_En>bankAttachText}+ '/&#160;'+${i18n>bankAttachText}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+<HBox><Label required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankAttachText1}:${oi18n_En>bankAttachText1}+ '/&#160;'+${i18n>bankAttachText1}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 			<Button tooltip="{oPopoverModel>/bankInfoInfoText/info}" icon="sap-icon://message-information" type="Transparent" class="sapUiSizeCompact infoBtn"/>
            </HBox> <HBox wrap="Wrap">
 				<u:FileUploader id="fileUploader_BA" buttonOnly="true" buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"
