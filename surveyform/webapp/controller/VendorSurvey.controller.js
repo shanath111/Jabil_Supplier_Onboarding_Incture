@@ -1592,12 +1592,11 @@ sap.ui.define([
 
                     iError = true;
                 }
-                // var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
-                // if(!nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode){
-                //     oView.getModel("oErrorModel").getData().poE = "Error";
-                //     oView.getModel("oErrorModel").getData().poM = oi18n.getText("mandatoryPostalCode");
-                //       iError = true;
-                // }
+                if(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode)){
+                    oView.getModel("oErrorModel").getData().poE = "Error";
+                    oView.getModel("oErrorModel").getData().poM = oi18n.getText("invalidPostalCode");
+                      iError = true;
+                }
                 if (!oView.getModel("oDataModel").getData().surveyInfoDto.altContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.firstName)) {
                     oView.getModel("oErrorModel").getData().altNameE = "Error";
                     oView.getModel("oErrorModel").getData().altNameM = oi18n.getText("mandatoryFName");
@@ -2386,6 +2385,12 @@ sap.ui.define([
 
 
                         }
+                         if (oView.getModel("companyInfoModel").getData().oPostalCode !== "" && !nonZeroRegex.test(oView.getModel("companyInfoModel").getData().oPostalCode)) {
+                        oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
+                        oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("invalidPostalCode");
+
+                        iError = true;
+                    }
 
 
                         if (!oView.getModel("companyInfoModel").getData().oCity || spaceRegex.test(oView.getModel("companyInfoModel").getData().oCity)) {
@@ -2484,6 +2489,12 @@ sap.ui.define([
 
                             iError = true;
                         }
+                         if (oView.getModel("remitModel").getData().rPostalCode !== "" && !nonZeroRegex.test(oView.getModel("remitModel").getData().rPostalCode)) {
+                        oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
+                        oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("invalidPostalCode");
+
+                        iError = true;
+                    }
                         if (!oView.getModel("remitModel").getData().rCity || spaceRegex.test(oView.getModel("remitModel").getData().rCity)) {
                             oView.getModel("oErrorModel").getData().rTACityE = "Error";
                             oView.getModel("oErrorModel").getData().rTACityM = oi18n.getText("mandatoryCity");
