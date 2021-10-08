@@ -2012,20 +2012,23 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").refresh();
                     return;
                 }
-                if(Number(vInpVal) == 0){
-                     oView.getModel("JMBPCreate").getData().postalCodee = "Error";
+                if (Number(vInpVal) == 0) {
+                    oView.getModel("JMBPCreate").getData().postalCodee = "Error";
                     oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCInvalidPostalCode");
                     oView.getModel("JMBPCreate").refresh();
-                     return;
+                    return;
                 }
+
                 if (vInpVal.length == 0) {
                     oView.getModel("JMBPCreate").getData().postalCodee = "None";
                     oView.getModel("JMBPCreate").getData().postalCodem = "";
                     oView.getModel("JMBPCreate").refresh();
                 } else if (vInpVal.length > vMaxLength) {
-                    oView.getModel("JMBPCreate").getData().postalCodee = "Error";
-                    oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCInvalidPostalCode");
-                    oView.getModel("JMBPCreate").refresh();
+                    if (Number(vMaxLength) !== 0) {
+                        oView.getModel("JMBPCreate").getData().postalCodee = "Error";
+                        oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCInvalidPostalCode");
+                        oView.getModel("JMBPCreate").refresh();
+                    }
                 }
 
             },
