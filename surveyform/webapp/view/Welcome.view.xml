@@ -55,7 +55,7 @@
                                 <core:Item key="es" text="Spanish"/>
                                  <core:Item key="zh_CN" text="Chinese(China)"/>
                                   <core:Item key="zh_TW" text="Chinese(Taiwan)"/>
-                                   <core:Item key="iw" text="Afro-Asiatic"/>
+                                   <core:Item key="iw" text="Hebrew"/>
                                      <core:Item key="pl" text="Polish"/>
                                       <core:Item key="uk" text="Ukraine"/>
                                   <core:Item key="hu" text="Hungary"/>

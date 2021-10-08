@@ -1504,7 +1504,6 @@ sap.ui.define([
             },
             _fnValidateBasicInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
-                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -1546,7 +1545,7 @@ sap.ui.define([
 
                     iError = true;
                 }
-                 if(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contact)){
+                 if(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contact !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contact.replaceAll("-","")) == 0){
                     oView.getModel("oErrorModel").getData().authorityContE = "Error";
                     oView.getModel("oErrorModel").getData().authorityContM = oi18n.getText("invalidContact");
                       iError = true;
@@ -1557,7 +1556,7 @@ sap.ui.define([
 
                     iError = true;
                 }
-                 if(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile !=="" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile)){
+                 if(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile !=="" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile.replaceAll("-","")) == 0){
                     oView.getModel("oErrorModel").getData().authorityMobE = "Error";
                     oView.getModel("oErrorModel").getData().authorityMobM = oi18n.getText("invalidMContact");
                       iError = true;
@@ -1592,7 +1591,7 @@ sap.ui.define([
 
                     iError = true;
                 }
-                if(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode)){
+                if(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode.replaceAll("-","")) == 0){
                     oView.getModel("oErrorModel").getData().poE = "Error";
                     oView.getModel("oErrorModel").getData().poM = oi18n.getText("invalidPostalCode");
                       iError = true;
@@ -1626,7 +1625,7 @@ sap.ui.define([
 
                     iError = true;
                 }
-                  if(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact)){
+                  if(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact.replaceAll("-","")) == 0){
                     oView.getModel("oErrorModel").getData().altContactE = "Error";
                     oView.getModel("oErrorModel").getData().altContactM = oi18n.getText("invalidContact");
                       iError = true;
@@ -1694,7 +1693,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                      if(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact)){
+                      if(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact.replaceAll("-","")) == 0){
                     oView.getModel("oErrorModel").getData().ackContactE = "Error";
                     oView.getModel("oErrorModel").getData().ackContactM = oi18n.getText("invalidContact");
                       iError = true;
@@ -1706,7 +1705,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                      if(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile)){
+                      if(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile.replaceAll("-","")) == 0){
                     oView.getModel("oErrorModel").getData().ackPhoneE = "Error";
                     oView.getModel("oErrorModel").getData().ackPhoneM = oi18n.getText("invalidMContact");
                       iError = true;
@@ -1767,7 +1766,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                      if(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact)){
+                      if(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact.replaceAll("-","")) == 0){
                     oView.getModel("oErrorModel").getData().mcContE = "Error";
                     oView.getModel("oErrorModel").getData().mcContM = oi18n.getText("invalidContact");
                       iError = true;
@@ -1778,7 +1777,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                      if(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile)){
+                      if(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile.replaceAll("-","")) == 0){
                     oView.getModel("oErrorModel").getData().mcPhoneE = "Error";
                     oView.getModel("oErrorModel").getData().mcPhoneM = oi18n.getText("invalidMContact");
                       iError = true;
@@ -1864,7 +1863,6 @@ sap.ui.define([
             },
             _fnValidateBusinessPartner: function (oEvent) {
                 var spaceRegex = /^\s+$/;
-                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -1954,13 +1952,13 @@ sap.ui.define([
 
                     iError = true;
                 }
-                  if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact)) {
+                  if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact !== "" && Number(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact.replaceAll("-","")) == 0) {
                         oView.getModel("oErrorModel").getData().ppocContE = "Error";
                         oView.getModel("oErrorModel").getData().ppocContM = oi18n.getText("invalidContact");
 
                         iError = true;
                     }
-                      if(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile)){
+                      if(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile !== "" && Number(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile.replaceAll("-","")) == 0){
                     oView.getModel("oErrorModel").getData().ppocMobE = "Error";
                     oView.getModel("oErrorModel").getData().ppocMobM = oi18n.getText("invalidMContact");
                       iError = true;
@@ -2113,7 +2111,6 @@ sap.ui.define([
             },
             _fnValidateOwnerInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
-                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -2232,7 +2229,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact)) {
+                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact !== "" && Number(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact.replaceAll("-","")) == 0) {
                         oView.getModel("oErrorModel").getData().govtEntityContE = "Error";
                         oView.getModel("oErrorModel").getData().govtEntityContM = oi18n.getText("invalidContact");
 
@@ -2307,7 +2304,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact)) {
+                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact !== "" && Number(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact.replaceAll("-","")) == 0) {
                         oView.getModel("oErrorModel").getData().closegovtEntityContE = "Error";
                         oView.getModel("oErrorModel").getData().closegovtEntityContM = oi18n.getText("invalidContact");
 
@@ -2356,7 +2353,6 @@ sap.ui.define([
             _fnValidateCompanyInfo: function (oEvent) {
                 if (oView.getModel("companyInfoModel")) {
                     var spaceRegex = /^\s+$/;
-                    var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                     var iError = false;
                     var aError = false, that = this;
                     var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
@@ -2385,7 +2381,7 @@ sap.ui.define([
 
 
                         }
-                         if (oView.getModel("companyInfoModel").getData().oPostalCode !== "" && !nonZeroRegex.test(oView.getModel("companyInfoModel").getData().oPostalCode)) {
+                         if (oView.getModel("companyInfoModel").getData().oPostalCode !== "" && Number(oView.getModel("companyInfoModel").getData().oPostalCode.replaceAll("-","")) == 0) {
                         oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
                         oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("invalidPostalCode");
 
@@ -2416,7 +2412,7 @@ sap.ui.define([
 
                             iError = true;
                         }
-                         if (oView.getModel("companyInfoModel").getData().oTeleNum !== "" && !nonZeroRegex.test(oView.getModel("companyInfoModel").getData().oTeleNum)) {
+                         if (oView.getModel("companyInfoModel").getData().oTeleNum !== "" && Number(oView.getModel("companyInfoModel").getData().oTeleNum.replaceAll("-","")) == 0) {
                         oView.getModel("oErrorModel").getData().oFATeleNumE = "Error";
                         oView.getModel("oErrorModel").getData().oFATeleNumM = oi18n.getText("invalidTel");
 
@@ -2489,7 +2485,7 @@ sap.ui.define([
 
                             iError = true;
                         }
-                         if (oView.getModel("remitModel").getData().rPostalCode !== "" && !nonZeroRegex.test(oView.getModel("remitModel").getData().rPostalCode)) {
+                         if (oView.getModel("remitModel").getData().rPostalCode !== "" && Number(oView.getModel("remitModel").getData().rPostalCode.replaceAll("-","")) == 0) {
                         oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
                         oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("invalidPostalCode");
 
@@ -2514,7 +2510,7 @@ sap.ui.define([
 
                             iError = true;
                         }
-                         if (oView.getModel("remitModel").getData().rTeleNum !== "" && !nonZeroRegex.test(oView.getModel("remitModel").getData().rTeleNum)) {
+                         if (oView.getModel("remitModel").getData().rTeleNum !== "" && Number(oView.getModel("remitModel").getData().rTeleNum.replaceAll("-","")) == 0) {
                         oView.getModel("oErrorModel").getData().rTATeleNumE = "Error";
                         oView.getModel("oErrorModel").getData().rTATeleNumM = oi18n.getText("invalidTel");
 
@@ -2681,7 +2677,6 @@ sap.ui.define([
             },
             _fnValidateBankInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
-                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var iError = false;
                 var bankFields = this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
                 if (this.emailValidResult) {
@@ -3013,7 +3008,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().bankDto.financeContact1.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.contact)) {
+                    if (oView.getModel("oDataModel").getData().bankDto.financeContact1.contact !== "" && Number(oView.getModel("oDataModel").getData().bankDto.financeContact1.contact.replaceAll("-","")) == 0) {
                         oView.getModel("oErrorModel").getData().finance1ContE = "Error";
                         oView.getModel("oErrorModel").getData().finance1ContM = oi18n.getText("invalidContact");
 
@@ -3025,7 +3020,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile)) {
+                    if (oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile !== "" && Number(oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile.replaceAll("-","")) == 0) {
                         oView.getModel("oErrorModel").getData().finance1MobE = "Error";
                         oView.getModel("oErrorModel").getData().finance1MobM = oi18n.getText("invalidMContact");
 
@@ -3086,7 +3081,7 @@ sap.ui.define([
 
                     iError = true;
                 }
-                 if (oView.getModel("oDataModel").getData().bankDto.financeContact2.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.contact)) {
+                 if (oView.getModel("oDataModel").getData().bankDto.financeContact2.contact !== "" && Number(oView.getModel("oDataModel").getData().bankDto.financeContact2.contact.replaceAll("-","")) == 0) {
                         oView.getModel("oErrorModel").getData().finance2ContE = "Error";
                         oView.getModel("oErrorModel").getData().finance2ContM = oi18n.getText("invalidContact");
 
@@ -3098,7 +3093,7 @@ sap.ui.define([
 
                     iError = true;
                 }            
-                    if (oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile)) {
+                    if (oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile !== "" && Number(oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile.replaceAll("-","")) == 0) {
                         oView.getModel("oErrorModel").getData().finance2MobE = "Error";
                         oView.getModel("oErrorModel").getData().finance2MobM = oi18n.getText("invalidMContact");
 
@@ -3201,7 +3196,6 @@ sap.ui.define([
             },
             _fnValidateShippingInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
-                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -3262,7 +3256,7 @@ sap.ui.define([
                         iError = true;
                     }
                                
-                    if (oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepContact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepContact)) {
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepContact !== "" && Number(oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepContact.replaceAll("-","")) == 0) {
                         oView.getModel("oErrorModel").getData().dRespContactE = "Error";
                         oView.getModel("oErrorModel").getData().dRespContactM = oi18n.getText("invalidContact");
 
@@ -3449,7 +3443,6 @@ sap.ui.define([
             },
             _fnValidateCompanyCompliance: function () {
                 var spaceRegex = /^\s+$/;
-                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -3529,7 +3522,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                     if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact)) {
+                     if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact !== "" && Number(oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.contact.replaceAll("-","")) == 0) {
                         oView.getModel("oErrorModel").getData().cocContactE = "Error";
                         oView.getModel("oErrorModel").getData().cocContactM = oi18n.getText("invalidContact");
 
@@ -3666,7 +3659,6 @@ sap.ui.define([
             },
             _fnValidateCyberSec: function () {
                 var spaceRegex = /^\s+$/;
-                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var that = this;
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
                 var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
@@ -3723,7 +3715,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                     if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.contact !== "" && !nonZeroRegex.test(oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.contact)) {
+                     if (oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.contact !== "" && Number(oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.contact.replaceAll("-","")) == 0) {
                         oView.getModel("oErrorModel").getData().cyberSurveyMNE = "Error";
                         oView.getModel("oErrorModel").getData().cyberSurveyMNM = oi18n.getText("invalidContact");
 
@@ -3895,7 +3887,6 @@ sap.ui.define([
             },
             _fnValidateContactInfo: function () {
                 var spaceRegex = /^\s+$/;
-                var nonZeroRegex = /^(?!0+$)[a-zA-Z0-9]+$/;
                 var iError = false;
                 if (this.emailValidResult) {
                     iError = true;
@@ -3936,7 +3927,7 @@ sap.ui.define([
                         iError = true;
 
                     }
-                    if (row.contact !== "" && !nonZeroRegex.test(row.contact)) {
+                    if (row.contact !== "" && Number(row.contact.replaceAll("-","")) == 0) {
                         item[5].mAggregations.items[1].setValueState("Error")
                         item[5].mAggregations.items[1].setValueStateText(oi18n.getText("invalidContact"));
 
