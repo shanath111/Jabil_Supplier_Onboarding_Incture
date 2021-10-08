@@ -365,9 +365,9 @@
                                 </HBox> 
                                 	<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
 									 <VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCOneTimePOIndicator}" class="cl_VRLablCls sapUiTinyMarginBegin"></Label>
+										<Label text="{i18n>BPCOneTimePOIndicator}" required="true" class="cl_VRLablCls sapUiTinyMarginBegin"></Label>
 						
-                            <RadioButtonGroup columns="2"  selectedIndex="{JMBPCreate>/oneTimePurchaseSupplierIndicators}" enabled="{oConfigMdl>/screenEditable}">
+                            <RadioButtonGroup columns="2" valueState="{JMBPCreate>/oneTimePurchaseSupplierIndicatorse}" select="fnChangeOneTimePurchInd"  selectedIndex="{JMBPCreate>/oneTimePurchaseSupplierIndicators}" enabled="{oConfigMdl>/screenEditable}">
 									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>Yes}"/>
 									<RadioButton  class="cl_BPCRadioBtnTxt" selected="false"  text="{i18n>No}"/>
                                     		</RadioButtonGroup>
@@ -405,8 +405,8 @@
                                  
                                 	<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
 	<VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCCustDirectedSupInd}" required="false" class="cl_VRLablCls sapUiTinyMarginBegin"></Label>
-										<RadioButtonGroup columns="2" selectedIndex="{JMBPCreate>/customerDirectedSupplierIndicators}" select="fnCustDirChange" enabled="{oConfigMdl>/screenEditable}">
+										<Label text="{i18n>BPCCustDirectedSupInd}" required="true" class="cl_VRLablCls sapUiTinyMarginBegin"></Label>
+										<RadioButtonGroup columns="2" selectedIndex="{JMBPCreate>/customerDirectedSupplierIndicators}" valueState="{JMBPCreate>/customerDirectedSupplierIndicatorse}" select="fnCustDirChange" enabled="{oConfigMdl>/screenEditable}">
 									<RadioButton  class=" cl_BPCRadioBtnTxt" text="{i18n>Yes}"/>
 									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
                                     		</RadioButtonGroup>
@@ -435,7 +435,7 @@
                                 <l:Grid  class="sapUiSizeCompact">
                                 <VBox >
                        
-								<Label text="{i18n>ConflitOfIntrest}" required="false"  class="cl_ConflictQtnCls sapUiTinyMarginTop"></Label>
+								<Label text="{i18n>ConflitOfIntrest}" required="true"  class="cl_ConflictQtnCls sapUiTinyMarginTop"></Label>
 									<RadioButtonGroup  enabled="{oConfigMdl>/screenEditable}" select="fnConflictOfIntChnage" valueState="{JMBPCreate>/conflicte}" selectedIndex="{JMBPCreate>/conflictOfInterests}"  columns="1">
 									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>BPCIDoNotHaveCOI}"/>
 									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>BPCIHaveCOI}"/>
