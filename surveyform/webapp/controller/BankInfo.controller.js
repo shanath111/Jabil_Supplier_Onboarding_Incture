@@ -876,11 +876,12 @@ sap.ui.define([
                     }
                 }
                 var firstDigit = "", secondDigit = "";
-                if (this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.companyCodeCountry == "Russia") {
+                 var bankCountryDesc = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().Country, oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry);
+                if (bankCountryDesc == "Russian Fed.") {
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum) {
                         oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey = oEvent.getSource().getValue().substring(2, 0);
                     }
-                } else if (this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.companyCodeCountry == "Brazil") {
+                } else if (bankCountryDesc == "Brazil") {
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch.includes("-")) {
                         var bankBranch = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch;
                         firstDigit = bankBranch.substring(bankBranch.indexOf("-") + 2, bankBranch.indexOf("-") + 1)

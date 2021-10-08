@@ -22,46 +22,46 @@
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>name}:${oi18n_En>name}+ '&#xA;' +${i18n>name}}" wrapping="true" required="true" />
-            <Input value="{companyInfoModel>/oName}" valueState="{oErrorModel>/oFANameE}" valueStateText="{oErrorModel>/oFANameM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+            <Input maxLength="41" value="{companyInfoModel>/oName}" valueState="{oErrorModel>/oFANameE}" valueStateText="{oErrorModel>/oFANameM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1}+ '&#xA;' +${i18n>addressL1}}" wrapping="true" required="true" />
-         <Input value="{companyInfoModel>/oAddress1}" valueState="{oErrorModel>/oFAAddr1E}" valueStateText="{oErrorModel>/oFAAddr1M}" liveChange="fnValueChange" class="inputStyle" maxLength="35"></Input>
+         <Input value="{companyInfoModel>/oAddress1}" valueState="{oErrorModel>/oFAAddr1E}" valueStateText="{oErrorModel>/oFAAddr1M}" liveChange="fnLiveInputValueChange" class="inputStyle" maxLength="36"></Input>
             <!-- <html:input type="text" id="iAddress1" class="cl_HTMLInput" /> -->
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2}+ '&#xA;' +${i18n>addressL2}}" wrapping="true" />
-            <Input value="{companyInfoModel>/oAddress2}" class="inputStyle" maxLength="35"></Input>
+            <Input value="{companyInfoModel>/oAddress2}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input>
             <!-- <html:input type="text" id="iAddress2" class="cl_HTMLInput" /> -->
          </VBox>
           <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL3}:${oi18n_En>addressL3}+ '&#xA;' +${i18n>addressL3}}" wrapping="true" />
-            <Input value="{companyInfoModel>/oAddress3}" class="inputStyle" maxLength="35"></Input>
+            <Input value="{companyInfoModel>/oAddress3}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input>
             
             
          </VBox>
            <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL4}:${oi18n_En>addressL4}+ '&#xA;' +${i18n>addressL4}}" wrapping="true" />
-       <Input value="{companyInfoModel>/oAddress4}" class="inputStyle" maxLength="35"></Input>
+       <Input value="{companyInfoModel>/oAddress4}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input>
          </VBox>
            <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL5}:${oi18n_En>addressL5}+ '&#xA;' +${i18n>addressL5}}" wrapping="true" />
   
-               <Input value="{companyInfoModel>/oAddress5}" class="inputStyle" maxLength="35"></Input>
+               <Input value="{companyInfoModel>/oAddress5}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input>
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dist}:${oi18n_En>dist}+ '&#xA;' +${i18n>dist}}" wrapping="true" required="false" />
-            <Input maxLength="40" value="{companyInfoModel>/oDist}" class="inputStyle" />
+            <Input maxLength="41" value="{companyInfoModel>/oDist}" class="inputStyle" liveChange="fnLiveInputValueChange"/>
            
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postalCode}:${oi18n_En>postalCode}+ '&#xA;' +${i18n>postalCode}}" wrapping="true" required="true" />
-              <Input maxLength="10" value="{companyInfoModel>/oPostalCode}" valueState="{oErrorModel>/oFAPostCdE}" valueStateText="{oErrorModel>/oFAPostCdM}" liveChange="fnValueChange" class="inputStyle"></Input>
+              <Input maxLength="11" value="{companyInfoModel>/oPostalCode}" valueState="{oErrorModel>/oFAPostCdE}" valueStateText="{oErrorModel>/oFAPostCdM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
             <!-- <html:input type="text" id="iPostal" class="cl_HTMLInput" /> -->
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>city}:${oi18n_En>city}+ '&#xA;' +${i18n>city}}" wrapping="true" required="true" />
-           <Input maxLength="40" value="{companyInfoModel>/oCity}" valueState="{oErrorModel>/oFACityE}" valueStateText="{oErrorModel>/oFACityM}" liveChange="fnValueChange" class="inputStyle"></Input>
+           <Input maxLength="41" value="{companyInfoModel>/oCity}" valueState="{oErrorModel>/oFACityE}" valueStateText="{oErrorModel>/oFACityM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
             <!-- <html:input type="text" id="iCity" class="cl_HTMLInput" /> -->
              <!-- <layoutData>
                                                 <l:GridData linebreak="true"></l:GridData>
@@ -76,12 +76,12 @@
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>teleNum}:${oi18n_En>teleNum}+ '&#xA;' +${i18n>teleNum}}" wrapping="true" required="true" />
-            <Input maxLength="30" value="{companyInfoModel>/oTeleNum}" valueState="{oErrorModel>/oFATeleNumE}" valueStateText="{oErrorModel>/oFATeleNumM}" liveChange="fnValueChange" class="inputStyle" />
+            <Input maxLength="31" value="{companyInfoModel>/oTeleNum}" valueState="{oErrorModel>/oFATeleNumE}" valueStateText="{oErrorModel>/oFATeleNumM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
            
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>faxNum}:${oi18n_En>faxNum}+ '&#xA;'+${i18n>faxNum}}" wrapping="true" />
-            <Input maxLength="30" value="{companyInfoModel>/oFaxNum}" class="inputStyle" />
+            <Input maxLength="31" value="{companyInfoModel>/oFaxNum}" class="inputStyle" liveChange="fnLiveInputValueChange" />
             
          </VBox>
          <!-- <VBox class="fontStyle">
@@ -117,45 +117,45 @@
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>name}:${oi18n_En>name} + '&#xA;' +${i18n>name}}" wrapping="true" required="true" />
-            <Input value="{remitModel>/rName}" valueState="{oErrorModel>/rTANameE}" valueStateText="{oErrorModel>/rTANameM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+            <Input maxLength="41" value="{remitModel>/rName}" valueState="{oErrorModel>/rTANameE}" valueStateText="{oErrorModel>/rTANameM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1}+ '&#xA;' +${i18n>addressL1}}" wrapping="true" required="true" />
-          <Input value="{remitModel>/rAddress1}" valueState="{oErrorModel>/rTAAddr1E}" valueStateText="{oErrorModel>/rTAAddr1M}" liveChange="fnValueChange" class="inputStyle" maxLength="35"></Input>
+          <Input value="{remitModel>/rAddress1}" valueState="{oErrorModel>/rTAAddr1E}" valueStateText="{oErrorModel>/rTAAddr1M}" liveChange="fnLiveInputValueChange" class="inputStyle" maxLength="36"></Input>
             <!-- <html:input type="text" id="iAddress1R" class="cl_HTMLInput" /> -->
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2}+ '&#xA;' +${i18n>addressL2}}" wrapping="true" />
-            <Input value="{remitModel>/rAddress2}" class="inputStyle" maxLength="35"></Input> 
+            <Input value="{remitModel>/rAddress2}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input> 
             <!-- <html:input type="text" id="iAddress2R" class="cl_HTMLInput" /> -->
          </VBox>
           <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL3}:${oi18n_En>addressL3}+ '&#xA;' +${i18n>addressL3}}" wrapping="true" />
             <!-- <html:input type="text" id="iAddress3R" class="cl_HTMLInput" maxLength="35"/> -->
-            <Input value="{remitModel>/rAddress3}" class="inputStyle" maxLength="35"></Input>
+            <Input value="{remitModel>/rAddress3}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input>
          </VBox>
            <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL4}:${oi18n_En>addressL4}+ '&#xA;' +${i18n>addressL4}}" wrapping="true" />
-            <Input value="{remitModel>/rAddress4}" class="inputStyle" maxLength="35"></Input>
+            <Input value="{remitModel>/rAddress4}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input>
          </VBox>
            <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL5}:${oi18n_En>addressL5}+ '&#xA;' +${i18n>addressL5}}" wrapping="true" />
-            <Input value="{remitModel>/rAddress5}" class="inputStyle" maxLength="35"></Input>
+            <Input value="{remitModel>/rAddress5}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input>
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dist}:${oi18n_En>dist}+'&#xA;'+${i18n>dist}}" wrapping="true" required="false" />
-            <Input maxLength="40" value="{remitModel>/rDist}" enabled="{oEnableMdl>/rNameEnb}" class="inputStyle" />
+            <Input maxLength="41" value="{remitModel>/rDist}" enabled="{oEnableMdl>/rNameEnb}" liveChange="fnLiveInputValueChange" class="inputStyle" />
             <!-- <ComboBox width="100%" value="{oDataModel>/comInfoDto/address/1/postal/0/district}" placeholder="{i18n>select}" class="inputStyle"></ComboBox> -->
             <!-- <html:input type="text" id="iDistR"   class="cl_HTMLInput" ></html:input>  -->
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postalCode}:${oi18n_En>postalCode}+'&#xA;'+${i18n>postalCode}}" wrapping="true" required="true" />
-            <Input maxLength="10" value="{remitModel>/rPostalCode}" valueState="{oErrorModel>/rTAPostCdE}" valueStateText="{oErrorModel>/rTAPostCdM}" liveChange="fnValueChange" class="inputStyle"></Input>
+            <Input maxLength="11" value="{remitModel>/rPostalCode}" valueState="{oErrorModel>/rTAPostCdE}" valueStateText="{oErrorModel>/rTAPostCdM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
             <!-- <html:input type="text" id="iPostalR" class="cl_HTMLInput" /> -->
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>city}:${oi18n_En>city}+'&#xA;'+${i18n>city}}" wrapping="true" required="true" />
-            <Input maxLength="40" value="{remitModel>/rCity}" valueState="{oErrorModel>/rTACityE}" valueStateText="{oErrorModel>/rTACityM}" liveChange="fnValueChange"  class="inputStyle"></Input>
+            <Input maxLength="41" value="{remitModel>/rCity}" valueState="{oErrorModel>/rTACityE}" valueStateText="{oErrorModel>/rTACityM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
             <!-- <html:input type="text" id="iCityR" class="cl_HTMLInput" /> -->
               <!-- <layoutData>
                                                 <l:GridData linebreak="true"></l:GridData>
@@ -170,22 +170,22 @@
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>teleNum}:${oi18n_En>teleNum}+'&#xA;'+${i18n>teleNum}}" wrapping="true" required="true" />
-            <Input maxLength="30" value="{remitModel>/rTeleNum}" enabled="{oEnableMdl>/rTeleNumEnb}" valueState="{oErrorModel>/rTATeleNumE}" valueStateText="{oErrorModel>/rTATeleNumM}" liveChange="fnValueChange" class="inputStyle" />
+            <Input maxLength="31" value="{remitModel>/rTeleNum}" enabled="{oEnableMdl>/rTeleNumEnb}" valueState="{oErrorModel>/rTATeleNumE}" valueStateText="{oErrorModel>/rTATeleNumM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
             <!-- <html:input type="text" id="iTeleNumR"   class="cl_HTMLInput" ></html:input>  -->
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>faxNum}:${oi18n_En>faxNum}+'&#xA;'+${i18n>faxNum}}" wrapping="true" />
-            <Input maxLength="30" value="{remitModel>/rFaxNum}" enabled="{oEnableMdl>/rFaxNumEnb}" class="inputStyle" />
+            <Input maxLength="31" value="{remitModel>/rFaxNum}" enabled="{oEnableMdl>/rFaxNumEnb}" liveChange="fnLiveInputValueChange" class="inputStyle" />
             <!-- <html:input type="text" id="iFaxNumR"   class="cl_HTMLInput" ></html:input>  -->
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postOfcBox}:${oi18n_En>postOfcBox}+'&#xA;'+${i18n>postOfcBox}}" wrapping="true" />
-            <Input value="{remitModel>/rPostOffBox}" enabled="{oEnableMdl>/rPostOffBoxEnb}" class="inputStyle" />
+            <Input maxLength="41" value="{remitModel>/rPostOffBox}" enabled="{oEnableMdl>/rPostOffBoxEnb}" liveChange="fnLiveInputValueChange" class="inputStyle" />
            
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postOfcBoxZipCode}:${oi18n_En>postOfcBoxZipCode}+'&#xA;'+${i18n>postOfcBoxZipCode}}" wrapping="true" />
-            <Input value="{remitModel>/rPostOffZipCode}" enabled="{oEnableMdl>/rPostOffZipCodeEnb}" class="inputStyle" />
+            <Input maxLength="11" value="{remitModel>/rPostOffZipCode}" enabled="{oEnableMdl>/rPostOffZipCodeEnb}" liveChange="fnLiveInputValueChange" class="inputStyle" />
             <!-- <html:input type="text" id="iPostOfZipR"   class="cl_HTMLInput" ></html:input>  -->
          </VBox>
       </l:Grid>

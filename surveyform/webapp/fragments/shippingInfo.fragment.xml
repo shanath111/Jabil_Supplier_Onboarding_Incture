@@ -7,7 +7,7 @@
 				<VBox class="fontStyle" >
 					<Label text="{i18n>vendorName}" visible= "{oVisibilityModel>/isdefaultLan}" required="true"></Label>
                     <Label text="{oi18n_En>vendorName}&#10;{i18n>vendorName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-					<Input maxLength="40" class="inputStyle" value="{oDataModel>/shippingInfoDto/vendor}" enabled="{oEnableMdl>/vendorEnb}" valueState="{oErrorModel>/vendorE}" valueStateText="{oErrorModel>/vendorM}" liveChange="fnLiveInputValueChange"/>
+					<Input maxLength="31" class="inputStyle" value="{oDataModel>/shippingInfoDto/vendor}" enabled="{oEnableMdl>/vendorEnb}" valueState="{oErrorModel>/vendorE}" valueStateText="{oErrorModel>/vendorM}" liveChange="fnLiveInputValueChange"/>
 				</VBox>
 				<VBox  class="fontStyle">
 					<Label text="{i18n>incoterm}" visible= "{oVisibilityModel>/isdefaultLan}" required="true"></Label>
@@ -26,7 +26,7 @@
             <VBox class="fontStyle">
 										<Label text="{i18n>deliveryLoc}"  required="false"  visible= "{oVisibilityModel>/isdefaultLan}" ></Label>
 					<Label text="{oi18n_En>deliveryLoc}&#10;{i18n>deliveryLoc}"  required="false" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" ></Label>
-                    <Input value="{oDataModel>/shippingInfoDto/deliveryLocation}" maxLength="20" enabled="{oEnableMdl>/deliveryLocationEnb}"  class="inputStyle"/>
+                    <Input value="{oDataModel>/shippingInfoDto/deliveryLocation}" maxLength="21" enabled="{oEnableMdl>/deliveryLocationEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
                     </VBox>
                     </l:Grid>
             <VBox class="fontStyle sapUiSizeCompact">
