@@ -2010,6 +2010,13 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").getData().postalCode = "";
                     oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCPleaseSelCountryCode");
                     oView.getModel("JMBPCreate").refresh();
+                    return;
+                }
+                if(Number(vInpVal) == 0){
+                     oView.getModel("JMBPCreate").getData().postalCodee = "Error";
+                    oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCInvalidPostalCode");
+                    oView.getModel("JMBPCreate").refresh();
+                     return;
                 }
                 if (vInpVal.length == 0) {
                     oView.getModel("JMBPCreate").getData().postalCodee = "None";
