@@ -981,6 +981,8 @@ sap.ui.define([
                             bankFields.bankKeyVal1 = oEvent.getSource().oData.bankKeyVal1;
                             bankFields.bankKeyVal2 = oEvent.getSource().oData.bankKeyVal2;
                             bankFields.bankKeyVal3 = oEvent.getSource().oData.bankKeyVal3;
+                              bankFields.bankKeyVal4 = oEvent.getSource().oData.bankKeyVal4;
+                                bankFields.bankKeyVal5 = oEvent.getSource().oData.bankKeyVal5;
                             that.getOwnerComponent().getModel("oVisibilityModel").refresh();
 
                         }

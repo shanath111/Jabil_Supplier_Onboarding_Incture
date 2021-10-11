@@ -1104,6 +1104,12 @@ sap.ui.define([
                     vManualAddrInd = false;
                 }
                 if (vError == true) {
+                       sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
                     return;
                 }
                 var vConfirmMsg, vStatus = "";
@@ -1982,6 +1988,9 @@ sap.ui.define([
                 if (oView.getModel("oBPLookUpMdl").getData().Validation) {
                     vMaxLength = Number(oView.getModel("oBPLookUpMdl").getData().Validation[0].postalCodeLength);
                 }
+                if(Number(vMaxLength == 0)){
+                    vMaxLength = 10;
+                }
 
                 if (oView.getModel("JMBPCreate").getData().country) {
                     if (oView.getModel("JMBPCreate").getData().country == "US") {
@@ -2012,20 +2021,22 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").refresh();
                     return;
                 }
-                if(Number(vInpVal) == 0){
-                     oView.getModel("JMBPCreate").getData().postalCodee = "Error";
+                if (Number(vInpVal) == 0) {
+                    oView.getModel("JMBPCreate").getData().postalCodee = "Error";
                     oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCInvalidPostalCode");
                     oView.getModel("JMBPCreate").refresh();
-                     return;
+                    return;
                 }
                 if (vInpVal.length == 0) {
                     oView.getModel("JMBPCreate").getData().postalCodee = "None";
                     oView.getModel("JMBPCreate").getData().postalCodem = "";
                     oView.getModel("JMBPCreate").refresh();
                 } else if (vInpVal.length > vMaxLength) {
-                    oView.getModel("JMBPCreate").getData().postalCodee = "Error";
-                    oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCInvalidPostalCode");
-                    oView.getModel("JMBPCreate").refresh();
+                    if (Number(vMaxLength) !== 0) {
+                        oView.getModel("JMBPCreate").getData().postalCodee = "Error";
+                        oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCInvalidPostalCode");
+                        oView.getModel("JMBPCreate").refresh();
+                    }
                 }
 
             },
