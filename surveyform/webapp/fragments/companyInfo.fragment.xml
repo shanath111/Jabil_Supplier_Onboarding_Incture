@@ -190,7 +190,7 @@
          </VBox>
       </l:Grid>
    </l:VerticalLayout>
-   <VBox visible="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} ? true: false}" class="fontStyle sapUiSizeCompact">
+   <!-- <VBox visible="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} ? true: false}" class="fontStyle sapUiSizeCompact">
       <Label required="true" labelFor="divCert" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>divCertText}:${oi18n_En>divCertText}+'/ '+${i18n>divCertText}}" wrapping="true" class="sapUiTinyMarginTop sapUiTinyMarginBegin" />
       <RadioButtonGroup id="divCert" columns="2" class="inputStyle" selectedIndex="{=${companyInfoModel>/haveDiversityCertifications} === true? 0 :(${companyInfoModel>/haveDiversityCertifications}=== false ?1: -1)}" enabled="{oEnableMdl>/haveDiversityCertificationsEnb}"  valueState="{oErrorModel>/haveDiversityCertificationsE}" select="fnClearValueStateDiv">
          <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes}+'/ '+${i18n>yes}}" selected="{companyInfoModel>/haveDiversityCertifications}" />
@@ -208,7 +208,6 @@
                   <Text text="{oLookUpModel>value}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiLargeMarginEnd" visible="{=!${oLookUpModel>firstItem} ? true: false}" />
                   <Label visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business'? true: false}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>smallBusWeb}:${oi18n_En>smallBusWeb}+'&#xA;'+${i18n>smallBusWeb}}" wrapping="true" required="true" class="fontStyle sapUiTinyMarginTop" />
                   <Link visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business'? true: false}" text="https://www.sba.gov/" target="_blank" href="https://www.sba.gov/" wrapping="true" class="sapUiTinyMarginTop" />
-                  <!-- <Link text="{i18n>moreInfo}" target="_blank" href="" wrapping="true" visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business'? true: false}" class="sapUiTinyMarginBegin sapUiTinyMarginTop"/> -->
                   <VBox>
                      <TextArea value="{oLookUpModel>otherValue}" enabled="{oEnableMdl>/enterpriseotherValueEnb}" visible="{=${oLookUpModel>value} === 'Other'? true: false}" maxLength="255" class="inputStyle inputStyleTA sapUiSizeCompact" />
                      <layoutData>
@@ -228,88 +227,11 @@
                      <FlexItemData growFactor="1" />
                   </g:layoutData>
                </g:GridList>
-               <!-- <HBox width="100%">
-      
-         </HBox>
-     -->
-              
             </VBox>
-         </g:GridListItem>
-         <!-- <g:GridListItem>	
-         <CheckBox class="inputStyle"></CheckBox>
-        <Text text="Minority Business Enterprise" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiLargeMarginEnd"/>
-        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>smallBusWeb}:${oi18n_En>smallBusWeb}+'&#10;'+${i18n>smallBusWeb}}" wrapping="true" required="true" class="fontStyle sapUiTinyMarginTop"/>
-          <Link text="https://www.sba.gov/" target="_blank" href="https://www.sba.gov/" wrapping="true" class="sapUiTinyMarginTop"/>
-        </g:GridListItem>
-        <g:GridListItem> -->
-         <!-- <g:layoutData>
-        <grid:GridItemLayoutData gridColumn="2" /> 
-        </g:layoutData> -->
-         <!-- </g:GridListItem>
-        <g:GridListItem>	
-         <CheckBox class="inputStyle"></CheckBox>
-        <Text text="Women-Owned Business Enterprise" class="fontStyle sapUiTinyMarginTop"/>
-        </g:GridListItem>
-        <g:GridListItem> -->
-         <!-- <VBox>
-        <HBox>	
-         <CheckBox select="fnAddSmallDisAdvBusi" class="inputStyle" selected="{oVisibilityModel>/smallDisAdvBusiness}"></CheckBox>
-        <Text text="Small Disadvantaged Business" class="fontStyle sapUiTinyMarginTop"/>
-       <Link text="{i18n>moreInfo}" target="_blank" href="" wrapping="true" class="sapUiTinyMarginBegin sapUiTinyMarginTop"/>
-      </HBox>
-        <g:GridList visible="{oVisibilityModel>/smallDisAdvBusiness}" class="gList sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSizeCompact">
-     	<g:customLayout>
-			  <grid:GridBasicLayout gridTemplateColumns="1fr 1fr" gridGap="0.5rem" /> 
-			
-        </g:customLayout> 
-        
-     	<g:GridListItem>	
-         <CheckBox class="inputStyle"></CheckBox>
-        <Text text="Woman-Owned Small Business" class="fontStyle sapUiTinyMarginTop"/> 
-        </g:GridListItem>
-        <g:GridListItem>	
-         <CheckBox class="inputStyle"></CheckBox>
-        <Text text="HUBZone Small Business" class="fontStyle sapUiTinyMarginTop"/>
-        </g:GridListItem>    
-        <g:GridListItem>	
-         <CheckBox class="inputStyle"></CheckBox>
-        <Text text="Veteran-Owned Small Business" class="fontStyle sapUiTinyMarginTop"/> 
-        </g:GridListItem>
-        <g:GridListItem>	
-         <CheckBox class="inputStyle"></CheckBox>
-        <Text text="Service-Disabled Veteran-Owned Small Business" class="fontStyle sapUiTinyMarginTop"/>
-        </g:GridListItem> -->
-         <!-- <g:layoutData>
-        <FlexItemData growFactor="1"></FlexItemData></g:layoutData>
-        </g:GridList> -->
-         <!-- </VBox>
-        </g:GridListItem>
-       
-         <g:GridListItem>	
-         <CheckBox class="inputStyle"></CheckBox>
-        <Text text="Lesbian, Gay, Bisexual and/or Transgender Owned Business" class="fontStyle sapUiTinyMarginTop"/>
-        </g:GridListItem>
-         <g:GridListItem>	
-         <CheckBox class="inputStyle"></CheckBox>
-        <Text text="Business Enterprises Owned by People with Disabilities" class="fontStyle sapUiTinyMarginTop"/>
-        </g:GridListItem>
-         <g:GridListItem>	
-         <VBox width="100%">
-        <Text text="{i18n>Other}" class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginTop"/>
-        <TextArea width="45%" class="inputStyle sapUiSizeCompact sapUiTinyMarginBegin"/>
-        </VBox>
-        </g:GridListItem> -->
+         </g:GridListItem>      
       </g:GridList>
-   </VBox>
-   <!-- <HBox class="fontStyle sapUiMediumMarginBottom sapUiSizeCompact">
-      <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>companyWeb}:${oi18n_En>companyWeb}+'/ '+${i18n>companyWeb}}" class="fontStyle sapUiTinyMarginBegin sapUiMediumMarginTop" />
-      <VBox>
-         <Input width="45%" class="inputStyle sapUiSizeCompact sapUiMediumMarginTop sapUiTinyMarginBegin" value="{companyInfoModel>/companyWebsite}" enabled="{oEnableMdl>/companyWebsiteEnb}" />
-        
-      <layoutData>
-            <FlexItemData growFactor="1" />
-         </layoutData>
-      </VBox> </HBox> -->
+   </VBox> -->
+  
        <!-- <VBox>
          <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>Attachments}:${oi18n_En>Attachments}+'/&#160;'+${i18n>Attachments}}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>
 			<Label visible="{oVisibilityModel>/buyerSurveyAttach}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>compInfoVerbiage}:${oi18n_En>compInfoVerbiage}+ '/&#160;'+${i18n>compInfoVerbiage}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>

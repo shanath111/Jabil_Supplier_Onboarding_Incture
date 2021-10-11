@@ -399,7 +399,7 @@
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.bankInfo" type="XML"/>
 					</WizardStep>
                     <WizardStep id="shippingInfo" nextStep="prodAndServInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepShippingInfo}:${oi18n_En>wizardStepShippingInfo} +'/&#160;' +${i18n>wizardStepShippingInfo}}" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop"
-						>
+						activate="onActivateShippingInfo">
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.shippingInfo" type="XML"/>
 					</WizardStep>
 					<WizardStep id="prodAndServInfo" nextStep="cComplianceInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepProductsAndServices}:${oi18n_En>wizardStepProductsAndServices} +'/&#160;' +${i18n>wizardStepProductsAndServices}}"
