@@ -15,9 +15,12 @@
 Supplier has received the onboarding request email. By checking the box below, you are saying that you
 have called and personally spoken to the Supplier Contact, confirmed that they have received the email,
 and they understand what we need from them." class="sapUiTinyMarginTop  sapUiTinyMarginBegin fontStyle" wrapping="true"></Text>
-
-<CheckBox id="id_ConfirmFollowUp" text="Yes, I have called the Supplier Contact and spoke to them, letting them know we have initiated their
+	<HBox  renderType="Bare" wrap="Wrap"
+												alignItems="Center"  justifyContent="Start">
+											<CheckBox id="id_ConfirmFollowUp" text="Yes, I have called the Supplier Contact and spoke to them, letting them know we have initiated their
 onboarding, confirmed they received the email, and will begin reviewing and completing the form." wrapping="true" class="sapUiTinyMarginTop fontStyle"></CheckBox>
+											</HBox>
+
 						</VBox>
                         </content>
 					</Panel>
