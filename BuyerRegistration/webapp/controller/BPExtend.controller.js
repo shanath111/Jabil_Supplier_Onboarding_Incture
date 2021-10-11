@@ -1410,6 +1410,12 @@ sap.ui.define([
 
 
                 if (vError == true) {
+                     sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
                     return;
                 }
                 var vConfirmMsg, vStatus = "";
