@@ -150,7 +150,7 @@
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postalCode}:${oi18n_En>postalCode}+'&#xA;'+${i18n>postalCode}}" wrapping="true" required="true" />
-            <Input maxLength="11" value="{remitModel>/rPostalCode}" valueState="{oErrorModel>/rTAPostCdE}" valueStateText="{oErrorModel>/rTAPostCdM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+            <Input maxLength="{oLookUpModel>/PostalCodeValidationRTA/postalCodeLength}" value="{remitModel>/rPostalCode}" valueState="{oErrorModel>/rTAPostCdE}" valueStateText="{oErrorModel>/rTAPostCdM}" liveChange="fnValueChange" change="fnVerifyPostalCodeRTA" class="inputStyle"></Input>
             <!-- <html:input type="text" id="iPostalR" class="cl_HTMLInput" /> -->
          </VBox>
          <VBox class="fontStyle">
