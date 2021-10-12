@@ -12,7 +12,7 @@
 						<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>legalName}: ${oi18n_En>legalName} +'&#10;' + ${i18n>legalName}}" required="true"></Label>
 						<Input value="{oDataModel>/bpInfoDto/legalName}" class="inputStyle" required="true"  valueState="{oErrorModel>/legalNameE}" valueStateText="{oErrorModel>/legalNameM}" change="fnValueChange" enabled="{=!${oDataModel>/bpInfoDto/isLegalCorrect}}"></Input>
 					</VBox>
-					<VBox class="fontStyle sapUiSizeCompact">
+					<!-- <VBox class="fontStyle sapUiSizeCompact">
 						<Label wrapping= "true" labelFor="legal" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isCorrect}:${oi18n_En>isCorrect} +'&#10;' +${i18n>isCorrect}}"/>
 						<RadioButtonGroup id="legal" columns="2" selectedIndex="0" select="fnIsLegalCorrect" class="inputStyle" enabled="{oEnableMdl>/isLegalCorrectEnb}">
 							<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/bpInfoDto/isLegalCorrect}"/>
@@ -29,13 +29,13 @@
 							<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/bpInfoDto/isDunsCorrect}"/>
 							<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" selected="{=!${oDataModel>/bpInfoDto/isDunsCorrect}}"/>
 						</RadioButtonGroup>
-					</VBox>
+					</VBox> -->
 				</l:Grid>
 			<layoutData>
 				<FlexItemData minWidth="100%"/>
 			</layoutData>
 		</Panel>
-		<Panel visible="{oUserModel>/isNew}" width="100%" class="panelPadding sapUiTinyMarginBottom">
+		<Panel visible="true" width="100%" class="panelPadding sapUiTinyMarginBottom">
 			<HBox class="fontStyle sapUiSizeCompact">
 				<Label required="true" labelFor="site" class="fontBold sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSizeCompact" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isSiteRegwithDunandBrad}:${oi18n_En>isSiteRegwithDunandBrad} +'&#10;' +${i18n>isSiteRegwithDunandBrad}}"
 					wrapping="true"></Label>
