@@ -165,10 +165,6 @@ sap.ui.define([
                                     } else {
                                         oView.getModel("oDataModel").setData(oEvent.getSource().oData);
                                         that._fnLoadSupplierRegion(oEvent.getSource().oData.surveyInfoDto.address[0].postal[0].countryCode);
-                                        oView.getModel("oDataModel").setProperty("/shippingInfoDto/newpaymentCurrency", "");
-                                        oView.getModel("oDataModel").setProperty("/shippingInfoDto/newpaymentTerms", "");
-                                        oView.getModel("oDataModel").setProperty("/shippingInfoDto/newincoterm", "");
-                                        oView.getModel("oDataModel").setProperty("/shippingInfoDto/newincotermNamedPlace", "");
                                         oView.getModel("oDataModel").refresh();
 
                                     }
@@ -2951,7 +2947,8 @@ sap.ui.define([
                     isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 var that = this;
 
-                if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentTerms) {
+                if (oView.getModel("oUserModel").getData().isNew) {
+                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentTerms) {
                     oView.getModel("oErrorModel").getData().paymentTermE = "Error";
                     oView.getModel("oErrorModel").getData().paymentTermM = oi18n.getText("mandatoryPayTerms");
 
@@ -2963,7 +2960,6 @@ sap.ui.define([
 
                     iError = true;
                 }
-                if (oView.getModel("oUserModel").getData().isNew) {
                     if (visiblility.isBankProvided === null) {
                         oView.getModel("oErrorModel").getData().isBankProvidedE = "Error";
                         iError = true;
@@ -3465,11 +3461,19 @@ sap.ui.define([
                 if (this.emailValidResult) {
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().shippingInfoDto.incoterm) {
-                    oView.getModel("oErrorModel").getData().incotermE = "Error";
-                    oView.getModel("oErrorModel").getData().incotermM = oi18n.getText("mandatoryIncoterm");
+                if (oView.getModel("oUserModel").getData().isNew) {
+                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.incoterm) {
+                        oView.getModel("oErrorModel").getData().incotermE = "Error";
+                        oView.getModel("oErrorModel").getData().incotermM = oi18n.getText("mandatoryIncoterm");
 
-                    iError = true;
+                        iError = true;
+                    }
+                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace)) {
+                        oView.getModel("oErrorModel").getData().incotermNPE = "Error";
+                        oView.getModel("oErrorModel").getData().incotermNPM = oi18n.getText("mandatoryIncotermNL");
+
+                        iError = true;
+                    }
                 }
                 if (!oView.getModel("oDataModel").getData().shippingInfoDto.vendor || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.vendor)) {
                     oView.getModel("oErrorModel").getData().vendorE = "Error";
@@ -3477,12 +3481,7 @@ sap.ui.define([
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace)) {
-                    oView.getModel("oErrorModel").getData().incotermNPE = "Error";
-                    oView.getModel("oErrorModel").getData().incotermNPM = oi18n.getText("mandatoryIncotermNL");
-
-                    iError = true;
-                }
+               
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isDeliver === null) {
                     oView.getModel("oErrorModel").getData().isDeliverE = "Error";
                     iError = true;
@@ -7105,10 +7104,6 @@ sap.ui.define([
                     if (oPayload.financeInfoDto.financeAuditedLast12M === false) {
                         oPayload.financeInfoDto.userAudited = "";
                     }
-                    delete oPayload.shippingInfoDto.newincoterm;
-                    delete oPayload.shippingInfoDto.newincotermNamedPlace;
-                    delete oPayload.shippingInfoDto.newpaymentTerms;
-                    delete oPayload.shippingInfoDto.newpaymentCurrency;
                     if (oPayload.comComplianceDto.commitedToExpectations) {
                         oPayload.comComplianceDto.notCommitedExplanation = "";
                         oPayload.comComplianceDto.commitedToExpectationsContact.contact = "";
@@ -7190,10 +7185,6 @@ sap.ui.define([
                                 }
 
                                 oView.getModel("oDataModel").setData(oEvent.getSource().oData);
-                                oView.getModel("oDataModel").setProperty("/shippingInfoDto/newpaymentCurrency", "");
-                                oView.getModel("oDataModel").setProperty("/shippingInfoDto/newpaymentTerms", "");
-                                oView.getModel("oDataModel").setProperty("/shippingInfoDto/newincoterm", "");
-                                oView.getModel("oDataModel").setProperty("/shippingInfoDto/newincotermNamedPlace", "");
                                 oView.getModel("oDataModel").refresh();
                                 that.oSuccess.getContent()[0].getItems()[1].setText(oPayload.caseId);
                                 var oi18n_En = that.getOwnerComponent().getModel("oi18n_En"),
@@ -7263,10 +7254,6 @@ sap.ui.define([
                                 }
 
                                 oView.getModel("oDataModel").setData(oEvent.getSource().oData);
-                                oView.getModel("oDataModel").setProperty("/shippingInfoDto/newpaymentCurrency", "");
-                                oView.getModel("oDataModel").setProperty("/shippingInfoDto/newpaymentTerms", "");
-                                oView.getModel("oDataModel").setProperty("/shippingInfoDto/newincoterm", "");
-                                oView.getModel("oDataModel").setProperty("/shippingInfoDto/newincotermNamedPlace", "");
                                 oView.getModel("oDataModel").refresh();
                                 that.oSuccess.getContent()[0].getItems()[1].setText(oPayload.caseId);
                                 var oi18n_En = that.getOwnerComponent().getModel("oi18n_En"),
