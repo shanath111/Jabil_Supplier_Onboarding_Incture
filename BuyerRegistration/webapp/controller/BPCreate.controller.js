@@ -901,23 +901,23 @@ sap.ui.define([
                         Country = oView.getModel("JMBPCreate").getData().country;
                         OutputLanguage = "english";
                         LicenseKey = "WS80-TZS3-FDQ1";
-                        var primaryUrl = '/nsBuyerRegistration/plcm_service_object/AVI/api.svc/json/GetAddressInfo?Address1=' + Address1 + '&Address2=' + Address2 + '&Address3=' + Address3 + '&Address4=' + Address4 + '&Address5=' + Address5 + '&Locality=' + Locality + '&AdministrativeArea=' + AdministrativeArea + '&PostalCode=' + PostalCode + '&Country=' + Country + '&OutputLanguage=' + OutputLanguage + '&LicenseKey=' + LicenseKey;
-                        $.ajax({
-                            url: primaryUrl,
-                            type: 'GET',
-                            dataType: 'json',
-                            success: function (data) {
-                                if (data.AddressInfo.Status !== "Valid") {
-                                    validMessage = false;
-                                }
+                        // var primaryUrl = '/nsBuyerRegistration/plcm_service_object/AVI/api.svc/json/GetAddressInfo?Address1=' + Address1 + '&Address2=' + Address2 + '&Address3=' + Address3 + '&Address4=' + Address4 + '&Address5=' + Address5 + '&Locality=' + Locality + '&AdministrativeArea=' + AdministrativeArea + '&PostalCode=' + PostalCode + '&Country=' + Country + '&OutputLanguage=' + OutputLanguage + '&LicenseKey=' + LicenseKey;
+                        // $.ajax({
+                        //     url: primaryUrl,
+                        //     type: 'GET',
+                        //     dataType: 'json',
+                        //     success: function (data) {
+                        //         if (data.AddressInfo.Status !== "Valid") {
+                        //             validMessage = false;
+                        //         }
 
-                            },
-                            async: false,
-                            error: function (data) {
-                                validMessage = false;
+                        //     },
+                        //     async: false,
+                        //     error: function (data) {
+                        //         validMessage = false;
 
-                            }
-                        });
+                        //     }
+                        // });
 
                         if (validMessage == false) {
                             var sErMsg = oi18n.getProperty("InvalidAddressEntered");
