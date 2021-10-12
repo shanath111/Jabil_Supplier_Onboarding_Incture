@@ -22,11 +22,11 @@
 							<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact">
 								<VBox class="VRVboxStyle1">
 									<Label text="{i18n>VRRequestID}" class="cl_VRLablCls "></Label>
-									<Input placeholder="{i18n>VRSearch}" value="{JMSuppReqListHeader>/caseId}" class="cl_VRInputCls"></Input>
+									<Input placeholder="{i18n>VRSearch}" value="{JMSuppReqListHeader>/caseId}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
 								</VBox>
                                  <VBox class="VRVboxStyle1">
 									<Label text="{i18n>VROrganizationName}" class="cl_VRLablCls "></Label>
-									<Input placeholder="{i18n>VRSearch}" value="{JMSuppReqListHeader>/organizationName}" class="cl_VRInputCls"></Input>
+									<Input placeholder="{i18n>VRSearch}" value="{JMSuppReqListHeader>/organizationName}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
 							</VBox>
                               
                             <VBox class="VRVboxStyle1">

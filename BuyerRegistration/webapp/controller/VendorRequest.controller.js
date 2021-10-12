@@ -329,6 +329,11 @@ sap.ui.define([
                 // }
 
             },
-
+            fnInputSpaceCheck: function(oEvent){
+                var spaceRegex= /^\s+$/;
+                if(spaceRegex.test(oEvent.getSource().getValue())){
+                    oEvent.getSource().setValue("");
+                }
+            }
         });
     });
