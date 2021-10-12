@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f"
 	async="true">
-    <Panel width="100%" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBottom panelPadding">
+    <Panel width="100%" visible="{oUserModel>/isNew}" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBottom panelPadding">
         <content>
             <!-- added jabil Supplier Requirement Manual -->
             <!-- check with sivaranjani to add receivedComplySrm in comComplianceDto DataModel -->
@@ -27,7 +27,7 @@
                     </l:VerticalLayout>
             </content>
     </Panel>
-    <Panel width="100%" class="fontStyle sapUiTinyMarginTop panelPadding">
+    <Panel width="100%" visible="{oUserModel>/isNew}" class="fontStyle sapUiTinyMarginTop panelPadding">
 		<content>
             
 			<Text text="{i18n>companyComplianceHeader}" visible= "{oVisibilityModel>/isdefaultLan}"  class="fontStyle fontBold sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
@@ -46,15 +46,15 @@
        <core:HTML visible="{=!${oVisibilityModel>/isdefaultLan}}"
 						content='&lt;p style=&quot;font-size:0.875rem;letter-spacing: 0.17px;color: #404040; opacity: 1;&quot; class=&quot;sapUiTinyMarginBegin&quot;&gt;{oi18n_En>supplierRBA}/&#160;{i18n>supplierRBA}&lt;a target=&quot;_blank&quot; href=&quot;https://www.jabil.com/dam/jcr:1256ee19-6368-48dc-ac41-c7d4a7efd83f/RBACodeofConduct6.pdf&quot;&gt;{oi18n_En>supplierRBALink1}/&#160;{i18n>supplierRBALink1}&lt;/a&gt;{oi18n_En>supplierRBABrkText}/&#160;{i18n>supplierRBABrkText}&lt;/p&gt;'></core:HTML>
       </content>
-            </Panel>
-            <l:VerticalLayout width="100%" class="fontStyle sapUiSizeCompact sapUiMediumMarginTop">
+     </Panel>
+   <l:VerticalLayout visible="{oUserModel>/isNew}"  width="100%" class="fontStyle sapUiSizeCompact sapUiMediumMarginTop">
             <Label labelFor="cocMeet" required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>supplierCocMeet}:${oi18n_En>supplierCocMeet} + '&#10;' +${i18n>supplierCocMeet}}" wrapping="true" class="fontStyle sapUiTinyMarginBegin"></Label>
 					<RadioButtonGroup id="cocMeet" columns="2" selectedIndex="{=${oDataModel>/comComplianceDto/commitedToExpectations} === true? 0 :(${oDataModel>/comComplianceDto/commitedToExpectations}=== false ?1: -1)}"  valueState="{oErrorModel>/commitedToExpectationsE}" select="fnClearValueState" class="inputStyle" enabled="{oEnableMdl>/commitedToExpectationsEnb}">
 						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/comComplianceDto/commitedToExpectations}"></RadioButton>
 						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 					</RadioButtonGroup>
             </l:VerticalLayout>
-            <l:VerticalLayout width="100%" class="fontStyle sapUiSizeCompact sapUiTinyMarginTop " visible="{=${oDataModel>/comComplianceDto/commitedToExpectations} === false}">
+            <l:VerticalLayout  width="100%" class="fontStyle sapUiSizeCompact sapUiTinyMarginTop " visible="{=${oDataModel>/comComplianceDto/commitedToExpectations} === false &amp;&amp; ${oUserModel>/isNew}}">
             <Label required="true" text="{i18n>prvdExplanation}" visible= "{oVisibilityModel>/isdefaultLan}"  class="fontStyle sapUiTinyMarginBegin"></Label>
                <Label required="true" text="{oi18n_En>prvdExplanation}/&#160;{i18n>prvdExplanation}"  visible= "{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="fontStyle sapUiTinyMarginBegin"></Label>
 					<TextArea value="{oDataModel>/comComplianceDto/notCommitedExplanation}" valueState="{oErrorModel>/notCommitedExplanationE}" valueStateText="{oErrorModel>/notCommitedExplanationM}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/notCommitedExplanationEnb}" width="60%" maxLength="1000" class="inputStyle sapUiSizeCompact sapUiTinyMarginBegin">
@@ -119,7 +119,7 @@
                                 </VBox>
                                 </l:Grid>
                                 </l:VerticalLayout>
-                                         <l:VerticalLayout width="100%" class="fontStyle sapUiSizeCompact sapUiTinyMarginTop ">
+                                         <l:VerticalLayout visible="{oUserModel>/isNew}"  width="100%" class="fontStyle sapUiSizeCompact sapUiTinyMarginTop ">
                                 <Label labelFor="closeRelWithJabil" required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>closeRelWithJabil}:${oi18n_En>closeRelWithJabil} + '&#10;' +${i18n>closeRelWithJabil}}" wrapping="true" class="fontStyle sapUiTinyMarginBegin"></Label>
 					<RadioButtonGroup id="closeRelWithJabil" columns="2" selectedIndex="{=${oDataModel>/comComplianceDto/companyRelationWithJabilEmp} === true? 0 :(${oDataModel>/comComplianceDto/companyRelationWithJabilEmp}=== false ?1: -1)}"  valueState="{oErrorModel>/companyRelationWithJabilEmpE}" select="fnClearValueState" class="inputStyle" enabled="{oEnableMdl>/companyRelationWithJabilEmpEnb}">
 						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/comComplianceDto/companyRelationWithJabilEmp}"></RadioButton>
@@ -130,13 +130,13 @@
 								<VBox class="fontStyle" >
 									<Label text="{i18n>name}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                       <Label text="{oi18n_En>name}&#10;{i18n>name}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input maxLength="40" value="{oDataModel>/comComplianceDto/companyRelationWithJabilEmpContact/firstName}" valueState="{oErrorModel>/relationFNameE}" valueStateText="{oErrorModel>/relationFNameM}" liveChange="fnValueChange" enabled="{oEnableMdl>/companyRelationWithJabilEmpContactfirstNameEnb}" class="inputStyle"></Input>
+									<Input maxLength="41" value="{oDataModel>/comComplianceDto/companyRelationWithJabilEmpContact/firstName}" valueState="{oErrorModel>/relationFNameE}" valueStateText="{oErrorModel>/relationFNameM}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/companyRelationWithJabilEmpContactfirstNameEnb}" class="inputStyle"></Input>
      	
 								</VBox>
 								<VBox class="fontStyle" >
 									<Label text="{i18n>dept}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                       <Label text="{oi18n_En>dept}&#10;{i18n>dept}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input maxLength="40" value="{oDataModel>/comComplianceDto/companyRelationWithJabilEmpContact/department}" valueState="{oErrorModel>/relationDeptE}" valueStateText="{oErrorModel>/relationDeptM}" liveChange="fnValueChange" enabled="{oEnableMdl>/companyRelationWithJabilEmpContactdepartmentEnb}" class="inputStyle"></Input>
+									<Input maxLength="41" value="{oDataModel>/comComplianceDto/companyRelationWithJabilEmpContact/department}" valueState="{oErrorModel>/relationDeptE}" valueStateText="{oErrorModel>/relationDeptM}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/companyRelationWithJabilEmpContactdepartmentEnb}" class="inputStyle"></Input>
 							
                                 </VBox>
 								<VBox class="fontStyle" >
@@ -148,7 +148,7 @@
 								<VBox class="fontStyle" >
 									<Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                       <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input maxLength="241" value="{oDataModel>/comComplianceDto/companyRelationWithJabilEmpContact/email}" enabled="{oEnableMdl>/companyRelationWithJabilEmpContactemailEnb}"  valueState="{oErrorModel>/pEmpE}" valueStateText="{oErrorModel>/pEmpM}" change="fnLiveEmailJValid" class="inputStyle"></Input>
+									<Input maxLength="242" value="{oDataModel>/comComplianceDto/companyRelationWithJabilEmpContact/email}" enabled="{oEnableMdl>/companyRelationWithJabilEmpContactemailEnb}"  valueState="{oErrorModel>/pEmpE}" valueStateText="{oErrorModel>/pEmpM}" change="fnLiveEmailJValid" class="inputStyle"></Input>
 										
                                 </VBox>
                                 </l:Grid>
@@ -162,7 +162,7 @@
 								<VBox class="fontStyle" >
 									<Label required="true" text="{i18n>empName}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                       <Label required="true" text="{oi18n_En>empName}&#10;{i18n>empName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input maxLength="40" value="{oDataModel>/comComplianceDto/employeeName}" valueState="{oErrorModel>/empFNameE}" valueStateText="{oErrorModel>/empFNameM}" change="fnValueChange" enabled="{oEnableMdl>/comComplianceDtoemployeeNameEnb}" class="inputStyle"></Input>
+									<Input maxLength="41" value="{oDataModel>/comComplianceDto/employeeName}" valueState="{oErrorModel>/empFNameE}" valueStateText="{oErrorModel>/empFNameM}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/comComplianceDtoemployeeNameEnb}" class="inputStyle"></Input>
      	
 								</VBox>
 								<VBox class="fontStyle" >
@@ -208,15 +208,58 @@
 						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 					</RadioButtonGroup>
                     </VBox>
+                      </l:VerticalLayout>
+                       <l:VerticalLayout visible="true"  width="100%" class="fontStyle sapUiSizeCompact">
                        <Text class="sapUiTinyMarginBegin sapUiTinyMarginTop fontBold" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>ndaAgreementText}:${oi18n_En>ndaAgreementText} +'&#10;&#10;' +${i18n>ndaAgreementText}}"/>
 <VBox class="fontStyle sapUiSizeCompact">
 <Label required="true" labelFor="agreement" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isNdaActive}:${oi18n_En>isNdaActive} +'&#10;' +${i18n>isNdaActive}}" class="sapUiTinyMarginBegin sapUiTinyMarginTop" wrapping="true"/>
-							<RadioButtonGroup id="agreement" columns="3" selectedIndex="{oDataModel>/comComplianceDto/ndaSignedBefore}"  valueState="{oErrorModel>/ndaSignedBeforeE}" select="fnClearValueState" enabled="{oEnableMdl>/ndaSignedBeforeEnb}" class="inputStyle sapUiSizeCompact sapUiMediumMarginBottom">
+							<RadioButtonGroup id="agreement" columns="3" selectedIndex="{oDataModel>/comComplianceDto/ndaSignedBefore}"  valueState="{oErrorModel>/ndaSignedBeforeE}" select="fnClearValueState" enabled="{oEnableMdl>/ndaSignedBeforeEnb}" class="inputStyle sapUiSizeCompact sapUiTinyMarginBottom">
 								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}"/>
 								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}"/>
 								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>iDontKnow}:${oi18n_En>iDontKnow} +'/&#160;' +${i18n>iDontKnow}}"/>
 							</RadioButtonGroup>
                             </VBox>
+                             <VBox visible="true" class="fontStyle sapUiSizeCompact">
+      <Label required="true" labelFor="divCert" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>divCertText}:${oi18n_En>divCertText}+'/ '+${i18n>divCertText}}" wrapping="true" class="sapUiTinyMarginBegin" />
+      <RadioButtonGroup id="divCert" columns="2" class="inputStyle" selectedIndex="{=${companyInfoModel>/haveDiversityCertifications} === true? 0 :(${companyInfoModel>/haveDiversityCertifications}=== false ?1: -1)}" enabled="{oEnableMdl>/haveDiversityCertificationsEnb}"  valueState="{oErrorModel>/haveDiversityCertificationsE}" select="fnClearValueStateDiv">
+         <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes}+'/ '+${i18n>yes}}" selected="{companyInfoModel>/haveDiversityCertifications}" />
+         <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no}+'/ '+${i18n>no}}" select="fnSelectionChangeDiversity"/>
+      </RadioButtonGroup>
+      <g:GridList items="{oLookUpModel>/enterprise}" visible="{=${companyInfoModel>/haveDiversityCertifications}=== true}" class="gList sapUiTinyMarginTop sapUiSizeCompact">
+         <g:customLayout>
+            <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" />
+         </g:customLayout>
+         <g:GridListItem>
+            <VBox>
+               <HBox>
+                  <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/enterpriseisSelectedEnb}" />
+                  <Text text="{oLookUpModel>value}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiLargeMarginEnd" visible="{=${oLookUpModel>firstItem} ? true: false}" />
+                  <Text text="{oLookUpModel>value}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiLargeMarginEnd" visible="{=!${oLookUpModel>firstItem} ? true: false}" />
+                  <Label visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business'? true: false}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>smallBusWeb}:${oi18n_En>smallBusWeb}+'&#xA;'+${i18n>smallBusWeb}}" wrapping="true" required="true" class="fontStyle sapUiTinyMarginTop" />
+                  <Link visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business'? true: false}" text="https://www.sba.gov/" target="_blank" href="https://www.sba.gov/" wrapping="true" class="sapUiTinyMarginTop" />
+                  <VBox>
+                     <TextArea value="{oLookUpModel>otherValue}" enabled="{oEnableMdl>/enterpriseotherValueEnb}" visible="{=${oLookUpModel>value} === 'Other'? true: false}" maxLength="255" class="inputStyle inputStyleTA sapUiSizeCompact" />
+                     <layoutData>
+                        <FlexItemData growFactor="1" />
+                     </layoutData>
+                  </VBox>
+               </HBox>
+               <g:GridList items="{oLookUpModel>/smallDisadvantagedBusiness}" visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business' &amp;&amp; ${oLookUpModel>isSelected}}" class="gList sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSizeCompact">
+                  <g:customLayout>
+                     <grid:GridBasicLayout gridTemplateColumns="1fr 1fr" gridGap="0.5rem" />
+                  </g:customLayout>
+                  <g:GridListItem>
+                     <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/smallDisadvantagedBusinessisSelectedEnb}" />
+                     <Text text="{oLookUpModel>value}" class="fontStyle sapUiTinyMarginTop" />
+                  </g:GridListItem>
+                  <g:layoutData>
+                     <FlexItemData growFactor="1" />
+                  </g:layoutData>
+               </g:GridList>
+            </VBox>
+         </g:GridListItem>       
+      </g:GridList>
+   </VBox>
                     <!-- <Text text="{i18n>Attachments}" class="fontBold sapUiTinyMarginBegin"/> -->
 		<!-- <Text text="{i18n>Attachments}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>
             <Text text="{oi18n_En>Attachments}/&#160;{i18n>Attachments}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>

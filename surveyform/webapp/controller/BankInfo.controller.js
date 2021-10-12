@@ -329,6 +329,13 @@ sap.ui.define([
                             });
                         }
                     });
+                }else{
+                      sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
                 }
             },
             fnTransfer: function () {
@@ -664,13 +671,14 @@ sap.ui.define([
                 var oJosnComments = new sap.ui.model.json.JSONModel();
                 oJosnComments.setData(temp);
                 oView.setModel(oJosnComments, "JMBankComments");
-                if (!this.oBankComments) {
-                    this.oBankComments = sap.ui.xmlfragment(
-                        "com.jabil.surveyform.fragments.BankComments", this);
-                    oView.addDependent(this.oBankComments);
-                }
+                // if (!this.oBankComments) {
+                //     this.oBankComments = sap.ui.xmlfragment(
+                //         "com.jabil.surveyform.fragments.BankComments", this);
+                //     oView.addDependent(this.oBankComments);
+                // }
 
-                this.oBankComments.open();
+                // this.oBankComments.open();
+                 this.fnApproveSub("AP");
             },
             fnLiveChangeCmntTxtArea: function () {
                 oView.getModel("JMBankComments").getData().Commentse = "None";
@@ -876,11 +884,12 @@ sap.ui.define([
                     }
                 }
                 var firstDigit = "", secondDigit = "";
-                if (this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.companyCodeCountry == "Russia") {
+                 var bankCountryDesc = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().Country, oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry);
+                if (bankCountryDesc == "Russian Fed.") {
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum) {
                         oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey = oEvent.getSource().getValue().substring(2, 0);
                     }
-                } else if (this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.companyCodeCountry == "Brazil") {
+                } else if (bankCountryDesc == "Brazil") {
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch.includes("-")) {
                         var bankBranch = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch;
                         firstDigit = bankBranch.substring(bankBranch.indexOf("-") + 2, bankBranch.indexOf("-") + 1)
@@ -980,6 +989,8 @@ sap.ui.define([
                             bankFields.bankKeyVal1 = oEvent.getSource().oData.bankKeyVal1;
                             bankFields.bankKeyVal2 = oEvent.getSource().oData.bankKeyVal2;
                             bankFields.bankKeyVal3 = oEvent.getSource().oData.bankKeyVal3;
+                              bankFields.bankKeyVal4 = oEvent.getSource().oData.bankKeyVal4;
+                                bankFields.bankKeyVal5 = oEvent.getSource().oData.bankKeyVal5;
                             that.getOwnerComponent().getModel("oVisibilityModel").refresh();
 
                         }

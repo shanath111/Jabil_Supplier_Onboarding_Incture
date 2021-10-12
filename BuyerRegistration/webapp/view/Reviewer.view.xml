@@ -233,12 +233,12 @@
 												</VBox>
                                                 <VBox class="VRVboxStyle1">
 													<Label text="{i18n>TISearchTerm1}" required="true" class="cl_VRLablCls "></Label>
-													<Input width="95%" class="cl_VRInputCls" liveChange="fnChangeSearchTerm" valueState="{JMValidateDefault>/searchTerm1e}" valueStateText="{JMValidateDefault>/searchTerm1m}" enabled="{oConfigMdl>/defaultEnable}" maxLength="20" value="{oDataModel>/defaultValuesDto/searchTerm1}"></Input>
+													<Input width="95%" class="cl_VRInputCls" liveChange="fnChangeSearchTerm" valueState="{JMValidateDefault>/searchTerm1e}" valueStateText="{JMValidateDefault>/searchTerm1m}"  enabled="{=${oConfigMdl>/defaultEnable} &amp;&amp;${JMBPCreate>/isNew}}"  maxLength="20" value="{oDataModel>/defaultValuesDto/searchTerm1}"></Input>
 												</VBox>
 												<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TISearchTerm2}" required="false" class="cl_VRLablCls "></Label>
 													<Input width="95%" class="cl_VRInputCls" liveChange="fnLiveChangeIncoTerms" valueState="{JMBPCreate>/incoTermse}"
-														valueStateText="{JMBPCreate>/incoTermm}" enabled="{oConfigMdl>/defaultEnable}" maxLength="20" value="{oDataModel>/defaultValuesDto/searchTerm2}"></Input>
+														valueStateText="{JMBPCreate>/incoTermm}" enabled="{=${oConfigMdl>/defaultEnable} &amp;&amp;${JMBPCreate>/isNew}}"  maxLength="20" value="{oDataModel>/defaultValuesDto/searchTerm2}"></Input>
 												</VBox>
                                                 <VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIAccNoAltPay}" wrapping="false" required="false" class="cl_VRLablCls "></Label>
@@ -816,9 +816,10 @@
                
                
                 	<Button text="{i18n>TIValidate}" visible="{oConfigMdl>/ValidateVisible}"  type="Accept" press="fnValidateData" class="cl_BPCDraft2  sapUiSizeCompact" enabled="{oConfigMdl>/isClaimed}" />
-					<Button text="{oConfigMdl>/RjectBtnName}" visible="{oConfigMdl>/RejectBtnVis}" press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
+				  <Button text="{oConfigMdl>/ApproveBtnName}" enabled="{=${oConfigMdl>/isClaimed} &amp;&amp;${oConfigMdl>/ApproveButtonVis}}"    type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft  sapUiSizeCompact" />
+                
                     	<Button text="{i18n>Mitigation}" visible="{oConfigMdl>/MitgationVis}" press="fnMitigate"  type="Accept" class="  cl_BPCDraft sapUiSizeCompact" enabled="{oConfigMdl>/isClaimed}" />
-                <Button text="{oConfigMdl>/ApproveBtnName}" enabled="{=${oConfigMdl>/isClaimed} &amp;&amp;${oConfigMdl>/ApproveButtonVis}}"    type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft sapUiSmallMarginEnd sapUiSizeCompact" />
+              	<Button text="{oConfigMdl>/RjectBtnName}" visible="{oConfigMdl>/RejectBtnVis}" press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
 			</OverflowToolbar>
 		</footer>
 			</Page>

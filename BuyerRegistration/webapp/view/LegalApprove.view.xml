@@ -6,7 +6,11 @@
 				<content>
 					<Panel width="auto" expandable="false" expanded="true" class="cl_VRPanelClass sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
 						<content>
-
+                           <VBox visible="{oConfigMdl>/coiLegalActnTxt}">
+                           	 <Label text="{i18n>COILegalText}"  wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
+                           </VBox>
+                           <HBox visible="{oConfigMdl>/coiLegalActnTxt}" class="cl_HBoxBlockSep">
+                                </HBox>
 								<VBox class="cl_TIVBoxShadow" visible="{JMBPCreate>/BPCreate}">
                             <VBox class="" visible="{oConfigMdl>/CommentsVis}" >
 										<Label text="{i18n>Comments}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
@@ -38,8 +42,9 @@
 			<OverflowToolbar class="cl_BPCFooterClr sapUiSizeCompact">
             <Label text="{i18n>claimActnTxt}" visible="{=!${oConfigMdl>/isTaskCompleted} &amp;&amp;!${oConfigMdl>/isClaimed}}"   class="sapUiTinyMarginBegin"/>
 				<ToolbarSpacer/>
-					<Button text="{oConfigMdl>/ButtonNameReject}" press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="sapUiSmallMarginBegin  cl_BPCDraft1 sapUiSizeCompact" />
-				<Button text="{oConfigMdl>/ButtonNameApprove}" enabled="{oConfigMdl>/isClaimed}"  type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft sapUiSmallMarginEnd sapUiSizeCompact" />
+                <Button text="{oConfigMdl>/ButtonNameApprove}" enabled="{oConfigMdl>/isClaimed}"  type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft  sapUiSizeCompact" />
+					<Button text="{oConfigMdl>/ButtonNameReject}" press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
+				
 				
 			</OverflowToolbar>
 		</footer>

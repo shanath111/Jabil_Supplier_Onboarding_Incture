@@ -111,8 +111,8 @@ sap.ui.define([
                     "Content-Type": "application/json"
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
-  oView.getModel("oBPLookUpMdl").setProperty("/Validation", oEvent.getSource().getData());
-                        oView.getModel("oBPLookUpMdl").refresh();
+                    oView.getModel("oBPLookUpMdl").setProperty("/Validation", oEvent.getSource().getData());
+                    oView.getModel("oBPLookUpMdl").refresh();
                 });
             },
 
@@ -284,10 +284,10 @@ sap.ui.define([
                     var temp = {
                         "buyerName": oView.getModel("oConfigMdl").getData().usrData.givenName,
                         "rfcv": false,
-                        "conflictOfInterests": 0,
+                        "conflictOfInterests": -1,
                         "representAnotherCompanys": 1,
-                        "oneTimePurchaseSupplierIndicators": 1,
-                        "customerDirectedSupplierIndicators": 1,
+                        "oneTimePurchaseSupplierIndicators": -1,
+                        "customerDirectedSupplierIndicators": -1,
                         "outsideProcessiongSupplierIndicators": 1,
                         "manualAddressOverrideSupplierIndicators": 1,
                         "requestorConflictOfInterests": 0,
@@ -410,8 +410,11 @@ sap.ui.define([
                             if (temp.conflictOfInterest == true) {
                                 temp.conflictOfInterests = 1;
                                 temp.CoIFields = true;
-                            } else {
+                            } else if (temp.conflictOfInterest == false) {
                                 temp.conflictOfInterests = 0;
+                                temp.CoIFields = false;
+                            } else {
+                                temp.conflictOfInterests = -1;
                                 temp.CoIFields = false;
                             }
                             if (temp.requestorConflictOfInterest == true) {
@@ -437,15 +440,20 @@ sap.ui.define([
                             }
                             if (temp.oneTimePurchaseSupplierIndicator == true) {
                                 temp.oneTimePurchaseSupplierIndicators = 0;
-                            } else {
+                            } else if (temp.oneTimePurchaseSupplierIndicator == false) {
                                 temp.oneTimePurchaseSupplierIndicators = 1;
+                            } else {
+                                temp.oneTimePurchaseSupplierIndicators = -1;
                             }
                             if (temp.customerDirectedSupplierIndicator == true) {
                                 temp.customerDirectedSupplierIndicatorsMan = true;
                                 temp.customerDirectedSupplierIndicators = 0;
-                            } else {
+                            } else if (temp.customerDirectedSupplierIndicator == false) {
                                 temp.customerDirectedSupplierIndicatorsMan = false;
                                 temp.customerDirectedSupplierIndicators = 1;
+                            } else {
+                                temp.customerDirectedSupplierIndicatorsMan = false;
+                                temp.customerDirectedSupplierIndicators = -1;
                             }
                             if (temp.outsideProcessiongSupplierIndicator == true) {
                                 temp.outsideProcessiongSupplierIndicators = 0;
@@ -515,7 +523,6 @@ sap.ui.define([
                         });
                     }
                 });
-
 
             },
             fnNavToBPCreate: function () {
@@ -612,11 +619,22 @@ sap.ui.define([
                     //     vError = true;
                     // }
 
-                    // if (oView.byId("id_conflictIntrest").getSelectedIndex() == -1) {
-                    //     oView.getModel("JMBPCreate").getData().conflicte = "Error";
-                    //     vError = true;
-                    //     oView.getModel("JMBPCreate").refresh();
-                    // }
+                    if (oView.getModel("JMBPCreate").getData().conflictOfInterests == -1) {
+                        oView.getModel("JMBPCreate").getData().conflicte = "Error";
+                        vError = true;
+                        oView.getModel("JMBPCreate").refresh();
+                    }
+                    if (oView.getModel("JMBPCreate").getData().oneTimePurchaseSupplierIndicators == -1) {
+                        oView.getModel("JMBPCreate").getData().oneTimePurchaseSupplierIndicatorse = "Error";
+                        vError = true;
+                        oView.getModel("JMBPCreate").refresh();
+                    }
+                    if (oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicators == -1) {
+                        oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicatorse = "Error";
+                        vError = true;
+                        oView.getModel("JMBPCreate").refresh();
+                    }
+
 
                     if (!oView.getModel("JMBPCreate").getData().address1) {
                         oView.getModel("JMBPCreate").getData().address1e = "Error";
@@ -1029,8 +1047,10 @@ sap.ui.define([
                 var vConflictOfIntSel = oView.getModel("JMBPCreate").getData().conflictOfInterests;
                 if (vConflictOfIntSel == 0) {
                     vConflictOfInt = false;
-                } else {
+                } else if (vConflictOfIntSel == 1) {
                     vConflictOfInt = true;
+                } else {
+                    vConflictOfInt = null;
                 }
                 var vConflictOfInt1;
                 var vConflictOfIntSel1 = oView.getModel("JMBPCreate").getData().requestorConflictOfInterests;
@@ -1056,15 +1076,19 @@ sap.ui.define([
                 var vOneTimeInd = oView.getModel("JMBPCreate").getData().oneTimePurchaseSupplierIndicators;
                 if (vOneTimeInd == 0) {
                     vOneTimeInd = true;
-                } else {
+                } else if (vOneTimeInd == 1) {
                     vOneTimeInd = false;
+                } else {
+                    vOneTimeInd = null;
                 }
 
                 var vCustDirInd = oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicators;
                 if (vCustDirInd == 0) {
                     vCustDirInd = true;
-                } else {
+                } else if (vCustDirInd == 1) {
                     vCustDirInd = false;
+                } else {
+                    vCustDirInd = null;
                 }
 
                 var vOutsideProcessInd = oView.getModel("JMBPCreate").getData().outsideProcessiongSupplierIndicators;
@@ -1080,6 +1104,12 @@ sap.ui.define([
                     vManualAddrInd = false;
                 }
                 if (vError == true) {
+                    sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
                     return;
                 }
                 var vConfirmMsg, vStatus = "";
@@ -1635,6 +1665,7 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").getData().additionalInformationm = "";
 
                 }
+                oView.getModel("JMBPCreate").getData().conflicte = "None";
                 oView.getModel("JMBPCreate").getData().additionalInformation = "";
                 oView.getModel("JMBPCreate").refresh();
             },
@@ -1655,10 +1686,17 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierContractm = "";
 
                 }
+
+                oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicatorse = "None";
                 oView.getModel("JMBPCreate").getData().customerDirectedSupplierContract = "";
                 oView.getModel("JMBPCreate").getData().customerDirectedSupplierCustName = "";
                 oView.getModel("JMBPCreate").refresh();
             },
+            fnChangeOneTimePurchInd: function () {
+                oView.getModel("JMBPCreate").getData().oneTimePurchaseSupplierIndicatorse = "None";
+                oView.getModel("JMBPCreate").refresh();
+            },
+
 
             fnLiveChangeProduct: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
@@ -1947,24 +1985,29 @@ sap.ui.define([
             fnLiveChangePostalCode: function (oEvent) {
                 var vInpVal = oEvent.getParameter("value");
                 var vMaxLength = 0;
-                if(oView.getModel("oBPLookUpMdl").getData().Validation){
+                var vRule = null;
+                if (oView.getModel("oBPLookUpMdl").getData().Validation) {
                     vMaxLength = Number(oView.getModel("oBPLookUpMdl").getData().Validation[0].postalCodeLength);
+                    vRule = Number(oView.getModel("oBPLookUpMdl").getData().Validation[0].postalCodeRule);
                 }
-              
+                if (Number(vMaxLength == 0)) {
+                    vMaxLength = 10;
+                }
+
                 if (oView.getModel("JMBPCreate").getData().country) {
                     if (oView.getModel("JMBPCreate").getData().country == "US") {
-                        var vTestResult = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(vInpVal);
-                        if (!vTestResult) {
-                            oView.getModel("JMBPCreate").getData().postalCodee = "Error";
-                            oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCInvalidPostalCode");
-                            oView.getModel("JMBPCreate").refresh();
-                        } else {
-                            if (oView.getModel("JMBPCreate").getData().postalCodee == "Error") {
-                                oView.getModel("JMBPCreate").getData().postalCodee = "None";
-                                oView.getModel("JMBPCreate").getData().postalCodem = "";
-                                oView.getModel("JMBPCreate").refresh();
-                            }
-                        }
+                        // var vTestResult = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(vInpVal);
+                        // if (!vTestResult) {
+                        //     oView.getModel("JMBPCreate").getData().postalCodee = "Error";
+                        //     oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCInvalidPostalCode");
+                        //     oView.getModel("JMBPCreate").refresh();
+                        // } else {
+                        //     if (oView.getModel("JMBPCreate").getData().postalCodee == "Error") {
+                        //         oView.getModel("JMBPCreate").getData().postalCodee = "None";
+                        //         oView.getModel("JMBPCreate").getData().postalCodem = "";
+                        //         oView.getModel("JMBPCreate").refresh();
+                        //     }
+                        // }
                     } else {
 
                         if (oView.getModel("JMBPCreate").getData().postalCodee == "Error") {
@@ -1978,15 +2021,46 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").getData().postalCode = "";
                     oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCPleaseSelCountryCode");
                     oView.getModel("JMBPCreate").refresh();
+                    return;
+                }
+                if (vInpVal) {
+                    if (Number(vInpVal) == 0) {
+                        oView.getModel("JMBPCreate").getData().postalCodee = "Error";
+                        oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCInvalidPostalCode");
+                        oView.getModel("JMBPCreate").refresh();
+                        return;
+                    }
                 }
                 if (vInpVal.length == 0) {
                     oView.getModel("JMBPCreate").getData().postalCodee = "None";
                     oView.getModel("JMBPCreate").getData().postalCodem = "";
                     oView.getModel("JMBPCreate").refresh();
-                } else if (vInpVal.length > vMaxLength) {
-                    oView.getModel("JMBPCreate").getData().postalCodee = "Error";
-                    oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCInvalidPostalCode");
-                    oView.getModel("JMBPCreate").refresh();
+                }
+
+                if (vRule == 3 || vRule == 4 || vRule == 7 || vRule == 8) {
+                    if (vInpVal.length !== vMaxLength) {
+                        if (Number(vMaxLength) !== 0) {
+                            oView.getModel("JMBPCreate").getData().postalCodee = "Error";
+                            oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCInvalidPostalCode");
+                            oView.getModel("JMBPCreate").refresh();
+                        }
+                    } else {
+                        oView.getModel("JMBPCreate").getData().postalCodee = "None";
+                        oView.getModel("JMBPCreate").getData().postalCodem = "";
+                        oView.getModel("JMBPCreate").refresh();
+                    }
+                } else {
+                    if (vInpVal.length > vMaxLength) {
+                        if (Number(vMaxLength) !== 0) {
+                            oView.getModel("JMBPCreate").getData().postalCodee = "Error";
+                            oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCInvalidPostalCode");
+                            oView.getModel("JMBPCreate").refresh();
+                        }
+                    } else {
+                        oView.getModel("JMBPCreate").getData().postalCodee = "None";
+                        oView.getModel("JMBPCreate").getData().postalCodem = "";
+                        oView.getModel("JMBPCreate").refresh();
+                    }
                 }
 
             },
@@ -2638,6 +2712,10 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierContractm = "";
                     oView.getModel("JMBPCreate").refresh();
                 }
+                oView.getModel("JMBPCreate").getData().conflicte = "None";
+                oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicatorse = "None";
+                oView.getModel("JMBPCreate").getData().oneTimePurchaseSupplierIndicatorse = "None";
+                oView.getModel("JMBPCreate").refresh();
 
             },
             fnFetchDescriptionCommon(aArray, value, vFieldName) {

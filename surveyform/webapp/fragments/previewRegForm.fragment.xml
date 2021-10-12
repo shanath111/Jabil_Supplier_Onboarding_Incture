@@ -190,14 +190,14 @@
                                         <Label text="{oi18n_En>legalName}&#10;{i18n>legalName}"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
 										<Label text="{=${oDataModel>/bpInfoDto/legalName}?${oDataModel>/bpInfoDto/legalName}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
-									<VBox class="VRVboxStyle1">
+									<!-- <VBox class="VRVboxStyle1">
 										<Label text="{i18n>dunsNum}"  visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>dunsNum}&#10;{i18n>dunsNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
-										<Label text="{=${oDataModel>/bpInfoDto/dunsNumber}?${oDataModel>/bpInfoDto/dunsNumber}:'---'}" class="cl_PreviewLablClsValue "></Label>
-									</VBox>
+										<Label text="{=${oDataModel>/bpInfoDto/dunsNumber}?${oDataModel>/bpInfoDto/dunsNumber}:''}" class="cl_PreviewLablClsValue "></Label>
+									</VBox> -->
 								</l:Grid>
-<Label text="{i18n>isSiteRegwithDunandBrad}" visible="{=${oUserModel>/isNew} &amp;&amp; ${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls  sapUiTinyMarginBegin"></Label>
-<Label text="{oi18n_En>isSiteRegwithDunandBrad}/&#160;{i18n>isSiteRegwithDunandBrad}" visible="{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}" class="cl_PreviewLablCls  sapUiTinyMarginBegin"></Label>
+<Label text="{i18n>isSiteRegwithDunandBrad}" visible="{${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls  sapUiTinyMarginBegin"></Label>
+<Label text="{oi18n_En>isSiteRegwithDunandBrad}/&#160;{i18n>isSiteRegwithDunandBrad}" visible="{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls  sapUiTinyMarginBegin"></Label>
 <Label text="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber}? ${oi18n_En>yes} : ${oi18n_En>no}}" visible="{oUserModel>/isNew}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin"></Label>  
 <l:Grid defaultSpan="XL3 L3 M3 S12" visible="{oDataModel>/bpInfoDto/siteHaveDunsNumber}"  class="cl_PreviewGrid sapUiSmallMarginTop">
 									<VBox class="VRVboxStyle1">
@@ -217,10 +217,10 @@
          	<!-- <Label visible="{=!${oDataModel>/bpInfoDto/siteHaveDunsNumber} &amp;&amp; ${oUserModel>/isNew} &amp;&amp; ${oVisibilityModel>/isdefaultLan}}" text="{=${oDataModel>/bpInfoDto/encourgeDunsNumberReg}?${i18n>yes}:${i18n>no}}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin"></Label>  -->
     
 
-    <Label visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === false &amp;&amp; ${oUserModel>/isNew}  &amp;&amp; ${oVisibilityModel>/isdefaultLan}}"  text="{i18n>isSiteTheCorpHead}" wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginTop sapUiTinyMarginBegin"></Label>
-     <Label visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === false &amp;&amp; ${oUserModel>/isNew} &amp;&amp; !${oVisibilityModel>/isdefaultLan}}"  text="{oi18n_En>isSiteTheCorpHead}/&#160;{i18n>isSiteTheCorpHead}" wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginTop sapUiTinyMarginBegin"></Label>
-         	<Label visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === false &amp;&amp; ${oUserModel>/isNew}}" text="{=${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin"></Label> 
-       <l:Grid visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === false &amp;&amp; ${oUserModel>/isNew}}" defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop">
+    <Label visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === false  &amp;&amp; ${oVisibilityModel>/isdefaultLan}}"  text="{i18n>isSiteTheCorpHead}" wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginTop sapUiTinyMarginBegin"></Label>
+     <Label visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === false &amp;&amp; !${oVisibilityModel>/isdefaultLan}}"  text="{oi18n_En>isSiteTheCorpHead}/&#160;{i18n>isSiteTheCorpHead}" wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginTop sapUiTinyMarginBegin"></Label>
+         	<Label visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === false}" text="{=${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin"></Label> 
+       <l:Grid visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === false}" defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop">
        <VBox class="VRVboxStyle1">
 										<Label text="{i18n>numOfEmployees}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         	<Label text="{oi18n_En>numOfEmployees}&#10;{i18n>numOfEmployees}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
@@ -233,7 +233,7 @@
 									</VBox>
        </l:Grid>
   								
-                <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="cl_PreviewGrid sapUiSmallMarginTop">     
+                <!-- <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="cl_PreviewGrid sapUiSmallMarginTop">     
                                      <VBox class="VRVboxStyle1">
 										<Label text="{i18n>zCFRCompliant}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>zCFRCompliant}&#10;{i18n>zCFRCompliant}"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
@@ -245,7 +245,7 @@
 										<Label text="{=${oDataModel>/bpInfoDto/itarCertifiedIndicator}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                    
-								</l:Grid>       
+								</l:Grid>        -->
                                  
              <Label text="{i18n>CompanyRegInfo}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewPageSubHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>  
              <Label text="{oi18n_En>CompanyRegInfo}/&#160;{i18n>CompanyRegInfo}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewPageSubHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>  
@@ -403,9 +403,9 @@
                              <HBox class="cl_HBoxBlockSep sapUiTinyMarginTop">
                                 </HBox>   
 
-     <Label text="{i18n>wizardStepcontactInfo}" visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label> 
-                                   <Label text="{oi18n_En>wizardStepcontactInfo}/&#160;{i18n>wizardStepcontactInfo}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>       
-                                  <VBox fitContainer="true" >
+     <Label text="{i18n>wizardStepcontactInfo}" visible="{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}"  class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label> 
+                                   <Label text="{oi18n_En>wizardStepcontactInfo}/&#160;{i18n>wizardStepcontactInfo}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>       
+                                  <VBox fitContainer="true" visible="{oUserModel>/isNew}" >
                 <Table items="{oLookUpModel>/tabledata}" class="sapUiTinyMarginTop sapUiTinyMarginBegin cl_CompContTabale">
                
                 <columns>
@@ -440,8 +440,8 @@
             	
             </Table>
                </VBox>    
-                                <gl:GridList
-	width="auto" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
+             <!-- <gl:GridList
+	width="auto" growing="true" visible="{oUserModel>/isNew}" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
 			items="{oAttachmentList>/0/compContDArray}">
           	<gl:customLayout>
 				<grid:GridResponsiveLayout>
@@ -475,8 +475,8 @@
 							</VBox>
 						</HBox>
 			</gl:GridListItem>
-		</gl:GridList>
-               <HBox class="cl_HBoxBlockSep sapUiTinyMarginTop">
+		</gl:GridList> -->
+               <HBox visible="{oUserModel>/isNew}" class="cl_HBoxBlockSep sapUiTinyMarginTop">
                                 </HBox>
 
    <Label text="{i18n>OwnershipInfor}" visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
@@ -511,14 +511,14 @@
 										<Label text="{=${oDataModel>/ownerShipInfoDto/isEntityTradedCompany}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>	
 								</l:Grid>
-                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid ">
+                                 <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid ">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>isOwnedbyIndividual}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
                                         	<Label text="{oi18n_En>isOwnedbyIndividual}/&#160;{i18n>isOwnedbyIndividual}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="cl_PreviewLablCls "></Label>
 										<Label text="{=${oDataModel>/ownerShipInfoDto/isEntitySDNList}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>	
 								</l:Grid>
-                                <Table items="{oDataModel>/ownerShipInfoDto/sdnlistContact}" width="30%" class="sapUiTinyMarginTop sapUiTinyMarginBegin cl_CompContTabale"  visible="{oDataModel>/ownerShipInfoDto/isEntitySDNList}">
+                                <Table items="{oDataModel>/ownerShipInfoDto/sdnlistContact}" width="30%" class="sapUiTinyMarginTop sapUiTinyMarginBegin cl_CompContTabale"  visible="{=${oDataModel>/ownerShipInfoDto/isEntitySDNList} &amp;&amp; ${oUserModel>/isNew}}">
                                     <columns>
                                     <Column class="sapUiSizeCompact">
                                     <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstNameG}:${oi18n_En>firstNameG} +'&#10;' +${i18n>firstNameG}}" class="cl_PreviewLablCls"/>
@@ -541,14 +541,14 @@
                                         </ColumnListItem>
                                     </items>
                                 </Table>    
-                                <l:Grid defaultSpan="XL12 L12 M12 S12"  class="sapUiTinyMarginTop cl_PreviewGrid ">
+                                <l:Grid visible="{oUserModel>/isNew}" defaultSpan="XL12 L12 M12 S12"  class="sapUiTinyMarginTop cl_PreviewGrid ">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>isOwnedbyOtherCountry}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls sapUiSmallMarginTop "></Label>
                                         	<Label text="{oi18n_En>isOwnedbyOtherCountry}/&#160;{i18n>isOwnedbyOtherCountry}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="cl_PreviewLablCls "></Label>
 										<Label text="{=${oDataModel>/ownerShipInfoDto/isEntityRegInCISNK}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>	
 								</l:Grid> 
-                                 <Table items="{oDataModel>/ownerShipInfoDto/regInCISNKContact}" width="30%"  class="sapUiTinyMarginTop sapUiTinyMarginBegin cl_CompContTabale" visible="{oDataModel>/ownerShipInfoDto/isEntityRegInCISNK}">
+                                 <Table items="{oDataModel>/ownerShipInfoDto/regInCISNKContact}" width="30%"  class="sapUiTinyMarginTop sapUiTinyMarginBegin cl_CompContTabale" visible="{=${oDataModel>/ownerShipInfoDto/isEntityRegInCISNK} &amp;&amp; ${oUserModel>/isNew}}">
                                     <columns>
                                     <Column class="sapUiSizeCompact">
                                   <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstNameG}:${oi18n_En>firstNameG} +'&#10;' +${i18n>firstNameG}}"  class="cl_PreviewLablCls"/>
@@ -572,12 +572,12 @@
                                     </items>
                                 </Table>  
                               
-                                	<Label text="{i18n>isManagedBy}" wrapping="true"  visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewLablCls sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
-                                    <Label text="{oi18n_En>isManagedBy}/&#160;{i18n>isManagedBy}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls sapUiTinyMarginTop sapUiTinyMarginBegin"></Label>
-<Label text="{i18n>govtOfficial}" wrapping="true"  visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewLablCls sapUiTinyMarginBegin"></Label>
-<Label text="{oi18n_En>govtOfficial}/&#160;{i18n>govtOfficial}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls sapUiTinyMarginBegin"></Label>
-<Label text="{=${oDataModel>/ownerShipInfoDto/isEntityManagedByGovt}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin"></Label>
-   <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop " visible="{oDataModel>/ownerShipInfoDto/isEntityManagedByGovt}">
+                                	<Label text="{i18n>isManagedBy}" wrapping="true"  visible="{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}"  class="cl_PreviewLablCls sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
+                                    <Label text="{oi18n_En>isManagedBy}/&#160;{i18n>isManagedBy}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}"  class="cl_PreviewLablCls sapUiTinyMarginTop sapUiTinyMarginBegin"></Label>
+<Label text="{i18n>govtOfficial}" wrapping="true"  visible="{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}" class="cl_PreviewLablCls sapUiTinyMarginBegin"></Label>
+<Label text="{oi18n_En>govtOfficial}/&#160;{i18n>govtOfficial}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}  &amp;&amp; ${oUserModel>/isNew}}"  class="cl_PreviewLablCls sapUiTinyMarginBegin"></Label>
+<Label text="{=${oDataModel>/ownerShipInfoDto/isEntityManagedByGovt}?${oi18n_En>yes}:${oi18n_En>no}}" visible="{oUserModel>/isNew}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin"></Label>
+   <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop " visible="{=${oDataModel>/ownerShipInfoDto/isEntityManagedByGovt} &amp;&amp; ${oUserModel>/isNew}}">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>govtEntityName}"  visible="{oVisibilityModel>/isdefaultLan}"  wrapping="true" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>govtEntityName}&#10;{i18n>govtEntityName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
@@ -625,7 +625,7 @@
 									</VBox> -->
                                     <!-- above field -->
 								</l:Grid>
-                                   <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid ">
+                                   <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}"  class="cl_PreviewGrid ">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>closememberofgovtOfficial}"  visible="{oVisibilityModel>/isdefaultLan}"  wrapping="true" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>closememberofgovtOfficial}/&#160;{i18n>closememberofgovtOfficial}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
@@ -634,7 +634,7 @@
 									
                                     	
 								</l:Grid>
-                                 <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid " visible="{oDataModel>/ownerShipInfoDto/isEntityManagedByGovtFamily}">
+                                 <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid " visible="{=${oDataModel>/ownerShipInfoDto/isEntityManagedByGovtFamily} &amp;&amp; ${oUserModel>/isNew}}">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>govtEntityName}"  visible="{oVisibilityModel>/isdefaultLan}"  wrapping="true" class="cl_PreviewLablCls "></Label>
                                         	<Label text="{oi18n_En>govtEntityName}&#10;{i18n>govtEntityName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
@@ -682,7 +682,7 @@
 									</VBox> -->
                                     <!-- above field -->
 								</l:Grid>
-        <gl:GridList width="auto"
+        <!-- <gl:GridList width="auto"
 		 growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
 			items="{oAttachmentList>/0/ownerDArray}">
           	<gl:customLayout>
@@ -717,7 +717,7 @@
 							</VBox>
 						</HBox>
 			</gl:GridListItem>
-		</gl:GridList>
+		</gl:GridList> -->
                                  <HBox class="cl_HBoxBlockSep sapUiTinyMarginTop">
                                 </HBox>
                                 <Label text="{i18n>wizardStepCompanyInfo}"  visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
@@ -884,70 +884,8 @@
 									</VBox>
                         
 								</l:Grid>
-                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} ? true: false }"> 
-									<VBox class="VRVboxStyle1">
-										<Label text="{i18n>divCertText}"  visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
-										<Label text="{oi18n_En>divCertText}/&#160;{i18n>divCertText}"  visible="{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="cl_PreviewLablCls "></Label>
-                                        <Label text="{=${companyInfoModel>/haveDiversityCertifications}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
-									</VBox>
-								</l:Grid> 
-                                <!-- <Label text="{i18n>SmallDisAdvBuisness}" visible="{oVisibilityModel>/isdefaultLan}"  wrapping="true" class="cl_PreviewPageSubHeader sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
-    <Label text="{oi18n_En>SmallDisAdvBuisness}/&#160;{i18n>SmallDisAdvBuisness}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewPageSubHeader sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
-    <gl:GridList
-        class="cl_GridListPreview sapUiTinyMarginTop"
-            items="{oSmallDisAdvntg>/DisAdv}">
-        <gl:customLayout>
-			<grid:GridBasicLayout gridTemplateColumns="repeat(auto-fit, minmax(16rem, 1fr))" gridGap="0.3rem" />
-		</gl:customLayout>
-			<gl:GridListItem>
-				<VBox class="sapUiTinyMarginBegin ">
-					<layoutData>
-						<FlexItemData growFactor="1" shrinkFactor="0" /> 
-					</layoutData>
-
-					<Label text="{oSmallDisAdvntg>Key}" wrapping="true" class="cl_PreviewLablCls "></Label>
-				</VBox>
-			</gl:GridListItem>
-		</gl:GridList> -->
-        <gl:GridList class="gList sapUiTinyMarginTop sapUiSizeCompact" items="{oLookUpModel>/enterprise}" visible="{=${companyInfoModel>/haveDiversityCertifications} &amp;&amp; ${companyInfoModel>/isOrderFromAddress}}">
-            <gl:customLayout>
-                <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" /> 
-            </gl:customLayout> 
-			<gl:GridListItem>
-				<VBox visible="{oLookUpModel>isSelected}" class="sapUiTinyMarginBegin ">
-					<HBox>
-                        <core:Icon src="sap-icon://overlay" class="bulletIcon"/>
-                        <Label text="{oLookUpModel>value}" wrapping="true" class=" sapUiTinyMarginBegin cl_PreviewLablClsValue"></Label>  
-                        <VBox>
-                            <Text text="- {oLookUpModel>otherValue}" visible="{=${oLookUpModel>value} === 'Other'? true: false}" class=" sapUiTinyMarginBegin cl_PreviewLablClsValue" />
-                            <layoutData>
-                                <FlexItemData growFactor="1" />
-                            </layoutData>
-                        </VBox>
-                    </HBox>
-                    <layoutData>
-                        <FlexItemData growFactor="1" shrinkFactor="0" /> 
-                    </layoutData>
-                    <gl:GridList class="gList sapUiTinyMarginTop sapUiSizeCompact" items="{oLookUpModel>/smallDisadvantagedBusiness}" visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business' &amp;&amp; ${oLookUpModel>isSelected}}">
-                        <gl:customLayout>
-                            <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" /> 
-                        </gl:customLayout> 
-                        <gl:GridListItem>
-                            <VBox visible="{oLookUpModel>isSelected}" class="sapUiMediumMarginBegin ">
-                                <HBox>
-                                    <core:Icon src="sap-icon://overlay" class="bulletIcon"/>
-                                    <Label text="{oLookUpModel>value}" wrapping="true" class=" sapUiTinyMarginBegin cl_PreviewLablClsValue"></Label> 
-                                </HBox>
-                                    <layoutData>
-                                        <FlexItemData growFactor="1" shrinkFactor="0" /> 
-                                    </layoutData>
-                            </VBox>
-                        </gl:GridListItem>
-                    </gl:GridList>
-				</VBox>
-			</gl:GridListItem>
-		</gl:GridList>
-        <gl:GridList width="auto" items="{oAttachmentList>/0/compDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
+               
+        <!-- <gl:GridList width="auto" items="{oAttachmentList>/0/compDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
 		>
           	<gl:customLayout>
 				<grid:GridResponsiveLayout>
@@ -979,7 +917,7 @@
 							</VBox>
 						</HBox>
 			</gl:GridListItem>
-		</gl:GridList>
+		</gl:GridList> -->
                                  <HBox class="cl_HBoxBlockSep sapUiTinyMarginTop">
                                 </HBox>   
                                 <Label text="{i18n>bankInformation}" visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
@@ -1005,21 +943,21 @@
 									</VBox>
                                 </l:Grid>
     
-                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid ">
+                                  <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid ">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>bankInformation2}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{oi18n_En>bankInformation2}/&#160;{i18n>bankInformation2}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{=${oDataModel>/bankDto/isBankProvided}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>  
-                                <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiTinyMarginTop" visible="{oDataModel>/bankDto/isBankProvided}">
+                                <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiTinyMarginTop" visible="{=${oDataModel>/bankDto/isBankProvided} &amp;&amp; ${oUserModel>/isNew}}">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>bankInformation1}" wrapping="true" class="cl_PreviewPageSubHeader" visible="{=${oVisibilityModel>/isdefaultLan}}"></Label>
                                         <Label text="{oi18n_En>bankInformation1}/&#160;{i18n>bankInformation1}" wrapping="true" class="cl_PreviewPageSubHeader" visible="{=!${oVisibilityModel>/isdefaultLan}}"></Label>
 
 									</VBox>
 								</l:Grid>  
-                                <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop" visible="{oDataModel>/bankDto/isBankProvided}">
+                                <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop" visible="{=${oDataModel>/bankDto/isBankProvided} &amp;&amp; ${oUserModel>/isNew}}">
 										  <VBox class="VRVboxStyle1">
 										<Label text="{i18n>bankCountry}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>bankCountry}&#10;{i18n>bankCountry}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
@@ -1103,14 +1041,14 @@
 										<Label text="{=${oDataModel>/bankDto/bankInfoDto/0/instructionKey}?${oDataModel>/bankDto/bankInfoDto/0/instructionKey}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>
-                                <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiTinyMarginTop">
+                                <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid sapUiTinyMarginTop">
 									   <VBox class="VRVboxStyle1" visible="{=${oDataModel>/bankDto/isBankProvided} === false}">
 										<Label text="{i18n>financeContact1}" wrapping="true" class="cl_PreviewPageSubHeader" visible="{=${oVisibilityModel>/isdefaultLan}}"></Label>
                                         <Label text="{oi18n_En>financeContact1}/&#160;{i18n>financeContact1}" wrapping="true" class="cl_PreviewPageSubHeader" visible="{=!${oVisibilityModel>/isdefaultLan}}"></Label>
 
 									</VBox>
 								</l:Grid>  
-                                <l:Grid defaultSpan="XL3 L3 M3 S12"  visible="{=${oDataModel>/bankDto/isBankProvided} === false}"  class="cl_PreviewGrid sapUiSmallMarginTop">
+                                <l:Grid defaultSpan="XL3 L3 M3 S12"  visible="{=${oDataModel>/bankDto/isBankProvided} === false &amp;&amp; ${oUserModel>/isNew}}"  class="cl_PreviewGrid sapUiSmallMarginTop">
 								<VBox>
                                     <Label text="{i18n>firstName}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                     <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
@@ -1159,10 +1097,10 @@
 							</l:Grid>        
                             
 
-                                       <Label visible ="{oDataModel>/bankDto/isBankProvided}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>financeContact}:${oi18n_En>financeContact} +'/&#160;' + ${i18n>financeContact}}"  class="cl_PreviewPageSubHeader  sapUiTinyMarginBegin "/>
-                                        <Label visible ="{=${oDataModel>/bankDto/isBankProvided} === false}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>financeContact2}:${oi18n_En>financeContact2} +'/&#160;' + ${i18n>financeContact2}}"  class="cl_PreviewPageSubHeader  sapUiTinyMarginBegin "/>
+                                       <Label visible ="{=${oDataModel>/bankDto/isBankProvided} &amp;&amp; ${oUserModel>/isNew}}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>financeContact}:${oi18n_En>financeContact} +'/&#160;' + ${i18n>financeContact}}"  class="cl_PreviewPageSubHeader  sapUiTinyMarginBegin "/>
+                                        <Label visible ="{=${oDataModel>/bankDto/isBankProvided} === false &amp;&amp; ${oUserModel>/isNew}}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>financeContact2}:${oi18n_En>financeContact2} +'/&#160;' + ${i18n>financeContact2}}"  class="cl_PreviewPageSubHeader  sapUiTinyMarginBegin "/>
 									               
-								<l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop">
+								<l:Grid defaultSpan="XL3 L3 M3 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid sapUiSmallMarginTop">
 								<VBox>
                                     <Label text="{i18n>firstName}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                     <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
@@ -1208,21 +1146,21 @@
 									<Label text="{oDataModel>/bankDto/financeContact2/mobile}" class="cl_PreviewLablClsValue"></Label>
                                 </VBox> 
 							</l:Grid> 
-                                <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiSmallMarginTop">
+                                <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}"  class="cl_PreviewGrid sapUiSmallMarginTop">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>allowFinStatText}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>allowFinStatText}/&#160;{i18n>allowFinStatText}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
                                         <Label text="{=${oDataModel>/financeInfoDto/doesFinancialStatements} === 0?${oi18n_En>yes}:(${oDataModel>/financeInfoDto/doesFinancialStatements} === 1? ${oi18n_En>noPC}: (${oDataModel>/financeInfoDto/doesFinancialStatements} === 2? ${oi18n_En>noNDC}: ${oi18n_En>noNA}))}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>     
-                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid ">
+                                 <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}"  class="cl_PreviewGrid ">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>doesAuditHapnd}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>doesAuditHapnd}/&#160;{i18n>doesAuditHapnd}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
                                         <Label text="{=${oDataModel>/financeInfoDto/financeAuditedLast12M}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>      
-                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="{oDataModel>/financeInfoDto/financeAuditedLast12M}">
+                                 <l:Grid defaultSpan="XL12 L12 M12 S12" class="cl_PreviewGrid " visible="{=${oDataModel>/financeInfoDto/financeAuditedLast12M} &amp;&amp; ${oUserModel>/isNew}}">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>auditorName}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls"></Label>
                                         <Label text="{oi18n_En>auditorName}/&#160;{i18n>auditorName}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls"></Label>
@@ -1230,7 +1168,7 @@
 									</VBox>
 								</l:Grid> 
                                  <!-- <Label text="{i18n>bankInformation}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label> -->
-                               <gl:GridList width="auto"
+                               <gl:GridList width="auto" visible="{oUserModel>/isNew}"
  growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
 			items="{oAttachmentList>/0/bankDArray}">
           	<gl:customLayout>
@@ -1334,7 +1272,7 @@
 								</l:Grid> 
                                   
                                
-                        	<gl:GridList width="auto"
+                        	<!-- <gl:GridList width="auto"
 		 growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
 			items="{oAttachmentList>/0/shippingDArray}">
           	<gl:customLayout>
@@ -1369,19 +1307,19 @@
 							</VBox>
 						</HBox>
 			</gl:GridListItem>
-		</gl:GridList>
+		</gl:GridList> -->
                                 <HBox class="cl_HBoxBlockSep">
                                 </HBox>
-                                 <Label text="{i18n>wizardStepProductsAndServices}" visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
-                                 <Label text="{oi18n_En>wizardStepProductsAndServices}/&#160;{i18n>wizardStepProductsAndServices}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
-                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiSmallMarginTop">
+                                 <Label text="{i18n>wizardStepProductsAndServices}" visible="{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}"  class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
+                                 <Label text="{oi18n_En>wizardStepProductsAndServices}/&#160;{i18n>wizardStepProductsAndServices}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}"  class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
+                                  <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}"  class="cl_PreviewGrid sapUiSmallMarginTop">
                                  
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>OprSer}" class="cl_PreviewPageSubHeader " visible="{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oDataModel>/comProductsUiDto/isOperationServices}}"></Label>
 									<Label text="{oi18n_En>OprSer}/&#160;{i18n>OprSer}" class="cl_PreviewPageSubHeader " wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oDataModel>/comProductsUiDto/isOperationServices}}"></Label>
                                     </VBox>
 								</l:Grid > 
-        <gl:GridList class="gList sapUiTinyMarginTop sapUiSizeCompact" items="{oDataModel>/comProductsUiDto/operationServices}" visible="{oDataModel>/comProductsUiDto/isOperationServices}">
+        <gl:GridList  class="gList sapUiTinyMarginTop sapUiSizeCompact" items="{oDataModel>/comProductsUiDto/operationServices}" visible="{=${oDataModel>/comProductsUiDto/isOperationServices} &amp;&amp; ${oUserModel>/isNew}}">
             <gl:customLayout>
                 <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" /> 
             </gl:customLayout> 
@@ -1398,7 +1336,7 @@
 				</VBox>
 			</gl:GridListItem>
 		</gl:GridList>
-            <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiSmallMarginTop">
+            <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}"  class="cl_PreviewGrid sapUiSmallMarginTop">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>manProd}" class="cl_PreviewPageSubHeader " visible="{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oDataModel>/comProductsUiDto/isManufacturingProcessSupplies}}" ></Label>
 									<Label text="{oi18n_En>manProd}/&#160;{i18n>manProd}" class="cl_PreviewPageSubHeader " wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oDataModel>/comProductsUiDto/isManufacturingProcessSupplies}}" ></Label>
@@ -1406,7 +1344,7 @@
 								</l:Grid> 
                                 	<gl:GridList
 		class="cl_GridListPreview "
-			items="{oDataModel>/comProductsUiDto/manufacturingProcessSupplies}" visible="{oDataModel>/comProductsUiDto/isManufacturingProcessSupplies}" >
+			items="{oDataModel>/comProductsUiDto/manufacturingProcessSupplies}" visible="{=${oDataModel>/comProductsUiDto/isManufacturingProcessSupplies} &amp;&amp; ${oUserModel>/isNew}}" >
           <gl:customLayout>
 			                                    <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" /> 
                                             </gl:customLayout> 
@@ -1424,7 +1362,7 @@
 			</gl:GridListItem>
 		</gl:GridList>
         <Text/>
-                            <gl:GridList width="auto"
+                            <!-- <gl:GridList width="auto"
 		 growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
 			items="{oAttachmentList>/0/compProdDArray}">
           	<gl:customLayout>
@@ -1459,8 +1397,8 @@
 							</VBox>
 						</HBox>
 			</gl:GridListItem>
-		</gl:GridList>
-            <HBox class="cl_HBoxBlockSep sapUiTinyMarginTop">
+		</gl:GridList> -->
+            <HBox visible="{oUserModel>/isNew}"  class="cl_HBoxBlockSep sapUiTinyMarginTop">
                                 </HBox>
                                 
             
@@ -1469,7 +1407,7 @@
 				        
    <Label text="{i18n>wizardStepcompanyCompliance}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>   
       <Label text="{oi18n_En>wizardStepcompanyCompliance}/&#160;{i18n>wizardStepcompanyCompliance}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>   
-  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiTinyMarginTop">
+  <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid sapUiTinyMarginTop">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>supplierCocMeet}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{oi18n_En>supplierCocMeet}/&#160;{i18n>supplierCocMeet}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
@@ -1477,21 +1415,21 @@
 									</VBox>
 								</l:Grid>  
                                 
-                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="{=${oDataModel>/comComplianceDto/commitedToExpectations} === false}">
+                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="{=${oDataModel>/comComplianceDto/commitedToExpectations} === false &amp;&amp; ${oUserModel>/isNew}}">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>prvdExplanation}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         	<Label text="{oi18n_En>prvdExplanation}/&#160;{i18n>prvdExplanation}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{=${oDataModel>/comComplianceDto/notCommitedExplanation}?${oDataModel>/comComplianceDto/notCommitedExplanation}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>  
-                                <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiTinyMarginTop" visible="{=${oDataModel>/comComplianceDto/commitedToExpectations} === false}">
+                                <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiTinyMarginTop" visible="{=${oDataModel>/comComplianceDto/commitedToExpectations} === false &amp;&amp; ${oUserModel>/isNew}}">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>quesDirectPOC}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
     <Label  text="{oi18n_En>quesDirectPOC}/&#160;{i18n>quesDirectPOC}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
     
 									</VBox>
 								</l:Grid>  
-                                   <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid" visible="{=${oDataModel>/comComplianceDto/commitedToExpectations} === false}">
+                                   <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid" visible="{=${oDataModel>/comComplianceDto/commitedToExpectations} === false &amp;&amp; ${oUserModel>/isNew}}">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>firstNameG}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls "></Label>
@@ -1529,21 +1467,21 @@
 									</VBox>
                                     
 								</l:Grid>
-                              <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid ">
+                              <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid ">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>closeRelWithJabil}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{oi18n_En>closeRelWithJabil}/&#160;{i18n>closeRelWithJabil}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{=${oDataModel>/comComplianceDto/companyRelationWithJabilEmp}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>  
-                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiTinyMarginTop" visible="{oDataModel>/comComplianceDto/companyRelationWithJabilEmp}">
+                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiTinyMarginTop" visible="{=${oDataModel>/comComplianceDto/companyRelationWithJabilEmp} &amp;&amp; ${oUserModel>/isNew}}">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>quesDirectPOC}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{oi18n_En>quesDirectPOC}/&#160;{i18n>quesDirectPOC}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
     
 									</VBox>
 								</l:Grid>  
-                                 <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid" visible="{oDataModel>/comComplianceDto/companyRelationWithJabilEmp}">
+                                 <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid" visible="{=${oDataModel>/comComplianceDto/companyRelationWithJabilEmp} &amp;&amp; ${oUserModel>/isNew}}">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>firstName}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
                                         	<Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls "></Label>
@@ -1567,14 +1505,14 @@
                                     
                                     
 								</l:Grid>
-                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid ">
+                                 <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}"  class="cl_PreviewGrid ">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>arePrevEmp}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{oi18n_En>arePrevEmp}/&#160;{i18n>arePrevEmp}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{=${oDataModel>/comComplianceDto/companyContactWithPreviouseJabilEmp}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>
-                                  <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid" visible="{oDataModel>/comComplianceDto/companyContactWithPreviouseJabilEmp}">
+                                  <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid" visible="{=${oDataModel>/comComplianceDto/companyContactWithPreviouseJabilEmp} &amp;&amp; ${oUserModel>/isNew}}">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>empName}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>empName}&#10;{i18n>empName}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls "></Label>
@@ -1602,14 +1540,14 @@
 									</VBox>
                                     
 								</l:Grid>
-                                <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid ">
+                                <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid ">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>recoveryPlan}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{oi18n_En>recoveryPlan}/&#160;{i18n>recoveryPlan}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{=${oDataModel>/comComplianceDto/isDisasterRecoveryPlan}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>  
-                                <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="{oDataModel>/comComplianceDto/isDisasterRecoveryPlan}">
+                                <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="{=${oDataModel>/comComplianceDto/isDisasterRecoveryPlan} &amp;&amp; ${oUserModel>/isNew}}">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>willProvideRecoryPlan}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{oi18n_En>willProvideRecoryPlan}/&#160;{i18n>willProvideRecoryPlan}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
@@ -1619,7 +1557,53 @@
                                  <Label text="{i18n>isNdaActive}" visible="{oVisibilityModel>/isdefaultLan}"  wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginTop  sapUiTinyMarginBegin"></Label>
               <Label text="{oi18n_En>isNdaActive}/&#160;{i18n>isNdaActive}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginTop  sapUiTinyMarginBegin"></Label>
               <Label text="{= ${oDataModel>/comComplianceDto/ndaSignedBefore} === 0 ? ${oi18n_En>yes} : (${oDataModel>/comComplianceDto/ndaSignedBefore} === 1 ? ${oi18n_En>no}: 'I Dont Know')}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin"></Label>              
-                                <gl:GridList width="auto"
+                                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="true"> 
+									<VBox class="VRVboxStyle1 sapUiTinyMarginTop">
+										<Label text="{i18n>divCertText}"  visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
+										<Label text="{oi18n_En>divCertText}/&#160;{i18n>divCertText}"  visible="{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="cl_PreviewLablCls "></Label>
+                                        <Label text="{=${companyInfoModel>/haveDiversityCertifications}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
+								</l:Grid> 
+                               
+        <gl:GridList class="gList sapUiTinyMarginTop sapUiSizeCompact" items="{oLookUpModel>/enterprise}" visible="{=${companyInfoModel>/haveDiversityCertifications}}">
+            <gl:customLayout>
+                <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" /> 
+            </gl:customLayout> 
+			<gl:GridListItem>
+				<VBox visible="{oLookUpModel>isSelected}" class="sapUiTinyMarginBegin ">
+					<HBox>
+                        <core:Icon src="sap-icon://overlay" class="bulletIcon"/>
+                        <Label text="{oLookUpModel>value}" wrapping="true" class=" sapUiTinyMarginBegin cl_PreviewLablClsValue"></Label>  
+                        <VBox>
+                            <Text text="- {oLookUpModel>otherValue}" visible="{=${oLookUpModel>value} === 'Other'? true: false}" class=" sapUiTinyMarginBegin cl_PreviewLablClsValue" />
+                            <layoutData>
+                                <FlexItemData growFactor="1" />
+                            </layoutData>
+                        </VBox>
+                    </HBox>
+                    <layoutData>
+                        <FlexItemData growFactor="1" shrinkFactor="0" /> 
+                    </layoutData>
+                    <gl:GridList class="gList sapUiTinyMarginTop sapUiSizeCompact" items="{oLookUpModel>/smallDisadvantagedBusiness}" visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business' &amp;&amp; ${oLookUpModel>isSelected}}">
+                        <gl:customLayout>
+                            <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" /> 
+                        </gl:customLayout> 
+                        <gl:GridListItem>
+                            <VBox visible="{oLookUpModel>isSelected}" class="sapUiMediumMarginBegin ">
+                                <HBox>
+                                    <core:Icon src="sap-icon://overlay" class="bulletIcon"/>
+                                    <Label text="{oLookUpModel>value}" wrapping="true" class=" sapUiTinyMarginBegin cl_PreviewLablClsValue"></Label> 
+                                </HBox>
+                                    <layoutData>
+                                        <FlexItemData growFactor="1" shrinkFactor="0" /> 
+                                    </layoutData>
+                            </VBox>
+                        </gl:GridListItem>
+                    </gl:GridList>
+				</VBox>
+			</gl:GridListItem>
+		</gl:GridList>
+                                <!-- <gl:GridList width="auto"
 		 growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
 			items="{oAttachmentList>/0/compComplDArray}">
           	<gl:customLayout>
@@ -1654,13 +1638,13 @@
 							</VBox>
 						</HBox>
 			</gl:GridListItem>
-		</gl:GridList>
+		</gl:GridList> -->
                                  <HBox class="cl_HBoxBlockSep">
                                 </HBox> 
                                        
-   <Label text="{i18n>wizardStepcyberSecurityInfo}" visible= "{oVisibilityModel>/isdefaultLan}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>   
-   <Label text="{oi18n_En>wizardStepcyberSecurityInfo}/&#160;{i18n>wizardStepcyberSecurityInfo}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>   
-                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiSmallMarginTop">
+   <Label text="{i18n>wizardStepcyberSecurityInfo}" visible= "{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>   
+   <Label text="{oi18n_En>wizardStepcyberSecurityInfo}/&#160;{i18n>wizardStepcyberSecurityInfo}" visible= "{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>   
+                                  <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}"  class="cl_PreviewGrid sapUiSmallMarginTop">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>cyberHeader}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         	<Label text="{oi18n_En>cyberHeader}/&#160;{i18n>cyberHeader}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
@@ -1668,14 +1652,14 @@
 									</VBox>
 								</l:Grid>  
                                  
-                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="{oDataModel>/itCyberDto/orgConnectToJabilSystem}" >
+                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem} &amp;&amp; ${oUserModel>/isNew}}" >
 									   <!-- <VBox class="VRVboxStyle1" items="{oDataModel>/itCyberDto/orgEstablishConnection}">
                                        <HBox>
                                        <Button class="cl_BulletCss sapUiSizeCompact" visible="{oDataModel>isSelected}"/>
 										<Label text="{oDataModel>serviceName}" wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginBegin"></Label>
 									</HBox>
                                     </VBox> -->
-                                    <gl:GridList items="{oLookUpModel>/orgEstablishConnection}" visible="{oDataModel>/itCyberDto/orgConnectToJabilSystem}" class="gList sapUiTinyMarginTop sapUiSizeCompact">
+                                    <gl:GridList items="{oLookUpModel>/orgEstablishConnection}" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem} &amp;&amp; ${oUserModel>/isNew}}" class="gList sapUiTinyMarginTop sapUiSizeCompact">
      	  <gl:customLayout>
 			                                    <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" /> 
                                             </gl:customLayout> 
@@ -1693,7 +1677,7 @@
         </gl:GridList>
 								</l:Grid>  
                                 
-                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid ">
+                                 <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}"  class="cl_PreviewGrid ">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>willOrgCollectJabilData}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{oi18n_En>willOrgCollectJabilData}/&#160;{i18n>willOrgCollectJabilData}" visible="{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="cl_PreviewLablCls"></Label>
@@ -1701,8 +1685,8 @@
 									</VBox>
 								</l:Grid>  
                                 
-                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="{oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}">
-									  <gl:GridList  items="{oLookUpModel>/orgBusinessActivities}" visible="{oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}" class="gList fontStyle sapUiTinyMarginTop sapUiSizeCompact">
+                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="{=${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil} &amp;&amp; ${oUserModel>/isNew}}">
+									  <gl:GridList  items="{oLookUpModel>/orgBusinessActivities}" visible="{=${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil} &amp;&amp; ${oUserModel>/isNew}}" class="gList fontStyle sapUiTinyMarginTop sapUiSizeCompact">
      	                                    <gl:customLayout>
 			                                    <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" /> 
                                             </gl:customLayout> 
@@ -1721,34 +1705,34 @@
                                         </gl:GridList>
 								</l:Grid>  
                                 
-                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiSmallMarginTop" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem}||${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}? true: false}">
+                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiSmallMarginTop" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem}||${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}? true: false &amp;&amp; ${oUserModel>/isNew}}">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>orgCertificate}" visible="{oVisibilityModel>/isdefaultLan}"  wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{oi18n_En>orgCertificate}/&#160;{i18n>orgCertificate}"  visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{=${oDataModel>/itCyberDto/certifiedForInfoSecurity}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>  
-                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiSmallMarginTop" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem}||${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}? true: false}">
+                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiSmallMarginTop" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem}||${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}? true: false &amp;&amp; ${oUserModel>/isNew}}">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>validCertificate}"  visible="{oVisibilityModel>/isdefaultLan}"  wrapping="true" class="cl_PreviewLablCls"></Label>
                                         	<Label text="{oi18n_En>validCertificate}/&#160;{i18n>validCertificate}" visible="{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{=${oDataModel>/itCyberDto/validateCertificate}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>  
-                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiSmallMarginTop" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem}||${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}? true: false}">
+                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiSmallMarginTop" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem}||${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}? true: false &amp;&amp; ${oUserModel>/isNew}}">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>informationSecurityContactDetails}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{oi18n_En>informationSecurityContactDetails}/&#160;{i18n>informationSecurityContactDetails}"  visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{=${oDataModel>/itCyberDto/responsibleForInforSecurity}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>  
-                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiSmallMarginTop" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem}||${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}? true: false}">
+                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid sapUiSmallMarginTop" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem}||${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}? true: false &amp;&amp; ${oUserModel>/isNew}}">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>infoSecurityContact}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{oi18n_En>infoSecurityContact}/&#160;{i18n>infoSecurityContact}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
 									</VBox>
 								</l:Grid>  
-                                 <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem}||${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}? true: false}">
+                                 <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem}||${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}? true: false &amp;&amp; ${oUserModel>/isNew}}">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>firstNameG}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" visible="{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="cl_PreviewLablCls "></Label>
@@ -1786,7 +1770,7 @@
 									</VBox>
                                     
 								</l:Grid>
-                                                    <gl:GridList
+                                                    <!-- <gl:GridList
 		width="auto"  growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
 			items="{oAttachmentList>/0/compSecuDArray}">
           	<gl:customLayout>
@@ -1821,13 +1805,9 @@
 							</VBox>
 						</HBox>
 			</gl:GridListItem>
-		</gl:GridList>
+		</gl:GridList> -->
                                 <HBox class="cl_HBoxBlockSep sapUiTinyMarginTop">
                                 </HBox>
-                                   <!-- <HBox>
-                                      	<CheckBox selected="{oDataModel>/isFormAccepted}" enabled="{oEnableMdl>/isFormAcceptedEnb}" class="sapUiSizeCompact sapUiTinyMarginTop inputStyle" />
-										<Label text="{i18n>iAcknowledgeComplete}" wrapping="true" class="cl_PreviewLablCls sapUiSmallMarginTop"></Label>
-                                        </HBox> -->
 
 </VBox>
     </content>

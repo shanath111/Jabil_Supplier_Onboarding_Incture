@@ -434,7 +434,11 @@
         "comCodeId": "",
         "purchasingOrg": "",
         "comCode": "",
-        "plant": ""
+        "plant": "",
+        "newpaymentCurrency": "",
+        "newpaymentTerms": "",
+        "newincoterm": "",
+        "newincotermNamedPlace": ""
     },
     "surveyInfoDto": {
         "altContact": {

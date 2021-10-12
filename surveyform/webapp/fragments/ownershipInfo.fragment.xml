@@ -68,18 +68,18 @@
         <!-- <VBox class="sapUiTinyMarginBegin sapUiTinyMarginTop fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>publicTradeText}:${oi18n_En>publicTradeText} +'/&#160;' +${i18n>publicTradeText}}" class="fontStyle fontStyleItalic sapUiSizeCompact"/></VBox> -->
 		
-        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>ownedVerbiage}:${oi18n_En>ownedVerbiage} +'&#10;' +${i18n>ownedVerbiage}}" wrapping="true" class="fontBold fontStyleItalic sapUiTinyMarginTop sapUiTinyMarginBegin" />
-		<HBox wrap="Wrap" class="sapUiSizeCompact">
-		<Label labelFor="ownbyUS" required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isOwnedbyIndividual}:${oi18n_En>isOwnedbyIndividual} +'&#10;' +${i18n>isOwnedbyIndividual}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-          <Link text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>readMore}:${oi18n_En>readMore} +'/&#160;' +${i18n>readMore}}" target="_blank" href="https://www.treasury.gov/resource-center/sanctions/sdn-list/pages/default.aspx" wrapping="true" class="sapUiTinyMarginBegin"/>
+        <Label visible="{oUserModel>/isNew}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>ownedVerbiage}:${oi18n_En>ownedVerbiage} +'&#10;' +${i18n>ownedVerbiage}}" wrapping="true" class="fontBold fontStyleItalic sapUiTinyMarginTop sapUiTinyMarginBegin" />
+		<HBox visible="{oUserModel>/isNew}" wrap="Wrap" class="sapUiSizeCompact">
+		<Label visible="{oUserModel>/isNew}" labelFor="ownbyUS" required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isOwnedbyIndividual}:${oi18n_En>isOwnedbyIndividual} +'&#10;' +${i18n>isOwnedbyIndividual}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+          <Link visible="{oUserModel>/isNew}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>readMore}:${oi18n_En>readMore} +'/&#160;' +${i18n>readMore}}" target="_blank" href="https://www.treasury.gov/resource-center/sanctions/sdn-list/pages/default.aspx" wrapping="true" class="sapUiTinyMarginBegin"/>
 	</HBox>
-    	<RadioButtonGroup id="ownbyUS" columns="2" selectedIndex="{=${oDataModel>/ownerShipInfoDto/isEntitySDNList} === true? 0 :(${oDataModel>/ownerShipInfoDto/isEntitySDNList}=== false ?1: -1)}" class="inputStyle" enabled="{oEnableMdl>/isEntitySDNListEnb}" valueState="{oErrorModel>/isEntitySDNListE}" select="fnClearValueState">
+    	<RadioButtonGroup visible="{oUserModel>/isNew}" id="ownbyUS" columns="2" selectedIndex="{=${oDataModel>/ownerShipInfoDto/isEntitySDNList} === true? 0 :(${oDataModel>/ownerShipInfoDto/isEntitySDNList}=== false ?1: -1)}" class="inputStyle" enabled="{oEnableMdl>/isEntitySDNListEnb}" valueState="{oErrorModel>/isEntitySDNListE}" select="fnClearValueState">
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/ownerShipInfoDto/isEntitySDNList}"></RadioButton>
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 		</RadioButtonGroup>
 	</l:VerticalLayout>
-	<Panel id="idOwnerShipInfo1" visible="{=${oDataModel>/ownerShipInfoDto/isEntitySDNList} === true}" class="panelPadding panelBottom sapUiTinyMarginBegin">
-	<VBox fitContainer="true" class="fontStyle">
+	<Panel id="idOwnerShipInfo1" visible="{=${oDataModel>/ownerShipInfoDto/isEntitySDNList} === true &amp;&amp; ${oUserModel>/isNew}}" class="panelPadding panelBottom sapUiTinyMarginBegin">
+	<VBox fitContainer="true" visible="{oUserModel>/isNew}" class="fontStyle">
     	<Label text="{i18n>legalEntityText}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact sapUiTinyMarginBottom"/>
                 <Label text="{oi18n_En>legalEntityText}&#10;{i18n>legalEntityText}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="sapUiSizeCompact sapUiTinyMarginBottom"/>
    <Table items="{oDataModel>/ownerShipInfoDto/sdnlistContact}" id="sdnLC" class="entityContactTbl sapUiSizeCompact">
@@ -97,12 +97,12 @@
              <VBox  class="fontStyle sapUiSizeCompact sapUiSmallMarginEnd">
 					<Label text="{i18n>firstNameG}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinylMarginEnd"/>
                     <Label text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinylMarginEnd"/>
-					<Input value="{oDataModel>firstName}" maxLength="40" liveChange="fnValueChange"  class="sapUiSmallMarginEnd inputStyle" enabled="{oEnableMdl>/sdnlistContactfirstNameEnb}"/>
+					<Input value="{oDataModel>firstName}" maxLength="41" liveChange="fnLiveInputValueChange"  class="sapUiSmallMarginEnd inputStyle" enabled="{oEnableMdl>/sdnlistContactfirstNameEnb}"/>
                     </VBox>
                     <VBox  class="fontStyle sapUiSizeCompact sapUiSmallMarginEnd">
 					<Label text="{i18n>lastNameG}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinylMarginEnd"/>
                     <Label text="{oi18n_En>lastNameG}&#10;{i18n>lastNameG}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinylMarginEnd"/>
-					<Input value="{oDataModel>lastName}" maxLength="40" liveChange="fnValueChange"  class="sapUiSmallMarginEnd inputStyle" enabled="{oEnableMdl>/sdnlistContactlastNameEnb}"/>
+					<Input value="{oDataModel>lastName}" maxLength="41" liveChange="fnLiveInputValueChange"  class="sapUiSmallMarginEnd inputStyle" enabled="{oEnableMdl>/sdnlistContactlastNameEnb}"/>
 					
                     </VBox>
                     <VBox class="sapUiSizeCompact sapUiSmallMarginEnd">
@@ -148,7 +148,7 @@
 		 </items>
 		</FlexBox> -->
 	</Panel>
-	<l:VerticalLayout class="sapUiSizeCompact">
+	<l:VerticalLayout visible="{oUserModel>/isNew}" class="sapUiSizeCompact">
 		<Label labelFor="ownbyOtherCountry" required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isOwnedbyOtherCountry}:${oi18n_En>isOwnedbyOtherCountry} +'&#10;' +${i18n>isOwnedbyOtherCountry}}" wrapping="true"
 			class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 		<RadioButtonGroup id="ownbyOtherCountry" columns="2" selectedIndex="{=${oDataModel>/ownerShipInfoDto/isEntityRegInCISNK} === true? 0 :(${oDataModel>/ownerShipInfoDto/isEntityRegInCISNK}=== false ?1: -1)}" class="inputStyle" enabled="{oEnableMdl>/isEntityRegInCISNKE}" valueState="{oErrorModel>/isEntityRegInCISNKE}" select="fnClearValueState" >
@@ -156,7 +156,7 @@
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 		</RadioButtonGroup>
 	</l:VerticalLayout>
-	<Panel id="idOwnerShipInfo2" visible="{=${oDataModel>/ownerShipInfoDto/isEntityRegInCISNK} === true}" class="panelPadding panelBottom sapUiTinyMarginBegin">
+	<Panel id="idOwnerShipInfo2" visible="{=${oDataModel>/ownerShipInfoDto/isEntityRegInCISNK} === true &amp;&amp; ${oUserModel>/isNew}}" class="panelPadding panelBottom sapUiTinyMarginBegin">
 	<VBox fitContainer="true" class="fontStyle">
     	<Label text="{i18n>legalEntityText}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact sapUiTinyMarginBottom"/>
                 <Label text="{oi18n_En>legalEntityText}&#10;{i18n>legalEntityText}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="sapUiSizeCompact sapUiTinyMarginBottom"/>
@@ -175,12 +175,12 @@
              <VBox  class="fontStyle sapUiSizeCompact sapUiSmallMarginEnd">
 					<Label text="{i18n>firstNameG}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"  class="sapUiTinylMarginEnd"/>
                     <Label text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinylMarginEnd"/>
-					<Input value="{oDataModel>firstName}" maxLength="40"  enabled="{oEnableMdl>/regInCISNKContactfirstNameEnb}" liveChange="fnValueChange"  class="sapUiSmallMarginEnd inputStyle"/>
+					<Input value="{oDataModel>firstName}" maxLength="41"  enabled="{oEnableMdl>/regInCISNKContactfirstNameEnb}" liveChange="fnLiveInputValueChange"  class="sapUiSmallMarginEnd inputStyle"/>
                     </VBox>
                     <VBox  class="fontStyle sapUiSizeCompact sapUiSmallMarginEnd">
 					<Label text="{i18n>lastNameG}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinylMarginEnd"/>
                     	<Label text="{oi18n_En>lastNameG}&#10;{i18n>lastNameG}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinylMarginEnd"/>
-					<Input value="{oDataModel>lastName}" maxLength="40" enabled="{oEnableMdl>/regInCISNKContactlastNameEnb}" liveChange="fnValueChange" class="sapUiSmallMarginEnd inputStyle"/>
+					<Input value="{oDataModel>lastName}" maxLength="41" enabled="{oEnableMdl>/regInCISNKContactlastNameEnb}" liveChange="fnLiveInputValueChange" class="sapUiSmallMarginEnd inputStyle"/>
 					
                     </VBox>
                     <VBox class="sapUiSizeCompact sapUiSmallMarginEnd">
@@ -227,7 +227,7 @@
 			</items>
 		</FlexBox> -->
 	</Panel>
-	<l:VerticalLayout width="100%" class="sapUiSizeCompact">
+	<l:VerticalLayout visible="{oUserModel>/isNew}" width="100%" class="sapUiSizeCompact">
 		<Text text="{i18n>isManagedBy}" visible= "{oVisibilityModel>/isdefaultLan}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
         <Text text="{oi18n_En>isManagedBy}&#10;{i18n>isManagedBy}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 		<HBox><Label labelFor="govtOfficial1" required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>govtOfficial}:${oi18n_En>govtOfficial} +'&#10;' +${i18n>govtOfficial}}" wrapping="true"
@@ -294,7 +294,7 @@
 			</VBox>
 		</l:Grid>
 	</l:VerticalLayout>
-	<l:VerticalLayout width="100%" class="sapUiSizeCompact">
+	<l:VerticalLayout width="100%" visible="{oUserModel>/isNew}" class="sapUiSizeCompact">
 		<HBox class="fontStyle">
 			<Label labelFor="govtOfficial2" required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>closememberofgovtOfficial}:${oi18n_En>closememberofgovtOfficial} +'&#10;' +${i18n>closememberofgovtOfficial}}" wrapping="true"
 				class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
@@ -342,7 +342,7 @@
 			<VBox class="fontStyle">
 			<Label required="true" text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
             <Label required="true" text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input maxLength="31" class="inputStyle" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/contact}" valueState="{oErrorModel>/closegovtEntityContE}" valueStateText="{oErrorModel>/closegovtEntityContM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtFamilycontactEnb}"  liveChange="fnLiveInputNumericValueChange"></Input>
+				<Input maxLength="31" class="inputStyle" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/contact}" valueState="{oErrorModel>/closegovtEntityContE}" valueStateText="{oErrorModel>/closegovtEntityContM}" enabled="{oEnableMdl>/managedByGovtFamilycontactEnb}"  liveChange="fnLiveInputNumericValueChange"></Input>
                 <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
 				<layoutData>
 					<l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>

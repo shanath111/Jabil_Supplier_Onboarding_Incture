@@ -671,8 +671,11 @@ sap.ui.define([
                                 if (temp.conflictOfInterest == true) {
                                     temp.conflictOfInterests = 1;
                                     temp.CoIFields = true;
-                                } else {
+                                } else if (temp.conflictOfInterest == false) {
                                     temp.conflictOfInterests = 0;
+                                    temp.CoIFields = false;
+                                } else {
+                                    temp.conflictOfInterests = -1;
                                     temp.CoIFields = false;
                                 }
                                 if (temp.requestorConflictOfInterest == true) {
@@ -682,12 +685,13 @@ sap.ui.define([
                                     temp.requestorConflictOfInterests = 0;
                                     temp.reqCoIFields = false;
                                 }
+
                                 if (temp.isExclCiscoGhub == true) {
-                                    temp.isExclCiscoGhub = 1;
-
-                                } else {
                                     temp.isExclCiscoGhub = 0;
-
+                                } else if (temp.isExclCiscoGhub == false) {
+                                    temp.isExclCiscoGhub = 1;
+                                } else {
+                                    temp.isExclCiscoGhub = -1;
                                 }
                                 if (temp.addlSurveyForSupplier == true) {
                                     temp.addlSurveyForSuppliers = 0;
@@ -704,15 +708,20 @@ sap.ui.define([
                                 }
                                 if (temp.oneTimePurchaseSupplierIndicator == true) {
                                     temp.oneTimePurchaseSupplierIndicators = 0;
-                                } else {
+                                } else if (temp.oneTimePurchaseSupplierIndicator == false) {
                                     temp.oneTimePurchaseSupplierIndicators = 1;
+                                } else {
+                                    temp.oneTimePurchaseSupplierIndicators = -1;
                                 }
                                 if (temp.customerDirectedSupplierIndicator == true) {
                                     temp.customerDirectedSupplierIndicatorsMan = true;
                                     temp.customerDirectedSupplierIndicators = 0;
-                                } else {
+                                } else if (temp.customerDirectedSupplierIndicator == false) {
                                     temp.customerDirectedSupplierIndicatorsMan = false;
                                     temp.customerDirectedSupplierIndicators = 1;
+                                } else {
+                                    temp.customerDirectedSupplierIndicatorsMan = false;
+                                    temp.customerDirectedSupplierIndicators = -1;
                                 }
                                 if (temp.outsideProcessiongSupplierIndicator == true) {
                                     temp.outsideProcessiongSupplierIndicators = 0;
@@ -949,11 +958,11 @@ sap.ui.define([
                             "altContactJobTitlem": "",
                             "altEmailm": "",
                             "altPhoneNumberm": "",
-                            "conflictOfInterests": 0,
-                            "isExclCiscoGhub": 1,
+                            "conflictOfInterests": -1,
+                            "isExclCiscoGhub": -1,
                             "representAnotherCompanys": 1,
-                            "oneTimePurchaseSupplierIndicators": 1,
-                            "customerDirectedSupplierIndicators": 1,
+                            "oneTimePurchaseSupplierIndicators": -1,
+                            "customerDirectedSupplierIndicators": -1,
                             "outsideProcessiongSupplierIndicators": 1,
                             "manualAddressOverrideSupplierIndicators": 1,
                             "requestorConflictOfInterests": 0,
@@ -1054,7 +1063,26 @@ sap.ui.define([
                         oView.getModel("JMBPCreate").refresh();
                     }
 
-
+                    if (oView.getModel("JMBPCreate").getData().conflictOfInterests == -1) {
+                        oView.getModel("JMBPCreate").getData().conflicte = "Error";
+                        vError = true;
+                        oView.getModel("JMBPCreate").refresh();
+                    }
+                    if (oView.getModel("JMBPCreate").getData().oneTimePurchaseSupplierIndicators == -1) {
+                        oView.getModel("JMBPCreate").getData().oneTimePurchaseSupplierIndicatorse = "Error";
+                        vError = true;
+                        oView.getModel("JMBPCreate").refresh();
+                    }
+                    if (oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicators == -1) {
+                        oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicatorse = "Error";
+                        vError = true;
+                        oView.getModel("JMBPCreate").refresh();
+                    }
+                    if (oView.getModel("JMBPCreate").getData().isExclCiscoGhub == -1) {
+                        oView.getModel("JMBPCreate").getData().isExclCiscoGhube = "Error";
+                        vError = true;
+                        oView.getModel("JMBPCreate").refresh();
+                    }
                     if (!oView.getModel("JMBPCreate").getData().plant) {
                         oView.getModel("JMBPCreate").getData().plante = "Error";
                         oView.getModel("JMBPCreate").getData().plantm = oi18n.getProperty("BPCMandatoryValidationPlant");
@@ -1314,8 +1342,10 @@ sap.ui.define([
                 var vConflictOfIntSel = oView.getModel("JMBPCreate").getData().conflictOfInterests;
                 if (vConflictOfIntSel == 0) {
                     vConflictOfInt = false;
-                } else {
+                } else if (vConflictOfIntSel == 1) {
                     vConflictOfInt = true;
+                } else {
+                    vConflictOfInt = null;
                 }
                 var vConflictOfInt1;
                 var vConflictOfIntSel1 = oView.getModel("JMBPCreate").getData().requestorConflictOfInterests;
@@ -1327,9 +1357,11 @@ sap.ui.define([
                 var vCiscoGrub;
                 var isExclCiscoGhubSel1 = oView.getModel("JMBPCreate").getData().isExclCiscoGhub;
                 if (isExclCiscoGhubSel1 == 0) {
+                    vCiscoGrub = true;
+                } else if (isExclCiscoGhubSel1 == 1) {
                     vCiscoGrub = false;
                 } else {
-                    vCiscoGrub = true;
+                    vCiscoGrub = null;
                 }
 
                 var vAdditionalSuvey;
@@ -1348,15 +1380,19 @@ sap.ui.define([
                 var vOneTimeInd = oView.getModel("JMBPCreate").getData().oneTimePurchaseSupplierIndicators;
                 if (vOneTimeInd == 0) {
                     vOneTimeInd = true;
-                } else {
+                } else if (vOneTimeInd == 1) {
                     vOneTimeInd = false;
+                } else {
+                    vOneTimeInd = null;
                 }
 
                 var vCustDirInd = oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicators;
                 if (vCustDirInd == 0) {
                     vCustDirInd = true;
-                } else {
+                } else if (vCustDirInd == 1) {
                     vCustDirInd = false;
+                } else {
+                    vCustDirInd = null;
                 }
 
                 var vOutsideProcessInd = oView.getModel("JMBPCreate").getData().outsideProcessiongSupplierIndicators;
@@ -1374,6 +1410,12 @@ sap.ui.define([
 
 
                 if (vError == true) {
+                     sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
                     return;
                 }
                 var vConfirmMsg, vStatus = "";
@@ -2869,6 +2911,11 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierContractm = "";
                     oView.getModel("JMBPCreate").refresh();
                 }
+                oView.getModel("JMBPCreate").getData().conflicte = "None";
+                oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicatorse = "None";
+                oView.getModel("JMBPCreate").getData().oneTimePurchaseSupplierIndicatorse = "None";
+                oView.getModel("JMBPCreate").getData().isExclCiscoGhube = "None";
+                oView.getModel("JMBPCreate").refresh();
             },
             fnLiveChangeIncotermLoc: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
@@ -2939,6 +2986,7 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").getData().additionalInformationm = "";
 
                 }
+                oView.getModel("JMBPCreate").getData().conflicte = "None";
                 oView.getModel("JMBPCreate").getData().additionalInformation = "";
                 oView.getModel("JMBPCreate").refresh();
             },
@@ -3393,6 +3441,7 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierContractm = "";
 
                 }
+                oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicatorse = "None";
                 oView.getModel("JMBPCreate").getData().customerDirectedSupplierContract = "";
                 oView.getModel("JMBPCreate").getData().customerDirectedSupplierCustName = "";
                 oView.getModel("JMBPCreate").refresh();
@@ -3402,7 +3451,15 @@ sap.ui.define([
                 if(spaceRegex.test(oEvent.getSource().getValue())){
                     oEvent.getSource().setValue("");
                 }
-            }
+            },
+            fnChangeOneTimePurchInd: function () {
+                oView.getModel("JMBPCreate").getData().oneTimePurchaseSupplierIndicatorse = "None";
+                oView.getModel("JMBPCreate").refresh();
+            },
+            fnChangeCiscoGrub: function () {
+                oView.getModel("JMBPCreate").getData().isExclCiscoGhube = "None";
+                oView.getModel("JMBPCreate").refresh();
+            },
 
 
 
