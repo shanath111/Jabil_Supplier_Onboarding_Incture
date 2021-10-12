@@ -1033,9 +1033,9 @@ sap.ui.define([
                 temp.Action = "MT";
                 //temp.Comments ;
                 temp.Commentse = "None";
-                temp.required = false;
+                temp.required = true;
                 temp.Commentsm = "";
-                temp.commentsTxt = "Comments (if any)";
+                temp.commentsTxt = "Comments";
                 var oJosnComments = new sap.ui.model.json.JSONModel();
                 oJosnComments.setData(temp);
                 oView.setModel(oJosnComments, "JMAppvrComments");
@@ -1051,13 +1051,13 @@ sap.ui.define([
                 this.oBankComments.close();
             },
             fnSubmitComments: function () {
-                if (oView.getModel("JMAppvrComments").getData().Action == "RJ") {
+                if (oView.getModel("JMAppvrComments").getData().Action == "RJ" || oView.getModel("JMAppvrComments").getData().Action == "MT") {
                     if (oView.getModel("JMAppvrComments").getData().Comments) {
-                        this.fnApproveSub("RJ");
+                        this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
                         this.oBankComments.close();
                     } else {
                         oView.getModel("JMAppvrComments").getData().Commentse = "Error";
-                        oView.getModel("JMBankComments").getData().Commentsm = oi18n.getText("EnterCommentsTxt");
+                        oView.getModel("JMAppvrComments").getData().Commentsm = oi18n.getProperty("EnterCommentsTxt");
                         oView.getModel("JMAppvrComments").refresh();
                     }
                 } else {
@@ -1782,6 +1782,12 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().buyerData = true;
                     oView.getModel("oConfigMdl").getData().onBoardDet = false;
                     oView.getModel("oConfigMdl").refresh();
+                      sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
                     return;
                 }
                 var vError1 = false, vErrorTxt1 = "", orderBpNumber = "", invoiceBpNumber = "";

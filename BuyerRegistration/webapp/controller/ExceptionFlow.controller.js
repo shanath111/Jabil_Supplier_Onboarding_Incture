@@ -38,7 +38,7 @@ sap.ui.define([
             },
 
             fnSetConfigModel: function (oContext) {
- oView.getModel("oConfigMdl").getData().CommentsVis = false;
+                oView.getModel("oConfigMdl").getData().CommentsVis = false;
                 if (oContext.Name == "GTS") {
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis = false;
@@ -76,7 +76,7 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
-                         if (oEvent.getSource().getData().comments) {
+                        if (oEvent.getSource().getData().comments) {
                             oView.getModel("oConfigMdl").getData().CommentsVis = true;
                             oView.getModel("oConfigMdl").getData().comments = oEvent.getSource().getData().comments;
                         }
@@ -541,13 +541,14 @@ sap.ui.define([
                     var oJosnComments = new sap.ui.model.json.JSONModel();
                     oJosnComments.setData(temp);
                     oView.setModel(oJosnComments, "JMAppvrComments");
-                    if (!this.oBankComments) {
-                        this.oBankComments = sap.ui.xmlfragment(
-                            "ns.BuyerRegistration.fragments.ApproverComments", this);
-                        oView.addDependent(this.oBankComments);
-                    }
+                    // if (!this.oBankComments) {
+                    //     this.oBankComments = sap.ui.xmlfragment(
+                    //         "ns.BuyerRegistration.fragments.ApproverComments", this);
+                    //     oView.addDependent(this.oBankComments);
+                    // }
 
-                    this.oBankComments.open();
+                    // this.oBankComments.open();
+                    this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
                 } else {
                     oView.byId("id_SegmentedBtn").setSelectedKey("partnerFunction");
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -589,9 +590,9 @@ sap.ui.define([
                 temp.Action = "MT";
                 //temp.Comments ;
                 temp.Commentse = "None";
-                temp.required = false;
+                temp.required = true;
                 temp.Commentsm = "";
-                temp.commentsTxt = "Comments (if any)";
+                temp.commentsTxt = "Comments";
                 var oJosnComments = new sap.ui.model.json.JSONModel();
                 oJosnComments.setData(temp);
                 oView.setModel(oJosnComments, "JMAppvrComments");
@@ -607,13 +608,13 @@ sap.ui.define([
                 this.oBankComments.close();
             },
             fnSubmitComments: function () {
-                if (oView.getModel("JMAppvrComments").getData().Action == "RJ") {
+                if (oView.getModel("JMAppvrComments").getData().Action == "RJ" || oView.getModel("JMAppvrComments").getData().Action == "MT") {
                     if (oView.getModel("JMAppvrComments").getData().Comments) {
-                        this.fnApproveSub("RJ");
+                        this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
                         this.oBankComments.close();
                     } else {
                         oView.getModel("JMAppvrComments").getData().Commentse = "Error";
-                        oView.getModel("JMBankComments").getData().Commentsm = oi18n.getText("EnterCommentsTxt");
+                        oView.getModel("JMAppvrComments").getData().Commentsm = oi18n.getProperty("EnterCommentsTxt");
                         oView.getModel("JMAppvrComments").refresh();
                     }
                 } else {
