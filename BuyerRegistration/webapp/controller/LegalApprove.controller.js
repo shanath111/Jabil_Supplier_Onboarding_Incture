@@ -696,7 +696,7 @@ sap.ui.define([
                         this.oBankComments.close();
                     } else {
                         oView.getModel("JMAppvrComments").getData().Commentse = "Error";
-                        oView.getModel("JMBankComments").getData().Commentsm = oi18n.getText("EnterCommentsTxt");
+                        oView.getModel("JMAppvrComments").getData().Commentsm = oi18n.getProperty("EnterCommentsTxt");
                         oView.getModel("JMAppvrComments").refresh();
                     }
                 } else {
