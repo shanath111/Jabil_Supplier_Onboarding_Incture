@@ -40,7 +40,7 @@
 											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
 											<core:ListItem key="{oBPLookUpMdl>id}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
 										</ComboBox> -->
-                                        	<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/workCell}" liveChange="fnLiveChangeWorkCell" valueState="{JMBPCreate>/workCelle}" valueStateText="{JMBPCreate>/workCellm}" class="cl_VRInputCls"></Input>
+                                        	<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/workCell}" liveChange="fnLiveChangeWorkCell" change="fnInputSpaceCheck" valueState="{JMBPCreate>/workCelle}" valueStateText="{JMBPCreate>/workCellm}" class="cl_VRInputCls"></Input>
 									</VBox>
                                         <VBox class="VRVboxStyle1" visible="{JMBPCreate>/materialGroupVis}">
 										<Label text="{i18n>MaterialGroup}" required="true" class="cl_VRLablCls "></Label>
@@ -113,7 +113,7 @@
                                  <l:Grid visible="{JMBPCreate>/reqCoIFields}" class="sapUiSizeCompact">
                                  <VBox class="VRVboxStyle1" visible="{JMBPCreate>/reqCoIFields}">
 										<Label text="{i18n>BPCNameReq}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/requestorCOIName}" liveChange="fnChangeFirstName2" valueState="{JMBPCreate>/requestorCOINamee}" valueStateText="{JMBPCreate>/requestorCOINamem}" class="cl_VRInputCls"></Input>
+										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/requestorCOIName}" liveChange="fnChangeFirstName2" change="fnInputSpaceCheck"  valueState="{JMBPCreate>/requestorCOINamee}" valueStateText="{JMBPCreate>/requestorCOINamem}" class="cl_VRInputCls"></Input>
 									</VBox>
 								
 									<VBox class="VRVboxStyle1" visible="{JMBPCreate>/reqCoIFields}">
@@ -135,22 +135,22 @@
                                
 								<VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCorporationName" valueState="{JMBPCreate>/corporationNamee}" valueStateText="{JMBPCreate>/corporationNamem}" value="{JMBPCreate>/corporationName}"></Input>
+										<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCorporationName" valueState="{JMBPCreate>/corporationNamee}" valueStateText="{JMBPCreate>/corporationNamem}" value="{JMBPCreate>/corporationName}" change="fnInputSpaceCheck"></Input>
 								
                                 	</VBox>
                                  <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}"  maxLength="35"  value="{JMBPCreate>/corporationName2}"></Input>
+										<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}"  maxLength="35"  value="{JMBPCreate>/corporationName2}" change="fnInputSpaceCheck"></Input>
 								
                                 	</VBox>
                                     <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}"  maxLength="35"  value="{JMBPCreate>/corporationName3}"></Input>
+										<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}"  maxLength="35"  value="{JMBPCreate>/corporationName3}" change="fnInputSpaceCheck"></Input>
 								
                                 	</VBox>
                                     <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}"  maxLength="35"  value="{JMBPCreate>/corporationName4}"></Input>
+										<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}"  maxLength="35"  value="{JMBPCreate>/corporationName4}" change="fnInputSpaceCheck"></Input>
 								
                                 	</VBox>   
                                  
@@ -194,7 +194,7 @@
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCAddressLine1}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/address1}" liveChange="fnLiveChangeAddress1" valueState="{JMBPCreate>/address1e}" valueStateText="{JMBPCreate>/address1m}"  class="cl_VRInputCls"></Input>
+										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/address1}" liveChange="fnLiveChangeAddress1" valueState="{JMBPCreate>/address1e}" valueStateText="{JMBPCreate>/address1m}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
 									</VBox>
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCAddressLine2}" class="cl_VRLablCls "></Label>
@@ -229,13 +229,13 @@
 									</VBox>
                                     	<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCCity}" required="true" class="cl_VRLablCls "></Label>
-									<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/city}" liveChange="fnLiveChangeCity" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}" class="cl_VRInputCls"></Input>
+									<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/city}" liveChange="fnLiveChangeCity" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
                                     
 									</VBox>
                                     	
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCPostalCode}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" change="fnLiveChangePostalCode"  value="{JMBPCreate>/postalCode}" valueState="{JMBPCreate>/postalCodee}" valueStateText="{JMBPCreate>/postalCodem}"  class="cl_VRInputCls"></Input>
+										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangePostalCode"  value="{JMBPCreate>/postalCode}" valueState="{JMBPCreate>/postalCodee}" valueStateText="{JMBPCreate>/postalCodem}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
 									</VBox>
                                     	<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCPOBox}" required="false" class="cl_VRLablCls "></Label>
@@ -265,11 +265,11 @@
 								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCFirstName}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/firstName}" liveChange="fnChangeFirstName" valueState="{JMBPCreate>/firstNamee}" valueStateText="{JMBPCreate>/firstNamem}" class="cl_VRInputCls"></Input>
+										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/firstName}" liveChange="fnChangeFirstName" change="fnInputSpaceCheck" valueState="{JMBPCreate>/firstNamee}" valueStateText="{JMBPCreate>/firstNamem}" class="cl_VRInputCls"></Input>
 									</VBox>
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCLastName}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/lastName}" liveChange="fnChangeLastName" valueState="{JMBPCreate>/lastNamee}" valueStateText="{JMBPCreate>/lastNamem}" class="cl_VRInputCls"></Input>
+										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/lastName}" liveChange="fnChangeLastName" change="fnInputSpaceCheck" valueState="{JMBPCreate>/lastNamee}" valueStateText="{JMBPCreate>/lastNamem}" class="cl_VRInputCls"></Input>
 									</VBox>
 									
 									<VBox class="VRVboxStyle1">
@@ -319,11 +319,11 @@
 								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCFirstName}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/altContactFirstName}" liveChange="fnChangeFirstName1" valueState="{JMBPCreate>/altContactFirstNamee}" valueStateText="{JMBPCreate>/altContactFirstNamem}" class="cl_VRInputCls"></Input>
+										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/altContactFirstName}" liveChange="fnChangeFirstName1" change="fnInputSpaceCheck" valueState="{JMBPCreate>/altContactFirstNamee}" valueStateText="{JMBPCreate>/altContactFirstNamem}" class="cl_VRInputCls"></Input>
 									</VBox>
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCLastName}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/altContactLastName}" liveChange="fnChangeLastName1" valueState="{JMBPCreate>/altContactLastNamee}" valueStateText="{JMBPCreate>/altContactLastNamem}" class="cl_VRInputCls"></Input>
+										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/altContactLastName}" liveChange="fnChangeLastName1" change="fnInputSpaceCheck" valueState="{JMBPCreate>/altContactLastNamee}" valueStateText="{JMBPCreate>/altContactLastNamem}" class="cl_VRInputCls"></Input>
 									</VBox> 
 									<!-- <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCJobTitle}" required="false" class="cl_VRLablCls "></Label>

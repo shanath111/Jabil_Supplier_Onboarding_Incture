@@ -56,7 +56,7 @@
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postalCode}:${oi18n_En>postalCode}+ '&#xA;' +${i18n>postalCode}}" wrapping="true" required="true" />
-              <Input maxLength="10" value="{companyInfoModel>/oPostalCode}" valueState="{oErrorModel>/oFAPostCdE}" valueStateText="{oErrorModel>/oFAPostCdM}" liveChange="fnValueChange" class="inputStyle"></Input>
+              <Input maxLength="{oLookUpModel>/PostalCodeValidationOFA/postalCodeLength}" value="{companyInfoModel>/oPostalCode}" valueState="{oErrorModel>/oFAPostCdE}" valueStateText="{oErrorModel>/oFAPostCdM}" liveChange="fnValueChange" change="fnVerifyPostalCodeOFA" class="inputStyle"></Input>
             <!-- <html:input type="text" id="iPostal" class="cl_HTMLInput" /> -->
          </VBox>
          <VBox class="fontStyle">
