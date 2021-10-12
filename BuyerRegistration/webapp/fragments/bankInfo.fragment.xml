@@ -6,74 +6,74 @@
 		<l:Grid  containerQuery="true" defaultSpan="XL2 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 			<VBox  class="fontStyle">
 					<Label wrapping="true" text="{i18n>bankCountry}"></Label>
-					<ComboBox width="100%" enabled="{oConfigMdl>/BankFieldsEdit}"  items="{oBPLookUpMdl>/Country}" showSecondaryValues="true" filterSecondaryValues="true" selectedKey="{oDataModel>/bankDto/bankInfoDto/0/bankCountry}" valueState="{oErrorModel>/bankCountryE}" valueStateText="{oErrorModel>/bankCountryM}"  change="fnLiveValueBankInput" class="inputStyle">
+					<ComboBox width="100%" editable="{oConfigMdl>/BankFieldsEdit}"  items="{oBPLookUpMdl>/Country}" showSecondaryValues="true" filterSecondaryValues="true" selectedKey="{oDataModel>/bankDto/bankInfoDto/0/bankCountry}" valueState="{oErrorModel>/bankCountryE}" valueStateText="{oErrorModel>/bankCountryM}"  change="fnLiveValueBankInput" class="inputStyle">
                      <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/></ComboBox>
 				</VBox>
             	<VBox  class="fontStyle">
 					<Label text="{i18n>bankName}" wrapping="true" required="true"></Label>
-					<Input maxLength="61" enabled="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/bankName}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+					<Input maxLength="61" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/bankName}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
 				</VBox>
 				  <VBox class="fontStyle">
 					<Label text="{i18n>bankAddr}"  wrapping="true" required="false"></Label>
-					<Input maxLength="34" enabled="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/bankAddress}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+					<Input maxLength="34" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/bankAddress}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
 				</VBox>
                 <VBox class="fontStyle">
 					<Label text="{i18n>bankCity}" wrapping="true"></Label>
-					<Input maxLength="36" enabled="{oConfigMdl>/BankFieldsEdit}" valueStateText="{oErrorModel>/bankCityM}" value="{oDataModel>/bankDto/bankInfoDto/0/bankCity}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+					<Input maxLength="36" editable="{oConfigMdl>/BankFieldsEdit}" valueStateText="{oErrorModel>/bankCityM}" value="{oDataModel>/bankDto/bankInfoDto/0/bankCity}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 				</VBox>
 				<VBox  class="fontStyle">
 					<Label text="{i18n>state}" wrapping="true" required="false"></Label>
-					<Input maxLength="4" enabled="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/bankState}"  valueState="{oErrorModel>/bankStateE}" valueStateText="{oErrorModel>/bankStateM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+					<Input maxLength="4" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/bankState}"  valueState="{oErrorModel>/bankStateE}" valueStateText="{oErrorModel>/bankStateM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
 				</VBox>
 				
 				<VBox class="fontStyle">
 					<Label wrapping="true" text="{i18n>bankBranch}"  required="true"></Label>
-					<Input maxLength="41" enabled="{oConfigMdl>/BankFieldsEdit}"  value="{oDataModel>/bankDto/bankInfoDto/0/bankBranch}"  change="fnInputBankAccNumber" required="true" class="inputStyle"></Input>
+					<Input maxLength="41" editable="{oConfigMdl>/BankFieldsEdit}"  value="{oDataModel>/bankDto/bankInfoDto/0/bankBranch}"  change="fnInputBankAccNumber" required="true" class="inputStyle"></Input>
 				</VBox>
                 <VBox class="fontStyle" >
 					<Label text="{i18n>accHolderName}" wrapping="true" required="true"></Label>
-					<Input maxLength="61" enabled="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/benefAccHolderName}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+					<Input maxLength="61" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/benefAccHolderName}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
 				</VBox>
 				<VBox  class="fontStyle">
 					<Label text="{i18n>bankAccNum}" wrapping="true" required="true"></Label>
-					<Input maxLength="19" enabled="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/bankAccNum}" valueState="{oErrorModel>/bankAccNumE}" valueStateText="{oErrorModel>/bankAccNumM}" change="fnInputBankAccNumber" required="true" class="inputStyle">
+					<Input maxLength="19" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/bankAccNum}" valueState="{oErrorModel>/bankAccNumE}" valueStateText="{oErrorModel>/bankAccNumM}" change="fnInputBankAccNumber" required="true" class="inputStyle">
                     </Input>
 				</VBox>
                  <VBox  class="fontStyle">
 					<Label tooltip="{oi18n_En>refDetTT}" text="{i18n>refDetails}" wrapping="true" required="{oVisibilityModel>/bankValidation/referenceDetails}"></Label>
-					<Input enabled="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/refBankDetails}" valueState="{oErrorModel>/bankRefE}" valueStateText="{oErrorModel>/bankRefM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+					<Input editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/refBankDetails}" valueState="{oErrorModel>/bankRefE}" valueStateText="{oErrorModel>/bankRefM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 				</VBox>
                 <VBox  class="fontStyle">
 					<Label text="{i18n>swift}" wrapping="true" required="true"></Label>
-					<Input maxLength="12" enabled="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/swiftCode}" valueState="{oErrorModel>/bankSwiftE}" valueStateText="{oErrorModel>/bankSwiftM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+					<Input maxLength="12" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/swiftCode}" valueState="{oErrorModel>/bankSwiftE}" valueStateText="{oErrorModel>/bankSwiftM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
 				</VBox>
                 <VBox class="fontStyle">
 					<Label tooltip="{oi18n_En>bankNumTT}" text="{i18n>bankNum}" wrapping="true" required="{oVisibilityModel>/bankValidation/bankNumber}"></Label>
-					<Input maxLength="19" enabled="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/bankNumber}" valueState="{oErrorModel>/bankNumE}" valueStateText="{oErrorModel>/bankNumM}" editable="{=${oVisibilityModel>/bankValidation/bankNumLength}===0 ? false:true}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+					<Input maxLength="19" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/bankNumber}" valueState="{oErrorModel>/bankNumE}" valueStateText="{oErrorModel>/bankNumM}"  liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 				</VBox>
 				<VBox class="fontStyle">
 				<Label text="{i18n>iban}" wrapping="true"></Label>
-					<Input maxLength="{oVisibilityModel>/bankValidation/ibanLength}" enabled="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/ibanNum}" valueState="{oErrorModel>/ibanE}" valueStateText="{oErrorModel>/ibanM}"  change="fnInputIban" class="inputStyle"></Input>
+					<Input maxLength="{oVisibilityModel>/bankValidation/ibanLength}" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/ibanNum}" valueState="{oErrorModel>/ibanE}" valueStateText="{oErrorModel>/ibanM}"  change="fnInputIban" class="inputStyle"></Input>
 				</VBox>
 				<VBox  class="fontStyle">
 						<Label text="{i18n>bankKey}" wrapping="true"></Label>
-					<Input maxLength="5" enabled="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/bankCode}"  liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+					<Input maxLength="5" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/bankCode}"  liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 				</VBox>
                 <VBox  class="fontStyle">
 				<Label text="{i18n>bankPKey}" wrapping="true" required="{oVisibilityModel>/bankValidation/benificiaryAccCurrency}"></Label>
 				
-				<ComboBox width="100%" items="{oBPLookUpMdl>/Currency}"  showSecondaryValues="true" filterSecondaryValues="true" valueState="{oErrorModel>/benifAccCurrE}" valueStateText="{oErrorModel>/benifAccCurrM}"  change="fnLiveValueChange" selectedKey="{oDataModel>/bankDto/bankInfoDto/0/partnerBankType}" enabled="{oConfigMdl>/BankFieldsEdit}" placeholder="{i18n>select}" class="inputStyle">
+				<ComboBox width="100%" items="{oBPLookUpMdl>/Currency}"  showSecondaryValues="true" filterSecondaryValues="true" valueState="{oErrorModel>/benifAccCurrE}" valueStateText="{oErrorModel>/benifAccCurrM}"  change="fnLiveValueChange" selectedKey="{oDataModel>/bankDto/bankInfoDto/0/partnerBankType}" editable="{oConfigMdl>/BankFieldsEdit}" placeholder="{i18n>select}" class="inputStyle">
                      <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/></ComboBox>
                 </VBox>
 			
 				<VBox  class="fontStyle">
 						<Label wrapping="true" text="{i18n>bankCtrlKey}"></Label>
-					<Input maxLength="3"  value="{oDataModel>/bankDto/bankInfoDto/0/bankControlKey}" valueState="{oErrorModel>/bankCtrlKeyE}" valueStateText="{oErrorModel>/bankCtrlKeyM}"  liveChange="fnLiveInputValueChange"  enabled="{oConfigMdl>/BankFieldsEdit}" class="inputStyle"></Input>
+					<Input maxLength="3"  value="{oDataModel>/bankDto/bankInfoDto/0/bankControlKey}" valueState="{oErrorModel>/bankCtrlKeyE}" valueStateText="{oErrorModel>/bankCtrlKeyM}"  liveChange="fnLiveInputValueChange"  editable="{oConfigMdl>/BankFieldsEdit}" class="inputStyle"></Input>
                     
 				</VBox>
 				<VBox class="fontStyle">
 					<Label wrapping="true" text="{i18n>instKey}" ></Label>
-					<Input maxLength="4" enabled="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/instructionKey}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+					<Input maxLength="4" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/instructionKey}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
                      <!-- <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>instKeyHint}:${oi18n_En>instKeyHint}+ '&#10;' +${i18n>instKeyHint}}" textAlign="End" class="disabledFontClr"/> -->
 				</VBox>
                   <VBox  class="fontStyle">

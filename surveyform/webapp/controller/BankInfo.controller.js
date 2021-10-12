@@ -329,6 +329,13 @@ sap.ui.define([
                             });
                         }
                     });
+                }else{
+                      sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
                 }
             },
             fnTransfer: function () {
@@ -664,13 +671,14 @@ sap.ui.define([
                 var oJosnComments = new sap.ui.model.json.JSONModel();
                 oJosnComments.setData(temp);
                 oView.setModel(oJosnComments, "JMBankComments");
-                if (!this.oBankComments) {
-                    this.oBankComments = sap.ui.xmlfragment(
-                        "com.jabil.surveyform.fragments.BankComments", this);
-                    oView.addDependent(this.oBankComments);
-                }
+                // if (!this.oBankComments) {
+                //     this.oBankComments = sap.ui.xmlfragment(
+                //         "com.jabil.surveyform.fragments.BankComments", this);
+                //     oView.addDependent(this.oBankComments);
+                // }
 
-                this.oBankComments.open();
+                // this.oBankComments.open();
+                 this.fnApproveSub("AP");
             },
             fnLiveChangeCmntTxtArea: function () {
                 oView.getModel("JMBankComments").getData().Commentse = "None";

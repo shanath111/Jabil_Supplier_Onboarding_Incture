@@ -19,8 +19,8 @@
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCPlant}" required="true" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/Plant}" valueState="{JMBPCreate>/plante}" valueStateText="{JMBPCreate>/plantm}"
-											filterSecondaryValues="true" enabled="{oConfigMdl>/screenEditable}" change="fnLiveChangePlant" showSecondaryValues="true" selectedKey="{JMBPCreate>/plant}"
-											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}">
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePlant" showSecondaryValues="true" selectedKey="{JMBPCreate>/plant}"
+											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
 									</VBox>
@@ -28,8 +28,8 @@
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCPurchasingGroup}:" required="false" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/PurchasingGroup}"  autocomplete="false" valueState="{JMBPCreate>/purchasingGroupe}" valueStateText="{JMBPCreate>/purchasingGroupm}"
-											filterSecondaryValues="true" enabled="{oConfigMdl>/screenEditable}" change="fnLiveChangePurGroup" showSecondaryValues="true" selectedKey="{JMBPCreate>/purchasingGroup}"
-											class="cl_VRInputCls"   editable="{oBTHeaderMdl>/EDITABLE}" >
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurGroup" showSecondaryValues="true" selectedKey="{JMBPCreate>/purchasingGroup}"
+											class="cl_VRInputCls"    >
 											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
 									</VBox>
@@ -40,13 +40,13 @@
 											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
 											<core:ListItem key="{oBPLookUpMdl>id}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
 										</ComboBox> -->
-                                        	<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/workCell}" liveChange="fnLiveChangeWorkCell" valueState="{JMBPCreate>/workCelle}" valueStateText="{JMBPCreate>/workCellm}" class="cl_VRInputCls"></Input>
+                                        	<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/workCell}" liveChange="fnLiveChangeWorkCell" valueState="{JMBPCreate>/workCelle}" valueStateText="{JMBPCreate>/workCellm}" class="cl_VRInputCls"></Input>
 									</VBox>
                                         <VBox class="VRVboxStyle1" visible="{JMBPCreate>/materialGroupVis}">
 										<Label text="{i18n>MaterialGroup}" required="true" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/materialGroup}" valueState="{JMBPCreate>/materialGroupe}" valueStateText="{JMBPCreate>/materialGroupm}"
-											filterSecondaryValues="true" enabled="{oConfigMdl>/screenEditable}" change="fnLiveChangeMaterialGroup" showSecondaryValues="true" selectedKey="{JMBPCreate>/materialGroup}"
-											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}">
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeMaterialGroup" showSecondaryValues="true" selectedKey="{JMBPCreate>/materialGroup}"
+											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>materialGroup}" text="{oBPLookUpMdl>materialGroup}" />
 										</ComboBox>
 									</VBox>
@@ -56,8 +56,8 @@
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/CompanyCode}"  autocomplete="false" valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
-											filterSecondaryValues="true" enabled="{oConfigMdl>/screenEditable}" change="fnLiveChangeCompCode" showSecondaryValues="true" selectedKey="{JMBPCreate>/companyCode}"
-											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}" >
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeCompCode" showSecondaryValues="true" selectedKey="{JMBPCreate>/companyCode}"
+											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
 									</VBox>
@@ -65,16 +65,16 @@
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMBPCreate>/purchasingOrge}" valueStateText="{JMBPCreate>/purchasingOrgm}"
-											filterSecondaryValues="true" enabled="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMBPCreate>/purchasingOrg}"
-											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}">
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMBPCreate>/purchasingOrg}"
+											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPInstructionKey}" required="true" class="cl_VRLablCls "></Label>
-									<ComboBox width="95%" items="{oStaticData>/InstructionKey}" enabled="{oConfigMdl>/screenEditable}" valueState="{JMBPCreate>/instructionKeye}" valueStateText="{JMBPCreate>/instructionKeym}"
+									<ComboBox width="95%" items="{oStaticData>/InstructionKey}" editable="{oConfigMdl>/screenEditable}" valueState="{JMBPCreate>/instructionKeye}" valueStateText="{JMBPCreate>/instructionKeym}"
 											filterSecondaryValues="true" change="fnInstructionKeyChange" showSecondaryValues="true" selectedKey="{JMBPCreate>/instructionKey}"
-											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
+											class="cl_VRInputCls">
                                           
 											<core:ListItem key="{oStaticData>code}" text="{oStaticData>description}" additionalText="{oStaticData>code}" />
 										</ComboBox>
@@ -113,12 +113,12 @@
                                  <l:Grid visible="{JMBPCreate>/reqCoIFields}" class="sapUiSizeCompact">
                                  <VBox class="VRVboxStyle1" visible="{JMBPCreate>/reqCoIFields}">
 										<Label text="{i18n>BPCNameReq}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/requestorCOIName}" liveChange="fnChangeFirstName2" valueState="{JMBPCreate>/requestorCOINamee}" valueStateText="{JMBPCreate>/requestorCOINamem}" class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/requestorCOIName}" liveChange="fnChangeFirstName2" valueState="{JMBPCreate>/requestorCOINamee}" valueStateText="{JMBPCreate>/requestorCOINamem}" class="cl_VRInputCls"></Input>
 									</VBox>
 								
 									<VBox class="VRVboxStyle1" visible="{JMBPCreate>/reqCoIFields}">
 										<Label text="{i18n>BPCEmailReq}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" change="fnChangeEmailID2" value="{JMBPCreate>/requestorCOIEmail}" valueState="{JMBPCreate>/requestorCOIEmaile}" valueStateText="{JMBPCreate>/requestorCOIEmailm}"  class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" change="fnChangeEmailID2" value="{JMBPCreate>/requestorCOIEmail}" valueState="{JMBPCreate>/requestorCOIEmaile}" valueStateText="{JMBPCreate>/requestorCOIEmailm}"  class="cl_VRInputCls"></Input>
 									</VBox>
 									<!-- <VBox class="VRVboxStyle1" visible="{JMBPCreate>/reqCoIFields}">
 										<Label text="{i18n>BPCContact1}" required="true" class="cl_VRLablCls "></Label>
@@ -135,22 +135,22 @@
                                
 								<VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCorporationName" valueState="{JMBPCreate>/corporationNamee}" valueStateText="{JMBPCreate>/corporationNamem}" value="{JMBPCreate>/corporationName}"></Input>
+										<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCorporationName" valueState="{JMBPCreate>/corporationNamee}" valueStateText="{JMBPCreate>/corporationNamem}" value="{JMBPCreate>/corporationName}"></Input>
 								
                                 	</VBox>
                                  <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}"  maxLength="35"  value="{JMBPCreate>/corporationName2}"></Input>
+										<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}"  maxLength="35"  value="{JMBPCreate>/corporationName2}"></Input>
 								
                                 	</VBox>
                                     <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}"  maxLength="35"  value="{JMBPCreate>/corporationName3}"></Input>
+										<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}"  maxLength="35"  value="{JMBPCreate>/corporationName3}"></Input>
 								
                                 	</VBox>
                                     <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}"  maxLength="35"  value="{JMBPCreate>/corporationName4}"></Input>
+										<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}"  maxLength="35"  value="{JMBPCreate>/corporationName4}"></Input>
 								
                                 	</VBox>   
                                  
@@ -187,30 +187,30 @@
 									  <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCCountry}" required="true" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/Country}"   valueState="{JMBPCreate>/countrye}" valueStateText="{JMBPCreate>/countrym}"
-											filterSecondaryValues="true" enabled="{oConfigMdl>/screenEditable}" change="fnLiveChangeCountry" showSecondaryValues="true" selectedKey="{JMBPCreate>/country}"
-											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}">
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeCountry" showSecondaryValues="true" selectedKey="{JMBPCreate>/country}"
+											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
 										</ComboBox>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCAddressLine1}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/address1}" liveChange="fnLiveChangeAddress1" valueState="{JMBPCreate>/address1e}" valueStateText="{JMBPCreate>/address1m}"  class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/address1}" liveChange="fnLiveChangeAddress1" valueState="{JMBPCreate>/address1e}" valueStateText="{JMBPCreate>/address1m}"  class="cl_VRInputCls"></Input>
 									</VBox>
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCAddressLine2}" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/address2}" liveChange="fnLiveChangeAddress2" valueState="{JMBPCreate>/address2e}" valueStateText="{JMBPCreate>/address2m}" class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/address2}" liveChange="fnLiveChangeAddress2" valueState="{JMBPCreate>/address2e}" valueStateText="{JMBPCreate>/address2m}" class="cl_VRInputCls"></Input>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCAddressLine3}" class="cl_VRLablCls "></Label>
-										<Input width="95%" maxLength="35" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/address3}"   class="cl_VRInputCls"></Input>
+										<Input width="95%" maxLength="35" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/address3}"   class="cl_VRInputCls"></Input>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCAddressLine4}" class="cl_VRLablCls "></Label>
-										<Input width="95%" maxLength="35" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/address4}"   class="cl_VRInputCls"></Input>
+										<Input width="95%" maxLength="35" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/address4}"   class="cl_VRInputCls"></Input>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCAddressLine5}" class="cl_VRLablCls "></Label>
-										<Input width="95%" maxLength="35" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/address5}"  class="cl_VRInputCls"></Input>
+										<Input width="95%" maxLength="35" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/address5}"  class="cl_VRInputCls"></Input>
 									</VBox>
                                   
 									
@@ -218,28 +218,28 @@
 										<Label text="{i18n>BPCStateProvince}" required="true" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/State}" valueState="{JMBPCreate>/statee}" valueStateText="{JMBPCreate>/statem}"
 											filterSecondaryValues="true" change="fnLiveChangeState" showSecondaryValues="true" selectedKey="{JMBPCreate>/state}"
-											class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}" editable="{oBTHeaderMdl>/EDITABLE}">
+											class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}" >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
 										</ComboBox>
 									</VBox>
                                    
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCDistrict}" required="false" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/district}" liveChange="fnLiveChangeDistrict" valueState="{JMBPCreate>/districte}" valueStateText="{JMBPCreate>/districtm}" class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/district}" liveChange="fnLiveChangeDistrict" valueState="{JMBPCreate>/districte}" valueStateText="{JMBPCreate>/districtm}" class="cl_VRInputCls"></Input>
 									</VBox>
                                     	<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCCity}" required="true" class="cl_VRLablCls "></Label>
-									<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/city}" liveChange="fnLiveChangeCity" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}" class="cl_VRInputCls"></Input>
+									<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/city}" liveChange="fnLiveChangeCity" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}" class="cl_VRInputCls"></Input>
                                     
 									</VBox>
                                     	
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCPostalCode}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" change="fnLiveChangePostalCode"  value="{JMBPCreate>/postalCode}" valueState="{JMBPCreate>/postalCodee}" valueStateText="{JMBPCreate>/postalCodem}"  class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePostalCode"  value="{JMBPCreate>/postalCode}" valueState="{JMBPCreate>/postalCodee}" valueStateText="{JMBPCreate>/postalCodem}"  class="cl_VRInputCls"></Input>
 									</VBox>
                                     	<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCPOBox}" required="false" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}"  value="{JMBPCreate>/poBoxPostalCode}" liveChange="fnLiveChangePOBox" valueState="{JMBPCreate>/poBoxPostalCodee}" valueStateText="{JMBPCreate>/poBoxPostalCodem}" class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}"  value="{JMBPCreate>/poBoxPostalCode}" liveChange="fnLiveChangePOBox" valueState="{JMBPCreate>/poBoxPostalCodee}" valueStateText="{JMBPCreate>/poBoxPostalCodem}" class="cl_VRInputCls"></Input>
  
 
 									</VBox>
@@ -249,7 +249,7 @@
                     
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCFaxNumber}" required="false" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/fax}" liveChange="fnLiveChangeFaxNumber" valueState="{JMBPCreate>/faxe}" valueStateText="{JMBPCreate>/faxm}" class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/fax}" liveChange="fnLiveChangeFaxNumber" valueState="{JMBPCreate>/faxe}" valueStateText="{JMBPCreate>/faxm}" class="cl_VRInputCls"></Input>
 									</VBox>
                                     <!-- <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCSupUrl}" required="false" class="cl_VRLablCls "></Label>
@@ -258,23 +258,23 @@
                                     
  <VBox class="VRVboxStyle1" visible="{JMBPCreate>/rfcv}">
 										<Label text="{i18n>BPCRFC}" required="false" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/rfc}" liveChange="fnLiveChangeRFC" valueState="{JMBPCreate>/rfce}" valueStateText="{JMBPCreate>/rfcm}" class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/rfc}" liveChange="fnLiveChangeRFC" valueState="{JMBPCreate>/rfce}" valueStateText="{JMBPCreate>/rfcm}" class="cl_VRInputCls"></Input>
 									</VBox>
 								</l:Grid>
                                 	<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_BPCrSectHeader" wrapping="true" text="{i18n>BPCHeaderContact}"></Label>
 								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCFirstName}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/firstName}" liveChange="fnChangeFirstName" valueState="{JMBPCreate>/firstNamee}" valueStateText="{JMBPCreate>/firstNamem}" class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/firstName}" liveChange="fnChangeFirstName" valueState="{JMBPCreate>/firstNamee}" valueStateText="{JMBPCreate>/firstNamem}" class="cl_VRInputCls"></Input>
 									</VBox>
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCLastName}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/lastName}" liveChange="fnChangeLastName" valueState="{JMBPCreate>/lastNamee}" valueStateText="{JMBPCreate>/lastNamem}" class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/lastName}" liveChange="fnChangeLastName" valueState="{JMBPCreate>/lastNamee}" valueStateText="{JMBPCreate>/lastNamem}" class="cl_VRInputCls"></Input>
 									</VBox>
 									
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCEmail}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" change="fnChangeEmailID" value="{JMBPCreate>/email}" valueState="{JMBPCreate>/emaile}" valueStateText="{JMBPCreate>/emailm}"  class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" change="fnChangeEmailID" value="{JMBPCreate>/email}" valueState="{JMBPCreate>/emaile}" valueStateText="{JMBPCreate>/emailm}"  class="cl_VRInputCls"></Input>
 									</VBox>
 									
                           
@@ -282,7 +282,7 @@
 									<Label text="{i18n>countryCode}" required="true"  class="cl_VRLablCls"></Label>
                                  
 									<VBox>
-										<ComboBox width="100%"  filterSecondaryValues="true" enabled="{oConfigMdl>/screenEditable}" selectedKey="{JMBPCreate>/contactCountryCode}" valueState="{JMBPCreate>/contactCountryCodee}" valueStateText="{JMBPCreate>/contactCountryCodem}" change="fnLiveChangeCountryCode" showSecondaryValues="true" items="{oBPLookUpMdl>/countryContactCode}"  class="cl_VRInputCls">
+										<ComboBox width="100%"  filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" selectedKey="{JMBPCreate>/contactCountryCode}" valueState="{JMBPCreate>/contactCountryCodee}" valueStateText="{JMBPCreate>/contactCountryCodem}" change="fnLiveChangeCountryCode" showSecondaryValues="true" items="{oBPLookUpMdl>/countryContactCode}"  class="cl_VRInputCls">
                                          <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
                                         </ComboBox>	
                                     </VBox>
@@ -291,7 +291,7 @@
                                        </VBox>
 								<VBox>
                              	<Label text="{i18n>BPCContact1}" required="true" class="cl_VRLablCls"></Label>
-											<Input width="93%" enabled="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeTelephone" type="Number" value="{JMBPCreate>/telephone}" valueState="{JMBPCreate>/telephonee}" valueStateText="{JMBPCreate>/telephonem}" class="cl_VRInputCls"></Input>
+											<Input width="93%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeTelephone" type="Number" value="{JMBPCreate>/telephone}" valueState="{JMBPCreate>/telephonee}" valueStateText="{JMBPCreate>/telephonem}" class="cl_VRInputCls"></Input>
                                 <layoutData>
                                   <l:GridData spanM="2" spanL="2" spanXL="1"></l:GridData></layoutData>
                                         </VBox>
@@ -301,7 +301,7 @@
                                     
                                     	<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCMobilePhone}" required="true" class="cl_VRLablCls "></Label>
-											<Input width="95%" enabled="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeTelephoneMob" type="Number" value="{JMBPCreate>/contactMobilePhone}" valueState="{JMBPCreate>/contactMobilePhonee}" valueStateText="{JMBPCreate>/contactMobilePhonem}" class="cl_VRInputCls"></Input>
+											<Input width="95%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeTelephoneMob" type="Number" value="{JMBPCreate>/contactMobilePhone}" valueState="{JMBPCreate>/contactMobilePhonee}" valueStateText="{JMBPCreate>/contactMobilePhonem}" class="cl_VRInputCls"></Input>
 									</VBox>
 								</l:Grid>
                                
@@ -319,11 +319,11 @@
 								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCFirstName}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/altContactFirstName}" liveChange="fnChangeFirstName1" valueState="{JMBPCreate>/altContactFirstNamee}" valueStateText="{JMBPCreate>/altContactFirstNamem}" class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/altContactFirstName}" liveChange="fnChangeFirstName1" valueState="{JMBPCreate>/altContactFirstNamee}" valueStateText="{JMBPCreate>/altContactFirstNamem}" class="cl_VRInputCls"></Input>
 									</VBox>
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCLastName}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/altContactLastName}" liveChange="fnChangeLastName1" valueState="{JMBPCreate>/altContactLastNamee}" valueStateText="{JMBPCreate>/altContactLastNamem}" class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/altContactLastName}" liveChange="fnChangeLastName1" valueState="{JMBPCreate>/altContactLastNamee}" valueStateText="{JMBPCreate>/altContactLastNamem}" class="cl_VRInputCls"></Input>
 									</VBox> 
 									<!-- <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCJobTitle}" required="false" class="cl_VRLablCls "></Label>
@@ -331,14 +331,14 @@
 									</VBox> -->
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCEmail}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" change="fnChangeEmailID1" value="{JMBPCreate>/altEmail}" valueState="{JMBPCreate>/altEmaile}" valueStateText="{JMBPCreate>/altEmailm}"  class="cl_VRInputCls"></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" change="fnChangeEmailID1" value="{JMBPCreate>/altEmail}" valueState="{JMBPCreate>/altEmaile}" valueStateText="{JMBPCreate>/altEmailm}"  class="cl_VRInputCls"></Input>
 									</VBox>
 
   <VBox>
 									<Label text="{i18n>countryCode}" required="true"  class="cl_VRLablCls"></Label>
                                  
 									<VBox>
-										<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="true" enabled="{oConfigMdl>/screenEditable}" items="{oBPLookUpMdl>/countryContactCode}" selectedKey="{JMBPCreate>/altContactCountryCode}" valueState="{JMBPCreate>/altContactCountryCodee}" valueStateText="{JMBPCreate>/altContactCountryCodem}" change="fnLiveChangeCountryCode1" class="cl_VRInputCls">
+										<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" items="{oBPLookUpMdl>/countryContactCode}" selectedKey="{JMBPCreate>/altContactCountryCode}" valueState="{JMBPCreate>/altContactCountryCodee}" valueStateText="{JMBPCreate>/altContactCountryCodem}" change="fnLiveChangeCountryCode1" class="cl_VRInputCls">
                                           <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
                                         </ComboBox>	
                                     </VBox>
@@ -347,7 +347,7 @@
                                        </VBox>
 								<VBox>
                              	<Label text="{i18n>BPCContact1}" required="true" class="cl_VRLablCls"></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}"   value="{JMBPCreate>/altPhoneNumber}" liveChange="fnChangeContactNumber1" valueState="{JMBPCreate>/altPhoneNumbere}" valueStateText="{JMBPCreate>/altPhoneNumberm}" type="Number"  class="cl_VRInputCls "></Input>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}"   value="{JMBPCreate>/altPhoneNumber}" liveChange="fnChangeContactNumber1" valueState="{JMBPCreate>/altPhoneNumbere}" valueStateText="{JMBPCreate>/altPhoneNumberm}" type="Number"  class="cl_VRInputCls "></Input>
                                 <layoutData>
                                   <l:GridData spanM="2" spanL="2" spanXL="1"></l:GridData></layoutData>
                                         </VBox>
@@ -375,13 +375,13 @@
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCSupplierTypeCl1}" class="cl_VRLablCls "></Label>
-                                        <Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/supplierTypeClassificationL1}" liveChange="fnLiveChangeSuppClass" valueState="{JMBPCreate>/supplierTypeClassificationL1e}" valueStateText="{JMBPCreate>/supplierTypeClassificationL1m}" class="cl_VRInputCls"></Input>
+                                        <Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/supplierTypeClassificationL1}" liveChange="fnLiveChangeSuppClass" valueState="{JMBPCreate>/supplierTypeClassificationL1e}" valueStateText="{JMBPCreate>/supplierTypeClassificationL1m}" class="cl_VRInputCls"></Input>
 										
 						
 									</VBox>
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCSupplierTypeCl2}" required="false" class="cl_VRLablCls "></Label>
-                                        <Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/supplierCommodityClassificationL2}" liveChange="fnLiveChangeSupplierCommodityCL2" valueState="{JMBPCreate>/supplierCommodityClassificationL2e}" valueStateText="{JMBPCreate>/supplierCommodityClassificationL2m}" class="cl_VRInputCls"></Input>
+                                        <Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/supplierCommodityClassificationL2}" liveChange="fnLiveChangeSupplierCommodityCL2" valueState="{JMBPCreate>/supplierCommodityClassificationL2e}" valueStateText="{JMBPCreate>/supplierCommodityClassificationL2m}" class="cl_VRInputCls"></Input>
 											
 									</VBox>
 									
@@ -413,11 +413,11 @@
 									</VBox> 
                                     	<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCCustDirCustName}" required="{JMBPCreate>/customerDirectedSupplierIndicatorsMan}" class="cl_VRLablCls "></Label>
-									<Input width="95%" enabled="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCustomerDirectSupplierCustNmbr" value="{JMBPCreate>/customerDirectedSupplierCustName}" valueState="{JMBPCreate>/customerDirectedSupplierCustNamee}" valueStateText="{JMBPCreate>/customerDirectedSupplierCustNamem}" class="cl_VRInputCls"></Input>
+									<Input width="95%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCustomerDirectSupplierCustNmbr" value="{JMBPCreate>/customerDirectedSupplierCustName}" valueState="{JMBPCreate>/customerDirectedSupplierCustNamee}" valueStateText="{JMBPCreate>/customerDirectedSupplierCustNamem}" class="cl_VRInputCls"></Input>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCCustDirContact}" required="{JMBPCreate>/customerDirectedSupplierIndicatorsMan}" class="cl_VRLablCls "></Label>
-									<Input width="95%" enabled="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCustomerDirectContact" value="{JMBPCreate>/customerDirectedSupplierContract}" valueState="{JMBPCreate>/customerDirectedSupplierContracte}" valueStateText="{JMBPCreate>/customerDirectedSupplierContractm}" class="cl_VRInputCls"></Input>
+									<Input width="95%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCustomerDirectContact" value="{JMBPCreate>/customerDirectedSupplierContract}" valueState="{JMBPCreate>/customerDirectedSupplierContracte}" valueStateText="{JMBPCreate>/customerDirectedSupplierContractm}" class="cl_VRInputCls"></Input>
 									</VBox>
 </l:Grid>
 
@@ -427,7 +427,7 @@
 								<l:Grid defaultSpan="XL3 L3 M3 S12" visible="false" class="sapUiSizeCompact sapUiTinyMarginTop">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCProductOrServiceTxt}" required="true" class="cl_VRLablCls "></Label>
-                                        <Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/product}" liveChange="fnLiveChangeProduct" valueState="{JMBPCreate>/producte}" valueStateText="{JMBPCreate>/productm}" class="cl_VRInputCls"></Input>
+                                        <Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/product}" liveChange="fnLiveChangeProduct" valueState="{JMBPCreate>/producte}" valueStateText="{JMBPCreate>/productm}" class="cl_VRInputCls"></Input>
 									</VBox>
 									
 								</l:Grid>
@@ -460,7 +460,7 @@
                                          <l:Grid visible="{JMBPCreate>/CoIFields}"  class="sapUiSizeCompact">
  <VBox  class="VRVboxStyle1">
 										<Label text="{i18n>ExplainConflictofInterest}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="98%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/additionalInformation}" liveChange="fnLiveChangeAdditionalInfo" valueState="{JMBPCreate>/additionalInformatione}" valueStateText="{JMBPCreate>/additionalInformationm}"  class="cl_VRInputCls" ></Input>
+										<Input width="98%" enabeditableled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/additionalInformation}" liveChange="fnLiveChangeAdditionalInfo" valueState="{JMBPCreate>/additionalInformatione}" valueStateText="{JMBPCreate>/additionalInformationm}"  class="cl_VRInputCls" ></Input>
                                            <layoutData>
               <l:GridData
                 span="XL6 L6 M6 S6" />
@@ -472,7 +472,7 @@
                                
                                  <VBox visible="false" >
 								<Label text="{i18n>AdditionalSurveyforSupp}" required="false" class="cl_ConflictQtnCls "></Label>
-									<RadioButtonGroup select="fnChangeAttachmentVis" enabled="{oConfigMdl>/screenEditable}"  selectedIndex="{JMBPCreate>/addlSurveyForSuppliers}"  columns="2">
+									<RadioButtonGroup select="fnChangeAttachmentVis" editable="{oConfigMdl>/screenEditable}"  selectedIndex="{JMBPCreate>/addlSurveyForSuppliers}"  columns="2">
 									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>Yes}"/>
 									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
                                     		</RadioButtonGroup>

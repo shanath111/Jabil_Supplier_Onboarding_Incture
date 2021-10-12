@@ -47,6 +47,7 @@ sap.ui.define([
                 oView.getModel("oConfigMdl").getData().screenEditable = false;
                 oView.getModel("oConfigMdl").getData().contextPath = oContext;
                 oView.getModel("oConfigMdl").getData().searchAddress = false;
+                oView.getModel("oConfigMdl").getData().coiLegalActnTxt = false;
                 
                     oView.getModel("oConfigMdl").getData().CommentsVis = false;
 
@@ -54,11 +55,14 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = false;
                     oView.getModel("oConfigMdl").getData().ButtonNameReject = "Disqulify";
                     oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Remediate";
+                     oView.getModel("oConfigMdl").getData().coiLegalActnTxt = true;
+                    
 
                 } else {
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = true;
                     oView.getModel("oConfigMdl").getData().ButtonNameReject = "Reject";
                     oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Approve";
+                     oView.getModel("oConfigMdl").getData().coiLegalActnTxt = false;
                 }
                 this.fnLoadTaskDetail(oContext.Id);
                 this.fnLoadTaskClaimed(oContext.Id);
@@ -692,7 +696,7 @@ sap.ui.define([
                         this.oBankComments.close();
                     } else {
                         oView.getModel("JMAppvrComments").getData().Commentse = "Error";
-                        oView.getModel("JMBankComments").getData().Commentsm = oi18n.getText("EnterCommentsTxt");
+                        oView.getModel("JMAppvrComments").getData().Commentsm = oi18n.getProperty("EnterCommentsTxt");
                         oView.getModel("JMAppvrComments").refresh();
                     }
                 } else {

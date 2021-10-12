@@ -28,15 +28,15 @@
                             <l:Grid  defaultSpan="XL2 L2 M6 S12" class="sapUiSizeCompact cl_ExtendSearchGrid">
                              <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPEVendorName}:" class="cl_VRLablCls "></Label>
-									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/vendorName}" class="cl_VRInputCls"></Input>
+									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/vendorName}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
 							</VBox>
                               <VBox class="VRVboxStyle1">
 								<Label text="{i18n>BPEVendorNumber}:" class="cl_VRLablCls"></Label>
-								<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/vendorNumber}" class="cl_VRInputCls"></Input>
+								<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/vendorNumber}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
                             </VBox>
                             <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPEStreet}:" class="cl_VRLablCls "></Label>
-									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/street}" class="cl_VRInputCls"></Input>
+									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/street}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
 							</VBox>
                              <!-- <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPEPostalCode}:" class="cl_VRLablCls "></Label>
@@ -44,7 +44,7 @@
 							</VBox> -->
                             <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPECity}:" class="cl_VRLablCls "></Label>
-									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/city}" class="cl_VRInputCls"></Input>
+									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/city}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
 							</VBox>
                              <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPECountry}:" class="cl_VRLablCls "></Label>
@@ -56,7 +56,7 @@
 							</VBox>
                             <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPEDUNSNumber}:" class="cl_VRLablCls "></Label>
-									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/duns}" class="cl_VRInputCls"></Input>
+									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/duns}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
 							</VBox>
                             <!-- <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPECompanyCode}:" class="cl_VRLablCls "></Label>

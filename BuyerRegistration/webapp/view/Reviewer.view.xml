@@ -174,7 +174,7 @@
 												binding="{apexData>/d/ZSREVFOREDETAILS}">
 												<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIPaymentMethod}" required="true" class="cl_VRLablCls "></Label>
-													<Input width="95%" class="cl_VRInputCls" enabled="false" liveChange="fnLiveChangeIncoTerms" valueState="{JMBPCreate>/incoTermse}"
+													<Input width="95%" class="cl_VRInputCls" editable="false" liveChange="fnLiveChangeIncoTerms" valueState="{JMBPCreate>/incoTermse}"
 														valueStateText="" maxLength="200" value="{oDataModel>/shippingInfoDto/paymentMethod}"></Input>
 												</VBox>
 											
@@ -182,8 +182,8 @@
 													<Label text="{i18n>TIReqCC}" required="true" class="cl_VRLablCls "></Label>
 													
 												<ComboBox width="95%" items="{oBPLookUpMdl>/CompanyCode}"   valueState="{JMValidateDefault>/reqCompanyCodee}" valueStateText="{JMValidateDefault>/reqCompanyCodem}"
-											filterSecondaryValues="true" enabled="{oConfigMdl>/defaultEnable}" change="fnLiveChangeCompCode" showSecondaryValues="true" selectedKey="{oDataModel>/defaultValuesDto/reqCompanyCode}"
-											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}" >
+											filterSecondaryValues="true" editable="{oConfigMdl>/defaultEnable}" change="fnLiveChangeCompCode" showSecondaryValues="true" selectedKey="{oDataModel>/defaultValuesDto/reqCompanyCode}"
+											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
                                                 </VBox>
@@ -191,16 +191,16 @@
 													<Label text="{i18n>TIReqPO}" required="true" class="cl_VRLablCls "></Label>
 												
 											<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMValidateDefault>/reqPurchasingOrge}" valueStateText="{JMValidateDefault>/reqPurchasingOrgm}"
-											filterSecondaryValues="true" enabled="{oConfigMdl>/defaultEnable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{oDataModel>/defaultValuesDto/reqPurchasingOrg}"
-											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}">
+											filterSecondaryValues="true" editable="{oConfigMdl>/defaultEnable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{oDataModel>/defaultValuesDto/reqPurchasingOrg}"
+											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
                                             	</VBox>
 												<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIGBSRegion}" required="true" class="cl_VRLablCls "></Label>
-													<ComboBox width="95%" items="{oStaticData>/GBSRegion}" enabled="{oConfigMdl>/defaultEnable}" valueState="{JMValidateDefault>/gbsRegione}" valueStateText="{JMValidateDefault>/gbsRegionm}"
+													<ComboBox width="95%" items="{oStaticData>/GBSRegion}" editable="{oConfigMdl>/defaultEnable}" valueState="{JMValidateDefault>/gbsRegione}" valueStateText="{JMValidateDefault>/gbsRegionm}"
 											filterSecondaryValues="true" change="fnLiveChangGBSRegion" showSecondaryValues="true" selectedKey="{oDataModel>/defaultValuesDto/gbsRegion}"
-											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
+											class="cl_VRInputCls" >
 											<core:ListItem key="{oStaticData>}" text="{oStaticData>}" />
 										</ComboBox>
                                                 	
@@ -208,28 +208,28 @@
 												<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIChangeType}" wrapping="true" required="true" class="cl_VRLablCls "></Label>
 													
-													<ComboBox width="95%" items="{oStaticData>/ChangeType}" enabled="{oConfigMdl>/defaultEnable}" valueState="{JMValidateDefault>/changeTypee}" valueStateText="{JMValidateDefault>/changeTypem}"
+													<ComboBox width="95%" items="{oStaticData>/ChangeType}" editable="{oConfigMdl>/defaultEnable}" valueState="{JMValidateDefault>/changeTypee}" valueStateText="{JMValidateDefault>/changeTypem}"
 											filterSecondaryValues="true" change="fnLiveChangChangeType" showSecondaryValues="true" selectedKey="{oDataModel>/defaultValuesDto/changeType}"
-											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
+											class="cl_VRInputCls" >
 											<core:ListItem key="{oStaticData>}" text="{oStaticData>}" />
 										</ComboBox>
                                                 </VBox>
 												<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIPriority}" wrapping="true" required="true" class="cl_VRLablCls "></Label>
 												
-													<ComboBox width="95%" items="{oStaticData>/Priority}" enabled="{oConfigMdl>/defaultEnable}" valueState="{JMValidateDefault>/prioritye}" valueStateText="{JMValidateDefault>/prioritym}"
+													<ComboBox width="95%" items="{oStaticData>/Priority}" editable="{oConfigMdl>/defaultEnable}" valueState="{JMValidateDefault>/prioritye}" valueStateText="{JMValidateDefault>/prioritym}"
 											filterSecondaryValues="true" change="fnLiveChangPriority" showSecondaryValues="true" selectedKey="{oDataModel>/defaultValuesDto/priority}"
-											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
+											class="cl_VRInputCls" >
 											<core:ListItem key="{oStaticData>}" text="{oStaticData>}" />
 										</ComboBox>
                                                 </VBox>
                                                 	<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIBankKey}" class="cl_VRLablCls "></Label>
-													<Input width="95%" class="cl_VRInputCls" maxLength="200" enabled="false" value="{oDataModel>/bankDto/bankInfoDto/0/bankKey}"></Input>
+													<Input width="95%" class="cl_VRInputCls" maxLength="200" editable="false" value="{oDataModel>/bankDto/bankInfoDto/0/bankKey}"></Input>
 												</VBox>
                                                 	<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TICreditMemoTerm}" class="cl_VRLablCls "></Label>
-													<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/defaultEnable}"  maxLength="200" value="{oDataModel>/defaultValuesDto/creditMemoTeam}"></Input>
+													<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/defaultEnable}"  maxLength="200" value="{oDataModel>/defaultValuesDto/creditMemoTeam}"></Input>
 												</VBox>
                                                 <VBox class="VRVboxStyle1">
 													<Label text="{i18n>TISearchTerm1}" required="true" class="cl_VRLablCls "></Label>
@@ -238,22 +238,22 @@
 												<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TISearchTerm2}" required="false" class="cl_VRLablCls "></Label>
 													<Input width="95%" class="cl_VRInputCls" liveChange="fnLiveChangeIncoTerms" valueState="{JMBPCreate>/incoTermse}"
-														valueStateText="{JMBPCreate>/incoTermm}" enabled="{=${oConfigMdl>/defaultEnable} &amp;&amp;${JMBPCreate>/isNew}}"  maxLength="20" value="{oDataModel>/defaultValuesDto/searchTerm2}"></Input>
+														valueStateText="{JMBPCreate>/incoTermm}" editable="{=${oConfigMdl>/defaultEnable} &amp;&amp;${JMBPCreate>/isNew}}"  maxLength="20" value="{oDataModel>/defaultValuesDto/searchTerm2}"></Input>
 												</VBox>
                                                 <VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIAccNoAltPay}" wrapping="false" required="false" class="cl_VRLablCls "></Label>
-													<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/defaultEnable}" liveChange="fnLiveChangeIncoTerms" valueState="{JMBPCreate>/incoTermse}"
+													<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/defaultEnable}" liveChange="fnLiveChangeIncoTerms" valueState="{JMBPCreate>/incoTermse}"
 														valueStateText="{JMBPCreate>/incoTermm}" maxLength="200" value="{oDataModel>/defaultValuesDto/accNumOfAltPayee}"></Input>
 												</VBox>
                                                 <VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIMemo}" wrapping="false" required="false" class="cl_VRLablCls "></Label>
 													<Input width="95%" class="cl_VRInputCls" liveChange="fnLiveChangeIncoTerms" valueState="{JMBPCreate>/incoTermse}"
-														valueStateText="{JMBPCreate>/incoTermm}" enabled="{oConfigMdl>/defaultEnable}" maxLength="200" value="{oDataModel>/defaultValuesDto/memo}"></Input>
+														valueStateText="{JMBPCreate>/incoTermm}" editable="{oConfigMdl>/defaultEnable}" maxLength="200" value="{oDataModel>/defaultValuesDto/memo}"></Input>
 												</VBox>
 												<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIGroupforClaSchema}" wrapping="false" required="false" class="cl_VRLablCls "></Label>
 													<Input width="95%" class="cl_VRInputCls" liveChange="fnLiveChangeIncoTerms" valueState="{JMBPCreate>/incoTermse}"
-														valueStateText="{JMBPCreate>/incoTermm}" enabled="{oConfigMdl>/defaultEnable}" maxLength="200" value="{oDataModel>/defaultValuesDto/groupForCalSchema}"></Input>
+														valueStateText="{JMBPCreate>/incoTermm}" editable="{oConfigMdl>/defaultEnable}" maxLength="200" value="{oDataModel>/defaultValuesDto/groupForCalSchema}"></Input>
 												</VBox>
                                                 
 											</l:Grid>
@@ -816,9 +816,10 @@
                
                
                 	<Button text="{i18n>TIValidate}" visible="{oConfigMdl>/ValidateVisible}"  type="Accept" press="fnValidateData" class="cl_BPCDraft2  sapUiSizeCompact" enabled="{oConfigMdl>/isClaimed}" />
-					<Button text="{oConfigMdl>/RjectBtnName}" visible="{oConfigMdl>/RejectBtnVis}" press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
+				  <Button text="{oConfigMdl>/ApproveBtnName}" enabled="{=${oConfigMdl>/isClaimed} &amp;&amp;${oConfigMdl>/ApproveButtonVis}}"    type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft  sapUiSizeCompact" />
+                
                     	<Button text="{i18n>Mitigation}" visible="{oConfigMdl>/MitgationVis}" press="fnMitigate"  type="Accept" class="  cl_BPCDraft sapUiSizeCompact" enabled="{oConfigMdl>/isClaimed}" />
-                <Button text="{oConfigMdl>/ApproveBtnName}" enabled="{=${oConfigMdl>/isClaimed} &amp;&amp;${oConfigMdl>/ApproveButtonVis}}"    type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft sapUiSmallMarginEnd sapUiSizeCompact" />
+              	<Button text="{oConfigMdl>/RjectBtnName}" visible="{oConfigMdl>/RejectBtnVis}" press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
 			</OverflowToolbar>
 		</footer>
 			</Page>
