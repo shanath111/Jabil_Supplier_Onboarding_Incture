@@ -56,11 +56,7 @@
 											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
 											<core:ListItem key="{oBPLookUpMdl>id}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
 										</ComboBox> -->
-<<<<<<< HEAD
                                         	<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/workCell}" liveChange="fnLiveChangeWorkCell" valueState="{JMBPCreate>/workCelle}" valueStateText="{JMBPCreate>/workCellm}" class="cl_VRInputCls"></Input>
-=======
-                                        	<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/workCell}" liveChange="fnLiveChangeWorkCell" change="fnInputSpaceCheck" valueState="{JMBPCreate>/workCelle}" valueStateText="{JMBPCreate>/workCellm}" class="cl_VRInputCls"></Input>
->>>>>>> b44f2e11ceb533886dcf229f2f312661c75bbb4b
                                 	</VBox>
 								
                                     
@@ -130,19 +126,11 @@
 								<l:Grid defaultSpan="XL3 L3 M3 S12"  class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
 								<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCFirstName}" required="true" class="cl_VRLablCls "></Label>
-<<<<<<< HEAD
 										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/firstName}" liveChange="fnChangeFirstName" valueState="{JMBPCreate>/firstNamee}" valueStateText="{JMBPCreate>/firstNamem}" class="cl_VRInputCls"></Input>
 									</VBox>
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCLastName}" required="true" class="cl_VRLablCls "></Label>
 										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/lastName}" liveChange="fnChangeLastName" valueState="{JMBPCreate>/lastNamee}" valueStateText="{JMBPCreate>/lastNamem}" class="cl_VRInputCls"></Input>
-=======
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/firstName}" liveChange="fnChangeFirstName" change="fnInputSpaceCheck" valueState="{JMBPCreate>/firstNamee}" valueStateText="{JMBPCreate>/firstNamem}" class="cl_VRInputCls"></Input>
-									</VBox>
-									<VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCLastName}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/lastName}" liveChange="fnChangeLastName" change="fnInputSpaceCheck" valueState="{JMBPCreate>/lastNamee}" valueStateText="{JMBPCreate>/lastNamem}" class="cl_VRInputCls"></Input>
->>>>>>> b44f2e11ceb533886dcf229f2f312661c75bbb4b
 									</VBox>
 									
 									<VBox class="VRVboxStyle1">
@@ -186,19 +174,11 @@
                             
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCFirstName}" required="true" class="cl_VRLablCls "></Label>
-<<<<<<< HEAD
 										<Input width="95%" value="{JMBPCreate>/altContactFirstName}" editable="{oConfigMdl>/screenEditable}" liveChange="fnChangeFirstName1" valueState="{JMBPCreate>/altContactFirstNamee}" valueStateText="{JMBPCreate>/altContactFirstNamem}" class="cl_VRInputCls"></Input>
 									</VBox>
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCLastName}" required="true" class="cl_VRLablCls "></Label>
 										<Input width="95%" value="{JMBPCreate>/altContactLastName}" editable="{oConfigMdl>/screenEditable}" liveChange="fnChangeLastName1" valueState="{JMBPCreate>/altContactLastNamee}" valueStateText="{JMBPCreate>/altContactLastNamem}" class="cl_VRInputCls"></Input>
-=======
-										<Input width="95%" value="{JMBPCreate>/altContactFirstName}" enabled="{oConfigMdl>/screenEditable}" liveChange="fnChangeFirstName1" change="fnInputSpaceCheck" valueState="{JMBPCreate>/altContactFirstNamee}" valueStateText="{JMBPCreate>/altContactFirstNamem}" class="cl_VRInputCls"></Input>
-									</VBox>
-									<VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCLastName}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" value="{JMBPCreate>/altContactLastName}" enabled="{oConfigMdl>/screenEditable}" liveChange="fnChangeLastName1" change="fnInputSpaceCheck" valueState="{JMBPCreate>/altContactLastNamee}" valueStateText="{JMBPCreate>/altContactLastNamem}" class="cl_VRInputCls"></Input>
->>>>>>> b44f2e11ceb533886dcf229f2f312661c75bbb4b
 									</VBox> 
 									<!-- <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCJobTitle}" required="false" class="cl_VRLablCls "></Label>
