@@ -9,7 +9,9 @@ opacity: 1;
 .lOutline{
     outline: none !important;
 }
-
+.cl_BPCBlockSep{
+    border-top: 1px solid #70707061 !important;
+}
 .pageTitle>header>div {
     background: #FFFFFF 0% 0% no-repeat padding-box !important;
 opacity: 1;

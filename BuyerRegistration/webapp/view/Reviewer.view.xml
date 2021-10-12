@@ -816,9 +816,10 @@
                
                
                 	<Button text="{i18n>TIValidate}" visible="{oConfigMdl>/ValidateVisible}"  type="Accept" press="fnValidateData" class="cl_BPCDraft2  sapUiSizeCompact" enabled="{oConfigMdl>/isClaimed}" />
-					<Button text="{oConfigMdl>/RjectBtnName}" visible="{oConfigMdl>/RejectBtnVis}" press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
+				  <Button text="{oConfigMdl>/ApproveBtnName}" enabled="{=${oConfigMdl>/isClaimed} &amp;&amp;${oConfigMdl>/ApproveButtonVis}}"    type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft  sapUiSizeCompact" />
+                
                     	<Button text="{i18n>Mitigation}" visible="{oConfigMdl>/MitgationVis}" press="fnMitigate"  type="Accept" class="  cl_BPCDraft sapUiSizeCompact" enabled="{oConfigMdl>/isClaimed}" />
-                <Button text="{oConfigMdl>/ApproveBtnName}" enabled="{=${oConfigMdl>/isClaimed} &amp;&amp;${oConfigMdl>/ApproveButtonVis}}"    type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft sapUiSmallMarginEnd sapUiSizeCompact" />
+              	<Button text="{oConfigMdl>/RjectBtnName}" visible="{oConfigMdl>/RejectBtnVis}" press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
 			</OverflowToolbar>
 		</footer>
 			</Page>
