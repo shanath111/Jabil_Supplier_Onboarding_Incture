@@ -5775,7 +5775,7 @@ sap.ui.define([
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "digits in length");
                             this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = true;
+                            this.emailValidResult = false;
                         }
                 }
 
@@ -5859,7 +5859,7 @@ sap.ui.define([
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "digits in length");
                             this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = true;
+                            this.emailValidResult = false;
                         }
                 }
             },
@@ -5942,7 +5942,7 @@ sap.ui.define([
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "digits in length");
                             this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = true;
+                            this.emailValidResult = false;
                         }
                 }
             },
