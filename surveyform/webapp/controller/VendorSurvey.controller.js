@@ -3039,93 +3039,93 @@ sap.ui.define([
                     else {
                         oView.byId("companyInfo").setValidated(true);
                     }
-                    if (!iError) {
-                        if (oView.getModel("companyInfoModel").getData().isOrderFromAddress) {
-                            var Address1, Address2, Address3, Address4, Address5, Locality, AdministrativeArea, PostalCode, Country, OutputLanguage, LicenseKey;
-                            Address1 = oView.getModel("companyInfoModel").getData().oAddress1;
-                            Address2 = oView.getModel("companyInfoModel").getData().oAddress2;
-                            Address3 = oView.getModel("companyInfoModel").getData().oAddress3;
-                            Address4 = oView.getModel("companyInfoModel").getData().oAddress4;
-                            Address5 = oView.getModel("companyInfoModel").getData().oAddress5;
-                            Locality = oView.getModel("companyInfoModel").getData().oCity;
-                            AdministrativeArea = oView.getModel("companyInfoModel").getData().oRegionC;
-                            PostalCode = oView.getModel("companyInfoModel").getData().oPostalCode;
-                            Country = oView.getModel("companyInfoModel").getData().oCountryC;
-                            OutputLanguage = "english";
-                            LicenseKey = "WS80-TZS3-FDQ1";
-                            //Added by shanath for Address validation
-                            var primaryUrl = '/comjabilsurveyform/plcm_service_object/AVI/api.svc/json/GetAddressInfo?Address1=' + Address1 + '&Address2=' + Address2 + '&Address3=' + Address3 + '&Address4=' + Address4 + '&Address5=' + Address5 + '&Locality=' + Locality + '&AdministrativeArea=' + AdministrativeArea + '&PostalCode=' + PostalCode + '&Country=' + Country + '&OutputLanguage=' + OutputLanguage + '&LicenseKey=' + LicenseKey;
+                    // if (!iError) {
+                    //     if (oView.getModel("companyInfoModel").getData().isOrderFromAddress) {
+                    //         var Address1, Address2, Address3, Address4, Address5, Locality, AdministrativeArea, PostalCode, Country, OutputLanguage, LicenseKey;
+                    //         Address1 = oView.getModel("companyInfoModel").getData().oAddress1;
+                    //         Address2 = oView.getModel("companyInfoModel").getData().oAddress2;
+                    //         Address3 = oView.getModel("companyInfoModel").getData().oAddress3;
+                    //         Address4 = oView.getModel("companyInfoModel").getData().oAddress4;
+                    //         Address5 = oView.getModel("companyInfoModel").getData().oAddress5;
+                    //         Locality = oView.getModel("companyInfoModel").getData().oCity;
+                    //         AdministrativeArea = oView.getModel("companyInfoModel").getData().oRegionC;
+                    //         PostalCode = oView.getModel("companyInfoModel").getData().oPostalCode;
+                    //         Country = oView.getModel("companyInfoModel").getData().oCountryC;
+                    //         OutputLanguage = "english";
+                    //         LicenseKey = "WS80-TZS3-FDQ1";
+                    //         //Added by shanath for Address validation
+                    //         var primaryUrl = '/comjabilsurveyform/plcm_service_object/AVI/api.svc/json/GetAddressInfo?Address1=' + Address1 + '&Address2=' + Address2 + '&Address3=' + Address3 + '&Address4=' + Address4 + '&Address5=' + Address5 + '&Locality=' + Locality + '&AdministrativeArea=' + AdministrativeArea + '&PostalCode=' + PostalCode + '&Country=' + Country + '&OutputLanguage=' + OutputLanguage + '&LicenseKey=' + LicenseKey;
 
-                            $.ajax({
-                                url: primaryUrl,
-                                type: 'GET',
-                                dataType: 'json',
-                                success: function (data) {
-                                    if (data.AddressInfo.Status !== "Valid") {
-                                        aError = true;
-                                        MessageBox.show(oi18n.getText("invalidAddress"), {
-                                            icon: MessageBox.Icon.ERROR,
-                                            title: "Invalid Order Address"
-                                        });
-                                    }
+                    //         $.ajax({
+                    //             url: primaryUrl,
+                    //             type: 'GET',
+                    //             dataType: 'json',
+                    //             success: function (data) {
+                    //                 if (data.AddressInfo.Status !== "Valid") {
+                    //                     aError = true;
+                    //                     MessageBox.show(oi18n.getText("invalidAddress"), {
+                    //                         icon: MessageBox.Icon.ERROR,
+                    //                         title: "Invalid Order Address"
+                    //                     });
+                    //                 }
 
 
 
-                                },
-                                async: false,
-                                error: function (data) {
-                                    var eMsg = data.responseText
-                                    MessageBox.show(eMsg, {
-                                        icon: sap.m.MessageBox.Icon.ERROR,
-                                        title: oi18n.getText("error")
-                                    });
+                    //             },
+                    //             async: false,
+                    //             error: function (data) {
+                    //                 var eMsg = data.responseText
+                    //                 MessageBox.show(eMsg, {
+                    //                     icon: sap.m.MessageBox.Icon.ERROR,
+                    //                     title: oi18n.getText("error")
+                    //                 });
 
-                                }
-                            });
-                        }
-                        if (oView.getModel("remitModel").getData().isRemitToAddress) {
-                            var Address1, Address2, Address3, Address4, Address5, Locality, AdministrativeArea, PostalCode, Country, OutputLanguage, LicenseKey;
-                            Address1 = oView.getModel("remitModel").getData().rAddress1;
-                            Address2 = oView.getModel("remitModel").getData().rAddress2;
-                            Address3 = oView.getModel("remitModel").getData().rAddress3;
-                            Address4 = oView.getModel("remitModel").getData().rAddress4;
-                            Address5 = oView.getModel("remitModel").getData().rAddress5;
-                            Locality = oView.getModel("remitModel").getData().rCity;
-                            AdministrativeArea = oView.getModel("remitModel").getData().rRegionC;
-                            PostalCode = oView.getModel("remitModel").getData().rPostalCode;
-                            Country = oView.getModel("remitModel").getData().rCountryC;
-                            OutputLanguage = "english";
-                            LicenseKey = "WS80-TZS3-FDQ1";
-                            var primaryUrlR = '/comjabilsurveyform/plcm_service_object/AVI/api.svc/json/GetAddressInfo?Address1=' + Address1 + '&Address2=' + Address2 + '&Address3=' + Address3 + '&Address4=' + Address4 + '&Address5=' + Address5 + '&Locality=' + Locality + '&AdministrativeArea=' + AdministrativeArea + '&PostalCode=' + PostalCode + '&Country=' + Country + '&OutputLanguage=' + OutputLanguage + '&LicenseKey=' + LicenseKey;
-                            $.ajax({
-                                url: primaryUrlR,
-                                type: 'GET',
-                                success: function (data) {
-                                    if (data.AddressInfo.Status !== "Valid") {
-                                        aError = true;
-                                        MessageBox.show(oi18n.getText("invalidAddress"), {
-                                            icon: MessageBox.Icon.ERROR,
-                                            title: "Invalid Remit Adddress"
-                                        });
-                                    }
-                                },
-                                async: false,
-                                error: function (data) {
-                                    var eMsg = data.responseText
-                                    MessageBox.show(eMsg, {
-                                        icon: sap.m.MessageBox.Icon.ERROR,
-                                        title: oi18n.getText("error")
-                                    });
+                    //             }
+                    //         });
+                    //     }
+                    //     if (oView.getModel("remitModel").getData().isRemitToAddress) {
+                    //         var Address1, Address2, Address3, Address4, Address5, Locality, AdministrativeArea, PostalCode, Country, OutputLanguage, LicenseKey;
+                    //         Address1 = oView.getModel("remitModel").getData().rAddress1;
+                    //         Address2 = oView.getModel("remitModel").getData().rAddress2;
+                    //         Address3 = oView.getModel("remitModel").getData().rAddress3;
+                    //         Address4 = oView.getModel("remitModel").getData().rAddress4;
+                    //         Address5 = oView.getModel("remitModel").getData().rAddress5;
+                    //         Locality = oView.getModel("remitModel").getData().rCity;
+                    //         AdministrativeArea = oView.getModel("remitModel").getData().rRegionC;
+                    //         PostalCode = oView.getModel("remitModel").getData().rPostalCode;
+                    //         Country = oView.getModel("remitModel").getData().rCountryC;
+                    //         OutputLanguage = "english";
+                    //         LicenseKey = "WS80-TZS3-FDQ1";
+                    //         var primaryUrlR = '/comjabilsurveyform/plcm_service_object/AVI/api.svc/json/GetAddressInfo?Address1=' + Address1 + '&Address2=' + Address2 + '&Address3=' + Address3 + '&Address4=' + Address4 + '&Address5=' + Address5 + '&Locality=' + Locality + '&AdministrativeArea=' + AdministrativeArea + '&PostalCode=' + PostalCode + '&Country=' + Country + '&OutputLanguage=' + OutputLanguage + '&LicenseKey=' + LicenseKey;
+                    //         $.ajax({
+                    //             url: primaryUrlR,
+                    //             type: 'GET',
+                    //             success: function (data) {
+                    //                 if (data.AddressInfo.Status !== "Valid") {
+                    //                     aError = true;
+                    //                     MessageBox.show(oi18n.getText("invalidAddress"), {
+                    //                         icon: MessageBox.Icon.ERROR,
+                    //                         title: "Invalid Remit Adddress"
+                    //                     });
+                    //                 }
+                    //             },
+                    //             async: false,
+                    //             error: function (data) {
+                    //                 var eMsg = data.responseText
+                    //                 MessageBox.show(eMsg, {
+                    //                     icon: sap.m.MessageBox.Icon.ERROR,
+                    //                     title: oi18n.getText("error")
+                    //                 });
 
-                                }
-                            });
-                        }
-                        if (aError) {
-                            oView.byId("companyInfo").setValidated(false);
-                        } else {
-                            oView.byId("companyInfo").setValidated(true);
-                        }
-                    }
+                    //             }
+                    //         });
+                    //     }
+                    //     if (aError) {
+                    //         oView.byId("companyInfo").setValidated(false);
+                    //     } else {
+                    //         oView.byId("companyInfo").setValidated(true);
+                    //     }
+                    // }
 
                 }
             },
@@ -5775,7 +5775,7 @@ sap.ui.define([
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "digits in length");
                             this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = true;
+                            this.emailValidResult = false;
                         }
                 }
 
@@ -5859,7 +5859,7 @@ sap.ui.define([
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "digits in length");
                             this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = true;
+                            this.emailValidResult = false;
                         }
                 }
             },
@@ -5942,7 +5942,7 @@ sap.ui.define([
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "digits in length");
                             this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = true;
+                            this.emailValidResult = false;
                         }
                 }
             },

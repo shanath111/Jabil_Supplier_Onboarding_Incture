@@ -940,7 +940,7 @@ sap.ui.define([
                             "newpaymentTerms": "",
                             "currency": temp.CURRENCY,
                             "dunsNumber": temp.DUNS,
-                            "incotermNameLocation": "",
+                            "incotermNameLocation": temp.INCOTERMS2,
                             "newincotermNameLocation": "",
                             "companyCodee": "None",
                             "companyCodem": "",
@@ -1410,12 +1410,12 @@ sap.ui.define([
 
 
                 if (vError == true) {
-                     sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
-                                icon: sap.m.MessageBox.Icon.ERROR,
-                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                                contentWidth: "30%",
-                                styleClass: "sapUiSizeCompact"
-                            });
+                    sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
                     return;
                 }
                 var vConfirmMsg, vStatus = "";
@@ -3446,9 +3446,9 @@ sap.ui.define([
                 oView.getModel("JMBPCreate").getData().customerDirectedSupplierCustName = "";
                 oView.getModel("JMBPCreate").refresh();
             },
-            fnInputSpaceCheck: function(oEvent){
-                var spaceRegex= /^\s+$/;
-                if(spaceRegex.test(oEvent.getSource().getValue())){
+            fnInputSpaceCheck: function (oEvent) {
+                var spaceRegex = /^\s+$/;
+                if (spaceRegex.test(oEvent.getSource().getValue())) {
                     oEvent.getSource().setValue("");
                 }
             },

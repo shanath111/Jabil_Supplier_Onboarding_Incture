@@ -435,7 +435,7 @@
                     <u:Column width="9rem" sortProperty="BankType" filterProperty="BankType" visible="{path: 'personalizationModel>/columnList/37/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEBankType}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>BankType}" class="cl_ListNameClass"/>
+                    <Text text="{oVendorListModel>BANK_TYPE}" class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
                     <u:Column width="9rem" sortProperty="IBAN" filterProperty="IBAN" visible="{path: 'personalizationModel>/columnList/38/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
