@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout">
 	<VBox renderType="Bare" class="sapUiSizeCompact" width="100%" height="100%">
 		<HBox renderType="Bare" alignItems="Center" width="100%" justifyContent="SpaceBetween" class="wbTaskDetailHeaderClass">
-			<Text text="{i18n>SUB_TEXT}: {oAppModel>/taskObjectDetails/subject}" class="wbTaskDetailHeaderText"/>
+			<Text text="{oAppModel>/taskObjectDetails/subject}" class="wbTaskDetailHeaderText"/>
 			<HBox renderType="Bare" alignItems="Center" justifyContent="End" width="5%">
 				<Button text="{i18n>UPDATE_TEXT}" type="Emphasized" class="wbEmphasizedButtonStyleClass sapUiSmallMarginEnd" press="updateAttributesFn"
 					visible="false"/>
