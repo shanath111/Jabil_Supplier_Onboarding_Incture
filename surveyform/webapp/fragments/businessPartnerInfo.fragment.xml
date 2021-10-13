@@ -35,7 +35,7 @@
 				<FlexItemData minWidth="100%"/>
 			</layoutData>
 		</Panel>
-		<Panel visible="true" width="100%" class="panelPadding sapUiTinyMarginBottom">
+		<Panel visible="{oUserModel>/isNew}" width="100%" class="panelPadding sapUiTinyMarginBottom">
 			<HBox class="fontStyle sapUiSizeCompact">
 				<Label required="true" labelFor="site" class="fontBold sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSizeCompact" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isSiteRegwithDunandBrad}:${oi18n_En>isSiteRegwithDunandBrad} +'&#10;' +${i18n>isSiteRegwithDunandBrad}}"
 					wrapping="true"></Label>
