@@ -708,6 +708,8 @@ sap.ui.define([
                                         "purchasingOrg": data.bpRequestScope.purchasingOrg,
                                         "purchasingGroup": data.bpRequestScope.purchasingGroup,
                                         "plant": data.bpRequestScope.plant,
+                                         "materialGroup": data.bpRequestScope.materialGroup,
+                                        
                                         "corporationName": data.bpRequestScope.corporationName,
                                         "workCell": data.bpRequestScope.workCell,
                                         "buyerName": data.bpRequestScope.buyerName,
@@ -1103,8 +1105,8 @@ sap.ui.define([
                             "context": {
                                 "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                                 "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                                "plant":oView.getModel("JMEulaComments").getData().bpRequestScope.plant,
-                                "materialGroup":oView.getModel("JMEulaComments").getData().bpRequestScope.materialGroup,
+                                "plant":oView.getModel("JMBPCreate").getData().plant,
+                                "materialGroup":oView.getModel("JMBPCreate").getData().materialGroup,
                                 "isBuyerReviewApproved": vAprActn,
                                 "orderBpNumber": oView.getModel("JMAppvrComments").getData().orderBpNumber.replace(/^0+/, ''),
                                 "invoiceBpNumber": oView.getModel("JMAppvrComments").getData().invoiceBpNumber.replace(/^0+/, ''),
