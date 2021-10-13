@@ -2232,6 +2232,7 @@ sap.ui.define([
                 //     }
 
                 // } else {
+                     if (oView.getModel("oUserModel").getData().isNew) {
                 if (oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber === null) {
                     oView.getModel("oErrorModel").getData().siteHaveDunsNumberE = "Error";
                     iError = true;
@@ -2263,6 +2264,7 @@ sap.ui.define([
                     }
 
                 }
+            }
                 //}
                 if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName)) {
                     oView.getModel("oErrorModel").getData().ppocFNameE = "Error";
@@ -2461,7 +2463,7 @@ sap.ui.define([
                 if (this.emailValidResult) {
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum && oView.getModel("oDataModel").getData().ownerShipInfoDto.doesOtherEntityOwnSite === null) {
+                if ((!oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum || oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum  ==="NODUNS")  && oView.getModel("oDataModel").getData().ownerShipInfoDto.doesOtherEntityOwnSite === null) {
                     oView.getModel("oErrorModel").getData().doesOtherEntityOwnSiteE = "Error";
                     iError = true;
                 }
@@ -2469,7 +2471,7 @@ sap.ui.define([
                     oView.getModel("oErrorModel").getData().isEntityTradedCompanyE = "Error";
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().ownerShipInfoDto.doesOtherEntityOwnSite && !oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum)
+                if (oView.getModel("oDataModel").getData().ownerShipInfoDto.doesOtherEntityOwnSite && (!oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum || oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum  ==="NODUNS"))
                     if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.companyName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.companyName)) {
                         oView.getModel("oErrorModel").getData().compNameE = "Error";
                         oView.getModel("oErrorModel").getData().compNameM = oi18n.getText("mandatoryCompName");
@@ -4642,6 +4644,7 @@ sap.ui.define([
                     }
                 }
                 //if (oView.getModel("oUserModel").getData().isNew && oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber) {
+                     if (oView.getModel("oUserModel").getData().isNew) {
                 if (oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber) {
                     if (oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum && oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum.length != 9) {
                         oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "Error";
@@ -4653,6 +4656,7 @@ sap.ui.define([
                         // iError = false;
                     }
                 }
+                     }
 
 
                 if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName.length > 40) {
@@ -7350,7 +7354,7 @@ sap.ui.define([
                         oPayload.bpInfoDto.noOfEmployees = "";
                         oPayload.bpInfoDto.year = "";
                     }
-                    if (oPayload.bpInfoDto.dunsRegistrationNum !== "") {
+                    if (oPayload.bpInfoDto.dunsRegistrationNum !== "" && oPayload.bpInfoDto.dunsRegistrationNum !== "NODUNS") {
                         oPayload.ownerShipInfoDto.doesOtherEntityOwnSite = null;
                         oPayload.ownerShipInfoDto.companyName = "";
                     }

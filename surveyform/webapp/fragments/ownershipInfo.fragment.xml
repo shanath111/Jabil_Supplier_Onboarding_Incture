@@ -15,7 +15,7 @@
 					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 				</RadioButtonGroup>
                 <layoutData>
-                <l:GridData spanM="4" spanL="4" visibleM="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum}}" visibleL="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum}}" visibleS="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum}}" visibleXL="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum}}"></l:GridData></layoutData>
+                <l:GridData spanM="4" spanL="4" visibleM="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum} || ${oDataModel>/bpInfoDto/dunsRegistrationNum} === 'NODUNS'}" visibleL="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum} || ${oDataModel>/bpInfoDto/dunsRegistrationNum} === 'NODUNS'}" visibleS="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum} || ${oDataModel>/bpInfoDto/dunsRegistrationNum} === 'NODUNS'}" visibleXL="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum} || ${oDataModel>/bpInfoDto/dunsRegistrationNum} === 'NODUNS'}"></l:GridData></layoutData>
             </VBox>
            
 			<VBox class="sapUiTinyMarginBegin fontStyle" visible="{=${oDataModel>/ownerShipInfoDto/doesOtherEntityOwnSite} === true}">
@@ -31,7 +31,7 @@
 				</HBox>
 				<Input class="inputStyle" enabled="{oEnableMdl>/companyNameEnb}" valueState="{oErrorModel>/compNameE}" valueStateText="{oErrorModel>/compNameM}" value="{oDataModel>/ownerShipInfoDto/companyName}" liveChange="fnLiveInputValueChange"/>
 				<layoutData>
-					<l:GridData visibleM="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum}}" visibleL="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum}}" visibleS="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum}}" visibleXL="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum}}" spanM="3" spanL="3"></l:GridData>
+					<l:GridData visibleM="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum} || ${oDataModel>/bpInfoDto/dunsRegistrationNum} === 'NODUNS'}" visibleL="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum} || ${oDataModel>/bpInfoDto/dunsRegistrationNum} === 'NODUNS'}" visibleS="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum} || ${oDataModel>/bpInfoDto/dunsRegistrationNum} === 'NODUNS'}" visibleXL="{=!${oDataModel>/bpInfoDto/dunsRegistrationNum} || ${oDataModel>/bpInfoDto/dunsRegistrationNum} === 'NODUNS'}" spanM="3" spanL="3"></l:GridData>
 				</layoutData>
 			</VBox>
 			

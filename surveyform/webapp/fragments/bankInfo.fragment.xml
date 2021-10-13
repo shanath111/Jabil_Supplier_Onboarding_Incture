@@ -6,8 +6,8 @@
             <Text text="{oi18n_En>paymentTermsL}/&#160;{i18n>paymentTermsL}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontBold sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
 				<l:Grid containerQuery="true" visible="{=!${oUserModel>/isNew}}" defaultSpan="XL3 L4 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 				<VBox  class="fontStyle">
-					<Label text="{i18n>paymentTermsL}"  visible= "{oVisibilityModel>/isdefaultLan}"  required="true"></Label>
-                    <Label text="{oi18n_En>paymentTermsL}&#10;{i18n>paymentTermsL}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+					<Label text="{i18n>paymentTerms}"  visible= "{oVisibilityModel>/isdefaultLan}"  required="true"></Label>
+                    <Label text="{oi18n_En>paymentTerms}&#10;{i18n>paymentTerms}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
                      <Label class="fontStyleBold sapUiSizeCompact" text="{parts:['oLookUpModel>/PaymentTerm','oDataModel>/shippingInfoDto/paymentTerms'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}"/>
 				</VBox>
 				<VBox class="fontStyle">
@@ -51,8 +51,8 @@
 			</l:Grid>
              <l:Grid containerQuery="true" visible="{=!${oUserModel>/isNew}}"  defaultSpan="XL3 L4 M4 S12" class="gridSpacing sapUiTinyMarginTop sapUiSizeCompact sapUiNoContentPadding ">
 				<VBox  class="fontStyle">
-					<Label text="{i18n>PaymentTermsEOM}"  visible= "{oVisibilityModel>/isdefaultLan}" ></Label>
-                    <Label text="{oi18n_En>PaymentTermsEOM}&#10;{i18n>PaymentTermsEOM}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" ></Label>
+					<Label text="{i18n>newPaymentTermsEOM}"  visible= "{oVisibilityModel>/isdefaultLan}" ></Label>
+                    <Label text="{oi18n_En>newPaymentTermsEOM}&#10;{i18n>newPaymentTermsEOM}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" ></Label>
 					<ComboBox width="100%" items="{oLookUpModel>/PaymentTerm}" showSecondaryValues="true" filterSecondaryValues="true"  selectedKey="{oDataModel>/shippingInfoDto/newpaymentTerms}" enabled="{oEnableMdl>/paymentTermsEnb}"  valueState="{oErrorModel>/paymentTermE}" valueStateText="{oErrorModel>/paymentTermM}" selectionChange="fnLiveValueChange" placeholder="{i18n>select}" class="inputStyle">
                      <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
                      <layoutData>
@@ -69,8 +69,8 @@
                      
 				</VBox>
 				<VBox class="fontStyle">
-					<Label text="{i18n>paymentCurr}" visible= "{oVisibilityModel>/isdefaultLan}" required="false"></Label>
-                    <Label text="{oi18n_En>paymentCurr}&#10;{i18n>paymentCurr}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="false"></Label>
+					<Label text="{i18n>newpaymentCurr}" visible= "{oVisibilityModel>/isdefaultLan}" required="false"></Label>
+                    <Label text="{oi18n_En>newpaymentCurr}&#10;{i18n>newpaymentCurr}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="false"></Label>
 					<ComboBox width="100%" items="{path: 'oLookUpModel>/Currency', sorter:{path:'code'}}" showSecondaryValues="true" filterSecondaryValues="true" selectionChange="fnLiveValueBankInput" valueState="{oErrorModel>/paymentCurrE}" valueStateText="{oErrorModel>/paymentCurrM}"  selectedKey="{oDataModel>/shippingInfoDto/newpaymentCurrency}" enabled="{oEnableMdl>/paymentCurrencyEnb}" placeholder="{i18n>select}" class="inputStyle">
                      <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>code}" additionalText="{oLookUpModel>description}"/></ComboBox>
                     <layoutData>
