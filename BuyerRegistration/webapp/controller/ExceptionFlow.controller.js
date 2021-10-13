@@ -541,14 +541,20 @@ sap.ui.define([
                     var oJosnComments = new sap.ui.model.json.JSONModel();
                     oJosnComments.setData(temp);
                     oView.setModel(oJosnComments, "JMAppvrComments");
-                    // if (!this.oBankComments) {
-                    //     this.oBankComments = sap.ui.xmlfragment(
-                    //         "ns.BuyerRegistration.fragments.ApproverComments", this);
-                    //     oView.addDependent(this.oBankComments);
-                    // }
-
-                    // this.oBankComments.open();
+                    if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COISupp") {
                     this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
+                    }
+                    else {
+                        if (!this.oBankComments) {
+                            this.oBankComments = sap.ui.xmlfragment(
+                                "ns.BuyerRegistration.fragments.ApproverComments", this);
+                            oView.addDependent(this.oBankComments);
+                        }
+
+                        this.oBankComments.open();
+                    }
+
+                   
                 } else {
                     oView.byId("id_SegmentedBtn").setSelectedKey("partnerFunction");
                     oView.getModel("oConfigMdl").getData().buyerData = false;

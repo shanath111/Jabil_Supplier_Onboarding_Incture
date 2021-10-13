@@ -1103,6 +1103,8 @@ sap.ui.define([
                             "context": {
                                 "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                                 "caseId": oView.getModel("JMEulaComments").getData().caseId,
+                                "plant":oView.getModel("JMEulaComments").getData().bpRequestScope.plant,
+                                "materialGroup":oView.getModel("JMEulaComments").getData().bpRequestScope.materialGroup,
                                 "isBuyerReviewApproved": vAprActn,
                                 "orderBpNumber": oView.getModel("JMAppvrComments").getData().orderBpNumber.replace(/^0+/, ''),
                                 "invoiceBpNumber": oView.getModel("JMAppvrComments").getData().invoiceBpNumber.replace(/^0+/, ''),
