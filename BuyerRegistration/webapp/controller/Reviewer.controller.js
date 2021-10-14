@@ -708,8 +708,8 @@ sap.ui.define([
                                         "purchasingOrg": data.bpRequestScope.purchasingOrg,
                                         "purchasingGroup": data.bpRequestScope.purchasingGroup,
                                         "plant": data.bpRequestScope.plant,
-                                         "materialGroup": data.bpRequestScope.materialGroup,
-                                        
+                                        "materialGroup": data.bpRequestScope.materialGroup,
+
                                         "corporationName": data.bpRequestScope.corporationName,
                                         "workCell": data.bpRequestScope.workCell,
                                         "buyerName": data.bpRequestScope.buyerName,
@@ -910,6 +910,12 @@ sap.ui.define([
                         oView.getModel("JMValidateDefault").getData().searchTerm1m = oi18n.getProperty("BPCMandatoryValidation");
                         vError = true;
                     }
+                    if (oView.getModel("JMValidateDefault").getData().searchTerm1e == "Error") {
+                        vError = true;
+                    }
+                    if (oView.getModel("JMValidateDefault").getData().searchTerm2e == "Error") {
+                        vError = true;
+                    }
                     oView.getModel("JMValidateDefault").refresh();
                     if (vError == true) {
                         oView.byId("id_SegmentedBtn").setSelectedKey("BuyerData");
@@ -917,6 +923,12 @@ sap.ui.define([
                         oView.getModel("oConfigMdl").getData().buyerData = true;
                         oView.getModel("oConfigMdl").getData().onBoardDet = false;
                         oView.getModel("oConfigMdl").refresh();
+                          sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
                         return;
                     }
                     vError = false;
@@ -1105,8 +1117,8 @@ sap.ui.define([
                             "context": {
                                 "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                                 "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                                "plant":oView.getModel("JMBPCreate").getData().plant,
-                                "materialGroup":oView.getModel("JMBPCreate").getData().materialGroup,
+                                "plant": oView.getModel("JMBPCreate").getData().plant,
+                                "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                                 "isBuyerReviewApproved": vAprActn,
                                 "orderBpNumber": oView.getModel("JMAppvrComments").getData().orderBpNumber.replace(/^0+/, ''),
                                 "invoiceBpNumber": oView.getModel("JMAppvrComments").getData().invoiceBpNumber.replace(/^0+/, ''),
@@ -1739,10 +1751,33 @@ sap.ui.define([
                 }
             },
             fnChangeSearchTerm: function (oEvent) {
-                if (oView.getModel("JMValidateDefault").getData().searchTerm1e == "Error") {
-                    oView.getModel("JMValidateDefault").getData().searchTerm1e = "None";
-                    oView.getModel("JMValidateDefault").getData().searchTerm1m = "";
+                var vLength = oEvent.getParameter("value").length;
+                if (vLength > 10) {
+                    oView.getModel("JMValidateDefault").getData().searchTerm1e = "Error";
+                    oView.getModel("JMValidateDefault").getData().searchTerm1m = oi18n.getProperty("BPCMaxLengthExceeds");
                     oView.getModel("JMValidateDefault").refresh();
+                }
+                else {
+                    if (oView.getModel("JMValidateDefault").getData().searchTerm1e == "Error") {
+                        oView.getModel("JMValidateDefault").getData().searchTerm1e = "None";
+                        oView.getModel("JMValidateDefault").getData().searchTerm1m = "";
+                        oView.getModel("JMValidateDefault").refresh();
+                    }
+                }
+            },
+            fnChangeSearchTerm2: function (oEvent) {
+                var vLength = oEvent.getParameter("value").length;
+                if (vLength > 20) {
+                    oView.getModel("JMValidateDefault").getData().searchTerm2e = "Error";
+                    oView.getModel("JMValidateDefault").getData().searchTerm2m = oi18n.getProperty("BPCMaxLengthExceeds");
+                    oView.getModel("JMValidateDefault").refresh();
+                }
+                else {
+                    if (oView.getModel("JMValidateDefault").getData().searchTerm2e == "Error") {
+                        oView.getModel("JMValidateDefault").getData().searchTerm2e = "None";
+                        oView.getModel("JMValidateDefault").getData().searchTerm2m = "";
+                        oView.getModel("JMValidateDefault").refresh();
+                    }
                 }
             },
             fnValidateData: function () {
@@ -1779,6 +1814,12 @@ sap.ui.define([
                     oView.getModel("JMValidateDefault").getData().searchTerm1m = oi18n.getProperty("BPCMandatoryValidation");
                     vError = true;
                 }
+                if (oView.getModel("JMValidateDefault").getData().searchTerm1e == "Error") {
+                    vError = true;
+                }
+                if (oView.getModel("JMValidateDefault").getData().searchTerm2e == "Error") {
+                    vError = true;
+                }
                 oView.getModel("JMValidateDefault").refresh();
                 if (vError == true) {
                     oView.byId("id_SegmentedBtn").setSelectedKey("BuyerData");
@@ -1786,7 +1827,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().buyerData = true;
                     oView.getModel("oConfigMdl").getData().onBoardDet = false;
                     oView.getModel("oConfigMdl").refresh();
-                      sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                    sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
                         icon: sap.m.MessageBox.Icon.ERROR,
                         title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
                         contentWidth: "30%",

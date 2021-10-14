@@ -66,32 +66,32 @@
                                 	<Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>Address}"></Label>
 								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
 									<VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCAddressLine1}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{i18n>BPCAddressLine1}" required="true" class="cl_VRLablCls "></Label>
 										<Label text="{JMBPCreate>/address1}" tooltip="{JMBPCreate>/address1}" wrapping="true" class="cl_VRLablClsValue "></Label>
 									</VBox>
 									
 									<VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCCity}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{i18n>BPCCity}" required="true" class="cl_VRLablCls "></Label>
 									<Label text="{JMBPCreate>/city}" class="cl_VRLablClsValue "></Label>
 									</VBox>
 									<VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCStateProvince}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{i18n>BPCStateProvince}" required="true" class="cl_VRLablCls "></Label>
 										<Label text="{JMBPCreate>/stated}" class="cl_VRLablClsValue "></Label>
 									
 									</VBox>
 								
                                     <VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCDistrict}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{i18n>BPCDistrict}" required="true" class="cl_VRLablCls "></Label>
 										<Label text="{JMBPCreate>/district}" class="cl_VRLablClsValue "></Label>
 									
 									</VBox>
 									<VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCCountry}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{i18n>BPCCountry}" required="true" class="cl_VRLablCls "></Label>
 										<Label text="{JMBPCreate>/countryd}" class="cl_VRLablClsValue "></Label>								
 									</VBox>
                                     	
                                     	<VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCPostalCode}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{i18n>BPCPostalCode}" required="true" class="cl_VRLablCls "></Label>
 										<Label text="{JMBPCreate>/postalCode}" class="cl_VRLablClsValue "></Label>								
 									</VBox>
 <!-- <VBox class="VRVboxStyle1">

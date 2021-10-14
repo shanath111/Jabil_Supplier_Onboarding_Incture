@@ -233,12 +233,12 @@
 												</VBox>
                                                 <VBox class="VRVboxStyle1">
 													<Label text="{i18n>TISearchTerm1}" required="true" class="cl_VRLablCls "></Label>
-													<Input width="95%" class="cl_VRInputCls" liveChange="fnChangeSearchTerm" valueState="{JMValidateDefault>/searchTerm1e}" valueStateText="{JMValidateDefault>/searchTerm1m}"  enabled="{=${oConfigMdl>/defaultEnable} &amp;&amp;${JMBPCreate>/isNew}}"  maxLength="20" value="{oDataModel>/defaultValuesDto/searchTerm1}"></Input>
+													<Input width="95%" class="cl_VRInputCls" liveChange="fnChangeSearchTerm" valueState="{JMValidateDefault>/searchTerm1e}" valueStateText="{JMValidateDefault>/searchTerm1m}"  editable="{=${oConfigMdl>/defaultEnable} &amp;&amp;${JMBPCreate>/isNew}}"   value="{oDataModel>/defaultValuesDto/searchTerm1}"></Input>
 												</VBox>
 												<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TISearchTerm2}" required="false" class="cl_VRLablCls "></Label>
-													<Input width="95%" class="cl_VRInputCls" liveChange="fnLiveChangeIncoTerms" valueState="{JMBPCreate>/incoTermse}"
-														valueStateText="{JMBPCreate>/incoTermm}" editable="{=${oConfigMdl>/defaultEnable} &amp;&amp;${JMBPCreate>/isNew}}"  maxLength="20" value="{oDataModel>/defaultValuesDto/searchTerm2}"></Input>
+													<Input width="95%" class="cl_VRInputCls" liveChange="fnChangeSearchTerm2" valueState="{JMValidateDefault>/searchTerm2e}"
+														valueStateText="{JMValidateDefault>/searchTerm2m}" editable="{=${oConfigMdl>/defaultEnable} &amp;&amp;${JMBPCreate>/isNew}}"  value="{oDataModel>/defaultValuesDto/searchTerm2}"></Input>
 												</VBox>
                                                 <VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIAccNoAltPay}" wrapping="false" required="false" class="cl_VRLablCls "></Label>
