@@ -31,7 +31,7 @@
 				<VBox class="fontStyle">
 					<Label text="{i18n>incotermNamedPlace}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                     <Label text="{oi18n_En>incotermNamedPlace}&#10;{i18n>incotermNamedPlace}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-						<Input class="inputStyle" value="{oDataModel>/shippingInfoDto/incotermNamedPlace}" enabled="{oEnableMdl>/incotermNamedPlaceEnb}" valueState="{oErrorModel>/incotermNPE}" valueStateText="{oErrorModel>/incotermNPM}" liveChange="fnLiveInputValueChange"/>
+						<Input maxLength="29" class="inputStyle" value="{oDataModel>/shippingInfoDto/incotermNamedPlace}" enabled="{oEnableMdl>/incotermNamedPlaceEnb}" valueState="{oErrorModel>/incotermNPE}" valueStateText="{oErrorModel>/incotermNPM}" liveChange="fnLiveInputValueChange"/>
 				</VBox>
 			</l:Grid>
             <l:Grid containerQuery="true" visible="{=!${oUserModel>/isNew}}" defaultSpan="XL3 L3 M3 S12" class="sapUiTinyMarginTop gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
@@ -50,7 +50,7 @@
 				<VBox class="fontStyle">
 					<Label text="{i18n>newincotermNamedPlace}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                     <Label text="{oi18n_En>newincotermNamedPlace}&#10;{i18n>newincotermNamedPlace}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-						<Input class="inputStyle" value="{oDataModel>/shippingInfoDto/newincotermNamedPlace}" enabled="{oEnableMdl>/incotermNamedPlaceEnb}" valueState="{oErrorModel>/incotermNPE}" valueStateText="{oErrorModel>/incotermNPM}" liveChange="fnLiveInputValueChange"/>
+						<Input maxLength="29" class="inputStyle" value="{oDataModel>/shippingInfoDto/newincotermNamedPlace}" enabled="{oEnableMdl>/incotermNamedPlaceEnb}" valueState="{oErrorModel>/incotermNPE}" valueStateText="{oErrorModel>/incotermNPM}" liveChange="fnLiveInputValueChange"/>
 				</VBox>
 			</l:Grid>
              <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="fontStyle gridSpacing sapUiSizeCompact sapUiNoContentPadding ">

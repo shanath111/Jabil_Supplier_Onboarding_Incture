@@ -3670,6 +3670,13 @@ sap.ui.define([
 
                         iError = true;
                     }
+                     if (oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace && oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace.length > 28) {
+                    iError = true;
+                }
+                } else{
+                     if (oView.getModel("oDataModel").getData().shippingInfoDto.newincotermNamedPlace && oView.getModel("oDataModel").getData().shippingInfoDto.newincotermNamedPlace.length > 28) {
+                    iError = true;
+                     }
                 }
                 if (!oView.getModel("oDataModel").getData().shippingInfoDto.vendor || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.vendor)) {
                     oView.getModel("oErrorModel").getData().vendorE = "Error";
@@ -3685,6 +3692,7 @@ sap.ui.define([
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.vendor && oView.getModel("oDataModel").getData().shippingInfoDto.vendor.length > 30) {
                     iError = true;
                 }
+               
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation && oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.length > 20) {
                     iError = true;
                 }
@@ -5152,6 +5160,16 @@ sap.ui.define([
                 }
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation && oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.length > 20) {
                     iError = true;
+                }
+                if (oView.getModel("oUserModel").getData().isNew) {
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace && oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace.length > 28) {
+                        iError = true;
+                    }
+                }
+                else {
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.newincotermNamedPlace && oView.getModel("oDataModel").getData().shippingInfoDto.newincotermNamedPlace.length > 28) {
+                        iError = true;
+                    }
                 }
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isDeliver) {
 
@@ -6634,6 +6652,7 @@ sap.ui.define([
                 }
             },
             // @ts-ignore
+            //File Upload function with Date Input
             fnOnFileUpload1: function (oEvt) {
                 var that = this;
 
