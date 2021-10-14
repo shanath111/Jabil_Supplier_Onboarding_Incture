@@ -85,7 +85,7 @@
 									</VBox>
 								
                                     <VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCDistrict}" required="true" class="cl_VRLablCls "></Label>
+										<Label text="{i18n>BPCDistrict}" required="false" class="cl_VRLablCls "></Label>
 										<Label text="{JMBPCreate>/district}" class="cl_VRLablClsValue "></Label>
 									
 									</VBox>
