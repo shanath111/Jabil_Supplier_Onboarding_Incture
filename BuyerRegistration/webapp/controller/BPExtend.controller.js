@@ -1340,9 +1340,9 @@ sap.ui.define([
                     vError1 = true;
                 }
 
-                if (!oView.getModel("JMBPCreate").getData().district) {
-                    vError1 = true;
-                }
+                // if (!oView.getModel("JMBPCreate").getData().district) {
+                //     vError1 = true;
+                // }
                 if (!oView.getModel("JMBPCreate").getData().country) {
                     vError1 = true;
                 }

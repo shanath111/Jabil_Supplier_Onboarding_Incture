@@ -38,8 +38,12 @@
 										</ComboBox>
 									</VBox>
 								</l:Grid>
+                                	<Label text="{i18n>ExtendLabel1}" wrapping="true" class="cl_VRLablCls sapUiSmallMarginBegin sapUiTinyMarginTop"></Label>
+                                    <Label text="{i18n>ExtendLabel2}"  wrapping="true" class="cl_VRLablCls sapUiSmallMarginBegin sapUiTinyMarginTop"></Label>
+                                    <Label text="{i18n>ExtendLabel3}"  wrapping="true" class="cl_VRLablCls sapUiSmallMarginBegin sapUiTinyMarginTop"></Label>
+                                    <Label text="{i18n>ExtendLabel4}"  wrapping="true" class="cl_VRLablCls sapUiSmallMarginBegin sapUiTinyMarginTop"></Label>
                                 
-                                	<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+                                	<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiSmallMarginBegin sapUiTinyMarginTop cl_extendBuyerRegGrid">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCCorporationName}" class="cl_VRLablCls "></Label>
 										<Label text="{JMBPCreate>/corporationName}"  class="cl_VRLablClsValue "></Label>
