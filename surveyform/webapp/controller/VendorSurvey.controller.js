@@ -61,9 +61,9 @@ sap.ui.define([
                     } else if (oEvent.getSource().getStepCount() == 8) {
                         if (oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep == 1 || oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep == 2) {
                             oEvent.getSource().getParent().setCurrentStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId);
-                        } else if(oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep == 7){
-                             oEvent.getSource().getParent().setCurrentStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep + 1].sId);
-                        } else{
+                        } else if (oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep == 7) {
+                            oEvent.getSource().getParent().setCurrentStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep + 1].sId);
+                        } else {
                             oEvent.getSource().getParent().setCurrentStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep].sId);
                         }
                     }
@@ -169,7 +169,7 @@ sap.ui.define([
 
                                     }
 
-                                    if(oEvent.getSource().oData.surveyInfoDto.address[0].postal[0].countryCode){
+                                    if (oEvent.getSource().oData.surveyInfoDto.address[0].postal[0].countryCode) {
                                         var countryCode = oEvent.getSource().oData.surveyInfoDto.address[0].postal[0].countryCode;
                                         var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + countryCode;
                                         $.ajax({
@@ -178,18 +178,18 @@ sap.ui.define([
                                             success: function (data) {
                                                 var postalCodeLength = parseInt(data[0].postalCodeLength);
                                                 var postalCodeRule = parseInt(data[0].postalCodeRule)
-                                                if(postalCodeLength == 0){
+                                                if (postalCodeLength == 0) {
                                                     var PostalCodeValidation = {
-                                                        "postalCodeLength" : 10,
+                                                        "postalCodeLength": 10,
                                                         "postalCodeRule": postalCodeRule
                                                     };
                                                 } else {
                                                     var PostalCodeValidation = {
-                                                        "postalCodeLength" : postalCodeLength,
+                                                        "postalCodeLength": postalCodeLength,
                                                         "postalCodeRule": postalCodeRule
                                                     };
                                                 }
-                                                
+
                                                 oView.getModel("oLookUpModel").setProperty("/PostalCodeValidation", PostalCodeValidation);
                                                 oView.getModel("oLookUpModel").refresh();
                                             },
@@ -224,7 +224,7 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
-                                                    if(taxMaxLength == 0){
+                                                    if (taxMaxLength == 0) {
                                                         var taxIDValidationData = {
                                                             "taxMaxLength": 20,
                                                             "taxNumRule": taxNumRule
@@ -235,7 +235,7 @@ sap.ui.define([
                                                             "taxNumRule": taxNumRule
                                                         }
                                                     }
-                                                   
+
 
                                                     oView.getModel("oLookUpModel").setProperty("/taxIDValidation1", taxIDValidationData);
                                                     oView.getModel("oLookUpModel").refresh();
@@ -273,7 +273,7 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
-                                                    if(taxMaxLength == 0){
+                                                    if (taxMaxLength == 0) {
                                                         var taxIDValidationData = {
                                                             "taxMaxLength": 20,
                                                             "taxNumRule": taxNumRule
@@ -320,7 +320,7 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
-                                                    if(taxMaxLength == 0){
+                                                    if (taxMaxLength == 0) {
                                                         var taxIDValidationData = {
                                                             "taxMaxLength": 20,
                                                             "taxNumRule": taxNumRule
@@ -368,7 +368,7 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
-                                                    if(taxMaxLength == 0){
+                                                    if (taxMaxLength == 0) {
                                                         var taxIDValidationData = {
                                                             "taxMaxLength": 20,
                                                             "taxNumRule": taxNumRule
@@ -415,8 +415,8 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
-                                                    if(taxMaxLength == 0){
-                                                    var taxIDValidationData = {
+                                                    if (taxMaxLength == 0) {
+                                                        var taxIDValidationData = {
                                                             "taxMaxLength": 20,
                                                             "taxNumRule": taxNumRule
                                                         }
@@ -462,8 +462,8 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
-                                                    if(taxMaxLength == 0){
-                                                    var taxIDValidationData = {
+                                                    if (taxMaxLength == 0) {
+                                                        var taxIDValidationData = {
                                                             "taxMaxLength": 20,
                                                             "taxNumRule": taxNumRule
                                                         }
@@ -509,8 +509,8 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
-                                                    if(taxMaxLength == 0){
-                                                    var taxIDValidationData = {
+                                                    if (taxMaxLength == 0) {
+                                                        var taxIDValidationData = {
                                                             "taxMaxLength": 20,
                                                             "taxNumRule": taxNumRule
                                                         }
@@ -556,8 +556,8 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
-                                                    if(taxMaxLength == 0){
-                                                    var taxIDValidationData = {
+                                                    if (taxMaxLength == 0) {
+                                                        var taxIDValidationData = {
                                                             "taxMaxLength": 20,
                                                             "taxNumRule": taxNumRule
                                                         }
@@ -691,60 +691,60 @@ sap.ui.define([
 
                                             var loadPostalCodeOFAUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + oEvent.getSource().oData.comInfoDto.address[0].postal[0].countryCode;
                                             $.ajax({
-                                            url: loadPostalCodeOFAUrl,
-                                            type: 'GET',
-                                            success: function (data) {
-                                                var postalCodeLength = parseInt(data[0].postalCodeLength);
-                                                var postalCodeRule = parseInt(data[0].postalCodeRule)
-                                                if(postalCodeLength == 0){
-                                                    var PostalCodeValidation = {
-                                                        "postalCodeLength" : 10,
-                                                        "postalCodeRule": postalCodeRule
-                                                    };
-                                                } else {
-                                                    var PostalCodeValidation = {
-                                                        "postalCodeLength" : postalCodeLength,
-                                                        "postalCodeRule": postalCodeRule
-                                                    };
+                                                url: loadPostalCodeOFAUrl,
+                                                type: 'GET',
+                                                success: function (data) {
+                                                    var postalCodeLength = parseInt(data[0].postalCodeLength);
+                                                    var postalCodeRule = parseInt(data[0].postalCodeRule)
+                                                    if (postalCodeLength == 0) {
+                                                        var PostalCodeValidation = {
+                                                            "postalCodeLength": 10,
+                                                            "postalCodeRule": postalCodeRule
+                                                        };
+                                                    } else {
+                                                        var PostalCodeValidation = {
+                                                            "postalCodeLength": postalCodeLength,
+                                                            "postalCodeRule": postalCodeRule
+                                                        };
+                                                    }
+
+                                                    oView.getModel("oLookUpModel").setProperty("/PostalCodeValidationOFA", PostalCodeValidation);
+                                                    oView.getModel("oLookUpModel").refresh();
+                                                },
+                                                async: false,
+                                                error: function (data) {
+
                                                 }
-                                                
-                                                oView.getModel("oLookUpModel").setProperty("/PostalCodeValidationOFA", PostalCodeValidation);
-                                                oView.getModel("oLookUpModel").refresh();
-                                            },
-                                            async: false,
-                                            error: function (data) {
+                                            });
 
-                                            }
-                                        });
-
-                                        var loadPostalCodeRTAUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + oEvent.getSource().oData.comInfoDto.address[1].postal[0].countryCode;
+                                            var loadPostalCodeRTAUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + oEvent.getSource().oData.comInfoDto.address[1].postal[0].countryCode;
                                             $.ajax({
-                                            url: loadPostalCodeRTAUrl,
-                                            type: 'GET',
-                                            success: function (data) {
-                                                var postalCodeLength = parseInt(data[0].postalCodeLength);
-                                                var postalCodeRule = parseInt(data[0].postalCodeRule)
-                                                if(postalCodeLength == 0){
-                                                    var PostalCodeValidation = {
-                                                        "postalCodeLength" : 10,
-                                                        "postalCodeRule": postalCodeRule
-                                                    };
-                                                } else {
-                                                    var PostalCodeValidation = {
-                                                        "postalCodeLength" : postalCodeLength,
-                                                        "postalCodeRule": postalCodeRule
-                                                    };
-                                                }
-                                                
-                                                oView.getModel("oLookUpModel").setProperty("/PostalCodeValidationRTA", PostalCodeValidation);
-                                                oView.getModel("oLookUpModel").refresh();
-                                            },
-                                            async: false,
-                                            error: function (data) {
+                                                url: loadPostalCodeRTAUrl,
+                                                type: 'GET',
+                                                success: function (data) {
+                                                    var postalCodeLength = parseInt(data[0].postalCodeLength);
+                                                    var postalCodeRule = parseInt(data[0].postalCodeRule)
+                                                    if (postalCodeLength == 0) {
+                                                        var PostalCodeValidation = {
+                                                            "postalCodeLength": 10,
+                                                            "postalCodeRule": postalCodeRule
+                                                        };
+                                                    } else {
+                                                        var PostalCodeValidation = {
+                                                            "postalCodeLength": postalCodeLength,
+                                                            "postalCodeRule": postalCodeRule
+                                                        };
+                                                    }
 
-                                            }
-                                        });
-                                        
+                                                    oView.getModel("oLookUpModel").setProperty("/PostalCodeValidationRTA", PostalCodeValidation);
+                                                    oView.getModel("oLookUpModel").refresh();
+                                                },
+                                                async: false,
+                                                error: function (data) {
+
+                                                }
+                                            });
+
 
                                             // oView.byId("iAddress1").getDomRef().value = oEvent.getSource().oData.comInfoDto.address[0].postal[0].address1,
                                             //     oView.byId("iAddress2").getDomRef().value = oEvent.getSource().oData.comInfoDto.address[0].postal[0].address2,
@@ -824,31 +824,31 @@ sap.ui.define([
                                             });
                                             var loadPostalCodeOFAUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + oEvent.getSource().oData.comInfoDto.address[0].postal[0].countryCode;
                                             $.ajax({
-                                            url: loadPostalCodeOFAUrl,
-                                            type: 'GET',
-                                            success: function (data) {
-                                                var postalCodeLength = parseInt(data[0].postalCodeLength);
-                                                var postalCodeRule = parseInt(data[0].postalCodeRule)
-                                                if(postalCodeLength == 0){
-                                                    var PostalCodeValidation = {
-                                                        "postalCodeLength" : 10,
-                                                        "postalCodeRule": postalCodeRule
-                                                    };
-                                                } else {
-                                                    var PostalCodeValidation = {
-                                                        "postalCodeLength" : postalCodeLength,
-                                                        "postalCodeRule": postalCodeRule
-                                                    };
-                                                }
-                                                
-                                                oView.getModel("oLookUpModel").setProperty("/PostalCodeValidationOFA", PostalCodeValidation);
-                                                oView.getModel("oLookUpModel").refresh();
-                                            },
-                                            async: false,
-                                            error: function (data) {
+                                                url: loadPostalCodeOFAUrl,
+                                                type: 'GET',
+                                                success: function (data) {
+                                                    var postalCodeLength = parseInt(data[0].postalCodeLength);
+                                                    var postalCodeRule = parseInt(data[0].postalCodeRule)
+                                                    if (postalCodeLength == 0) {
+                                                        var PostalCodeValidation = {
+                                                            "postalCodeLength": 10,
+                                                            "postalCodeRule": postalCodeRule
+                                                        };
+                                                    } else {
+                                                        var PostalCodeValidation = {
+                                                            "postalCodeLength": postalCodeLength,
+                                                            "postalCodeRule": postalCodeRule
+                                                        };
+                                                    }
 
-                                            }
-                                        });
+                                                    oView.getModel("oLookUpModel").setProperty("/PostalCodeValidationOFA", PostalCodeValidation);
+                                                    oView.getModel("oLookUpModel").refresh();
+                                                },
+                                                async: false,
+                                                error: function (data) {
+
+                                                }
+                                            });
 
 
                                             // oView.byId("iAddress1").getDomRef().value = oEvent.getSource().oData.comInfoDto.address[0].postal[0].address1,
@@ -886,6 +886,7 @@ sap.ui.define([
                                                     "haveDiversityCertifications": oEvent.getSource().oData.comInfoDto.haveDiversityCertifications,
                                                     "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite
                                                 });
+
                                             rModel.setData({
                                                 "isRemitToAddress": oEvent.getSource().oData.comInfoDto.isRemitToAddress || false,
                                                 "rName": oEvent.getSource().oData.comInfoDto.address[0].postal[0].name,
@@ -923,31 +924,31 @@ sap.ui.define([
 
                                             var loadPostalCodeRTAUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + oEvent.getSource().oData.comInfoDto.address[1].postal[0].countryCode;
                                             $.ajax({
-                                            url: loadPostalCodeRTAUrl,
-                                            type: 'GET',
-                                            success: function (data) {
-                                                var postalCodeLength = parseInt(data[0].postalCodeLength);
-                                                var postalCodeRule = parseInt(data[0].postalCodeRule)
-                                                if(postalCodeLength == 0){
-                                                    var PostalCodeValidation = {
-                                                        "postalCodeLength" : 10,
-                                                        "postalCodeRule": postalCodeRule
-                                                    };
-                                                } else {
-                                                    var PostalCodeValidation = {
-                                                        "postalCodeLength" : postalCodeLength,
-                                                        "postalCodeRule": postalCodeRule
-                                                    };
-                                                }
-                                                
-                                                oView.getModel("oLookUpModel").setProperty("/PostalCodeValidationRTA", PostalCodeValidation);
-                                                oView.getModel("oLookUpModel").refresh();
-                                            },
-                                            async: false,
-                                            error: function (data) {
+                                                url: loadPostalCodeRTAUrl,
+                                                type: 'GET',
+                                                success: function (data) {
+                                                    var postalCodeLength = parseInt(data[0].postalCodeLength);
+                                                    var postalCodeRule = parseInt(data[0].postalCodeRule)
+                                                    if (postalCodeLength == 0) {
+                                                        var PostalCodeValidation = {
+                                                            "postalCodeLength": 10,
+                                                            "postalCodeRule": postalCodeRule
+                                                        };
+                                                    } else {
+                                                        var PostalCodeValidation = {
+                                                            "postalCodeLength": postalCodeLength,
+                                                            "postalCodeRule": postalCodeRule
+                                                        };
+                                                    }
 
-                                            }
-                                        });
+                                                    oView.getModel("oLookUpModel").setProperty("/PostalCodeValidationRTA", PostalCodeValidation);
+                                                    oView.getModel("oLookUpModel").refresh();
+                                                },
+                                                async: false,
+                                                error: function (data) {
+
+                                                }
+                                            });
                                             // oView.byId("iAddress1R").getDomRef().value = oEvent.getSource().oData.comInfoDto.address[0].postal[0].address1,
                                             //     oView.byId("iAddress2R").getDomRef().value = oEvent.getSource().oData.comInfoDto.address[0].postal[0].address2,
 
@@ -1434,18 +1435,18 @@ sap.ui.define([
                     success: function (data) {
                         var postalCodeLength = parseInt(data[0].postalCodeLength);
                         var postalCodeRule = parseInt(data[0].postalCodeRule)
-                        if(postalCodeLength == 0){
+                        if (postalCodeLength == 0) {
                             var PostalCodeValidation = {
-                                "postalCodeLength" : 10,
+                                "postalCodeLength": 10,
                                 "postalCodeRule": postalCodeRule
                             };
                         } else {
                             var PostalCodeValidation = {
-                                "postalCodeLength" : postalCodeLength,
+                                "postalCodeLength": postalCodeLength,
                                 "postalCodeRule": postalCodeRule
                             };
                         }
-                        
+
                         oView.getModel("oLookUpModel").setProperty("/PostalCodeValidationOFA", PostalCodeValidation);
                         oView.getModel("oLookUpModel").refresh();
                     },
@@ -1480,18 +1481,18 @@ sap.ui.define([
                     success: function (data) {
                         var postalCodeLength = parseInt(data[0].postalCodeLength);
                         var postalCodeRule = parseInt(data[0].postalCodeRule)
-                        if(postalCodeLength == 0){
+                        if (postalCodeLength == 0) {
                             var PostalCodeValidation = {
-                                "postalCodeLength" : 10,
+                                "postalCodeLength": 10,
                                 "postalCodeRule": postalCodeRule
                             };
                         } else {
                             var PostalCodeValidation = {
-                                "postalCodeLength" : postalCodeLength,
+                                "postalCodeLength": postalCodeLength,
                                 "postalCodeRule": postalCodeRule
                             };
                         }
-                        
+
                         oView.getModel("oLookUpModel").setProperty("/PostalCodeValidationRTA", PostalCodeValidation);
                         oView.getModel("oLookUpModel").refresh();
                     },
@@ -1637,19 +1638,19 @@ sap.ui.define([
                     success: function (data) {
                         var postalCodeLength = parseInt(data[0].postalCodeLength);
                         var postalCodeRule = parseInt(data[0].postalCodeRule)
-                        
-                        if(postalCodeLength == 0){
+
+                        if (postalCodeLength == 0) {
                             var PostalCodeValidation = {
-                                "postalCodeLength" : 10,
+                                "postalCodeLength": 10,
                                 "postalCodeRule": postalCodeRule
                             };
                         } else {
                             var PostalCodeValidation = {
-                                "postalCodeLength" : postalCodeLength,
+                                "postalCodeLength": postalCodeLength,
                                 "postalCodeRule": postalCodeRule
                             };
                         }
-                        
+
                         oView.getModel("oLookUpModel").setProperty("/PostalCodeValidation", PostalCodeValidation);
                         oView.getModel("oLookUpModel").refresh();
                     },
@@ -2109,9 +2110,9 @@ sap.ui.define([
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact.length > 30) {
                     iError = true;
                 }
-                
-                                
-                    
+
+
+
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1 && oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1.length > 35) {
 
 
@@ -2143,55 +2144,55 @@ sap.ui.define([
                     var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidation;
                     var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
                     var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
-                        switch (postalCodeRule) {
-                            case 1:
-                                if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
-                                    
-                                    iError = true;
-                                }
-                                break;
-                            case 2:
-                                if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-                                    
-                                    iError = true;
-                                }
-                                break;
-                            case 3:
-                                if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                    
-                                    iError = true;
-                                }
-                                break;
-                            case 4:
-                                if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                    
-                                    iError = true;
-                                }
-                                break;
-                            case 5:
-                                if (postalCode.length > postalCodeLength) {
-                                        iError = true;
-                                }
-                                break;
-                            case 6:
-                                if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-                                    
-                                    iError = true;
-                                }
-                                break;
-                            case 7:
-                                if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                    
-                                    iError = true;
-                                }
-                                break;
-                            case 8:
-                                if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                    
-                                    iError = true;
-                                }
-                        }
-                                    
+                    switch (postalCodeRule) {
+                        case 1:
+                            if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
+
+                                iError = true;
+                            }
+                            break;
+                        case 2:
+                            if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+
+                                iError = true;
+                            }
+                            break;
+                        case 3:
+                            if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                iError = true;
+                            }
+                            break;
+                        case 4:
+                            if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                iError = true;
+                            }
+                            break;
+                        case 5:
+                            if (postalCode.length > postalCodeLength) {
+                                iError = true;
+                            }
+                            break;
+                        case 6:
+                            if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+
+                                iError = true;
+                            }
+                            break;
+                        case 7:
+                            if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                iError = true;
+                            }
+                            break;
+                        case 8:
+                            if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                iError = true;
+                            }
+                    }
+
                 }
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].faxNum && oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].faxNum.length > 30) {
                     iError = true;
@@ -2232,39 +2233,39 @@ sap.ui.define([
                 //     }
 
                 // } else {
-                     if (oView.getModel("oUserModel").getData().isNew) {
-                if (oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber === null) {
-                    oView.getModel("oErrorModel").getData().siteHaveDunsNumberE = "Error";
-                    iError = true;
+                if (oView.getModel("oUserModel").getData().isNew) {
+                    if (oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber === null) {
+                        oView.getModel("oErrorModel").getData().siteHaveDunsNumberE = "Error";
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber) {
+                        if (oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum && oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum.length != 9) {
+                            oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "Error";
+                            oView.getModel("oErrorModel").getData().dunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
+                            iError = true;
+                        } else {
+                            oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "None";
+                            oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
+
+                        }
+                    } else if (oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber === false) {
+                        if (oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === null) {
+                            oView.getModel("oErrorModel").getData().isSiteCorporateHeadquatersE = "Error";
+                            iError = true;
+                        }
+                        if (!oView.getModel("oDataModel").getData().bpInfoDto.noOfEmployees) {
+                            oView.getModel("oErrorModel").getData().numOfEmpE = "Error";
+                            oView.getModel("oErrorModel").getData().numOfEmpM = oi18n.getText("mandatoryNumber");
+                            iError = true;
+                        } if (!oView.getModel("oDataModel").getData().bpInfoDto.year) {
+                            oView.getModel("oErrorModel").getData().yearE = "Error";
+                            oView.getModel("oErrorModel").getData().yearM = oi18n.getText("mandatoryYear");
+
+                            iError = true;
+                        }
+
+                    }
                 }
-                if (oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber) {
-                    if (oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum && oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum.length != 9) {
-                        oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "Error";
-                        oView.getModel("oErrorModel").getData().dunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
-                        iError = true;
-                    } else {
-                        oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "None";
-                        oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
-
-                    }
-                } else if (oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber === false) {
-                    if (oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === null) {
-                        oView.getModel("oErrorModel").getData().isSiteCorporateHeadquatersE = "Error";
-                        iError = true;
-                    }
-                    if (!oView.getModel("oDataModel").getData().bpInfoDto.noOfEmployees) {
-                        oView.getModel("oErrorModel").getData().numOfEmpE = "Error";
-                        oView.getModel("oErrorModel").getData().numOfEmpM = oi18n.getText("mandatoryNumber");
-                        iError = true;
-                    } if (!oView.getModel("oDataModel").getData().bpInfoDto.year) {
-                        oView.getModel("oErrorModel").getData().yearE = "Error";
-                        oView.getModel("oErrorModel").getData().yearM = oi18n.getText("mandatoryYear");
-
-                        iError = true;
-                    }
-
-                }
-            }
                 //}
                 if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName)) {
                     oView.getModel("oErrorModel").getData().ppocFNameE = "Error";
@@ -2463,7 +2464,7 @@ sap.ui.define([
                 if (this.emailValidResult) {
                     iError = true;
                 }
-                if ((!oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum || oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum  ==="NODUNS")  && oView.getModel("oDataModel").getData().ownerShipInfoDto.doesOtherEntityOwnSite === null) {
+                if ((!oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum || oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum === "NODUNS") && oView.getModel("oDataModel").getData().ownerShipInfoDto.doesOtherEntityOwnSite === null) {
                     oView.getModel("oErrorModel").getData().doesOtherEntityOwnSiteE = "Error";
                     iError = true;
                 }
@@ -2471,7 +2472,7 @@ sap.ui.define([
                     oView.getModel("oErrorModel").getData().isEntityTradedCompanyE = "Error";
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().ownerShipInfoDto.doesOtherEntityOwnSite && (!oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum || oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum  ==="NODUNS"))
+                if (oView.getModel("oDataModel").getData().ownerShipInfoDto.doesOtherEntityOwnSite && (!oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum || oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum === "NODUNS"))
                     if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.companyName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.companyName)) {
                         oView.getModel("oErrorModel").getData().compNameE = "Error";
                         oView.getModel("oErrorModel").getData().compNameM = oi18n.getText("mandatoryCompName");
@@ -2804,54 +2805,54 @@ sap.ui.define([
                             var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationOFA;
                             var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
                             var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
-                                switch (postalCodeRule) {
-                                    case 1:
-                                        if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
-                                            
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 2:
-                                        if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-                                            
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 3:
-                                        if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                            
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 4:
-                                        if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                            
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 5:
-                                        if (postalCode.length > postalCodeLength) {
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 6:
-                                        if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-                                            
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 7:
-                                        if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                            
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 8:
-                                        if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                            
-                                            iError = true;
-                                        }
-                                }
+                            switch (postalCodeRule) {
+                                case 1:
+                                    if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
+
+                                        iError = true;
+                                    }
+                                    break;
+                                case 2:
+                                    if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+
+                                        iError = true;
+                                    }
+                                    break;
+                                case 3:
+                                    if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                        iError = true;
+                                    }
+                                    break;
+                                case 4:
+                                    if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                        iError = true;
+                                    }
+                                    break;
+                                case 5:
+                                    if (postalCode.length > postalCodeLength) {
+                                        iError = true;
+                                    }
+                                    break;
+                                case 6:
+                                    if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+
+                                        iError = true;
+                                    }
+                                    break;
+                                case 7:
+                                    if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                        iError = true;
+                                    }
+                                    break;
+                                case 8:
+                                    if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                        iError = true;
+                                    }
+                            }
                         }
                         if (oView.getModel("companyInfoModel").getData().oCity && oView.getModel("companyInfoModel").getData().oCity.length > 40) {
                             iError = true;
@@ -2862,8 +2863,8 @@ sap.ui.define([
                         if (oView.getModel("companyInfoModel").getData().oFaxNum && oView.getModel("companyInfoModel").getData().oFaxNum.length > 30) {
                             iError = true;
                         }
-                        
-                                            
+
+
                     }
 
                     if (oView.getModel("remitModel").getData().isRemitToAddress) {
@@ -2951,56 +2952,56 @@ sap.ui.define([
                             var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationRTA;
                             var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
                             var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
-                                switch (postalCodeRule) {
-                                    case 1:
-                                        if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
-                                            
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 2:
-                                        if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-                                            
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 3:
-                                        if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                            
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 4:
-                                        if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                            
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 5:
-                                        if (postalCode.length > postalCodeLength) {
-                                            
-                                            iError = true;
-                                            }
-                                        break;
-                                    case 6:
-                                        if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-                                            
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 7:
-                                        if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                            
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 8:
-                                        if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                            
-                                            iError = true;
-                                        }
-                                }
-                    
+                            switch (postalCodeRule) {
+                                case 1:
+                                    if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
+
+                                        iError = true;
+                                    }
+                                    break;
+                                case 2:
+                                    if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+
+                                        iError = true;
+                                    }
+                                    break;
+                                case 3:
+                                    if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                        iError = true;
+                                    }
+                                    break;
+                                case 4:
+                                    if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                        iError = true;
+                                    }
+                                    break;
+                                case 5:
+                                    if (postalCode.length > postalCodeLength) {
+
+                                        iError = true;
+                                    }
+                                    break;
+                                case 6:
+                                    if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+
+                                        iError = true;
+                                    }
+                                    break;
+                                case 7:
+                                    if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                        iError = true;
+                                    }
+                                    break;
+                                case 8:
+                                    if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                        iError = true;
+                                    }
+                            }
+
                         }
                         if (oView.getModel("remitModel").getData().rCity && oView.getModel("remitModel").getData().rCity.length > 40) {
                             iError = true;
@@ -3144,29 +3145,30 @@ sap.ui.define([
                 var that = this;
 
                 if (oView.getModel("oUserModel").getData().isNew) {
-                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentTerms) {
-                    oView.getModel("oErrorModel").getData().paymentTermE = "Error";
-                    oView.getModel("oErrorModel").getData().paymentTermM = oi18n.getText("mandatoryPayTerms");
+                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentTerms) {
+                        oView.getModel("oErrorModel").getData().paymentTermE = "Error";
+                        oView.getModel("oErrorModel").getData().paymentTermM = oi18n.getText("mandatoryPayTerms");
 
-                    iError = true;
-                }
-                if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod) {
-                    oView.getModel("oErrorModel").getData().paymentTermMethdE = "Error";
-                    oView.getModel("oErrorModel").getData().paymentTermMethdM = oi18n.getText("mandatoryPayMethod");
+                        iError = true;
+                    }
+                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod) {
+                        oView.getModel("oErrorModel").getData().paymentTermMethdE = "Error";
+                        oView.getModel("oErrorModel").getData().paymentTermMethdM = oi18n.getText("mandatoryPayMethod");
 
-                    iError = true;
-                }
+                        iError = true;
+                    }
+                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency) {
+                        oView.getModel("oErrorModel").getData().paymentCurrE = "Error";
+                        oView.getModel("oErrorModel").getData().paymentCurrM = oi18n.getText("mandatoryCurr");
+
+                        iError = true;
+                    }
                     if (visiblility.isBankProvided === null) {
                         oView.getModel("oErrorModel").getData().isBankProvidedE = "Error";
                         iError = true;
                     }
                     if (visiblility.isBankProvided) {
-                        if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency) {
-                            oView.getModel("oErrorModel").getData().paymentCurrE = "Error";
-                            oView.getModel("oErrorModel").getData().paymentCurrM = oi18n.getText("mandatoryCurr");
 
-                            iError = true;
-                        }
                         if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry)) {
                             oView.getModel("oErrorModel").getData().bankCountryE = "Error";
                             oView.getModel("oErrorModel").getData().bankCountryM = oi18n.getText("mandatoryCountry");
@@ -3670,13 +3672,13 @@ sap.ui.define([
 
                         iError = true;
                     }
-                     if (oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace && oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace.length > 28) {
-                    iError = true;
-                }
-                } else{
-                     if (oView.getModel("oDataModel").getData().shippingInfoDto.newincotermNamedPlace && oView.getModel("oDataModel").getData().shippingInfoDto.newincotermNamedPlace.length > 28) {
-                    iError = true;
-                     }
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace && oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace.length > 28) {
+                        iError = true;
+                    }
+                } else {
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.newincotermNamedPlace && oView.getModel("oDataModel").getData().shippingInfoDto.newincotermNamedPlace.length > 28) {
+                        iError = true;
+                    }
                 }
                 if (!oView.getModel("oDataModel").getData().shippingInfoDto.vendor || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.vendor)) {
                     oView.getModel("oErrorModel").getData().vendorE = "Error";
@@ -3684,7 +3686,7 @@ sap.ui.define([
 
                     iError = true;
                 }
-               
+
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isDeliver === null) {
                     oView.getModel("oErrorModel").getData().isDeliverE = "Error";
                     iError = true;
@@ -3692,7 +3694,7 @@ sap.ui.define([
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.vendor && oView.getModel("oDataModel").getData().shippingInfoDto.vendor.length > 30) {
                     iError = true;
                 }
-               
+
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation && oView.getModel("oDataModel").getData().shippingInfoDto.deliveryLocation.length > 20) {
                     iError = true;
                 }
@@ -4554,58 +4556,58 @@ sap.ui.define([
                 }
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode) {
                     var postalCode = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode;
-                var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidation;
-                var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
-                var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
-                        switch (postalCodeRule) {
-                            case 1:
-                                if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
-                                    
-                                    iError = true;
-                                }
-                                break;
-                            case 2:
-                                if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-                                    
-                                    iError = true;
-                                }
-                                break;
-                            case 3:
-                                if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                    
-                                    iError = true;
-                                } 
-                                break;
-				            case 4:
-                                if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                    
-                                    iError = true;
-                                } 
-                                break;
-                            case 5:
-                                if (postalCode.length > postalCodeLength) {
-                                    
-                                    iError = true;
-                                }
-                                break;
-                            case 6:
-                                if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-                                   
-                                    iError = true;
-                                } 
-                                break;
-                            case 7:
-                                if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                    
-                                    iError = true;
-                                } 
-                                break;
-                            case 8:
-                                if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                    
-                                    iError = true;
-                                } 
-                        }
+                    var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidation;
+                    var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
+                    var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
+                    switch (postalCodeRule) {
+                        case 1:
+                            if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
+
+                                iError = true;
+                            }
+                            break;
+                        case 2:
+                            if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+
+                                iError = true;
+                            }
+                            break;
+                        case 3:
+                            if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                iError = true;
+                            }
+                            break;
+                        case 4:
+                            if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                iError = true;
+                            }
+                            break;
+                        case 5:
+                            if (postalCode.length > postalCodeLength) {
+
+                                iError = true;
+                            }
+                            break;
+                        case 6:
+                            if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+
+                                iError = true;
+                            }
+                            break;
+                        case 7:
+                            if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                iError = true;
+                            }
+                            break;
+                        case 8:
+                            if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                iError = true;
+                            }
+                    }
                 }
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].faxNum && oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].faxNum.length > 30) {
                     iError = true;
@@ -4613,10 +4615,10 @@ sap.ui.define([
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].poBoxPostalCode && oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].poBoxPostalCode.length > 10) {
                     iError = true;
                 }
-                
-                                
 
-                    
+
+
+
 
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
@@ -4652,19 +4654,19 @@ sap.ui.define([
                     }
                 }
                 //if (oView.getModel("oUserModel").getData().isNew && oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber) {
-                     if (oView.getModel("oUserModel").getData().isNew) {
-                if (oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber) {
-                    if (oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum && oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum.length != 9) {
-                        oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "Error";
-                        oView.getModel("oErrorModel").getData().dunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
-                        iError = true;
-                    } else {
-                        oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "None";
-                        oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
-                        // iError = false;
+                if (oView.getModel("oUserModel").getData().isNew) {
+                    if (oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber) {
+                        if (oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum && oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum.length != 9) {
+                            oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "Error";
+                            oView.getModel("oErrorModel").getData().dunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
+                            iError = true;
+                        } else {
+                            oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "None";
+                            oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
+                            // iError = false;
+                        }
                     }
                 }
-                     }
 
 
                 if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName.length > 40) {
@@ -4847,56 +4849,56 @@ sap.ui.define([
                         var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationOFA;
                         var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
                         var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
-                            switch (postalCodeRule) {
-                                case 1:
-                                    if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
-                                        
-                                        iError = true;
-                                    }
-                                    break;
-                                case 2:
-                                    if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-                                        
-                                        iError = true;
-                                    }
-                                    break;
-                                case 3:
-                                    if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                        
-                                        iError = true;
-                                    } 
-                                    break;
-                                case 4:
-                                    if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                        
-                                        iError = true;
-                                    } 
-                                    break;
-                                case 5:
-                                    if (postalCode.length > postalCodeLength) {
-                                        
-                                        iError = true;
-                                        }
-                                    break;
-                                case 6:
-                                    if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-                                        
-                                        iError = true;
-                                    }
-                                    break;
-                                case 7:
-                                    if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                        
-                                        iError = true;
-                                    }
-                                    break;
-                                case 8:
-                                    if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                        
-                                        iError = true;
-                                    }
-                            }
-                
+                        switch (postalCodeRule) {
+                            case 1:
+                                if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
+
+                                    iError = true;
+                                }
+                                break;
+                            case 2:
+                                if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+
+                                    iError = true;
+                                }
+                                break;
+                            case 3:
+                                if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                    iError = true;
+                                }
+                                break;
+                            case 4:
+                                if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                    iError = true;
+                                }
+                                break;
+                            case 5:
+                                if (postalCode.length > postalCodeLength) {
+
+                                    iError = true;
+                                }
+                                break;
+                            case 6:
+                                if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+
+                                    iError = true;
+                                }
+                                break;
+                            case 7:
+                                if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                    iError = true;
+                                }
+                                break;
+                            case 8:
+                                if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                    iError = true;
+                                }
+                        }
+
                     }
                     if (oView.getModel("companyInfoModel").getData().oCity && oView.getModel("companyInfoModel").getData().oCity.length > 40) {
                         iError = true;
@@ -4907,8 +4909,8 @@ sap.ui.define([
                     if (oView.getModel("companyInfoModel").getData().oFaxNum && oView.getModel("companyInfoModel").getData().oFaxNum.length > 30) {
                         iError = true;
                     }
-                    
-                                    
+
+
 
                 }
 
@@ -4945,56 +4947,56 @@ sap.ui.define([
                         var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationRTA;
                         var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
                         var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
-                            switch (postalCodeRule) {
-                                case 1:
-                                    if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
-                                        
-                                        iError = true;
-                                    }
-                                    break;
-                                case 2:
-                                    if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-                                        
-                                        iError = true;
-                                    }
-                                    break;
-                                case 3:
-                                    if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                        
-                                        iError = true;
-                                    } 
-                                    break;
-                                case 4:
-                                    if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                        
-                                        iError = true;
-                                    } 
-                                    break;
-                                case 5:
-                                    if (postalCode.length > postalCodeLength) {
-                                        
-                                        iError = true;
-                                    }
-                                    break;
-                                case 6:
-                                    if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-                                        
-                                        iError = true;
-                                    }
-                                    break;
-                                case 7:
-                                    if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                        
-                                        iError = true;
-                                    }
-                                    break;
-                                case 8:
-                                    if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-                                        
-                                        iError = true;
-                                    }
-                            }
-                
+                        switch (postalCodeRule) {
+                            case 1:
+                                if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
+
+                                    iError = true;
+                                }
+                                break;
+                            case 2:
+                                if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+
+                                    iError = true;
+                                }
+                                break;
+                            case 3:
+                                if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                    iError = true;
+                                }
+                                break;
+                            case 4:
+                                if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                    iError = true;
+                                }
+                                break;
+                            case 5:
+                                if (postalCode.length > postalCodeLength) {
+
+                                    iError = true;
+                                }
+                                break;
+                            case 6:
+                                if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+
+                                    iError = true;
+                                }
+                                break;
+                            case 7:
+                                if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                    iError = true;
+                                }
+                                break;
+                            case 8:
+                                if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+
+                                    iError = true;
+                                }
+                        }
+
                     }
                     if (oView.getModel("remitModel").getData().rCity && oView.getModel("remitModel").getData().rCity.length > 40) {
                         iError = true;
@@ -5011,8 +5013,8 @@ sap.ui.define([
                     if (oView.getModel("remitModel").getData().rPostOffZipCode && oView.getModel("remitModel").getData().rPostOffZipCode.length > 10) {
                         iError = true;
                     }
-                    
-                                
+
+
                 }
 
                 if (iError) {
@@ -5022,7 +5024,7 @@ sap.ui.define([
                 }
             },
 
-            
+
             _fnValidateDraftOperAndManu: function () {
                 var iError = false;
 
@@ -5468,8 +5470,8 @@ sap.ui.define([
                     success: function (data) {
                         var taxMaxLength = parseInt(data[0].taxNumLength);
                         var taxNumRule = parseInt(data[0].taxNumRule);
-                        
-                        if(taxMaxLength == 0){
+
+                        if (taxMaxLength == 0) {
                             var taxIDValidationData = {
                                 "taxMaxLength": 20,
                                 "taxNumRule": taxNumRule
@@ -5480,7 +5482,7 @@ sap.ui.define([
                                 "taxNumRule": taxNumRule
                             }
                         }
-                        
+
 
 
                         if (nIndex == 0) {
@@ -5711,7 +5713,7 @@ sap.ui.define([
 
             },
 
-            fnVerifyPostalCode: function(oEvent){
+            fnVerifyPostalCode: function (oEvent) {
                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
@@ -5719,9 +5721,9 @@ sap.ui.define([
                 // var selectedCountry = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode;
                 // if(selectedCountry == "USA"){
                 //     var postalRegex = /^\d{5}[/-]\d{4}$/;
-                    //    if(postalRegex.test(oEvent.getSource().getValue())){
+                //    if(postalRegex.test(oEvent.getSource().getValue())){
 
-                    //    }
+                //    }
                 // }
                 var postalCode = oEvent.getSource().getValue();
 
@@ -5803,7 +5805,7 @@ sap.ui.define([
 
             },
 
-            fnVerifyPostalCodeOFA: function(oEvent) {
+            fnVerifyPostalCodeOFA: function (oEvent) {
                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
@@ -5830,7 +5832,7 @@ sap.ui.define([
                         } else {
                             this.emailValidResult = false;
                         }
-                        case 3:
+                    case 3:
                         if (/\s/.test(postalCode) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of " + postalCodeLength + " characters in length without any spaces");
@@ -5866,7 +5868,7 @@ sap.ui.define([
                             this.emailValidResult = false;
                         }
                         break;
-                        case 7:
+                    case 7:
                         if (!(postalCode.length === postalCodeLength) || (postalCode.includes("_"))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "characters in length");
@@ -5886,7 +5888,7 @@ sap.ui.define([
                 }
             },
 
-            fnVerifyPostalCodeRTA: function(oEvent) {
+            fnVerifyPostalCodeRTA: function (oEvent) {
                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
@@ -5913,12 +5915,12 @@ sap.ui.define([
                         } else {
                             this.emailValidResult = false;
                         }
-                        case 3:
+                    case 3:
                         if (/\s/.test(postalCode) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of " + postalCodeLength + " characters in length without any spaces");
                             this.emailValidResult = true;
-                            } else {
+                        } else {
                             this.emailValidResult = false;
                         }
                         break;
@@ -5949,7 +5951,7 @@ sap.ui.define([
                             this.emailValidResult = false;
                         }
                         break;
-                        case 7:
+                    case 7:
                         if (!(postalCode.length === postalCodeLength) || (postalCode.includes("_"))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "characters in length");
