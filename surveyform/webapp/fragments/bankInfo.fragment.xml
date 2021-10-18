@@ -11,8 +11,8 @@
                      <Label class="fontStyleBold sapUiSizeCompact" text="{parts:['oLookUpModel>/PaymentTerm','oDataModel>/shippingInfoDto/paymentTerms'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}"/>
 				</VBox>
 				<VBox class="fontStyle">
-					<Label text="{i18n>paymentCurr}" visible= "{oVisibilityModel>/isdefaultLan}" required="{oDataModel>/bankDto/isBankProvided}"></Label>
-                    <Label text="{oi18n_En>paymentCurr}&#10;{i18n>paymentCurr}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="{oDataModel>/bankDto/isBankProvided}"></Label>
+					<Label text="{i18n>paymentCurr}" visible= "{oVisibilityModel>/isdefaultLan}" required="true"></Label>
+                    <Label text="{oi18n_En>paymentCurr}&#10;{i18n>paymentCurr}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
                                    <Label class="fontStyleBold sapUiSizeCompact" text="{parts:['oLookUpModel>/Currency','oDataModel>/shippingInfoDto/paymentCurrency'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}"/>
 				</VBox>
 				

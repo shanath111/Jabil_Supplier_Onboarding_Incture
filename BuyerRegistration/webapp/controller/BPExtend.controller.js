@@ -1328,6 +1328,36 @@ sap.ui.define([
 
 
                 }
+                var vError1 = false;
+                if (!oView.getModel("JMBPCreate").getData().address1) {
+                    vError1 = true;
+                }
+
+                if (!oView.getModel("JMBPCreate").getData().city) {
+                    vError1 = true;
+                }
+                if (!oView.getModel("JMBPCreate").getData().state) {
+                    vError1 = true;
+                }
+
+                // if (!oView.getModel("JMBPCreate").getData().district) {
+                //     vError1 = true;
+                // }
+                if (!oView.getModel("JMBPCreate").getData().country) {
+                    vError1 = true;
+                }
+                if (!oView.getModel("JMBPCreate").getData().postalCode) {
+                    vError1 = true;
+                }
+                if (vError1) {
+                    sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("AddressErrorExtention")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
+                    return;
+                }
 
                 var oModel = new JSONModel();
                 var sUrl, vQuery;
@@ -2122,6 +2152,10 @@ sap.ui.define([
                             var oVendorListJson = new sap.ui.model.json.JSONModel();
                             oVendorListJson.setData(temp);
                             that.getView().setModel(oVendorListJson, "oVendorListModel");
+                            if (temp.data.length > 1) {
+                                MessageBox.information(oi18n.getProperty("DuplicateInfoText"));
+                            }
+
                             if (oData.statusCode === "0" || (oData.responseMessage !== undefined ? oData.responseMessage.statusCode === "0" : false)) {
 
                             } else if (oData.statusCode === "1" || (oData.responseMessage !== undefined ? oData.responseMessage.statusCode === "1" : false)) {
