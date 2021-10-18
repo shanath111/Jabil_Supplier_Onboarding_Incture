@@ -6798,6 +6798,25 @@ sap.ui.define([
                 // if (secName == "bankInfo" && fileUploadId == "fileUploader_BIA") {
                 //     secName = "bankIntermediateInfo";
                 // }
+                if(file.name.length > 60){
+                        var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
+                        var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                        if (isDefaultLan) {
+                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        } else {
+                            sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.docFileNameExtendedMessage + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        } 
+                }else{
                 jQuery.sap.domById(fileUpload.getId() + "-fu").setAttribute("type", "file");
                 // @ts-ignore
                 oFormData.append("file", jQuery.sap.domById(fileUpload.getId() + "-fu").files[0]);
@@ -6899,6 +6918,7 @@ sap.ui.define([
 
                     }
                 });
+                }
 
             },
             // @ts-ignore

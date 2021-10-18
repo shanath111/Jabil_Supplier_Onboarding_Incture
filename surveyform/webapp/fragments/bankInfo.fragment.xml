@@ -71,7 +71,7 @@
 				<VBox class="fontStyle">
 					<Label text="{i18n>newpaymentCurr}" visible= "{oVisibilityModel>/isdefaultLan}" required="false"></Label>
                     <Label text="{oi18n_En>newpaymentCurr}&#10;{i18n>newpaymentCurr}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="false"></Label>
-					<ComboBox width="100%" items="{path: 'oLookUpModel>/Currency', sorter:{path:'code'}}" showSecondaryValues="true" filterSecondaryValues="true" selectionChange="fnLiveValueBankInput" valueState="{oErrorModel>/paymentCurrE}" valueStateText="{oErrorModel>/paymentCurrM}"  selectedKey="{oDataModel>/shippingInfoDto/newpaymentCurrency}" enabled="{oEnableMdl>/paymentCurrencyEnb}" placeholder="{i18n>select}" class="inputStyle">
+					<ComboBox width="100%" items="{path: 'oLookUpModel>/Currency', sorter:{path:'code'}}" showSecondaryValues="true" filterSecondaryValues="true" selectionChange="fnLiveValueChange" valueState="{oErrorModel>/paymentCurrE}" valueStateText="{oErrorModel>/paymentCurrM}"  selectedKey="{oDataModel>/shippingInfoDto/newpaymentCurrency}" enabled="{oEnableMdl>/paymentCurrencyEnb}" placeholder="{i18n>select}" class="inputStyle">
                      <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>code}" additionalText="{oLookUpModel>description}"/></ComboBox>
                     <layoutData>
                                   <l:GridData spanM="3" spanL="3" spanXL="3"></l:GridData></layoutData>
@@ -84,11 +84,11 @@
 			<FlexItemData minWidth="100%"/>
 		</layoutData>
 	</Panel>
-	<Panel width="100%" visible="{oUserModel>/isNew}" class="sapUiTinyMarginTop panelPadding">
+	<Panel width="100%" visible="true" class="sapUiTinyMarginTop panelPadding">
 		<content>
         <VBox class="fontStyle sapUiSizeCompact">
          <Label required="true" labelFor="isSCFC1" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankInformation2}:${oi18n_En>bankInformation2} +'/&#160;' +${i18n>bankInformation2}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-        <RadioButtonGroup id="isSCFC1" class="inputStyle" columns="2" selectedIndex="{=${oDataModel>/bankDto/isBankProvided} === true? 0 :(${oDataModel>/bankDto/isBankProvided}=== false ?1: -1)}"  valueState="{oErrorModel>/isBankProvidedE}" enabled="{oEnableMdl>/bankInformationEnb}" select="fnSelectIsBankInfoProvided">
+        <RadioButtonGroup id="isSCFC1" editable="{oUserModel>/isNew}" class="inputStyle" columns="2" selectedIndex="{=${oDataModel>/bankDto/isBankProvided} === true? 0 :(${oDataModel>/bankDto/isBankProvided}=== false ?1: -1)}"  valueState="{oErrorModel>/isBankProvidedE}" enabled="{oEnableMdl>/bankInformationEnb}" select="fnSelectIsBankInfoProvided">
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/bankDto/isBankProvided}"></RadioButton>
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 		</RadioButtonGroup>
@@ -96,30 +96,30 @@
 			<!-- <CheckBox selected="{oDataModel>/bankDto/isBankProvided}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankInformation2}:${oi18n_En>bankInformation2} +'/&#160;' + ${i18n>bankInformation2}}" class="fontBold inputStyle sapUiTinyMarginBottom"/> -->
 			<l:Grid visible="{=${oDataModel>/bankDto/isBankProvided}=== true}" containerQuery="true" defaultSpan="XL2 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 			<VBox  class="fontStyle">
-					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankCountry}:${oi18n_En>bankCountry}+ '&#10;' +${i18n>bankCountry}}" required="true"></Label>
+					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankCountry}:${oi18n_En>bankCountry}+ '&#10;' +${i18n>bankCountry}}" required="{oUserModel>/isNew}"></Label>
 					<ComboBox width="100%" enabled="{oVisibilityModel>/_FinanceReviewEdit}"  items="{oLookUpModel>/Country}" showSecondaryValues="true" filterSecondaryValues="true" selectedKey="{oDataModel>/bankDto/bankInfoDto/0/bankCountry}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/bankCountryE}" valueStateText="{oErrorModel>/bankCountryM}"  selectionChange="fnLiveValueBankInput" class="inputStyle">
                      <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
 				</VBox>
             	<VBox  class="fontStyle">
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankName}:${oi18n_En>bankName}+ '&#10;' +${i18n>bankName}}" wrapping="true" required="{oVisibilityModel>/bankValidation/bankName}"></Label>
-					<Input maxLength="61" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankName}" valueState="{oErrorModel>/bankNameE}" valueStateText="{oErrorModel>/bankNameM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+					<Input maxLength="61" editable="{oUserModel>/isNew}" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankName}" valueState="{oErrorModel>/bankNameE}" valueStateText="{oErrorModel>/bankNameM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
 				</VBox>
 				  <VBox class="fontStyle">
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankAddr}:${oi18n_En>bankAddr}+ '&#10;' +${i18n>bankAddr}}"  wrapping="true" required="{oVisibilityModel>/bankValidation/bankStreet}"></Label>
-					<Input maxLength="34" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankAddress}" valueState="{oErrorModel>/bankAddrE}" valueStateText="{oErrorModel>/bankAddrM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+					<Input maxLength="34" editable="{oUserModel>/isNew}" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankAddress}" valueState="{oErrorModel>/bankAddrE}" valueStateText="{oErrorModel>/bankAddrM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
 				</VBox>
                 <VBox class="fontStyle">
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankCity}:${oi18n_En>bankCity}+ '&#10;' +${i18n>bankCity}}" wrapping="true" required="{oVisibilityModel>/bankValidation/bankCity}"></Label>
-					<Input maxLength="36" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankCity}" valueState="{oErrorModel>/bankCityE}" valueStateText="{oErrorModel>/bankCityM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+					<Input maxLength="36" editable="{oUserModel>/isNew}" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankCity}" valueState="{oErrorModel>/bankCityE}" valueStateText="{oErrorModel>/bankCityM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 				</VBox>
 				<VBox  class="fontStyle">
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>state}:${oi18n_En>state}+ '&#10;' +${i18n>state}}" wrapping="true" required="false"></Label>
-					<Input maxLength="4" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankState}"  valueState="{oErrorModel>/bankStateE}" valueStateText="{oErrorModel>/bankStateM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+					<Input maxLength="4" editable="{oUserModel>/isNew}" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankState}"  valueState="{oErrorModel>/bankStateE}" valueStateText="{oErrorModel>/bankStateM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
 				</VBox>
 				
 				<VBox class="fontStyle">
 					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankBranch}:${oi18n_En>bankBranch}+ '&#10;' +${i18n>bankBranch}}"  required="{oVisibilityModel>/bankValidation/bankBranch}"></Label>
-					<Input maxLength="41" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankBranch}"  valueState="{oErrorModel>/bankBranchE}" valueStateText="{oErrorModel>/bankBranchM}" change="fnInputBankAccNumber" required="true" class="inputStyle"></Input>
+					<Input maxLength="41" editable="{oUserModel>/isNew}" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankBranch}"  valueState="{oErrorModel>/bankBranchE}" valueStateText="{oErrorModel>/bankBranchM}" change="fnInputBankAccNumber" required="true" class="inputStyle"></Input>
 				</VBox>
                 <VBox class="fontStyle" >
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>accHolderName}:${oi18n_En>accHolderName}+ '&#10;' +${i18n>accHolderName}}" wrapping="true" required="{oVisibilityModel>/bankValidation/benificiaryAccHolderName}"></Label>
@@ -132,19 +132,19 @@
 				</VBox>
                  <VBox  class="fontStyle">
 					<Label tooltip="{oi18n_En>refDetTT}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>refDetails}:${oi18n_En>refDetails}+ '&#10;' +${i18n>refDetails}}" wrapping="true" required="{oVisibilityModel>/bankValidation/referenceDetails}"></Label>
-					<Input maxLength="21" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/refBankDetails}" valueState="{oErrorModel>/bankRefE}" valueStateText="{oErrorModel>/bankRefM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+					<Input maxLength="21" editable="{oUserModel>/isNew}" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/refBankDetails}" valueState="{oErrorModel>/bankRefE}" valueStateText="{oErrorModel>/bankRefM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 				</VBox>
                 <VBox  class="fontStyle">
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>swift}:${oi18n_En>swift}+ '&#10;' +${i18n>swift}}" wrapping="true" required="{oVisibilityModel>/bankValidation/swiftCode}"></Label>
-					<Input maxLength="12" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/swiftCode}" valueState="{oErrorModel>/bankSwiftE}" valueStateText="{oErrorModel>/bankSwiftM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+					<Input maxLength="12" editable="{oUserModel>/isNew}" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/swiftCode}" valueState="{oErrorModel>/bankSwiftE}" valueStateText="{oErrorModel>/bankSwiftM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
 				</VBox>
                 <VBox class="fontStyle">
 					<Label tooltip="{oi18n_En>bankNumTT}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankNum}:${oi18n_En>bankNum} + '&#10;' +${i18n>bankNum}}" wrapping="true" required="{oVisibilityModel>/bankValidation/bankNumber}"></Label>
-					<Input maxLength="16" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankNumber}" valueState="{oErrorModel>/bankNumE}" valueStateText="{oErrorModel>/bankNumM}" editable="{=${oVisibilityModel>/bankValidation/bankNumLength}===0 ? false:true}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+					<Input maxLength="16" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankNumber}" valueState="{oErrorModel>/bankNumE}" valueStateText="{oErrorModel>/bankNumM}" editable="{oUserModel>/isNew}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 				</VBox>
 				<VBox class="fontStyle">
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>iban}:${oi18n_En>iban} + '&#10;' +${i18n>iban}}" wrapping="true" required="{oVisibilityModel>/bankValidation/iban}"></Label>
-					<Input maxLength="{oVisibilityModel>/bankValidation/ibanLength}" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/ibanNum}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/ibanE}" valueStateText="{oErrorModel>/ibanM}"  change="fnInputIban" class="inputStyle"></Input>
+					<Input maxLength="{oVisibilityModel>/bankValidation/ibanLength}"  enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/ibanNum}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/ibanE}" valueStateText="{oErrorModel>/ibanM}"  change="fnInputIban" class="inputStyle"></Input>
 				</VBox>
 				<VBox  class="fontStyle">
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankKey}:${oi18n_En>bankKey}+ '&#10;' +${i18n>bankKey}}" wrapping="true" required="{oVisibilityModel>/bankValidation/bankKey}"></Label>
@@ -153,7 +153,7 @@
                 <VBox  class="fontStyle">
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankPKey}:${oi18n_En>bankPKey}+ '&#10;' +${i18n>bankPKey}}" wrapping="true" required="{oVisibilityModel>/bankValidation/benificiaryAccCurrency}"></Label>
 					<!-- <Input maxLength="5" enabled="{oVisibilityModel>/_FinanceReviewEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/partnerBankType}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input> -->
-				<ComboBox width="100%" items="{path: 'oLookUpModel>/Currency', sorter:{path:'code'}}"  showSecondaryValues="true" filterSecondaryValues="true" valueState="{oErrorModel>/benifAccCurrE}" valueStateText="{oErrorModel>/benifAccCurrM}" editable="{oUserModel>/isNew}"  selectionChange="fnLiveValueChange" selectedKey="{oDataModel>/bankDto/bankInfoDto/0/partnerBankType}" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" placeholder="{i18n>select}" class="inputStyle">
+				<ComboBox width="100%"  items="{path: 'oLookUpModel>/Currency', sorter:{path:'code'}}"  showSecondaryValues="true" filterSecondaryValues="true" valueState="{oErrorModel>/benifAccCurrE}" valueStateText="{oErrorModel>/benifAccCurrM}" editable="{oUserModel>/isNew}"  selectionChange="fnLiveValueChange" selectedKey="{oDataModel>/bankDto/bankInfoDto/0/partnerBankType}" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" placeholder="{i18n>select}" class="inputStyle">
                      <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>code}" additionalText="{oLookUpModel>description}"/></ComboBox>
                 </VBox>
 				
