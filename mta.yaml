@@ -11,6 +11,8 @@ modules:
   - name: plcm_destination
   - name: plcm_connectivity
   - name: portal_resources_jabilSupplierOnboarding
+  - name: plcm_partnerLifeCycle_ThemeDesign
+
   # - name: dest_wm
   # - name: wm_workflow
   parameters:
@@ -144,6 +146,11 @@ resources:
   parameters:
     service: connectivity
     service-plan: lite
+- name: plcm_partnerLifeCycle_ThemeDesign
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: theming
+    service-plan: standard
 - name: plcm_xsuaa
   type: org.cloudfoundry.managed-service
   parameters:
