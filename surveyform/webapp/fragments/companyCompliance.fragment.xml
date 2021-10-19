@@ -219,9 +219,9 @@
 								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>iDontKnow}:${oi18n_En>iDontKnow} +'/&#160;' +${i18n>iDontKnow}}"/>
 							</RadioButtonGroup>
                             </VBox>
-                             <VBox visible="true" class="fontStyle sapUiSizeCompact">
-      <Label required="true" labelFor="divCert" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>divCertText}:${oi18n_En>divCertText}+'/ '+${i18n>divCertText}}" wrapping="true" class="sapUiTinyMarginBegin" />
-      <RadioButtonGroup id="divCert" columns="2" class="inputStyle" selectedIndex="{=${companyInfoModel>/haveDiversityCertifications} === true? 0 :(${companyInfoModel>/haveDiversityCertifications}=== false ?1: -1)}" enabled="{oEnableMdl>/haveDiversityCertificationsEnb}"  valueState="{oErrorModel>/haveDiversityCertificationsE}" select="fnClearValueStateDiv">
+                             <!-- <VBox visible="true" class="fontStyle sapUiSizeCompact">
+      <Label required="true" labelFor="divCert" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>divCertText}:${oi18n_En>divCertText}+'/ '+${i18n>divCertText}}" wrapping="true" class="sapUiTinyMarginBegin" /> -->
+      <!-- <RadioButtonGroup id="divCert" columns="2" class="inputStyle" selectedIndex="{=${companyInfoModel>/haveDiversityCertifications} === true? 0 :(${companyInfoModel>/haveDiversityCertifications}=== false ?1: -1)}" enabled="{oEnableMdl>/haveDiversityCertificationsEnb}"  valueState="{oErrorModel>/haveDiversityCertificationsE}" select="fnClearValueStateDiv">
          <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes}+'/ '+${i18n>yes}}" selected="{companyInfoModel>/haveDiversityCertifications}" />
          <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no}+'/ '+${i18n>no}}" select="fnSelectionChangeDiversity"/>
       </RadioButtonGroup>
@@ -258,8 +258,8 @@
                </g:GridList>
             </VBox>
          </g:GridListItem>       
-      </g:GridList>
-   </VBox>
+      </g:GridList> -->
+   <!-- </VBox> -->
                     <!-- <Text text="{i18n>Attachments}" class="fontBold sapUiTinyMarginBegin"/> -->
 		<!-- <Text text="{i18n>Attachments}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>
             <Text text="{oi18n_En>Attachments}/&#160;{i18n>Attachments}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>

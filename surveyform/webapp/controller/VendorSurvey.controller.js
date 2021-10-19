@@ -3934,10 +3934,10 @@ sap.ui.define([
                     oView.getModel("oErrorModel").getData().ndaSignedBeforeE = "Error";
                     iError = true;
                 }
-                if (oView.getModel("companyInfoModel").getData().haveDiversityCertifications === null) {
-                    oView.getModel("oErrorModel").getData().haveDiversityCertificationsE = "Error";
-                    iError = true;
-                }
+                // if (oView.getModel("companyInfoModel").getData().haveDiversityCertifications === null) {
+                //     oView.getModel("oErrorModel").getData().haveDiversityCertificationsE = "Error";
+                //     iError = true;
+                // }
                 if (oView.getModel("oUserModel").getData().isNew) {
                     if (oView.getModel("oDataModel").getData().comComplianceDto.isSrmReceived === null) {
                         oView.getModel("oErrorModel").getData().isSrmReceivedE = "Error";
