@@ -153,6 +153,11 @@ sap.ui.define([
                                         existingData.bpInfoDto.legalName = oEvent.getSource().oData.bpCentral[0].organisationName1;
                                         existingData.bpInfoDto.dunsNumber = oEvent.getSource().oData.bpInfoDto.dunsNumber;
                                         existingData.bpInfoDto.dunsRegistrationNum = oEvent.getSource().oData.bpInfoDto.dunsRegistrationNum;
+                                        existingData.bpInfoDto.deletedInd = oEvent.getSource().oData.bpInfoDto.deletedInd;
+                                        existingData.bpInfoDto.purchasingBlockInd = oEvent.getSource().oData.bpInfoDto.purchasingBlockInd;
+                                        existingData.bpInfoDto.postBlockedInd = oEvent.getSource().oData.bpInfoDto.postBlockedInd;
+                                        existingData.bpInfoDto.altPayeePartyAllowedInd = oEvent.getSource().oData.bpInfoDto.altPayeePartyAllowedInd;
+                                        existingData.bpInfoDto.valueAddedTaxRelInd = oEvent.getSource().oData.bpInfoDto.valueAddedTaxRelInd;
                                         existingData.dateUpdated = oEvent.getSource().oData.dateUpdated;
                                         existingData.surveyInfoDto.isAuthority = null;
                                         existingData.surveyInfoDto.isJabilMainContact = null;
