@@ -3143,7 +3143,12 @@ sap.ui.define([
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
                     isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 var that = this;
+                if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod) {
+                    oView.getModel("oErrorModel").getData().paymentTermMethdE = "Error";
+                    oView.getModel("oErrorModel").getData().paymentTermMethdM = oi18n.getText("mandatoryPayMethod");
 
+                    iError = true;
+                }
                 if (oView.getModel("oUserModel").getData().isNew) {
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentTerms) {
                         oView.getModel("oErrorModel").getData().paymentTermE = "Error";
@@ -3151,12 +3156,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod) {
-                        oView.getModel("oErrorModel").getData().paymentTermMethdE = "Error";
-                        oView.getModel("oErrorModel").getData().paymentTermMethdM = oi18n.getText("mandatoryPayMethod");
-
-                        iError = true;
-                    }
+                   
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency) {
                         oView.getModel("oErrorModel").getData().paymentCurrE = "Error";
                         oView.getModel("oErrorModel").getData().paymentCurrM = oi18n.getText("mandatoryCurr");
@@ -3638,6 +3638,14 @@ sap.ui.define([
                     if (oView.getModel("oDataModel").getData().financeInfoDto.financeAuditedLast12M === null) {
                         oView.getModel("oErrorModel").getData().financeAuditedLast12ME = "Error";
                         iError = true;
+                    }
+                     if (oView.getModel("oDataModel").getData().financeInfoDto.financeAuditedLast12M === true) {
+                          if (!oView.getModel("oDataModel").getData().financeInfoDto.userAudited || spaceRegex.test(oView.getModel("oDataModel").getData().financeInfoDto.userAudited)) {
+                            oView.getModel("oErrorModel").getData().financeUserAuditE = "Error";
+                            oView.getModel("oErrorModel").getData().financeUserAuditM = oi18n.getText("mandatoryName");
+
+                            iError = true;
+                        }
                     }
                 }
                 //  }
