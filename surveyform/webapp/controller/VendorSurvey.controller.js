@@ -897,9 +897,9 @@ sap.ui.define([
                                                 "rName": oEvent.getSource().oData.comInfoDto.address[0].postal[0].name,
                                                 "rAddress1": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address1,
                                                 "rAddress2": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address2,
-                                                "rAddress3": oEvent.getSource().oData.comInfoDto.address[1].postal[0].address3,
-                                                "rAddress4": oEvent.getSource().oData.comInfoDto.address[1].postal[0].address4,
-                                                "rAddress5": oEvent.getSource().oData.comInfoDto.address[1].postal[0].address5,
+                                                "rAddress3": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address3,
+                                                "rAddress4": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address4,
+                                                "rAddress5": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address5,
                                                 "rDist": oEvent.getSource().oData.comInfoDto.address[0].postal[0].district,
                                                 "rPostalCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postalCode,
                                                 "rCity": oEvent.getSource().oData.comInfoDto.address[0].postal[0].city,
@@ -927,7 +927,7 @@ sap.ui.define([
                                                 }
                                             });
 
-                                            var loadPostalCodeRTAUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + oEvent.getSource().oData.comInfoDto.address[1].postal[0].countryCode;
+                                            var loadPostalCodeRTAUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + oEvent.getSource().oData.comInfoDto.address[0].postal[0].countryCode;
                                             $.ajax({
                                                 url: loadPostalCodeRTAUrl,
                                                 type: 'GET',
@@ -7980,8 +7980,6 @@ sap.ui.define([
             onBeforeRendering: function () { },
 
             onAfterRendering: function () {
-
-
             },
             onActivateCompanyInfo: function () {
 
