@@ -158,6 +158,9 @@ sap.ui.define([
                                         existingData.bpInfoDto.postBlockedInd = oEvent.getSource().oData.bpInfoDto.postBlockedInd;
                                         existingData.bpInfoDto.altPayeePartyAllowedInd = oEvent.getSource().oData.bpInfoDto.altPayeePartyAllowedInd;
                                         existingData.bpInfoDto.valueAddedTaxRelInd = oEvent.getSource().oData.bpInfoDto.valueAddedTaxRelInd;
+                                        existingData.bpInfoDto.taxAuthorityPartyId = oEvent.getSource().oData.bpInfoDto.taxAuthorityPartyId;
+                                        existingData.bpInfoDto.corporateGroupName = oEvent.getSource().oData.bpInfoDto.corporateGroupName;
+                                        existingData.bpInfoDto.procurementTransactionBlockingCode = oEvent.getSource().oData.bpInfoDto.procurementTransactionBlockingCode;
                                         existingData.dateUpdated = oEvent.getSource().oData.dateUpdated;
                                         existingData.surveyInfoDto.isAuthority = null;
                                         existingData.surveyInfoDto.isJabilMainContact = null;
