@@ -258,5 +258,7 @@
 "validateCertificateE":"None",
 "responsibleForInforSecurityE":"None",
 "orgEstablishConnectionSelectedE":"None",
-"orgBusinessActivitiesisSelectedE":"None"
+"orgBusinessActivitiesisSelectedE":"None",
+"financeUserAuditE":"None",
+"financeUserAuditM":""
 }

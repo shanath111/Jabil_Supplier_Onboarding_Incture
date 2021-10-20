@@ -941,6 +941,16 @@
                                         	<Label text="{oi18n_En>paymentCurr}&#10;{i18n>paymentCurr}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
 										<Label text="{=${oDataModel>/shippingInfoDto/paymentCurrency}?${oDataModel>/shippingInfoDto/paymentCurrency}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
+                                    <VBox class="VRVboxStyle1" visible="{=!${oUserModel>/isNew}}">
+										<Label text="{i18n>newPaymentTermsEOM}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
+                                        	<Label text="{oi18n_En>newPaymentTermsEOM}&#10;{i18n>newPaymentTermsEOM}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+										<Label text="{parts:['oLookUpModel>/PaymentTerm','oDataModel>/shippingInfoDto/newpaymentTerms'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
+                                    <VBox class="VRVboxStyle1" visible="{=!${oUserModel>/isNew}}">
+										<Label text="{i18n>newpaymentCurr}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
+                                        	<Label text="{oi18n_En>newpaymentCurr}&#10;{i18n>newpaymentCurr}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+										<Label text="{=${oDataModel>/shippingInfoDto/newpaymentCurrency}?${oDataModel>/shippingInfoDto/newpaymentCurrency}:'---'}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
                                 </l:Grid>
     
                                   <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid ">
@@ -1223,6 +1233,16 @@
 										<Label text="{i18n>incotermNamedPlace}" visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewLablCls "></Label>
                                         	<Label text="{oi18n_En>incotermNamedPlace}&#10;{i18n>incotermNamedPlace}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
 										<Label text="{oDataModel>/shippingInfoDto/incotermNamedPlace}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
+                                    <VBox class="VRVboxStyle1" visible="{=!${oUserModel>/isNew}}">
+										<Label text="{i18n>newincoterm}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                        <Label text="{oi18n_En>newincoterm}&#10;{i18n>newincoterm}"  wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+										<Label text="{parts:['oLookUpModel>/Incoterm','oDataModel>/shippingInfoDto/newincoterm'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
+                                    	<VBox class="VRVboxStyle1" visible="{=!${oUserModel>/isNew}}">
+										<Label text="{i18n>newincotermNamedPlace}" visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewLablCls "></Label>
+                                        	<Label text="{oi18n_En>newincotermNamedPlace}&#10;{i18n>newincotermNamedPlace}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+										<Label text="{=${oDataModel>/shippingInfoDto/newincotermNamedPlace}?${oDataModel>/shippingInfoDto/newincotermNamedPlace}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     
 								</l:Grid>
@@ -1557,7 +1577,7 @@
                                  <Label text="{i18n>isNdaActive}" visible="{oVisibilityModel>/isdefaultLan}"  wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginTop  sapUiTinyMarginBegin"></Label>
               <Label text="{oi18n_En>isNdaActive}/&#160;{i18n>isNdaActive}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginTop  sapUiTinyMarginBegin"></Label>
               <Label text="{= ${oDataModel>/comComplianceDto/ndaSignedBefore} === 0 ? ${oi18n_En>yes} : (${oDataModel>/comComplianceDto/ndaSignedBefore} === 1 ? ${oi18n_En>no}: 'I Dont Know')}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin"></Label>              
-                                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="true"> 
+                                                 <!-- <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="true"> 
 									<VBox class="VRVboxStyle1 sapUiTinyMarginTop">
 										<Label text="{i18n>divCertText}"  visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
 										<Label text="{oi18n_En>divCertText}/&#160;{i18n>divCertText}"  visible="{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="cl_PreviewLablCls "></Label>
@@ -1602,7 +1622,7 @@
                     </gl:GridList>
 				</VBox>
 			</gl:GridListItem>
-		</gl:GridList>
+		</gl:GridList> -->
                                 <!-- <gl:GridList width="auto"
 		 growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
 			items="{oAttachmentList>/0/compComplDArray}">

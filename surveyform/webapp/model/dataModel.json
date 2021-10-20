@@ -97,6 +97,11 @@
         "legalName": "",
         "noOfEmployees": "",
         "siteHaveDunsNumber": null,
+        "deletedInd": "",
+        "purchasingBlockInd": "",
+        "postBlockedInd": "",
+        "altPayeePartyAllowedInd": "",
+        "valueAddedTaxRelInd": "",
         "tax": [
             {
                 "country": "",

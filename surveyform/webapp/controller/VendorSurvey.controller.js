@@ -153,6 +153,11 @@ sap.ui.define([
                                         existingData.bpInfoDto.legalName = oEvent.getSource().oData.bpCentral[0].organisationName1;
                                         existingData.bpInfoDto.dunsNumber = oEvent.getSource().oData.bpInfoDto.dunsNumber;
                                         existingData.bpInfoDto.dunsRegistrationNum = oEvent.getSource().oData.bpInfoDto.dunsRegistrationNum;
+                                        existingData.bpInfoDto.deletedInd = oEvent.getSource().oData.bpInfoDto.deletedInd;
+                                        existingData.bpInfoDto.purchasingBlockInd = oEvent.getSource().oData.bpInfoDto.purchasingBlockInd;
+                                        existingData.bpInfoDto.postBlockedInd = oEvent.getSource().oData.bpInfoDto.postBlockedInd;
+                                        existingData.bpInfoDto.altPayeePartyAllowedInd = oEvent.getSource().oData.bpInfoDto.altPayeePartyAllowedInd;
+                                        existingData.bpInfoDto.valueAddedTaxRelInd = oEvent.getSource().oData.bpInfoDto.valueAddedTaxRelInd;
                                         existingData.dateUpdated = oEvent.getSource().oData.dateUpdated;
                                         existingData.surveyInfoDto.isAuthority = null;
                                         existingData.surveyInfoDto.isJabilMainContact = null;
@@ -892,9 +897,9 @@ sap.ui.define([
                                                 "rName": oEvent.getSource().oData.comInfoDto.address[0].postal[0].name,
                                                 "rAddress1": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address1,
                                                 "rAddress2": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address2,
-                                                "rAddress3": oEvent.getSource().oData.comInfoDto.address[1].postal[0].address3,
-                                                "rAddress4": oEvent.getSource().oData.comInfoDto.address[1].postal[0].address4,
-                                                "rAddress5": oEvent.getSource().oData.comInfoDto.address[1].postal[0].address5,
+                                                "rAddress3": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address3,
+                                                "rAddress4": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address4,
+                                                "rAddress5": oEvent.getSource().oData.comInfoDto.address[0].postal[0].address5,
                                                 "rDist": oEvent.getSource().oData.comInfoDto.address[0].postal[0].district,
                                                 "rPostalCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postalCode,
                                                 "rCity": oEvent.getSource().oData.comInfoDto.address[0].postal[0].city,
@@ -922,7 +927,7 @@ sap.ui.define([
                                                 }
                                             });
 
-                                            var loadPostalCodeRTAUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + oEvent.getSource().oData.comInfoDto.address[1].postal[0].countryCode;
+                                            var loadPostalCodeRTAUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + oEvent.getSource().oData.comInfoDto.address[0].postal[0].countryCode;
                                             $.ajax({
                                                 url: loadPostalCodeRTAUrl,
                                                 type: 'GET',
@@ -3143,7 +3148,12 @@ sap.ui.define([
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
                     isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 var that = this;
+                if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod) {
+                    oView.getModel("oErrorModel").getData().paymentTermMethdE = "Error";
+                    oView.getModel("oErrorModel").getData().paymentTermMethdM = oi18n.getText("mandatoryPayMethod");
 
+                    iError = true;
+                }
                 if (oView.getModel("oUserModel").getData().isNew) {
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentTerms) {
                         oView.getModel("oErrorModel").getData().paymentTermE = "Error";
@@ -3151,12 +3161,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod) {
-                        oView.getModel("oErrorModel").getData().paymentTermMethdE = "Error";
-                        oView.getModel("oErrorModel").getData().paymentTermMethdM = oi18n.getText("mandatoryPayMethod");
-
-                        iError = true;
-                    }
+                   
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency) {
                         oView.getModel("oErrorModel").getData().paymentCurrE = "Error";
                         oView.getModel("oErrorModel").getData().paymentCurrM = oi18n.getText("mandatoryCurr");
@@ -3639,6 +3644,14 @@ sap.ui.define([
                         oView.getModel("oErrorModel").getData().financeAuditedLast12ME = "Error";
                         iError = true;
                     }
+                     if (oView.getModel("oDataModel").getData().financeInfoDto.financeAuditedLast12M === true) {
+                          if (!oView.getModel("oDataModel").getData().financeInfoDto.userAudited || spaceRegex.test(oView.getModel("oDataModel").getData().financeInfoDto.userAudited)) {
+                            oView.getModel("oErrorModel").getData().financeUserAuditE = "Error";
+                            oView.getModel("oErrorModel").getData().financeUserAuditM = oi18n.getText("mandatoryName");
+
+                            iError = true;
+                        }
+                    }
                 }
                 //  }
                 oView.getModel("oErrorModel").refresh();
@@ -3921,10 +3934,10 @@ sap.ui.define([
                     oView.getModel("oErrorModel").getData().ndaSignedBeforeE = "Error";
                     iError = true;
                 }
-                if (oView.getModel("companyInfoModel").getData().haveDiversityCertifications === null) {
-                    oView.getModel("oErrorModel").getData().haveDiversityCertificationsE = "Error";
-                    iError = true;
-                }
+                // if (oView.getModel("companyInfoModel").getData().haveDiversityCertifications === null) {
+                //     oView.getModel("oErrorModel").getData().haveDiversityCertificationsE = "Error";
+                //     iError = true;
+                // }
                 if (oView.getModel("oUserModel").getData().isNew) {
                     if (oView.getModel("oDataModel").getData().comComplianceDto.isSrmReceived === null) {
                         oView.getModel("oErrorModel").getData().isSrmReceivedE = "Error";
@@ -7967,8 +7980,6 @@ sap.ui.define([
             onBeforeRendering: function () { },
 
             onAfterRendering: function () {
-
-
             },
             onActivateCompanyInfo: function () {
 
