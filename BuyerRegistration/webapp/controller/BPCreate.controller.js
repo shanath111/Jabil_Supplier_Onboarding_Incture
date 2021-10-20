@@ -2030,6 +2030,11 @@ sap.ui.define([
                         oView.getModel("JMBPCreate").refresh();
                         return;
                     }
+                }else{
+                       oView.getModel("JMBPCreate").getData().postalCodee = "None";
+                        oView.getModel("JMBPCreate").getData().postalCodem = "";
+                        oView.getModel("JMBPCreate").refresh();
+                        return;
                 }
                 if (vInpVal.length == 0) {
                     oView.getModel("JMBPCreate").getData().postalCodee = "None";
