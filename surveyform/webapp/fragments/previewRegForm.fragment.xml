@@ -1577,7 +1577,7 @@
                                  <Label text="{i18n>isNdaActive}" visible="{oVisibilityModel>/isdefaultLan}"  wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginTop  sapUiTinyMarginBegin"></Label>
               <Label text="{oi18n_En>isNdaActive}/&#160;{i18n>isNdaActive}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginTop  sapUiTinyMarginBegin"></Label>
               <Label text="{= ${oDataModel>/comComplianceDto/ndaSignedBefore} === 0 ? ${oi18n_En>yes} : (${oDataModel>/comComplianceDto/ndaSignedBefore} === 1 ? ${oi18n_En>no}: 'I Dont Know')}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin"></Label>              
-                                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="true"> 
+                                                 <!-- <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="true"> 
 									<VBox class="VRVboxStyle1 sapUiTinyMarginTop">
 										<Label text="{i18n>divCertText}"  visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
 										<Label text="{oi18n_En>divCertText}/&#160;{i18n>divCertText}"  visible="{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true" class="cl_PreviewLablCls "></Label>
@@ -1622,7 +1622,7 @@
                     </gl:GridList>
 				</VBox>
 			</gl:GridListItem>
-		</gl:GridList>
+		</gl:GridList> -->
                                 <!-- <gl:GridList width="auto"
 		 growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
 			items="{oAttachmentList>/0/compComplDArray}">

@@ -41,6 +41,7 @@ function (Controller,JSONModel,Wizard,formatter,MessageBox)  {
 
         getTaskDetails: function(taskId,oDeferred,oi18n){    
                 var that = this;
+                 var fDeferred = $.Deferred();
                 var oModel = new JSONModel();
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/workflow/taskContext/" + taskId;
                 oModel.loadData(sUrl);
@@ -51,7 +52,7 @@ function (Controller,JSONModel,Wizard,formatter,MessageBox)  {
                              that.getView().getModel("oUserModel").setProperty("/bpNumber", oEvent.getSource().getData().bpNumber);
                               that.getView().getModel("oUserModel").setProperty("/taskId", taskId);
                                that.getView().getModel("oUserModel").refresh();
-                                   oDeferred.resolve();
+                              fDeferred.resolve();
                           
                     }
                     else {
@@ -63,6 +64,28 @@ function (Controller,JSONModel,Wizard,formatter,MessageBox)  {
                         
 
                     }
+                });
+                fDeferred.done(function(){
+                 var aModel = new JSONModel();
+                var sUrl = "/comjabilsurveyform/plcm_portal_services/case/findById/" + that.getView().getModel("oUserModel").getData().caseId;
+                aModel.loadData(sUrl);
+                aModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        that.getView().getModel("oUserModel").setProperty("/isNew", oEvent.getSource().getData().bpRequestScope.isNew);
+                        that.getView().getModel("oUserModel").refresh();
+                        oDeferred.resolve();
+                          
+                    }
+                    else {
+                        var sErMsg = oEvent.getParameter("errorobject").responseText;
+                        MessageBox.show(sErMsg, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: oi18n.getText("error")
+                        });
+                        
+
+                    }
+                });
                 });
         }
 
