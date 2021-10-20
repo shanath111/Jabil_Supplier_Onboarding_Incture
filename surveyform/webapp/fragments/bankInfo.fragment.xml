@@ -86,15 +86,16 @@
 	</Panel>
 	<Panel width="100%" visible="true" class="sapUiTinyMarginTop panelPadding">
 		<content>
-        <VBox class="fontStyle sapUiSizeCompact">
-         <Label required="true" labelFor="isSCFC1" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankInformation2}:${oi18n_En>bankInformation2} +'/&#160;' +${i18n>bankInformation2}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-        <RadioButtonGroup id="isSCFC1" editable="{oUserModel>/isNew}" class="inputStyle" columns="2" selectedIndex="{=${oDataModel>/bankDto/isBankProvided} === true? 0 :(${oDataModel>/bankDto/isBankProvided}=== false ?1: -1)}"  valueState="{oErrorModel>/isBankProvidedE}" enabled="{oEnableMdl>/bankInformationEnb}" select="fnSelectIsBankInfoProvided">
+        <VBox visible="{oUserModel>/isNew}" class="fontStyle sapUiSizeCompact">
+         <Label required="true" visible="{oUserModel>/isNew}" labelFor="isSCFC1" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankInformation2}:${oi18n_En>bankInformation2} +'/&#160;' +${i18n>bankInformation2}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+        <RadioButtonGroup id="isSCFC1" visible="{oUserModel>/isNew}" editable="{oUserModel>/isNew}" class="inputStyle" columns="2" selectedIndex="{=${oDataModel>/bankDto/isBankProvided} === true? 0 :(${oDataModel>/bankDto/isBankProvided}=== false ?1: -1)}"  valueState="{oErrorModel>/isBankProvidedE}" enabled="{oEnableMdl>/bankInformationEnb}" select="fnSelectIsBankInfoProvided">
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/bankDto/isBankProvided}"></RadioButton>
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 		</RadioButtonGroup>
           </VBox>
+            <Label visible="{=!${oUserModel>/isNew}}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>existingBankDetails}:${oi18n_En>existingBankDetails} +'/&#160;' +${i18n>existingBankDetails}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
 			<!-- <CheckBox selected="{oDataModel>/bankDto/isBankProvided}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankInformation2}:${oi18n_En>bankInformation2} +'/&#160;' + ${i18n>bankInformation2}}" class="fontBold inputStyle sapUiTinyMarginBottom"/> -->
-			<l:Grid visible="{=${oDataModel>/bankDto/isBankProvided}=== true}" containerQuery="true" defaultSpan="XL2 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+			<l:Grid visible="{=${oDataModel>/bankDto/isBankProvided}=== true || ${oUserModel>/isNew} === false}" containerQuery="true" defaultSpan="XL2 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 			<VBox  class="fontStyle">
 					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankCountry}:${oi18n_En>bankCountry}+ '&#10;' +${i18n>bankCountry}}" required="{oUserModel>/isNew}"></Label>
 					<ComboBox width="100%" enabled="{oVisibilityModel>/_FinanceReviewEdit}"  items="{oLookUpModel>/Country}" showSecondaryValues="true" filterSecondaryValues="true" selectedKey="{oDataModel>/bankDto/bankInfoDto/0/bankCountry}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/bankCountryE}" valueStateText="{oErrorModel>/bankCountryM}"  selectionChange="fnLiveValueBankInput" class="inputStyle">
