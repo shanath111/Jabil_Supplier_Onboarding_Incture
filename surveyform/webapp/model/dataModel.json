@@ -102,6 +102,9 @@
         "postBlockedInd": "",
         "altPayeePartyAllowedInd": "",
         "valueAddedTaxRelInd": "",
+        "taxAuthorityPartyId":"",
+        "corporateGroupName":"",
+        "procurementTransactionBlockingCode":"",
         "tax": [
             {
                 "country": "",
