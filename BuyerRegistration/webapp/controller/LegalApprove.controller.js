@@ -53,7 +53,7 @@ sap.ui.define([
 
                 if (oContext.Name == "COILegal") {
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = false;
-                    oView.getModel("oConfigMdl").getData().ButtonNameReject = "Disqulify";
+                    oView.getModel("oConfigMdl").getData().ButtonNameReject = "Disqualify";
                     oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Remediate";
                     oView.getModel("oConfigMdl").getData().coiLegalActnTxt = true;
 
