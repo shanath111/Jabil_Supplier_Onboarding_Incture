@@ -23,23 +23,23 @@
                         	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 								<VBox>
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1} +'&#10;' + ${i18n>addressL1}}" wrapping="true" required="true" class="fontStyle "></Label>
-<Input enabled="{oEnableMdl>/address1Enb}" value="{oDataModel>/surveyInfoDto/address/0/postal/0/address1}"  editable="{oUserModel>/isNew}"  valueState="{oErrorModel>/address1E}" valueStateText="{oErrorModel>/address1M}" liveChange="fnLiveInputValueChange" class="inputStyle" maxLength="36" />
+<Input enabled="{oEnableMdl>/address1Enb}" value="{oDataModel>/surveyInfoDto/address/0/postal/0/address1}"  editable="{oUserModel>/isNew}"  valueState="{oErrorModel>/address1E}" valueStateText="{oErrorModel>/address1M}" liveChange="fnLiveInputValueChange" class="inputStyle" maxLength="61" />
 								</VBox>
 								<VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2} +'&#10;' + ${i18n>addressL2}}" wrapping="true" class="fontStyle"></Label>
-                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address2}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="36" />
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address2}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
                                 </VBox>
                                 <VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL3}:${oi18n_En>addressL3} +'&#10;' + ${i18n>addressL3}}" wrapping="true" class="fontStyle"></Label>
-                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address3}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="36" />
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address3}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
                                 </VBox>
                                 <VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL4}:${oi18n_En>addressL4} +'&#10;' + ${i18n>addressL4}}" wrapping="true" class="fontStyle "></Label>
-                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address4}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="36" />
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address4}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
                                 </VBox>
                                 <VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL5}:${oi18n_En>addressL5} +'&#10;' + ${i18n>addressL5}}" wrapping="true" class="fontStyle "></Label>
-                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address5}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="36" />
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address5}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41"/>
                                 </VBox>
 								<VBox >
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey} +'&#10;' + ${i18n>countrykey}}" wrapping="true"  required="true" class="fontStyle "></Label>
@@ -300,7 +300,7 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>mobPhone}:${oi18n_En>mobPhone} +'&#10;' + ${i18n>mobPhone}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>mobPhone}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input value="{oDataModel>/surveyInfoDto/mainContact/mobile}" enabled="{oEnableMdl>/mainContactmobileEnb}" class="inputStyle"  valueState="{oErrorModel>/mcPhoneE}" valueStateText="{oErrorModel>/mcPhoneM}" liveChange="fnLiveInputValueChange"></Input>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/mainContact/mobile}" enabled="{oEnableMdl>/mainContactmobileEnb}" class="inputStyle"  valueState="{oErrorModel>/mcPhoneE}" valueStateText="{oErrorModel>/mcPhoneM}" liveChange="fnLiveInputValueChange"></Input>
 								</VBox>
 								
 							</l:Grid>
