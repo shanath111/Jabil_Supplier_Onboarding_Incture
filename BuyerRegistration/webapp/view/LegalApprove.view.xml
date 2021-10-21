@@ -43,8 +43,8 @@
             <Label text="{i18n>claimActnTxt}" visible="{=!${oConfigMdl>/isTaskCompleted} &amp;&amp;!${oConfigMdl>/isClaimed}}"   class="sapUiTinyMarginBegin"/>
 				<ToolbarSpacer/>
                 <Button text="{oConfigMdl>/ButtonNameApprove}" enabled="{oConfigMdl>/isClaimed}"  type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft  sapUiSizeCompact" />
-					<Button text="{oConfigMdl>/ButtonNameReject}" press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
-				
+					<Button text="{oConfigMdl>/ButtonNameReject}" visible="{oConfigMdl>/RejectBtnVis}" press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
+				<Button text="{i18n>Mitigation}" visible="{oConfigMdl>/MitgationVis}" press="fnMitigate"  type="Accept" class="  cl_BPCDraft sapUiSizeCompact" enabled="{oConfigMdl>/isClaimed}" />
 				
 			</OverflowToolbar>
 		</footer>

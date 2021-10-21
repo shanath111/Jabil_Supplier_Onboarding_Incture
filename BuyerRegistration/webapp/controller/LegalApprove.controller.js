@@ -54,15 +54,17 @@ sap.ui.define([
                 if (oContext.Name == "COILegal") {
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = false;
                     oView.getModel("oConfigMdl").getData().ButtonNameReject = "Disqualify";
-                    oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Remediate";
+                    oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Approve";
                     oView.getModel("oConfigMdl").getData().coiLegalActnTxt = true;
-
+                    oView.getModel("oConfigMdl").getData().RejectBtnVis = false;
+                    oView.getModel("oConfigMdl").getData().MitgationVis = true;
 
                 } else {
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = true;
                     oView.getModel("oConfigMdl").getData().ButtonNameReject = "Reject";
                     oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Approve";
                     oView.getModel("oConfigMdl").getData().coiLegalActnTxt = false;
+                    oView.getModel("oConfigMdl").getData().MitgationVis = false;
                 }
                 this.fnLoadTaskDetail(oContext.Id);
                 this.fnLoadTaskClaimed(oContext.Id);
@@ -672,6 +674,25 @@ sap.ui.define([
                 }
 
             },
+               fnMitigate: function () {
+                var temp = {};
+                temp.Action = "MT";
+                //temp.Comments ;
+                temp.Commentse = "None";
+                temp.required = true;
+                temp.Commentsm = "";
+                temp.commentsTxt = "Comments";
+                var oJosnComments = new sap.ui.model.json.JSONModel();
+                oJosnComments.setData(temp);
+                oView.setModel(oJosnComments, "JMAppvrComments");
+                if (!this.oBankComments) {
+                    this.oBankComments = sap.ui.xmlfragment(
+                        "ns.BuyerRegistration.fragments.ApproverComments", this);
+                    oView.addDependent(this.oBankComments);
+                }
+
+                this.oBankComments.open();
+            },
             fnOpenBankCommentsReject: function () {
                 var temp = {};
                 temp.Action = "RJ";
@@ -695,9 +716,9 @@ sap.ui.define([
                 this.oBankComments.close();
             },
             fnSubmitComments: function () {
-                if (oView.getModel("JMAppvrComments").getData().Action == "RJ") {
+                if (oView.getModel("JMAppvrComments").getData().Action == "RJ" || oView.getModel("JMAppvrComments").getData().Action == "MT") {
                     if (oView.getModel("JMAppvrComments").getData().Comments) {
-                        this.fnApproveSub("RJ");
+                        this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
                         this.oBankComments.close();
                     } else {
                         oView.getModel("JMAppvrComments").getData().Commentse = "Error";
@@ -705,7 +726,8 @@ sap.ui.define([
                         oView.getModel("JMAppvrComments").refresh();
                     }
                 } else {
-                    this.fnApproveSub("AP");
+
+                    this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
                     this.oBankComments.close();
                 }
             },
@@ -740,15 +762,15 @@ sap.ui.define([
                             if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COILegal") {
                                 var vCommentsActn;
                                 if (vAprActn) {
-                                    vCommentsActn = "remediate";
+                                    vCommentsActn = "approve";
                                 } else {
-                                    vCommentsActn = "disqualify";
+                                    vCommentsActn = "mitigation";
                                 }
                                 var oPayload = {
                                     "context": {
                                         "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                                         "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                                        "coiLegalApproved": vAprActn,
+                                        "coiLegalApproved": vCommentsActn,
                                         "COIComments": oView.getModel("JMAppvrComments").getData().Comments,
                                         "legal_coi_comment": oView.getModel("JMAppvrComments").getData().Comments
                                     },
