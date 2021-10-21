@@ -2,7 +2,7 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:g="sap.f" xmlns:grid="sap.ui.layout.cssgrid" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified">
      
    <l:VerticalLayout width="100%" class="sapUiSizeCompact" enabled="{=${oEnableMdl>/orderfromAddrEnb} &amp;&amp; ${companyInfoModel>/isOrderFromAddress}}">
-    <CheckBox wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>orderfromAddr}:${oi18n_En>orderfromAddr}+ '/ ' +${i18n>orderfromAddr}}" selected="{companyInfoModel>/isOrderFromAddress}"  class="fontBold inputStyle sapUiTinyMarginTop sapUiTinyMarginBottom" />
+    <CheckBox id="orderfromAddrCheckBoxId" wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>orderfromAddr}:${oi18n_En>orderfromAddr}+ '/ ' +${i18n>orderfromAddr}}" selected="{companyInfoModel>/isOrderFromAddress}"  class="fontBold inputStyle sapUiTinyMarginTop sapUiTinyMarginBottom" />
      
        <VBox fitContainer="true" width="49%"  visible="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} &amp;&amp; ${oEnableMdl>/orderFromAddrSearchVsb}}" class="fontStyle sapUiTinyMarginBegin">
          <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>address}:${oi18n_En>address} + '&#xA;' +${i18n>address}}" class="fontStyle sapUiTinyMarginTop" wrapping="true"></Label>
@@ -26,28 +26,28 @@
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1}+ '&#xA;' +${i18n>addressL1}}" wrapping="true" required="true" />
-         <Input value="{companyInfoModel>/oAddress1}" valueState="{oErrorModel>/oFAAddr1E}" valueStateText="{oErrorModel>/oFAAddr1M}" liveChange="fnLiveInputValueChange" class="inputStyle" maxLength="36"></Input>
+         <Input value="{companyInfoModel>/oAddress1}" valueState="{oErrorModel>/oFAAddr1E}" valueStateText="{oErrorModel>/oFAAddr1M}" liveChange="fnLiveInputValueChange" class="inputStyle" maxLength="61"></Input>
             <!-- <html:input type="text" id="iAddress1" class="cl_HTMLInput" /> -->
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2}+ '&#xA;' +${i18n>addressL2}}" wrapping="true" />
-            <Input value="{companyInfoModel>/oAddress2}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input>
+            <Input value="{companyInfoModel>/oAddress2}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input>
             <!-- <html:input type="text" id="iAddress2" class="cl_HTMLInput" /> -->
          </VBox>
           <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL3}:${oi18n_En>addressL3}+ '&#xA;' +${i18n>addressL3}}" wrapping="true" />
-            <Input value="{companyInfoModel>/oAddress3}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input>
+            <Input value="{companyInfoModel>/oAddress3}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input>
             
             
          </VBox>
            <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL4}:${oi18n_En>addressL4}+ '&#xA;' +${i18n>addressL4}}" wrapping="true" />
-       <Input value="{companyInfoModel>/oAddress4}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input>
+       <Input value="{companyInfoModel>/oAddress4}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input>
          </VBox>
            <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL5}:${oi18n_En>addressL5}+ '&#xA;' +${i18n>addressL5}}" wrapping="true" />
   
-               <Input value="{companyInfoModel>/oAddress5}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input>
+               <Input value="{companyInfoModel>/oAddress5}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input>
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dist}:${oi18n_En>dist}+ '&#xA;' +${i18n>dist}}" wrapping="true" required="false" />
@@ -121,26 +121,26 @@
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1}+ '&#xA;' +${i18n>addressL1}}" wrapping="true" required="true" />
-          <Input value="{remitModel>/rAddress1}" valueState="{oErrorModel>/rTAAddr1E}" valueStateText="{oErrorModel>/rTAAddr1M}" liveChange="fnLiveInputValueChange" class="inputStyle" maxLength="36"></Input>
+          <Input value="{remitModel>/rAddress1}" valueState="{oErrorModel>/rTAAddr1E}" valueStateText="{oErrorModel>/rTAAddr1M}" liveChange="fnLiveInputValueChange" class="inputStyle" maxLength="61"></Input>
             <!-- <html:input type="text" id="iAddress1R" class="cl_HTMLInput" /> -->
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2}+ '&#xA;' +${i18n>addressL2}}" wrapping="true" />
-            <Input value="{remitModel>/rAddress2}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input> 
+            <Input value="{remitModel>/rAddress2}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input> 
             <!-- <html:input type="text" id="iAddress2R" class="cl_HTMLInput" /> -->
          </VBox>
           <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL3}:${oi18n_En>addressL3}+ '&#xA;' +${i18n>addressL3}}" wrapping="true" />
             <!-- <html:input type="text" id="iAddress3R" class="cl_HTMLInput" maxLength="35"/> -->
-            <Input value="{remitModel>/rAddress3}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input>
+            <Input value="{remitModel>/rAddress3}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input>
          </VBox>
            <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL4}:${oi18n_En>addressL4}+ '&#xA;' +${i18n>addressL4}}" wrapping="true" />
-            <Input value="{remitModel>/rAddress4}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input>
+            <Input value="{remitModel>/rAddress4}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input>
          </VBox>
            <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL5}:${oi18n_En>addressL5}+ '&#xA;' +${i18n>addressL5}}" wrapping="true" />
-            <Input value="{remitModel>/rAddress5}" class="inputStyle" maxLength="36" liveChange="fnLiveInputValueChange"></Input>
+            <Input value="{remitModel>/rAddress5}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input>
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dist}:${oi18n_En>dist}+'&#xA;'+${i18n>dist}}" wrapping="true" required="false" />

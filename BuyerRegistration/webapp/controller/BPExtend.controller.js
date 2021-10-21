@@ -3493,8 +3493,7 @@ sap.ui.define([
             fnChangeCiscoGrub: function () {
                 oView.getModel("JMBPCreate").getData().isExclCiscoGhube = "None";
                 oView.getModel("JMBPCreate").refresh();
-            },
-
+            }
 
 
 

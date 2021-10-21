@@ -1,26 +1,6 @@
 {
   "configurations": [
     {
-      "name": "Run Partner Lifecycle Supplier Portal-surveyform",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
-      "args": [
-        "--standalone",
-        "/comjabilsurveyform/index.html",
-        "--ui5",
-        "{\"version\":\".\"}"
-      ],
-      "cwd": "${workspaceFolder}/surveyform",
-      "env": {
-        "PORT": "6004",
-        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
-        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/surveyform\"}"
-      },
-      "envFile": "${workspaceFolder}/surveyform/.env1",
-      "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
-    },
-    {
       "name": "Run Partner Lifecycle Supplier Portal-BuyerRegistration",
       "type": "node",
       "request": "launch",
@@ -58,6 +38,26 @@
         "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/workbox\"}"
       },
       "envFile": "${workspaceFolder}/workbox/.env6",
+      "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
+    },
+    {
+      "name": "Run Partner Lifecycle Supplier Portal-surveyform",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/comjabilsurveyform/index.html",
+        "--ui5",
+        "{\"version\":\".\"}"
+      ],
+      "cwd": "${workspaceFolder}/surveyform",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/surveyform\"}"
+      },
+      "envFile": "${workspaceFolder}/surveyform/.env2",
       "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
     }
   ],
