@@ -258,9 +258,9 @@ opacity: 1;
     background: #ffffff 0% 0% no-repeat padding-box;
 opacity: 1;
 }
-.backButton>span {
-    outline: none !important;
-}
+/* .backButton>span {
+outline: none !important;
+} */
  .cl_BPCFooterClr {
     text-shadow: 0 0 0.125rem #000;
     background-color: #062646 !important;
@@ -278,7 +278,7 @@ border-radius: 4px !important;
 border-color: #E3E3E3 !important;
 border-radius: 4px !important;
 opacity: 1 !important;
-outline: none !important;
+/* outline: none !important; */
 }
 
 .actionButtonSave .sapMBtnInner {
