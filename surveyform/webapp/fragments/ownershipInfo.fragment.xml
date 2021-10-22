@@ -40,7 +40,7 @@
         <VBox class="sapUiTinyMarginBegin fontStyle">
 				<Label text="{i18n>ownerShipType}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact"/>
                 <Label wrapping="true" text="{oi18n_En>ownerShipType}&#10;{i18n>ownerShipType}" required="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="sapUiSizeCompact"/>
-				<ComboBox width="100%" placeholder="{i18n>select}" class="inputStyle" showSecondaryValues="true" valueState="{oErrorModel>/ownershipTypeE}" valueStateText="{oErrorModel>/ownershipTypeM}" value="{oDataModel>/ownerShipInfoDto/ownershipType}" enabled="{oEnableMdl>/ownershipTypeEnb}" change="fnLiveValueChange" items="{oLookUpModel>/ownerShipTypeData}" selectionChange="fnHandleOwnshpType">
+				<ComboBox id="ownershipTypeId" width="100%" placeholder="{i18n>select}" class="inputStyle" showSecondaryValues="true" valueState="{oErrorModel>/ownershipTypeE}" valueStateText="{oErrorModel>/ownershipTypeM}" value="{oDataModel>/ownerShipInfoDto/ownershipType}" enabled="{oEnableMdl>/ownershipTypeEnb}" change="fnLiveValueChange" items="{oLookUpModel>/ownerShipTypeData}" selectionChange="fnHandleOwnshpType">
                 <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>value}"/>
                 </ComboBox>
 				<!-- <layoutData>

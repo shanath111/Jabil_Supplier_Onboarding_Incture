@@ -84,7 +84,7 @@
 				"sap.cloud.portal": {
 					"config": {
 						"theme.id": "custom_quartzlight",
-						"theme.active": ["sap_fiori_3", "sap_fiori_3_dark", "sap_belize_hcb", "sap_belize_hcw"]
+						"theme.active": ["custom_quartzlight","sap_fiori_3", "sap_fiori_3_dark", "sap_belize_hcb", "sap_belize_hcw"]
 					}
 				}
 			}
