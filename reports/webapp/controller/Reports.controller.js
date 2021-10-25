@@ -65,8 +65,14 @@ sap.ui.define([
 					// this.wbGridRender(false);
 					// }
 			// 	}
-			// }.bind(this));
-		},
+            // }.bind(this));
+             this.getOwnerComponent().getRouter().navTo("Home");
+        },
+      
+        fnRouterReport:function(){
+
+
+        },
 
 		//setting the duration comboBox values
 		fnGetDurationData: function () {

@@ -1,6 +1,42 @@
 jQuery.sap.declare("oneapp.incture.report.reports.util.formatter");
 oneapp.incture.report.reports.util.formatter = {
+ fnStatusColour: function (vStatus) {
+        var id = this.oParent.sId;
+        var cid = this.oParent.oParent.oParent.sId;
 
+        if (vStatus == "Completed") {
+            return "Success";
+        } else if (vStatus == "Error") {
+            return "Error";
+        } else {
+            return "Warning";
+        }
+    },
+    fnSetColorValidate: function (vStatus) {
+
+
+        if (vStatus == "1") {
+            return "Success";
+        } else if (vStatus == "3") {
+            return "Error";
+        } else {
+            return "Warning";
+        }
+    },
+      fnFormatDate: function (oVal) {
+        if (oVal) {
+
+            var oPattern = "MM-dd-yyyy";
+
+            var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+                pattern: oPattern
+            });
+            var oFormattedVal = JSON.stringify(oVal).substr(1, 19);
+            oFormattedVal = new Date(oFormattedVal);
+            oFormattedVal = oDateFormat.format(oFormattedVal);
+            return oFormattedVal;
+        }
+    },
 	/*****************COMMON FORMATTER - START *********************/
 	//setting the values in multicombobox - create instance value in value property
 	wbSetSelectedKeysString: function (value) {
