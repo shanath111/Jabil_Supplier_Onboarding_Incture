@@ -3,9 +3,9 @@
 <Page id="id_BPExtendH" class="cl_VRPageBackGrnd sapUiSizeCompact" enableScrolling="false" showSubHeader="{oConfigMdl>/toolBarVisible}" showHeader="false">
 				<subHeader >
 					<Toolbar  class="cl_VRHeaderBackGrnd sapUiSizeCompact">
-						<Link text="{i18n>VRHome}" press="fnNavToHome" class="sapUiSmallMarginBegin cl_TIHomeLink"></Link>
-						<core:Icon src="sap-icon://slim-arrow-right" class="cl_VRIconCls" color="#707070"></core:Icon>
-						<Link text="{oConfigMdl>/HeaderLinkTxt}" class="cl_VRVendorDetailsLink"></Link>
+						<!-- <Link text="{i18n>VRHome}" press="fnNavToHome" class="sapUiSmallMarginBegin cl_TIHomeLink"></Link>
+						<core:Icon src="sap-icon://slim-arrow-right" class="cl_VRIconCls" color="#707070"></core:Icon> -->
+						<Link text="{oConfigMdl>/HeaderLinkTxt}" class="cl_TIHomeLink"></Link>
 					</Toolbar>
 				</subHeader>
 				<content>
