@@ -161,6 +161,7 @@ sap.ui.define([
                                         existingData.bpInfoDto.taxAuthorityPartyId = oEvent.getSource().oData.bpInfoDto.taxAuthorityPartyId;
                                         existingData.bpInfoDto.corporateGroupName = oEvent.getSource().oData.bpInfoDto.corporateGroupName;
                                         existingData.bpInfoDto.procurementTransactionBlockingCode = oEvent.getSource().oData.bpInfoDto.procurementTransactionBlockingCode;
+                                        existingData.bpInfoDto.ReceiverRespTaxOfficePartyInternalId = oEvent.getSource().oData.bpInfoDto.ReceiverRespTaxOfficePartyInternalId;
                                         existingData.dateUpdated = oEvent.getSource().oData.dateUpdated;
                                         existingData.surveyInfoDto.isAuthority = null;
                                         existingData.surveyInfoDto.isJabilMainContact = null;
