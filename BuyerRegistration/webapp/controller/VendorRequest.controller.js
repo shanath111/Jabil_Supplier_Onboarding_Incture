@@ -65,12 +65,16 @@ sap.ui.define([
                 var oSupplierList = new sap.ui.model.json.JSONModel();
                 oSupplierList.setData(temp1);
                 oView.setModel(oSupplierList, "JMSuppReqList");
-                that.fnScreenResize();
-                // that.fnClearSearch();
-                that.fnLoadCompCode();
-                that.fnLoadPOrg();
-                that.fnLoadStatus();
+                // that.fnScreenResize();
+                // // that.fnClearSearch();
+                // that.fnLoadCompCode();
+                // that.fnLoadPOrg();
+                // that.fnLoadStatus();
 
+                this.getOwnerComponent().getRouter().navTo("BPExtend", {
+                    Id: "New",
+                    Name: "Display"
+                });
 
                 // this.fnLoadUser();
             },
@@ -301,7 +305,7 @@ sap.ui.define([
                     sPath,
                     bDescending,
 
-                sPath = mParams.sortItem.getKey();
+                    sPath = mParams.sortItem.getKey();
                 bDescending = mParams.sortDescending;
                 aSorters.push(new Sorter(sPath, bDescending));
 
@@ -329,9 +333,9 @@ sap.ui.define([
                 // }
 
             },
-            fnInputSpaceCheck: function(oEvent){
-                var spaceRegex= /^\s+$/;
-                if(spaceRegex.test(oEvent.getSource().getValue())){
+            fnInputSpaceCheck: function (oEvent) {
+                var spaceRegex = /^\s+$/;
+                if (spaceRegex.test(oEvent.getSource().getValue())) {
                     oEvent.getSource().setValue("");
                 }
             }
