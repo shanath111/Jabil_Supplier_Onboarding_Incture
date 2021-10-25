@@ -7082,16 +7082,17 @@ sap.ui.define([
                 // @ts-ignore      
                 this.oWizard = this.getView().byId("surveyWizard");
                 var currentStepId = this.oWizard.getCurrentStep().split("container-surveyform---VendorSurvey--")[1];
+                var isNew = oView.getModel("oUserModel").getData().isNew;
                 if (!oView.getModel("oEnableMdl").getData().nextBtnExtensionDisplayVsb) {
                     if (currentStepId == "basicInfo") {
                         this._fnValidateBasicInfo();
-                        var isNew = oView.getModel("oUserModel").getData().isNew;
+                        
                         oView.byId('businessPartnerInfo').addEventDelegate({
                             onAfterRendering: function(){
                                 if(isNew){
                                     oView.byId("site").focus();
-                                } else {
-                                    $("input:text:visible:first").focus(); 
+                                } else if(!isNew) {
+                                    $("input:text:visible:enabled:first").focus(); 
                                 }
                                 
                             }
@@ -7099,15 +7100,39 @@ sap.ui.define([
                     }
                     else if (currentStepId == "businessPartnerInfo") {
                         this._fnValidateBusinessPartner();
+                        
+                        if(!isNew){
+                            var isDunsRegNum = oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum;
+                            oView.byId('ownerShipInfo').addEventDelegate({
+                                onAfterRendering: function(){
+                                    if(!isDunsRegNum || isDunsRegNum === 'NODUNS'){
+                                        oView.byId("ownSite").focus();
+                                    }
+                                    else {
+                                        oView.byId("ownershipTypeId").focus();
+                                    }  
+                                    
+                                }
+                            });
+                        }
 
                     }
                     else if (currentStepId == "contactInfo") {
                         this._fnValidateContactInfo();
-                        oView.byId('ownerShipInfo').addEventDelegate({
-                            onAfterRendering: function(){
-                                oView.byId("ownSite").focus();
-                            }
-                        });
+                        if(isNew){
+                            var isDunsRegNum = oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum;
+                            oView.byId('ownerShipInfo').addEventDelegate({
+                                onAfterRendering: function(){
+                                    if(!isDunsRegNum || isDunsRegNum === 'NODUNS'){
+                                        oView.byId("ownSite").focus();
+                                    }
+                                    else {
+                                        oView.byId("ownershipTypeId").focus();
+                                    }  
+                                }
+                            });
+                        }
+                        
                     }
                     else if (currentStepId == "ownerShipInfo") {
                         this._fnValidateOwnerInfo();
@@ -7121,7 +7146,12 @@ sap.ui.define([
                         this._fnValidateCompanyInfo();
                         oView.byId('bankInfo').addEventDelegate({
                             onAfterRendering: function(){
-                                oView.byId("PaymentTermId").focus();
+                                if(isNew) {
+                                    oView.byId("PaymentTermCreateId").focus();
+                                } else {
+                                    oView.byId("PaymentTermExtendId").focus();
+                                }
+                                
                             }
                         });
 
@@ -7139,15 +7169,24 @@ sap.ui.define([
                     }
                     else if (currentStepId == "shippingInfo") {
                         this._fnValidateShippingInfo();
+                        if(isNew){
+                            oView.byId('prodAndServInfo').addEventDelegate({
+                                onAfterRendering: function(){
+                                    oView.byId("OperServId").focus();
+                                }
+                            });
+                        } else {
+                            oView.byId('cComplianceInfo').addEventDelegate({
+                                onAfterRendering: function(){
+                                    oView.byId("agreement").focus();
+                                }
+                            });
+                        }
                         
-                        oView.byId('prodAndServInfo').addEventDelegate({
-                            onAfterRendering: function(){
-                                oView.byId("OperServId").focus();
-                            }
-                        });
                     }
                     else if (currentStepId == "prodAndServInfo") {
                         this._fnValidateComProductServiceInfo();
+                        
                         oView.byId('cComplianceInfo').addEventDelegate({
                             onAfterRendering: function(){
                                 oView.byId("srmMeet").focus();
@@ -7156,11 +7195,20 @@ sap.ui.define([
                     }
                     else if (currentStepId == "cComplianceInfo") {
                         this._fnValidateCompanyCompliance();
-                        oView.byId('cyberSecInfo').addEventDelegate({
-                            onAfterRendering: function(){
-                                oView.byId("securitySys").focus();
-                            }
-                        });
+                        if(isNew) {
+                            oView.byId('cyberSecInfo').addEventDelegate({
+                                onAfterRendering: function(){
+                                    oView.byId("securitySys").focus();
+                                }
+                            });
+                        } else {
+                            oView.addEventDelegate({
+                                onAfterRendering: function(){
+                                    oView.byId("formAcceptanceId").focus();
+                                }
+                            });
+                        }
+                        
                     }
                     else if (currentStepId == "cyberSecInfo") {
 

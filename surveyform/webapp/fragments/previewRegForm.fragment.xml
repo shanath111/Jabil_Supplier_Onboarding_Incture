@@ -1659,7 +1659,7 @@
 						</HBox>
 			</gl:GridListItem>
 		</gl:GridList> -->
-                                 <HBox class="cl_HBoxBlockSep">
+                                 <HBox visible="{oUserModel>/isNew}" class="cl_HBoxBlockSep">
                                 </HBox> 
                                        
    <Label text="{i18n>wizardStepcyberSecurityInfo}" visible= "{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>   

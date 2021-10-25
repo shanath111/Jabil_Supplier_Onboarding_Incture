@@ -430,7 +430,7 @@
 					<Bar class="barStyle">
                     <contentLeft>
 <HBox class="sapUiSmallMarginBegin" visible="{oVisibilityModel>/_finalStepAccept}">
-                                      	<CheckBox selected="{oDataModel>/isFormAccepted}" visible="{oVisibilityModel>/_finalStepAccept}" enabled="{oEnableMdl>/isFormAcceptedEnb}" class="sapUiSizeCompact sapUiTinyMarginTop inputStyle checkBoxStyle" />
+                                      	<CheckBox id="formAcceptanceId" selected="{oDataModel>/isFormAccepted}" visible="{oVisibilityModel>/_finalStepAccept}" enabled="{oEnableMdl>/isFormAcceptedEnb}" class="sapUiSizeCompact sapUiTinyMarginTop inputStyle checkBoxStyle" />
 										<Label visible="{oVisibilityModel>/_finalStepAccept}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>iAcknowledgeComplete}:${oi18n_En>iAcknowledgeComplete} + '/&#160;' + ${i18n>iAcknowledgeComplete}}" wrapping="true" class="sapUiSmallMarginTop"></Label>
                                   <layoutData>
 						<FlexItemData growFactor="1" /> 
