@@ -1,6 +1,6 @@
 <mvc:View controllerName="ns.BuyerRegistration.controller.VendorRequest" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
 	displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout">
-			<Page id="id_Container" class="cl_VRPageBackGrnd" enableScrolling="true" showHeader="false">
+			<Page id="id_Container" visible="false" class="cl_VRPageBackGrnd" enableScrolling="true" showHeader="false">
 				<subHeader>
 					<Toolbar class="cl_VRHeaderBackGrnd sapUiSizeCompact">
 						<Link text="{i18n>VRHome}" class="sapUiSmallMarginBegin cl_TIHomeLink"></Link>
@@ -8,7 +8,7 @@
 					</Toolbar>
 				</subHeader>
 				<content>
-                <VBox >
+                <VBox visible="false" >
 					<Panel width="auto" id="id_FitlerPanel"  expandable="true" expanded="true" class="cl_VRPanelClass cl_PanelMargonTop  sapUiTinyMarginBegin sapUiTinyMarginEnd">
 						<headerToolbar>
 							<Toolbar class="cl_VRHeaderBackGrndPnl">

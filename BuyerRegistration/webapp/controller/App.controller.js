@@ -10,23 +10,7 @@ sap.ui.define([
         return Controller.extend("ns.BuyerRegistration.controller.App", {
             onInit: function () {
                 this.fnLoadUser();
-                if(this.getOwnerComponent().getComponentData()){
-                  if (this.getOwnerComponent().getComponentData().startupParameters.caseId) {
-                    var vCaseId = this.getOwnerComponent().getComponentData().startupParameters.caseId[0];
-                    var vIsNew = this.getOwnerComponent().getComponentData().startupParameters.isNew[0];
-                    this.fnDisplayNav(vIsNew, vCaseId);
-                } else {
-                    this.getOwnerComponent().getRouter().navTo("BPExtend", {
-                        Id: "New",
-                        Name: "Display"
-                    },true);
-                }
-            }else{
-                 this.getOwnerComponent().getRouter().navTo("BPExtend", {
-                        Id: "New",
-                        Name: "Display"
-                    },true); 
-            }
+               
             },
             fnDisplayNav: function (vIsNew, vCaseId) {
                 var isNew = vIsNew;

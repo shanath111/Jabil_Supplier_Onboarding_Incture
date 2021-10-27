@@ -21,11 +21,44 @@ sap.ui.define([
                 oBusyDilog = new BusyDialog({
                     text: oi18n.getProperty("BusyTxt")   //initialize Busy Dialog
                 });
+                 if(this.getOwnerComponent().getComponentData()){
+                  if (this.getOwnerComponent().getComponentData().startupParameters.caseId) {
+                    var vCaseId = this.getOwnerComponent().getComponentData().startupParameters.caseId[0];
+                    var vIsNew = this.getOwnerComponent().getComponentData().startupParameters.isNew[0];
+                    this.fnDisplayNav(vIsNew, vCaseId);
+                } else {
+                    this.getOwnerComponent().getRouter().navTo("BPExtend", {
+                        Id: "New",
+                        Name: "Display"
+                    },true);
+                }
+            }else{
+                 this.getOwnerComponent().getRouter().navTo("BPExtend", {
+                        Id: "New",
+                        Name: "Display"
+                    },true); 
+            }
                 // window.addEventListener("resize", this.fnScreenResize); //Event to be triggered on screen resize
                 this.oRouter = this.getOwnerComponent().getRouter();
                 this.oRouter.getRoute("VendorRequest").attachMatched(this.fnVendorRequestRoute, this);
 
             },
+                 fnDisplayNav: function (vIsNew, vCaseId) {
+                var isNew = vIsNew;
+                if (isNew == "true") {
+                    var vCaseId = vCaseId;
+                    this.getOwnerComponent().getRouter().navTo("BPCreate", {
+                        Id: vCaseId
+                    },true);
+                } else {
+                    var vCaseId = vCaseId;
+                    this.getOwnerComponent().getRouter().navTo("BPExtend", {
+                        Id: vCaseId,
+                        Name: "Display"
+                    },true);
+                }
+            },
+
             fnScreenResize: function () {
                 setTimeout(function () {
                     var vTableHeight;
@@ -281,22 +314,7 @@ sap.ui.define([
                 }
 
             },
-            fnDisplayNav: function (vIsNew, vCaseId) {
-                var isNew = vIsNew;
-                if (isNew == "true") {
-                    var vCaseId = vCaseId;
-                    this.getOwnerComponent().getRouter().navTo("BPCreate", {
-                        Id: vCaseId
-                    });
-                } else {
-                    var vCaseId = vCaseId;
-                    this.getOwnerComponent().getRouter().navTo("BPExtend", {
-                        Id: vCaseId,
-                        Name: "Display"
-                    });
-                }
-
-            },
+          
             fnNextPage: function () {
                 oView.getModel("JMSuppReqList").getData().currentPage = oView.getModel("JMSuppReqList").getData().currentPage + 1;
                 this.fnLoadSupplierList();
