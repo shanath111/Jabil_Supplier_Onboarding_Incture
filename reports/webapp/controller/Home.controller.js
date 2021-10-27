@@ -12,7 +12,7 @@ sap.ui.define([
     function (Controller, formatter, JSONModel, Filter, FilterOperator, MessageBox, BusyDialog, Sorter) {
         "use strict";
         var that, oView, oView1, oBusyDilog, oi18n;
-        return Controller.extend("oneapp.incture.report.reports.controller.VendorRequest", {
+        return Controller.extend("oneapp.incture.report.reports.controller.Home", {
             onInit: function () {
                 that = this;
                 oView = this.getView();
@@ -23,12 +23,12 @@ sap.ui.define([
                 });
 
                 // window.addEventListener("resize", this.fnScreenResize); //Event to be triggered on screen resize
-                // this.oRouter = this.getOwnerComponent().getRouter();
-                //  this.oRouter.getRoute("Home").attachMatched(this.fnVendorRequestRoute, this);
+             this.oRouter = this.getOwnerComponent().getRouter();
+                this.oRouter.getRoute("Home").attachMatched(this.fnVendorRequestRoute, this);
 
             },
             onAfterRendering: function () {
-                this.fnVendorRequestRoute();
+               // this.fnVendorRequestRoute();
             },
             fnNavToGraph: function () {
                 this.getOwnerComponent().getRouter().navTo("Reports");

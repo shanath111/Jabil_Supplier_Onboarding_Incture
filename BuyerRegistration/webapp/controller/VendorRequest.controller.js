@@ -17,6 +17,7 @@ sap.ui.define([
                 that = this;
                 oView = this.getView();
                 oi18n = this.getOwnerComponent().getModel("i18n");
+              
                 oBusyDilog = new BusyDialog({
                     text: oi18n.getProperty("BusyTxt")   //initialize Busy Dialog
                 });
@@ -71,10 +72,8 @@ sap.ui.define([
                 // that.fnLoadPOrg();
                 // that.fnLoadStatus();
 
-                this.getOwnerComponent().getRouter().navTo("BPExtend", {
-                    Id: "New",
-                    Name: "Display"
-                });
+
+
 
                 // this.fnLoadUser();
             },
@@ -275,6 +274,22 @@ sap.ui.define([
                     });
                 } else {
                     var vCaseId = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("caseId");
+                    this.getOwnerComponent().getRouter().navTo("BPExtend", {
+                        Id: vCaseId,
+                        Name: "Display"
+                    });
+                }
+
+            },
+            fnDisplayNav: function (vIsNew, vCaseId) {
+                var isNew = vIsNew;
+                if (isNew == "true") {
+                    var vCaseId = vCaseId;
+                    this.getOwnerComponent().getRouter().navTo("BPCreate", {
+                        Id: vCaseId
+                    });
+                } else {
+                    var vCaseId = vCaseId;
                     this.getOwnerComponent().getRouter().navTo("BPExtend", {
                         Id: vCaseId,
                         Name: "Display"

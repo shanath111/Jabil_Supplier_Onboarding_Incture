@@ -47,7 +47,7 @@
     "sap.ui5": {
         "flexEnabled": false,
         "rootView": {
-            "viewName": "oneapp.incture.report.reports.view.Reports",
+            "viewName": "oneapp.incture.report.reports.view.App",
             "type": "XML",
             "async": true,
             "id": "Reports"
@@ -110,7 +110,7 @@
             "routes": [
                 {
                     "name": "Home",
-                    "pattern": "Home",
+                    "pattern": "",
                     "target": "Home"
                 },
                 {
