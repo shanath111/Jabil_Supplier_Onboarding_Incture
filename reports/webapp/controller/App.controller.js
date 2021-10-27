@@ -1,5 +1,6 @@
 sap.ui.define([
-	"oneapp/incture/report/reports/controller/BaseController",
+     "sap/ui/core/mvc/Controller",
+	//"oneapp/incture/report/reports/controller/BaseController",
 	"oneapp/incture/report/reports/util/formatter",
 	// "oneapp/incture/workbox/controlExtension/ExtDatePicker",
 	// "oneapp/incture/workbox/controlExtension/ExtDateRangeSelection",
@@ -7,48 +8,48 @@ sap.ui.define([
 	// "oneapp/incture/workbox/util/workbox",
 	// "oneapp/incture/workbox/util/utility",
 	"sap/ui/model/json/JSONModel"
-], function (BaseController, formatter, ExtDatePicker, ExtDateRangeSelection, taskManagement, workbox, utility, JSONModel) {
+], function (Controller, formatter, ExtDatePicker, ExtDateRangeSelection, taskManagement, workbox, utility, JSONModel) {
 	"use strict";
 
-	return BaseController.extend("oneapp.incture.report.reports.controller.App", {
+	return Controller.extend("oneapp.incture.report.reports.controller.App", {
 		formatter: formatter,
 		utility: utility,
 
 		onInit: function () {
-			var that = this;
-			this.fnInitApp();
-			this.router = sap.ui.core.UIComponent.getRouterFor(this);
-			this.router.attachRoutePatternMatched(function (oEvent) {
-				that.routePatternMatched(oEvent);
-			});
-			this.fnSetSideNavItems(); //To be deleted on actual data
+			// var that = this;
+			// this.fnInitApp();
+			// this.router = sap.ui.core.UIComponent.getRouterFor(this);
+			// this.router.attachRoutePatternMatched(function (oEvent) {
+			// 	that.routePatternMatched(oEvent);
+			// });
+			// this.fnSetSideNavItems(); //To be deleted on actual data
 
-			var appFunctionality = {
-				"expanded": true,
-				"direction": "Row",
-				"visibility": true
-			};
-			this.oAppModel.setProperty("/functionality", appFunctionality);
-			this.registerIcons();
-			var oProcessFlowModel = new JSONModel();
-			oProcessFlowModel.busy = false;
-			this.setModel(oProcessFlowModel, "oProcessFlowModel");
-			var oLocalModel = this.getOwner().getModel("oLocalModel");
-			this.setModel(oLocalModel, "oLocalModel");
-			this.oLocalModel = oLocalModel;
+			// var appFunctionality = {
+			// 	"expanded": true,
+			// 	"direction": "Row",
+			// 	"visibility": true
+			// };
+			// this.oAppModel.setProperty("/functionality", appFunctionality);
+			// this.registerIcons();
+			// var oProcessFlowModel = new JSONModel();
+			// oProcessFlowModel.busy = false;
+			// this.setModel(oProcessFlowModel, "oProcessFlowModel");
+			// var oLocalModel = this.getOwner().getModel("oLocalModel");
+			// this.setModel(oLocalModel, "oLocalModel");
+			// this.oLocalModel = oLocalModel;
 
-			var oAdvanceFilterModel = new JSONModel(this.oLocalModel.getProperty("/advancefilterMetaData"));
-			this.setModel(oAdvanceFilterModel, "oAdvanceFilterModel");
-			this.getModel("oAdvanceFilterModel").setProperty("/searchInboxType", this.oAppModel.getProperty("/currentViewPage"));
-			this.getModel("oAdvanceFilterModel").setProperty("/appController", this);
+			// var oAdvanceFilterModel = new JSONModel(this.oLocalModel.getProperty("/advancefilterMetaData"));
+			// this.setModel(oAdvanceFilterModel, "oAdvanceFilterModel");
+			// this.getModel("oAdvanceFilterModel").setProperty("/searchInboxType", this.oAppModel.getProperty("/currentViewPage"));
+			// this.getModel("oAdvanceFilterModel").setProperty("/appController", this);
 
-			/**************************Collaboration Changes-By Karishma*********************/
-			this.oAppModel.setProperty("/bGlobalSearchSuggestion", false);
-			var oCollaborationModel = this.getOwnerComponent().getModel("oCollaborationModel");
-			this.getView().setModel(oCollaborationModel, "oCollaborationModel");
-			oCollaborationModel.setProperty("/bIsTaskOwner", true);
-			/**************************Collaboration Changes End-By Karishma*********************/
-			this.setChatBot();
+			// /**************************Collaboration Changes-By Karishma*********************/
+			// this.oAppModel.setProperty("/bGlobalSearchSuggestion", false);
+			// var oCollaborationModel = this.getOwnerComponent().getModel("oCollaborationModel");
+			// this.getView().setModel(oCollaborationModel, "oCollaborationModel");
+			// oCollaborationModel.setProperty("/bIsTaskOwner", true);
+			// /**************************Collaboration Changes End-By Karishma*********************/
+			// this.setChatBot();
 
 		},
 
@@ -3833,14 +3834,14 @@ sap.ui.define([
 
 		// <------------------------------------ START - ACTION HEADER Methods-------------------------------->
 		onAfterRendering: function () {
-			var oAppModel = this.getModel("oAppModel");
-			this.renderActionButtons();
-			var i18n = this.getOwner().getModel("i18n").getResourceBundle();
-			var oUserWorkLoadSortData = new JSONModel();
-			this.setModel(oUserWorkLoadSortData, "oUserWorkLoadSortData");
-			this.getProcessNameFunc();
-			this.getView().setModel(new JSONModel(), "oConstantsModel");
-			this.getCommonServicesFn();
+			// var oAppModel = this.getModel("oAppModel");
+			// this.renderActionButtons();
+			// var i18n = this.getOwner().getModel("i18n").getResourceBundle();
+			// var oUserWorkLoadSortData = new JSONModel();
+			// this.setModel(oUserWorkLoadSortData, "oUserWorkLoadSortData");
+			// this.getProcessNameFunc();
+			// this.getView().setModel(new JSONModel(), "oConstantsModel");
+			// this.getCommonServicesFn();
 		},
 
 		renderActionButtons: function () {

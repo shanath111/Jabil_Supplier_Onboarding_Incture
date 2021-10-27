@@ -2,6 +2,20 @@
   "welcomeFile": "/index.html",
   "authenticationMethod": "route",
   "routes": [
+      {
+            "source": "^/plcm_portal_services/(.*)$",
+            "target": "$1",
+            "authenticationType": "xsuaa",
+            "destination": "plcm_portal_services",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/plcm_reference_data/(.*)$",
+            "target": "$1",
+            "authenticationType": "xsuaa",
+            "destination": "plcm_reference_data",
+            "csrfProtection": false
+        },
    {
             "source": "^/WorkboxJavaService",
             "target": "/",

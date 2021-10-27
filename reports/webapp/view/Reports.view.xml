@@ -1,8 +1,20 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:viz="sap.viz.ui5.controls" xmlns:l="sap.ui.layout"
     xmlns:f="sap.f" xmlns:viz.data="sap.viz.ui5.data" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:grid="sap.ui.layout.cssgrid"
     controllerName="oneapp.incture.report.reports.controller.Reports" xmlns:ExtVbox="oneapp.incture.report.reports.controlExtension">
+   <App id="app">
+   <pages>
+   
     <Page showHeader="false" class="wbWorkloadBackground">
+    	<subHeader>
+					<Toolbar class="cl_VRHeaderBackGrnd sapUiSizeCompact">
+                    	<Link text="{i18n>Home}" press="fnNavToHome" class="sapUiSmallMarginBegin cl_TIHomeLink"></Link>
+                    <ToolbarSpacer ></ToolbarSpacer>
+					
+						
+					</Toolbar>
+				</subHeader>
         <content>
+
             <VBox renderType="Bare" alignItems="Center" class="sapUiSmallMargin sapUiSizeCompact">
                 <!-- <grid:CSSGrid gridTemplateRows="repeat(auto-fill, 58px)" class="wbDashboardTileContainerClass"
                     gridTemplateColumns="{path : 'oGraphDataModel>/graphTiles' ,formatter: 'oneapp.incture.report.reports.util.formatter.wbDashboardTileGrid'}"
@@ -25,4 +37,6 @@
             </VBox>
         </content>
     </Page>
+    </pages>
+   </App>
 </mvc:View>
