@@ -7,7 +7,7 @@
 		</VBox>
 	</Panel>
 	<l:VerticalLayout width="100%" class="fontStyle sapUiTinyMarginTop sapUiSizeCompact">
-		<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="fontStyle gridMargin gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+		<l:Grid visible="{oUserModel>/isNew}" containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="fontStyle gridMargin gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 			<VBox class="fontStyle sapUiSizeCompact">
 				<Label required="true" labelFor="ownSite" class="sapUiTinyMarginBegin" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>hasOwnSite}:${oi18n_En>hasOwnSite} +'&#10;' +${i18n>hasOwnSite}}" wrapping="true"/>
 				<RadioButtonGroup id="ownSite" columns="2" selectedIndex="{=${oDataModel>/ownerShipInfoDto/doesOtherEntityOwnSite} === true? 0 :(${oDataModel>/ownerShipInfoDto/doesOtherEntityOwnSite}=== false ?1: -1)}" class="inputStyle sapUiNoMarginBegin sapUiTinyMarginEnd" enabled="{oEnableMdl>/doesOtherEntityOwnSiteEnb}" valueState="{oErrorModel>/doesOtherEntityOwnSiteE}" select="fnClearValueState">

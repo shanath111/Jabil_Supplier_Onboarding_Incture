@@ -27,19 +27,19 @@
 								</VBox>
 								<VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2} +'&#10;' + ${i18n>addressL2}}" wrapping="true" class="fontStyle"></Label>
-                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address2}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address2}" editable="{oUserModel>/isNew}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
                                 </VBox>
                                 <VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL3}:${oi18n_En>addressL3} +'&#10;' + ${i18n>addressL3}}" wrapping="true" class="fontStyle"></Label>
-                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address3}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address3}" editable="{oUserModel>/isNew}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
                                 </VBox>
                                 <VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL4}:${oi18n_En>addressL4} +'&#10;' + ${i18n>addressL4}}" wrapping="true" class="fontStyle "></Label>
-                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address4}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address4}" editable="{oUserModel>/isNew}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
                                 </VBox>
                                 <VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL5}:${oi18n_En>addressL5} +'&#10;' + ${i18n>addressL5}}" wrapping="true" class="fontStyle "></Label>
-                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address5}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41"/>
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address5}" editable="{oUserModel>/isNew}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41"/>
                                 </VBox>
 								<VBox >
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey} +'&#10;' + ${i18n>countrykey}}" wrapping="true"  required="true" class="fontStyle "></Label>
@@ -438,7 +438,7 @@
                                         </HBox>
                     </contentLeft>
 						<contentRight>
-                        <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>back}:${oi18n_En>back} + '/&#160;' + ${i18n>back}}"  enabled="{=${oVisibilityModel>/claimedTask} &amp;&amp; ${oEnableMdl>/BackBtnEnb}}"  visible="{oVisibilityModel>/_BackButton}"  class="backButton sapUiSizeCompact sapUiTinyMarginEnd" press="previousStep"></Button>
+                        <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>back}:${oi18n_En>back} + '/&#160;' + ${i18n>back}}"  enabled="{=${oVisibilityModel>/claimedTask} &amp;&amp; ${oEnableMdl>/BackBtnEnb}}"  visible="{=${oVisibilityModel>/_BackButton} &amp;&amp; ${oEnableMdl>/BackBtnEnb}}"  class="backButton sapUiSizeCompact sapUiTinyMarginEnd" press="previousStep"></Button>
 							<Button id="saveS" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>save}:${oi18n_En>save} + '/&#160;' + ${i18n>save}}" visible="{oVisibilityModel>/_SaveAsDraftButton}" enabled="{=${oDataModel>/surveyInfoDto/isAuthority} === true &amp;&amp; ${oVisibilityModel>/claimedTask}}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="onSaveAsDraft"></Button>
                            <!-- <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>save}:${oi18n_En>save} + '/&#160;' + ${i18n>save}}" visible="true" enabled="false" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="onSaveAsDraft"></Button> -->
                             <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>forward}:${oi18n_En>forward} + '/&#160;' + ${i18n>forward}}" enabled="{oVisibilityModel>/claimedTask}" visible="{=${oDataModel>/surveyInfoDto/isAuthority} === false}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="fnSupplierForward"></Button>
