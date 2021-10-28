@@ -123,7 +123,7 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="242" value="{oDataModel>/surveyInfoDto/authorityContact/email}" enabled="{oEnableMdl>/emailEnb}" valueState="{oErrorModel>/authorityEmailE}" valueStateText="{oErrorModel>/authorityEmailM}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
+									<Input maxLength="242" value="{oDataModel>/surveyInfoDto/authorityContact/email}" enabled="{oEnableMdl>/emailEnb}" valueState="{oErrorModel>/authorityEmailE}" valueStateText="{oErrorModel>/authorityEmailM}" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
 										
                                 </VBox>
                                 <VBox>
@@ -206,7 +206,7 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="242"  value="{oDataModel>/surveyInfoDto/ackContact/email}" class="inputStyle"  valueState="{oErrorModel>/ackEmailE}" valueStateText="{oErrorModel>/ackEmailM}" liveChange="fnLiveEmailNotJValid"></Input>
+									<Input maxLength="242"  value="{oDataModel>/surveyInfoDto/ackContact/email}" class="inputStyle"  valueState="{oErrorModel>/ackEmailE}" valueStateText="{oErrorModel>/ackEmailM}" change="fnLiveEmailNotJValid"></Input>
 								</VBox>
                                 <VBox>
 									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
@@ -267,7 +267,7 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="242" value="{oDataModel>/surveyInfoDto/mainContact/email}" enabled="{oEnableMdl>/mainContactemailEnb}" class="inputStyle"  valueState="{oErrorModel>/mcEmailE}" valueStateText="{oErrorModel>/mcEmailM}" liveChange="fnLiveEmailNotJValid"></Input>
+									<Input maxLength="242" value="{oDataModel>/surveyInfoDto/mainContact/email}" enabled="{oEnableMdl>/mainContactemailEnb}" class="inputStyle"  valueState="{oErrorModel>/mcEmailE}" valueStateText="{oErrorModel>/mcEmailM}" change="fnLiveEmailNotJValid"></Input>
 								</VBox>
     
                                 <VBox>
@@ -334,7 +334,7 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="241" value="{oDataModel>/surveyInfoDto/altContact/email}" enabled="{oEnableMdl>/altContactemailEnb}"  valueState="{oErrorModel>/altEmailE}" valueStateText="{oErrorModel>/altEmailM}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
+									<Input maxLength="241" value="{oDataModel>/surveyInfoDto/altContact/email}" enabled="{oEnableMdl>/altContactemailEnb}"  valueState="{oErrorModel>/altEmailE}" valueStateText="{oErrorModel>/altEmailM}" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
 										
                                 </VBox>
                                 <VBox>

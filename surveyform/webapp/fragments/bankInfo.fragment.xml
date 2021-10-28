@@ -269,7 +269,7 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
                                      <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="242" value="{oDataModel>/bankDto/financeContact1/email}" enabled="{oEnableMdl>/finance1eMailEnb}" valueState="{oErrorModel>/finance1EmailE}" valueStateText="{oErrorModel>/finance1EmailM}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
+									<Input maxLength="242" value="{oDataModel>/bankDto/financeContact1/email}" enabled="{oEnableMdl>/finance1eMailEnb}" valueState="{oErrorModel>/finance1EmailE}" valueStateText="{oErrorModel>/finance1EmailM}" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
 								
                                 </VBox>
 
@@ -348,7 +348,7 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
                                      <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="242" value="{oDataModel>/bankDto/financeContact2/email}" enabled="{oEnableMdl>/finance2eMailEnb}" valueState="{oErrorModel>/finance2EmailE}" valueStateText="{oErrorModel>/finance2EmailM}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
+									<Input maxLength="242" value="{oDataModel>/bankDto/financeContact2/email}" enabled="{oEnableMdl>/finance2eMailEnb}" valueState="{oErrorModel>/finance2EmailE}" valueStateText="{oErrorModel>/finance2EmailM}" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
 								
                                 </VBox>
 							

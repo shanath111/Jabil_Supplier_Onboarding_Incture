@@ -283,7 +283,7 @@
                                     <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
 									<!-- <Input maxLength="242" value="{oDataModel>/surveyInfoDto/authorityContact/email}"  valueState="{oErrorModel>/authorityEmailE}" valueStateText="{oErrorModel>/authorityEmailM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input> -->
-									<Input maxLength="242" value="{oDataModel>/bpInfoDto/pointOfContact/email}" enabled="{oEnableMdl>/ppocEmailEnb}" valueState="{oErrorModel>/ppocEmailE}" valueStateText="{oErrorModel>/ppocEmailM}" liveChange="fnLiveEmailJValid" class="inputStyle"/>	
+									<Input maxLength="242" value="{oDataModel>/bpInfoDto/pointOfContact/email}" enabled="{oEnableMdl>/ppocEmailEnb}" valueState="{oErrorModel>/ppocEmailE}" valueStateText="{oErrorModel>/ppocEmailM}" change="fnLiveEmailJValid" class="inputStyle"/>	
                                 </VBox>
                                 <VBox>
 									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
