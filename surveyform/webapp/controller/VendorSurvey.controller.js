@@ -1863,6 +1863,12 @@ sap.ui.define([
                     oView.getModel("oErrorModel").getData().authorityContM = oi18n.getText("invalidContact");
                     iError = true;
                 }
+                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.countryMobileCode || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.countryMobileCode)) {
+                    oView.getModel("oErrorModel").getData().authorityCountryContactCodeMobE = "Error";
+                    oView.getModel("oErrorModel").getData().authorityCountryContactCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
+
+                    iError = true;
+                }
                 if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile)) {
                     oView.getModel("oErrorModel").getData().authorityMobE = "Error";
                     oView.getModel("oErrorModel").getData().authorityMobM = oi18n.getText("mandatoryMContact");
@@ -2011,7 +2017,12 @@ sap.ui.define([
                         oView.getModel("oErrorModel").getData().ackContactM = oi18n.getText("invalidContact");
                         iError = true;
                     }
+                     if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.countryMobileCode || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.countryMobileCode)) {
+                        oView.getModel("oErrorModel").getData().ackCountryContactCodeMobE = "Error";
+                        oView.getModel("oErrorModel").getData().ackCountryContactCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
 
+                        iError = true;
+                    }
                     if (!oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile)) {
                         oView.getModel("oErrorModel").getData().ackPhoneE = "Error";
                         oView.getModel("oErrorModel").getData().ackPhoneM = oi18n.getText("mandatoryMContact");
@@ -2082,6 +2093,12 @@ sap.ui.define([
                     if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact.replaceAll("-", "")) == 0) {
                         oView.getModel("oErrorModel").getData().mcContE = "Error";
                         oView.getModel("oErrorModel").getData().mcContM = oi18n.getText("invalidContact");
+                        iError = true;
+                    }
+                    if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.countryMobileCode || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.countryMobileCode)) {
+                        oView.getModel("oErrorModel").getData().mcCountryContactCodeMobE = "Error";
+                        oView.getModel("oErrorModel").getData().mcCountryContactCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
+
                         iError = true;
                     }
                     if (!oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile)) {
@@ -2316,6 +2333,12 @@ sap.ui.define([
                 if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact)) {
                     oView.getModel("oErrorModel").getData().ppocContE = "Error";
                     oView.getModel("oErrorModel").getData().ppocContM = oi18n.getText("mandatoryContact");
+
+                    iError = true;
+                }
+                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryMobileCode || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryMobileCode)) {
+                    oView.getModel("oErrorModel").getData().ppocCountryContCodeMobE = "Error";
+                    oView.getModel("oErrorModel").getData().ppocCountryContCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
 
                     iError = true;
                 }
@@ -3499,6 +3522,12 @@ sap.ui.define([
 
                             iError = true;
                         }
+                        if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.countryMobileCode || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.countryMobileCode)) {
+                            oView.getModel("oErrorModel").getData().finance1CountryContCodeMobE = "Error";
+                            oView.getModel("oErrorModel").getData().finance1CountryContCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
+
+                            iError = true;
+                        }
                         if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile)) {
                             oView.getModel("oErrorModel").getData().finance1MobE = "Error";
                             oView.getModel("oErrorModel").getData().finance1MobM = oi18n.getText("mandatoryMContact");
@@ -3554,9 +3583,9 @@ sap.ui.define([
 
                         iError = true;
                     }
-                    if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.countryContactCode)) {
-                        oView.getModel("oErrorModel").getData().finance2CountryContCodeE = "Error";
-                        oView.getModel("oErrorModel").getData().finance2CountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
+                    if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.countryMobileCode || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.countryMobileCode)) {
+                        oView.getModel("oErrorModel").getData().finance2CountryContCodeMobE = "Error";
+                        oView.getModel("oErrorModel").getData().finance2CountryContCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
 
                         iError = true;
                     }
