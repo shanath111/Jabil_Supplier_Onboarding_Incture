@@ -1005,10 +1005,10 @@ sap.ui.define([
                 this.oBPSuccess.close();
             },
             fnDoneSubmit: function () {
-                this.getOwnerComponent().getRouter().navTo("VendorRequest");
+               window.history.go(-1);
             },
             fnCancelAction: function () {
-                this.getOwnerComponent().getRouter().navTo("VendorRequest");
+              window.history.go(-1);
 
             },
             fnCreateBP: function () {
@@ -1955,7 +1955,7 @@ sap.ui.define([
                 });
             },
             fnNavToHome: function () {
-                this.getOwnerComponent().getRouter().navTo("VendorRequest");
+                window.history.go(-1);
             },
             fnLiveChangeCountryCode1: function () {
                 if (oView.getModel("JMBPCreate").getData().altContactCountryCodee == "Error") {
