@@ -10,6 +10,23 @@ sap.ui.define([
         return Controller.extend("ns.BuyerRegistration.controller.App", {
             onInit: function () {
                 this.fnLoadUser();
+               
+            },
+            fnDisplayNav: function (vIsNew, vCaseId) {
+                var isNew = vIsNew;
+                if (isNew == "true") {
+                    var vCaseId = vCaseId;
+                    this.getOwnerComponent().getRouter().navTo("BPCreate", {
+                        Id: vCaseId
+                    },true);
+                } else {
+                    var vCaseId = vCaseId;
+                    this.getOwnerComponent().getRouter().navTo("BPExtend", {
+                        Id: vCaseId,
+                        Name: "Display"
+                    },true);
+                }
+
             },
             fnLoadUser: function () {
                 var that = this;

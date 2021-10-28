@@ -67,11 +67,23 @@ sap.ui.define([
                             oEvent.getSource().getParent().setCurrentStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep].sId);
                         }
                     }
+                     if (oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep == 1) {
+                        oView.getModel("oEnableMdl").getData().BackBtnEnb = false;
+                    } else {
+                        oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
+                    }
+                    oView.getModel("oEnableMdl").refresh();
                 });
                 this._router = this.getOwnerComponent().getRouter();
                 this._router.getRoute("VendorSurvey").attachPatternMatched(this._fnHandleRouteMatched, this);
                 // @ts-ignore
                 this.getView().byId("surveyWizard").setRenderMode("Page");
+                if (this.getView().byId("surveyWizard")._getProgressNavigator()._iCurrentStep == 1) {
+                        oView.getModel("oEnableMdl").getData().BackBtnEnb = false;
+                    } else {
+                        oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
+                    }
+                    oView.getModel("oEnableMdl").refresh();
 
             },
 
@@ -161,6 +173,7 @@ sap.ui.define([
                                         existingData.bpInfoDto.taxAuthorityPartyId = oEvent.getSource().oData.bpInfoDto.taxAuthorityPartyId;
                                         existingData.bpInfoDto.corporateGroupName = oEvent.getSource().oData.bpInfoDto.corporateGroupName;
                                         existingData.bpInfoDto.procurementTransactionBlockingCode = oEvent.getSource().oData.bpInfoDto.procurementTransactionBlockingCode;
+                                        existingData.bpInfoDto.receiverRespTaxOfficePartyInternalId = oEvent.getSource().oData.bpInfoDto.receiverRespTaxOfficePartyInternalId;
                                         existingData.dateUpdated = oEvent.getSource().oData.dateUpdated;
                                         existingData.surveyInfoDto.isAuthority = null;
                                         existingData.surveyInfoDto.isJabilMainContact = null;
@@ -2498,21 +2511,12 @@ sap.ui.define([
                 if (this.emailValidResult) {
                     iError = true;
                 }
-                if ((!oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum || oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum === "NODUNS") && oView.getModel("oDataModel").getData().ownerShipInfoDto.doesOtherEntityOwnSite === null) {
-                    oView.getModel("oErrorModel").getData().doesOtherEntityOwnSiteE = "Error";
-                    iError = true;
-                }
+                
                 if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityTradedCompany === null) {
                     oView.getModel("oErrorModel").getData().isEntityTradedCompanyE = "Error";
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().ownerShipInfoDto.doesOtherEntityOwnSite && (!oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum || oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum === "NODUNS"))
-                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.companyName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.companyName)) {
-                        oView.getModel("oErrorModel").getData().compNameE = "Error";
-                        oView.getModel("oErrorModel").getData().compNameM = oi18n.getText("mandatoryCompName");
-
-                        iError = true;
-                    }
+               
 
                 if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.ownershipType) {
                     oView.getModel("oErrorModel").getData().ownershipTypeE = "Error";
@@ -2521,6 +2525,17 @@ sap.ui.define([
                     iError = true;
                 }
                 if (oView.getModel("oUserModel").getData().isNew) {
+                    if ((!oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum || oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum === "NODUNS") && oView.getModel("oDataModel").getData().ownerShipInfoDto.doesOtherEntityOwnSite === null) {
+                    oView.getModel("oErrorModel").getData().doesOtherEntityOwnSiteE = "Error";
+                    iError = true;
+                }
+                 if (oView.getModel("oDataModel").getData().ownerShipInfoDto.doesOtherEntityOwnSite && (!oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum || oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum === "NODUNS"))
+                    if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.companyName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.companyName)) {
+                        oView.getModel("oErrorModel").getData().compNameE = "Error";
+                        oView.getModel("oErrorModel").getData().compNameM = oi18n.getText("mandatoryCompName");
+
+                        iError = true;
+                    }
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList === null) {
                         oView.getModel("oErrorModel").getData().isEntitySDNListE = "Error";
                         iError = true;
@@ -7310,12 +7325,15 @@ sap.ui.define([
                     oView.getModel("oEnableMdl").getData().BackBtnEnb = false;
                     oView.getModel("oEnableMdl").refresh();
                 }
-
+                if(this.getView().byId("surveyWizard")._getProgressNavigator()._iCurrentStep == 2) {
+                    oView.getModel("oEnableMdl").getData().BackBtnEnb = false;
+                    oView.getModel("oEnableMdl").refresh();
+                }
                 if (this.getView().byId("surveyWizard")._getProgressNavigator()._iCurrentStep == 1) {
-                    var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                    oRouter.navTo("Welcome", {
-                        contextPath: oView.getModel("oUserModel").getData().taskId,
-                    });
+                    // var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                    // oRouter.navTo("Welcome", {
+                    //     contextPath: oView.getModel("oUserModel").getData().taskId,
+                    // });
                 } else {
                     this.getOwnerComponent().getModel("oVisibilityModel").getData()._finalStep = false;
                     this.getOwnerComponent().getModel("oVisibilityModel").getData()._finalStepAccept = false;

@@ -47,7 +47,7 @@
     "sap.ui5": {
         "flexEnabled": false,
         "rootView": {
-            "viewName": "oneapp.incture.report.reports.view.Reports",
+            "viewName": "oneapp.incture.report.reports.view.App",
             "type": "XML",
             "async": true,
             "id": "Reports"
@@ -71,15 +71,21 @@
                     "bundleName": "oneapp.incture.report.reports.i18n.i18n"
                 }
             },
+              "oBPLookUpMdl": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "oConfigMdl": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
             "oAppModel": {
-				"type": "sap.ui.model.json.JSONModel"
-			},
-			"oConstantsModel": {
-				"type": "sap.ui.model.json.JSONModel"
-			},
-			"oGraphDataModel": {
-				"type": "sap.ui.model.json.JSONModel"
-			}
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "oConstantsModel": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "oGraphDataModel": {
+                "type": "sap.ui.model.json.JSONModel"
+            }
         },
         "resources": {
             "css": [
@@ -103,19 +109,23 @@
             },
             "routes": [
                 {
+                    "name": "Home",
+                    "pattern": "",
+                    "target": "Home"
+                },
+                {
                     "name": "Reports",
                     "pattern": "Reports",
-                    "target": [
-                        "TargetReports"
-                    ]
+                    "target": "Reports"
                 }
             ],
             "targets": {
-                "TargetReports": {
+                "Home": {
                     "viewType": "XML",
-                    "transition": "slide",
-                    "clearControlAggregation": false,
-                    "viewId": "Reports",
+                    "viewName": "Home"
+                },
+                "Reports": {
+                    "viewType": "XML",
                     "viewName": "Reports"
                 }
             }

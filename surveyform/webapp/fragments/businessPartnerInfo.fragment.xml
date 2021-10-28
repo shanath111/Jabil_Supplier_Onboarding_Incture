@@ -180,13 +180,16 @@
 					<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>taxID}:${oi18n_En>taxID} +'&#10;' +${i18n>taxID}}"></Label>
 					<Input maxLength="{oLookUpModel>/taxIDValidation1/taxMaxLength}" placeholder="{oLookUpModel>/taxIDValidation1/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType1'}" ></Input>
                     <Input maxLength="{oLookUpModel>/taxIDValidation2/taxMaxLength}" placeholder="{oLookUpModel>/taxIDValidation2/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType2'}" ></Input>
-                    <!-- <MaskInput width="100%" mask="{oLookUpModel>/taxIDValidation2/tooltip}" placeholder="{oLookUpModel>/taxIDValidation2/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType2'}" editable="{=${oLookUpModel>/taxIDValidation2/taxMaxLength}===0 ? false:true}" >
+                   <!-- <VBox visible="{=${oLookUpModel>/taxIDValidation2/tooltip} === '' ? true: false}"> <Input maxLength="{oLookUpModel>/taxIDValidation2/taxMaxLength}" placeholder="{oLookUpModel>/taxIDValidation2/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType2'}" ></Input>
+                   </VBox>
+                   <VBox visible="{=${oLookUpModel>/taxIDValidation2/tooltip} !== ''? true: false}"> <MaskInput width="100%" mask="{oLookUpModel>/taxIDValidation2/tooltip}" placeholder="{oLookUpModel>/taxIDValidation2/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType2'}" editable="{=${oLookUpModel>/taxIDValidation2/taxMaxLength}===0 ? false:true}" >
                     	<rules>
 						<MaskInputRule maskFormatSymbol="x" regex="[a-zA-Z0-9]"/>
                         <MaskInputRule maskFormatSymbol="X" regex="[a-zA-Z0-9]"/>
-                        <MaskInputRule maskFormatSymbol="~" regex="[^_]"/>
+                        <MaskInputRule maskFormatSymbol="#" regex="[a-zA-Z0-9]"/>
 					</rules>
-                    </MaskInput> -->
+                    </MaskInput>
+                    </VBox> -->
                     <Input maxLength="{oLookUpModel>/taxIDValidation3/taxMaxLength}" placeholder="{oLookUpModel>/taxIDValidation3/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType3'}"></Input>
                     <Input maxLength="{oLookUpModel>/taxIDValidation4/taxMaxLength}" placeholder="{oLookUpModel>/taxIDValidation4/tooltip}"  class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType4'}"></Input>
                     <Input maxLength="{oLookUpModel>/taxIDValidation5/taxMaxLength}" placeholder="{oLookUpModel>/taxIDValidation5/tooltip}" class="inputStyle" value="{oDataModel>taxNum}" enabled="{oEnableMdl>/taxNumEnb}" change="fnVerifyTaxID" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType5'}"></Input>
@@ -280,7 +283,7 @@
                                     <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
 									<!-- <Input maxLength="242" value="{oDataModel>/surveyInfoDto/authorityContact/email}"  valueState="{oErrorModel>/authorityEmailE}" valueStateText="{oErrorModel>/authorityEmailM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input> -->
-									<Input maxLength="242" value="{oDataModel>/bpInfoDto/pointOfContact/email}" enabled="{oEnableMdl>/ppocEmailEnb}" valueState="{oErrorModel>/ppocEmailE}" valueStateText="{oErrorModel>/ppocEmailM}" liveChange="fnLiveEmailJValid" class="inputStyle"/>	
+									<Input maxLength="242" value="{oDataModel>/bpInfoDto/pointOfContact/email}" enabled="{oEnableMdl>/ppocEmailEnb}" valueState="{oErrorModel>/ppocEmailE}" valueStateText="{oErrorModel>/ppocEmailM}" change="fnLiveEmailJValid" class="inputStyle"/>	
                                 </VBox>
                                 <VBox>
 									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>

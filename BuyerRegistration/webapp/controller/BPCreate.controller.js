@@ -526,14 +526,14 @@ sap.ui.define([
 
             },
             fnNavToBPCreate: function () {
-                this.getOwnerComponent().getRouter().navTo("VendorRequest");
+                window.history.go(-1);
             },
 
             fnCloseMessage: function () {
                 this.oBPSuccess.close();
             },
             fnDoneSubmit: function () {
-                this.getOwnerComponent().getRouter().navTo("VendorRequest");
+               window.history.go(-1);
             },
             fnNavToExtend: function () {
                 this.getOwnerComponent().getRouter().navTo("BPExtend", {
@@ -2264,7 +2264,7 @@ sap.ui.define([
             },
 
             fnCancelAction: function () {
-                this.getOwnerComponent().getRouter().navTo("VendorRequest");
+                window.history.go(-1);
             },
             fnAdvancedSearchOpen: function () {
                 if (!that.oAdvancedSearch) {

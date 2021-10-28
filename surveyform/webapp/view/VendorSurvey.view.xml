@@ -27,19 +27,19 @@
 								</VBox>
 								<VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2} +'&#10;' + ${i18n>addressL2}}" wrapping="true" class="fontStyle"></Label>
-                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address2}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address2}" editable="{oUserModel>/isNew}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
                                 </VBox>
                                 <VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL3}:${oi18n_En>addressL3} +'&#10;' + ${i18n>addressL3}}" wrapping="true" class="fontStyle"></Label>
-                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address3}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address3}" editable="{oUserModel>/isNew}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
                                 </VBox>
                                 <VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL4}:${oi18n_En>addressL4} +'&#10;' + ${i18n>addressL4}}" wrapping="true" class="fontStyle "></Label>
-                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address4}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address4}" editable="{oUserModel>/isNew}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
                                 </VBox>
                                 <VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL5}:${oi18n_En>addressL5} +'&#10;' + ${i18n>addressL5}}" wrapping="true" class="fontStyle "></Label>
-                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address5}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41"/>
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address5}" editable="{oUserModel>/isNew}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41"/>
                                 </VBox>
 								<VBox >
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey} +'&#10;' + ${i18n>countrykey}}" wrapping="true"  required="true" class="fontStyle "></Label>
@@ -123,7 +123,7 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="242" value="{oDataModel>/surveyInfoDto/authorityContact/email}" enabled="{oEnableMdl>/emailEnb}" valueState="{oErrorModel>/authorityEmailE}" valueStateText="{oErrorModel>/authorityEmailM}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
+									<Input maxLength="242" value="{oDataModel>/surveyInfoDto/authorityContact/email}" enabled="{oEnableMdl>/emailEnb}" valueState="{oErrorModel>/authorityEmailE}" valueStateText="{oErrorModel>/authorityEmailM}" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
 										
                                 </VBox>
                                 <VBox>
@@ -219,7 +219,7 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="242"  value="{oDataModel>/surveyInfoDto/ackContact/email}" class="inputStyle"  valueState="{oErrorModel>/ackEmailE}" valueStateText="{oErrorModel>/ackEmailM}" liveChange="fnLiveEmailNotJValid"></Input>
+									<Input maxLength="242"  value="{oDataModel>/surveyInfoDto/ackContact/email}" class="inputStyle"  valueState="{oErrorModel>/ackEmailE}" valueStateText="{oErrorModel>/ackEmailM}" change="fnLiveEmailNotJValid"></Input>
 								</VBox>
                                 <VBox>
 									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
@@ -293,7 +293,7 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="242" value="{oDataModel>/surveyInfoDto/mainContact/email}" enabled="{oEnableMdl>/mainContactemailEnb}" class="inputStyle"  valueState="{oErrorModel>/mcEmailE}" valueStateText="{oErrorModel>/mcEmailM}" liveChange="fnLiveEmailNotJValid"></Input>
+									<Input maxLength="242" value="{oDataModel>/surveyInfoDto/mainContact/email}" enabled="{oEnableMdl>/mainContactemailEnb}" class="inputStyle"  valueState="{oErrorModel>/mcEmailE}" valueStateText="{oErrorModel>/mcEmailM}" change="fnLiveEmailNotJValid"></Input>
 								</VBox>
     
                                 <VBox>
@@ -371,7 +371,7 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="241" value="{oDataModel>/surveyInfoDto/altContact/email}" enabled="{oEnableMdl>/altContactemailEnb}"  valueState="{oErrorModel>/altEmailE}" valueStateText="{oErrorModel>/altEmailM}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
+									<Input maxLength="241" value="{oDataModel>/surveyInfoDto/altContact/email}" enabled="{oEnableMdl>/altContactemailEnb}"  valueState="{oErrorModel>/altEmailE}" valueStateText="{oErrorModel>/altEmailM}" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
 										
                                 </VBox>
                                 <VBox>
@@ -475,7 +475,7 @@
                                         </HBox>
                     </contentLeft>
 						<contentRight>
-                        <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>back}:${oi18n_En>back} + '/&#160;' + ${i18n>back}}"  enabled="{=${oVisibilityModel>/claimedTask} &amp;&amp; ${oEnableMdl>/BackBtnEnb}}"  visible="{oVisibilityModel>/_BackButton}"  class="backButton sapUiSizeCompact sapUiTinyMarginEnd" press="previousStep"></Button>
+                        <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>back}:${oi18n_En>back} + '/&#160;' + ${i18n>back}}"  enabled="{=${oVisibilityModel>/claimedTask} &amp;&amp; ${oEnableMdl>/BackBtnEnb}}"  visible="{=${oVisibilityModel>/_BackButton} &amp;&amp; ${oEnableMdl>/BackBtnEnb}}"  class="backButton sapUiSizeCompact sapUiTinyMarginEnd" press="previousStep"></Button>
 							<Button id="saveS" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>save}:${oi18n_En>save} + '/&#160;' + ${i18n>save}}" visible="{oVisibilityModel>/_SaveAsDraftButton}" enabled="{=${oDataModel>/surveyInfoDto/isAuthority} === true &amp;&amp; ${oVisibilityModel>/claimedTask}}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="onSaveAsDraft"></Button>
                            <!-- <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>save}:${oi18n_En>save} + '/&#160;' + ${i18n>save}}" visible="true" enabled="false" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="onSaveAsDraft"></Button> -->
                             <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>forward}:${oi18n_En>forward} + '/&#160;' + ${i18n>forward}}" enabled="{oVisibilityModel>/claimedTask}" visible="{=${oDataModel>/surveyInfoDto/isAuthority} === false}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="fnSupplierForward"></Button>

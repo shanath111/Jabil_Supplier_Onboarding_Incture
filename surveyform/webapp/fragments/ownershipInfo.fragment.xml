@@ -7,7 +7,7 @@
 		</VBox>
 	</Panel>
 	<l:VerticalLayout width="100%" class="fontStyle sapUiTinyMarginTop sapUiSizeCompact">
-		<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="fontStyle gridMargin gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+		<l:Grid visible="{oUserModel>/isNew}" containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="fontStyle gridMargin gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 			<VBox class="fontStyle sapUiSizeCompact">
 				<Label required="true" labelFor="ownSite" class="sapUiTinyMarginBegin" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>hasOwnSite}:${oi18n_En>hasOwnSite} +'&#10;' +${i18n>hasOwnSite}}" wrapping="true"/>
 				<RadioButtonGroup id="ownSite" columns="2" selectedIndex="{=${oDataModel>/ownerShipInfoDto/doesOtherEntityOwnSite} === true? 0 :(${oDataModel>/ownerShipInfoDto/doesOtherEntityOwnSite}=== false ?1: -1)}" class="inputStyle sapUiNoMarginBegin sapUiTinyMarginEnd" enabled="{oEnableMdl>/doesOtherEntityOwnSiteEnb}" valueState="{oErrorModel>/doesOtherEntityOwnSiteE}" select="fnClearValueState">
@@ -259,7 +259,7 @@
 			<VBox class="fontStyle">
 				<Label required="true"  text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 <Label required="true"  text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input maxLength="242" value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/email}" valueState="{oErrorModel>/govtEntityEmailE}" valueStateText="{oErrorModel>/govtEntityEmailM}" enabled="{oEnableMdl>/managedByGovtContactemailEnb}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
+				<Input maxLength="242" value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/email}" valueState="{oErrorModel>/govtEntityEmailE}" valueStateText="{oErrorModel>/govtEntityEmailM}" enabled="{oEnableMdl>/managedByGovtContactemailEnb}" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
 			</VBox>
 			<VBox class="fontStyle">
 				<Label  text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
@@ -325,7 +325,7 @@
 			<VBox class="fontStyle">
 				<Label required="true" text="{i18n>eMail}"  visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 <Label required="true" text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input maxLength="242" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/email}" valueState="{oErrorModel>/closegovtEntityEmailE}" valueStateText="{oErrorModel>/closegovtEntityEmailM}" enabled="{oEnableMdl>/managedByGovtFamilyemailEnb}" liveChange="fnLiveEmailNotJValid" class="inputStyle"></Input>
+				<Input maxLength="242" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/email}" valueState="{oErrorModel>/closegovtEntityEmailE}" valueStateText="{oErrorModel>/closegovtEntityEmailM}" enabled="{oEnableMdl>/managedByGovtFamilyemailEnb}" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
 			</VBox>
 			<VBox class="fontStyle">
 				<Label  text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>

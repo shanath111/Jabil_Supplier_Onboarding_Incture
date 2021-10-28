@@ -107,6 +107,7 @@
         "taxAuthorityPartyId":"",
         "corporateGroupName":"",
         "procurementTransactionBlockingCode":"",
+        "receiverRespTaxOfficePartyInternalId":"",
         "tax": [
             {
                 "country": "",

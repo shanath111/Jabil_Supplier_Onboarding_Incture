@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:g="sap.f" xmlns:grid="sap.ui.layout.cssgrid" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified">
-     
+     <l:VerticalLayout width="100%" class="sapUiSizeCompact">
+<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>companyInfoVerbiage}:${oi18n_En>companyInfoVerbiage} + '/ ' +${i18n>companyInfoVerbiage}}" class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginTop" wrapping="true"/>
+     <Label text="{= ${oVisibilityModel>/isdefaultLan}?'- ' + ${oi18n_En>companyInfoVerbiageText1}:'- ' + ${oi18n_En>companyInfoVerbiageText1} + '/ ' +${i18n>companyInfoVerbiageText1}}" class="fontStyle sapUiLargeMarginBegin sapUiMediumMarginTop" wrapping="true"/>
+     <Label text="{= ${oVisibilityModel>/isdefaultLan}?'- ' + ${oi18n_En>companyInfoVerbiageText2}:'- ' + ${oi18n_En>companyInfoVerbiageText2} + '/ ' +${i18n>companyInfoVerbiageText2}}" class="fontStyle sapUiLargeMarginBegin sapUiTinyMarginTop sapUiSmallMarginBottom" wrapping="true"/>
+     </l:VerticalLayout>
    <l:VerticalLayout width="100%" class="sapUiSizeCompact" enabled="{=${oEnableMdl>/orderfromAddrEnb} &amp;&amp; ${companyInfoModel>/isOrderFromAddress}}">
     <CheckBox id="orderfromAddrCheckBoxId" wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>orderfromAddr}:${oi18n_En>orderfromAddr}+ '/ ' +${i18n>orderfromAddr}}" selected="{companyInfoModel>/isOrderFromAddress}"  class="fontBold inputStyle sapUiTinyMarginTop sapUiTinyMarginBottom" />
      

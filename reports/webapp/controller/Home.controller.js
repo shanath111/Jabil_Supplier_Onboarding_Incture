@@ -1,6 +1,6 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "ns/BuyerRegistration/util/formatter",
+    "oneapp/incture/report/reports/util/formatter",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
@@ -11,54 +11,28 @@ sap.ui.define([
 
     function (Controller, formatter, JSONModel, Filter, FilterOperator, MessageBox, BusyDialog, Sorter) {
         "use strict";
-        var that, oView, oBusyDilog, oi18n;
-        return Controller.extend("ns.BuyerRegistration.controller.VendorRequest", {
+        var that, oView, oView1, oBusyDilog, oi18n;
+        return Controller.extend("oneapp.incture.report.reports.controller.Home", {
             onInit: function () {
                 that = this;
                 oView = this.getView();
+                oView1 = this.getOwnerComponent();
                 oi18n = this.getOwnerComponent().getModel("i18n");
-              
                 oBusyDilog = new BusyDialog({
                     text: oi18n.getProperty("BusyTxt")   //initialize Busy Dialog
                 });
-                 if(this.getOwnerComponent().getComponentData()){
-                  if (this.getOwnerComponent().getComponentData().startupParameters.caseId) {
-                    var vCaseId = this.getOwnerComponent().getComponentData().startupParameters.caseId[0];
-                    var vIsNew = this.getOwnerComponent().getComponentData().startupParameters.isNew[0];
-                    this.fnDisplayNav(vIsNew, vCaseId);
-                } else {
-                    this.getOwnerComponent().getRouter().navTo("BPExtend", {
-                        Id: "New",
-                        Name: "Display"
-                    },true);
-                }
-            }else{
-                 this.getOwnerComponent().getRouter().navTo("BPExtend", {
-                        Id: "New",
-                        Name: "Display"
-                    },true); 
-            }
+
                 // window.addEventListener("resize", this.fnScreenResize); //Event to be triggered on screen resize
-                this.oRouter = this.getOwnerComponent().getRouter();
-                this.oRouter.getRoute("VendorRequest").attachMatched(this.fnVendorRequestRoute, this);
+             this.oRouter = this.getOwnerComponent().getRouter();
+                this.oRouter.getRoute("Home").attachMatched(this.fnVendorRequestRoute, this);
 
             },
-                 fnDisplayNav: function (vIsNew, vCaseId) {
-                var isNew = vIsNew;
-                if (isNew == "true") {
-                    var vCaseId = vCaseId;
-                    this.getOwnerComponent().getRouter().navTo("BPCreate", {
-                        Id: vCaseId
-                    },true);
-                } else {
-                    var vCaseId = vCaseId;
-                    this.getOwnerComponent().getRouter().navTo("BPExtend", {
-                        Id: vCaseId,
-                        Name: "Display"
-                    },true);
-                }
+            onAfterRendering: function () {
+               // this.fnVendorRequestRoute();
             },
-
+            fnNavToGraph: function () {
+                this.getOwnerComponent().getRouter().navTo("Reports");
+            },
             fnScreenResize: function () {
                 setTimeout(function () {
                     var vTableHeight;
@@ -72,7 +46,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().pageLimit = vRow;
                     oView.getModel("oConfigMdl").refresh();
                     that.fnLoadSupplierList();
-                }, 100);
+                }, 500);
             },
             fnVendorRequestRoute: function (oEvent) {
 
@@ -99,13 +73,11 @@ sap.ui.define([
                 var oSupplierList = new sap.ui.model.json.JSONModel();
                 oSupplierList.setData(temp1);
                 oView.setModel(oSupplierList, "JMSuppReqList");
-                // that.fnScreenResize();
-                // // that.fnClearSearch();
-                // that.fnLoadCompCode();
-                // that.fnLoadPOrg();
-                // that.fnLoadStatus();
-
-
+                that.fnScreenResize();
+                //  that.fnClearSearch();
+                that.fnLoadCompCode();
+                that.fnLoadPOrg();
+                that.fnLoadStatus();
 
 
                 // this.fnLoadUser();
@@ -113,14 +85,14 @@ sap.ui.define([
 
             fnLoadCompCode: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_portal_services/lookup/comCode";
+                var sUrl = "/oneappincturereportreports/plcm_portal_services/lookup/comCode";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
-                        oView.getModel("oBPLookUpMdl").setProperty("/CompCodeLp", oEvent.getSource().getData());
-                        oView.getModel("oBPLookUpMdl").refresh();
+                        oView1.getModel("oBPLookUpMdl").setProperty("/CompCodeLp", oEvent.getSource().getData());
+                        oView1.getModel("oBPLookUpMdl").refresh();
                     }
                 });
 
@@ -128,14 +100,14 @@ sap.ui.define([
             },
             fnLoadPOrg: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_portal_services/lookup/POrg";
+                var sUrl = "/oneappincturereportreports/plcm_portal_services/lookup/POrg";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
-                        oView.getModel("oBPLookUpMdl").setProperty("/PurchOrgLp", oEvent.getSource().getData());
-                        oView.getModel("oBPLookUpMdl").refresh();
+                        oView1.getModel("oBPLookUpMdl").setProperty("/PurchOrgLp", oEvent.getSource().getData());
+                        oView1.getModel("oBPLookUpMdl").refresh();
                     }
                 });
 
@@ -144,8 +116,8 @@ sap.ui.define([
                 var aStatus = ["Draft", "In Progress", "Completed", "Disqualified"
 
                 ]
-                oView.getModel("oBPLookUpMdl").setProperty("/StatusLp", aStatus);
-                oView.getModel("oBPLookUpMdl").refresh();
+                oView1.getModel("oBPLookUpMdl").setProperty("/StatusLp", aStatus);
+                oView1.getModel("oBPLookUpMdl").refresh();
             },
 
             fnLoadSupplierList: function () {
@@ -153,7 +125,7 @@ sap.ui.define([
 
                 oBusyDilog.open();
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_portal_services/case/search";
+                var sUrl = "/oneappincturereportreports/plcm_portal_services/case/search";
                 var oPayload = {
                     "address1": "",
                     "address2": "",
@@ -167,7 +139,7 @@ sap.ui.define([
                     "purchasingOrg": oView.getModel("JMSuppReqListHeader").getData().purchasingOrg,
                     "status": oView.getModel("JMSuppReqListHeader").getData().status,
                     "organizationName": oView.getModel("JMSuppReqListHeader").getData().organizationName,
-                    "buyerName": oView.getModel("oConfigMdl").getData().usrData.givenName
+                    //"buyerName": oView.getModel("oConfigMdl").getData().usrData.givenName
                 };
                 oModel.loadData(sUrl, JSON.stringify(oPayload), true, "POST", false, true, {
                     "Content-Type": "application/json"
@@ -298,23 +270,34 @@ sap.ui.define([
 
             },
 
-            fnCaseListPressNav: function (oEvent) {
-                var isNew = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("isNew");
-                if (isNew == true) {
-                    var vCaseId = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("caseId");
-                    this.getOwnerComponent().getRouter().navTo("BPCreate", {
-                        Id: vCaseId
-                    });
-                } else {
-                    var vCaseId = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("caseId");
-                    this.getOwnerComponent().getRouter().navTo("BPExtend", {
-                        Id: vCaseId,
-                        Name: "Display"
-                    });
-                }
 
+            fnCaseListPressNav: function (oEvent) {
+
+                var params = {
+                    "params": true
+                };
+
+                var isNew = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("isNew");
+                params.isNew = isNew;
+                   var vCaseId = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("caseId");
+                params.caseId = vCaseId;
+                var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
+                var hash = (oCrossAppNavigator && oCrossAppNavigator.hrefForExternal({
+                    target: {
+                        semanticObject: "buyerRegistration",
+                        action: "Display"
+                    },
+                    params: params
+                })) || "";
+
+
+                oCrossAppNavigator.toExternal({
+                    target: {
+                        shellHash: hash
+                    }
+                });
+               
             },
-          
             fnNextPage: function () {
                 oView.getModel("JMSuppReqList").getData().currentPage = oView.getModel("JMSuppReqList").getData().currentPage + 1;
                 this.fnLoadSupplierList();
@@ -326,7 +309,7 @@ sap.ui.define([
             fnSortDiloag: function () {
                 if (!that.oSorter) {
                     that.oSorter = sap.ui.xmlfragment(
-                        "ns.BuyerRegistration.fragments.Sorter", that);
+                        "oneapp.incture.report.reports.fragment.Sorter", that);
                     oView.addDependent(that.oSorter);
                 }
                 that.oSorter.open();
