@@ -26,7 +26,7 @@
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>name}:${oi18n_En>name}+ '&#xA;' +${i18n>name}}" wrapping="true" required="true" />
-            <Input maxLength="41" value="{companyInfoModel>/oName}" valueState="{oErrorModel>/oFANameE}" valueStateText="{oErrorModel>/oFANameM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+            <Input maxLength="36" value="{companyInfoModel>/oName}" valueState="{oErrorModel>/oFANameE}" valueStateText="{oErrorModel>/oFANameM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1}+ '&#xA;' +${i18n>addressL1}}" wrapping="true" required="true" />
@@ -121,7 +121,7 @@
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>name}:${oi18n_En>name} + '&#xA;' +${i18n>name}}" wrapping="true" required="true" />
-            <Input maxLength="41" value="{remitModel>/rName}" valueState="{oErrorModel>/rTANameE}" valueStateText="{oErrorModel>/rTANameM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+            <Input maxLength="36" value="{remitModel>/rName}" valueState="{oErrorModel>/rTANameE}" valueStateText="{oErrorModel>/rTANameM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1}+ '&#xA;' +${i18n>addressL1}}" wrapping="true" required="true" />

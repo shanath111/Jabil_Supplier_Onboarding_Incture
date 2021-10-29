@@ -135,6 +135,7 @@ sap.ui.define([
                                     "jobTitle": data.bpRequestScope.bpRequestScopeAddlDetails.jobTitle,
                                     "email": data.bpRequestScope.bpRequestScopeAddlDetails.email,
                                     "contactCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.contactCountryCode,
+                                     "mobileCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.mobileCountryCode,
                                     "altContactCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.altContactCountryCode,
                                     "contactNumber": data.bpRequestScope.bpRequestScopeAddlDetails.contactNumber,
                                     "extension": data.bpRequestScope.bpRequestScopeAddlDetails.extension,
@@ -599,7 +600,7 @@ sap.ui.define([
                                     "jobTitle": data.bpRequestScope.bpRequestScopeAddlDetails.jobTitle,
                                     "email": data.bpRequestScope.bpRequestScopeAddlDetails.email,
                                     "contactCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.contactCountryCode,
-
+ "mobileCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.mobileCountryCode,
                                     "altContactCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.altContactCountryCode,
                                     "contactNumber": data.bpRequestScope.bpRequestScopeAddlDetails.contactNumber,
                                     "extension": data.bpRequestScope.bpRequestScopeAddlDetails.extension,
@@ -1005,10 +1006,10 @@ sap.ui.define([
                 this.oBPSuccess.close();
             },
             fnDoneSubmit: function () {
-               window.history.go(-1);
+                window.history.go(-1);
             },
             fnCancelAction: function () {
-              window.history.go(-1);
+                window.history.go(-1);
 
             },
             fnCreateBP: function () {
@@ -1145,6 +1146,12 @@ sap.ui.define([
                     if (!oView.getModel("JMBPCreate").getData().contactCountryCode) {
                         oView.getModel("JMBPCreate").getData().contactCountryCodee = "Error";
                         oView.getModel("JMBPCreate").getData().contactCountryCodem = oi18n.getProperty("BPCEnterCountryCode");
+                        oView.getModel("JMBPCreate").refresh();
+                        vError = true;
+                    }
+                    if (!oView.getModel("JMBPCreate").getData().mobileCountryCode) {
+                        oView.getModel("JMBPCreate").getData().mobileCountryCodee = "Error";
+                        oView.getModel("JMBPCreate").getData().mobileCountryCodem = oi18n.getProperty("BPCEnterCountryCode");
                         oView.getModel("JMBPCreate").refresh();
                         vError = true;
                     }
@@ -1523,7 +1530,8 @@ sap.ui.define([
                                 "addlSurveyForSupplier": vAdditionalSuvey,
                                 "contactMobilePhone": oView.getModel("JMBPCreate").getData().contactMobilePhone,
                                 "contactCountryCode": oView.getModel("JMBPCreate").getData().contactCountryCode,
-                                "altContactCountryCode": oView.getModel("JMBPCreate").getData().altContactCountryCode
+                                "altContactCountryCode": oView.getModel("JMBPCreate").getData().altContactCountryCode,
+                                "mobileCountryCode": oView.getModel("JMBPCreate").getData().mobileCountryCode
                             },
                             "additionalInformation": oView.getModel("JMBPCreate").getData().additionalInformation,
                             "buyerName": oView.getModel("JMBPCreate").getData().buyerName,
@@ -1757,6 +1765,7 @@ sap.ui.define([
                                             "altContactCountryCode": oView.getModel("JMBPCreate").getData().altContactCountryCode,
                                             "contactMobilePhone": oView.getModel("JMBPCreate").getData().contactMobilePhone,
                                             "contactCountryCode": oView.getModel("JMBPCreate").getData().contactCountryCode,
+                                            "mobileCountryCode": oView.getModel("JMBPCreate").getData().mobileCountryCode
                                         },
                                         "additionalInformation": oView.getModel("JMBPCreate").getData().additionalInformation,
                                         "buyerName": oView.getModel("JMBPCreate").getData().buyerName,
@@ -1956,6 +1965,13 @@ sap.ui.define([
             },
             fnNavToHome: function () {
                 window.history.go(-1);
+            },
+            fnLiveChangeCountryCodeMob: function () {
+                if (oView.getModel("JMBPCreate").getData().mobileCountryCodee == "Error") {
+                    oView.getModel("JMBPCreate").getData().mobileCountryCodee = "None";
+                    oView.getModel("JMBPCreate").getData().mobileCountryCodem = "";
+                    oView.getModel("JMBPCreate").refresh();
+                }
             },
             fnLiveChangeCountryCode1: function () {
                 if (oView.getModel("JMBPCreate").getData().altContactCountryCodee == "Error") {
@@ -2569,7 +2585,7 @@ sap.ui.define([
             },
             fnChangeFirstName1: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
-                if (vLength > 40) {
+                if (vLength > 30) {
                     oView.getModel("JMBPCreate").getData().altContactFirstNamee = "Error";
                     oView.getModel("JMBPCreate").getData().altContactFirstNamem = oi18n.getProperty("BPCMaxLengthExceeds");;
                     oView.getModel("JMBPCreate").refresh();
@@ -2583,7 +2599,7 @@ sap.ui.define([
             },
             fnChangeFirstName2: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
-                if (vLength > 40) {
+                if (vLength > 30) {
                     oView.getModel("JMBPCreate").getData().requestorCOINamee = "Error";
                     oView.getModel("JMBPCreate").getData().requestorCOINamem = oi18n.getProperty("BPCMaxLengthExceeds");;
                     oView.getModel("JMBPCreate").refresh();
@@ -2597,7 +2613,7 @@ sap.ui.define([
             },
             fnChangeLastName1: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
-                if (vLength > 40) {
+                if (vLength > 30) {
                     oView.getModel("JMBPCreate").getData().altContactLastNamee = "Error";
                     oView.getModel("JMBPCreate").getData().altContactLastNamem = oi18n.getProperty("BPCMaxLengthExceeds");;
                     oView.getModel("JMBPCreate").refresh();
@@ -2933,6 +2949,11 @@ sap.ui.define([
                 if (oView.getModel("JMBPCreate").getData().altContactCountryCodem == oi18n.getProperty("BPCEnterCountryCode1")) {
                     oView.getModel("JMBPCreate").getData().altContactCountryCodee = "None";
                     oView.getModel("JMBPCreate").getData().altContactCountryCodem = "";
+                    oView.getModel("JMBPCreate").refresh();
+                }
+                if (oView.getModel("JMBPCreate").getData().mobileCountryCodem == oi18n.getProperty("BPCEnterCountryCode")) {
+                    oView.getModel("JMBPCreate").getData().mobileCountryCodee = "None";
+                    oView.getModel("JMBPCreate").getData().mobileCountryCodem = "";
                     oView.getModel("JMBPCreate").refresh();
                 }
                 if (oView.getModel("JMBPCreate").getData().customerDirectedSupplierCustNamem == oi18n.getProperty("pleaseEnterCustDirSuppName")) {
@@ -3359,7 +3380,7 @@ sap.ui.define([
             },
             fnChangeFirstName: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length
-                if (vLength > 40) {
+                if (vLength > 30) {
                     oView.getModel("JMBPCreate").getData().firstNamee = "Error";
                     oView.getModel("JMBPCreate").getData().firstNamem = oi18n.getProperty("BPCMaxLengthExceeds");;
                     oView.getModel("JMBPCreate").refresh();

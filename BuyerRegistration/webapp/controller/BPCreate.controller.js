@@ -354,6 +354,7 @@ sap.ui.define([
                                 "jobTitle": data.bpRequestScope.bpRequestScopeAddlDetails.jobTitle,
                                 "email": data.bpRequestScope.bpRequestScopeAddlDetails.email,
                                 "contactCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.contactCountryCode,
+                                "mobileCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.mobileCountryCode,
                                 "altContactCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.altContactCountryCode,
                                 "contactNumber": data.bpRequestScope.bpRequestScopeAddlDetails.contactNumber,
                                 "extension": data.bpRequestScope.bpRequestScopeAddlDetails.extension,
@@ -533,7 +534,7 @@ sap.ui.define([
                 this.oBPSuccess.close();
             },
             fnDoneSubmit: function () {
-               window.history.go(-1);
+                window.history.go(-1);
             },
             fnNavToExtend: function () {
                 this.getOwnerComponent().getRouter().navTo("BPExtend", {
@@ -793,6 +794,12 @@ sap.ui.define([
                         oView.getModel("JMBPCreate").refresh();
                         vError = true;
                     }
+                    if (!oView.getModel("JMBPCreate").getData().mobileCountryCode) {
+                        oView.getModel("JMBPCreate").getData().mobileCountryCodee = "Error";
+                        oView.getModel("JMBPCreate").getData().mobileCountryCodem = oi18n.getProperty("BPCEnterCountryCode");
+                        oView.getModel("JMBPCreate").refresh();
+                        vError = true;
+                    }
                     if (!oView.getModel("JMBPCreate").getData().altContactCountryCode) {
                         oView.getModel("JMBPCreate").getData().altContactCountryCodee = "Error";
                         oView.getModel("JMBPCreate").getData().altContactCountryCodem = oi18n.getProperty("BPCEnterCountryCode1");
@@ -887,47 +894,47 @@ sap.ui.define([
                     }
 
                     if (vError == false) {
-                          if (oView.getModel("JMBPCreate").getData().country == "US") {
-                        var Address1, Address2, Address3, Address4, Address5, Locality, AdministrativeArea, PostalCode, Country, OutputLanguage, LicenseKey;
-                        var validMessage = true;
-                        Address1 = oView.getModel("JMBPCreate").getData().address1;
-                        Address2 = oView.getModel("JMBPCreate").getData().address2;
-                        Address3 = oView.getModel("JMBPCreate").getData().address3;
-                        Address4 = oView.getModel("JMBPCreate").getData().address4;
-                        Address5 = oView.getModel("JMBPCreate").getData().address5;
-                        Locality = oView.getModel("JMBPCreate").getData().city;
-                        AdministrativeArea = oView.getModel("JMBPCreate").getData().state;
-                        PostalCode = oView.getModel("JMBPCreate").getData().postalCode;
-                        Country = oView.getModel("JMBPCreate").getData().country;
-                        OutputLanguage = "english";
-                        LicenseKey = "WS80-TZS3-FDQ1";
-                        var primaryUrl = '/nsBuyerRegistration/plcm_service_object/AVI/api.svc/json/GetAddressInfo?Address1=' + Address1 + '&Address2=' + Address2 + '&Address3=' + Address3 + '&Address4=' + Address4 + '&Address5=' + Address5 + '&Locality=' + Locality + '&AdministrativeArea=' + AdministrativeArea + '&PostalCode=' + PostalCode + '&Country=' + Country + '&OutputLanguage=' + OutputLanguage + '&LicenseKey=' + LicenseKey;
-                        $.ajax({
-                            url: primaryUrl,
-                            type: 'GET',
-                            dataType: 'json',
-                            success: function (data) {
-                                if (data.AddressInfo.Status !== "Valid") {
+                        if (oView.getModel("JMBPCreate").getData().country == "US") {
+                            var Address1, Address2, Address3, Address4, Address5, Locality, AdministrativeArea, PostalCode, Country, OutputLanguage, LicenseKey;
+                            var validMessage = true;
+                            Address1 = oView.getModel("JMBPCreate").getData().address1;
+                            Address2 = oView.getModel("JMBPCreate").getData().address2;
+                            Address3 = oView.getModel("JMBPCreate").getData().address3;
+                            Address4 = oView.getModel("JMBPCreate").getData().address4;
+                            Address5 = oView.getModel("JMBPCreate").getData().address5;
+                            Locality = oView.getModel("JMBPCreate").getData().city;
+                            AdministrativeArea = oView.getModel("JMBPCreate").getData().state;
+                            PostalCode = oView.getModel("JMBPCreate").getData().postalCode;
+                            Country = oView.getModel("JMBPCreate").getData().country;
+                            OutputLanguage = "english";
+                            LicenseKey = "WS80-TZS3-FDQ1";
+                            var primaryUrl = '/nsBuyerRegistration/plcm_service_object/AVI/api.svc/json/GetAddressInfo?Address1=' + Address1 + '&Address2=' + Address2 + '&Address3=' + Address3 + '&Address4=' + Address4 + '&Address5=' + Address5 + '&Locality=' + Locality + '&AdministrativeArea=' + AdministrativeArea + '&PostalCode=' + PostalCode + '&Country=' + Country + '&OutputLanguage=' + OutputLanguage + '&LicenseKey=' + LicenseKey;
+                            $.ajax({
+                                url: primaryUrl,
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function (data) {
+                                    if (data.AddressInfo.Status !== "Valid") {
+                                        validMessage = false;
+                                    }
+
+                                },
+                                async: false,
+                                error: function (data) {
                                     validMessage = false;
+
                                 }
-
-                            },
-                            async: false,
-                            error: function (data) {
-                                validMessage = false;
-
-                            }
-                        });
-
-                        if (validMessage == false) {
-                            var sErMsg = oi18n.getProperty("InvalidAddressEntered");
-                            MessageBox.show(sErMsg, {
-                                icon: MessageBox.Icon.ERROR,
-                                title: "Error"
                             });
-                            return;
+
+                            if (validMessage == false) {
+                                var sErMsg = oi18n.getProperty("InvalidAddressEntered");
+                                MessageBox.show(sErMsg, {
+                                    icon: MessageBox.Icon.ERROR,
+                                    title: "Error"
+                                });
+                                return;
+                            }
                         }
-                         }
                     }
                 } else {
 
@@ -1178,7 +1185,9 @@ sap.ui.define([
                                 "addlSurveyForSupplier": vAdditionalSuvey,
                                 "instructionKey": oView.getModel("JMBPCreate").getData().instructionKey,
                                 "contactCountryCode": oView.getModel("JMBPCreate").getData().contactCountryCode,
-                                "altContactCountryCode": oView.getModel("JMBPCreate").getData().altContactCountryCode
+
+                                "altContactCountryCode": oView.getModel("JMBPCreate").getData().altContactCountryCode,
+                                "mobileCountryCode": oView.getModel("JMBPCreate").getData().mobileCountryCode
 
                             },
 
@@ -1414,7 +1423,8 @@ sap.ui.define([
                                             "addlSurveyForSupplier": vAdditionalSuvey,
                                             "instructionKey": oView.getModel("JMBPCreate").getData().instructionKey,
                                             "contactCountryCode": oView.getModel("JMBPCreate").getData().contactCountryCode,
-                                            "altContactCountryCode": oView.getModel("JMBPCreate").getData().altContactCountryCode
+                                            "altContactCountryCode": oView.getModel("JMBPCreate").getData().altContactCountryCode,
+                                            "mobileCountryCode": oView.getModel("JMBPCreate").getData().mobileCountryCode
                                         },
 
                                         "additionalInformation": oView.getModel("JMBPCreate").getData().additionalInformation,
@@ -1610,6 +1620,13 @@ sap.ui.define([
                 if (oView.getModel("JMBPCreate").getData().contactCountryCodee == "Error") {
                     oView.getModel("JMBPCreate").getData().contactCountryCodee = "None";
                     oView.getModel("JMBPCreate").getData().contactCountryCodem = "";
+                    oView.getModel("JMBPCreate").refresh();
+                }
+            },
+            fnLiveChangeCountryCodeMob: function () {
+                if (oView.getModel("JMBPCreate").getData().mobileCountryCodee == "Error") {
+                    oView.getModel("JMBPCreate").getData().mobileCountryCodee = "None";
+                    oView.getModel("JMBPCreate").getData().mobileCountryCodem = "";
                     oView.getModel("JMBPCreate").refresh();
                 }
             },
@@ -2030,11 +2047,11 @@ sap.ui.define([
                         oView.getModel("JMBPCreate").refresh();
                         return;
                     }
-                }else{
-                       oView.getModel("JMBPCreate").getData().postalCodee = "None";
-                        oView.getModel("JMBPCreate").getData().postalCodem = "";
-                        oView.getModel("JMBPCreate").refresh();
-                        return;
+                } else {
+                    oView.getModel("JMBPCreate").getData().postalCodee = "None";
+                    oView.getModel("JMBPCreate").getData().postalCodem = "";
+                    oView.getModel("JMBPCreate").refresh();
+                    return;
                 }
                 if (vInpVal.length == 0) {
                     oView.getModel("JMBPCreate").getData().postalCodee = "None";
@@ -2340,7 +2357,7 @@ sap.ui.define([
             },
             fnChangeFirstName: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length
-                if (vLength > 40) {
+                if (vLength > 30) {
                     oView.getModel("JMBPCreate").getData().firstNamee = "Error";
                     oView.getModel("JMBPCreate").getData().firstNamem = oi18n.getProperty("BPCMaxLengthExceeds");;
                     oView.getModel("JMBPCreate").refresh();
@@ -2355,7 +2372,7 @@ sap.ui.define([
             },
             fnChangeLastName: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length
-                if (vLength > 40) {
+                if (vLength > 30) {
                     oView.getModel("JMBPCreate").getData().lastNamee = "Error";
                     oView.getModel("JMBPCreate").getData().lastNamem = oi18n.getProperty("BPCMaxLengthExceeds");;
                     oView.getModel("JMBPCreate").refresh();
@@ -2385,7 +2402,7 @@ sap.ui.define([
 
             fnChangeFirstName1: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
-                if (vLength > 40) {
+                if (vLength > 30) {
                     oView.getModel("JMBPCreate").getData().altContactFirstNamee = "Error";
                     oView.getModel("JMBPCreate").getData().altContactFirstNamem = oi18n.getProperty("BPCMaxLengthExceeds");;
                     oView.getModel("JMBPCreate").refresh();
@@ -2399,7 +2416,7 @@ sap.ui.define([
             },
             fnChangeFirstName2: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
-                if (vLength > 40) {
+                if (vLength > 30) {
                     oView.getModel("JMBPCreate").getData().requestorCOINamee = "Error";
                     oView.getModel("JMBPCreate").getData().requestorCOINamem = oi18n.getProperty("BPCMaxLengthExceeds");;
                     oView.getModel("JMBPCreate").refresh();
@@ -2695,6 +2712,11 @@ sap.ui.define([
                 if (oView.getModel("JMBPCreate").getData().contactCountryCodem == oi18n.getProperty("BPCEnterCountryCode")) {
                     oView.getModel("JMBPCreate").getData().contactCountryCodee = "None";
                     oView.getModel("JMBPCreate").getData().contactCountryCodem = "";
+                    oView.getModel("JMBPCreate").refresh();
+                }
+                if (oView.getModel("JMBPCreate").getData().mobileCountryCodem == oi18n.getProperty("BPCEnterCountryCode")) {
+                    oView.getModel("JMBPCreate").getData().mobileCountryCodee = "None";
+                    oView.getModel("JMBPCreate").getData().mobileCountryCodem = "";
                     oView.getModel("JMBPCreate").refresh();
                 }
                 if (oView.getModel("JMBPCreate").getData().altContactCountryCodem == oi18n.getProperty("BPCEnterCountryCode1")) {
@@ -3081,9 +3103,9 @@ sap.ui.define([
                 });
 
             },
-            fnInputSpaceCheck: function(oEvent){
-                var spaceRegex= /^\s+$/;
-                if(spaceRegex.test(oEvent.getSource().getValue())){
+            fnInputSpaceCheck: function (oEvent) {
+                var spaceRegex = /^\s+$/;
+                if (spaceRegex.test(oEvent.getSource().getValue())) {
                     oEvent.getSource().setValue("");
                 }
             }

@@ -137,12 +137,12 @@
 								<VBox>
 									<Label text="{i18n>firstNameG}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" wrapping="true" required="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input maxLength="41" value="{oDataModel>/itCyberDto/itcyberSecurityContact/firstName}" valueState="{oErrorModel>/cyberSurveyFNE}" valueStateText="{oErrorModel>/cyberSurveyFNM}"  enabled="{oEnableMdl>/itcyberSecurityContactfirstNameEnb}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
+									<Input maxLength="31" value="{oDataModel>/itCyberDto/itcyberSecurityContact/firstName}" valueState="{oErrorModel>/cyberSurveyFNE}" valueStateText="{oErrorModel>/cyberSurveyFNM}"  enabled="{oEnableMdl>/itcyberSecurityContactfirstNameEnb}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
 								</VBox>
 								<VBox>
 									<Label text="{i18n>lastNameG}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>lastNameG}&#10;{i18n>lastNameG}" wrapping="true" required="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input maxLength="41" value="{oDataModel>/itCyberDto/itcyberSecurityContact/lastName}" valueState="{oErrorModel>/cyberSurveyLNE}" valueStateText="{oErrorModel>/cyberSurveyLNM}" enabled="{oEnableMdl>/itcyberSecurityContactlastNameEnb}" liveChange="fnLiveInputValueChange"  class="inputStyle"></Input>
+									<Input maxLength="31" value="{oDataModel>/itCyberDto/itcyberSecurityContact/lastName}" valueState="{oErrorModel>/cyberSurveyLNE}" valueStateText="{oErrorModel>/cyberSurveyLNM}" enabled="{oEnableMdl>/itcyberSecurityContactlastNameEnb}" liveChange="fnLiveInputValueChange"  class="inputStyle"></Input>
 								
 								</VBox>
 								<VBox>
