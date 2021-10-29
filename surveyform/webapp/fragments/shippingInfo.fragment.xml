@@ -72,7 +72,7 @@
 				<VBox class="fontStyle" >
 					<Label text="{i18n>companyNameM}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                     <Label text="{oi18n_En>companyNameM}&#10;{i18n>companyNameM}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true" ></Label>
-					<Input maxLength="41" value="{oDataModel>/shippingInfoDto/deliverRepName}" enabled="{oEnableMdl>/deliverRepNameEnb}" valueState="{oErrorModel>/dRespNameE}" valueStateText="{oErrorModel>/dRespNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
+					<Input maxLength="36" value="{oDataModel>/shippingInfoDto/deliverRepName}" enabled="{oEnableMdl>/deliverRepNameEnb}" valueState="{oErrorModel>/dRespNameE}" valueStateText="{oErrorModel>/dRespNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
 				</VBox>
 				<!-- <VBox  class="fontStyle"> 
 					<Label text="{i18n>address}"  required="false"  visible= "{oVisibilityModel>/isdefaultLan}"></Label>

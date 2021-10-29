@@ -66,13 +66,13 @@
 								<VBox class="fontStyle" >
 									<Label required="true"  text="{i18n>firstNameG}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                       <Label required="true" text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input maxLength="41" value="{oDataModel>/comComplianceDto/commitedToExpectationsContact/firstName}" valueState="{oErrorModel>/commitedToExpectationsContactFNameE}" valueStateText="{oErrorModel>/commitedToExpectationsContactFNameM}" enabled="{oEnableMdl>/commitedToExpectationsContactfirstNameEnb}"  liveChange="fnLiveInputAlphaValueChange"  class="inputStyle"></Input>
+									<Input maxLength="31" value="{oDataModel>/comComplianceDto/commitedToExpectationsContact/firstName}" valueState="{oErrorModel>/commitedToExpectationsContactFNameE}" valueStateText="{oErrorModel>/commitedToExpectationsContactFNameM}" enabled="{oEnableMdl>/commitedToExpectationsContactfirstNameEnb}"  liveChange="fnLiveInputAlphaValueChange"  class="inputStyle"></Input>
      	
 								</VBox>
 								<VBox class="fontStyle" >
 									<Label text="{i18n>lastNameG}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                       <Label text="{oi18n_En>lastNameG}&#10;{i18n>lastNameG}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input maxLength="41" value="{oDataModel>/comComplianceDto/commitedToExpectationsContact/lastName}"  enabled="{oEnableMdl>/commitedToExpectationsContactlastNameEnb}" liveChange="fnLiveInputValueChange"  class="inputStyle"></Input>
+									<Input maxLength="31" value="{oDataModel>/comComplianceDto/commitedToExpectationsContact/lastName}"  enabled="{oEnableMdl>/commitedToExpectationsContactlastNameEnb}" liveChange="fnLiveInputValueChange"  class="inputStyle"></Input>
 									
                                 </VBox>
 								

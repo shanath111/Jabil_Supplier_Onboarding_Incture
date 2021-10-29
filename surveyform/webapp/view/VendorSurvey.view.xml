@@ -15,7 +15,7 @@
                     	
                         <VBox class="sapUiSizeCompact fontBold sapUiTinyMarginBegin" width="50%">
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>SupplierName}:${oi18n_En>SupplierName} +'/&#160;' + ${i18n>SupplierName}}" class="fontStyle" required="true"></Label>
-									<Input maxLength="101" enabled="{oEnableMdl>/contactNameEnb}" value="{oDataModel>/surveyInfoDto/authorityContact/contactName}" valueState="{oErrorModel>/supplierNameE}" valueStateText="{oErrorModel>/supplierNameM}" liveChange="fnLiveInputAlphaSpaceValueChange" class="inputStyle"></Input>
+									<Input maxLength="61" enabled="{oEnableMdl>/contactNameEnb}" value="{oDataModel>/surveyInfoDto/authorityContact/contactName}" valueState="{oErrorModel>/supplierNameE}" valueStateText="{oErrorModel>/supplierNameM}" liveChange="fnLiveInputAlphaSpaceValueChange" class="inputStyle"></Input>
      	
 						</VBox>
                         
@@ -101,14 +101,14 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;'+${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/authorityContact/firstName}" enabled="{oEnableMdl>/firstNameEnb}" valueState="{oErrorModel>/authorityFNameE}" valueStateText="{oErrorModel>/authorityFNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/authorityContact/firstName}" enabled="{oEnableMdl>/firstNameEnb}" valueState="{oErrorModel>/authorityFNameE}" valueStateText="{oErrorModel>/authorityFNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
      	
 								</VBox>
 								<VBox >
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>lastName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>lastName}&#10;{i18n>lastName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/authorityContact/lastName}" enabled="{oEnableMdl>/lastNameEnb}" valueState="{oErrorModel>/authorityLNameE}" valueStateText="{oErrorModel>/authorityLNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/authorityContact/lastName}" enabled="{oEnableMdl>/lastNameEnb}" valueState="{oErrorModel>/authorityLNameE}" valueStateText="{oErrorModel>/authorityLNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 							
                                 </VBox>
 								<VBox >
@@ -203,13 +203,13 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} + '&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/ackContact/firstName}" class="inputStyle"  valueState="{oErrorModel>/ackNameE}" valueStateText="{oErrorModel>/ackNameM}" liveChange="fnLiveInputValueChange"></Input>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/ackContact/firstName}" class="inputStyle"  valueState="{oErrorModel>/ackNameE}" valueStateText="{oErrorModel>/ackNameM}" liveChange="fnLiveInputValueChange"></Input>
 								</VBox>
                                 <VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>lastName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>lastName}&#10;{i18n>lastName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/ackContact/lastName}" class="inputStyle"  valueState="{oErrorModel>/ackLNameE}" valueStateText="{oErrorModel>/ackLNameM}" liveChange="fnLiveInputValueChange"></Input>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/ackContact/lastName}" class="inputStyle"  valueState="{oErrorModel>/ackLNameE}" valueStateText="{oErrorModel>/ackLNameM}" liveChange="fnLiveInputValueChange"></Input>
 								</VBox>
                                 	<!-- <VBox>
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>jobTitle}:${oi18n_En>jobTitle} +'/&#160;' + ${i18n>jobTitle}}" class="fontStyle" required="true"></Label>
@@ -275,13 +275,13 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/mainContact/firstName}" enabled="{oEnableMdl>/mainContactfirstNameEnb}"  class="inputStyle"  valueState="{oErrorModel>/mcFNameE}" valueStateText="{oErrorModel>/mcFNameM}" liveChange="fnLiveInputValueChange"></Input>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/mainContact/firstName}" enabled="{oEnableMdl>/mainContactfirstNameEnb}"  class="inputStyle"  valueState="{oErrorModel>/mcFNameE}" valueStateText="{oErrorModel>/mcFNameM}" liveChange="fnLiveInputValueChange"></Input>
 								</VBox>
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>lastName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>lastName}&#10;{i18n>lastName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/mainContact/lastName}" enabled="{oEnableMdl>/mainContactlastNameEnb}" class="inputStyle"  valueState="{oErrorModel>/mcLNameE}" valueStateText="{oErrorModel>/mcLNameM}" liveChange="fnLiveInputValueChange"></Input>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/mainContact/lastName}" enabled="{oEnableMdl>/mainContactlastNameEnb}" class="inputStyle"  valueState="{oErrorModel>/mcLNameE}" valueStateText="{oErrorModel>/mcLNameM}" liveChange="fnLiveInputValueChange"></Input>
 								</VBox>
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>jobTitle}:${oi18n_En>jobTitle} +'&#10;' + ${i18n>jobTitle}}" class="fontStyle"></Label> -->
@@ -350,14 +350,14 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/altContact/firstName}" enabled="{oEnableMdl>/altContactfirstNameEnb}" valueState="{oErrorModel>/altNameE}" valueStateText="{oErrorModel>/altNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/altContact/firstName}" enabled="{oEnableMdl>/altContactfirstNameEnb}" valueState="{oErrorModel>/altNameE}" valueStateText="{oErrorModel>/altNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
      	
 								</VBox>
 								<VBox >
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>lastName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>lastName}&#10;{i18n>lastName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="41" value="{oDataModel>/surveyInfoDto/altContact/lastName}"  enabled="{oEnableMdl>/altContactlastNameEnb}" valueState="{oErrorModel>/altLNameE}" valueStateText="{oErrorModel>/altLNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/altContact/lastName}"  enabled="{oEnableMdl>/altContactlastNameEnb}" valueState="{oErrorModel>/altLNameE}" valueStateText="{oErrorModel>/altLNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 							
                                 </VBox>
 								<VBox >
