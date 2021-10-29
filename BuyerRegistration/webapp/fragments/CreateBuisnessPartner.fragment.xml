@@ -297,12 +297,25 @@
                                         </VBox>
 
 
+   <VBox>
+									<Label text="{i18n>countryCode}" required="true"  class="cl_VRLablCls"></Label>
+                                 
+									<VBox>
+										<ComboBox width="100%"  filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" selectedKey="{JMBPCreate>/mobileCountryCode}" valueState="{JMBPCreate>/mobileCountryCodee}" valueStateText="{JMBPCreate>/mobileCountryCodem}" change="fnLiveChangeCountryCodeMob" showSecondaryValues="true" items="{oBPLookUpMdl>/countryContactCode}"  class="cl_VRInputCls">
+                                         <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+                                        </ComboBox>	
+                                    </VBox>
+                                  <layoutData>
+                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                       </VBox>
+								<VBox>
+                             		<Label text="{i18n>BPCMobilePhone}" required="true" class="cl_VRLablCls "></Label>
+											<Input width="93%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeTelephoneMob" change="fnInputSpaceCheck" type="Number" value="{JMBPCreate>/contactMobilePhone}" valueState="{JMBPCreate>/contactMobilePhonee}" valueStateText="{JMBPCreate>/contactMobilePhonem}" class="cl_VRInputCls"></Input>
+                                <layoutData>
+                                  <l:GridData spanM="2" spanL="2" spanXL="1"></l:GridData></layoutData>
+                                        </VBox>
 
-                                    
-                                    	<VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCMobilePhone}" required="true" class="cl_VRLablCls "></Label>
-											<Input width="95%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeTelephoneMob" change="fnInputSpaceCheck" type="Number" value="{JMBPCreate>/contactMobilePhone}" valueState="{JMBPCreate>/contactMobilePhonee}" valueStateText="{JMBPCreate>/contactMobilePhonem}" class="cl_VRInputCls"></Input>
-									</VBox>
+                                	
 								</l:Grid>
                                
 <!--                             
