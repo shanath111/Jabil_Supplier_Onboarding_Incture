@@ -315,13 +315,25 @@
 								<!-- <Input maxLength="11" value="{oDataModel>/surveyInfoDto/authorityContact/extension}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input> -->
                                   <Input maxLength="11" value="{oDataModel>/bpInfoDto/pointOfContact/extension}" enabled="{oEnableMdl>/ppocExtensionEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
 								</VBox>
+                                <VBox>
+									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
+									 <VBox>
+										<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="true" items="{oLookUpModel>/countryContactCode}" value="{oDataModel>/bpInfoDto/pointOfContact/countryMobileCode}" enabled="{oEnableMdl>/ppocCountryContEnb}" class="inputStyle" valueState="{oErrorModel>/ppocCountryContCodeMobE}" valueStateText="{oErrorModel>/ppocCountryContCodeMobM}" change="fnLiveValueChange">
+                                            <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>code}" additionalText="{oLookUpModel>description}"/>
+                                        </ComboBox>
+                                    </VBox>
+                                  <layoutData>
+                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                       </VBox>
                                   <VBox>
                                 <!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>mobPhone}:${oi18n_En>mobPhone} +'/&#10;' + ${i18n>mobPhone}}" class="fontStyle" required="true"></Label> -->
                                 <Label text="{i18n>mobPhone}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
 											<!-- <Input maxLength="31" value="{oDataModel>/surveyInfoDto/authorityContact/mobile}" valueState="{oErrorModel>/authorityMobE}" valueStateText="{oErrorModel>/authorityMobM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input> -->
                         <Input maxLength="31" value="{oDataModel>/bpInfoDto/pointOfContact/mobile}" enabled="{oEnableMdl>/ppocMobEnb}" valueState="{oErrorModel>/ppocMobE}" valueStateText="{oErrorModel>/ppocMobM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"/>
-                            
+                            <layoutData>
+                                  <l:GridData spanM="2" spanL="2" spanXL="1"></l:GridData></layoutData>
                                         </VBox> 
 							</l:Grid>
                             
