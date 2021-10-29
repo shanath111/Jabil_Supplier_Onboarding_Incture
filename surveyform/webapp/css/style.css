@@ -43,6 +43,11 @@ color: #404040 !important;
 .fontStyleItalic {
     font-style: italic;
 }
+.radioResponsive .sapMLabel .sapMLabelTextWrapper {
+    white-space: normal;
+    line-height: normal;
+    vertical-align: middle;
+}
 .inputStyle .sapMInputBaseInner {
     background: #fafafa !important;
     border: 0px solid #c2c7cb4a !important;
