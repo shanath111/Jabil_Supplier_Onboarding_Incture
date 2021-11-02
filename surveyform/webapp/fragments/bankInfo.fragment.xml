@@ -248,14 +248,14 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									 <Input maxLength="35" value="{oDataModel>/bankDto/financeContact1/firstName}" enabled="{oEnableMdl>/finance1FNameEnb}" valueState="{oErrorModel>/finance1FNameE}" valueStateText="{oErrorModel>/finance1FNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input> 
+									 <Input maxLength="31" value="{oDataModel>/bankDto/financeContact1/firstName}" enabled="{oEnableMdl>/finance1FNameEnb}" valueState="{oErrorModel>/finance1FNameE}" valueStateText="{oErrorModel>/finance1FNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input> 
      
 								</VBox>
 								<VBox >
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
                                      <Label text="{i18n>lastName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>lastName}&#10;{i18n>lastName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="35" value="{oDataModel>/bankDto/financeContact1/lastName}" enabled="{oEnableMdl>/finance1LNameEnb}"  valueState="{oErrorModel>/finance1LNameE}" valueStateText="{oErrorModel>/finance1LNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+									<Input maxLength="31" value="{oDataModel>/bankDto/financeContact1/lastName}" enabled="{oEnableMdl>/finance1LNameEnb}"  valueState="{oErrorModel>/finance1LNameE}" valueStateText="{oErrorModel>/finance1LNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 								
                                 </VBox>
 								<VBox >
@@ -341,14 +341,14 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                      <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="35" value="{oDataModel>/bankDto/financeContact2/firstName}" enabled="{oEnableMdl>/finance2FNameEnb}" valueState="{oErrorModel>/finance2FNameE}" valueStateText="{oErrorModel>/finance2FNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
+									<Input maxLength="31" value="{oDataModel>/bankDto/financeContact2/firstName}" enabled="{oEnableMdl>/finance2FNameEnb}" valueState="{oErrorModel>/finance2FNameE}" valueStateText="{oErrorModel>/finance2FNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
      	
 								</VBox>
 								<VBox >
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
                                      <Label text="{i18n>lastName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>lastName}&#10;{i18n>lastName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-									<Input maxLength="35" value="{oDataModel>/bankDto/financeContact2/lastName}" enabled="{oEnableMdl>/finance2LNameEnb}" valueState="{oErrorModel>/finance2LNameE}" valueStateText="{oErrorModel>/finance2LNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+									<Input maxLength="31" value="{oDataModel>/bankDto/financeContact2/lastName}" enabled="{oEnableMdl>/finance2LNameEnb}" valueState="{oErrorModel>/finance2LNameE}" valueStateText="{oErrorModel>/finance2LNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 							
                                 </VBox>
 								<VBox >
