@@ -6620,10 +6620,10 @@ if(apaymentMethod !== 'Optional'){
                 }
                 var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
                 if( apaymentMethod === 'Optional'){
-                 MessageBox.show(oi18n.getText("paymentMethodOptionalMsg"), {
-                                icon: MessageBox.Icon.INFORMATION,
-                                title: oi18n.getText("information"),
-                            });
+                //  MessageBox.show(oi18n.getText("paymentMethodOptionalMsg"), {
+                //                 icon: MessageBox.Icon.INFORMATION,
+                //                 title: oi18n.getText("information"),
+                //             });
                              oView.getModel("oErrorModel").getData().bankNameE = "None";
                 oView.getModel("oErrorModel").getData().bankNameM = "";
                 oView.getModel("oErrorModel").getData().bankAddrE = "None";
