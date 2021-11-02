@@ -1,6 +1,7 @@
 {
     "isToSupplierEmail": true,
     "alternateEULAEmailId": "",
+    "validAlternateEmailId": false,
     "smallDisAdvBusiness": false,
     "_finalStep": false,
     "_finalStepAccept": false,
