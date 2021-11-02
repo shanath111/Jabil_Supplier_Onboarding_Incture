@@ -32,7 +32,7 @@
 				<VBox class="fontStyle">
 					<Label text="{i18n>paymentMethod}" visible= "{oVisibilityModel>/isdefaultLan}"  required="true"></Label>
                     <Label text="{oi18n_En>paymentMethod}&#10;{i18n>paymentMethod}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-					<ComboBox width="100%" items="{oLookUpModel>/PaymentMethod}" showSecondaryValues="true" filterSecondaryValues="true" selectedKey="{oDataModel>/shippingInfoDto/paymentMethod}" enabled="{oEnableMdl>/paymentMethodEnb}" valueState="{oErrorModel>/paymentTermMethdE}" valueStateText="{oErrorModel>/paymentTermMethdM}" selectionChange="fnLiveValueChange" placeholder="{i18n>select}" class="inputStyle">
+					<ComboBox width="100%" items="{oLookUpModel>/PaymentMethod}" showSecondaryValues="true" filterSecondaryValues="true" selectedKey="{oDataModel>/shippingInfoDto/paymentMethod}" enabled="{oEnableMdl>/paymentMethodEnb}" valueState="{oErrorModel>/paymentTermMethdE}" valueStateText="{oErrorModel>/paymentTermMethdM}" selectionChange="fnLivePaymentMethodChange" placeholder="{i18n>select}" class="inputStyle">
                       <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
                      <layoutData>
                                   <l:GridData spanM="3" spanL="3" spanXL="3"></l:GridData></layoutData>

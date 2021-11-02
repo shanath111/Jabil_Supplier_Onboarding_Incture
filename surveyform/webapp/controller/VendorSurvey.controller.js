@@ -6602,6 +6602,29 @@ sap.ui.define([
                 }
             },
 
+            fnLivePaymentMethodChange: function (oEvent){
+                 if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                    oView.getModel("oDataModel").refresh();
+                }
+
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
+                if( apaymentMethod === 'Optional'){
+                 MessageBox.show(oi18n.getText("paymentMethodOptionalMsg"), {
+                                icon: MessageBox.Icon.INFORMATION,
+                                title: oi18n.getText("information"),
+                            });
+                }
+            },
+
             fnLiveValueBankInput: function (oEvent) {
                 var that = this;
                 if (oEvent.getSource().getValue()) {
@@ -6645,7 +6668,36 @@ sap.ui.define([
                 oView.getModel("oErrorModel").getData().paymentCurrE = "None";
                 oView.getModel("oErrorModel").getData().paymentCurrM = "";
                 oView.getModel("oErrorModel").refresh();
+                var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
+                if( apaymentMethod !== 'Optional'){
                 this.fnActivateBankScreen();
+                }
+                else {
+                    var bankFields = that.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
+                    bankFields.bankName = false;
+                    bankFields.bankBranch = false;
+                    bankFields.bankStreet = false;
+                    bankFields.bankCity = false;
+                    bankFields.benificiaryAccountNumber = false;
+                    bankFields.swiftCode = false;
+                    bankFields.bankNumber = false;
+                    bankFields.bankCountry = false;
+                    bankFields.benificiaryAccHolderName = false;
+                    bankFields.bankKey = false;
+                    bankFields.benificiaryAccCurrency = false;
+                    bankFields.instructionKey = false;
+                    bankFields.bankControlKey = false;
+                    bankFields.referenceDetails = false;
+                    bankFields.iban = false;
+                    bankFields.ibanLength = null;
+                    bankFields.bankControlKeyLogic = null;
+                    bankFields.bankControlKeyDigitsLogic = null;
+                    bankFields.companyCodeCountry = "";
+                    bankFields.bankKeyVal1 = "";
+                    bankFields.bankKeyVal2 = "";
+                    bankFields.bankKeyVal3 = "";
+                    that.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                }
 
 
             },
