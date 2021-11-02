@@ -43,6 +43,7 @@ color: #404040 !important;
 .fontStyleItalic {
     font-style: italic;
 }
+
 .inputStyle .sapMInputBaseInner {
     background: #fafafa !important;
     border: 0px solid #c2c7cb4a !important;
@@ -843,6 +844,11 @@ outline: none !important;
 .hideWizard .sapMWizardStepContainer {
     overflow-x: hidden !important;
     overflow-y: hidden !important;
+}
+.radioResponsive .sapMLabel .sapMLabelTextWrapper {
+    white-space: normal;
+    line-height: normal;
+    vertical-align: middle;
 }
 /* .boxStyle.sapMCb {
     height: 2rem;

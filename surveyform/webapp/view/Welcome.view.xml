@@ -27,7 +27,7 @@
                     <!-- <Link text="{oi18n_En>EulaLink}" visible= "{oVisibilityModel>/isdefaultLan}" class="lOutline sapUiTinyMarginBegin sapUiSmallMarginTop" wrapping="true"/> -->
                     <Link text="https://www.jabil.com/dam/jcr:b8543ce0-7a9d-4f87-a57a-edc8fa47bc57/2020.docx" href="https://www.jabil.com/dam/jcr:b8543ce0-7a9d-4f87-a57a-edc8fa47bc57/2020.docx" class="lOutline sapUiTinyMarginBegin sapUiSmallMarginTop" wrapping="true" />
                     </HBox>
-                    <RadioButtonGroup selectedIndex="-1" class="inputStyle sapUiSizeCompact sapUiSmallMarginTop">
+                    <RadioButtonGroup selectedIndex="-1" class="inputStyle sapUiSizeCompact sapUiSmallMarginTop radioResponsive">
                         <RadioButton selected="{oVisibilityModel>/isToSupplierEmail}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>sendEulaToEmail}:${oi18n_En>sendEulaToEmail} +'/&#160;' +${i18n>sendEulaToEmail}}" class="sapUiMediumMarginBegin inputStyle fontStyle sapUiSizeCompact" />
                         <RadioButton selected="{=!${oVisibilityModel>/isToSupplierEmail}}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>sendEulaToDiffEmail}:${oi18n_En>sendEulaToDiffEmail} +'/&#160;' +${i18n>sendEulaToDiffEmail}}" class="sapUiMediumMarginBegin inputStyle fontStyle sapUiSizeCompact"/>
                
@@ -37,7 +37,7 @@
 
                     <!-- <CheckBox text="{i18n>sendEulaToDiffEmail}" class="sapUiMediumMarginBegin sapUiTinyMarginEnd fontStyle inputStyle " visible= "{oVisibilityModel>/isdefaultLan}" wrapping="true"/>
                     <CheckBox text="{oi18n_En>sendEulaToDiffEmail}/&#160;{i18n>sendEulaToDiffEmail}" class="sapUiMediumMarginBegin sapUiTinyMarginEnd fontStyle inputStyle " visible= "{=!${oVisibilityModel>/isdefaultLan}}" wrapping="true"/> -->
-                    <Input class="inputStyle sapUiLargeMarginBegin" enabled="{=!${oVisibilityModel>/isToSupplierEmail}}" value="{oVisibilityModel>/alternateEULAEmailId}" width="16rem"/>
+                    <Input class="inputStyle sapUiLargeMarginBegin" enabled="{=!${oVisibilityModel>/isToSupplierEmail}}" value="{oVisibilityModel>/alternateEULAEmailId}" width="16rem" change="fnLiveEmailNotJValid"/>
                     
                     <Button width="auto" enabled="{=${oVisibilityModel>/isToSupplierEmail} || (${oVisibilityModel>/alternateEULAEmailId} !== '') ? true: false}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>SendEmail}:${oi18n_En>SendEmail} + '/&#160;' + ${i18n>SendEmail}}" press="fnEULAFormEmail" class="actionBtnApprove sapUiSizeCompact sapUiSmallMarginTop sapUiLargeMarginBegin"></Button>
                     </items>
