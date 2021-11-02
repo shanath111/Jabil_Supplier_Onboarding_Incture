@@ -135,7 +135,7 @@ sap.ui.define([
                                     "jobTitle": data.bpRequestScope.bpRequestScopeAddlDetails.jobTitle,
                                     "email": data.bpRequestScope.bpRequestScopeAddlDetails.email,
                                     "contactCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.contactCountryCode,
-                                     "mobileCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.mobileCountryCode,
+                                    "mobileCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.mobileCountryCode,
                                     "altContactCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.altContactCountryCode,
                                     "contactNumber": data.bpRequestScope.bpRequestScopeAddlDetails.contactNumber,
                                     "extension": data.bpRequestScope.bpRequestScopeAddlDetails.extension,
@@ -600,7 +600,7 @@ sap.ui.define([
                                     "jobTitle": data.bpRequestScope.bpRequestScopeAddlDetails.jobTitle,
                                     "email": data.bpRequestScope.bpRequestScopeAddlDetails.email,
                                     "contactCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.contactCountryCode,
- "mobileCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.mobileCountryCode,
+                                    "mobileCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.mobileCountryCode,
                                     "altContactCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.altContactCountryCode,
                                     "contactNumber": data.bpRequestScope.bpRequestScopeAddlDetails.contactNumber,
                                     "extension": data.bpRequestScope.bpRequestScopeAddlDetails.extension,
@@ -2168,8 +2168,10 @@ sap.ui.define([
                             var oVendorListJson = new sap.ui.model.json.JSONModel();
                             oVendorListJson.setData(temp);
                             that.getView().setModel(oVendorListJson, "oVendorListModel");
-                            if (temp.data.length > 1) {
-                                MessageBox.information(oi18n.getProperty("DuplicateInfoText"));
+                            if (oView.getModel("oVendorListModel").getData().currentPage == 1) {
+                                if (temp.data.length > 1) {
+                                    MessageBox.information(oi18n.getProperty("DuplicateInfoText"));
+                                }
                             }
 
                             if (oData.statusCode === "0" || (oData.responseMessage !== undefined ? oData.responseMessage.statusCode === "0" : false)) {
