@@ -1,6 +1,6 @@
 {
     "bankDto": {
-        "isBankProvided": true,
+        "isBankProvided": null,
         "isIntermediateBankProvided": null,
         "bankInfoDto": [
             {
