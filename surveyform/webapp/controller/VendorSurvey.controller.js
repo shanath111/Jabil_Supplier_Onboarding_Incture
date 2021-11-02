@@ -3219,7 +3219,7 @@ sap.ui.define([
                         iError = true;
                     }
                     if (visiblility.isBankProvided) {
-if(apaymentMethod !== 'Optional'){
+//if(apaymentMethod !== 'Optional'){
                         if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry)) {
                             oView.getModel("oErrorModel").getData().bankCountryE = "Error";
                             oView.getModel("oErrorModel").getData().bankCountryM = oi18n.getText("mandatoryCountry");
@@ -3305,7 +3305,7 @@ if(apaymentMethod !== 'Optional'){
 
                             iError = true;
                         }
-                    }
+               //     }
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName.length > 60) {
                             iError = true;
                         }
@@ -3352,7 +3352,8 @@ if(apaymentMethod !== 'Optional'){
                         }
  
             
-                        if (apaymentMethod !== 'Optional' && that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
+                      //  if (apaymentMethod !== 'Optional' && that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
+                            if(that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
                             iError = true;
                             oView.byId("fileUploader_BA").removeStyleClass("attachmentWithoutBorder");
                             oView.byId("fileUploader_BA").addStyleClass("attachmentWithBorder");
@@ -6618,66 +6619,64 @@ if(apaymentMethod !== 'Optional'){
                         oEvent.getSource().setValue("");
                     }
                 }
-                var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
-                if( apaymentMethod === 'Optional'){
-                //  MessageBox.show(oi18n.getText("paymentMethodOptionalMsg"), {
-                //                 icon: MessageBox.Icon.INFORMATION,
-                //                 title: oi18n.getText("information"),
-                //             });
-                             oView.getModel("oErrorModel").getData().bankNameE = "None";
-                oView.getModel("oErrorModel").getData().bankNameM = "";
-                oView.getModel("oErrorModel").getData().bankAddrE = "None";
-                oView.getModel("oErrorModel").getData().bankAddrM = "";
-                oView.getModel("oErrorModel").getData().bankCityE = "None";
-                oView.getModel("oErrorModel").getData().bankCityM = "";
-                oView.getModel("oErrorModel").getData().bankAccNumE = "None";
-                oView.getModel("oErrorModel").getData().bankAccNumM = "";
-                oView.getModel("oErrorModel").getData().benifAccHNameE = "None";
-                oView.getModel("oErrorModel").getData().benifAccHNameM = "";
-                oView.getModel("oErrorModel").getData().bankSwiftE = "None";
-                oView.getModel("oErrorModel").getData().bankSwiftM = "";
-                oView.getModel("oErrorModel").getData().bankBranchE = "None";
-                oView.getModel("oErrorModel").getData().bankBranchM = "";
-                oView.getModel("oErrorModel").getData().bankRefE = "None";
-                oView.getModel("oErrorModel").getData().bankRefM = "";
-                oView.getModel("oErrorModel").getData().bankNumE = "None";
-                oView.getModel("oErrorModel").getData().bankNumM = "";
-                oView.getModel("oErrorModel").getData().ibanE = "None";
-                oView.getModel("oErrorModel").getData().ibanM = "";
-                oView.getModel("oErrorModel").getData().benifAccCurrE = "None";
-                oView.getModel("oErrorModel").getData().benifAccCurrM = "";
-                oView.getModel("oErrorModel").getData().bankCtrlKeyE = "None";
-                oView.getModel("oErrorModel").getData().bankCtrlKeyM = "";
-                oView.getModel("oErrorModel").getData().paymentCurrE = "None";
-                oView.getModel("oErrorModel").getData().paymentCurrM = "";
-                oView.getModel("oErrorModel").refresh();
-                 var bankFields = this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
-                    bankFields.bankName = false;
-                    bankFields.bankBranch = false;
-                    bankFields.bankStreet = false;
-                    bankFields.bankCity = false;
-                    bankFields.benificiaryAccountNumber = false;
-                    bankFields.swiftCode = false;
-                    bankFields.bankNumber = false;
-                    bankFields.bankCountry = false;
-                    bankFields.benificiaryAccHolderName = false;
-                    bankFields.bankKey = false;
-                    bankFields.benificiaryAccCurrency = false;
-                    bankFields.instructionKey = false;
-                    bankFields.bankControlKey = false;
-                    bankFields.referenceDetails = false;
-                    bankFields.iban = false;
-                    bankFields.ibanLength = null;
-                    bankFields.bankControlKeyLogic = null;
-                    bankFields.bankControlKeyDigitsLogic = null;
-                    bankFields.companyCodeCountry = "";
-                    bankFields.bankKeyVal1 = "";
-                    bankFields.bankKeyVal2 = "";
-                    bankFields.bankKeyVal3 = "";
-                    this.getOwnerComponent().getModel("oVisibilityModel").refresh();
-                } else {
-                     this.fnActivateBankScreen();
-                }
+                // var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
+                // if( apaymentMethod === 'Optional'){
+                // oView.getModel("oErrorModel").getData().bankNameE = "None";
+                // oView.getModel("oErrorModel").getData().bankNameM = "";
+                // oView.getModel("oErrorModel").getData().bankAddrE = "None";
+                // oView.getModel("oErrorModel").getData().bankAddrM = "";
+                // oView.getModel("oErrorModel").getData().bankCityE = "None";
+                // oView.getModel("oErrorModel").getData().bankCityM = "";
+                // oView.getModel("oErrorModel").getData().bankAccNumE = "None";
+                // oView.getModel("oErrorModel").getData().bankAccNumM = "";
+                // oView.getModel("oErrorModel").getData().benifAccHNameE = "None";
+                // oView.getModel("oErrorModel").getData().benifAccHNameM = "";
+                // oView.getModel("oErrorModel").getData().bankSwiftE = "None";
+                // oView.getModel("oErrorModel").getData().bankSwiftM = "";
+                // oView.getModel("oErrorModel").getData().bankBranchE = "None";
+                // oView.getModel("oErrorModel").getData().bankBranchM = "";
+                // oView.getModel("oErrorModel").getData().bankRefE = "None";
+                // oView.getModel("oErrorModel").getData().bankRefM = "";
+                // oView.getModel("oErrorModel").getData().bankNumE = "None";
+                // oView.getModel("oErrorModel").getData().bankNumM = "";
+                // oView.getModel("oErrorModel").getData().ibanE = "None";
+                // oView.getModel("oErrorModel").getData().ibanM = "";
+                // oView.getModel("oErrorModel").getData().benifAccCurrE = "None";
+                // oView.getModel("oErrorModel").getData().benifAccCurrM = "";
+                // oView.getModel("oErrorModel").getData().bankCtrlKeyE = "None";
+                // oView.getModel("oErrorModel").getData().bankCtrlKeyM = "";
+                // oView.getModel("oErrorModel").getData().paymentCurrE = "None";
+                // oView.getModel("oErrorModel").getData().paymentCurrM = "";
+                // oView.getModel("oErrorModel").refresh();
+                //  var bankFields = this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
+                //     bankFields.bankName = false;
+                //     bankFields.bankBranch = false;
+                //     bankFields.bankStreet = false;
+                //     bankFields.bankCity = false;
+                //     bankFields.benificiaryAccountNumber = false;
+                //     bankFields.swiftCode = false;
+                //     bankFields.bankNumber = false;
+                //     bankFields.bankCountry = false;
+                //     bankFields.benificiaryAccHolderName = false;
+                //     bankFields.bankKey = false;
+                //     bankFields.benificiaryAccCurrency = false;
+                //     bankFields.instructionKey = false;
+                //     bankFields.bankControlKey = false;
+                //     bankFields.referenceDetails = false;
+                //     bankFields.iban = false;
+                //     bankFields.ibanLength = null;
+                //     bankFields.bankControlKeyLogic = null;
+                //     bankFields.bankControlKeyDigitsLogic = null;
+                //     bankFields.companyCodeCountry = "";
+                //     bankFields.bankKeyVal1 = "";
+                //     bankFields.bankKeyVal2 = "";
+                //     bankFields.bankKeyVal3 = "";
+                //     this.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                // } else {
+                //       this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.bankCountry = true;
+                //         this.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                //      this.fnActivateBankScreen();
+                // }
             },
 
             fnLiveValueBankInput: function (oEvent) {
@@ -6728,34 +6727,35 @@ if(apaymentMethod !== 'Optional'){
 
             fnActivateBankScreen: function () {
                 var that = this;
-                 var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
-                if(oView.getModel("oLookUpModel").getData().PaymentMethod && oView.getModel("oLookUpModel").getData().PaymentMethod !=="" && apaymentMethod === 'Optional'){
-                     var bankFields = that.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
-                    bankFields.bankName = false;
-                    bankFields.bankBranch = false;
-                    bankFields.bankStreet = false;
-                    bankFields.bankCity = false;
-                    bankFields.benificiaryAccountNumber = false;
-                    bankFields.swiftCode = false;
-                    bankFields.bankNumber = false;
-                    bankFields.bankCountry = false;
-                    bankFields.benificiaryAccHolderName = false;
-                    bankFields.bankKey = false;
-                    bankFields.benificiaryAccCurrency = false;
-                    bankFields.instructionKey = false;
-                    bankFields.bankControlKey = false;
-                    bankFields.referenceDetails = false;
-                    bankFields.iban = false;
-                    bankFields.ibanLength = null;
-                    bankFields.bankControlKeyLogic = null;
-                    bankFields.bankControlKeyDigitsLogic = null;
-                    bankFields.companyCodeCountry = "";
-                    bankFields.bankKeyVal1 = "";
-                    bankFields.bankKeyVal2 = "";
-                    bankFields.bankKeyVal3 = "";
-                    that.getOwnerComponent().getModel("oVisibilityModel").refresh();
-                }
-                else if (oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry) {
+                //  var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
+                // if(oView.getModel("oLookUpModel").getData().PaymentMethod && oView.getModel("oLookUpModel").getData().PaymentMethod !=="" && apaymentMethod === 'Optional'){
+                //      var bankFields = that.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
+                //     bankFields.bankName = false;
+                //     bankFields.bankBranch = false;
+                //     bankFields.bankStreet = false;
+                //     bankFields.bankCity = false;
+                //     bankFields.benificiaryAccountNumber = false;
+                //     bankFields.swiftCode = false;
+                //     bankFields.bankNumber = false;
+                //     bankFields.bankCountry = false;
+                //     bankFields.benificiaryAccHolderName = false;
+                //     bankFields.bankKey = false;
+                //     bankFields.benificiaryAccCurrency = false;
+                //     bankFields.instructionKey = false;
+                //     bankFields.bankControlKey = false;
+                //     bankFields.referenceDetails = false;
+                //     bankFields.iban = false;
+                //     bankFields.ibanLength = null;
+                //     bankFields.bankControlKeyLogic = null;
+                //     bankFields.bankControlKeyDigitsLogic = null;
+                //     bankFields.companyCodeCountry = "";
+                //     bankFields.bankKeyVal1 = "";
+                //     bankFields.bankKeyVal2 = "";
+                //     bankFields.bankKeyVal3 = "";
+                //     that.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                // }
+                // else 
+                if (oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry) {
                     var requestData = {
                         "companyCodeCountry": oView.getModel("oDataModel").getData().shippingInfoDto.comCode,
                         "purchaseOrderCurrency": oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency,
@@ -6802,32 +6802,32 @@ if(apaymentMethod !== 'Optional'){
                         }
                     });
                 }
-                // else {
-                //     var bankFields = that.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
-                //     bankFields.bankName = false;
-                //     bankFields.bankBranch = false;
-                //     bankFields.bankStreet = false;
-                //     bankFields.bankCity = false;
-                //     bankFields.benificiaryAccountNumber = false;
-                //     bankFields.swiftCode = false;
-                //     bankFields.bankNumber = false;
-                //     bankFields.bankCountry = false;
-                //     bankFields.benificiaryAccHolderName = false;
-                //     bankFields.bankKey = false;
-                //     bankFields.benificiaryAccCurrency = false;
-                //     bankFields.instructionKey = false;
-                //     bankFields.bankControlKey = false;
-                //     bankFields.referenceDetails = false;
-                //     bankFields.iban = false;
-                //     bankFields.ibanLength = null;
-                //     bankFields.bankControlKeyLogic = null;
-                //     bankFields.bankControlKeyDigitsLogic = null;
-                //     bankFields.companyCodeCountry = "";
-                //     bankFields.bankKeyVal1 = "";
-                //     bankFields.bankKeyVal2 = "";
-                //     bankFields.bankKeyVal3 = "";
-                //     that.getOwnerComponent().getModel("oVisibilityModel").refresh();
-                // }
+                else {
+                    var bankFields = that.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
+                    bankFields.bankName = false;
+                    bankFields.bankBranch = false;
+                    bankFields.bankStreet = false;
+                    bankFields.bankCity = false;
+                    bankFields.benificiaryAccountNumber = false;
+                    bankFields.swiftCode = false;
+                    bankFields.bankNumber = false;
+                    bankFields.bankCountry = false;
+                    bankFields.benificiaryAccHolderName = false;
+                    bankFields.bankKey = false;
+                    bankFields.benificiaryAccCurrency = false;
+                    bankFields.instructionKey = false;
+                    bankFields.bankControlKey = false;
+                    bankFields.referenceDetails = false;
+                    bankFields.iban = false;
+                    bankFields.ibanLength = null;
+                    bankFields.bankControlKeyLogic = null;
+                    bankFields.bankControlKeyDigitsLogic = null;
+                    bankFields.companyCodeCountry = "";
+                    bankFields.bankKeyVal1 = "";
+                    bankFields.bankKeyVal2 = "";
+                    bankFields.bankKeyVal3 = "";
+                    that.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                }
             },
             // @ts-ignore
             //File Upload function with Date Input

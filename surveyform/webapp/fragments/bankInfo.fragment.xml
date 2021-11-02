@@ -93,12 +93,15 @@
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 		</RadioButtonGroup>
           </VBox>
-           <!-- <Label visible="{oUserModel>/isNew}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>provideBankDetails}:${oi18n_En>provideBankDetails} +'/&#160;' +${i18n>provideBankDetails}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom"/> -->
+          <!-- <VBox>
+            <Label visible="{oUserModel>/isNew}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>provideBankDetails}:${oi18n_En>provideBankDetails} +'/&#160;' +${i18n>provideBankDetails}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+             <Label visible="{=${oUserModel>/isNew} &amp;&amp; !${oVisibilityModel>/bankValidation/bankCountry}}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>paymentMethodOptionalMsg}:${oi18n_En>paymentMethodOptionalMsg} +'/&#160;' +${i18n>paymentMethodOptionalMsg}}" wrapping="true" class="fontStyleBlue sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+            </VBox> -->
             <Label visible="{=!${oUserModel>/isNew}}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>existingBankDetails}:${oi18n_En>existingBankDetails} +'/&#160;' +${i18n>existingBankDetails}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
 			<!-- <CheckBox selected="{oDataModel>/bankDto/isBankProvided}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankInformation2}:${oi18n_En>bankInformation2} +'/&#160;' + ${i18n>bankInformation2}}" class="fontBold inputStyle sapUiTinyMarginBottom"/> -->
 			<l:Grid visible="{=${oDataModel>/bankDto/isBankProvided}=== true || ${oUserModel>/isNew} === false}" containerQuery="true" defaultSpan="XL2 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 			<VBox  class="fontStyle">
-					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankCountry}:${oi18n_En>bankCountry}+ '&#10;' +${i18n>bankCountry}}" required="{oUserModel>/isNew}"></Label>
+					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankCountry}:${oi18n_En>bankCountry}+ '&#10;' +${i18n>bankCountry}}" required="true"></Label>
 					<ComboBox width="100%" enabled="{oVisibilityModel>/_FinanceReviewEdit}"  items="{oLookUpModel>/Country}" showSecondaryValues="true" filterSecondaryValues="true" selectedKey="{oDataModel>/bankDto/bankInfoDto/0/bankCountry}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/bankCountryE}" valueStateText="{oErrorModel>/bankCountryM}"  selectionChange="fnLiveValueBankInput" class="inputStyle">
                      <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
 				</VBox>
