@@ -637,52 +637,52 @@ sap.ui.define([
                     }
 
 
-                    if (!oView.getModel("JMBPCreate").getData().address1) {
-                        oView.getModel("JMBPCreate").getData().address1e = "Error";
-                        oView.getModel("JMBPCreate").getData().address1m = oi18n.getProperty("BPCMandatoryValidationAddress1");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    } else if (oView.getModel("JMBPCreate").getData().address1e == "Error") {
-                        vError = true;
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().address1) {
+                    //     oView.getModel("JMBPCreate").getData().address1e = "Error";
+                    //     oView.getModel("JMBPCreate").getData().address1m = oi18n.getProperty("BPCMandatoryValidationAddress1");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // } else if (oView.getModel("JMBPCreate").getData().address1e == "Error") {
+                    //     vError = true;
+                    // }
 
                     if (oView.getModel("JMBPCreate").getData().address2e == "Error") {
                         vError = true;
                     }
-                    if (!oView.getModel("JMBPCreate").getData().city) {
-                        oView.getModel("JMBPCreate").getData().citye = "Error";
-                        oView.getModel("JMBPCreate").getData().citym = oi18n.getProperty("BPCMandatoryValidationCity");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    } else if (oView.getModel("JMBPCreate").getData().citye == "Error") {
-                        vError = true;
-                    }
-                    if (!oView.getModel("JMBPCreate").getData().state) {
-                        oView.getModel("JMBPCreate").getData().statee = "Error";
-                        oView.getModel("JMBPCreate").getData().statem = oi18n.getProperty("BPCMandatoryValidationState");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().city) {
+                    //     oView.getModel("JMBPCreate").getData().citye = "Error";
+                    //     oView.getModel("JMBPCreate").getData().citym = oi18n.getProperty("BPCMandatoryValidationCity");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // } else if (oView.getModel("JMBPCreate").getData().citye == "Error") {
+                    //     vError = true;
+                    // }
+                    // if (!oView.getModel("JMBPCreate").getData().state) {
+                    //     oView.getModel("JMBPCreate").getData().statee = "Error";
+                    //     oView.getModel("JMBPCreate").getData().statem = oi18n.getProperty("BPCMandatoryValidationState");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // }
 
                     if (oView.getModel("JMBPCreate").getData().districte == "Error") {
                         vError = true;
                     }
 
-                    if (!oView.getModel("JMBPCreate").getData().country) {
-                        oView.getModel("JMBPCreate").getData().countrye = "Error";
-                        oView.getModel("JMBPCreate").getData().countrym = oi18n.getProperty("BPCMandatoryValidationCountry");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().country) {
+                    //     oView.getModel("JMBPCreate").getData().countrye = "Error";
+                    //     oView.getModel("JMBPCreate").getData().countrym = oi18n.getProperty("BPCMandatoryValidationCountry");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // }
 
-                    if (!oView.getModel("JMBPCreate").getData().postalCode) {
-                        oView.getModel("JMBPCreate").getData().postalCodee = "Error";
-                        oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCMandatoryValidationPostalCode");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    } else if (oView.getModel("JMBPCreate").getData().postalCodee == "Error") {
-                        vError = true;
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().postalCode) {
+                    //     oView.getModel("JMBPCreate").getData().postalCodee = "Error";
+                    //     oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCMandatoryValidationPostalCode");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // } else if (oView.getModel("JMBPCreate").getData().postalCodee == "Error") {
+                    //     vError = true;
+                    // }
                     if (oView.getModel("JMBPCreate").getData().poBoxPostalCode == "Error") {
                         vError = true;
                     }
@@ -752,42 +752,42 @@ sap.ui.define([
                     }
 
 
-                    if (!oView.getModel("JMBPCreate").getData().altContactFirstName) {
-                        oView.getModel("JMBPCreate").getData().altContactFirstNamee = "Error";
-                        oView.getModel("JMBPCreate").getData().altContactFirstNamem = oi18n.getProperty("BPCMandatoryValidationAltFname");
-                        oView.getModel("JMBPCreate").refresh();
-                        vError = true;
-                    } else if (oView.getModel("JMBPCreate").getData().altContactFirstNamee == "Error") {
-                        vError = true;
-                    }
-                    if (!oView.getModel("JMBPCreate").getData().altContactLastName) {
-                        oView.getModel("JMBPCreate").getData().altContactLastNamee = "Error";
-                        oView.getModel("JMBPCreate").getData().altContactLastNamem = oi18n.getProperty("BPCMandatoryValidationAltLastName");
-                        oView.getModel("JMBPCreate").refresh();
-                        vError = true;
-                    } else if (oView.getModel("JMBPCreate").getData().altContactLastNamee == "Error") {
-                        vError = true;
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().altContactFirstName) {
+                    //     oView.getModel("JMBPCreate").getData().altContactFirstNamee = "Error";
+                    //     oView.getModel("JMBPCreate").getData().altContactFirstNamem = oi18n.getProperty("BPCMandatoryValidationAltFname");
+                    //     oView.getModel("JMBPCreate").refresh();
+                    //     vError = true;
+                    // } else if (oView.getModel("JMBPCreate").getData().altContactFirstNamee == "Error") {
+                    //     vError = true;
+                    // }
+                    // if (!oView.getModel("JMBPCreate").getData().altContactLastName) {
+                    //     oView.getModel("JMBPCreate").getData().altContactLastNamee = "Error";
+                    //     oView.getModel("JMBPCreate").getData().altContactLastNamem = oi18n.getProperty("BPCMandatoryValidationAltLastName");
+                    //     oView.getModel("JMBPCreate").refresh();
+                    //     vError = true;
+                    // } else if (oView.getModel("JMBPCreate").getData().altContactLastNamee == "Error") {
+                    //     vError = true;
+                    // }
 
                     if (oView.getModel("JMBPCreate").getData().altContactJobTitlee == "Error") {
                         vError = true;
                     }
-                    if (!oView.getModel("JMBPCreate").getData().altEmail) {
-                        oView.getModel("JMBPCreate").getData().altEmaile = "Error";
-                        oView.getModel("JMBPCreate").getData().altEmailm = oi18n.getProperty("PleaseProvideAltEmail");
-                        oView.getModel("JMBPCreate").refresh();
-                        vError = true;
-                    } else if (oView.getModel("JMBPCreate").getData().altEmaile == "Error") {
-                        vError = true;
-                    }
-                    if (!oView.getModel("JMBPCreate").getData().altPhoneNumber) {
-                        oView.getModel("JMBPCreate").getData().altPhoneNumbere = "Error";
-                        oView.getModel("JMBPCreate").getData().altPhoneNumberm = oi18n.getProperty("BPCMandatoryValidationAltPhoneNum");
-                        oView.getModel("JMBPCreate").refresh();
-                        vError = true;
-                    } else if (oView.getModel("JMBPCreate").getData().altPhoneNumbere == "Error") {
-                        vError = true;
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().altEmail) {
+                    //     oView.getModel("JMBPCreate").getData().altEmaile = "Error";
+                    //     oView.getModel("JMBPCreate").getData().altEmailm = oi18n.getProperty("PleaseProvideAltEmail");
+                    //     oView.getModel("JMBPCreate").refresh();
+                    //     vError = true;
+                    // } else if (oView.getModel("JMBPCreate").getData().altEmaile == "Error") {
+                    //     vError = true;
+                    // }
+                    // if (!oView.getModel("JMBPCreate").getData().altPhoneNumber) {
+                    //     oView.getModel("JMBPCreate").getData().altPhoneNumbere = "Error";
+                    //     oView.getModel("JMBPCreate").getData().altPhoneNumberm = oi18n.getProperty("BPCMandatoryValidationAltPhoneNum");
+                    //     oView.getModel("JMBPCreate").refresh();
+                    //     vError = true;
+                    // } else if (oView.getModel("JMBPCreate").getData().altPhoneNumbere == "Error") {
+                    //     vError = true;
+                    // }
                     if (!oView.getModel("JMBPCreate").getData().contactCountryCode) {
                         oView.getModel("JMBPCreate").getData().contactCountryCodee = "Error";
                         oView.getModel("JMBPCreate").getData().contactCountryCodem = oi18n.getProperty("BPCEnterCountryCode");
@@ -800,12 +800,12 @@ sap.ui.define([
                         oView.getModel("JMBPCreate").refresh();
                         vError = true;
                     }
-                    if (!oView.getModel("JMBPCreate").getData().altContactCountryCode) {
-                        oView.getModel("JMBPCreate").getData().altContactCountryCodee = "Error";
-                        oView.getModel("JMBPCreate").getData().altContactCountryCodem = oi18n.getProperty("BPCEnterCountryCode1");
-                        oView.getModel("JMBPCreate").refresh();
-                        vError = true;
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().altContactCountryCode) {
+                    //     oView.getModel("JMBPCreate").getData().altContactCountryCodee = "Error";
+                    //     oView.getModel("JMBPCreate").getData().altContactCountryCodem = oi18n.getProperty("BPCEnterCountryCode1");
+                    //     oView.getModel("JMBPCreate").refresh();
+                    //     vError = true;
+                    // }
 
                     if (oView.getModel("JMBPCreate").getData().requestorConflictOfInterests == 1) {
                         if (!oView.getModel("JMBPCreate").getData().requestorCOIName) {

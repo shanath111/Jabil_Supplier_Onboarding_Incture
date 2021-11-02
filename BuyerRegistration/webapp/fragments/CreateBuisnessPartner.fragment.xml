@@ -177,7 +177,7 @@
 									
 								</l:Grid> -->
 				
-								
+								<VBox visible="false">
 								<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_BPCrSectHeader" wrapping="true" text="{i18n>Address}"></Label>
 							     
                                  <HBox width="100%" visible="{oConfigMdl>/searchAddress}" class="sapUiTinyMarginBegin">
@@ -261,6 +261,7 @@
 										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/rfc}" liveChange="fnLiveChangeRFC" change="fnInputSpaceCheck" valueState="{JMBPCreate>/rfce}" valueStateText="{JMBPCreate>/rfcm}" class="cl_VRInputCls"></Input>
 									</VBox>
 								</l:Grid>
+                                </VBox>
                                 	<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_BPCrSectHeader" wrapping="true" text="{i18n>BPCHeaderContact}"></Label>
 								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
 									<VBox class="VRVboxStyle1">
@@ -327,7 +328,7 @@
 									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
                                     		</RadioButtonGroup>
 									</VBox> -->
-                                    <VBox visible="true">
+                                    <VBox visible="false">
 								<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_BPCrSectHeader" wrapping="true"  text="{i18n>BPCAltrnateContaact}"></Label>
 								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
 									<VBox class="VRVboxStyle1">
