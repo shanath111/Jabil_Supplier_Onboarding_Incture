@@ -256,6 +256,23 @@ sap.ui.define([
             fnClose: function () {
                 this.oComment.close();
             },
+
+            fnLiveEmailNotJValid: function (oEvent) {
+                var email = oEvent.getSource().getValue();
+                var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
+                if (email) {
+                    if (!email.match(mailregex)) {
+                        oEvent.getSource().setValueState("Error");
+                        oEvent.getSource().setValueStateText(oi18n.getText("invalidEmail"));
+                    } else if ((email.toUpperCase().includes("JABIL.COM") || email.toUpperCase().includes("NYPRO.COM") || email.toUpperCase().includes("JABILDAS.COM"))) {
+                        oEvent.getSource().setValueState("Error");
+                        oEvent.getSource().setValueStateText(oi18n.getText("invalidEmail"));
+                    } else {
+                        oEvent.getSource().setValueState("None");
+                        oEvent.getSource().setValueStateText("");
+                    }
+                }
+            },
             onBeforeRendering: function () { },
 
             onAfterRendering: function () {
