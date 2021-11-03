@@ -1924,6 +1924,7 @@ sap.ui.define([
 
                     iError = true;
                 }
+                
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode.replaceAll("-", "")) == 0) {
                     oView.getModel("oErrorModel").getData().poE = "Error";
                     oView.getModel("oErrorModel").getData().poM = oi18n.getText("invalidPostalCode");
@@ -2201,49 +2202,58 @@ sap.ui.define([
                     var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
                     switch (postalCodeRule) {
                         case 1:
-                            if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
-
+                            if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                oView.getModel("oErrorModel").getData().poE = "Error";
+                                oView.getModel("oErrorModel").getData().poM = oi18n.getText("postalCodeRule1");
                                 iError = true;
                             }
                             break;
                         case 2:
-                            if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-
+                            if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                oView.getModel("oErrorModel").getData().poE = "Error";
+                                oView.getModel("oErrorModel").getData().poM = oi18n.getText("postalCodeRule2");
                                 iError = true;
                             }
                             break;
                         case 3:
-                            if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-
+                            if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                oView.getModel("oErrorModel").getData().poE = "Error";
+                                oView.getModel("oErrorModel").getData().poM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
                                 iError = true;
                             }
                             break;
                         case 4:
-                            if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-
+                            if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                oView.getModel("oErrorModel").getData().poE = "Error";
+                                oView.getModel("oErrorModel").getData().poM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
                                 iError = true;
                             }
                             break;
                         case 5:
-                            if (postalCode.length > postalCodeLength) {
+                            if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
+                                oView.getModel("oErrorModel").getData().poE = "Error";
+                                oView.getModel("oErrorModel").getData().poM = oi18n.getText("postalCodeRule5");
                                 iError = true;
                             }
                             break;
                         case 6:
-                            if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-
+                            if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                oView.getModel("oErrorModel").getData().poE = "Error";
+                                oView.getModel("oErrorModel").getData().poM = oi18n.getText("postalCodeRule6");
                                 iError = true;
                             }
                             break;
                         case 7:
-                            if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-
+                            if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                oView.getModel("oErrorModel").getData().poE = "Error";
+                                oView.getModel("oErrorModel").getData().poM = "Code must be of exactly " + postalCodeLength + "characters in length";
                                 iError = true;
                             }
                             break;
                         case 8:
-                            if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-
+                            if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                oView.getModel("oErrorModel").getData().poE = "Error";
+                                oView.getModel("oErrorModel").getData().poM = "Code must be of exactly " + postalCodeLength + "digits in length";
                                 iError = true;
                             }
                     }
@@ -2255,13 +2265,79 @@ sap.ui.define([
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].poBoxPostalCode && oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].poBoxPostalCode.length > 10) {
                     iError = true;
                 }
-
-                oView.getModel("oErrorModel").refresh();
+                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("basicInfo").setValidated(false);
+                    if (isDefaultLan) {
+                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        } else {
+                            sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.validationDefaultMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        }
                 } else {
                     oView.byId("basicInfo").setValidated(true);
                 }
+var aError = false;
+                 if (!iError) {
+                        if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode === 'US') {
+                            var Address1, Address2, Address3, Address4, Address5, Locality, AdministrativeArea, PostalCode, Country, OutputLanguage, LicenseKey;
+                            Address1 =  oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1;
+                            Address2 = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address2;
+                            Address3 = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address3;
+                            Address4 =  oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address4;
+                            Address5 = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address5;
+                            Locality = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].city;
+                            AdministrativeArea = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].regionCode;
+                            PostalCode = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode;
+                            Country = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode ;
+                            OutputLanguage = "english";
+                            LicenseKey = "WS80-TZS3-FDQ1";
+                           // Added by shanath for Address validation
+                            var primaryUrl = '/comjabilsurveyform/plcm_service_object/AVI/api.svc/json/GetAddressInfo?Address1=' + Address1 + '&Address2=' + Address2 + '&Address3=' + Address3 + '&Address4=' + Address4 + '&Address5=' + Address5 + '&Locality=' + Locality + '&AdministrativeArea=' + AdministrativeArea + '&PostalCode=' + PostalCode + '&Country=' + Country + '&OutputLanguage=' + OutputLanguage + '&LicenseKey=' + LicenseKey;
+
+                            $.ajax({
+                                url: primaryUrl,
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function (data) {
+                                    if (data.AddressInfo.Status !== "Valid") {
+                                        aError = true;
+                                        MessageBox.show(oi18n.getText("invalidAddress"), {
+                                            icon: MessageBox.Icon.ERROR,
+                                            title: "Invalid Address"
+                                        });
+                                    }
+
+
+
+                                },
+                                async: false,
+                                error: function (data) {
+                                    var eMsg = data.responseText
+                                    MessageBox.show(eMsg, {
+                                        icon: sap.m.MessageBox.Icon.ERROR,
+                                        title: oi18n.getText("error")
+                                    });
+
+                                }
+                            });
+                        }
+                     if (aError) {
+                            oView.byId("basicInfo").setValidated(false);
+                        } else {
+                            oView.byId("basicInfo").setValidated(true);
+                        }
+                    }
+               
             },
             _fnValidateBusinessPartner: function (oEvent) {
                 var spaceRegex = /^\s+$/;
@@ -2408,7 +2484,7 @@ sap.ui.define([
                         var taxIDNumRule = taxIDValidationData ? taxIDValidationData.taxNumRule : "";
                         switch (taxIDNumRule) {
                             case 1:
-                                if (/\s/.test(taxID) || taxID.length > taxIDMaxLength) {
+                                if (/\s/.test(taxID) || taxID.includes("_") || taxID.length > taxIDMaxLength) {
                                     this.emailValidResult = true;
                                     iError = true;
                                 } else {
@@ -2416,7 +2492,7 @@ sap.ui.define([
                                 }
                                 break;
                             case 2:
-                                if (!(/^\d+$/.test(taxID)) || taxID.length > taxIDMaxLength) {
+                                if (!(/^\d+$/.test(taxID)) || taxID.includes("_") || taxID.length > taxIDMaxLength) {
                                     this.emailValidResult = true;
                                     iError = true;
                                 } else {
@@ -2424,7 +2500,7 @@ sap.ui.define([
                                 }
                                 break;
                             case 3:
-                                if (/\s/.test(taxID) || !(taxID.length === taxIDMaxLength) && taxID.length > 0) {
+                                if (/\s/.test(taxID) || taxID.includes("_") || !(taxID.length === taxIDMaxLength) && taxID.length > 0) {
                                     this.emailValidResult = true;
                                     iError = true;
                                 } else {
@@ -2432,7 +2508,7 @@ sap.ui.define([
                                 }
                                 break;
                             case 4:
-                                if (!(/^\d+$/.test(taxID)) || !(taxID.length === taxIDMaxLength) && taxID.length > 0) {
+                                if (!(/^\d+$/.test(taxID)) || taxID.includes("_") || !(taxID.length === taxIDMaxLength) && taxID.length > 0) {
                                     this.emailValidResult = true;
                                     iError = true;
                                 } else {
@@ -2440,7 +2516,7 @@ sap.ui.define([
                                 }
                                 break;
                             case 5:
-                                if (taxID.length > taxIDMaxLength) {
+                                if (taxID.includes("_") || taxID.length > taxIDMaxLength) {
                                     this.emailValidResult = true;
                                     iError = true;
                                 } else {
@@ -2448,7 +2524,7 @@ sap.ui.define([
                                 }
                                 break;
                             case 6:
-                                if (!(/^[\d ]*$/.test(taxID)) || taxID.length > taxIDMaxLength) {
+                                if (!(/^[\d ]*$/.test(taxID)) || taxID.includes("_") || taxID.length > taxIDMaxLength) {
                                     this.emailValidResult = true;
                                     iError = true;
                                 } else {
@@ -2456,7 +2532,7 @@ sap.ui.define([
                                 }
                                 break;
                             case 7:
-                                if (!(taxID.length === taxIDMaxLength) && taxID.length > 0) {
+                                if (taxID.includes("_") || (!(taxID.length === taxIDMaxLength) && taxID.length > 0)) {
                                     this.emailValidResult = true;
                                     iError = true;
                                 } else {
@@ -2464,7 +2540,7 @@ sap.ui.define([
                                 }
                                 break;
                             case 8:
-                                if (!(/^[\d ]*$/.test(taxID)) || !(taxID.length === taxIDMaxLength) && taxID.length > 0) {
+                                if (!(/^[\d ]*$/.test(taxID)) || taxID.includes("_") || (!(taxID.length === taxIDMaxLength) && taxID.length > 0)) {
                                     this.emailValidResult = true;
 
                                 } else {
@@ -2870,49 +2946,58 @@ sap.ui.define([
                             var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
                             switch (postalCodeRule) {
                                 case 1:
-                                    if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
-
+                                    if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                        oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRule1");
                                         iError = true;
                                     }
                                     break;
                                 case 2:
-                                    if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-
+                                    if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                        oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRule2");
                                         iError = true;
                                     }
                                     break;
                                 case 3:
-                                    if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-
+                                    if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().oFAPostCdM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
                                         iError = true;
                                     }
                                     break;
                                 case 4:
-                                    if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-
+                                    if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().oFAPostCdM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
                                         iError = true;
                                     }
                                     break;
                                 case 5:
-                                    if (postalCode.length > postalCodeLength) {
+                                    if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
+                                        oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRule5");
                                         iError = true;
                                     }
                                     break;
                                 case 6:
-                                    if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-
+                                    if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                        oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRule6");
                                         iError = true;
                                     }
                                     break;
                                 case 7:
-                                    if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-
+                                    if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().oFAPostCdM = "Code must be of exactly " + postalCodeLength + "characters in length";
                                         iError = true;
                                     }
                                     break;
                                 case 8:
-                                    if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-
+                                    if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().oFAPostCdM = "Code must be of exactly " + postalCodeLength + "digits in length";
                                         iError = true;
                                     }
                             }
@@ -3017,50 +3102,58 @@ sap.ui.define([
                             var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
                             switch (postalCodeRule) {
                                 case 1:
-                                    if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
-
+                                    if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                        oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule1");
                                         iError = true;
                                     }
                                     break;
                                 case 2:
-                                    if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-
+                                    if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                        oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule2");
                                         iError = true;
                                     }
                                     break;
                                 case 3:
-                                    if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-
+                                    if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().rTAPostCdM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
                                         iError = true;
                                     }
                                     break;
                                 case 4:
-                                    if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-
+                                    if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().rTAPostCdM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
                                         iError = true;
                                     }
                                     break;
                                 case 5:
-                                    if (postalCode.length > postalCodeLength) {
-
+                                    if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
+                                        oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule5");
                                         iError = true;
                                     }
                                     break;
                                 case 6:
-                                    if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
-
+                                    if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                        oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule6");
                                         iError = true;
                                     }
                                     break;
                                 case 7:
-                                    if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-
+                                    if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().rTAPostCdM = "Code must be of exactly " + postalCodeLength + "characters in length";
                                         iError = true;
                                     }
                                     break;
                                 case 8:
-                                    if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
-
+                                    if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_")|| (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
+                                        oView.getModel("oErrorModel").getData().rTAPostCdM = "Code must be of exactly " + postalCodeLength + "digits in length";
                                         iError = true;
                                     }
                             }
@@ -4650,49 +4743,49 @@ sap.ui.define([
                     var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
                     switch (postalCodeRule) {
                         case 1:
-                            if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
+                            if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
 
                                 iError = true;
                             }
                             break;
                         case 2:
-                            if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+                            if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
 
                                 iError = true;
                             }
                             break;
                         case 3:
-                            if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+                            if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
 
                                 iError = true;
                             }
                             break;
                         case 4:
-                            if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+                            if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
 
                                 iError = true;
                             }
                             break;
                         case 5:
-                            if (postalCode.length > postalCodeLength) {
+                            if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
 
                                 iError = true;
                             }
                             break;
                         case 6:
-                            if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+                            if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") ||  postalCode.length > postalCodeLength)) {
 
                                 iError = true;
                             }
                             break;
                         case 7:
-                            if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+                            if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
 
                                 iError = true;
                             }
                             break;
                         case 8:
-                            if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+                            if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") ||  (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
 
                                 iError = true;
                             }
@@ -4940,49 +5033,49 @@ sap.ui.define([
                         var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
                         switch (postalCodeRule) {
                             case 1:
-                                if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
+                                if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
 
                                     iError = true;
                                 }
                                 break;
                             case 2:
-                                if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+                                if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") ||  postalCode.length > postalCodeLength)) {
 
                                     iError = true;
                                 }
                                 break;
                             case 3:
-                                if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+                                if (/\s/.test(postalCode) || postalCode.includes("_") ||  (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
 
                                     iError = true;
                                 }
                                 break;
                             case 4:
-                                if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+                                if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
 
                                     iError = true;
                                 }
                                 break;
                             case 5:
-                                if (postalCode.length > postalCodeLength) {
+                                if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
 
                                     iError = true;
                                 }
                                 break;
                             case 6:
-                                if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+                                if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") ||  postalCode.length > postalCodeLength)) {
 
                                     iError = true;
                                 }
                                 break;
                             case 7:
-                                if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+                                if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
 
                                     iError = true;
                                 }
                                 break;
                             case 8:
-                                if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+                                if (postalCode.includes("_") || !(/^[\d ]*$/.test(postalCode)) || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
 
                                     iError = true;
                                 }
@@ -5038,49 +5131,49 @@ sap.ui.define([
                         var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
                         switch (postalCodeRule) {
                             case 1:
-                                if (/\s/.test(postalCode) || postalCode.length > postalCodeLength) {
+                                if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
 
                                     iError = true;
                                 }
                                 break;
                             case 2:
-                                if (!(/^\d+$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+                                if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
 
                                     iError = true;
                                 }
                                 break;
                             case 3:
-                                if (/\s/.test(postalCode) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+                                if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
 
                                     iError = true;
                                 }
                                 break;
                             case 4:
-                                if (!(/^\d+$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+                                if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
 
                                     iError = true;
                                 }
                                 break;
                             case 5:
-                                if (postalCode.length > postalCodeLength) {
+                                if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
 
                                     iError = true;
                                 }
                                 break;
                             case 6:
-                                if (!(/^[\d ]*$/.test(postalCode)) || postalCode.length > postalCodeLength) {
+                                if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") ||  postalCode.length > postalCodeLength)) {
 
                                     iError = true;
                                 }
                                 break;
                             case 7:
-                                if (!(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+                                if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
 
                                     iError = true;
                                 }
                                 break;
                             case 8:
-                                if (!(/^[\d ]*$/.test(postalCode)) || !(postalCode.length === postalCodeLength) && postalCode.length > 0) {
+                                if (!(/^[\d ]*$/.test(postalCode)) ||postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
 
                                     iError = true;
                                 }
@@ -5832,63 +5925,49 @@ sap.ui.define([
                         if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Accepts only numbers without spaces");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                           
                         }
                         break;
                     case 3:
                         if (/\s/.test(postalCode) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
-                            oEvent.getSource().setValueStateText("ID must be of " + postalCodeLength + " characters in length without any spaces");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            oEvent.getSource().setValueStateText("Code must be of " + postalCodeLength + " characters in length without any spaces");
+                            
                         }
                         break;
                     case 4:
                         if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
-                            oEvent.getSource().setValueStateText("ID must be of " + postalCodeLength + " numerical digits in length without any spaces");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            oEvent.getSource().setValueStateText("Code must be of " + postalCodeLength + " numerical digits in length without any spaces");
+                           
                         }
                         break;
                     case 5:
                         if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Maximum length exceeded");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                         break;
                     case 6:
                         if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Accepts only numbers");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                         break;
                     case 7:
                         if (!(postalCode.length === postalCodeLength) || (postalCode.includes("_"))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "characters in length");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                         break;
                     case 8:
                         if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "digits in length");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                 }
 
@@ -5917,62 +5996,48 @@ sap.ui.define([
                         if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Accepts only numbers without spaces");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                     case 3:
                         if (/\s/.test(postalCode) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of " + postalCodeLength + " characters in length without any spaces");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                         break;
                     case 4:
                         if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of " + postalCodeLength + " numerical digits in length without any spaces");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                         break;
                     case 5:
                         if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Maximum length exceeded");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                           
                         }
                         break;
                     case 6:
                         if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Accepts only numbers");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                           
                         }
                         break;
                     case 7:
                         if (!(postalCode.length === postalCodeLength) || (postalCode.includes("_"))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "characters in length");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                           
                         }
                         break;
                     case 8:
                         if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "digits in length");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                 }
             },
@@ -6000,62 +6065,48 @@ sap.ui.define([
                         if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Accepts only numbers without spaces");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                     case 3:
                         if (/\s/.test(postalCode) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of " + postalCodeLength + " characters in length without any spaces");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                           
                         }
                         break;
                     case 4:
                         if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of " + postalCodeLength + " numerical digits in length without any spaces");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                         break;
                     case 5:
                         if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Maximum length exceeded");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                         break;
                     case 6:
                         if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Accepts only numbers");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                         break;
                     case 7:
                         if (!(postalCode.length === postalCodeLength) || (postalCode.includes("_"))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "characters in length");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                         break;
                     case 8:
                         if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "digits in length");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                           
                         }
                 }
             },
@@ -7404,7 +7455,7 @@ sap.ui.define([
                         this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getCurrentStep()).nextStep();
                         // this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
                         //}
-                    } else if (currentStepId !== "companyInfo" && currentStepId !== "prodAndServInfo" && currentStepId !== "cyberSecInfo") {
+                    } else if (currentStepId !== "basicInfo" && currentStepId !== "companyInfo" && currentStepId !== "prodAndServInfo" && currentStepId !== "cyberSecInfo") {
                         var that = this;
                         var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
                         var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
