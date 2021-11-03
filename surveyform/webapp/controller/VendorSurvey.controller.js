@@ -2258,6 +2258,21 @@ sap.ui.define([
                  oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("basicInfo").setValidated(false);
+                    if (isDefaultLan) {
+                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        } else {
+                            sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.validationDefaultMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        }
                 } else {
                     oView.byId("basicInfo").setValidated(true);
                 }
@@ -5883,63 +5898,49 @@ var aError = false;
                         if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Accepts only numbers without spaces");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                           
                         }
                         break;
                     case 3:
                         if (/\s/.test(postalCode) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of " + postalCodeLength + " characters in length without any spaces");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                          
                         }
                         break;
                     case 4:
                         if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of " + postalCodeLength + " numerical digits in length without any spaces");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                         break;
                     case 5:
                         if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Maximum length exceeded");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                           
                         }
                         break;
                     case 6:
                         if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Accepts only numbers");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                         break;
                     case 7:
                         if (!(postalCode.length === postalCodeLength) || (postalCode.includes("_"))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "characters in length");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                         break;
                     case 8:
                         if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "digits in length");
-                            this.emailValidResult = true;
-                        } else {
-                            this.emailValidResult = false;
+                            
                         }
                 }
 
@@ -7455,7 +7456,7 @@ var aError = false;
                         this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getCurrentStep()).nextStep();
                         // this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
                         //}
-                    } else if (currentStepId !== "companyInfo" && currentStepId !== "prodAndServInfo" && currentStepId !== "cyberSecInfo") {
+                    } else if (currentStepId !== "basicInfo" && currentStepId !== "companyInfo" && currentStepId !== "prodAndServInfo" && currentStepId !== "cyberSecInfo") {
                         var that = this;
                         var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
                         var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
