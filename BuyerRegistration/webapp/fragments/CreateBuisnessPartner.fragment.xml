@@ -177,7 +177,7 @@
 									
 								</l:Grid> -->
 				
-								<VBox visible="false">
+								<VBox visible="true">
 								<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_BPCrSectHeader" wrapping="true" text="{i18n>Address}"></Label>
 							     
                                  <HBox width="100%" visible="{oConfigMdl>/searchAddress}" class="sapUiTinyMarginBegin">
