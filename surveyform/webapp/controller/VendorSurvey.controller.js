@@ -2255,13 +2255,64 @@ sap.ui.define([
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].poBoxPostalCode && oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].poBoxPostalCode.length > 10) {
                     iError = true;
                 }
-
-                oView.getModel("oErrorModel").refresh();
+                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("basicInfo").setValidated(false);
                 } else {
                     oView.byId("basicInfo").setValidated(true);
                 }
+var aError = false;
+                 if (!iError) {
+                        if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode === 'US') {
+                            var Address1, Address2, Address3, Address4, Address5, Locality, AdministrativeArea, PostalCode, Country, OutputLanguage, LicenseKey;
+                            Address1 =  oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1;
+                            Address2 = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address2;
+                            Address3 = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address3;
+                            Address4 =  oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address4;
+                            Address5 = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address5;
+                            Locality = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].city;
+                            AdministrativeArea = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].regionCode;
+                            PostalCode = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode;
+                            Country = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode ;
+                            OutputLanguage = "english";
+                            LicenseKey = "WS80-TZS3-FDQ1";
+                           // Added by shanath for Address validation
+                            var primaryUrl = '/comjabilsurveyform/plcm_service_object/AVI/api.svc/json/GetAddressInfo?Address1=' + Address1 + '&Address2=' + Address2 + '&Address3=' + Address3 + '&Address4=' + Address4 + '&Address5=' + Address5 + '&Locality=' + Locality + '&AdministrativeArea=' + AdministrativeArea + '&PostalCode=' + PostalCode + '&Country=' + Country + '&OutputLanguage=' + OutputLanguage + '&LicenseKey=' + LicenseKey;
+
+                            $.ajax({
+                                url: primaryUrl,
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function (data) {
+                                    if (data.AddressInfo.Status !== "Valid") {
+                                        aError = true;
+                                        MessageBox.show(oi18n.getText("invalidAddress"), {
+                                            icon: MessageBox.Icon.ERROR,
+                                            title: "Invalid Address"
+                                        });
+                                    }
+
+
+
+                                },
+                                async: false,
+                                error: function (data) {
+                                    var eMsg = data.responseText
+                                    MessageBox.show(eMsg, {
+                                        icon: sap.m.MessageBox.Icon.ERROR,
+                                        title: oi18n.getText("error")
+                                    });
+
+                                }
+                            });
+                        }
+                     if (aError) {
+                            oView.byId("basicInfo").setValidated(false);
+                        } else {
+                            oView.byId("basicInfo").setValidated(true);
+                        }
+                    }
+               
             },
             _fnValidateBusinessPartner: function (oEvent) {
                 var spaceRegex = /^\s+$/;
