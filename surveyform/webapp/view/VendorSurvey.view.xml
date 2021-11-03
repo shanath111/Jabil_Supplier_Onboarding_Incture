@@ -1,5 +1,5 @@
 <mvc:View height="100%" controllerName="com.jabil.surveyform.controller.VendorSurvey" xmlns:core="sap.ui.core"
-	xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns="sap.m">
+	xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml">
 	<!-- <NavContainer id="wizardNavContainer">
 		<pages> -->
 			<Page showHeader="false" class="surveyPageBackground" enableScrolling="false">
@@ -10,7 +10,7 @@
             </Toolbar>
             
 				<Wizard id="surveyWizard" finishButtonText="Finish" enableBranching="true" class="sapUiResponsivePadding--header sapUiResponsivePadding--content wizNavbackground" showNextButton="false">
-					<WizardStep id="basicInfo"  nextStep="businessPartnerInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBasicInfo}:${oi18n_En>wizardStepBasicInfo} +'/&#160;' +${i18n>wizardStepBasicInfo}}" class="titleDisplay sapUiSizeCompact stepBackground sapUiContentPadding" >
+					<WizardStep id="basicInfo"  nextStep="businessPartnerInfo" activate="onActivateBasicInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBasicInfo}:${oi18n_En>wizardStepBasicInfo} +'/&#160;' +${i18n>wizardStepBasicInfo}}" class="titleDisplay sapUiSizeCompact stepBackground sapUiContentPadding" >
 				<Panel width="100%" class="sapUiTinyMarginTop panelPadding">	<l:VerticalLayout width="100%" >
                     	
                         <VBox class="sapUiSizeCompact fontBold sapUiTinyMarginBegin" width="50%">
@@ -20,8 +20,23 @@
 						</VBox>
                         
                         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressLabel}:${oi18n_En>addressLabel} +'/&#160;' + ${i18n>addressLabel}}" class="fontBold sapUiSizeCompact sapUiSmallMarginTop sapUiTinyMarginBegin"/>
+                        <VBox fitContainer="true" width="49%"  visible="{=${oDataModel>/surveyInfoDto/address/0/postal/0/countryCode} === 'US' &amp;&amp; ${oEnableMdl>/address1Enb}}" class="fontStyle sapUiTinyMarginBegin">
+         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>address}:${oi18n_En>address} + '&#xA;' +${i18n>address}}" class="fontStyle sapUiTinyMarginTop" wrapping="true"></Label>
+                                 	<html:input placeholder="Search here for Address" width="50%" type="text" id="iAddress" class="cl_HTMLInput" />
+                                <layoutData>
+                        <FlexItemData growFactor="1"/>
+                     </layoutData>
+
+        </VBox>
                         	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
-								<VBox>
+							<VBox >
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey} +'&#10;' + ${i18n>countrykey}}" wrapping="true"  required="true" class="fontStyle "></Label>
+                                    	<ComboBox width="100%" items="{oLookUpModel>/SupplierCountry}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/countryEnb}"  valueState="{oErrorModel>/countryE}" valueStateText="{oErrorModel>/countryM}" filterSecondaryValues="true" selectionChange="fnChangeSupplierCountry" showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/countryCode}">
+<core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+			</ComboBox>
+                                    <!-- <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/country}" class="inputStyle" /> -->
+                                </VBox>
+                            	<VBox>
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1} +'&#10;' + ${i18n>addressL1}}" wrapping="true" required="true" class="fontStyle "></Label>
 <Input enabled="{oEnableMdl>/address1Enb}" value="{oDataModel>/surveyInfoDto/address/0/postal/0/address1}"  editable="{oUserModel>/isNew}"  valueState="{oErrorModel>/address1E}" valueStateText="{oErrorModel>/address1M}" liveChange="fnLiveInputValueChange" class="inputStyle" maxLength="61" />
 								</VBox>
@@ -40,14 +55,7 @@
                                 <VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL5}:${oi18n_En>addressL5} +'&#10;' + ${i18n>addressL5}}" wrapping="true" class="fontStyle "></Label>
                                 <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address5}" editable="{oUserModel>/isNew}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41"/>
-                                </VBox>
-								<VBox >
-									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey} +'&#10;' + ${i18n>countrykey}}" wrapping="true"  required="true" class="fontStyle "></Label>
-                                    	<ComboBox width="100%" items="{oLookUpModel>/SupplierCountry}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/countryEnb}"  valueState="{oErrorModel>/countryE}" valueStateText="{oErrorModel>/countryM}" filterSecondaryValues="true" selectionChange="fnChangeSupplierCountry" showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/countryCode}">
-<core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
-			</ComboBox>
-                                    <!-- <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/country}" class="inputStyle" /> -->
-                                </VBox>
+                                </VBox>				
 								<VBox >
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>region}:${oi18n_En>region} +'&#10;' + ${i18n>region}}" wrapping="true"   required="true" class="fontStyle "></Label>
                                     <ComboBox width="100%" items="{oLookUpModel>/SupplierRegion}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/regionEnb}"  valueState="{oErrorModel>/stateE}" valueStateText="{oErrorModel>/stateM}"  filterSecondaryValues="true" showSecondaryValues="true" selectionChange="fnChangeSupplierRegion"  placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/regionCode}">

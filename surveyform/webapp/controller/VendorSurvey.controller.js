@@ -1552,6 +1552,19 @@ sap.ui.define([
                     }
                 });
             },
+            _fnLoadBankRegion: function(vCountry){
+                 var oModel = new JSONModel();
+                var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/regions/?country=" + vCountry;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oLookUpModel").setProperty("/BankRegion", oEvent.getSource().getData());
+                        oView.getModel("oLookUpModel").refresh();
+                    }
+                });
+            },
             _fnLoadOperServicesList: function () {
                 var oModel = new JSONModel();
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/services/findByServiceName/operationServices";
@@ -6721,12 +6734,18 @@ sap.ui.define([
                 oView.getModel("oErrorModel").getData().bankCtrlKeyM = "";
                 oView.getModel("oErrorModel").getData().paymentCurrE = "None";
                 oView.getModel("oErrorModel").getData().paymentCurrM = "";
-                oView.getModel("oErrorModel").refresh();              
+                oView.getModel("oErrorModel").refresh();  
+                if(!oEvent.getSource().getBindingPath("items").includes('Currency')){
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState = "";
+                    oView.getModel("oDataModel").refresh();
+                this._fnLoadBankRegion(oEvent.getSource().getSelectedKey()); 
+                }           
                 this.fnActivateBankScreen();
             },
 
             fnActivateBankScreen: function () {
                 var that = this;
+                 this._fnLoadBankRegion(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry); 
                 //  var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
                 // if(oView.getModel("oLookUpModel").getData().PaymentMethod && oView.getModel("oLookUpModel").getData().PaymentMethod !=="" && apaymentMethod === 'Optional'){
                 //      var bankFields = that.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
@@ -8240,6 +8259,11 @@ sap.ui.define([
                     $("input:text:visible:first").focus();
                 });
             },
+            onActivateBasicInfo: function(){
+                 oView.byId("iAddress").addEventDelegate({
+                    onAfterRendering: this.onActivateBasicInfoAddressSearch
+                }, this);
+            },
             onActivateCompanyInfo: function () {
 
                 oView.byId("iOAddress").addEventDelegate({
@@ -8270,6 +8294,30 @@ sap.ui.define([
                         }
                     }, this);
                 }
+            },
+            onActivateBasicInfoAddressSearch: function(){
+                 var that = this;
+                setTimeout(function () {
+                    var CustomKey = "8E55A2E520B342FABBB87DE6968743A1";
+                    options = { key: CustomKey, setCountryByIP: false, isTrial: false };
+                    var fields = [
+                        { element: "iAddress", field: "Address1", mode: so.fieldMode.SEARCH },
+                    ];
+                    var DOTSGlobalAddressComplete0 = new so.Address(fields, options);
+                    DOTSGlobalAddressComplete0.listen("populate", function (address, validations) {
+                         oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1 = address.Address1;
+                        oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address2 = address.Address2;
+                         oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address3= address.Address3;
+                          oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address4 = address.Address4;
+                        oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address5 = address.Address5;
+                         oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].city  = address.Locality;
+                         oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode  = address.PostalCode;
+                        oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].district  = address.AdminArea;
+                        oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].regionCode  = address.AdminAreaCode;
+                        oView.getModel("oDataModel").refresh();
+
+                    });
+                }, 500);
             },
             onActivateCompanyInfoOFA: function () {
                 var that = this;
