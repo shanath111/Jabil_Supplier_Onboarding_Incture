@@ -1552,6 +1552,19 @@ sap.ui.define([
                     }
                 });
             },
+            _fnLoadBankRegion: function(vCountry){
+                 var oModel = new JSONModel();
+                var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/regions/?country=" + vCountry;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oLookUpModel").setProperty("/BankRegion", oEvent.getSource().getData());
+                        oView.getModel("oLookUpModel").refresh();
+                    }
+                });
+            },
             _fnLoadOperServicesList: function () {
                 var oModel = new JSONModel();
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/services/findByServiceName/operationServices";
@@ -2252,13 +2265,64 @@ sap.ui.define([
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].poBoxPostalCode && oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].poBoxPostalCode.length > 10) {
                     iError = true;
                 }
-
-                oView.getModel("oErrorModel").refresh();
+                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("basicInfo").setValidated(false);
                 } else {
                     oView.byId("basicInfo").setValidated(true);
                 }
+var aError = false;
+                 if (!iError) {
+                        if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode === 'US') {
+                            var Address1, Address2, Address3, Address4, Address5, Locality, AdministrativeArea, PostalCode, Country, OutputLanguage, LicenseKey;
+                            Address1 =  oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1;
+                            Address2 = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address2;
+                            Address3 = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address3;
+                            Address4 =  oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address4;
+                            Address5 = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address5;
+                            Locality = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].city;
+                            AdministrativeArea = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].regionCode;
+                            PostalCode = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode;
+                            Country = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode ;
+                            OutputLanguage = "english";
+                            LicenseKey = "WS80-TZS3-FDQ1";
+                           // Added by shanath for Address validation
+                            var primaryUrl = '/comjabilsurveyform/plcm_service_object/AVI/api.svc/json/GetAddressInfo?Address1=' + Address1 + '&Address2=' + Address2 + '&Address3=' + Address3 + '&Address4=' + Address4 + '&Address5=' + Address5 + '&Locality=' + Locality + '&AdministrativeArea=' + AdministrativeArea + '&PostalCode=' + PostalCode + '&Country=' + Country + '&OutputLanguage=' + OutputLanguage + '&LicenseKey=' + LicenseKey;
+
+                            $.ajax({
+                                url: primaryUrl,
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function (data) {
+                                    if (data.AddressInfo.Status !== "Valid") {
+                                        aError = true;
+                                        MessageBox.show(oi18n.getText("invalidAddress"), {
+                                            icon: MessageBox.Icon.ERROR,
+                                            title: "Invalid Address"
+                                        });
+                                    }
+
+
+
+                                },
+                                async: false,
+                                error: function (data) {
+                                    var eMsg = data.responseText
+                                    MessageBox.show(eMsg, {
+                                        icon: sap.m.MessageBox.Icon.ERROR,
+                                        title: oi18n.getText("error")
+                                    });
+
+                                }
+                            });
+                        }
+                     if (aError) {
+                            oView.byId("basicInfo").setValidated(false);
+                        } else {
+                            oView.byId("basicInfo").setValidated(true);
+                        }
+                    }
+               
             },
             _fnValidateBusinessPartner: function (oEvent) {
                 var spaceRegex = /^\s+$/;
@@ -3213,6 +3277,7 @@ sap.ui.define([
                 var spaceRegex = /^\s+$/;
                 var iError = false;
                 var bankFields = this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
+                var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
                 if (this.emailValidResult) {
                     iError = true;
                 }
@@ -3245,7 +3310,7 @@ sap.ui.define([
                         iError = true;
                     }
                     if (visiblility.isBankProvided) {
-
+//if(apaymentMethod !== 'Optional'){
                         if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry)) {
                             oView.getModel("oErrorModel").getData().bankCountryE = "Error";
                             oView.getModel("oErrorModel").getData().bankCountryM = oi18n.getText("mandatoryCountry");
@@ -3331,7 +3396,7 @@ sap.ui.define([
 
                             iError = true;
                         }
-
+               //     }
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName.length > 60) {
                             iError = true;
                         }
@@ -3376,8 +3441,10 @@ sap.ui.define([
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey.length > 3) {
                             iError = true;
                         }
-
-                        if (that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
+ 
+            
+                      //  if (apaymentMethod !== 'Optional' && that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
+                            if(that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
                             iError = true;
                             oView.byId("fileUploader_BA").removeStyleClass("attachmentWithoutBorder");
                             oView.byId("fileUploader_BA").addStyleClass("attachmentWithBorder");
@@ -6587,6 +6654,80 @@ sap.ui.define([
                 }
             },
 
+            fnLivePaymentMethodChange: function (oEvent){
+                 if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                    oView.getModel("oDataModel").refresh();
+                }
+
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                // var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
+                // if( apaymentMethod === 'Optional'){
+                // oView.getModel("oErrorModel").getData().bankNameE = "None";
+                // oView.getModel("oErrorModel").getData().bankNameM = "";
+                // oView.getModel("oErrorModel").getData().bankAddrE = "None";
+                // oView.getModel("oErrorModel").getData().bankAddrM = "";
+                // oView.getModel("oErrorModel").getData().bankCityE = "None";
+                // oView.getModel("oErrorModel").getData().bankCityM = "";
+                // oView.getModel("oErrorModel").getData().bankAccNumE = "None";
+                // oView.getModel("oErrorModel").getData().bankAccNumM = "";
+                // oView.getModel("oErrorModel").getData().benifAccHNameE = "None";
+                // oView.getModel("oErrorModel").getData().benifAccHNameM = "";
+                // oView.getModel("oErrorModel").getData().bankSwiftE = "None";
+                // oView.getModel("oErrorModel").getData().bankSwiftM = "";
+                // oView.getModel("oErrorModel").getData().bankBranchE = "None";
+                // oView.getModel("oErrorModel").getData().bankBranchM = "";
+                // oView.getModel("oErrorModel").getData().bankRefE = "None";
+                // oView.getModel("oErrorModel").getData().bankRefM = "";
+                // oView.getModel("oErrorModel").getData().bankNumE = "None";
+                // oView.getModel("oErrorModel").getData().bankNumM = "";
+                // oView.getModel("oErrorModel").getData().ibanE = "None";
+                // oView.getModel("oErrorModel").getData().ibanM = "";
+                // oView.getModel("oErrorModel").getData().benifAccCurrE = "None";
+                // oView.getModel("oErrorModel").getData().benifAccCurrM = "";
+                // oView.getModel("oErrorModel").getData().bankCtrlKeyE = "None";
+                // oView.getModel("oErrorModel").getData().bankCtrlKeyM = "";
+                // oView.getModel("oErrorModel").getData().paymentCurrE = "None";
+                // oView.getModel("oErrorModel").getData().paymentCurrM = "";
+                // oView.getModel("oErrorModel").refresh();
+                //  var bankFields = this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
+                //     bankFields.bankName = false;
+                //     bankFields.bankBranch = false;
+                //     bankFields.bankStreet = false;
+                //     bankFields.bankCity = false;
+                //     bankFields.benificiaryAccountNumber = false;
+                //     bankFields.swiftCode = false;
+                //     bankFields.bankNumber = false;
+                //     bankFields.bankCountry = false;
+                //     bankFields.benificiaryAccHolderName = false;
+                //     bankFields.bankKey = false;
+                //     bankFields.benificiaryAccCurrency = false;
+                //     bankFields.instructionKey = false;
+                //     bankFields.bankControlKey = false;
+                //     bankFields.referenceDetails = false;
+                //     bankFields.iban = false;
+                //     bankFields.ibanLength = null;
+                //     bankFields.bankControlKeyLogic = null;
+                //     bankFields.bankControlKeyDigitsLogic = null;
+                //     bankFields.companyCodeCountry = "";
+                //     bankFields.bankKeyVal1 = "";
+                //     bankFields.bankKeyVal2 = "";
+                //     bankFields.bankKeyVal3 = "";
+                //     this.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                // } else {
+                //       this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.bankCountry = true;
+                //         this.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                //      this.fnActivateBankScreen();
+                // }
+            },
+
             fnLiveValueBankInput: function (oEvent) {
                 var that = this;
                 if (oEvent.getSource().getValue()) {
@@ -6629,14 +6770,46 @@ sap.ui.define([
                 oView.getModel("oErrorModel").getData().bankCtrlKeyM = "";
                 oView.getModel("oErrorModel").getData().paymentCurrE = "None";
                 oView.getModel("oErrorModel").getData().paymentCurrM = "";
-                oView.getModel("oErrorModel").refresh();
+                oView.getModel("oErrorModel").refresh();  
+                if(!oEvent.getSource().getBindingPath("items").includes('Currency')){
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState = "";
+                    oView.getModel("oDataModel").refresh();
+                this._fnLoadBankRegion(oEvent.getSource().getSelectedKey()); 
+                }           
                 this.fnActivateBankScreen();
-
-
             },
 
             fnActivateBankScreen: function () {
                 var that = this;
+                 this._fnLoadBankRegion(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry); 
+                //  var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
+                // if(oView.getModel("oLookUpModel").getData().PaymentMethod && oView.getModel("oLookUpModel").getData().PaymentMethod !=="" && apaymentMethod === 'Optional'){
+                //      var bankFields = that.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
+                //     bankFields.bankName = false;
+                //     bankFields.bankBranch = false;
+                //     bankFields.bankStreet = false;
+                //     bankFields.bankCity = false;
+                //     bankFields.benificiaryAccountNumber = false;
+                //     bankFields.swiftCode = false;
+                //     bankFields.bankNumber = false;
+                //     bankFields.bankCountry = false;
+                //     bankFields.benificiaryAccHolderName = false;
+                //     bankFields.bankKey = false;
+                //     bankFields.benificiaryAccCurrency = false;
+                //     bankFields.instructionKey = false;
+                //     bankFields.bankControlKey = false;
+                //     bankFields.referenceDetails = false;
+                //     bankFields.iban = false;
+                //     bankFields.ibanLength = null;
+                //     bankFields.bankControlKeyLogic = null;
+                //     bankFields.bankControlKeyDigitsLogic = null;
+                //     bankFields.companyCodeCountry = "";
+                //     bankFields.bankKeyVal1 = "";
+                //     bankFields.bankKeyVal2 = "";
+                //     bankFields.bankKeyVal3 = "";
+                //     that.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                // }
+                // else 
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry) {
                     var requestData = {
                         "companyCodeCountry": oView.getModel("oDataModel").getData().shippingInfoDto.comCode,
@@ -8122,6 +8295,11 @@ sap.ui.define([
                     $("input:text:visible:first").focus();
                 });
             },
+            onActivateBasicInfo: function(){
+                 oView.byId("iAddress").addEventDelegate({
+                    onAfterRendering: this.onActivateBasicInfoAddressSearch
+                }, this);
+            },
             onActivateCompanyInfo: function () {
 
                 oView.byId("iOAddress").addEventDelegate({
@@ -8152,6 +8330,30 @@ sap.ui.define([
                         }
                     }, this);
                 }
+            },
+            onActivateBasicInfoAddressSearch: function(){
+                 var that = this;
+                setTimeout(function () {
+                    var CustomKey = "8E55A2E520B342FABBB87DE6968743A1";
+                    options = { key: CustomKey, setCountryByIP: false, isTrial: false };
+                    var fields = [
+                        { element: "iAddress", field: "Address1", mode: so.fieldMode.SEARCH },
+                    ];
+                    var DOTSGlobalAddressComplete0 = new so.Address(fields, options);
+                    DOTSGlobalAddressComplete0.listen("populate", function (address, validations) {
+                         oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1 = address.Address1;
+                        oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address2 = address.Address2;
+                         oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address3= address.Address3;
+                          oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address4 = address.Address4;
+                        oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address5 = address.Address5;
+                         oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].city  = address.Locality;
+                         oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode  = address.PostalCode;
+                        oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].district  = address.AdminArea;
+                        oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].regionCode  = address.AdminAreaCode;
+                        oView.getModel("oDataModel").refresh();
+
+                    });
+                }, 500);
             },
             onActivateCompanyInfoOFA: function () {
                 var that = this;

@@ -29,6 +29,11 @@ color: #404040;
 opacity: 1 !important;
 
 }
+.fontStyleBlue{
+  letter-spacing: 0.17px !important ;
+color: #041c92;
+opacity: 1 !important;  
+}
 .fontStyle .sapMLabel {
 letter-spacing: 0.17px !important;
 color: #404040 !important;

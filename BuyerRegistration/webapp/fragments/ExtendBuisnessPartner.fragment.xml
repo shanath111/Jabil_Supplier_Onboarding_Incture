@@ -185,6 +185,7 @@
                                 
                               <HBox class="cl_HBoxBlockSep">
                                 </HBox>
+                                <VBox visible="false">
                                   <Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>BPCAltrnateContaact}"></Label>
 								<l:Grid defaultSpan="XL3 L3 M3 S12"  class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
 									
@@ -238,6 +239,7 @@
 				
                                    <HBox class="cl_HBoxBlockSep">
                                 </HBox>
+                                </VBox>
                                 	<Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>BPCPayment}"></Label>
 								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
 									<VBox class="VRVboxStyle1">

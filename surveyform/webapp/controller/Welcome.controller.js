@@ -264,13 +264,17 @@ sap.ui.define([
                     if (!email.match(mailregex)) {
                         oEvent.getSource().setValueState("Error");
                         oEvent.getSource().setValueStateText(oi18n.getText("invalidEmail"));
+                        wView.getModel("oVisibilityModel").getData().validAlternateEmailId = false;
                     } else if ((email.toUpperCase().includes("JABIL.COM") || email.toUpperCase().includes("NYPRO.COM") || email.toUpperCase().includes("JABILDAS.COM"))) {
                         oEvent.getSource().setValueState("Error");
                         oEvent.getSource().setValueStateText(oi18n.getText("invalidEmail"));
+                        wView.getModel("oVisibilityModel").getData().validAlternateEmailId = false;
                     } else {
                         oEvent.getSource().setValueState("None");
                         oEvent.getSource().setValueStateText("");
+                        wView.getModel("oVisibilityModel").getData().validAlternateEmailId = true;
                     }
+                     wView.getModel("oVisibilityModel").refresh();
                 }
             },
             onBeforeRendering: function () { },
