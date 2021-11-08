@@ -441,7 +441,11 @@ sap.ui.define([
                         if (oEvent.getSource().getData().businessPartnerId !== "") {
                             oEvent.getSource().getData().defaultValuesDto.reqPurchasingOrg = oView.getModel("JMBPCreate").getData().purchasingOrg;
                             oEvent.getSource().getData().defaultValuesDto.reqCompanyCode = oView.getModel("JMBPCreate").getData().companyCode;
+                            if (!oEvent.getSource().getData().defaultValuesDto.searchTerm1) {
+                                oEvent.getSource().getData().defaultValuesDto.searchTerm1 =  oView.getModel("JMBPCreate").getData().corporationName.substring(0,10);
+                             
 
+                            }
                             oView.getModel("oDataModel").setData(oEvent.getSource().getData());
                             oView.getModel("oDataModel").refresh();
                             if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
@@ -724,7 +728,7 @@ sap.ui.define([
                                         "jobTitle": data.bpRequestScope.bpRequestScopeAddlDetails.jobTitle,
                                         "email": data.bpRequestScope.bpRequestScopeAddlDetails.email,
                                         "contactCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.contactCountryCode,
-                                         "mobileCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.mobileCountryCode,
+                                        "mobileCountryCode": data.bpRequestScope.bpRequestScopeAddlDetails.mobileCountryCode,
                                         "contactNumber": data.bpRequestScope.bpRequestScopeAddlDetails.contactNumber,
                                         "extension": data.bpRequestScope.bpRequestScopeAddlDetails.extension,
                                         "address1": data.bpRequestScope.bpRequestScopeAddlDetails.address1,
@@ -924,12 +928,12 @@ sap.ui.define([
                         oView.getModel("oConfigMdl").getData().buyerData = true;
                         oView.getModel("oConfigMdl").getData().onBoardDet = false;
                         oView.getModel("oConfigMdl").refresh();
-                          sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
-                        icon: sap.m.MessageBox.Icon.ERROR,
-                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                        contentWidth: "30%",
-                        styleClass: "sapUiSizeCompact"
-                    });
+                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
                         return;
                     }
                     vError = false;
