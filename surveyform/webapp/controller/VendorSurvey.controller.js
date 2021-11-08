@@ -1831,7 +1831,7 @@ sap.ui.define([
             },
             _fnValidateBasicInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
-                var iError = false;
+                var iError = false,that= this;
                 if (this.emailValidResult) {
                     iError = true;
                 }
@@ -2268,6 +2268,8 @@ sap.ui.define([
                  oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("basicInfo").setValidated(false);
+                       var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
+                        isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                     if (isDefaultLan) {
                             sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
                                 icon: sap.m.MessageBox.Icon.ERROR,
