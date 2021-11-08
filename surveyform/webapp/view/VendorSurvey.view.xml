@@ -20,14 +20,7 @@
 						</VBox>
                         
                         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressLabel}:${oi18n_En>addressLabel} +'/&#160;' + ${i18n>addressLabel}}" class="fontBold sapUiSizeCompact sapUiSmallMarginTop sapUiTinyMarginBegin"/>
-                        <VBox fitContainer="true" width="49%"  visible="{=${oDataModel>/surveyInfoDto/address/0/postal/0/countryCode} === 'US' &amp;&amp; ${oEnableMdl>/address1Enb}}" class="fontStyle sapUiTinyMarginBegin">
-         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>address}:${oi18n_En>address} + '&#xA;' +${i18n>address}}" class="fontStyle sapUiTinyMarginTop" wrapping="true"></Label>
-                                 	<html:input placeholder="Search here for Address" width="50%" type="text" id="iAddress" class="cl_HTMLInput" />
-                                <layoutData>
-                        <FlexItemData growFactor="1"/>
-                     </layoutData>
-
-        </VBox>
+                        
                         	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 							<VBox >
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey} +'&#10;' + ${i18n>countrykey}}" wrapping="true"  required="true" class="fontStyle "></Label>
@@ -36,10 +29,24 @@
 			</ComboBox>
                                     <!-- <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/country}" class="inputStyle" /> -->
                                 </VBox>
+                                <VBox class="fontStyle">
+         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>address}:${oi18n_En>address} + '&#xA;' +${i18n>address}}" class="fontStyle" wrapping="true"></Label>
+                                 	<html:input placeholder=" Search here for Address" width="50%" type="text" id="iAddress" class="cl_HTMLInput" />
+                                <!-- <layoutData>
+                        <FlexItemData growFactor="1"/>
+                     </layoutData> -->
+                       <layoutData>
+                <l:GridData spanM="6" spanL="6" spanS="6" spanXL="6" visibleM= "{=${oDataModel>/surveyInfoDto/address/0/postal/0/countryCode} === 'US'  &amp;&amp; ${oUserModel>/isNew} &amp;&amp; ${oEnableMdl>/address1Enb}}" visibleS="{=${oDataModel>/surveyInfoDto/address/0/postal/0/countryCode} === 'US' &amp;&amp; ${oUserModel>/isNew} &amp;&amp; ${oEnableMdl>/address1Enb} }" visibleL="{=${oDataModel>/surveyInfoDto/address/0/postal/0/countryCode} === 'US' &amp;&amp; ${oUserModel>/isNew} &amp;&amp; ${oEnableMdl>/address1Enb}}" visibleXL="{=${oDataModel>/surveyInfoDto/address/0/postal/0/countryCode} === 'US' &amp;&amp; ${oUserModel>/isNew} &amp;&amp; ${oEnableMdl>/address1Enb}}"/>
+                </layoutData>
+
+        </VBox>
                             	<VBox>
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1} +'&#10;' + ${i18n>addressL1}}" wrapping="true" required="true" class="fontStyle "></Label>
 <Input enabled="{oEnableMdl>/address1Enb}" value="{oDataModel>/surveyInfoDto/address/0/postal/0/address1}"  editable="{oUserModel>/isNew}"  valueState="{oErrorModel>/address1E}" valueStateText="{oErrorModel>/address1M}" liveChange="fnLiveInputValueChange" class="inputStyle" maxLength="61" />
-								</VBox>
+							 <layoutData>
+                <l:GridData  linebreak= "{=(${oDataModel>/surveyInfoDto/address/0/postal/0/countryCode} === 'US'  &amp;&amp; ${oUserModel>/isNew}) ? (${oEnableMdl>/address1Enb} !== false ? true : false): false}"/>
+                </layoutData>
+                            	</VBox>
 								<VBox >
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2} +'&#10;' + ${i18n>addressL2}}" wrapping="true" class="fontStyle"></Label>
                                 <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address2}" editable="{oUserModel>/isNew}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />

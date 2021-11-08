@@ -122,7 +122,7 @@
 				<FlexItemData minWidth="100%"/>
 			</layoutData>
 		</Panel> -->
-        <Panel width="100%" class="sapUiTinyMarginTop panelPadding sapUiSmallMarginBottom">
+        <Panel width="100%" visible="{oUserModel>/isNew}" class="sapUiTinyMarginTop panelPadding">
         <VBox class="fontStyle sapUiSizeCompact">
         <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>comRegInfo}:${oi18n_En>comRegInfo} +'&#10;&#10;' +${i18n>comRegInfo}}" class="sapUiTinyMarginBegin fontBold"/>
         <CheckBox editable="{oUserModel>/isNew}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>naturalPerson}:${oi18n_En>naturalPerson}+ '/ ' +${i18n>naturalPerson}}" selected="{oDataModel>/bpCentral/0/naturalPersonalIndicator}" enabled="{oEnableMdl>/naturalPersonEnb}" class=" sapUiTinyMarginTop fontStyle inputStyle" />
@@ -254,7 +254,7 @@
           <VBox class="sapUiTinyMarginBegin sapUiTinyMarginTop fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>publicTradeText}:${oi18n_En>publicTradeText} +'/&#160;' +${i18n>publicTradeText}}" class="fontStyle fontStyleItalic sapUiSizeCompact"/></VBox> -->
 		<VBox>
-        <l:VerticalLayout width="100%">
+        <l:VerticalLayout width="100%" class="sapUiSmallMarginTop">
 							<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>ppoc}:${oi18n_En>ppoc} +'/&#160;' + ${i18n>ppoc}}" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
                             <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 								<VBox>
