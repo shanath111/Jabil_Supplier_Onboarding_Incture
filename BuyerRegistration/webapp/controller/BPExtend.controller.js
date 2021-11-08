@@ -962,7 +962,7 @@ sap.ui.define([
                             "conflictOfInterests": -1,
                             "isExclCiscoGhub": -1,
                             "representAnotherCompanys": 1,
-                            "oneTimePurchaseSupplierIndicators": -1,
+                            "oneTimePurchaseSupplierIndicators": 1,
                             "customerDirectedSupplierIndicators": -1,
                             "outsideProcessiongSupplierIndicators": 1,
                             "manualAddressOverrideSupplierIndicators": 1,
@@ -1096,12 +1096,12 @@ sap.ui.define([
                         vError = true;
                         oView.getModel("JMBPCreate").refresh();
                     }
-                    if (!oView.getModel("JMBPCreate").getData().workCell) {
-                        oView.getModel("JMBPCreate").getData().workCelle = "Error";
-                        oView.getModel("JMBPCreate").getData().workCellm = oi18n.getProperty("BPCMandatoryValidationWorkCell");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().workCell) {
+                    //     oView.getModel("JMBPCreate").getData().workCelle = "Error";
+                    //     oView.getModel("JMBPCreate").getData().workCellm = oi18n.getProperty("BPCMandatoryValidationWorkCell");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // }
                     if (!oView.getModel("JMBPCreate").getData().firstName) {
                         oView.getModel("JMBPCreate").getData().firstNamee = "Error";
                         oView.getModel("JMBPCreate").getData().firstNamem = oi18n.getProperty("BPCMandatoryValidationFName");
@@ -1278,12 +1278,12 @@ sap.ui.define([
                             vError = true;
                         }
                     }
-                    if (!oView.getModel("JMBPCreate").getData().altContactCountryCode) {
-                        oView.getModel("JMBPCreate").getData().altContactCountryCodee = "Error";
-                        oView.getModel("JMBPCreate").getData().altContactCountryCodem = oi18n.getProperty("BPCEnterCountryCode1");
-                        oView.getModel("JMBPCreate").refresh();
-                        vError = true;
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().altContactCountryCode) {
+                    //     oView.getModel("JMBPCreate").getData().altContactCountryCodee = "Error";
+                    //     oView.getModel("JMBPCreate").getData().altContactCountryCodem = oi18n.getProperty("BPCEnterCountryCode1");
+                    //     oView.getModel("JMBPCreate").refresh();
+                    //     vError = true;
+                    // }
 
 
 

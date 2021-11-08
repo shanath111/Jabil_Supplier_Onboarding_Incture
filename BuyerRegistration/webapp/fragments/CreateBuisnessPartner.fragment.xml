@@ -25,23 +25,19 @@
 										</ComboBox>
 									</VBox>
                                 
-                                    <VBox class="VRVboxStyle1">
+                                    <!-- <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCPurchasingGroup}:" required="false" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/PurchasingGroup}"  autocomplete="false" valueState="{JMBPCreate>/purchasingGroupe}" valueStateText="{JMBPCreate>/purchasingGroupm}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurGroup" showSecondaryValues="true" selectedKey="{JMBPCreate>/purchasingGroup}"
 											class="cl_VRInputCls"    >
 											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
-									</VBox>
-								<VBox class="VRVboxStyle1">
+									</VBox> -->
+								<!-- <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCWorkcell}" required="true" class="cl_VRLablCls "></Label>
-										<!-- <ComboBox width="95%" items="{oBPLookUpMdl>/WorkCell}"   valueState="{JMBPCreate>/workCelle}" valueStateText="{JMBPCreate>/workCellm}"
-											filterSecondaryValues="true" enabled="{oConfigMdl>/screenEditable}"  change="fnLiveChangeWorkCell" showSecondaryValues="true" selectedKey="{JMBPCreate>/workCell}"
-											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
-											<core:ListItem key="{oBPLookUpMdl>id}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
-										</ComboBox> -->
+									
                                         	<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/workCell}" liveChange="fnLiveChangeWorkCell" change="fnInputSpaceCheck" valueState="{JMBPCreate>/workCelle}" valueStateText="{JMBPCreate>/workCellm}" class="cl_VRInputCls"></Input>
-									</VBox>
+									</VBox> -->
                                         <VBox class="VRVboxStyle1" visible="{JMBPCreate>/materialGroupVis}">
 										<Label text="{i18n>MaterialGroup}" required="true" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/materialGroup}" valueState="{JMBPCreate>/materialGroupe}" valueStateText="{JMBPCreate>/materialGroupm}"
@@ -151,11 +147,8 @@
                                     <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
 										<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}"  maxLength="35" change="fnInputSpaceCheck" value="{JMBPCreate>/corporationName4}"></Input>
-								
                                 	</VBox>   
-                                 
-									
-									
+
 								</l:Grid>
 				   <!-- <l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact ">
 								
@@ -283,8 +276,8 @@
 									<Label text="{i18n>countryCode}" required="true"  class="cl_VRLablCls"></Label>
                                  
 									<VBox>
-										<ComboBox width="100%"  filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" selectedKey="{JMBPCreate>/contactCountryCode}" valueState="{JMBPCreate>/contactCountryCodee}" valueStateText="{JMBPCreate>/contactCountryCodem}" change="fnLiveChangeCountryCode" showSecondaryValues="true" items="{oBPLookUpMdl>/countryContactCode}"  class="cl_VRInputCls">
-                                         <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										<ComboBox width="100%"  filterSecondaryValues="false" editable="{oConfigMdl>/screenEditable}" selectedKey="{JMBPCreate>/contactCountryCode}" valueState="{JMBPCreate>/contactCountryCodee}" valueStateText="{JMBPCreate>/contactCountryCodem}" change="fnLiveChangeCountryCode" showSecondaryValues="true" items="{oBPLookUpMdl>/countryContactCode}"  class="cl_VRInputCls">
+                                         <core:ListItem key="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" />
                                         </ComboBox>	
                                     </VBox>
                                   <layoutData>
@@ -302,8 +295,8 @@
 									<Label text="{i18n>countryCode}" required="true"  class="cl_VRLablCls"></Label>
                                  
 									<VBox>
-										<ComboBox width="100%"  filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" selectedKey="{JMBPCreate>/mobileCountryCode}" valueState="{JMBPCreate>/mobileCountryCodee}" valueStateText="{JMBPCreate>/mobileCountryCodem}" change="fnLiveChangeCountryCodeMob" showSecondaryValues="true" items="{oBPLookUpMdl>/countryContactCode}"  class="cl_VRInputCls">
-                                         <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										<ComboBox width="100%"  filterSecondaryValues="false" editable="{oConfigMdl>/screenEditable}" selectedKey="{JMBPCreate>/mobileCountryCode}" valueState="{JMBPCreate>/mobileCountryCodee}" valueStateText="{JMBPCreate>/mobileCountryCodem}" change="fnLiveChangeCountryCodeMob" showSecondaryValues="true" items="{oBPLookUpMdl>/countryContactCode}"  class="cl_VRInputCls">
+                                         <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
                                         </ComboBox>	
                                     </VBox>
                                   <layoutData>
@@ -377,7 +370,7 @@
                                  
                                <HBox class="cl_BPCBlockSep">
                                 </HBox> 
-                                	<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
+                                	<l:Grid defaultSpan="XL3 L3 M3 S12" visible="false" class="sapUiSizeCompact sapUiSmallMarginTop">
 									 <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCOneTimePOIndicator}" required="true" class="cl_VRLablCls sapUiTinyMarginBegin"></Label>
 						
