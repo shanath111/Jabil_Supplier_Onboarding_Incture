@@ -286,7 +286,7 @@ sap.ui.define([
                         "rfcv": false,
                         "conflictOfInterests": -1,
                         "representAnotherCompanys": 1,
-                        "oneTimePurchaseSupplierIndicators": -1,
+                        "oneTimePurchaseSupplierIndicators": 1,
                         "customerDirectedSupplierIndicators": -1,
                         "outsideProcessiongSupplierIndicators": 1,
                         "manualAddressOverrideSupplierIndicators": 1,
@@ -572,12 +572,12 @@ sap.ui.define([
                         vError = true;
                         oView.getModel("JMBPCreate").refresh();
                     }
-                    if (!oView.getModel("JMBPCreate").getData().workCell) {
-                        oView.getModel("JMBPCreate").getData().workCelle = "Error";
-                        oView.getModel("JMBPCreate").getData().workCellm = oi18n.getProperty("BPCMandatoryValidationWorkCell");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().workCell) {
+                    //     oView.getModel("JMBPCreate").getData().workCelle = "Error";
+                    //     oView.getModel("JMBPCreate").getData().workCellm = oi18n.getProperty("BPCMandatoryValidationWorkCell");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // }
                     // if (!oView.getModel("JMBPCreate").getData().incoTerms) {
                     //     oView.getModel("JMBPCreate").getData().incoTermse = "Error";
                     //     oView.getModel("JMBPCreate").getData().incoTermsm = oi18n.getProperty("BPCMandatoryValidationIncoterm");
