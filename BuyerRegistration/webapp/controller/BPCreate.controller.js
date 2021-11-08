@@ -2145,7 +2145,7 @@ sap.ui.define([
             },
             fnLiveChangeCorporationName: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
-                if (vLength > 32) {
+                if (vLength > 35) {
                     oView.getModel("JMBPCreate").getData().corporationNamee = "Error";
                     oView.getModel("JMBPCreate").getData().corporationNamem = oi18n.getProperty("BPCMaxLengthExceeds");
                     oView.getModel("JMBPCreate").refresh();
