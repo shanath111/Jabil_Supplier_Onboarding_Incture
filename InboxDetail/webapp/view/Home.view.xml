@@ -20,6 +20,12 @@
 				class="sapUiSizeCompact cl_TileHeight sapUiSmallMarginTop sapUiSmallMarginBegin"
 			title="{i18n>CreateTooltip}"
 			/>
+            	<StandardTile
+                    press="fnNavTolaunchCC"
+                   icon="sap-icon://add"
+				class="sapUiSizeCompact cl_TileHeight sapUiSmallMarginTop sapUiSmallMarginBegin"
+			title="{i18n>LaunchCCC}"
+			/>
 				</content>
                
 			</Page>

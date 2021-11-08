@@ -17,6 +17,9 @@ sap.ui.define([
             fnNavToCRResubmitDetail: function () {
                 this.getOwnerComponent().getRouter().navTo("ResubmitDetail");
             },
+              fnNavTolaunchCC: function () {
+                this.getOwnerComponent().getRouter().navTo("LaunchCC");
+            },
 
         });
     });
