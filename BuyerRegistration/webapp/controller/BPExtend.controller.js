@@ -1278,12 +1278,12 @@ sap.ui.define([
                             vError = true;
                         }
                     }
-                    if (!oView.getModel("JMBPCreate").getData().altContactCountryCode) {
-                        oView.getModel("JMBPCreate").getData().altContactCountryCodee = "Error";
-                        oView.getModel("JMBPCreate").getData().altContactCountryCodem = oi18n.getProperty("BPCEnterCountryCode1");
-                        oView.getModel("JMBPCreate").refresh();
-                        vError = true;
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().altContactCountryCode) {
+                    //     oView.getModel("JMBPCreate").getData().altContactCountryCodee = "Error";
+                    //     oView.getModel("JMBPCreate").getData().altContactCountryCodem = oi18n.getProperty("BPCEnterCountryCode1");
+                    //     oView.getModel("JMBPCreate").refresh();
+                    //     vError = true;
+                    // }
 
 
 
