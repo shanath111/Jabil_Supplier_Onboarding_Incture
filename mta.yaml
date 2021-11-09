@@ -50,7 +50,7 @@ modules:
       name: reports
       target-path: resources/
     - artifacts:
-      - processFlow-content.zip
+      - processflow-content.zip
       name: processFlow
       target-path: resources/
 - name: surveyform

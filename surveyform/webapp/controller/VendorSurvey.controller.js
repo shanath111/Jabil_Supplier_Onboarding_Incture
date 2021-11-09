@@ -1899,7 +1899,7 @@ sap.ui.define([
                 }
                 if (!oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1 || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1)) {
                     oView.getModel("oErrorModel").getData().address1E = "Error";
-                    oView.getModel("oErrorModel").getData().adrress1M = oi18n.getText("mandatoryAddr1");
+                    oView.getModel("oErrorModel").getData().address1M = oi18n.getText("mandatoryAddr1");
 
                     iError = true;
                 }
