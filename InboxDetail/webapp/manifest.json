@@ -7,7 +7,7 @@
         "applicationVersion": {
             "version": "1.0.0"
         },
-        "title": "CR Resubmit",
+        "title": "Admin",
         "description": "",
         "resources": "resources.json",
         "ach": "ach",
@@ -33,7 +33,7 @@
     },
     "sap.ui": {
         "technology": "UI5",
-              "fullWidth": true,
+        "fullWidth": true,
         "icons": {
             "icon": "sap-icon://task",
             "favIcon": "",
@@ -112,7 +112,7 @@
                     "pattern": "App",
                     "target": "App"
                 },
-                  {
+                {
                     "name": "Home",
                     "pattern": "",
                     "target": "Home"
@@ -126,6 +126,11 @@
                     "name": "ResubmitDetail",
                     "pattern": "ResubmitDetail",
                     "target": "ResubmitDetail"
+                },
+                {
+                    "name": "LaunchCC",
+                    "pattern": "LaunchCC",
+                    "target": "LaunchCC"
                 },
                 {
                     "name": "BPExtend",
@@ -189,6 +194,10 @@
                 "ResubmitDetail": {
                     "viewType": "XML",
                     "viewName": "ResubmitDetail"
+                },
+                "LaunchCC": {
+                    "viewType": "XML",
+                    "viewName": "LaunchCC"
                 }
             }
         }

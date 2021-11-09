@@ -12,23 +12,7 @@ sap.ui.define([
                 this.fnLoadUser();
                
             },
-            fnDisplayNav: function (vIsNew, vCaseId) {
-                var isNew = vIsNew;
-                if (isNew == "true") {
-                    var vCaseId = vCaseId;
-                    this.getOwnerComponent().getRouter().navTo("BPCreate", {
-                        Id: vCaseId
-                    },true);
-                } else {
-                    var vCaseId = vCaseId;
-                    this.getOwnerComponent().getRouter().navTo("BPExtend", {
-                        Id: vCaseId,
-                        Name: "Display"
-                    },true);
-                }
-
-            },
-            fnLoadUser: function () {
+             fnLoadUser: function () {
                 var that = this;
                 var sUrl = "/nsBuyerRegistration/plcm_portal_services/loggedinUser";
                 $.ajax({
@@ -45,7 +29,24 @@ sap.ui.define([
 
                     }
                 });
+            },
+            fnDisplayNav: function (vIsNew, vCaseId) {
+                var isNew = vIsNew;
+                if (isNew == "true") {
+                    var vCaseId = vCaseId;
+                    this.getOwnerComponent().getRouter().navTo("BPCreate", {
+                        Id: vCaseId
+                    },true);
+                } else {
+                    var vCaseId = vCaseId;
+                    this.getOwnerComponent().getRouter().navTo("BPExtend", {
+                        Id: vCaseId,
+                        Name: "Display"
+                    },true);
+                }
 
+            
+         
                 // var oModel = new JSONModel();
                 // var sUrl = "/nsBuyerRegistration/plcm_portal_services/loggedinUser";
                 // oModel.loadData(sUrl, false, {

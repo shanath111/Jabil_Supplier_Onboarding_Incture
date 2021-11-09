@@ -23,12 +23,12 @@ sap.ui.define([
                 });
 
                 // window.addEventListener("resize", this.fnScreenResize); //Event to be triggered on screen resize
-             this.oRouter = this.getOwnerComponent().getRouter();
+                this.oRouter = this.getOwnerComponent().getRouter();
                 this.oRouter.getRoute("Home").attachMatched(this.fnVendorRequestRoute, this);
 
             },
             onAfterRendering: function () {
-               // this.fnVendorRequestRoute();
+                // this.fnVendorRequestRoute();
             },
             fnNavToGraph: function () {
                 this.getOwnerComponent().getRouter().navTo("Reports");
@@ -139,7 +139,7 @@ sap.ui.define([
                     "purchasingOrg": oView.getModel("JMSuppReqListHeader").getData().purchasingOrg,
                     "status": oView.getModel("JMSuppReqListHeader").getData().status,
                     "organizationName": oView.getModel("JMSuppReqListHeader").getData().organizationName,
-                    //"buyerName": oView.getModel("oConfigMdl").getData().usrData.givenName
+                    "buyerName": oView.getModel("oConfigMdl").getData().usrData.givenName
                 };
                 oModel.loadData(sUrl, JSON.stringify(oPayload), true, "POST", false, true, {
                     "Content-Type": "application/json"
@@ -279,7 +279,7 @@ sap.ui.define([
 
                 var isNew = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("isNew");
                 params.isNew = isNew;
-                   var vCaseId = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("caseId");
+                var vCaseId = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("caseId");
                 params.caseId = vCaseId;
                 var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
                 var hash = (oCrossAppNavigator && oCrossAppNavigator.hrefForExternal({
@@ -296,7 +296,7 @@ sap.ui.define([
                         shellHash: hash
                     }
                 });
-               
+
             },
             fnNextPage: function () {
                 oView.getModel("JMSuppReqList").getData().currentPage = oView.getModel("JMSuppReqList").getData().currentPage + 1;
@@ -354,6 +354,31 @@ sap.ui.define([
                 if (spaceRegex.test(oEvent.getSource().getValue())) {
                     oEvent.getSource().setValue("");
                 }
+            },
+            fnNavToProcessFlow: function (oEvent) {
+
+                var params = {
+                    "params": true
+                };
+
+
+                var vCaseId = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("caseId");
+                params.caseId = vCaseId;
+                var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
+                var hash = (oCrossAppNavigator && oCrossAppNavigator.hrefForExternal({
+                    target: {
+                        semanticObject: "processFlow",
+                        action: "display"
+                    },
+                    params: params
+                })) || "";
+
+
+                oCrossAppNavigator.toExternal({
+                    target: {
+                        shellHash: hash
+                    }
+                });
             }
         });
     });

@@ -172,7 +172,7 @@ sap.ui.define([
             },
             fnLoadCompanyCode: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/company-codes";
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/api/v1/reference-data/company-codes";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -199,7 +199,7 @@ sap.ui.define([
             },
             fnLoadPurOrg: function (vCompCode, vDescription) {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/purchasingOrg/" + vCompCode;
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/api/v1/reference-data/purchasingOrg/" + vCompCode;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -286,7 +286,7 @@ sap.ui.define([
                         "rfcv": false,
                         "conflictOfInterests": -1,
                         "representAnotherCompanys": 1,
-                        "oneTimePurchaseSupplierIndicators": -1,
+                        "oneTimePurchaseSupplierIndicators": 1,
                         "customerDirectedSupplierIndicators": -1,
                         "outsideProcessiongSupplierIndicators": 1,
                         "manualAddressOverrideSupplierIndicators": 1,
@@ -572,12 +572,12 @@ sap.ui.define([
                         vError = true;
                         oView.getModel("JMBPCreate").refresh();
                     }
-                    if (!oView.getModel("JMBPCreate").getData().workCell) {
-                        oView.getModel("JMBPCreate").getData().workCelle = "Error";
-                        oView.getModel("JMBPCreate").getData().workCellm = oi18n.getProperty("BPCMandatoryValidationWorkCell");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().workCell) {
+                    //     oView.getModel("JMBPCreate").getData().workCelle = "Error";
+                    //     oView.getModel("JMBPCreate").getData().workCellm = oi18n.getProperty("BPCMandatoryValidationWorkCell");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // }
                     // if (!oView.getModel("JMBPCreate").getData().incoTerms) {
                     //     oView.getModel("JMBPCreate").getData().incoTermse = "Error";
                     //     oView.getModel("JMBPCreate").getData().incoTermsm = oi18n.getProperty("BPCMandatoryValidationIncoterm");
@@ -637,52 +637,52 @@ sap.ui.define([
                     }
 
 
-                    if (!oView.getModel("JMBPCreate").getData().address1) {
-                        oView.getModel("JMBPCreate").getData().address1e = "Error";
-                        oView.getModel("JMBPCreate").getData().address1m = oi18n.getProperty("BPCMandatoryValidationAddress1");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    } else if (oView.getModel("JMBPCreate").getData().address1e == "Error") {
-                        vError = true;
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().address1) {
+                    //     oView.getModel("JMBPCreate").getData().address1e = "Error";
+                    //     oView.getModel("JMBPCreate").getData().address1m = oi18n.getProperty("BPCMandatoryValidationAddress1");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // } else if (oView.getModel("JMBPCreate").getData().address1e == "Error") {
+                    //     vError = true;
+                    // }
 
                     if (oView.getModel("JMBPCreate").getData().address2e == "Error") {
                         vError = true;
                     }
-                    if (!oView.getModel("JMBPCreate").getData().city) {
-                        oView.getModel("JMBPCreate").getData().citye = "Error";
-                        oView.getModel("JMBPCreate").getData().citym = oi18n.getProperty("BPCMandatoryValidationCity");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    } else if (oView.getModel("JMBPCreate").getData().citye == "Error") {
-                        vError = true;
-                    }
-                    if (!oView.getModel("JMBPCreate").getData().state) {
-                        oView.getModel("JMBPCreate").getData().statee = "Error";
-                        oView.getModel("JMBPCreate").getData().statem = oi18n.getProperty("BPCMandatoryValidationState");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().city) {
+                    //     oView.getModel("JMBPCreate").getData().citye = "Error";
+                    //     oView.getModel("JMBPCreate").getData().citym = oi18n.getProperty("BPCMandatoryValidationCity");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // } else if (oView.getModel("JMBPCreate").getData().citye == "Error") {
+                    //     vError = true;
+                    // }
+                    // if (!oView.getModel("JMBPCreate").getData().state) {
+                    //     oView.getModel("JMBPCreate").getData().statee = "Error";
+                    //     oView.getModel("JMBPCreate").getData().statem = oi18n.getProperty("BPCMandatoryValidationState");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // }
 
                     if (oView.getModel("JMBPCreate").getData().districte == "Error") {
                         vError = true;
                     }
 
-                    if (!oView.getModel("JMBPCreate").getData().country) {
-                        oView.getModel("JMBPCreate").getData().countrye = "Error";
-                        oView.getModel("JMBPCreate").getData().countrym = oi18n.getProperty("BPCMandatoryValidationCountry");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().country) {
+                    //     oView.getModel("JMBPCreate").getData().countrye = "Error";
+                    //     oView.getModel("JMBPCreate").getData().countrym = oi18n.getProperty("BPCMandatoryValidationCountry");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // }
 
-                    if (!oView.getModel("JMBPCreate").getData().postalCode) {
-                        oView.getModel("JMBPCreate").getData().postalCodee = "Error";
-                        oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCMandatoryValidationPostalCode");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    } else if (oView.getModel("JMBPCreate").getData().postalCodee == "Error") {
-                        vError = true;
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().postalCode) {
+                    //     oView.getModel("JMBPCreate").getData().postalCodee = "Error";
+                    //     oView.getModel("JMBPCreate").getData().postalCodem = oi18n.getProperty("BPCMandatoryValidationPostalCode");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // } else if (oView.getModel("JMBPCreate").getData().postalCodee == "Error") {
+                    //     vError = true;
+                    // }
                     if (oView.getModel("JMBPCreate").getData().poBoxPostalCode == "Error") {
                         vError = true;
                     }
@@ -2145,7 +2145,7 @@ sap.ui.define([
             },
             fnLiveChangeCorporationName: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
-                if (vLength > 32) {
+                if (vLength > 35) {
                     oView.getModel("JMBPCreate").getData().corporationNamee = "Error";
                     oView.getModel("JMBPCreate").getData().corporationNamem = oi18n.getProperty("BPCMaxLengthExceeds");
                     oView.getModel("JMBPCreate").refresh();

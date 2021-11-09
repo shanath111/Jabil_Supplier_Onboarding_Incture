@@ -1834,16 +1834,16 @@ sap.ui.define([
             },
             _fnValidateBasicInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
-                var iError = false;
+                var iError = false,that= this;
                 if (this.emailValidResult) {
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName)) {
-                    oView.getModel("oErrorModel").getData().supplierNameE = "Error";
-                    oView.getModel("oErrorModel").getData().supplierNameM = oi18n.getText("mandatoryFName");
+                // if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName)) {
+                //     oView.getModel("oErrorModel").getData().supplierNameE = "Error";
+                //     oView.getModel("oErrorModel").getData().supplierNameM = oi18n.getText("mandatoryFName");
 
-                    iError = true;
-                }
+                //     iError = true;
+                // }
                 if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName)) {
                     oView.getModel("oErrorModel").getData().authorityFNameE = "Error";
                     oView.getModel("oErrorModel").getData().authorityFNameM = oi18n.getText("mandatoryFName");
@@ -1968,11 +1968,11 @@ sap.ui.define([
                     iError = true;
                 }
 
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName && oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName.length > 60) {
+                // if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName && oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName.length > 60) {
 
 
-                    iError = true;
-                }
+                //     iError = true;
+                // }
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName && oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName.length > 30) {
 
 
@@ -2271,6 +2271,23 @@ sap.ui.define([
                  oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("basicInfo").setValidated(false);
+                       var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
+                        isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                    if (isDefaultLan) {
+                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        } else {
+                            sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.validationDefaultMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        }
                 } else {
                     oView.byId("basicInfo").setValidated(true);
                 }
@@ -4640,11 +4657,11 @@ var aError = false;
                 if (this.emailValidResult) {
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName.length > 60) {
+                // if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName.length > 60) {
 
 
-                    iError = true;
-                }
+                //     iError = true;
+                // }
 
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName.length > 30) {
 
@@ -7537,7 +7554,7 @@ var aError = false;
                         this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getCurrentStep()).nextStep();
                         // this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
                         //}
-                    } else if (currentStepId !== "companyInfo" && currentStepId !== "prodAndServInfo" && currentStepId !== "cyberSecInfo") {
+                    } else if (currentStepId !== "basicInfo" && currentStepId !== "companyInfo" && currentStepId !== "prodAndServInfo" && currentStepId !== "cyberSecInfo") {
                         var that = this;
                         var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
                         var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;

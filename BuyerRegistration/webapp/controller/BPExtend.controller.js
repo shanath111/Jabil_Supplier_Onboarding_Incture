@@ -413,7 +413,7 @@ sap.ui.define([
             },
             fnLoadCompanyCode: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/company-codes";
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/api/v1/reference-data/company-codes";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -441,7 +441,7 @@ sap.ui.define([
             },
             fnLoadPurOrg: function (vCompCode, vDescription) {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/purchasingOrg/" + vCompCode;
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/api/v1/reference-data/purchasingOrg/" + vCompCode;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -962,7 +962,7 @@ sap.ui.define([
                             "conflictOfInterests": -1,
                             "isExclCiscoGhub": -1,
                             "representAnotherCompanys": 1,
-                            "oneTimePurchaseSupplierIndicators": -1,
+                            "oneTimePurchaseSupplierIndicators": 1,
                             "customerDirectedSupplierIndicators": -1,
                             "outsideProcessiongSupplierIndicators": 1,
                             "manualAddressOverrideSupplierIndicators": 1,
@@ -1096,12 +1096,12 @@ sap.ui.define([
                         vError = true;
                         oView.getModel("JMBPCreate").refresh();
                     }
-                    if (!oView.getModel("JMBPCreate").getData().workCell) {
-                        oView.getModel("JMBPCreate").getData().workCelle = "Error";
-                        oView.getModel("JMBPCreate").getData().workCellm = oi18n.getProperty("BPCMandatoryValidationWorkCell");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().workCell) {
+                    //     oView.getModel("JMBPCreate").getData().workCelle = "Error";
+                    //     oView.getModel("JMBPCreate").getData().workCellm = oi18n.getProperty("BPCMandatoryValidationWorkCell");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // }
                     if (!oView.getModel("JMBPCreate").getData().firstName) {
                         oView.getModel("JMBPCreate").getData().firstNamee = "Error";
                         oView.getModel("JMBPCreate").getData().firstNamem = oi18n.getProperty("BPCMandatoryValidationFName");
@@ -1278,12 +1278,12 @@ sap.ui.define([
                             vError = true;
                         }
                     }
-                    if (!oView.getModel("JMBPCreate").getData().altContactCountryCode) {
-                        oView.getModel("JMBPCreate").getData().altContactCountryCodee = "Error";
-                        oView.getModel("JMBPCreate").getData().altContactCountryCodem = oi18n.getProperty("BPCEnterCountryCode1");
-                        oView.getModel("JMBPCreate").refresh();
-                        vError = true;
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().altContactCountryCode) {
+                    //     oView.getModel("JMBPCreate").getData().altContactCountryCodee = "Error";
+                    //     oView.getModel("JMBPCreate").getData().altContactCountryCodem = oi18n.getProperty("BPCEnterCountryCode1");
+                    //     oView.getModel("JMBPCreate").refresh();
+                    //     vError = true;
+                    // }
 
 
 
@@ -1598,9 +1598,9 @@ sap.ui.define([
                                             "buyerTelephone": "",
                                             "buyerEmailid": vBuyerEmail,
                                             "division": "",
-                                            "conflictOfInterest": "",
-                                            "requestorConflictOfInterest": "",
-                                            "coiReason": "",
+                                            "conflictOfInterest": vConflictOfInt,
+                                            "requestorConflictOfInterest": vConflictOfInt1,
+                                            "coiReason": oView.getModel("JMBPCreate").getData().additionalInformation,
                                             "supplierName": oView.getModel("JMBPCreate").getData().firstName + " " + oView.getModel("JMBPCreate").getData().lastName,
                                             "supplierAddress": oView.getModel("JMBPCreate").getData().address1,
                                             "supplierCity": oView.getModel("JMBPCreate").getData().city,
@@ -1832,9 +1832,9 @@ sap.ui.define([
                                                         "buyerTelephone": "",
                                                         "buyerEmailid": vBuyerEmail,
                                                         "division": "",
-                                                        "conflictOfInterest": "",
-                                                        "requestorConflictOfInterest": "",
-                                                        "coiReason": "",
+                                                        "conflictOfInterest": vConflictOfInt,
+                                                        "requestorConflictOfInterest": vConflictOfInt1,
+                                                        "coiReason": oView.getModel("JMBPCreate").getData().additionalInformation,
                                                         "supplierName": oView.getModel("JMBPCreate").getData().firstName + " " + oView.getModel("JMBPCreate").getData().lastName,
                                                         "supplierAddress": oView.getModel("JMBPCreate").getData().address1,
                                                         "supplierCity": oView.getModel("JMBPCreate").getData().city,
