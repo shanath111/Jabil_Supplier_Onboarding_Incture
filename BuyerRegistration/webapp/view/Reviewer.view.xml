@@ -58,11 +58,11 @@
 										<l:Grid defaultSpan="XL2 L2 M2 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
 											<VBox class="VRVboxStyle1">
 												<Label text="{i18n>TIAddressLine1}" class="cl_PreviewLablCls "></Label>
-												<Label text="{JMBPCreate>/address1}" wrapping="true" class="cl_PreviewLablClsValue "></Label>
+												<Label text="{oDataModel>/surveyInfoDto/address/0/postal/0/address1}" wrapping="true" class="cl_PreviewLablClsValue "></Label>
 											</VBox>
 											<VBox class="VRVboxStyle1">
 												<Label text="{i18n>TICity}" class="cl_PreviewLablCls "></Label>
-												<Label text="{JMBPCreate>/city}" class="cl_PreviewLablClsValue "></Label>
+												<Label text="{oDataModel>/surveyInfoDto/address/0/postal/0/city}" class="cl_PreviewLablClsValue "></Label>
 											</VBox>
 											<VBox class="VRVboxStyle1">
 												<Label text="{i18n>BPCStateProvince}" class="cl_PreviewLablCls "></Label>
