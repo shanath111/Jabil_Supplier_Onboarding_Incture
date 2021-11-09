@@ -7,7 +7,7 @@
         "applicationVersion": {
             "version": "1.0.0"
         },
-        "title": "CR Resubmit",
+        "title": "Admin",
         "description": "",
         "resources": "resources.json",
         "ach": "ach",
