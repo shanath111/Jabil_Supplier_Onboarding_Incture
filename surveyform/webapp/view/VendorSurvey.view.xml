@@ -13,13 +13,13 @@
 					<WizardStep id="basicInfo"  nextStep="businessPartnerInfo" activate="onActivateBasicInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBasicInfo}:${oi18n_En>wizardStepBasicInfo} +'/&#160;' +${i18n>wizardStepBasicInfo}}" class="titleDisplay sapUiSizeCompact stepBackground sapUiContentPadding" >
 				<Panel width="100%" class="sapUiTinyMarginTop panelPadding">	<l:VerticalLayout width="100%" >
                     	
-                        <VBox class="sapUiSizeCompact fontBold sapUiTinyMarginBegin" width="50%">
+                        <!-- <VBox class="sapUiSizeCompact fontBold sapUiTinyMarginBegin" width="50%">
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>SupplierName}:${oi18n_En>SupplierName} +'/&#160;' + ${i18n>SupplierName}}" class="fontStyle" required="true"></Label>
 									<Input maxLength="61" enabled="{oEnableMdl>/contactNameEnb}" value="{oDataModel>/surveyInfoDto/authorityContact/contactName}" valueState="{oErrorModel>/supplierNameE}" valueStateText="{oErrorModel>/supplierNameM}" liveChange="fnLiveInputAlphaSpaceValueChange" class="inputStyle"></Input>
      	
 						</VBox>
-                        
-                        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressLabel}:${oi18n_En>addressLabel} +'/&#160;' + ${i18n>addressLabel}}" class="fontBold sapUiSizeCompact sapUiSmallMarginTop sapUiTinyMarginBegin"/>
+                         -->
+                        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressLabel}:${oi18n_En>addressLabel} +'/&#160;' + ${i18n>addressLabel}}" class="fontBold sapUiSizeCompact sapUiTinyMarginBegin"/>
                         
                         	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 							<VBox >
