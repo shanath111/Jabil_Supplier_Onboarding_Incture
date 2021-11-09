@@ -1651,6 +1651,9 @@ sap.ui.define([
             },
 
             fnChangeSupplierCountry: function (oEvent) {
+                // oView.byId("hello").addEventListener("change",function(){
+                //     console.log(oEvent);
+                // });
                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
@@ -1896,7 +1899,7 @@ sap.ui.define([
                 }
                 if (!oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1 || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1)) {
                     oView.getModel("oErrorModel").getData().address1E = "Error";
-                    oView.getModel("oErrorModel").getData().adrress1M = oi18n.getText("mandatoryAddr1");
+                    oView.getModel("oErrorModel").getData().address1M = oi18n.getText("mandatoryAddr1");
 
                     iError = true;
                 }
@@ -3362,6 +3365,20 @@ var aError = false;
                             iError = true;
                         }
 
+                        if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm && bankFields.benificiaryAccountNumber) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm)) {
+                            oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
+                            oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("mandatoryAccNumConfirm");
+
+                            iError = true;
+                        } else if(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm) {
+                            if(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm !== oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum){
+                                oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
+                                oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
+
+                                iError = true;
+                            }
+                        }
+
                         if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName && bankFields.benificiaryAccHolderName) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry)) {
                             oView.getModel("oErrorModel").getData().benifAccHNameE = "Error";
                             oView.getModel("oErrorModel").getData().benifAccHNameM = oi18n.getText("mandatoryHolderName");
@@ -3401,6 +3418,23 @@ var aError = false;
 
                             iError = true;
                         }
+                        if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm && bankFields.iban) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm)) {
+                            
+                                oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
+                                oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("mandatoryIbanConfirm");
+
+                                iError = true;
+                            
+                        } else if(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm) {
+                            if(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm !== oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum){
+                                oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
+                                oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("mandatoryIbanConfirm");
+
+                                iError = true;
+                            }
+                        }
+                            
+                        
                         if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].partnerBankType && bankFields.benificiaryAccCurrency) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].partnerBankType)) {
                             oView.getModel("oErrorModel").getData().benifAccCurrE = "Error";
                             oView.getModel("oErrorModel").getData().benifAccCurrM = oi18n.getText("mandatoryAccCurr");
@@ -6100,8 +6134,7 @@ var aError = false;
                     case 7:
                         if (!(postalCode.length === postalCodeLength) || (postalCode.includes("_"))) {
                             oEvent.getSource().setValueState("Error");
-                            oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "characters in length");
-                            
+                            oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "characters in length"); 
                         }
                         break;
                     case 8:
@@ -6215,6 +6248,36 @@ var aError = false;
                 }
 
             },
+
+            fnInputConfirmBankAccNumber: function(oEvent){
+                if (oEvent.getSource().getValue()) {
+                    if (oEvent.getSource().getValue().length == oEvent.getSource().getMaxLength()) {
+                        oEvent.getSource().setValueState("Error");
+                        oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                    } else if (oEvent.getSource().getValue()) {
+                        oEvent.getSource().setValueState("None");
+                        oEvent.getSource().setValueStateText("");
+                    }
+                }
+                
+                var that = this;
+                var confirmBankAccNum = oEvent.getSource().getValue();
+                var InputBankAccNum = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum;
+                if(confirmBankAccNum !== InputBankAccNum){
+                    oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
+                    oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
+                    oView.getModel("oErrorModel").refresh();
+                    // that.emailValidResult = true;
+                    // sap.m.MessageBox.alert(oView.getModel("i18n").getResourceBundle().getText("identicalValuesRequired"), {
+                    //             icon: sap.m.MessageBox.Icon.ERROR,
+                    //             title: oView.getModel("i18n").getResourceBundle().getText("error"),
+                    //             contentWidth: "30%",
+                    //             styleClass: "sapUiSizeCompact"
+                    //         });
+                } else {
+                    // that.emailValidResult = false;
+                }
+            },
             fnInputIban: function (oEvent) {
                 if (oEvent.getSource().getValue()) {
 
@@ -6240,6 +6303,40 @@ var aError = false;
                     }
                 }
             },
+
+            fnInputConfirmIban: function(oEvent) {
+                if (oEvent.getSource().getValue()) {
+
+                    if (oEvent.getSource().getMaxLength() && oEvent.getSource().getValue().length !== oEvent.getSource().getMaxLength()) {
+                        oEvent.getSource().setValueState("Error");
+                        oEvent.getSource().setValueStateText(oi18n.getText("exactLengthMessage") + " " + this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.ibanLength + " " + oi18n.getText("characters"));
+                    } else if (oEvent.getSource().getValue()) {
+                        oEvent.getSource().setValueState("None");
+                        oEvent.getSource().setValueStateText("");
+                    }
+
+
+                } 
+                
+                var that = this;
+                var confirmIBAN = oEvent.getSource().getValue();
+                var InputIBAN = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum;
+                if(confirmIBAN !== InputIBAN){
+                    oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
+                    oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
+                    oView.getModel("oErrorModel").refresh();
+                    // that.emailValidResult = true;
+                    // sap.m.MessageBox.alert(oView.getModel("i18n").getResourceBundle().getText("identicalValuesRequired"), {
+                    //             icon: sap.m.MessageBox.Icon.ERROR,
+                    //             title: oView.getModel("i18n").getResourceBundle().getText("error"),
+                    //             contentWidth: "30%",
+                    //             styleClass: "sapUiSizeCompact"
+                    //         });
+                } else {
+                    // that.emailValidResult = false;
+                }
+            },
+
             fnVerifyBankAccNum: function (oEvent) {
                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");

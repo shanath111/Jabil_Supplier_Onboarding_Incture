@@ -137,6 +137,14 @@
 					<Input maxLength="19" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankAccNum}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/bankAccNumE}" valueStateText="{oErrorModel>/bankAccNumM}" change="fnInputBankAccNumber" required="true" class="inputStyle">
                     </Input>
 				</VBox>
+                <VBox  class="fontStyle">
+                    <HBox>
+                        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>confirmBankAccNum}:${oi18n_En>bankAccNum}+ '&#10;' +${i18n>bankAccNum}}" wrapping="true" required="{oVisibilityModel>/bankValidation/benificiaryAccountNumber}"></Label>
+                        <!-- <Button icon="sap-icon://sys-enter" visible="true" type="Transparent" class="sapUiSizeCompact"/> -->
+                    </HBox>
+					<Input maxLength="19" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankAccNumConfirm}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/bankAccNumConfirmE}" valueStateText="{oErrorModel>/bankAccNumConfirmM}" change="fnInputConfirmBankAccNumber" required="true" class="inputStyle">
+                    </Input>
+				</VBox>
                  <VBox  class="fontStyle">
 					<Label tooltip="{oi18n_En>refDetTT}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>refDetails}:${oi18n_En>refDetails}+ '&#10;' +${i18n>refDetails}}" wrapping="true" required="{oVisibilityModel>/bankValidation/referenceDetails}"></Label>
 					<Input maxLength="21" editable="{oUserModel>/isNew}" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/refBankDetails}" valueState="{oErrorModel>/bankRefE}" valueStateText="{oErrorModel>/bankRefM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
@@ -152,6 +160,10 @@
 				<VBox class="fontStyle">
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>iban}:${oi18n_En>iban} + '&#10;' +${i18n>iban}}" wrapping="true" required="{oVisibilityModel>/bankValidation/iban}"></Label>
 					<Input maxLength="{oVisibilityModel>/bankValidation/ibanLength}"  enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/ibanNum}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/ibanE}" valueStateText="{oErrorModel>/ibanM}"  change="fnInputIban" class="inputStyle"></Input>
+				</VBox>
+                <VBox class="fontStyle">
+					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>ibanConfirm}:${oi18n_En>ibanConfirm} + '&#10;' +${i18n>ibanConfirm}}" wrapping="true" required="{oVisibilityModel>/bankValidation/iban}"></Label>
+					<Input maxLength="{oVisibilityModel>/bankValidation/ibanLength}"  enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/ibanNumConfirm}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/ibanConfirmE}" valueStateText="{oErrorModel>/ibanConfirmM}"  change="fnInputConfirmIban" class="inputStyle"></Input>
 				</VBox>
 				<VBox  class="fontStyle">
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankKey}:${oi18n_En>bankKey}+ '&#10;' +${i18n>bankKey}}" wrapping="true" required="{oVisibilityModel>/bankValidation/bankKey}"></Label>

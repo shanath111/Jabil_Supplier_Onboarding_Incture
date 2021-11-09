@@ -6,6 +6,7 @@
             {
                 "mdgbankdetailsid": "",
                 "bankAccNum": "",
+                "bankAccNumConfirm": "",
                 "bankAddress": "",
                 "bankBranch": "",
                 "bankCity": "",
@@ -20,6 +21,7 @@
                 "bankState": "",
                 "benefAccHolderName": "",
                 "ibanNum": "",
+                "ibanNumConfirm": "",
                 "instructionKey": "",
                 "swiftCode": "",
                 "accountGroup": ""
