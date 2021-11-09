@@ -3305,12 +3305,7 @@ var aError = false;
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
                     isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 var that = this;
-                if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod) {
-                    oView.getModel("oErrorModel").getData().paymentTermMethdE = "Error";
-                    oView.getModel("oErrorModel").getData().paymentTermMethdM = oi18n.getText("mandatoryPayMethod");
-
-                    iError = true;
-                }
+                
                 if (oView.getModel("oUserModel").getData().isNew) {
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentTerms) {
                         oView.getModel("oErrorModel").getData().paymentTermE = "Error";
@@ -3318,6 +3313,12 @@ var aError = false;
 
                         iError = true;
                     }
+                    if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod) {
+                    oView.getModel("oErrorModel").getData().paymentTermMethdE = "Error";
+                    oView.getModel("oErrorModel").getData().paymentTermMethdM = oi18n.getText("mandatoryPayMethod");
+
+                    iError = true;
+                }
                    
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency) {
                         oView.getModel("oErrorModel").getData().paymentCurrE = "Error";
