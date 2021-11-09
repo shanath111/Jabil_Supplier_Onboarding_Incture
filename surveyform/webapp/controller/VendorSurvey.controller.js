@@ -1835,12 +1835,12 @@ sap.ui.define([
                 if (this.emailValidResult) {
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName)) {
-                    oView.getModel("oErrorModel").getData().supplierNameE = "Error";
-                    oView.getModel("oErrorModel").getData().supplierNameM = oi18n.getText("mandatoryFName");
+                // if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName)) {
+                //     oView.getModel("oErrorModel").getData().supplierNameE = "Error";
+                //     oView.getModel("oErrorModel").getData().supplierNameM = oi18n.getText("mandatoryFName");
 
-                    iError = true;
-                }
+                //     iError = true;
+                // }
                 if (!oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName)) {
                     oView.getModel("oErrorModel").getData().authorityFNameE = "Error";
                     oView.getModel("oErrorModel").getData().authorityFNameM = oi18n.getText("mandatoryFName");
@@ -1965,11 +1965,11 @@ sap.ui.define([
                     iError = true;
                 }
 
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName && oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName.length > 60) {
+                // if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName && oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName.length > 60) {
 
 
-                    iError = true;
-                }
+                //     iError = true;
+                // }
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName && oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName.length > 30) {
 
 
@@ -4623,11 +4623,11 @@ var aError = false;
                 if (this.emailValidResult) {
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName.length > 60) {
+                // if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contactName.length > 60) {
 
 
-                    iError = true;
-                }
+                //     iError = true;
+                // }
 
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName.length > 30) {
 
