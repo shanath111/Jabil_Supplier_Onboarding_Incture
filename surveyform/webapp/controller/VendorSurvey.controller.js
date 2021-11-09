@@ -3429,7 +3429,7 @@ var aError = false;
                         } else if(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm) {
                             if(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm !== oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum){
                                 oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
-                                oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("mandatoryIbanConfirm");
+                                oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
 
                                 iError = true;
                             }
