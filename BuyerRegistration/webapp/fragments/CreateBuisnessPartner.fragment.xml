@@ -412,8 +412,8 @@
                                  
                                 	<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
 	<VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCCustDirectedSupInd}" required="true" class="cl_VRLablCls sapUiTinyMarginBegin"></Label>
-										<RadioButtonGroup columns="2" selectedIndex="{JMBPCreate>/customerDirectedSupplierIndicators}" valueState="{JMBPCreate>/customerDirectedSupplierIndicatorse}" select="fnCustDirChange" enabled="{oConfigMdl>/screenEditable}">
+										<Label text="{i18n>BPCCustDirectedSupInd}" required="true" class="cl_VRLablCls "></Label>
+										<RadioButtonGroup class="sapUiSmallMarginEnd" columns="2" selectedIndex="{JMBPCreate>/customerDirectedSupplierIndicators}" valueState="{JMBPCreate>/customerDirectedSupplierIndicatorse}" select="fnCustDirChange" enabled="{oConfigMdl>/screenEditable}">
 									<RadioButton  class=" cl_BPCRadioBtnTxt" text="{i18n>Yes}"/>
 									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
                                     		</RadioButtonGroup>

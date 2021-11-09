@@ -172,7 +172,7 @@ sap.ui.define([
             },
             fnLoadCompanyCode: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/company-codes";
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/api/v1/reference-data/company-codes";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -199,7 +199,7 @@ sap.ui.define([
             },
             fnLoadPurOrg: function (vCompCode, vDescription) {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/purchasingOrg/" + vCompCode;
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/api/v1/reference-data/purchasingOrg/" + vCompCode;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });

@@ -441,7 +441,7 @@
                                 
                                  
                                 	</l:Grid>
-                                         <l:Grid visible="{JMBPCreate>/CoIFields}"  class="sapUiSizeCompact">
+                                         <l:Grid visible="{JMBPCreate>/CoIFields}"  class="sapUiSizeCompact sapUiSmallMarginBegin">
  <VBox  class="VRVboxStyle1">
 										<Label text="{i18n>ExplainConflictofInterest}" required="true" class="cl_VRLablCls "></Label>
 										<Input width="98%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/additionalInformation}" liveChange="fnLiveChangeAdditionalInfo" valueState="{JMBPCreate>/additionalInformatione}" valueStateText="{JMBPCreate>/additionalInformationm}"  class="cl_VRInputCls" ></Input>
