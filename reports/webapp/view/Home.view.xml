@@ -109,6 +109,9 @@
                                             <Column >
 												<Label text="{i18n>VRSAPBPNo}" class="cl_VRLablCls "></Label>
 											</Column>
+                                             <Column >
+												<!-- <Label text="{i18n>VRSAPBPNo}" class="cl_VRLablCls "></Label> -->
+											</Column>
 										</columns>
 										<items>
 											<ColumnListItem press="fnCaseListPressNav" type="Active" highlight="{path: 'JMSuppReqList>Status', formatter: 'oneapp.incture.report.reports.util.formatter.fnStatusColour' }" >
@@ -122,6 +125,7 @@
 														state="{path: 'JMSuppReqList>status', formatter: 'oneapp.incture.report.reports.util.formatter.fnStatusColour' }"/>
                                                         	<Text text="{path: 'JMSuppReqList>dateCreated', formatter: 'oneapp.incture.report.reports.util.formatter.fnFormatDate'}" class="cl_ListNameClass"></Text>
 													<Text text="{JMSuppReqList>sapBPNumber}"  class="cl_ListNameClass"></Text>
+                                                    <Link text="{i18n>ProcessFlow}" press="fnNavToProcessFlow"></Link>
                                                 </cells>
 											</ColumnListItem>
 										</items>

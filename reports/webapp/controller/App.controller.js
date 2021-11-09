@@ -16,6 +16,7 @@ sap.ui.define([
 		utility: utility,
 
 		onInit: function () {
+            this.fnLoadUser();
 			// var that = this;
 			// this.fnInitApp();
 			// this.router = sap.ui.core.UIComponent.getRouterFor(this);
@@ -51,7 +52,25 @@ sap.ui.define([
 			// /**************************Collaboration Changes End-By Karishma*********************/
 			// this.setChatBot();
 
-		},
+        },
+           fnLoadUser: function () {
+                var that = this;
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/loggedinUser";
+                $.ajax({
+                    url: sUrl,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        that.getView().getModel("oConfigMdl").setProperty("/usrData", data);
+                        that.getView().getModel("oConfigMdl").refresh();
+
+                    },
+                    async: false,
+                    error: function (data) {
+
+                    }
+                });
+            },
 
 		setChatBot: function () {
 			var chatBot = {
