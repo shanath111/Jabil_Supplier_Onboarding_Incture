@@ -91,6 +91,7 @@ sap.ui.define([
                         if (oView.getModel("oConfigMdl").getData().isClaimed == false) {
                             oView.getModel("oConfigMdl").getData().defaultEnable = false;
                         }
+                        oView.getModel("oConfigMdl").getData().validationMessage = oEvent.getSource().getData().validationMessage;
                         oView.getModel("oConfigMdl").refresh();
                     }
                 });

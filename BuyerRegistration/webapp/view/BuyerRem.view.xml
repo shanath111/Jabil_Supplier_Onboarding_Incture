@@ -28,7 +28,7 @@ onboarding, confirmed they received the email, and will begin reviewing and comp
 				</content>
                 	<footer >
 			<OverflowToolbar class="cl_BPCFooterClr">
-             <Label text="{i18n>claimActnTxt}" visible="{=!${oConfigMdl>/isTaskCompleted} &amp;&amp;!${oConfigMdl>/isClaimed}}"   class="sapUiTinyMarginBegin"/>
+             <Label text="{oConfigMdl>/validationMessage}" visible="{=!${oConfigMdl>/isTaskCompleted} &amp;&amp;!${oConfigMdl>/isClaimed}}"   class="sapUiTinyMarginBegin"/>
 				<ToolbarSpacer/>
 			
 				 <Button text="{i18n>BPCSubmit}" enabled="{=${oConfigMdl>/isClaimed} &amp;&amp;${oConfigMdl>/ApproveButtonVis}}"    type="Accept" press="fnApproveSub" class="cl_BPCDraft sapUiSmallMarginEnd sapUiSizeCompact" />

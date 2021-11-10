@@ -381,7 +381,7 @@ sap.ui.define([
                             oBusyDilog.open();
                             var oModel = new JSONModel();
 
-                            var that = this;
+                         
                             var sUrl = "/nsBuyerRegistration/plcm_portal_services/ccpo/deleteById/" + vccId;
                             $.ajax({
                                 url: sUrl,
@@ -431,13 +431,12 @@ sap.ui.define([
             fnDoneSubmit: function () {
                 var oJsonFilter1 = new sap.ui.model.json.JSONModel();
                 var temp = {
-                    "country": "",
-                    "taxCategory": "",
-                    "toolTip": ""
+                    "companyCode": "",
+                    "purchasingOrganisation": ""
                 };
                 oJsonFilter1.setData(temp);
                 oView.setModel(oJsonFilter1, "JMFilter1");
-                that.oBPSuccess.close();
+                this.oBPSuccess.close();
             },
             fnNavToHome: function () {
                 this.getOwnerComponent().getRouter().navTo("Home");

@@ -40,7 +40,7 @@
 				</content>
                 <footer>
 			<OverflowToolbar class="cl_BPCFooterClr sapUiSizeCompact">
-            <Label text="{i18n>claimActnTxt}" visible="{=!${oConfigMdl>/isTaskCompleted} &amp;&amp;!${oConfigMdl>/isClaimed}}"   class="sapUiTinyMarginBegin"/>
+            <Label text="{oConfigMdl>/validationMessage}" visible="{=!${oConfigMdl>/isTaskCompleted} &amp;&amp;!${oConfigMdl>/isClaimed}}"   class="sapUiTinyMarginBegin"/>
 				<ToolbarSpacer/>
                 <Button text="{oConfigMdl>/ButtonNameApprove}" enabled="{oConfigMdl>/isClaimed}"  type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft  sapUiSizeCompact" />
 					<Button text="{oConfigMdl>/ButtonNameReject}" visible="{oConfigMdl>/RejectBtnVis}" press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
