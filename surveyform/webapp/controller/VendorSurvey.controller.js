@@ -3442,12 +3442,12 @@ var aError = false;
 
                             iError = true;
                         }
-                        if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey && bankFields.bankControlKey) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey)) {
-                            oView.getModel("oErrorModel").getData().bankCtrlKeyE = "Error";
-                            oView.getModel("oErrorModel").getData().bankCtrlKeyM = oi18n.getText("mandatoryctrlKey");
+                        // if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey && bankFields.bankControlKey) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey)) {
+                        //     oView.getModel("oErrorModel").getData().bankCtrlKeyE = "Error";
+                        //     oView.getModel("oErrorModel").getData().bankCtrlKeyM = oi18n.getText("mandatoryctrlKey");
 
-                            iError = true;
-                        }
+                        //     iError = true;
+                        // }
                //     }
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName.length > 60) {
                             iError = true;
@@ -3487,9 +3487,9 @@ var aError = false;
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch.length > 40) {
                             iError = true;
                         }
-                        if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey.length > 2) {
-                            iError = true;
-                        }
+                        // if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey.length > 2) {
+                        //     iError = true;
+                        // }
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey.length > 3) {
                             iError = true;
                         }
@@ -3896,12 +3896,12 @@ var aError = false;
                         iError = true;
                     }
                 }
-                if (!oView.getModel("oDataModel").getData().shippingInfoDto.vendor || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.vendor)) {
-                    oView.getModel("oErrorModel").getData().vendorE = "Error";
-                    oView.getModel("oErrorModel").getData().vendorM = oi18n.getText("mandatoryVendor");
+                // if (!oView.getModel("oDataModel").getData().shippingInfoDto.vendor || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.vendor)) {
+                //     oView.getModel("oErrorModel").getData().vendorE = "Error";
+                //     oView.getModel("oErrorModel").getData().vendorM = oi18n.getText("mandatoryVendor");
 
-                    iError = true;
-                }
+                //     iError = true;
+                // }
 
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isDeliver === null) {
                     oView.getModel("oErrorModel").getData().isDeliverE = "Error";
@@ -5320,10 +5320,10 @@ var aError = false;
 
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey.length > 2) {
+                    // if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey.length > 2) {
 
-                        iError = true;
-                    }
+                    //     iError = true;
+                    // }
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey.length > 3) {
                         iError = true;
                     }

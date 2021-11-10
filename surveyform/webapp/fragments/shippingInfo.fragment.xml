@@ -17,8 +17,8 @@
              <Label visible="{=!${oUserModel>/isNew}}" class="sapUiTinyMarginTop fontStyleBold sapUiTinyMarginBegin" wrapping="true" text="{i18n>incotermNewTerms}"></Label>
     <l:Grid containerQuery="true" visible="{oUserModel>/isNew}" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 				<VBox class="fontStyle" >
-					<Label text="{i18n>vendorName}" visible= "{oVisibilityModel>/isdefaultLan}" required="true"></Label>
-                    <Label text="{oi18n_En>vendorName}&#10;{i18n>vendorName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+					<Label text="{i18n>vendorName}" visible= "{oVisibilityModel>/isdefaultLan}" required="false"></Label>
+                    <Label text="{oi18n_En>vendorName}&#10;{i18n>vendorName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="false"></Label>
 					<Input maxLength="31" class="inputStyle" value="{oDataModel>/shippingInfoDto/vendor}" enabled="{oEnableMdl>/vendorEnb}" valueState="{oErrorModel>/vendorE}" valueStateText="{oErrorModel>/vendorM}" liveChange="fnLiveInputValueChange"/>
 				</VBox>
 				<VBox  class="fontStyle">
@@ -36,8 +36,8 @@
 			</l:Grid>
             <l:Grid containerQuery="true" visible="{=!${oUserModel>/isNew}}" defaultSpan="XL3 L3 M3 S12" class="sapUiTinyMarginTop gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 				<VBox class="fontStyle" >
-					<Label text="{i18n>vendorName}" visible= "{oVisibilityModel>/isdefaultLan}" required="true"></Label>
-                    <Label text="{oi18n_En>vendorName}&#10;{i18n>vendorName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+					<Label text="{i18n>vendorName}" visible= "{oVisibilityModel>/isdefaultLan}" required="false"></Label>
+                    <Label text="{oi18n_En>vendorName}&#10;{i18n>vendorName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="false"></Label>
 					<Input maxLength="31" class="inputStyle" value="{oDataModel>/shippingInfoDto/vendor}" enabled="{oEnableMdl>/vendorEnb}" valueState="{oErrorModel>/vendorE}" valueStateText="{oErrorModel>/vendorM}" liveChange="fnLiveInputValueChange"/>
 				</VBox>
 				<VBox  class="fontStyle">
