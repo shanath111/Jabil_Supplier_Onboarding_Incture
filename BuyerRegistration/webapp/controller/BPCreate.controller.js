@@ -1185,7 +1185,6 @@ sap.ui.define([
                                 "addlSurveyForSupplier": vAdditionalSuvey,
                                 "instructionKey": oView.getModel("JMBPCreate").getData().instructionKey,
                                 "contactCountryCode": oView.getModel("JMBPCreate").getData().contactCountryCode,
-
                                 "altContactCountryCode": oView.getModel("JMBPCreate").getData().altContactCountryCode,
                                 "mobileCountryCode": oView.getModel("JMBPCreate").getData().mobileCountryCode
 

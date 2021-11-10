@@ -14,14 +14,14 @@
 								<Title text="{i18n>Search}"/>
 								<ToolbarSpacer/>
 								
-								<Button text="{i18n>Search}" press="fnSearchTooltip" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
+								<Button text="{i18n>Search}" press="fnSearchCompanyCode" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
 							</Toolbar>
 						</headerToolbar>
  	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
 								
                             <VBox class="VRVboxStyle1">
 								
-								<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls "></Label>
+								<Label text="{i18n>BPCCompanyCode}" required="false" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/CompanyCode}"  autocomplete="false" valueState="{JMFilter>/companyCodee}" valueStateText="{JMFilter>/companyCodem}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeCompCode" showSecondaryValues="true" selectedKey="{JMFilter>/companyCode}"
 											class="cl_VRInputCls"  >
@@ -40,7 +40,7 @@
                               
                           
 							</l:Grid>
-                            <Table class="sapUiSizeCompact cl_BPListTable"   alternateRowColors="true" items="{JMTooltipSearch>/}">
+                            <Table class="sapUiSizeCompact cl_BPListTable"   alternateRowColors="true" items="{JMCompSearchResult>/}">
 										
 										<columns>
 											<Column >
@@ -68,16 +68,17 @@
 										<items>
 											<ColumnListItem press="fnCaseListPressNav"  type="Active"  >
 												<cells>
-													<Text text="{JMTooltipSearch>toolTip}" class="cl_ListNameClass"></Text>
-												 <Text text="{JMTooltipSearch>taxType}"  wrapping="false" class="cl_ListNameClass"></Text>
-												<ComboBox width="50%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMFilter>/purchasingOrge}" valueStateText="{JMFilter>/purchasingOrgm}"
-											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMFilter>/purchasingOrg}"
+													<Text text="{JMCompSearchResult>companyCode}" class="cl_ListNameClass"></Text>
+												 <Text text="{JMCompSearchResult>companyCodeDescription}"  wrapping="false" class="cl_ListNameClass"></Text>
+                                                  <Text text="{JMCompSearchResult>purchasingOrganisation}"  wrapping="false" class="cl_ListNameClass"></Text>
+												<!-- <ComboBox width="50%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMFilter>/purchasingOrge}" valueStateText="{JMFilter>/purchasingOrgm}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMCompSearchResult>/purchasingOrganisation}"
 											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
-										</ComboBox>
-													<Text text="{JMTooltipSearch>toolTip}" class="cl_ListNameClass"></Text>
-														<Button text="{i18n>Update}"  type="Accept" press="fnUpdateCC" class="cl_BPCDraft sapUiSmallMarginEnd sapUiSizeCompact" />
-                                                    <Button text="{i18n>Delete}" press="fnDelete" type="Reject" class="sapUiSmallMarginBegin  cl_BPCDraft1 sapUiSizeCompact" />
+										</ComboBox> -->
+													<Text text="{JMCompSearchResult>purchasingOrganisationDescription}" class="cl_ListNameClass"></Text>
+														<!-- <Button text="{i18n>Update}"  type="Accept" press="fnUpdateCC" class="cl_BPCDraft sapUiSmallMarginEnd sapUiSizeCompact" /> -->
+                                                    <Button text="{i18n>Delete}" press="fnDeleteCC" type="Reject" class="sapUiSmallMarginBegin  cl_BPCDraft1 sapUiSizeCompact" />
 			
                                                 </cells>
 											</ColumnListItem>
@@ -91,7 +92,7 @@
 							<Toolbar class="cl_VRHeaderBackGrndPnl">
 								<Title text="{i18n>CreateNewRecord}"/>
                                 <ToolbarSpacer ></ToolbarSpacer>
-									<Button text="{i18n>Submit}" press="fnSubmitTooltip" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
+									<Button text="{i18n>Submit}" press="fnSubmitCCPO" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
 							</Toolbar>
 						</headerToolbar>
  	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
@@ -99,16 +100,16 @@
                              <VBox class="VRVboxStyle1">
 								
 								<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls "></Label>
-										<ComboBox width="95%" items="{oBPLookUpMdl>/CompanyCode}"  autocomplete="false" valueState="{JMFilter>/companyCodee}" valueStateText="{JMFilter>/companyCodem}"
-											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeCompCode" showSecondaryValues="true" selectedKey="{JMFilter>/companyCode}"
+										<ComboBox width="95%" items="{oBPLookUpMdl>/CompanyCode1}"  autocomplete="false" valueState="{JMFilter>/companyCodee}" valueStateText="{JMFilter>/companyCodem}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeCompCode1" showSecondaryValues="true" selectedKey="{JMFilter1>/companyCode}"
 											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
 							</VBox>
                              <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
-										<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMFilter>/purchasingOrge}" valueStateText="{JMFilter>/purchasingOrgm}"
-											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMFilter>/purchasingOrg}"
+										<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg1}" valueState="{JMFilter>/purchasingOrganisatione}" valueStateText="{JMFilter>/purchasingOrganisationm}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMFilter1>/purchasingOrganisation}"
 											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>

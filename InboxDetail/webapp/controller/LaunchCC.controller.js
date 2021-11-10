@@ -33,18 +33,27 @@ sap.ui.define([
                 var oJsonFilter = new sap.ui.model.json.JSONModel();
                 var temp = {
                     "companyCode": "",
-                    "purchasingOrg": ""
+                    "purchasingOrganisation": ""
                 };
                 oJsonFilter.setData(temp);
                 oView.setModel(oJsonFilter, "JMFilter");
-                this.fnLoadCompanyCode();
 
-               
+                var oJsonFilter = new sap.ui.model.json.JSONModel();
+                var temp = {
+                    "companyCode": "",
+                    "purchasingOrganisation": ""
+                };
+                oJsonFilter.setData(temp);
+                oView.setModel(oJsonFilter, "JMFilter1");
+                this.fnLoadCompanyCode();
+                this.fnLoadCompanyCode1();
+
+
 
             },
-                  fnLoadCompanyCode: function () {
+            fnLoadCompanyCode: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/company-codes";
+                var sUrl = "/InboxDetail/plcm_portal_services/api/v1/reference-data/company-codes";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -55,10 +64,36 @@ sap.ui.define([
                     }
                 });
             },
-               fnLiveChangeCompCode: function (oEvent) {
+            fnLoadCompanyCode1: function () {
+                var oModel = new JSONModel();
+                var sUrl = "/InboxDetail/plcm_reference_data/api/v1/reference-data/company-codes";
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/CompanyCode1", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
+            },
+            fnLiveChangeCompCode: function (oEvent) {
                 var vSelected = oEvent.getParameter("itemPressed");
-              
+
                 this.fnLoadPurOrg(oView.getModel("JMFilter").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
+                oView.getModel("JMFilter").getData().purchasingOrg = "";
+                oView.getModel("JMFilter").refresh();
+                if (oView.getModel("JMFilter").getData().companyCodee == "Error") {
+                    oView.getModel("JMFilter").getData().companyCodee = "None";
+                    oView.getModel("JMFilter").getData().companyCodem = "";
+                    oView.getModel("JMFilter").refresh();
+                }
+
+            },
+            fnLiveChangeCompCode1: function (oEvent) {
+                var vSelected = oEvent.getParameter("itemPressed");
+
+                this.fnLoadPurOrg1(oView.getModel("JMFilter1").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
                 oView.getModel("JMFilter").getData().purchasingOrg = "";
                 oView.getModel("JMFilter").refresh();
                 if (oView.getModel("JMFilter").getData().companyCodee == "Error") {
@@ -70,7 +105,7 @@ sap.ui.define([
             },
             fnLoadPurOrg: function (vCompCode, vDescription) {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/purchasingOrg/" + vCompCode;
+                var sUrl = "/InboxDetail/plcm_portal_services/api/v1/reference-data/purchasingOrg/" + vCompCode;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -94,6 +129,38 @@ sap.ui.define([
                                 "description": "Nypro Inc."
                             }]
                             oView.getModel("oBPLookUpMdl").setProperty("/PurOrg", temp);
+                        }
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
+
+            },
+            fnLoadPurOrg1: function (vCompCode, vDescription) {
+                var oModel = new JSONModel();
+                var sUrl = "/InboxDetail/plcm_reference_data/api/v1/reference-data/purchasingOrg/" + vCompCode;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/PurOrg1", oEvent.getSource().getData());
+                        if (oEvent.getSource().getData().length == 0) {
+                            if (vDescription.includes("Nypro")) {
+                                var temp = [{
+                                    "code": "0155",
+                                    "description": "Nypro Inc."
+                                }]
+                                oView.getModel("oBPLookUpMdl").setProperty("/PurOrg1", temp);
+                            }
+                        }
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    } else {
+                        if (vDescription.includes("Nypro")) {
+                            var temp = [{
+                                "code": "0155",
+                                "description": "Nypro Inc."
+                            }]
+                            oView.getModel("oBPLookUpMdl").setProperty("/PurOrg1", temp);
                         }
                         oView.getModel("oBPLookUpMdl").refresh();
                     }
@@ -149,22 +216,20 @@ sap.ui.define([
                     }
                 });
             },
-            fnSearchTooltip: function () {
+            fnSearchCompanyCode: function () {
                 var vError = false;
-                if (oView.getModel("JMFilter").getData().taxCategory == "") {
-                    vError = true
-                }
-                if (oView.getModel("JMFilter").getData().country == "") {
-                    vError = true
-                }
+                // if (oView.getModel("JMFilter").getData().companyCode == "") {
+                //     vError = true
+                // }
+
                 if (vError == false) {
                     oBusyDilog.open();
                     var oModel = new JSONModel();
-                    var sUrl = "/InboxDetail/plcm_portal_services/api/v1/tax-tooltip/search"
+                    var sUrl = "/InboxDetail/plcm_portal_services/ccpo/search"
 
                     var oPayload = {
-                        "country": oView.getModel("JMFilter").getData().country,
-                        "taxType": oView.getModel("JMFilter").getData().taxCategory,
+                        "companyCode": oView.getModel("JMFilter").getData().companyCode,
+                        "purchasingOrganisation": oView.getModel("JMFilter").getData().purchasingOrganisation,
                     }
 
                     oModel.loadData(sUrl, JSON.stringify(
@@ -177,14 +242,14 @@ sap.ui.define([
 
                             oBusyDilog.close();
 
-                            var oJsonTooltipSearch = new sap.ui.model.json.JSONModel();
-                            oJsonTooltipSearch.setData(oEvent.getSource().getData());
-                            oView.setModel(oJsonTooltipSearch, "JMTooltipSearch");
+                            var oJsonCompSearch = new sap.ui.model.json.JSONModel();
+                            oJsonCompSearch.setData(oEvent.getSource().getData());
+                            oView.setModel(oJsonCompSearch, "JMCompSearchResult");
                         } else {
                             oBusyDilog.close();
-                             var oJsonTooltipSearch = new sap.ui.model.json.JSONModel();
-                            oJsonTooltipSearch.setData([]);
-                            oView.setModel(oJsonTooltipSearch, "JMTooltipSearch")
+                            var oJsonCompSearch = new sap.ui.model.json.JSONModel();
+                            oJsonCompSearch.setData([]);
+                            oView.setModel(oJsonCompSearch, "JMCompSearchResult")
                             var sErMsg = oEvent.getParameter("errorobject").responseText;
                             MessageBox.show(sErMsg, {
                                 icon: MessageBox.Icon.ERROR,
@@ -201,18 +266,34 @@ sap.ui.define([
                 }
 
             },
-            fnSubmitTooltip: function () {
+            fnFetchDescriptionCommon(aArray, value, vFieldName) {
+                if (aArray) {
+                    if (value) {
+                        var item = aArray.find(item => item.code == value);
+                        if (item) {
+                            return item.description;
+                        } else {
+                            return "";
+                        }
+
+                    } else {
+                        return "";
+                    }
+                } else {
+                    return "";
+                }
+            },
+            fnSubmitCCPO: function () {
                 var vError = false;
-                if (oView.getModel("JMFilter1").getData().taxCategory == "") {
+                if (oView.getModel("JMFilter1").getData().companyCode == "") {
                     vError = true
                 }
-                if (oView.getModel("JMFilter1").getData().country == "") {
+                if (oView.getModel("JMFilter1").getData().purchasingOrganisation == "") {
                     vError = true
                 }
-                if (oView.getModel("JMFilter1").getData().toolTip == "") {
-                    vError = true
-                }
+
                 if (vError == false) {
+                    var that = this;
                     var vConfirmTxt = oi18n.getProperty("BPCConfirmSubmit");
                     MessageBox.confirm(vConfirmTxt, {
                         icon: MessageBox.Icon.Confirmation,
@@ -223,12 +304,22 @@ sap.ui.define([
                             if (oAction == "YES") {
                                 oBusyDilog.open();
                                 var oModel = new JSONModel();
-                                var sUrl = "/InboxDetail/plcm_portal_services/api/v1/tax-tooltip/create"
+                                var sUrl = "/InboxDetail/plcm_portal_services/ccpo/create"
+                                var vBuyer = ""
+                                if (oView.getModel("oConfigMdl").getData().usrData) {
+                                    vBuyer = oView.getModel("oConfigMdl").getData().usrData.givenName;
+
+                                }
 
                                 var oPayload = {
-                                    "country": oView.getModel("JMFilter1").getData().country,
-                                    "taxType": oView.getModel("JMFilter1").getData().taxCategory,
-                                    "toolTip": oView.getModel("JMFilter1").getData().toolTip
+                                    "companyCode": oView.getModel("JMFilter1").getData().purchasingOrganisation,
+                                    "purchasingOrganisation": oView.getModel("JMFilter1").getData().companyCode,
+                                    "companyCodeDescription": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode1, oView.getModel("JMFilter1").getData().companyCode, "CompanyCode"),
+                                    "purchasingOrganisationDescription": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurOrg1, oView.getModel("JMFilter1").getData().purchasingOrganisation, "PurchOrg"),
+                                    "createdOn": new Date(),
+                                    //"updatedOn": null,
+                                    "createdBy": vBuyer
+                                    //"updatedBy": "Updated Again"
                                 }
 
                                 oModel.loadData(sUrl, JSON.stringify(
@@ -239,7 +330,7 @@ sap.ui.define([
                                 oModel.attachRequestCompleted(function onCompleted(oEvent) {
                                     if (oEvent.getParameter("success")) {
                                         var temp = {};
-                                        var vSccuessTxt = oi18n.getProperty("TooltipCreatedSuccessfully");
+                                        var vSccuessTxt = oi18n.getProperty("CCCPPLaunchedSuccess");
                                         temp.Message = vSccuessTxt;
                                         var oJosnMessage = new sap.ui.model.json.JSONModel();
                                         oJosnMessage.setData(temp);
@@ -276,18 +367,78 @@ sap.ui.define([
                 }
 
             },
+            fnDeleteCC: function (oEvent) {
+                var vccId = oEvent.getSource().getBindingContext("JMCompSearchResult").getProperty("ccAndPoId");
+                var that = this;
+                var vConfirmTxt = oi18n.getProperty("BPCConfirmDelete");
+                MessageBox.confirm(vConfirmTxt, {
+                    icon: MessageBox.Icon.Confirmation,
+                    title: "Confirmation",
+                    actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                    emphasizedAction: MessageBox.Action.YES,
+                    onClose: function (oAction) {
+                        if (oAction == "YES") {
+                            oBusyDilog.open();
+                            var oModel = new JSONModel();
+
+                         
+                            var sUrl = "/nsBuyerRegistration/plcm_portal_services/ccpo/deleteById/" + vccId;
+                            $.ajax({
+                                url: sUrl,
+                                type: 'DELETE',
+                                dataType: 'json',
+                                success: function (data) {
+                                    var temp = {};
+                                    var vSccuessTxt = oi18n.getProperty("CCCPPDeleteSuccess");
+                                    temp.Message = vSccuessTxt;
+                                    var oJosnMessage = new sap.ui.model.json.JSONModel();
+                                    oJosnMessage.setData(temp);
+                                    oView.setModel(oJosnMessage, "JMMessageData");
+                                    if (!that.oBPSuccess) {
+                                        that.oBPSuccess = sap.ui.xmlfragment(
+                                            "InboxDetail.fragments.CreateSuccessGBS", that);
+                                        oView.addDependent(that.oBPSuccess);
+                                    }
+                                    oBusyDilog.close();
+                                    that.oBPSuccess.open();
+                                    that.fnSearchCompanyCode();
+
+                                },
+                                async: false,
+                                error: function (data) {
+                                    oBusyDilog.close();
+                                    var sErMsg = data.responseText;
+                                    MessageBox.show(sErMsg, {
+                                        icon: MessageBox.Icon.ERROR,
+                                        title: "Error"
+                                    });
+                                }
+                            });
+
+
+
+
+
+
+                        }
+                    }
+
+                });
+
+
+            },
+
             fnDoneSubmit: function () {
                 var oJsonFilter1 = new sap.ui.model.json.JSONModel();
                 var temp = {
-                    "country": "",
-                    "taxCategory": "",
-                    "toolTip": ""
+                    "companyCode": "",
+                    "purchasingOrganisation": ""
                 };
                 oJsonFilter1.setData(temp);
                 oView.setModel(oJsonFilter1, "JMFilter1");
-                that.oBPSuccess.close();
+                this.oBPSuccess.close();
             },
-             fnNavToHome: function () {
+            fnNavToHome: function () {
                 this.getOwnerComponent().getRouter().navTo("Home");
             }
         });
