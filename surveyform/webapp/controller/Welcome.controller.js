@@ -71,6 +71,7 @@ sap.ui.define([
             fnOnLanguageSelect: function (oEvent) {
                 var _selLan = oEvent.getSource().getSelectedKey();
                 sap.ui.getCore().getConfiguration().setLanguage(_selLan);
+                sap.ui.getCore().getConfiguration().setFormatLocale("en-US");
                   this.getView().getModel("oUserModel").setProperty("/language", _selLan);
                    this.getView().getModel("oUserModel").refresh();
                 if(_selLan == 'en'){
