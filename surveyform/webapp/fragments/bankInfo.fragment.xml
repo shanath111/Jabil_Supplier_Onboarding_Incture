@@ -191,11 +191,12 @@
 				</VBox> -->
 				
               
-				<!-- <VBox  class="fontStyle">
+				<VBox  class="fontStyle">
 					<Label tooltip="{oVisibilityModel>/bankValidation/bankControlKeyDigitsLogic}" wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankCtrlKey}:${oi18n_En>bankCtrlKey} + '&#10;' +${i18n>bankCtrlKey}}" required="{oVisibilityModel>/bankValidation/bankControlKey}"></Label>
 					<Input maxLength="3" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankControlKey}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/bankCtrlKeyE}" valueStateText="{oErrorModel>/bankCtrlKeyM}"  liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
-                   
-				</VBox> -->
+                  <layoutData>
+                <l:GridData visibleS="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}" visibleM="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}" visibleL="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}" visibleXL="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}"></l:GridData></layoutData> 
+				</VBox>
 				<VBox class="fontStyle">
 					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>instKey}:${oi18n_En>instKey}+ '&#10;' +${i18n>instKey}}" required="{oVisibilityModel>/bankValidation/instructionKey}"></Label>
 					<Input enabled="{=${oVisibilityModel>/_SupplierBankEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" editable="{oUserModel>/isNew}" value="{parts:['oLookUpModel>/InstructionKey','oDataModel>/bankDto/bankInfoDto/0/instructionKey'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>

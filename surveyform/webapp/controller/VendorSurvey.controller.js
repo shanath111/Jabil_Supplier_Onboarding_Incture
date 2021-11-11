@@ -3458,6 +3458,9 @@ var aError = false;
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum.length > 18) {
                             iError = true;
                         }
+                        if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm.length > 18) {
+                            iError = true;
+                        }
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName.length > 60) {
                             iError = true;
                         }
@@ -3467,9 +3470,9 @@ var aError = false;
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode.length > 11) {
                             iError = true;
                         }
-                        if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode.length > 4) {
-                            iError = true;
-                        }
+                        // if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode.length > 4) {
+                        //     iError = true;
+                        // }
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber.length > 15) {
                             iError = true;
                         }
@@ -5283,11 +5286,14 @@ var aError = false;
 
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode.length > 4) {
+                    if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm.length > 18) {
+                            iError = true;
+                        }
+                    // if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode.length > 4) {
 
 
-                        iError = true;
-                    }
+                    //     iError = true;
+                    // }
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName.length > 60) {
 
                         iError = true;
@@ -7906,7 +7912,9 @@ var aError = false;
                         oPayload.bankDto.bankInfoDto[0].refBankDetails = "";
                         oPayload.bankDto.bankInfoDto[0].swiftCode = "";
                         oPayload.bankDto.bankInfoDto[0].bankNumber = "";
+                        oPayload.bankDto.bankInfoDto[0].bankAccNumConfirm = "";
                         oPayload.bankDto.bankInfoDto[0].ibanNum = "";
+                        oPayload.bankDto.bankInfoDto[0].ibanNumConfirm = "";
                         oPayload.bankDto.bankInfoDto[0].bankCode = "";
                         oPayload.bankDto.bankInfoDto[0].partnerBankType = "";
                         oPayload.bankDto.bankInfoDto[0].bankControlKey = "";
