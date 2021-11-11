@@ -1,8 +1,12 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:grid="sap.ui.layout.cssgrid" xmlns:l="sap.ui.layout"
 	xmlns:ExtVbox="oneapp.incture.processFlow.processFlow.controlExtension">
-    <HBox renderType="Bare">
-       <VBox id="WB_PROCESSFLOW_CONTAINER" class="wbProcessFlowContents wbOverflowVertical" renderType="Bare" busyIndicatorDelay="0"
+
+    <HBox  renderType="Bare" height="100%">
+    	 <VBox id="WB_PROCESSFLOW_CONTAINER" height="100%" class="wbProcessFlowContents wbOverflowVertical" renderType="Bare" busyIndicatorDelay="0"
 					busy="{oProcessFlowModel>/taskDetailsBusy}" width="{= ${oProcessFlowModel>/showDetails} === true ? '50%': '100%'}"></VBox>
+		
+
+     
         				<VBox visible="{oProcessFlowModel>/showDetails}" width="{= ${oProcessFlowModel>/showDetails} === true ? '61%': '0'}"
 					class="wbProcessFlowInformationVBox">
 					<HBox width="100%" renderType="Bare" justifyContent="Start">
@@ -41,6 +45,10 @@
 						</VBox>
 					</HBox>
 				</VBox>
+                
     </HBox>
+
+    
+    
 
 </core:FragmentDefinition>

@@ -158,7 +158,7 @@
                              	<Label text="{i18n>BPCContact1}" required="true" class="cl_VRLablCls"></Label>
 											<Input width="93%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeTelephone" type="Number" value="{JMBPCreate>/telephone}" valueState="{JMBPCreate>/telephonee}" valueStateText="{JMBPCreate>/telephonem}" class="cl_VRInputCls"></Input>
                                 <layoutData>
-                                  <l:GridData spanM="2" spanL="2" spanXL="1"></l:GridData></layoutData>
+                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
                                         </VBox>
 
 
@@ -178,7 +178,7 @@
                              		<Label text="{i18n>BPCMobilePhone}" required="true" class="cl_VRLablCls "></Label>
 											<Input width="93%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeTelephoneMob" change="fnInputSpaceCheck" type="Number" value="{JMBPCreate>/contactMobilePhone}" valueState="{JMBPCreate>/contactMobilePhonee}" valueStateText="{JMBPCreate>/contactMobilePhonem}" class="cl_VRInputCls"></Input>
                                 <layoutData>
-                                  <l:GridData spanM="2" spanL="2" spanXL="1"></l:GridData></layoutData>
+                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
                                         </VBox>
 								
 								</l:Grid>
@@ -221,7 +221,7 @@
                              	<Label text="{i18n>BPCContact1}" required="true" class="cl_VRLablCls"></Label>
 											<Input width="95%"   value="{JMBPCreate>/altPhoneNumber}" editable="{oConfigMdl>/screenEditable}" liveChange="fnChangeContactNumber1" valueState="{JMBPCreate>/altPhoneNumbere}" valueStateText="{JMBPCreate>/altPhoneNumberm}" type="Number"  class="cl_VRInputCls "></Input>
                                 <layoutData>
-                                  <l:GridData spanM="2" spanL="2" spanXL="1"></l:GridData></layoutData>
+                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
                                         </VBox>
 
 								</l:Grid>
