@@ -1964,7 +1964,9 @@ sap.ui.define([
 			}
 
 			if (this.getModel("oAdvanceFilterModel").getProperty("/customTileClicked")) {
-				this._doNavigate("UnifiedInbox", {});
+               var router = sap.ui.core.UIComponent.getRouterFor(this);
+            router.navTo("UnifiedInbox", {}, true);
+                // this._doNavigate("UnifiedInbox", {});
 
 			} else {
 				oAppModel.setProperty("/graphClicked", false);
