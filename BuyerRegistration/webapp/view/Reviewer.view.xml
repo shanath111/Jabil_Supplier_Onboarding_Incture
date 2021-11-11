@@ -227,6 +227,10 @@
 													<Label text="{i18n>TIBankKey}" class="cl_VRLablCls "></Label>
 													<Input width="95%" class="cl_VRInputCls" maxLength="200" editable="false" value="{oDataModel>/bankDto/bankInfoDto/0/bankKey}"></Input>
 												</VBox>
+                                                <VBox class="VRVboxStyle1">
+													<Label text="{i18n>TIBankControlKey}" class="cl_VRLablCls "></Label>
+													<Input width="95%" class="cl_VRInputCls" maxLength="200" editable="false" value="{oDataModel>/bankDto/bankInfoDto/0/bankControlKey}"></Input>
+												</VBox>
                                                 	<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TICreditMemoTerm}" class="cl_VRLablCls "></Label>
 													<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/defaultEnable}"  maxLength="200" value="{oDataModel>/defaultValuesDto/creditMemoTeam}"></Input>
