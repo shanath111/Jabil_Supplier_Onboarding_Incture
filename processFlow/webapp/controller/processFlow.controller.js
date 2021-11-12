@@ -30,6 +30,8 @@ sap.ui.define([
             oProcessFlowModel.setProperty("/showDetails", true);
             this.showEventDetails(oProcessFlowModel.getProperty("/taskDetails"));
             this.getView().byId("id_CaseId").setEnabled(true);
+            this.getView().byId("id_ViewProcessBtn").setVisible(true);
+
             // 	}
             // }.bind(this));
             if (this.getOwnerComponent().getComponentData()) {
@@ -38,6 +40,7 @@ sap.ui.define([
                     this.getModel("oProcessFlowModel").getData().caseIdInput = vCaseId;
                     this.getModel("oProcessFlowModel").refresh();
                     this.getView().byId("id_CaseId").setEnabled(false);
+                    this.getView().byId("id_ViewProcessBtn").setVisible(false);
                     this.onClickViewFLowBtn();
                 }
             }

@@ -54,7 +54,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis = false;
                     oView.getModel("oConfigMdl").getData().COIVis = false;
-                    oView.getModel("oConfigMdl").getData().MitgationVis = true;
+                    oView.getModel("oConfigMdl").getData().MitgationVis = false;
                 }
                 else if (oContext.Name == "COIBuyer") {
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
@@ -712,8 +712,10 @@ sap.ui.define([
                         vContextActn = "approved";
                         vCommentsActn = "approve";
                     } else if (vBtn == "RJ") {
-                        vContextActn = "rejected";
-                        vCommentsActn = "reject";
+                        // vContextActn = "rejected";
+                        // vCommentsActn = "reject";
+                           vContextActn = "mitigation";
+                        vCommentsActn = "mitigation";
                     } else {
                         vContextActn = "mitigation";
                         vCommentsActn = "mitigation";

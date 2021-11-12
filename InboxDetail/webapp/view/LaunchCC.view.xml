@@ -8,6 +8,39 @@
 					</Toolbar>
 				</subHeader>
 				<content>
+                <Panel width="auto"   expandable="false" expanded="false" class="cl_VRPanelClass cl_PanelMargonTop  sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd">
+ 	<headerToolbar>
+							<Toolbar class="cl_VRHeaderBackGrndPnl">
+								<Title text="{i18n>CreateNewRecord}"/>
+                                <ToolbarSpacer ></ToolbarSpacer>
+									<Button text="{i18n>Submit}" press="fnSubmitCCPO" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
+							</Toolbar>
+						</headerToolbar>
+ 	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
+								
+                             <VBox class="VRVboxStyle1">
+								
+								<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls "></Label>
+										<ComboBox width="95%" items="{oBPLookUpMdl>/CompanyCode1}"  autocomplete="false" valueState="{JMFilter>/companyCodee}" valueStateText="{JMFilter>/companyCodem}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeCompCode1" showSecondaryValues="true" selectedKey="{JMFilter1>/companyCode}"
+											class="cl_VRInputCls"  >
+											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</ComboBox>
+							</VBox>
+                             <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
+										<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg1}" valueState="{JMFilter>/purchasingOrganisatione}" valueStateText="{JMFilter>/purchasingOrganisationm}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMFilter1>/purchasingOrganisation}"
+											class="cl_VRInputCls"  >
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</ComboBox>
+							</VBox>
+                           
+                              
+							</l:Grid>
+                            
+						
+</Panel>
  <Panel width="auto"   expandable="false" expanded="false" class="cl_VRPanelClass cl_PanelMargonTop  sapUiTinyMarginBegin  sapUiTinyMarginEnd">
  	<headerToolbar>
 							<Toolbar class="cl_VRHeaderBackGrndPnl">
@@ -87,39 +120,7 @@
 						
 </Panel>
 
-<Panel width="auto"   expandable="false" expanded="false" class="cl_VRPanelClass cl_PanelMargonTop  sapUiTinyMarginBegin  sapUiTinyMarginEnd">
- 	<headerToolbar>
-							<Toolbar class="cl_VRHeaderBackGrndPnl">
-								<Title text="{i18n>CreateNewRecord}"/>
-                                <ToolbarSpacer ></ToolbarSpacer>
-									<Button text="{i18n>Submit}" press="fnSubmitCCPO" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
-							</Toolbar>
-						</headerToolbar>
- 	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
-								
-                             <VBox class="VRVboxStyle1">
-								
-								<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls "></Label>
-										<ComboBox width="95%" items="{oBPLookUpMdl>/CompanyCode1}"  autocomplete="false" valueState="{JMFilter>/companyCodee}" valueStateText="{JMFilter>/companyCodem}"
-											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeCompCode1" showSecondaryValues="true" selectedKey="{JMFilter1>/companyCode}"
-											class="cl_VRInputCls"  >
-											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
-										</ComboBox>
-							</VBox>
-                             <VBox class="VRVboxStyle1">
-									<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
-										<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg1}" valueState="{JMFilter>/purchasingOrganisatione}" valueStateText="{JMFilter>/purchasingOrganisationm}"
-											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMFilter1>/purchasingOrganisation}"
-											class="cl_VRInputCls"  >
-											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
-										</ComboBox>
-							</VBox>
-                           
-                              
-							</l:Grid>
-                            
-						
-</Panel>
+
 
 
                             	</content>

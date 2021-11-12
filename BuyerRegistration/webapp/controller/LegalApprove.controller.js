@@ -56,8 +56,8 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().ButtonNameReject = "Disqualify";
                     oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Approve";
                     oView.getModel("oConfigMdl").getData().coiLegalActnTxt = true;
-                    oView.getModel("oConfigMdl").getData().RejectBtnVis = false;
-                    oView.getModel("oConfigMdl").getData().MitgationVis = true;
+                    oView.getModel("oConfigMdl").getData().RejectBtnVis = true;
+                    oView.getModel("oConfigMdl").getData().MitgationVis = false;
 
                 } else {
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = true;

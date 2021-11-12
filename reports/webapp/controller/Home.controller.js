@@ -76,40 +76,105 @@ sap.ui.define([
                 that.fnScreenResize();
                 //  that.fnClearSearch();
                 that.fnLoadCompCode();
-                that.fnLoadPOrg();
+               // that.fnLoadPOrg();
                 that.fnLoadStatus();
 
 
                 // this.fnLoadUser();
             },
 
-            fnLoadCompCode: function () {
+            // fnLoadCompCode: function () {
+            //     var oModel = new JSONModel();
+            //     var sUrl = "/oneappincturereportreports/plcm_portal_services/lookup/comCode";
+            //     oModel.loadData(sUrl, {
+            //         "Content-Type": "application/json"
+            //     });
+            //     oModel.attachRequestCompleted(function (oEvent) {
+            //         if (oEvent.getParameter("success")) {
+            //             oView1.getModel("oBPLookUpMdl").setProperty("/CompCodeLp", oEvent.getSource().getData());
+            //             oView1.getModel("oBPLookUpMdl").refresh();
+            //         }
+            //     });
+            // },
+              fnLoadCompCode: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/oneappincturereportreports/plcm_portal_services/lookup/comCode";
+                var sUrl = "/oneappincturereportreports/plcm_portal_services/api/v1/reference-data/company-codes";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
-                        oView1.getModel("oBPLookUpMdl").setProperty("/CompCodeLp", oEvent.getSource().getData());
-                        oView1.getModel("oBPLookUpMdl").refresh();
+                        oView.getModel("oBPLookUpMdl").setProperty("/CompanyCode", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
                     }
                 });
+            },
 
+
+            // fnLoadPOrg: function () {
+            //     var oModel = new JSONModel();
+            //     var sUrl = "/oneappincturereportreports/plcm_portal_services/lookup/POrg";
+            //     oModel.loadData(sUrl, {
+            //         "Content-Type": "application/json"
+            //     });
+            //     oModel.attachRequestCompleted(function (oEvent) {
+            //         if (oEvent.getParameter("success")) {
+            //             oView1.getModel("oBPLookUpMdl").setProperty("/PurchOrgLp", oEvent.getSource().getData());
+            //             oView1.getModel("oBPLookUpMdl").refresh();
+            //         }
+            //     });
+
+            // },
+
+            fnLoadPurOrg: function (vCompCode, vDescription) {
+                var oModel = new JSONModel();
+                var sUrl = "/oneappincturereportreports/plcm_portal_services/api/v1/reference-data/purchasingOrg/" + vCompCode;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/PurOrg", oEvent.getSource().getData());
+                        if (oEvent.getSource().getData().length == 0) {
+                            if (vDescription) {
+                                if (vDescription.includes("Nypro")) {
+                                    var temp = [{
+                                        "code": "0155",
+                                        "description": "Nypro Inc."
+                                    }]
+                                    oView.getModel("oBPLookUpMdl").setProperty("/PurOrg", temp);
+                                }
+                            }
+                        }
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    } else {
+                        if (vDescription) {
+                            if (vDescription.includes("Nypro")) {
+                                var temp = [{
+                                    "code": "0155",
+                                    "description": "Nypro Inc."
+                                }]
+                                oView.getModel("oBPLookUpMdl").setProperty("/PurOrg", temp);
+                            }
+                        }
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
 
             },
-            fnLoadPOrg: function () {
-                var oModel = new JSONModel();
-                var sUrl = "/oneappincturereportreports/plcm_portal_services/lookup/POrg";
-                oModel.loadData(sUrl, {
-                    "Content-Type": "application/json"
-                });
-                oModel.attachRequestCompleted(function (oEvent) {
-                    if (oEvent.getParameter("success")) {
-                        oView1.getModel("oBPLookUpMdl").setProperty("/PurchOrgLp", oEvent.getSource().getData());
-                        oView1.getModel("oBPLookUpMdl").refresh();
-                    }
-                });
+                fnLiveChangeCompCode: function (oEvent) {
+                var vSelected = oEvent.getParameter("itemPressed");
+                // if (vSelected == false) {
+                //     oEvent.getSource().setValue("");
+                // }
+                this.fnLoadPurOrg(oView.getModel("JMSuppReqListHeader").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
+                oView.getModel("JMSuppReqListHeader").getData().purchasingOrg = "";
+                oView.getModel("JMSuppReqListHeader").refresh();
+                if (oView.getModel("JMSuppReqListHeader").getData().companyCodee == "Error") {
+                    oView.getModel("JMSuppReqListHeader").getData().companyCodee = "None";
+                    oView.getModel("JMSuppReqListHeader").getData().companyCodem = "";
+                    oView.getModel("JMSuppReqListHeader").refresh();
+                }
 
             },
             fnLoadStatus: function () {
@@ -328,13 +393,13 @@ sap.ui.define([
                 // apply the selected sort and group settings
                 oBinding.sort(aSorters);
             },
-            fnLiveChangeCompCode: function (oEvent) {
+            // fnLiveChangeCompCode: function (oEvent) {
 
-                var vSelected = oEvent.getParameter("itemPressed");
-                // if (!oEvent.getSource().getProperty("selectedKey")) {
-                //     oEvent.getSource().setValue("");
-                // }
-            },
+            //     var vSelected = oEvent.getParameter("itemPressed");
+            //     // if (!oEvent.getSource().getProperty("selectedKey")) {
+            //     //     oEvent.getSource().setValue("");
+            //     // }
+            // },
             fnLiveChangePurchOrg: function (oEvent) {
                 var vSelected = oEvent.getParameter("itemPressed");
                 // if (vSelected == false) {

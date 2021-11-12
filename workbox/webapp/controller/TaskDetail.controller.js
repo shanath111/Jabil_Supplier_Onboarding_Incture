@@ -29,6 +29,7 @@ sap.ui.define([
             oTaskDetailModel.setProperty("/enableBusyIndicators", {});
             this.oRouter.attachRoutePatternMatched(function (oEvent) {
                 if (oEvent.getParameter("name") === "TaskDetail") {
+                      $("#frameId").attr("src", "");
                     this.oAppModel.setProperty("/transitionWait", false);
                     this.setTaskDetailPage();
                 }

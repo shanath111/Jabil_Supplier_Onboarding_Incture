@@ -32,18 +32,18 @@
                               
                             <VBox class="VRVboxStyle1">
 									<Label text="{i18n>VRCompanyCode}" class="cl_VRLablCls "></Label>
-								<ComboBox width="95%"  items="{oBPLookUpMdl>/CompCodeLp}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
+								<ComboBox width="95%"  items="{oBPLookUpMdl>/CompanyCode}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
 											filterSecondaryValues="true"  change="fnLiveChangeCompCode" showSecondaryValues="true" selectedKey="{JMSuppReqListHeader>/companyCode}"
 											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}" >
-											<core:ListItem key="{oBPLookUpMdl>}" text="{oBPLookUpMdl>}" />
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}" />
 										</ComboBox>
 							</VBox>
                              <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPPurchasingOrg}" class="cl_VRLablCls "></Label>
-										<ComboBox width="95%"   items="{oBPLookUpMdl>/PurchOrgLp}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
-											filterSecondaryValues="true"  change="fnLiveChangeCompCode" showSecondaryValues="true" selectedKey="{JMSuppReqListHeader>/purchasingOrg}"
+										<ComboBox width="95%"   items="{oBPLookUpMdl>/PurOrg}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
+											filterSecondaryValues="true"   showSecondaryValues="true" selectedKey="{JMSuppReqListHeader>/purchasingOrg}"
 											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}" >
-											<core:ListItem key="{oBPLookUpMdl>}" text="{oBPLookUpMdl>}" additionalText="{oBTLookUpMdl>FIELD_02}"/>
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
 							</VBox>
                               
