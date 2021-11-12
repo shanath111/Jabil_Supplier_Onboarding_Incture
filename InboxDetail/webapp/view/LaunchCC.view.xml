@@ -8,7 +8,7 @@
 					</Toolbar>
 				</subHeader>
 				<content>
-                <Panel width="auto"   expandable="false" expanded="false" class="cl_VRPanelClass cl_PanelMargonTop  sapUiTinyMarginBegin  sapUiTinyMarginEnd">
+                <Panel width="auto"   expandable="false" expanded="false" class="cl_VRPanelClass cl_PanelMargonTop  sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd">
  	<headerToolbar>
 							<Toolbar class="cl_VRHeaderBackGrndPnl">
 								<Title text="{i18n>CreateNewRecord}"/>
