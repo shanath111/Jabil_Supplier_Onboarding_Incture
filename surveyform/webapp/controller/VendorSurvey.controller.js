@@ -3458,6 +3458,9 @@ var aError = false;
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum.length > 18) {
                             iError = true;
                         }
+                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm.length > 18) {
+                            iError = true;
+                        }
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName.length > 60) {
                             iError = true;
                         }
@@ -3467,9 +3470,9 @@ var aError = false;
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode.length > 11) {
                             iError = true;
                         }
-                        if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode.length > 4) {
-                            iError = true;
-                        }
+                        // if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode.length > 4) {
+                        //     iError = true;
+                        // }
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber.length > 15) {
                             iError = true;
                         }
@@ -5283,11 +5286,16 @@ var aError = false;
 
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode.length > 4) {
+                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm.length > 18) {
 
 
                         iError = true;
                     }
+                    // if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode.length > 4) {
+
+
+                    //     iError = true;
+                    // }
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName.length > 60) {
 
                         iError = true;
@@ -6476,6 +6484,20 @@ var aError = false;
                     oEvent.getSource().setValueStateText("");
                     oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
                     oView.getModel("oDataModel").refresh();
+                }
+
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+
+            },
+            fnLiveValueCountryCodeChange: function (oEvent) {
+                if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
                 }
 
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
@@ -7922,6 +7944,7 @@ var aError = false;
                         oPayload.bankDto.financeContact1.extension = "";
                         oPayload.bankDto.financeContact1.mobile = "";
                         oPayload.bankDto.financeContact1.countryContactCode = "";
+                        oPayload.bankDto.financeContact1.countryMobileCode = "";
                         oPayload.bankDto.financeContact1.contactInSection = "";
                         oPayload.bankDto.financeContact2.contactInSection = "Reviewer";
                     }
@@ -9220,6 +9243,7 @@ var aError = false;
                     oView.getModel("oLookUpModel").setProperty(sPath + "/lastName", copiedData.lastName);
                     oView.getModel("oLookUpModel").setProperty(sPath + "/jobTitle", copiedData.jobTitle);
                     oView.getModel("oLookUpModel").setProperty(sPath + "/countryContactCode", copiedData.countryContactCode);
+                    oView.getModel("oLookUpModel").setProperty(sPath + "/countryCodeDesc", copiedData.countryCodeDesc);
                     oView.getModel("oLookUpModel").setProperty(sPath + "/contact", copiedData.contact);
                     oView.getModel("oLookUpModel").setProperty(sPath + "/extension", copiedData.extension);
                 }
@@ -9252,6 +9276,7 @@ var aError = false;
                     row.lastName = copiedData.lastName;
                     row.jobTitle = copiedData.jobTitle;
                     row.countryContactCode = copiedData.countryContactCode;
+                    row.countryCodeDesc = copiedData.countryCodeDesc;
                     row.contact = copiedData.contact;
                     row.extension = copiedData.extension;
                 });

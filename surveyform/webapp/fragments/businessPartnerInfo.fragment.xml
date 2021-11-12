@@ -289,8 +289,8 @@
 									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
 									 <VBox>
-										<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="true" items="{oLookUpModel>/countryContactCode}" value="{oDataModel>/bpInfoDto/pointOfContact/countryContactCode}" enabled="{oEnableMdl>/ppocCountryContEnb}" class="inputStyle" valueState="{oErrorModel>/ppocCountryContCodeE}" valueStateText="{oErrorModel>/ppocCountryContCodeM}" change="fnLiveValueChange">
-                                            <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>code}" additionalText="{oLookUpModel>description}"/>
+										<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="false" items="{oLookUpModel>/countryContactCode}" value="{oVisibilityModel>/pointOfContactContactCode}" selectedKey="{oDataModel>/bpInfoDto/pointOfContact/countryContactCode}" enabled="{oEnableMdl>/ppocCountryContEnb}" class="inputStyle" valueState="{oErrorModel>/ppocCountryContCodeE}" valueStateText="{oErrorModel>/ppocCountryContCodeM}" change="fnLiveValueCountryCodeChange">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
                                         </ComboBox>
                                     </VBox>
                                   <layoutData>
@@ -319,8 +319,8 @@
 									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
 									 <VBox>
-										<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="true" items="{oLookUpModel>/countryContactCode}" value="{oDataModel>/bpInfoDto/pointOfContact/countryMobileCode}" enabled="{oEnableMdl>/ppocCountryContEnb}" class="inputStyle" valueState="{oErrorModel>/ppocCountryContCodeMobE}" valueStateText="{oErrorModel>/ppocCountryContCodeMobM}" change="fnLiveValueChange">
-                                            <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>code}" additionalText="{oLookUpModel>description}"/>
+										<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="false" items="{oLookUpModel>/countryContactCode}" value="{oVisibilityModel>/pointOfContactMobileCode}" selectedKey="{oDataModel>/bpInfoDto/pointOfContact/countryMobileCode}" enabled="{oEnableMdl>/ppocCountryContEnb}" class="inputStyle" valueState="{oErrorModel>/ppocCountryContCodeMobE}" valueStateText="{oErrorModel>/ppocCountryContCodeMobM}" change="fnLiveValueCountryCodeChange">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
                                         </ComboBox>
                                     </VBox>
                                   <layoutData>

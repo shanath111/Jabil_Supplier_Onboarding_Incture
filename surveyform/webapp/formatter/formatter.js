@@ -199,5 +199,22 @@ com.jabil.surveyform.formatter.formatter = {
                 } else {
                     return '';
                 }
-    }
+    },
+    fnFetchCode: function(aArray, value){
+ if (aArray) {
+                    if (value) {
+                        var item = aArray.find(item => item.description == value);
+                        if (item) {
+                            return value + ' (' + item.code + ')';
+                        } else {
+                            return '';
+                        }
+
+                    } else {
+                       return '';
+                    }
+                } else {
+                    return '';
+                }
+    },
 };

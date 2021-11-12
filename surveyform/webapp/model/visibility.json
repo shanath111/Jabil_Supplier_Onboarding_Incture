@@ -59,5 +59,25 @@
         "bankControlKeyDigitsLogic": null,
         "supplierBankCtryComparator": "",
         "purchaseOrderCurrComparator": ""
+    },
+    "contactCodeDescription":{
+        "authorityContactContactCode":"",
+        "authorityContactMobileCode":"",
+        "ackContactContactCode":"",
+        "ackContactMobileCode":"",
+"mainContactContactCode":"",
+"mainContactMobileCode":"",
+"altContactContactCode":"",
+"pointOfContactContactCode":"",
+"pointOfContactMobileCode":"",
+"managedByGovtContactContactCode":"",
+"managedByGovtFamilyContactContactCode":"",
+"finance1ContactCode":"",
+"finance1MobileCode":"",
+"finance2ContactCode":"",
+"finance2MobileCode":"",
+"deliveryRepContactCode":"",
+"cocContactCode":"",
+"itCyberContactCode":""
     }
 }

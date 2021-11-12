@@ -192,11 +192,12 @@
 				</VBox> -->
 				
               
-				<!-- <VBox  class="fontStyle">
+				<VBox  class="fontStyle">
 					<Label tooltip="{oVisibilityModel>/bankValidation/bankControlKeyDigitsLogic}" wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankCtrlKey}:${oi18n_En>bankCtrlKey} + '&#10;' +${i18n>bankCtrlKey}}" required="{oVisibilityModel>/bankValidation/bankControlKey}"></Label>
 					<Input maxLength="3" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankControlKey}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/bankCtrlKeyE}" valueStateText="{oErrorModel>/bankCtrlKeyM}"  liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
-                   
-				</VBox> -->
+                   <layoutData>
+                <l:GridData visibleS="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}" visibleM="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}" visibleL="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}" visibleXL="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}"></l:GridData></layoutData>
+				</VBox>
 				<VBox class="fontStyle">
 					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>instKey}:${oi18n_En>instKey}+ '&#10;' +${i18n>instKey}}" required="{oVisibilityModel>/bankValidation/instructionKey}"></Label>
 					<Input enabled="{=${oVisibilityModel>/_SupplierBankEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" editable="{oUserModel>/isNew}" value="{parts:['oLookUpModel>/InstructionKey','oDataModel>/bankDto/bankInfoDto/0/instructionKey'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
@@ -295,8 +296,8 @@
                                         <Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                             <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
                                             <VBox>
-                                                <ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="true" items="{oLookUpModel>/countryContactCode}" value="{oDataModel>/bankDto/financeContact1/countryContactCode}" class="inputStyle" valueState="{oErrorModel>/finance1CountryContCodeE}" valueStateText="{oErrorModel>/finance1CountryContCodeM}" enabled="{oEnableMdl>/finance1CountryCodeEnb}" change="fnLiveValueChange">
-                                                    <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>code}" additionalText="{oLookUpModel>description}"/>
+                                                <ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="false" items="{oLookUpModel>/countryContactCode}" value="{oVisibilityModel>/finance1ContactCode}" selectedKey="{oDataModel>/bankDto/financeContact1/countryContactCode}" class="inputStyle" valueState="{oErrorModel>/finance1CountryContCodeE}" valueStateText="{oErrorModel>/finance1CountryContCodeM}" enabled="{oEnableMdl>/finance1CountryCodeEnb}" change="fnLiveValueCountryCodeChange">
+                                                    <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
                                                 </ComboBox>
                                             </VBox>
                                             <layoutData>
@@ -333,8 +334,8 @@
                                         <Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                             <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
                                             <VBox>
-                                                <ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="true" items="{oLookUpModel>/countryContactCode}" value="{oDataModel>/bankDto/financeContact1/countryMobileCode}" class="inputStyle" valueState="{oErrorModel>/finance1CountryContCodeMobE}" valueStateText="{oErrorModel>/finance1CountryContCodeMobM}" enabled="{oEnableMdl>/finance1CountryCodeEnb}" change="fnLiveValueChange">
-                                                    <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>code}" additionalText="{oLookUpModel>description}"/>
+                                                <ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="false" items="{oLookUpModel>/countryContactCode}" value="{oVisibilityModel>/finance1MobileCode}" selectedKey="{oDataModel>/bankDto/financeContact1/countryMobileCode}" class="inputStyle" valueState="{oErrorModel>/finance1CountryContCodeMobE}" valueStateText="{oErrorModel>/finance1CountryContCodeMobM}" enabled="{oEnableMdl>/finance1CountryCodeEnb}" change="fnLiveValueCountryCodeChange">
+                                                    <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
                                                 </ComboBox>
                                             </VBox>
                                             <layoutData>
@@ -394,8 +395,8 @@
                                         <Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                             <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
                                             <VBox>
-                                                <ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="true" items="{oLookUpModel>/countryContactCode}" value="{oDataModel>/bankDto/financeContact2/countryContactCode}" class="inputStyle" valueState="{oErrorModel>/finance2CountryContCodeE}" valueStateText="{oErrorModel>/finance2CountryContCodeM}" enabled="{oEnableMdl>/finance2CountryCodeEnb}" change="fnLiveValueChange"> 
-                                                    <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>code}" additionalText="{oLookUpModel>description}"/>
+                                                <ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="false" items="{oLookUpModel>/countryContactCode}" value="{oVisibilityModel>/finance2ContactCode}" selectedKey="{oDataModel>/bankDto/financeContact2/countryContactCode}" class="inputStyle" valueState="{oErrorModel>/finance2CountryContCodeE}" valueStateText="{oErrorModel>/finance2CountryContCodeM}" enabled="{oEnableMdl>/finance2CountryCodeEnb}" change="fnLiveValueCountryCodeChange"> 
+                                                    <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
                                                 </ComboBox>
                                             </VBox>
                                             <layoutData>
@@ -425,8 +426,8 @@
                                         <Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                             <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
                                             <VBox>
-                                                <ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="true" items="{oLookUpModel>/countryContactCode}" value="{oDataModel>/bankDto/financeContact2/countryMobileCode}" class="inputStyle" valueState="{oErrorModel>/finance2CountryContCodeMobE}" valueStateText="{oErrorModel>/finance2CountryContCodeMobM}" enabled="{oEnableMdl>/finance2CountryCodeEnb}" change="fnLiveValueChange"> 
-                                                    <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>code}" additionalText="{oLookUpModel>description}"/>
+                                                <ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="false" items="{oLookUpModel>/countryContactCode}" value="{oVisibilityModel>/finance2MobileCode}" selectedKey="{oDataModel>/bankDto/financeContact2/countryMobileCode}" class="inputStyle" valueState="{oErrorModel>/finance2CountryContCodeMobE}" valueStateText="{oErrorModel>/finance2CountryContCodeMobM}" enabled="{oEnableMdl>/finance2CountryCodeEnb}" change="fnLiveValueCountryCodeChange"> 
+                                                    <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
                                                 </ComboBox>
                                             </VBox>
                                             <layoutData>
