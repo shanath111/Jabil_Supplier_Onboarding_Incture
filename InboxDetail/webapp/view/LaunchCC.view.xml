@@ -16,7 +16,7 @@
 									<Button text="{i18n>Submit}" press="fnSubmitCCPO" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
 							</Toolbar>
 						</headerToolbar>
- 	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
+ 	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
 								
                              <VBox class="VRVboxStyle1">
 								
