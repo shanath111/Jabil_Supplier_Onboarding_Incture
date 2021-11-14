@@ -83,7 +83,7 @@
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>countryCode}" wrapping="true" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
-									<Label text="{oDataModel>/surveyInfoDto/authorityContact/countryContactCode}" class="cl_PreviewLablClsValue "></Label>
+									<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/authorityContactContactCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 								    <Label text="{i18n>phoneNum}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
@@ -94,6 +94,11 @@
 								    <Label text="{i18n>extension}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                      <Label text="{oi18n_En>extension}&#10;{i18n>extension}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
 									<Label text="{oDataModel>/surveyInfoDto/authorityContact/extension}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
+                                     <VBox class="VRVboxStyle1">
+										<Label text="{i18n>countryCode}" wrapping="true" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                        <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
+									<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/authorityContactMobileCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 								    <Label text="{i18n>mobPhone}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
@@ -122,7 +127,7 @@
 								</VBox>
                                 <VBox>
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countryCode}:${oi18n_En>countryCode} +'&#10;' + ${i18n>countryCode}}" wrapping="true"  class="cl_PreviewLablCls "></Label>
-									<Label text="{oDataModel>/surveyInfoDto/mainContact/countryContactCode}" class="cl_PreviewLablClsValue "/>
+									<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/mainContactContactCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue "/>
 								</VBox>
 								<VBox>
                                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" wrapping="true" class="cl_PreviewLablCls "></Label>
@@ -133,6 +138,10 @@
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>extension}:${oi18n_En>extension} +'&#10;' + ${i18n>extension}}" wrapping="true"  class="cl_PreviewLablCls "></Label>
 									<Label text="{=${oDataModel>/surveyInfoDto/mainContact/extension}?${oDataModel>/surveyInfoDto/mainContact/extension}:'---'}" class="cl_PreviewLablClsValue "/>
                                   
+								</VBox>
+                                 <VBox>
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countryCode}:${oi18n_En>countryCode} +'&#10;' + ${i18n>countryCode}}" wrapping="true"  class="cl_PreviewLablCls "></Label>
+									<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/mainContactMobileCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue "/>
 								</VBox>
                                 <VBox>
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>mobPhone}:${oi18n_En>mobPhone} +'&#10;' + ${i18n>mobPhone}}" wrapping="true"  class="cl_PreviewLablCls "></Label>
@@ -164,7 +173,7 @@
                                 </VBox>
                                 <VBox >
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countryCode}:${oi18n_En>countryCode} +'&#10;' + ${i18n>countryCode}}" wrapping="true" class="cl_PreviewLablCls "></Label>
-									<Label text="{oDataModel>/surveyInfoDto/altContact/countryContactCode}" class="cl_PreviewLablClsValue "/>	
+									<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/altContactContactCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue "/>	
                                 </VBox>
                                 <VBox>
                                 <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" wrapping="true" class="cl_PreviewLablCls "></Label>
@@ -247,9 +256,12 @@
                                    
 								</l:Grid>        -->
                                  
-             <Label text="{i18n>CompanyRegInfo}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewPageSubHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>  
-             <Label text="{oi18n_En>CompanyRegInfo}/&#160;{i18n>CompanyRegInfo}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewPageSubHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>  
-             <Table items="{oDataModel>/bpInfoDto/tax}" class="sapUiTinyMarginTop sapUiTinyMarginBegin cl_CompContTabale" width="80%">
+             <Label text="{i18n>CompanyRegInfo}" visible="{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}" class="cl_PreviewPageSubHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>  
+             <Label text="{oi18n_En>CompanyRegInfo}/&#160;{i18n>CompanyRegInfo}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}" class="cl_PreviewPageSubHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>  
+           <VBox  visible="{oUserModel>/isNew}" class="sapUiSizeCompact">
+             <CheckBox editable="false" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>naturalPerson}:${oi18n_En>naturalPerson}+ '/ ' +${i18n>naturalPerson}}" selected="{oDataModel>/bpCentral/0/naturalPersonalIndicator}" class="sapUiTinyMarginTop cl_PreviewLablCls inputStyle" />
+            </VBox>
+             <Table items="{oDataModel>/bpInfoDto/tax}" visible="{oUserModel>/isNew}" class="sapUiTinyMarginTop sapUiTinyMarginBegin cl_CompContTabale" width="80%">
                 <columns>
                  <Column minScreenWidth="Desktop"          
 				demandPopin="true" class="sapUiSizeCompact">
@@ -297,48 +309,53 @@
                             <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop">
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstNameG}:${oi18n_En>firstNameG} +'&#10;' + ${i18n>firstName}}" class="cl_PreviewLablCls "></Label> -->
-                                     <Label text="{i18n>firstNameG}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" ></Label>
+                                     <Label text="{i18n>firstNameG}" visible= "{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls" ></Label>
                                     <Label text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
 									<Label text="{oDataModel>/bpInfoDto/pointOfContact/firstName}" class="cl_PreviewLablClsValue "/>
 								</VBox>
 								<VBox >
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastNameG}:${oi18n_En>lastNameG} +'&#10;' + ${i18n>lastName}}" class="cl_PreviewLablCls "></Label> -->
-                                     <Label text="{i18n>lastNameG}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                     <Label text="{i18n>lastNameG}" visible= "{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls"></Label>
                                     <Label text="{oi18n_En>lastNameG}&#10;{i18n>lastNameG}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
 							        <Label text="{oDataModel>/bpInfoDto/pointOfContact/lastName}" class="cl_PreviewLablClsValue "/>
                                 </VBox>
 								<VBox >
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>jobTitle}:${oi18n_En>jobTitle} +'&#10;' + ${i18n>jobTitle}}" class="cl_PreviewLablCls "></Label> -->
-                                     <Label text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" ></Label>
+                                     <Label text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls" ></Label>
                                     <Label text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
 									<Label text="{=${oDataModel>/bpInfoDto/pointOfContact/jobTitle}?${oDataModel>/bpInfoDto/pointOfContact/jobTitle}:'---'}" class="cl_PreviewLablClsValue " />
                                 </VBox>
 								<VBox >
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="cl_PreviewLablCls "></Label> -->
-                                     <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                     <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls"></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
 									<Label text="{oDataModel>/bpInfoDto/pointOfContact/email}" class="cl_PreviewLablClsValue "/>	
                                 </VBox>
                                 <VBox>
-                                    <Label text="{i18n>countryCode}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{i18n>countryCode}" visible= "{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls"></Label>
                                     <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-								    <Label text="{oDataModel>/bpInfoDto/pointOfContact/countryContactCode}" class="cl_PreviewLablClsValue "/>
+								    <Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/pointOfContactContactCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue "/>
                                 </VBox> 
 							<VBox>
                                 <!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" class="cl_PreviewLablCls " ></Label> -->
-                                 <Label text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                 <Label text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls"></Label>
                                     <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
 								<Label text="{oDataModel>/bpInfoDto/pointOfContact/contact}" class="cl_PreviewLablClsValue "/>
                             </VBox> 	
 						 <VBox >
 								<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>extension}:${oi18n_En>extension} +'&#10;' + ${i18n>extension}}" class="cl_PreviewLablCls " ></Label> -->
-                                 <Label text="{i18n>extension}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                 <Label text="{i18n>extension}" visible= "{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls"></Label>
                                     <Label text="{oi18n_En>extension}&#10;{i18n>extension}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
 								<Label text="{=${oDataModel>/bpInfoDto/pointOfContact/extension}?${oDataModel>/bpInfoDto/pointOfContact/extension}:'---'}" class="cl_PreviewLablClsValue "/>
 						</VBox>
+                         <VBox>
+                                    <Label text="{i18n>countryCode}" visible= "{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+								    <Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/pointOfContactMobileCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue "/>
+                                </VBox> 
                             <VBox>
                                 <!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>mobPhone}:${oi18n_En>mobPhone} +'&#10;' + ${i18n>mobPhone}}" class="cl_PreviewLablCls "></Label> -->
-                                 <Label text="{i18n>mobPhone}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" ></Label>
+                                 <Label text="{i18n>mobPhone}" visible= "{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls" ></Label>
                                     <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
 								<Label text="{oDataModel>/bpInfoDto/pointOfContact/mobile}" class="cl_PreviewLablClsValue "/>
                             </VBox> 
@@ -432,7 +449,10 @@
             <Text text="{oLookUpModel>firstName}" class="cl_PreviewLablClsValue "/>
               <Text text="{oLookUpModel>lastName}" class="cl_PreviewLablClsValue "/>
            <Text text="{oLookUpModel>jobTitle}" class="cl_PreviewLablClsValue "/>
+           <VBox fitContainer="true" alignItems="Start">
+           <Text text="{parts:['oLookUpModel>/countryContactCode','oLookUpModel>countryCodeDesc'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue "/>
            <Text text="{oLookUpModel>contact}" class="cl_PreviewLablClsValue "/>
+           </VBox>
             <Text text="{oLookUpModel>extension}" class="cl_PreviewLablClsValue "/>
             </cells>
             </ColumnListItem>
@@ -601,7 +621,7 @@
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>countryCode}"  visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
-										<Label text="{=${oDataModel>/ownerShipInfoDto/managedByGovtContact/countryContactCode}?${oDataModel>/ownerShipInfoDto/managedByGovtContact/countryContactCode}:'---'}" class="cl_PreviewLablClsValue "></Label>
+										<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/managedByGovtContactContactCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 									 <Label text="{i18n>phoneNum}"  visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewLablCls "></Label> 
@@ -658,7 +678,7 @@
                                     <VBox class="VRVboxStyle1">
 										 <Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}"   class="cl_PreviewLablCls "></Label>
                                           <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
-										<Label text="{=${oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/countryContactCode}?${oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/countryContactCode}:'---'}" class="cl_PreviewLablClsValue "></Label>
+										<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/managedByGovtFamilyContactContactCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										 <Label text="{i18n>phoneNum}" visible="{oVisibilityModel>/isdefaultLan}"   class="cl_PreviewLablCls "></Label>
@@ -1084,7 +1104,7 @@
                                 <VBox>
                                     <Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                     <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
-									<Label text="{oDataModel>/bankDto/financeContact1/countryContactCode}" class="cl_PreviewLablClsValue"></Label>
+									<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/finance1ContactCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue"></Label>
                                         
                                 </VBox>
                                 <VBox>
@@ -1099,6 +1119,12 @@
 									<Label text="{=${oDataModel>/bankDto/financeContact1/extension}?${oDataModel>/bankDto/financeContact1/extension}:'---'}" class="cl_PreviewLablClsValue"></Label> 
 									
 								</VBox>
+                                 <VBox>
+                                    <Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+									<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/finance1MobileCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue"></Label>
+                                        
+                                </VBox>
                                 <VBox>
                                     <Label text="{i18n>mobPhone}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                     <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
@@ -1136,7 +1162,7 @@
                                 <VBox>
                                     <Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                     <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls"></Label>
-									<Label text="{oDataModel>/bankDto/financeContact2/countryContactCode}" class="cl_PreviewLablClsValue"></Label>
+									<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/finance2ContactCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue"></Label>
                                         
                                 </VBox>
                                 <VBox>
@@ -1150,6 +1176,12 @@
 									<Label text="{=${oDataModel>/bankDto/financeContact2/extension}?${oDataModel>/bankDto/financeContact2/extension}:'---'}" class="cl_PreviewLablClsValue"></Label> 
 									
 								</VBox>
+                                <VBox>
+                                    <Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls"></Label>
+									<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/finance2MobileCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue"></Label>
+                                        
+                                </VBox>
                                 <VBox>
                                     <Label text="{i18n>mobPhone}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                     <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
@@ -1280,7 +1312,7 @@
                                     <VBox class="VRVboxStyle1">
 										 <Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                           <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}"  wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
-										<Label text="{oDataModel>/shippingInfoDto/deliverRepCountryContactCode}" class="cl_PreviewLablClsValue "></Label>
+										<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/deliveryRepContactCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                       <VBox class="VRVboxStyle1">
 										 <Label text="{i18n>phoneNum}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
@@ -1473,7 +1505,7 @@
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls "></Label>
-										<Label text="{=${oDataModel>/comComplianceDto/commitedToExpectationsContact/countryContactCode}?${oDataModel>/comComplianceDto/commitedToExpectationsContact/countryContactCode}:'---'}" class="cl_PreviewLablClsValue "></Label>
+										<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/cocContactCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     	<VBox class="VRVboxStyle1">
 										<Label text="{i18n>phoneNum}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
@@ -1776,7 +1808,7 @@
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true"  visible="{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
-										<Label text="{=${oDataModel>/itCyberDto/itcyberSecurityContact/countryContactCode}?${oDataModel>/itCyberDto/itcyberSecurityContact/countryContactCode}:'---'}" class="cl_PreviewLablClsValue "></Label>
+										<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/itCyberContactCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     	<VBox class="VRVboxStyle1">
 										 <Label text="{i18n>phoneNum}" visible="{oVisibilityModel>/isdefaultLan}"  class="cl_PreviewLablCls "></Label>

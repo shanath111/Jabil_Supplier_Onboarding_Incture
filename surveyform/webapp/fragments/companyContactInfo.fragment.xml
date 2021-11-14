@@ -77,8 +77,8 @@
             <Input maxLength="31" value="{oLookUpModel>lastName}" enabled="{oEnableMdl>/comContactlastNameEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
             <Input value="{oLookUpModel>jobTitle}" enabled="{oEnableMdl>/comContactjobTitleEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
             <HBox fitContainer="true" alignItems="Start">
-            <ComboBox width="100%" items="{oLookUpModel>/countryContactCode}" showSecondaryValues="true" filterSecondaryValues="true"  value="{oLookUpModel>countryContactCode}" class="inputStyle" change="fnLiveValueChange" enabled="{oEnableMdl>/comContactCountryContactEnb}">
-                                            <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>code}" additionalText="{oLookUpModel>description}"/>
+            <ComboBox width="100%" items="{oLookUpModel>/countryContactCode}" showSecondaryValues="true" filterSecondaryValues="false" value="{oLookUpModel>countryCodeDesc}"  selectedKey="{oLookUpModel>countryContactCode}" class="inputStyle" change="fnLiveValueCountryCodeChange" enabled="{oEnableMdl>/comContactCountryContactEnb}">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
                  <layoutData>
                 <FlexItemData styleClass="contactStyle"></FlexItemData></layoutData>
 				</ComboBox>
