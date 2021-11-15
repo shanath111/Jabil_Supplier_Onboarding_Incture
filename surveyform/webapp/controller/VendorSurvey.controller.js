@@ -1875,7 +1875,7 @@ sap.ui.define([
 
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contact !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contact.replaceAll("-", "")) == 0) {
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contact  && oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contact !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.contact.replaceAll("-", "")) == 0) {
                     oView.getModel("oErrorModel").getData().authorityContE = "Error";
                     oView.getModel("oErrorModel").getData().authorityContM = oi18n.getText("invalidContact");
                     iError = true;
@@ -1892,7 +1892,7 @@ sap.ui.define([
 
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile.replaceAll("-", "")) == 0) {
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile && oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.mobile.replaceAll("-", "")) == 0) {
                     oView.getModel("oErrorModel").getData().authorityMobE = "Error";
                     oView.getModel("oErrorModel").getData().authorityMobM = oi18n.getText("invalidMContact");
                     iError = true;
@@ -1928,7 +1928,7 @@ sap.ui.define([
                     iError = true;
                 }
                 
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode.replaceAll("-", "")) == 0) {
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode && oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode.replaceAll("-", "")) == 0) {
                     oView.getModel("oErrorModel").getData().poE = "Error";
                     oView.getModel("oErrorModel").getData().poM = oi18n.getText("invalidPostalCode");
                     iError = true;
@@ -1962,7 +1962,7 @@ sap.ui.define([
 
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact.replaceAll("-", "")) == 0) {
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact && oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact.replaceAll("-", "")) == 0) {
                     oView.getModel("oErrorModel").getData().altContactE = "Error";
                     oView.getModel("oErrorModel").getData().altContactM = oi18n.getText("invalidContact");
                     iError = true;
@@ -2030,7 +2030,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact.replaceAll("-", "")) == 0) {
+                    if (oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact && oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact.replaceAll("-", "")) == 0) {
                         oView.getModel("oErrorModel").getData().ackContactE = "Error";
                         oView.getModel("oErrorModel").getData().ackContactM = oi18n.getText("invalidContact");
                         iError = true;
@@ -2047,7 +2047,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile.replaceAll("-", "")) == 0) {
+                    if (oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile && oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile.replaceAll("-", "")) == 0) {
                         oView.getModel("oErrorModel").getData().ackPhoneE = "Error";
                         oView.getModel("oErrorModel").getData().ackPhoneM = oi18n.getText("invalidMContact");
                         iError = true;
@@ -2108,7 +2108,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact.replaceAll("-", "")) == 0) {
+                    if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact  && oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.contact.replaceAll("-", "")) == 0) {
                         oView.getModel("oErrorModel").getData().mcContE = "Error";
                         oView.getModel("oErrorModel").getData().mcContM = oi18n.getText("invalidContact");
                         iError = true;
@@ -2125,7 +2125,7 @@ sap.ui.define([
 
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile.replaceAll("-", "")) == 0) {
+                    if (oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile && oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile !== "" && Number(oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.mobile.replaceAll("-", "")) == 0) {
                         oView.getModel("oErrorModel").getData().mcPhoneE = "Error";
                         oView.getModel("oErrorModel").getData().mcPhoneM = oi18n.getText("invalidMContact");
                         iError = true;
@@ -2157,16 +2157,16 @@ sap.ui.define([
 
                 }
 
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.firstName.length > 30) {
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.firstName && oView.getModel("oDataModel").getData().surveyInfoDto.altContact.firstName.length > 30) {
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.lastName.length > 30) {
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.lastName && oView.getModel("oDataModel").getData().surveyInfoDto.altContact.lastName.length > 30) {
                     iError = true;
                 }
                 // if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.email.length > 241) {
                 //     iError = true;
                 // }
-                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact.length > 30) {
+                if (oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact && oView.getModel("oDataModel").getData().surveyInfoDto.altContact.contact.length > 30) {
                     iError = true;
                 }
 
