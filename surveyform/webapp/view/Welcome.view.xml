@@ -61,6 +61,9 @@
                                   <core:Item key="hu" text="Hungary"/>
                                    <core:Item key="fr" text="French(France)"/>
                                      <core:Item key="ru" text="Russian"/>
+                                     <core:Item key="it" text="Italian"/>
+                                     <core:Item key="de" text="German"/>
+                                     <core:Item key="ja" text="Japanese"/>
 							</ComboBox>
 						</HBox>
                         <HBox class="sapUiSizeCompact sapUiTinyMarginTop sapUiMediumMarginBottom">

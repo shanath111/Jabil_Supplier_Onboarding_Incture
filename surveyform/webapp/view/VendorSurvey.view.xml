@@ -248,7 +248,7 @@
                                     <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
                                 </VBox>
 								<VBox>
-                                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" class="fontStyle" required="true"></Label>
+                                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" wrapping="true" class="fontStyle" required="true"></Label>
 									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/ackContact/contact}" class="inputStyle"  valueState="{oErrorModel>/ackContactE}" valueStateText="{oErrorModel>/ackContactM}" liveChange="fnLiveInputValueChange"></Input>
                                     <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
                                     <layoutData>
@@ -323,7 +323,7 @@
                                     <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
                                 </VBox>
 								<VBox>
-                                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" class="fontStyle" required="true"></Label>
+                                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" wrapping="true" class="fontStyle" required="true"></Label>
 									<Input maxLength="31" class="inputStyle" value="{oDataModel>/surveyInfoDto/mainContact/contact}" enabled="{oEnableMdl>/mainContactcontactEnb}" valueState="{oErrorModel>/mcContE}" valueStateText="{oErrorModel>/mcContM}" liveChange="fnLiveInputValueChange"></Input>
                                     <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
                                     <layoutData>
