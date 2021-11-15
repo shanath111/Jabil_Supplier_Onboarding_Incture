@@ -148,7 +148,7 @@
                                  
 									<VBox>
 										<ComboBox width="100%"  filterSecondaryValues="false" editable="{oConfigMdl>/screenEditable}" selectedKey="{JMBPCreate>/contactCountryCode}" valueState="{JMBPCreate>/contactCountryCodee}" valueStateText="{JMBPCreate>/contactCountryCodem}" change="fnLiveChangeCountryCode" showSecondaryValues="true" items="{oBPLookUpMdl>/countryContactCode}"  class="cl_VRInputCls">
-                                          <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
+                                          <core:ListItem key="{oBPLookUpMdl>key}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
                                         </ComboBox>	
                                     </VBox>
                                   <layoutData>
@@ -168,7 +168,7 @@
                                  
 									<VBox>
 										<ComboBox width="100%"  filterSecondaryValues="false" editable="{oConfigMdl>/screenEditable}" selectedKey="{JMBPCreate>/mobileCountryCode}" valueState="{JMBPCreate>/mobileCountryCodee}" valueStateText="{JMBPCreate>/mobileCountryCodem}" change="fnLiveChangeCountryCodeMob" showSecondaryValues="true" items="{oBPLookUpMdl>/countryContactCode}"  class="cl_VRInputCls">
-                                         <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
+                                         <core:ListItem key="{oBPLookUpMdl>key}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
                                         </ComboBox>	
                                     </VBox>
                                   <layoutData>
@@ -211,7 +211,7 @@
                                  
 									<VBox>
 										<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" items="{oBPLookUpMdl>/countryContactCode}" selectedKey="{JMBPCreate>/altContactCountryCode}" valueState="{JMBPCreate>/altContactCountryCodee}" valueStateText="{JMBPCreate>/altContactCountryCodem}" change="fnLiveChangeCountryCode1" class="cl_VRInputCls">
-                                        <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+                                        <core:ListItem key="{oBPLookUpMdl>key}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
                                         </ComboBox>	
                                     </VBox>
                                   <layoutData>
