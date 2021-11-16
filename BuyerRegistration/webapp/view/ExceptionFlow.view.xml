@@ -164,60 +164,7 @@
 
 
                                      <VBox visible="{oConfigMdl>/GTSVis}">
-	<VBox fitContainer="true" visible="{oDataModel>/ownerShipInfoDto/isEntitySDNList}" class="fontStyle">
-    
 	
-		
-        <!-- <VBox class="sapUiTinyMarginBegin sapUiTinyMarginTop fontStyle">
-            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>publicTradeText}:${oi18n_En>publicTradeText} +'/&#160;' +${i18n>publicTradeText}}" class="fontStyle fontStyleItalic sapUiSizeCompact"/></VBox> -->
-		
-    
-		<HBox wrap="Wrap" class="sapUiSizeCompact">
-		<Label labelFor="ownbyUS" text="{i18n>isOwnedbyIndividual}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-          <Link text="{i18n>readMore}" target="_blank" href="https://www.treasury.gov/resource-center/sanctions/sdn-list/pages/default.aspx" wrapping="true" class="sapUiTinyMarginBegin"/>
-	</HBox>
-    	<RadioButtonGroup id="ownbyUS" columns="2" selectedIndex="0" class="inputStyle" enabled="false">
-			<RadioButton text="{i18n>Yes}" selected="{oDataModel>/ownerShipInfoDto/isEntitySDNList}"></RadioButton>
-			<RadioButton text="{i18n>No}" selected="{=!${oDataModel>/ownerShipInfoDto/isEntitySDNList}}"></RadioButton>
-		</RadioButtonGroup>
-
-    	<Label text="{i18n>legalEntityText}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact sapUiTinyMarginBottom"/>
-              
-   <Table items="{oDataModel>/ownerShipInfoDto/sdnlistContact}" id="sdnLC" class="entityContactTbl sapUiSizeCompact">
-               <columns>
-                <Column width="19rem"  minScreenWidth="Desktop"
-				demandPopin="true" class="sapUiSizeCompact"></Column>
-                  <Column width="19rem"  minScreenWidth="Desktop"
-				demandPopin="true" class="sapUiSizeCompact"></Column>
-                    <Column  minScreenWidth="Desktop"
-				demandPopin="true" class="sapUiSizeCompact"></Column>
-                </columns>
-               
-            <ColumnListItem class="sapUiSizeCompact">
-            <cells >
-             <VBox  class="fontStyle sapUiSizeCompact sapUiSmallMarginEnd">
-					<Label text="{i18n>firstNameG}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinylMarginEnd"/>
-                    
-					<Input value="{oDataModel>firstName}" maxLength="34" liveChange="fnLiveInputValueChange"  class="sapUiSmallMarginEnd inputStyle" editable="false"/>
-                    </VBox>
-                    <VBox  class="fontStyle sapUiSizeCompact sapUiSmallMarginEnd">
-					<Label text="{i18n>lastNameG}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinylMarginEnd"/>
-                  
-					<Input value="{oDataModel>lastName}" maxLength="34" liveChange="fnLiveInputValueChange"  class="sapUiSmallMarginEnd inputStyle" editable="false"/>
-					
-                    </VBox>
-                    <VBox class="sapUiSizeCompact sapUiSmallMarginEnd">
-					<Label/>
-					<!-- <Button icon="sap-icon://add" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckFirstItem'}" enabled="{oEnableMdl>/addOwnbyInd1BtnEnb}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAdditional}:${oi18n_En>addAdditional} +'/&#160;' +${i18n>addAdditional}}" type="Transparent" iconFirst="true" press="addOwnbyInd1" class="addMoreBtn"/>
-                    <Button icon="sap-icon://delete" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckOtherItem'}"  enabled="{oEnableMdl>/DeleteOwnByInd1Enb}" type="Transparent" press="fnDeleteOwnByInd1" class="addMoreBtn"/> -->
-                    </VBox>
-             </cells>
-             </ColumnListItem>
-     </Table>
-    <layoutData>
-					<FlexItemData growFactor="1" baseSize="0%"></FlexItemData>
-				</layoutData>
-                </VBox>
                 
  
                                    
@@ -273,6 +220,64 @@
                  </VBox>
     	
 	
+                                      </VBox>
+                                      <VBox visible="{oConfigMdl>/GTSVis1}">
+                                      
+                                      <VBox fitContainer="true" visible="{oDataModel>/ownerShipInfoDto/isEntitySDNList}" class="fontStyle">
+    
+	
+		
+        <!-- <VBox class="sapUiTinyMarginBegin sapUiTinyMarginTop fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>publicTradeText}:${oi18n_En>publicTradeText} +'/&#160;' +${i18n>publicTradeText}}" class="fontStyle fontStyleItalic sapUiSizeCompact"/></VBox> -->
+		
+    
+		<HBox wrap="Wrap" class="sapUiSizeCompact">
+		<Label labelFor="ownbyUS" text="{i18n>isOwnedbyIndividual}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+          <Link text="{i18n>readMore}" target="_blank" href="https://www.treasury.gov/resource-center/sanctions/sdn-list/pages/default.aspx" wrapping="true" class="sapUiTinyMarginBegin"/>
+	</HBox>
+    	<RadioButtonGroup id="ownbyUS" columns="2" selectedIndex="0" class="inputStyle" enabled="false">
+			<RadioButton text="{i18n>Yes}" selected="{oDataModel>/ownerShipInfoDto/isEntitySDNList}"></RadioButton>
+			<RadioButton text="{i18n>No}" selected="{=!${oDataModel>/ownerShipInfoDto/isEntitySDNList}}"></RadioButton>
+		</RadioButtonGroup>
+
+    	<Label text="{i18n>legalEntityText}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact sapUiTinyMarginBottom"/>
+              
+   <Table items="{oDataModel>/ownerShipInfoDto/sdnlistContact}" id="sdnLC" class="entityContactTbl sapUiSizeCompact">
+               <columns>
+                <Column width="19rem"  minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact"></Column>
+                  <Column width="19rem"  minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact"></Column>
+                    <Column  minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact"></Column>
+                </columns>
+               
+            <ColumnListItem class="sapUiSizeCompact">
+            <cells >
+             <VBox  class="fontStyle sapUiSizeCompact sapUiSmallMarginEnd">
+					<Label text="{i18n>firstNameG}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinylMarginEnd"/>
+                    
+					<Input value="{oDataModel>firstName}" maxLength="34" liveChange="fnLiveInputValueChange"  class="sapUiSmallMarginEnd inputStyle" editable="false"/>
+                    </VBox>
+                    <VBox  class="fontStyle sapUiSizeCompact sapUiSmallMarginEnd">
+					<Label text="{i18n>lastNameG}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinylMarginEnd"/>
+                  
+					<Input value="{oDataModel>lastName}" maxLength="34" liveChange="fnLiveInputValueChange"  class="sapUiSmallMarginEnd inputStyle" editable="false"/>
+					
+                    </VBox>
+                    <VBox class="sapUiSizeCompact sapUiSmallMarginEnd">
+					<Label/>
+					<!-- <Button icon="sap-icon://add" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckFirstItem'}" enabled="{oEnableMdl>/addOwnbyInd1BtnEnb}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAdditional}:${oi18n_En>addAdditional} +'/&#160;' +${i18n>addAdditional}}" type="Transparent" iconFirst="true" press="addOwnbyInd1" class="addMoreBtn"/>
+                    <Button icon="sap-icon://delete" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckOtherItem'}"  enabled="{oEnableMdl>/DeleteOwnByInd1Enb}" type="Transparent" press="fnDeleteOwnByInd1" class="addMoreBtn"/> -->
+                    </VBox>
+             </cells>
+             </ColumnListItem>
+     </Table>
+    <layoutData>
+					<FlexItemData growFactor="1" baseSize="0%"></FlexItemData>
+				</layoutData>
+                </VBox>
+                                      
                                       </VBox>
          <VBox visible="{oConfigMdl>/COIVis}">
 <VBox visible="{oDataModel>/comComplianceDto/companyRelationWithJabilEmp}">

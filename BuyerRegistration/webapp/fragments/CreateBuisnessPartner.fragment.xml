@@ -296,7 +296,7 @@
                                  
 									<VBox>
 										<ComboBox width="100%"  filterSecondaryValues="false" editable="{oConfigMdl>/screenEditable}" selectedKey="{JMBPCreate>/mobileCountryCode}" valueState="{JMBPCreate>/mobileCountryCodee}" valueStateText="{JMBPCreate>/mobileCountryCodem}" change="fnLiveChangeCountryCodeMob" showSecondaryValues="true" items="{oBPLookUpMdl>/countryContactCode}"  class="cl_VRInputCls">
-                                         <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
+                                         <core:ListItem key="{oBPLookUpMdl>key}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
                                         </ComboBox>	
                                     </VBox>
                                   <layoutData>
