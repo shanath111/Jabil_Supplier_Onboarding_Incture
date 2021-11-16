@@ -83,8 +83,8 @@
 				"groupsOrder": ["defaultGroupId"],
 				"sap.cloud.portal": {
 					"config": {
-						"theme.id": "sap_fiori_3",
-						"theme.active": ["custom_quartzlight","sap_fiori_3", "sap_fiori_3_dark", "sap_belize_hcb", "sap_belize_hcw"]
+						"theme.id": "custom_quartzlight",
+						"theme.active": ["custom_quartzlight", "sap_fiori_3", "sap_fiori_3_dark", "sap_belize_hcb", "sap_belize_hcw"]
 					}
 				}
 			}
