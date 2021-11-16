@@ -1,6 +1,6 @@
 {
     "authenticationMethod": "none",
-    "sessionTimeout":120,
+    "sessionTimeout":15,
     "routes": [],
     "welcomeFile": "/cp.portal"
 }
