@@ -42,23 +42,35 @@ sap.ui.define([
                 if (oContext.Name == "GTS") {
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis = false;
+                    oView.getModel("oConfigMdl").getData().GTSVis1 = false;
                     oView.getModel("oConfigMdl").getData().COIVis = false;
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
 
-                } else if (oContext.Name == "LegalExp") {
+                } else if (oContext.Name == "GTS1") {
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
+                    oView.getModel("oConfigMdl").getData().GTSVis = false;
+                    oView.getModel("oConfigMdl").getData().GTSVis1 = false;
+                    oView.getModel("oConfigMdl").getData().COIVis = false;
+                    oView.getModel("oConfigMdl").getData().MitgationVis = false;
+
+                }
+                else if (oContext.Name == "LegalExp") {
+                    oView.getModel("oConfigMdl").getData().LegalVis = false;
+                    oView.getModel("oConfigMdl").getData().GTSVis1 = false;
                     oView.getModel("oConfigMdl").getData().GTSVis = false;
                     oView.getModel("oConfigMdl").getData().COIVis = false;
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
                 } else if (oContext.Name == "COISupp") {
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis = false;
+                    oView.getModel("oConfigMdl").getData().GTSVis1 = false;
                     oView.getModel("oConfigMdl").getData().COIVis = false;
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
                 }
                 else if (oContext.Name == "COIBuyer") {
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis = false;
+                    oView.getModel("oConfigMdl").getData().GTSVis1 = false;
                     oView.getModel("oConfigMdl").getData().COIVis = false;
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
                 }
@@ -76,6 +88,8 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
+                        oEvent.getSource().getData().isTaskCompleted = false;
+                        oEvent.getSource().getData().isClaimed = true;
                         if (oEvent.getSource().getData().comments) {
                             oView.getModel("oConfigMdl").getData().CommentsVis = true;
                             oView.getModel("oConfigMdl").getData().comments = oEvent.getSource().getData().comments;
@@ -174,19 +188,29 @@ sap.ui.define([
                             if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS") {
                                 oView.getModel("oConfigMdl").getData().LegalVis = false;
                                 oView.getModel("oConfigMdl").getData().GTSVis = true;
+                                oView.getModel("oConfigMdl").getData().GTSVis1 = false;
                                 oView.getModel("oConfigMdl").getData().COIVis = false;
-                            } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "LegalExp") {
+                            } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS1") {
+                                oView.getModel("oConfigMdl").getData().LegalVis = false;
+                                oView.getModel("oConfigMdl").getData().GTSVis = false;
+                                oView.getModel("oConfigMdl").getData().GTSVis1 = true;
+                                oView.getModel("oConfigMdl").getData().COIVis = false;
+                            }
+                            else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "LegalExp") {
                                 oView.getModel("oConfigMdl").getData().LegalVis = true;
                                 oView.getModel("oConfigMdl").getData().GTSVis = false;
+                                oView.getModel("oConfigMdl").getData().GTSVis1 = false;
                                 oView.getModel("oConfigMdl").getData().COIVis = false;
                             } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COISupp") {
                                 oView.getModel("oConfigMdl").getData().LegalVis = false;
                                 oView.getModel("oConfigMdl").getData().GTSVis = false;
+                                oView.getModel("oConfigMdl").getData().GTSVis1 = false;
                                 oView.getModel("oConfigMdl").getData().COIVis = true;
                             }
                             else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COIBuyer") {
                                 oView.getModel("oConfigMdl").getData().LegalVis = false;
                                 oView.getModel("oConfigMdl").getData().GTSVis = false;
+                                oView.getModel("oConfigMdl").getData().GTSVis1 = false;
                                 oView.getModel("oConfigMdl").getData().COIVis = true;
                             }
 
@@ -539,11 +563,16 @@ sap.ui.define([
                     temp.commentsTxt = "Comments (if any)";
                     temp.orderBpNumber = orderBpNumber;
                     temp.invoiceBpNumber = invoiceBpNumber;
+
+                    if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS") {
+                        temp.required = true;
+                        temp.commentsTxt = "Comments";
+                    }
                     var oJosnComments = new sap.ui.model.json.JSONModel();
                     oJosnComments.setData(temp);
                     oView.setModel(oJosnComments, "JMAppvrComments");
                     if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COISupp") {
-                    this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
+                        this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
                     }
                     else {
                         if (!this.oBankComments) {
@@ -555,7 +584,7 @@ sap.ui.define([
                         this.oBankComments.open();
                     }
 
-                   
+
                 } else {
                     oView.byId("id_SegmentedBtn").setSelectedKey("partnerFunction");
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -625,9 +654,20 @@ sap.ui.define([
                         oView.getModel("JMAppvrComments").refresh();
                     }
                 } else {
+                    if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS") {
+                        if (oView.getModel("JMAppvrComments").getData().Comments) {
+                            this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
+                            this.oBankComments.close();
+                        } else {
+                            oView.getModel("JMAppvrComments").getData().Commentse = "Error";
+                            oView.getModel("JMAppvrComments").getData().Commentsm = oi18n.getProperty("EnterCommentsTxt");
+                            oView.getModel("JMAppvrComments").refresh();
+                        }
+                    } else {
+                        this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
+                        this.oBankComments.close();
+                    }
 
-                    this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
-                    this.oBankComments.close();
                 }
             },
 
@@ -681,7 +721,30 @@ sap.ui.define([
                         "comments": oView.getModel("JMAppvrComments").getData().Comments,
                         "gts_comment": oView.getModel("JMAppvrComments").getData().Comments
                     }
-                } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "LegalExp") {
+                } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS1") {
+                    var vCommentsActn, vContextActn;
+                    if (vAprActn) {
+                        vCommentsActn = "approve";
+                        vContextActn = "approved";
+                    } else {
+                        vCommentsActn = "mitigation";
+                        vContextActn = "mitigation";
+                    }
+                    var oPayload = {
+                        "context": {
+                            "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
+                            "caseId": oView.getModel("JMEulaComments").getData().caseId,
+                            "gtsAction": vContextActn
+                        },
+                        "status": "",
+                        "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                        "action": vCommentsActn,
+                        "comments": oView.getModel("JMAppvrComments").getData().Comments,
+                        "gts_comment": oView.getModel("JMAppvrComments").getData().Comments
+                    }
+                }
+                
+                else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "LegalExp") {
 
                     var vCommentsActn, vContextActn;
                     if (vAprActn) {
@@ -714,7 +777,7 @@ sap.ui.define([
                     } else if (vBtn == "RJ") {
                         // vContextActn = "rejected";
                         // vCommentsActn = "reject";
-                           vContextActn = "mitigation";
+                        vContextActn = "mitigation";
                         vCommentsActn = "mitigation";
                     } else {
                         vContextActn = "mitigation";
