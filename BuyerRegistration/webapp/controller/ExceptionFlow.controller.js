@@ -88,8 +88,7 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
-                        oEvent.getSource().getData().isTaskCompleted = false;
-                        oEvent.getSource().getData().isClaimed = true;
+                      
                         if (oEvent.getSource().getData().comments) {
                             oView.getModel("oConfigMdl").getData().CommentsVis = true;
                             oView.getModel("oConfigMdl").getData().comments = oEvent.getSource().getData().comments;
