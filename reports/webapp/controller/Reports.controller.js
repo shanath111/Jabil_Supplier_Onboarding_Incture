@@ -90,7 +90,7 @@ sap.ui.define([
             oGraphDataModel.setProperty("/durationListData", durationData);
             oGraphDataModel.setProperty("/selectedDuration", "month");
         },
-fnInputSpaceCheck
+
         //getting the process names and setting it to model
         fnGetProcessNames: function () {
             var oConstantsModel = this.getModel("oConstantsModel");
