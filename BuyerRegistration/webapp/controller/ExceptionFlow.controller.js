@@ -46,7 +46,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().COIVis = false;
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
 
-                } else if (oContext.Name == "GTS1") {
+                } else if (oContext.Name == "GTS1" || oContext.Name == "GTS1Buyer") {
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis1 = false;
@@ -189,7 +189,7 @@ sap.ui.define([
                                 oView.getModel("oConfigMdl").getData().GTSVis = true;
                                 oView.getModel("oConfigMdl").getData().GTSVis1 = false;
                                 oView.getModel("oConfigMdl").getData().COIVis = false;
-                            } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS1") {
+                            } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS1" || oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS1Buyer") {
                                 oView.getModel("oConfigMdl").getData().LegalVis = false;
                                 oView.getModel("oConfigMdl").getData().GTSVis = false;
                                 oView.getModel("oConfigMdl").getData().GTSVis1 = true;
@@ -720,7 +720,7 @@ sap.ui.define([
                         "comments": oView.getModel("JMAppvrComments").getData().Comments,
                         "gts_comment": oView.getModel("JMAppvrComments").getData().Comments
                     }
-                } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS1") {
+                } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS1" ) {
                     var vCommentsActn, vContextActn;
                     if (vAprActn) {
                         vCommentsActn = "approve";
@@ -741,7 +741,29 @@ sap.ui.define([
                         "comments": oView.getModel("JMAppvrComments").getData().Comments,
                         "gts_comment": oView.getModel("JMAppvrComments").getData().Comments
                     }
+                }else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS1Buyer" ) {
+                    var vCommentsActn, vContextActn;
+                    if (vAprActn) {
+                        vCommentsActn = "approve";
+                        vContextActn = "approved";
+                    } else {
+                        vCommentsActn = "mitigation";
+                        vContextActn = "mitigation";
+                    }
+                    var oPayload = {
+                        "context": {
+                            "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
+                            "caseId": oView.getModel("JMEulaComments").getData().caseId,
+                            "buyerActionOnGTSRemediation": vContextActn
+                        },
+                        "status": "",
+                        "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                        "action": vCommentsActn,
+                        "comments": oView.getModel("JMAppvrComments").getData().Comments,
+                        "gts_exception_buyer_comment": oView.getModel("JMAppvrComments").getData().Comments
+                    }
                 }
+
                 
                 else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "LegalExp") {
 

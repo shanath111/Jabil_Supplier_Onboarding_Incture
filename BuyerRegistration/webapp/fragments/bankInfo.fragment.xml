@@ -78,7 +78,7 @@
 				</VBox>
                   <VBox  class="fontStyle">
 					<Label wrapping="true" required="true" text="{i18n>bankKeyGBS}"></Label>
-					<Input  id="id_BankKey" value="{oDataModel>/bankDto/bankInfoDto/0/bankKey}" liveChange="fnLiveChangeBankKey"  class="inputStyle"></Input>
+					<Input  id="id_BankKey" change="fnInputSpaceCheck" value="{oDataModel>/bankDto/bankInfoDto/0/bankKey}" liveChange="fnLiveChangeBankKey"  class="inputStyle"></Input>
                    
 				</VBox>
 			</l:Grid>
