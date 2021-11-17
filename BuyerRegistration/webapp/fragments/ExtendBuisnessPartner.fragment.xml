@@ -395,11 +395,11 @@
 									</VBox> 
                                     	<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCCustDirCustName}" required="{JMBPCreate>/customerDirectedSupplierIndicatorsMan}" class="cl_VRLablCls "></Label>
-									<Input width="95%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCustomerDirectSupplierCustNmbr" value="{JMBPCreate>/customerDirectedSupplierCustName}" valueState="{JMBPCreate>/customerDirectedSupplierCustNamee}" valueStateText="{JMBPCreate>/customerDirectedSupplierCustNamem}" class="cl_VRInputCls"></Input>
+									<Input width="95%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCustomerDirectSupplierCustNmbr" change="fnInputSpaceCheck" value="{JMBPCreate>/customerDirectedSupplierCustName}" valueState="{JMBPCreate>/customerDirectedSupplierCustNamee}"  valueStateText="{JMBPCreate>/customerDirectedSupplierCustNamem}" class="cl_VRInputCls"></Input>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCCustDirContact}" required="{JMBPCreate>/customerDirectedSupplierIndicatorsMan}" class="cl_VRLablCls "></Label>
-									<Input width="95%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCustomerDirectContact" value="{JMBPCreate>/customerDirectedSupplierContract}" valueState="{JMBPCreate>/customerDirectedSupplierContracte}" valueStateText="{JMBPCreate>/customerDirectedSupplierContractm}" class="cl_VRInputCls"></Input>
+									<Input width="95%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCustomerDirectContact" change="fnInputSpaceCheck" value="{JMBPCreate>/customerDirectedSupplierContract}" valueState="{JMBPCreate>/customerDirectedSupplierContracte}" valueStateText="{JMBPCreate>/customerDirectedSupplierContractm}" class="cl_VRInputCls"></Input>
 									</VBox>
 </l:Grid>
 
@@ -444,7 +444,7 @@
                                          <l:Grid visible="{JMBPCreate>/CoIFields}"  class="sapUiSizeCompact sapUiSmallMarginBegin">
  <VBox  class="VRVboxStyle1">
 										<Label text="{i18n>ExplainConflictofInterest}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="98%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/additionalInformation}" liveChange="fnLiveChangeAdditionalInfo" valueState="{JMBPCreate>/additionalInformatione}" valueStateText="{JMBPCreate>/additionalInformationm}"  class="cl_VRInputCls" ></Input>
+										<Input width="98%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/additionalInformation}" liveChange="fnLiveChangeAdditionalInfo" valueState="{JMBPCreate>/additionalInformatione}" valueStateText="{JMBPCreate>/additionalInformationm}"  class="cl_VRInputCls" change="fnInputSpaceCheck"></Input>
                                            <layoutData>
               <l:GridData
                 span="XL6 L6 M6 S6" />

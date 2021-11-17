@@ -4,7 +4,7 @@
 		<content>
         <VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
             <Label required="{JMAppvrComments>/required}" text="{JMAppvrComments>/commentsTxt}" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
-            <TextArea value="{JMAppvrComments>/Comments}" liveChange="fnLiveChangeCmntTxtArea" valueState="{JMAppvrComments>/Commentse}" valueStateText="{JMAppvrComments>/Commentsm}" class="sapUiSmallMarginBegin" required="true"  width="90%" ></TextArea>
+            <TextArea change="fnInputSpaceCheck" value="{JMAppvrComments>/Comments}" liveChange="fnLiveChangeCmntTxtArea" valueState="{JMAppvrComments>/Commentse}" valueStateText="{JMAppvrComments>/Commentsm}" class="sapUiSmallMarginBegin" required="true"  width="90%" ></TextArea>
             </VBox>
 			<OverflowToolbar class="barClass sapUiTinyMarginTop">
             	<ToolbarSpacer/>

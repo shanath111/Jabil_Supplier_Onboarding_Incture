@@ -20,6 +20,7 @@ sap.ui.define([
               fnNavTolaunchCC: function () {
                 this.getOwnerComponent().getRouter().navTo("LaunchCC");
             },
+            
 
         });
     });

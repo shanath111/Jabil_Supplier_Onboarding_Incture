@@ -28,6 +28,12 @@ sap.ui.define([
                 var oRouter = this.getOwnerComponent().getRouter();
                 oRouter.getRoute("Reviewer").attachPatternMatched(this.fnReviewerRoute, this);
             },
+                fnInputSpaceCheck: function (oEvent) {
+                var spaceRegex = /^\s+$/;
+                if (spaceRegex.test(oEvent.getSource().getValue())) {
+                    oEvent.getSource().setValue("");
+                }
+            },
             fnReviewerRoute: function (oEvent) {
                 oView.getModel("oBPLookUpMdl").setSizeLimit(10000);
                 var vContext = {
