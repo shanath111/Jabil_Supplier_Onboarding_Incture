@@ -754,7 +754,7 @@ sap.ui.define([
                         "context": {
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                            "gtsAction": vContextActn
+                            "buyerActionOnGTSRemediation": vContextActn
                         },
                         "status": "",
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
