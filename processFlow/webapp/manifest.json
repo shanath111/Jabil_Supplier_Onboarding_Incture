@@ -20,7 +20,7 @@
                     },
                     "semanticObject": "processFlow",
                     "action": "display",
-                    "title": "Process Flow",
+                    "title": "Case History",
                     "subTitle": " ",
                     "icon": "sap-icon://manager-insight"
                 }
