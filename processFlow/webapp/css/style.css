@@ -73,6 +73,10 @@
     overflow-x: auto;
     overflow-y: hidden;
 }
+.cl_HeaderText{
+    color: #000000 !important;
+    font-weight: bold !important;
+}
 
 .wbOverflow {
     overflow-y: auto;
