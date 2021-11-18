@@ -9,8 +9,11 @@
                     <VBox>
                     <Label text="Case ID:"/>
                     <Input value="{oProcessFlowModel>/caseIdInput}" id="id_CaseId" maxLength="7" class="sapUiSizeCompact"/>
-				    <Button text="View Flow" id="id_ViewProcessBtn" press="onClickViewFLowBtn" class="sapUiSizeCompact"/>
-                    </VBox>
+                    <HBox>
+				    <Button  text="View Flow" id="id_ViewProcessBtn" press="onClickViewFLowBtn" class="sapUiSizeCompact"/>
+                      <Button text="View Email" id="id_ViewEmail" press="fnOpenEmail" class="sapUiSizeCompact"/>
+            </HBox>
+             </VBox>
                     
 			    </HBox>
                 <!-- <VBox class="VRVboxStyle1">
