@@ -37,7 +37,7 @@ var oBusyDilog,oi18n;
             this.showEventDetails(oProcessFlowModel.getProperty("/taskDetails"));
             this.getView().byId("id_CaseId").setEnabled(true);
             this.getView().byId("id_ViewProcessBtn").setVisible(true);
-             this.getView().byId("id_ViewEmail").setVisible(false);
+             this.getView().byId("id_ViewEmail").setVisible(true);
             
 
             // 	}
