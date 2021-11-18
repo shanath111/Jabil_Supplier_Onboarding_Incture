@@ -712,13 +712,14 @@ sap.ui.define([
                         "context": {
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                            "gtsAction": vContextActn
+                            "gtsAction": vContextActn,
+                              "gts_comment": oView.getModel("JMAppvrComments").getData().Comments
                         },
                         "status": "",
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                         "action": vCommentsActn,
-                        "comments": oView.getModel("JMAppvrComments").getData().Comments,
-                        "gts_comment": oView.getModel("JMAppvrComments").getData().Comments
+                        "comments": oView.getModel("JMAppvrComments").getData().Comments
+                      
                     }
                 } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS1" ) {
                     var vCommentsActn, vContextActn;
@@ -733,13 +734,14 @@ sap.ui.define([
                         "context": {
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                            "gtsAction": vContextActn
+                            "gtsAction": vContextActn,
+                              "gts_comment": oView.getModel("JMAppvrComments").getData().Comments
                         },
                         "status": "",
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                         "action": vCommentsActn,
-                        "comments": oView.getModel("JMAppvrComments").getData().Comments,
-                        "gts_comment": oView.getModel("JMAppvrComments").getData().Comments
+                        "comments": oView.getModel("JMAppvrComments").getData().Comments
+                      
                     }
                 }else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS1Buyer" ) {
                     var vCommentsActn, vContextActn;
@@ -754,13 +756,14 @@ sap.ui.define([
                         "context": {
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                            "buyerActionOnGTSRemediation": vContextActn
+                            "buyerActionOnGTSRemediation": vContextActn,
+                              "gts_exception_buyer_comment": oView.getModel("JMAppvrComments").getData().Comments
                         },
                         "status": "",
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                         "action": vCommentsActn,
-                        "comments": oView.getModel("JMAppvrComments").getData().Comments,
-                        "gts_exception_buyer_comment": oView.getModel("JMAppvrComments").getData().Comments
+                        "comments": oView.getModel("JMAppvrComments").getData().Comments
+                      
                     }
                 }
 
