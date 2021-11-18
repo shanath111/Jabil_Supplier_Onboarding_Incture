@@ -168,7 +168,7 @@
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankKey}:${oi18n_En>bankKey}+ '&#10;' +${i18n>bankKey}}" wrapping="true" required="{oVisibilityModel>/bankValidation/bankKey}"></Label>
 					<Input maxLength="5" enabled="{=${oVisibilityModel>/_SupplierBankEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankCode}" editable="{oUserModel>/isNew}"  liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 				<layoutData>
-                <l:GridData visibleS="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}" visibleM="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}" visibleL="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}" visibleXL="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}"></l:GridData></layoutData>
+                <l:GridData visibleS="false" visibleM="false" visibleL="false" visibleXL="false"></l:GridData></layoutData>
                 </VBox>
                 <VBox  class="fontStyle">
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankPKey}:${oi18n_En>bankPKey}+ '&#10;' +${i18n>bankPKey}}" wrapping="true" required="{oVisibilityModel>/bankValidation/benificiaryAccCurrency}"></Label>
@@ -195,7 +195,7 @@
 					<Label tooltip="{oVisibilityModel>/bankValidation/bankControlKeyDigitsLogic}" wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankCtrlKey}:${oi18n_En>bankCtrlKey} + '&#10;' +${i18n>bankCtrlKey}}" required="{oVisibilityModel>/bankValidation/bankControlKey}"></Label>
 					<Input maxLength="3" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankControlKey}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/bankCtrlKeyE}" valueStateText="{oErrorModel>/bankCtrlKeyM}"  liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
                    <layoutData>
-                <l:GridData visibleS="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}" visibleM="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}" visibleL="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}" visibleXL="{=${oEnableMdl>/nextBtnExtensionDisplayVsb} || false}"></l:GridData></layoutData>
+                <l:GridData visibleS="false" visibleM="false" visibleL="false" visibleXL="false"></l:GridData></layoutData>
 				</VBox>
 				<VBox class="fontStyle">
 					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>instKey}:${oi18n_En>instKey}+ '&#10;' +${i18n>instKey}}" required="{oVisibilityModel>/bankValidation/instructionKey}"></Label>

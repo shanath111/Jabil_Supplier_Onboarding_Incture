@@ -290,7 +290,7 @@
 			<VBox class="fontStyle">
 				<Label required="true" text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 <Label required="true" text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/jobTitle}" valueState="{oErrorModel>/govtEntityJobTitleE}" valueStateText="{oErrorModel>/govtEntityJobTitleM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtContactjobTitleEnb}" class="inputStyle"></Input>
+				<Input value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/jobTitle}" valueState="{oErrorModel>/govtEntityJobTitleE}" valueStateText="{oErrorModel>/govtEntityJobTitleM}" liveChange="fnValueChange" enabled="{oEnableMdl>/managedByGovtContactjobTitleEnb}" class="inputStyle"></Input>
 			</VBox>
 		</l:Grid>
 	</l:VerticalLayout>
@@ -356,7 +356,7 @@
 			<VBox class="fontStyle">
 				<Label required="true" text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 <Label required="true" text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-				<Input value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/jobTitle}" valueState="{oErrorModel>/closegovtEntityJobTitleE}" valueStateText="{oErrorModel>/closegovtEntityJobTitleM}" change="fnValueChange" enabled="{oEnableMdl>/managedByGovtFamilyjobTitleEnb}" class="inputStyle"></Input>
+				<Input value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/jobTitle}" valueState="{oErrorModel>/closegovtEntityJobTitleE}" valueStateText="{oErrorModel>/closegovtEntityJobTitleM}" liveChange="fnValueChange" enabled="{oEnableMdl>/managedByGovtFamilyjobTitleEnb}" class="inputStyle"></Input>
 			</VBox>
 		</l:Grid>
 	</l:VerticalLayout>
