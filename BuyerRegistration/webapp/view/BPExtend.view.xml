@@ -34,18 +34,18 @@
 								<Label text="{i18n>BPEVendorNumber}:" class="cl_VRLablCls"></Label>
 								<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/vendorNumber}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
                             </VBox>
-                            <VBox class="VRVboxStyle1">
+                            <!-- <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPEStreet}:" class="cl_VRLablCls "></Label>
 									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/street}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
-							</VBox>
+							</VBox> -->
                              <!-- <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPEPostalCode}:" class="cl_VRLablCls "></Label>
 									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/postalCode}" class="cl_VRInputCls"></Input>
 							</VBox> -->
-                            <VBox class="VRVboxStyle1">
+                            <!-- <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPECity}:" class="cl_VRLablCls "></Label>
 									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/city}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
-							</VBox>
+							</VBox> -->
                              <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPECountry}:" class="cl_VRLablCls "></Label>
                                     <ComboBox width="100%" items="{oBPLookUpMdl>/Country}" enabled="{oConfigMdl>/searchEnable}"  valueState="{JMBPCreate>/countrye}" valueStateText="{JMBPCreate>/countrym}"
