@@ -126,6 +126,7 @@ sap.ui.define([
                                 if (oEvent.getSource().oData.businessPartnerId !== "") {
                                     oView.getModel("oDataModel").setData(oEvent.getSource().oData);
                                     oView.getModel("oDataModel").refresh();
+                                      that._fnLoadBankRegion(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry); 
                                     that.fnActivateBankScreen();
                                     that._fnReadDocumentList(oEvent.getSource().oData.caseId, that);
                                 }
@@ -1087,6 +1088,7 @@ sap.ui.define([
             },
 
             fnActivateBankScreen: function () {
+                
                 var that = this;
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry) {
                     var requestData = {
