@@ -93,7 +93,7 @@ sap.ui.define([
                 var taskId = oEvent.getParameter("arguments").contextPath;
                 vAppName = oEvent.getParameter("arguments").Name;
                 if (vAppName == "Supplier") {
-                    if (oView.getModel("oUserModel").getData().language == undefined || oView.getModel("oUserModel").getData().language == 'en' || oView.getModel("oUserModel").getData().language == 'en-US') {
+                    if (oView.getModel("oUserModel").getData().language == undefined || oView.getModel("oUserModel").getData().language == 'en' || oView.getModel("oUserModel").getData().language == 'en-US' || oView.getModel("oUserModel").getData().language.includes("en")) {
                         that.getView().getModel("oVisibilityModel").getData().isdefaultLan = true;
                     } else {
                         that.getView().getModel("oVisibilityModel").getData().isdefaultLan = false;
@@ -8534,7 +8534,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address5 = address.Address5;
                          oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].city  = address.Locality;
                          oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode  = address.PostalCode;
-                        oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].district  = address.AdminArea;
+                        oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].region  = address.AdminArea;
                         oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].regionCode  = address.AdminAreaCode;
                         oView.getModel("oDataModel").refresh();
 
