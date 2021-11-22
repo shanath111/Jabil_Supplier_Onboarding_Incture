@@ -1966,14 +1966,26 @@ sap.ui.define([
             fnNavToHome: function () {
                 window.history.go(-1);
             },
-            fnLiveChangeCountryCodeMob: function () {
+            fnLiveChangeCountryCodeMob: function (oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 if (oView.getModel("JMBPCreate").getData().mobileCountryCodee == "Error") {
                     oView.getModel("JMBPCreate").getData().mobileCountryCodee = "None";
                     oView.getModel("JMBPCreate").getData().mobileCountryCodem = "";
                     oView.getModel("JMBPCreate").refresh();
                 }
             },
-            fnLiveChangeCountryCode1: function () {
+            fnLiveChangeCountryCode1: function (oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 if (oView.getModel("JMBPCreate").getData().altContactCountryCodee == "Error") {
                     oView.getModel("JMBPCreate").getData().altContactCountryCodee = "None";
                     oView.getModel("JMBPCreate").getData().altContactCountryCodem = "";
@@ -1982,10 +1994,12 @@ sap.ui.define([
             },
             fnLiveChangeCompCode: function (oEvent) {
 
-                var vSelected = oEvent.getParameter("itemPressed");
-                // if (vSelected == false) {
-                //     oEvent.getSource().setValue("");
-                // }
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 this.fnLoadPurOrg(oView.getModel("JMBPCreate").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
                 oView.getModel("JMBPCreate").getData().purchasingOrg = "";
                 oView.getModel("JMBPCreate").refresh();
@@ -1997,15 +2011,21 @@ sap.ui.define([
             },
             fnChangeDropDown: function (oEvent) {
                 var vSelected = oEvent.getParameter("itemPressed");
-                // if (vSelected == false) {
-                //     oEvent.getSource().setValue("");
-                // }
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
             },
             fnChangeDropDownComp: function (oEvent) {
                 var vSelected = oEvent.getParameter("itemPressed");
-                // if (vSelected == false) {
-                //     oEvent.getSource().setValue("");
-                // }
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 this.fnLoadPurOrg(oView.getModel("JMSearchFilter").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
 
                 oView.getModel("JMSearchFilter").getData().purchasingOrg = "";
@@ -2014,12 +2034,21 @@ sap.ui.define([
 
             fnLiveChangeCountry: function (oEvent) {
                 var vSelected = oEvent.getParameter("itemPressed");
-                // if (vSelected == false) {
-                //     oEvent.getSource().setValue("");
-                // }
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
             },
 
-            fnLiveChangePlant: function () {
+            fnLiveChangePlant: function (oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 if (oView.getModel("JMBPCreate").getData().plante == "Error") {
                     oView.getModel("JMBPCreate").getData().plante = "None";
                     oView.getModel("JMBPCreate").getData().plantm = "";
@@ -2027,10 +2056,13 @@ sap.ui.define([
                 }
             },
             fnLiveChangePurchOrg: function (oEvent) {
-                var vSelected = oEvent.getParameter("itemPressed");
-                // if (vSelected == false) {
-                //     oEvent.getSource().setValue("");
-                // }
+            //    var vSelected = oEvent.getParameter("itemPressed");
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 if (oView.getModel("JMBPCreate").getData().purchasingOrge == "Error") {
                     oView.getModel("JMBPCreate").getData().purchasingOrge = "None";
                     oView.getModel("JMBPCreate").getData().purchasingOrgm = "";
@@ -2998,10 +3030,12 @@ sap.ui.define([
             },
 
             fnLiveChangeWorkCell: function (oEvent) {
-                var vSelected = oEvent.getParameter("itemPressed");
-                // if (vSelected == false) {
-                //     oEvent.getSource().setValue("");
-                // }
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 var vLength = oEvent.getParameter("value").length
                 if (vLength > 200) {
                     oView.getModel("JMBPCreate").getData().workCelle = "Error";
@@ -3444,7 +3478,13 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").refresh();
                 }
             },
-            fnLiveChangeCountryCode: function () {
+            fnLiveChangeCountryCode: function (oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 if (oView.getModel("JMBPCreate").getData().contactCountryCodee == "Error") {
                     oView.getModel("JMBPCreate").getData().contactCountryCodee = "None";
                     oView.getModel("JMBPCreate").getData().contactCountryCodem = "";

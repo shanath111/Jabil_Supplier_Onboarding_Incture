@@ -1710,11 +1710,12 @@ sap.ui.define([
 
             },
             fnLiveChangeCompCode: function (oEvent) {
-
-                var vSelected = oEvent.getParameter("itemPressed");
-                // if (vSelected == false) {
-                //     oEvent.getSource().setValue("");
-                // }
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
 
                 oView.getModel("oDataModel").getData().defaultValuesDto.reqPurchasingOrg = "";
                 oView.getModel("oDataModel").refresh();
@@ -1728,10 +1729,12 @@ sap.ui.define([
 
             fnLiveChangePurchOrg: function (oEvent) {
 
-                var vSelected = oEvent.getParameter("itemPressed");
-                // if (vSelected == false) {
-                //     oEvent.getSource().setValue("");
-                // }
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 if (oView.getModel("JMValidateDefault").getData().reqPurchasingOrge == "Error") {
                     oView.getModel("JMValidateDefault").getData().reqPurchasingOrge = "None";
                     oView.getModel("JMValidateDefault").getData().reqPurchasingOrgm = "";
@@ -1739,7 +1742,12 @@ sap.ui.define([
                 }
             },
             fnLiveChangGBSRegion: function (oEvent) {
-
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 if (oView.getModel("JMValidateDefault").getData().gbsRegione == "Error") {
                     oView.getModel("JMValidateDefault").getData().gbsRegione = "None";
                     oView.getModel("JMValidateDefault").getData().gbsRegionm = "";
@@ -1748,7 +1756,12 @@ sap.ui.define([
             },
             fnLiveChangChangeType: function (oEvent) {
 
-
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 if (oView.getModel("JMValidateDefault").getData().changeTypee == "Error") {
                     oView.getModel("JMValidateDefault").getData().changeTypee = "None";
                     oView.getModel("JMValidateDefault").getData().changeTypem = "";
@@ -1757,7 +1770,12 @@ sap.ui.define([
             },
             fnLiveChangPriority: function (oEvent) {
 
-
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 if (oView.getModel("JMValidateDefault").getData().prioritye == "Error") {
                     oView.getModel("JMValidateDefault").getData().prioritye = "None";
                     oView.getModel("JMValidateDefault").getData().prioritym = "";
