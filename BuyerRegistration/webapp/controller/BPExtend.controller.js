@@ -305,9 +305,10 @@ sap.ui.define([
                     var vTableHeight;
                     vTableHeight = that.getView().byId("id_FilterHeight").getDomRef().offsetHeight - that.getView().byId("id_FilterPanel").getDomRef()
                         .offsetHeight;
-
+                        vTableHeight = vTableHeight - that.getView().byId("id_FilterPanel0").getDomRef()
+                        .offsetHeight;
                     //   vTableHeight = vTableHeight - 40;
-                    vTableHeight = vTableHeight - 110;
+                    vTableHeight = vTableHeight - 120;
                     var vRow = parseInt(vTableHeight / 33);
                     oView.getModel("oConfigMdl").getData().visibleRowCnt = vRow;
                     oView.getModel("oConfigMdl").refresh();

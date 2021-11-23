@@ -3,6 +3,10 @@
 	xmlns:g="sap.f" displayBlock="true"
 	xmlns="sap.m"  xmlns:l="sap.ui.layout"
 >
+<l:Grid defaultSpan="XL12 L12 M12 S12" class="sapUiSizeCompact sapUiTinyMarginTop"> 
+                   	<Label text="{i18n>BuyerHeaderTxt1}" wrapping="true"  class="cl_VRLablCls "></Label>
+                       	<Label text="{i18n>BuyerHeaderTxt2}" wrapping="true" class="cl_VRLablCls "></Label>               
+								</l:Grid>
 		   <l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop"> 
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCBuyerName}" class="cl_VRLablCls "></Label>
@@ -435,7 +439,14 @@
 									
 								</l:Grid>
                                 		
+                                     <l:Grid  defaultSpan="XL12 L12 M12 S12" class="sapUiSizeCompact">
+                                     		<Label text="{i18n>BuyerFormTxt1}" class="cl_VRLablCls sapUiTinyMarginTop "></Label>
+                                             		<Label text="{i18n>BuyerFormTxt2}" wrapping="true" class="cl_VRLablCls "></Label>
+                                     </l:Grid>
+                                      <HBox class="cl_BPCBlockSep">
+                                      </HBox>
                                 <l:Grid  class="sapUiSizeCompact">
+
                                 <VBox >
                        
 								<Label text="{i18n>ConflitOfIntrest}" required="true"  class="cl_ConflictQtnCls sapUiTinyMarginTop"></Label>
