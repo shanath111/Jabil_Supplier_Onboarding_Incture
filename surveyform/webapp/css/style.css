@@ -852,7 +852,7 @@ outline: none !important;
 }
 .radioResponsive .sapMLabel .sapMLabelTextWrapper {
     white-space: normal;
-    line-height: normal;
+    line-height: 15px;
     vertical-align: middle;
 }
 /* .boxStyle.sapMCb {
