@@ -8662,7 +8662,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         "caseId": oView.getModel("oUserModel").getData().caseId,
                         "isEULAAccepted": true,
                         "supplierAction": "EULA_accepted",
-                        "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided,
+                        "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided ? "YES" : "NO",
                         "bankDetailsProvided": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "YES" : "NO",
                         "financeContact1": {
                             "firstName": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "" : oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName,
