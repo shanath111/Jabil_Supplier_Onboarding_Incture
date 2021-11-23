@@ -290,7 +290,7 @@ sap.ui.define([
                         "customerDirectedSupplierIndicators": -1,
                         "outsideProcessiongSupplierIndicators": 1,
                         "manualAddressOverrideSupplierIndicators": 1,
-                        "requestorConflictOfInterests": 0,
+                        "requestorConflictOfInterests": -1,
                         "addlSurveyForSuppliers": 1,
                         "reqCoIFields": false,
                         "CoIFields": false,
@@ -421,9 +421,12 @@ sap.ui.define([
                             if (temp.requestorConflictOfInterest == true) {
                                 temp.requestorConflictOfInterests = 1;
                                 temp.reqCoIFields = true;
-                            } else {
+                            } else if(temp.requestorConflictOfInterest == false){
                                 temp.reqCoIFields = false;
                                 temp.requestorConflictOfInterests = 0;
+                            }else{
+                                temp.reqCoIFields = false;
+                                temp.requestorConflictOfInterests = -1;
                             }
                             if (temp.addlSurveyForSupplier == true) {
                                 temp.addlSurveyForSuppliers = 0;
@@ -806,6 +809,13 @@ sap.ui.define([
                     //     oView.getModel("JMBPCreate").refresh();
                     //     vError = true;
                     // }
+
+                    if (oView.getModel("JMBPCreate").getData().requestorConflictOfInterests == -1) {
+                        oView.getModel("JMBPCreate").getData().requestorConflictOfInterestse = "Error";
+                       
+                        oView.getModel("JMBPCreate").refresh();
+                        vError = true;
+                    }
 
                     if (oView.getModel("JMBPCreate").getData().requestorConflictOfInterests == 1) {
                         if (!oView.getModel("JMBPCreate").getData().requestorCOIName) {
@@ -1281,6 +1291,7 @@ sap.ui.define([
                                         "supplierTelephone": oView.getModel("JMBPCreate").getData().telephone,
                                         "supplierEmail": oView.getModel("JMBPCreate").getData().email,
                                         "plant": oView.getModel("JMBPCreate").getData().plant,
+                                        "requestorCOIEmail":oView.getModel("JMBPCreate").getData().requestorCOIEmail,
                                         "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                                         "purchasingGroup": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurchasingGroup, oView.getModel("JMBPCreate").getData().purchasingGroup, "PurchasingGroup"),
                                         "workCell": that.fnFetchDescriptionWorkCell(oView.getModel("oBPLookUpMdl").getData().WorkCell, oView.getModel("JMBPCreate").getData().workCell, "WorkCell"),
@@ -1520,6 +1531,7 @@ sap.ui.define([
                                                     "supplierTelephone": oView.getModel("JMBPCreate").getData().telephone,
                                                     "supplierEmail": oView.getModel("JMBPCreate").getData().email,
                                                     "plant": oView.getModel("JMBPCreate").getData().plant,
+                                                    "requestorCOIEmail":oView.getModel("JMBPCreate").getData().requestorCOIEmail,
                                                     "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                                                     "purchasingGroup": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurchasingGroup, oView.getModel("JMBPCreate").getData().purchasingGroup, "PurchasingGroup"),
                                                     "workCell": that.fnFetchDescriptionWorkCell(oView.getModel("oBPLookUpMdl").getData().WorkCell, oView.getModel("JMBPCreate").getData().workCell, "WorkCell"),
@@ -2378,7 +2390,7 @@ sap.ui.define([
 
                 oView.getModel("JMBPCreate").getData().requestorCOIName = "";
                 oView.getModel("JMBPCreate").getData().requestorCOIEmail = "";
-
+                oView.getModel("JMBPCreate").getData().requestorConflictOfInterestse = "None";
                 oView.getModel("JMBPCreate").refresh();
                 if (oView.getModel("JMBPCreate").getData().requestorCOIEmailm == oi18n.getProperty("PleaseProvideAltEmail")) {
                     oView.getModel("JMBPCreate").getData().requestorCOIEmaile = "None";
@@ -2783,6 +2795,8 @@ sap.ui.define([
                 oView.getModel("JMBPCreate").getData().conflicte = "None";
                 oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicatorse = "None";
                 oView.getModel("JMBPCreate").getData().oneTimePurchaseSupplierIndicatorse = "None";
+                oView.getModel("JMBPCreate").getData().requestorConflictOfInterestse = "None";
+                       
                 oView.getModel("JMBPCreate").refresh();
 
             },
