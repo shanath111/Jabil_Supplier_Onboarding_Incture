@@ -7999,6 +7999,22 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
 
                     }
                 });
+                if(oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == ""){
+                var CountryCode1 = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode;
+                var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/taxType/" + CountryCode1;
+                $.ajax({
+                    url: loadTaxTypeUrl,
+                    type: 'GET',
+                    success: function (data) {
+                        oView.getModel("oLookUpModel").setProperty("/taxType1", data);
+                        oView.getModel("oLookUpModel").refresh();
+                    },
+                    async: false,
+                    error: function (data) {
+
+                    }
+                });
+            }
             },
             onActivatePreview: function (event) {
                 if (this.getView().byId("surveyWizard")._aStepPath.length == 11 || (this.getView().byId("surveyWizard")._aStepPath.length == 8 && this.getView().byId("surveyWizard")._getProgressNavigator().getStepCount() == 8)) {
