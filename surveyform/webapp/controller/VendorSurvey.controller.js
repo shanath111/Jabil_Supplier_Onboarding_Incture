@@ -1760,10 +1760,10 @@ sap.ui.define([
                                 that.getView().getModel("oAttachmentList").getData()[0].bankDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].bankDArray.push(value);
                             }
-                            //  else if (value.docInSection == "bankIntermediateInfo") {
-                            //     that.getView().getModel("oAttachmentList").getData()[0].bankINDArray = [];
-                            //     that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.push(value);
-                            // } 
+                             else if (value.docInSection == "bankIntermediateInfo") {
+                                that.getView().getModel("oAttachmentList").getData()[0].bankINDArray = [];
+                                that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.push(value);
+                            } 
                             else if (value.docInSection == "shippingInfo") {
                                 that.getView().getModel("oAttachmentList").getData()[0].shippingDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].shippingDArray.push(value);
