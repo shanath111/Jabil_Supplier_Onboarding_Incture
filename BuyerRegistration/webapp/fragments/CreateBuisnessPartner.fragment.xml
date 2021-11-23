@@ -92,37 +92,6 @@
 								</VBox> -->
                                     
 								</l:Grid>
-                                  <l:Grid visible="false"  class="sapUiSizeCompact">
-                               
-                                 <VBox >
-								<Label text="{i18n>RequesterConflictofInterest}" required="true" class="cl_ConflictQtnCls "></Label>
-									<RadioButtonGroup select="fnChangeReqCOI" enabled="{oConfigMdl>/screenEditable}"  selectedIndex="{JMBPCreate>/requestorConflictOfInterests}"  columns="2">
-									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>Yes}"/>
-									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
-                                    		</RadioButtonGroup>
-                                 <layoutData>
-              <l:GridData
-                span="XL4 L4 M4 S6" />
-            </layoutData>
-                                </VBox>
-                                	</l:Grid>
-                                 <l:Grid visible="{JMBPCreate>/reqCoIFields}" class="sapUiSizeCompact">
-                                 <VBox class="VRVboxStyle1" visible="{JMBPCreate>/reqCoIFields}">
-										<Label text="{i18n>BPCNameReq}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/requestorCOIName}" liveChange="fnChangeFirstName2" change="fnInputSpaceCheck" valueState="{JMBPCreate>/requestorCOINamee}" valueStateText="{JMBPCreate>/requestorCOINamem}" class="cl_VRInputCls"></Input>
-									</VBox>
-								
-									<VBox class="VRVboxStyle1" visible="{JMBPCreate>/reqCoIFields}">
-										<Label text="{i18n>BPCEmailReq}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" editable="{oConfigMdl>/screenEditable}" change="fnChangeEmailID2" value="{JMBPCreate>/requestorCOIEmail}" valueState="{JMBPCreate>/requestorCOIEmaile}" valueStateText="{JMBPCreate>/requestorCOIEmailm}"  class="cl_VRInputCls"></Input>
-									</VBox>
-									<!-- <VBox class="VRVboxStyle1" visible="{JMBPCreate>/reqCoIFields}">
-										<Label text="{i18n>BPCContact1}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" enabled="{oConfigMdl>/screenEditable}"   value="{JMBPCreate>/requestorCOIPhoneNumber}" liveChange="fnChangeContactNumber2" valueState="{JMBPCreate>/requestorCOIPhoneNumbere}" valueStateText="{JMBPCreate>/requestorCOIPhoneNumberm}" type="Number"  class="cl_VRInputCls "></Input>
-									</VBox> -->
-                                   
-                                  
-								</l:Grid>
                                   <HBox class="sapUiTinyMarginBegin">
                               <Label text="{i18n>BPCCorporationName}" required="true" class="cl_VRLablCls "></Label>
 								 <Label text="{i18n>CoprportionInfor}" required="false" class="cl_VRLablCls "></Label>
@@ -409,7 +378,39 @@
                                     		</RadioButtonGroup>
 									</VBox> -->
 								</l:Grid>
-                                 
+                                      <l:Grid visible="true"  class="sapUiSizeCompact sapUiTinyMarginTop">
+                               
+                                 <VBox >
+								<Label text="{i18n>RequesterConflictofInterest}" required="true" class="cl_ConflictQtnCls "></Label>
+									<RadioButtonGroup select="fnChangeReqCOI" enabled="{oConfigMdl>/screenEditable}" valueState="{JMBPCreate>/requestorConflictOfInterestse}"  selectedIndex="{JMBPCreate>/requestorConflictOfInterests}"  columns="2">
+									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>Yes}"/>
+									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
+                                    		</RadioButtonGroup>
+                                 <layoutData>
+              <l:GridData
+                span="XL4 L4 M4 S6" />
+            </layoutData>
+                                </VBox>
+                                	</l:Grid>
+                                 <l:Grid visible="{JMBPCreate>/reqCoIFields}" class="sapUiSizeCompact">
+                                 <VBox class="VRVboxStyle1" visible="{JMBPCreate>/reqCoIFields}">
+										<Label text="{i18n>BPCNameReq}" required="true" class="cl_VRLablCls "></Label>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/requestorCOIName}" liveChange="fnChangeFirstName2" change="fnInputSpaceCheck" valueState="{JMBPCreate>/requestorCOINamee}" valueStateText="{JMBPCreate>/requestorCOINamem}" class="cl_VRInputCls"></Input>
+									</VBox>
+								
+									<VBox class="VRVboxStyle1" visible="{JMBPCreate>/reqCoIFields}">
+										<Label text="{i18n>BPCEmailReq}" required="true" class="cl_VRLablCls "></Label>
+										<Input width="95%" editable="{oConfigMdl>/screenEditable}" change="fnChangeEmailID2" value="{JMBPCreate>/requestorCOIEmail}" valueState="{JMBPCreate>/requestorCOIEmaile}" valueStateText="{JMBPCreate>/requestorCOIEmailm}"  class="cl_VRInputCls"></Input>
+									</VBox>
+									<!-- <VBox class="VRVboxStyle1" visible="{JMBPCreate>/reqCoIFields}">
+										<Label text="{i18n>BPCContact1}" required="true" class="cl_VRLablCls "></Label>
+										<Input width="95%" enabled="{oConfigMdl>/screenEditable}"   value="{JMBPCreate>/requestorCOIPhoneNumber}" liveChange="fnChangeContactNumber2" valueState="{JMBPCreate>/requestorCOIPhoneNumbere}" valueStateText="{JMBPCreate>/requestorCOIPhoneNumberm}" type="Number"  class="cl_VRInputCls "></Input>
+									</VBox> -->
+                                   
+                                  
+								</l:Grid>
+                                <HBox class="cl_BPCBlockSep">
+                                      </HBox>
                                 	<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
 	<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCCustDirectedSupInd}" required="true" class="cl_VRLablCls "></Label>
