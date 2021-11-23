@@ -23,7 +23,9 @@
 				</VBox>
 				<VBox  class="fontStyle">
 					<Label text="{i18n>state}" wrapping="true" required="false"></Label>
-					<Input maxLength="4" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/bankState}"  valueState="{oErrorModel>/bankStateE}" valueStateText="{oErrorModel>/bankStateM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+					  <ComboBox width="100%" items="{oBPLookUpMdl>/BankRegion}" filterSecondaryValues="true" showSecondaryValues="true"   editable="false" selectedKey="{oDataModel>/bankDto/bankInfoDto/0/bankState}"  placeholder="{i18n>select}" valueState="{oErrorModel>/bankStateE}" valueStateText="{oErrorModel>/bankStateM}" selectionChange="fnLiveValueChange" required="true" class="inputStyle">
+                  <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
+                  </ComboBox>
 				</VBox>
 				
 				<VBox class="fontStyle">
@@ -55,10 +57,10 @@
 				<Label text="{i18n>iban}" wrapping="true"></Label>
 					<Input maxLength="{oVisibilityModel>/bankValidation/ibanLength}" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/ibanNum}" valueState="{oErrorModel>/ibanE}" valueStateText="{oErrorModel>/ibanM}"  change="fnInputIban" class="inputStyle"></Input>
 				</VBox>
-				<VBox  class="fontStyle">
+				<!-- <VBox  class="fontStyle">
 						<Label text="{i18n>bankKey}" wrapping="true"></Label>
 					<Input maxLength="5" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/bankCode}"  liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
-				</VBox>
+				</VBox> -->
                 <VBox  class="fontStyle">
 				<Label text="{i18n>bankPKey}" wrapping="true" required="{oVisibilityModel>/bankValidation/benificiaryAccCurrency}"></Label>
 				
@@ -66,11 +68,11 @@
                      <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/></ComboBox>
                 </VBox>
 			
-				<VBox  class="fontStyle">
+				<!-- <VBox  class="fontStyle">
 						<Label wrapping="true" text="{i18n>bankCtrlKey}"></Label>
 					<Input maxLength="3"  value="{oDataModel>/bankDto/bankInfoDto/0/bankControlKey}" valueState="{oErrorModel>/bankCtrlKeyE}" valueStateText="{oErrorModel>/bankCtrlKeyM}"  liveChange="fnLiveInputValueChange"  editable="{oConfigMdl>/BankFieldsEdit}" class="inputStyle"></Input>
                     
-				</VBox>
+				</VBox> -->
 				<VBox class="fontStyle">
 					<Label wrapping="true" text="{i18n>instKey}" ></Label>
 					<Input maxLength="4" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/instructionKey}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
