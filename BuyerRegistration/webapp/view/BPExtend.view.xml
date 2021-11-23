@@ -15,7 +15,16 @@
 				   toggleHeaderOnTitleClick="false" class="cl_DynamicPage">
 		<f:content>
         <VBox fitContainer="true" id="id_FilterHeight"> 
-	  <Panel width="auto" expandable="true"  id="id_FilterPanel" expand="fnPanelCollapse" expanded="true" class="cl_VRPanelClass cl_PanelMargonTop sapUiTinyMarginBegin sapUiTinyMarginEnd">
+        <Panel width="auto" expandable="false" id="id_FilterPanel0"  expand="fnPanelCollapse" expanded="true" class="cl_VRPanelClass cl_PanelMargonTop sapUiTinyMarginBegin sapUiTinyMarginEnd">
+        	<content>
+             <l:Grid  defaultSpan="XL2 L12 M12 S12" class="sapUiSizeCompact cl_ExtendSearchGrid">
+            <Label text="{i18n>BuyerWelcomeTxt}" class="cl_BuyerTitle sapUiTinyMarginTop"  wrapping="true" ></Label>
+             <Label text="{i18n>BuyerWelcomeTxt1}" class="cl_VRLablCls" wrapping="true" ></Label>
+              <Label text="{i18n>BuyerWelcomeTxt2}" class="cl_VRLablCls" wrapping="true" ></Label>
+</l:Grid >
+            	</content>
+                </Panel>
+	  <Panel width="auto" expandable="true"  id="id_FilterPanel" expand="fnPanelCollapse" expanded="true" class="cl_VRPanelClass sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginEnd">
 						<headerToolbar >
 							<Toolbar height="2rem" class="cl_VRHeaderBackGrndPnl">
 								<Title text="{i18n>VRFilter1}"/>
