@@ -79,43 +79,53 @@
     "tabledata": [
          {
             "contactType": "Tax",
-            "tooltip": "The responsible individual for providing Tax IDs and supporting documentations"
+            "tooltip": "The responsible individual for providing Tax IDs and supporting documentations",
+            "required": false
         },
         {
             "contactType": "Order Management",
-             "tooltip": "The responsible individual who will be receiving and processing purchase orders or other related order activities."
+             "tooltip": "The responsible individual who will be receiving and processing purchase orders or other related order activities.",
+             "required": true
         },
         {
             "contactType": "Locations/Facilities",
-             "tooltip": "This contact must know all manufacturing locations including manufacturing type and commodities manufactured."
+             "tooltip": "This contact must know all manufacturing locations including manufacturing type and commodities manufactured.",
+             "required": false
         },
         {
             "contactType": "Account Management/Sales",
-             "tooltip": "This contact is responsible for the Jabil account and manages the relationship with various Jabil representatives."
+             "tooltip": "This contact is responsible for the Jabil account and manages the relationship with various Jabil representatives.",
+             "required": true
         },
         {
             "contactType": "AR / Billing ",
-             "tooltip": "This contact has considerable knowledge of your company's Accounts and Billing details."
+             "tooltip": "This contact has considerable knowledge of your company's Accounts and Billing details.",
+             "required": true
         },
         {
             "contactType": "Quality",
-             "tooltip": "This contact provide details regarding site certifications, change management process, supplier acknowledgements, outsourcing, etc."
+             "tooltip": "This contact provide details regarding site certifications, change management process, supplier acknowledgements, outsourcing, etc.",
+             "required": true
         },
          {
             "contactType": "Customer Service",
-             "tooltip": "This contact provide details regarding site certifications, change management process, supplier acknowledgements, outsourcing, etc."
+             "tooltip": "This contact provide details regarding site certifications, change management process, supplier acknowledgements, outsourcing, etc.",
+             "required": true
         },
         {
             "contactType": "Materials Compliance",
-             "tooltip": "This contact can provide details regarding material declarations, conflict minerals, REACH and RoHS Mercury free, etc."
+             "tooltip": "This contact can provide details regarding material declarations, conflict minerals, REACH and RoHS Mercury free, etc.",
+             "required": false
         },
         {
             "contactType": "Logistics/Trade Compliance",
-             "tooltip": "This contact can provide details regarding export compliance, CTPAT, AEO certifications, etc."
+             "tooltip": "This contact can provide details regarding export compliance, CTPAT, AEO certifications, etc.",
+             "required": false
         },
         {
             "contactType": "Social/Environmental",
-             "tooltip": "This contact can provide details regarding labor regulations, conflict minerals, environment responsibility, etc."
+             "tooltip": "This contact can provide details regarding labor regulations, conflict minerals, environment responsibility, etc.",
+             "required": false
         }
     ]
 }

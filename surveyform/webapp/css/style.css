@@ -541,6 +541,9 @@ width:0
  color:#0088DE !important;
   
 }
+.paperClipOuter .sapMBtn .sapMBtnInner {
+    display: contents;
+}
 /* html.sap-desktop .sapMBtn:focus>.sapMFocusable { */
 .addMoreBtn>span>span{
     color: #0088DE !important;
@@ -852,7 +855,7 @@ outline: none !important;
 }
 .radioResponsive .sapMLabel .sapMLabelTextWrapper {
     white-space: normal;
-    line-height: normal;
+    line-height: 15px;
     vertical-align: middle;
 }
 /* .boxStyle.sapMCb {
