@@ -7645,6 +7645,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
 
                         oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
                         oView.getModel("oEnableMdl").refresh();
+                        this.onCompleteCompanyInfo();
                         this._fnNextStepSave();
                         this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getCurrentStep()).nextStep();
                         // this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
