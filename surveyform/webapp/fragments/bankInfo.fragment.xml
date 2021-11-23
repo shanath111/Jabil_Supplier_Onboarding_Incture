@@ -205,15 +205,15 @@
 			</l:Grid>
             <VBox class="sapUiSizeCompact">
            <Button enabled="false" icon="sap-icon://add" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addMore}:${oi18n_En>addMore}+ '/&#160;' +${i18n>addMore}}" type="Transparent" iconFirst="true" press="" class="addMoreBtn"/></VBox>
-		 <!-- <VBox>
-          <HBox class="fontStyle sapUiSizeCompact">
-          <CheckBox enabled="{oVisibilityModel>/_FinanceReviewEdit}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/bankDto/isIntermediateBankProvided}" class=" sapUiTinyMarginTop fontStyle inputStyle" />
-				<u:FileUploader  visible="{oDataModel>/bankDto/isIntermediateBankProvided}" id="fileUploader_BIA" buttonOnly="true" iconOnly="true" icon="sap-icon://attachment" multiple="true"
+		 <VBox>
+          <VBox class="fontStyle sapUiSizeCompact">
+          <CheckBox enabled="{oVisibilityModel>/_FinanceReviewEdit}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/bankDtoisIntermediateBankProvided}" class=" sapUiTinyMarginTop fontStyle inputStyle" />
+			<HBox>	<u:FileUploader  visible="{=${oDataModel>/bankDto/isIntermediateBankProvided} === true}" id="fileUploader_BIA" buttonOnly="true" iconOnly="true" icon="sap-icon://attachment" multiple="true"
 					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{oVisibilityModel>/_FinanceReviewEdit}"
-					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin addMoreBtn"></u:FileUploader>
-                     <Label class="sapUiSmallMarginTop" required="{oDataModel>/bankDto/isIntermediateBankProvided}"/>
-            <Text wrapping="true" class="sapUiSmallMarginTop" visible="{oDataModel>/bankDto/isIntermediateBankProvided}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBankAttachVerbiage}:${oi18n_En>interMBankAttachVerbiage}+ '&#10;' +${i18n>interMBankAttachVerbiage}}"/>
-                    </HBox>
+					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin addMoreBtn paperClipOuter"></u:FileUploader>
+                     <Label class="sapUiSmallMarginTop" required="{=${oDataModel>/bankDto/isIntermediateBankProvided} === true}"/>
+            <Text wrapping="true" class="sapUiSmallMarginTop sapUiTinyMarginbegin" visible="{=${oDataModel>/bankDto/isIntermediateBankProvided} === true}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBankAttachVerbiage}:${oi18n_En>interMBankAttachVerbiage}+ '&#10;' +${i18n>interMBankAttachVerbiage}}"/>
+              </HBox></VBox>
 			 <HBox wrap="Wrap">	
            
   <g:GridList width="auto" items="{oAttachmentList>/0/bankINDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiSmallMarginBegin">
@@ -250,7 +250,7 @@
 				</g:GridList>
 		
    </HBox>
-   	</VBox> -->
+   	</VBox>
      </content>
 		<layoutData>
 			<FlexItemData minWidth="100%"/>
@@ -467,7 +467,7 @@
 <HBox><Label required="{oDataModel>/bankDto/isBankProvided}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankAttachText1}:${oi18n_En>bankAttachText1}+ '/&#160;'+${i18n>bankAttachText1}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 			<Button tooltip="{oPopoverModel>/bankInfoInfoText/info}" icon="sap-icon://message-information" type="Transparent" class="sapUiSizeCompact infoBtn"/>
            </HBox> <HBox wrap="Wrap">
-				<u:FileUploader id="fileUploader_BA" buttonOnly="true" buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"
+				<u:FileUploader id="fileUploader_BA" buttonOnly="true" iconHovered="Maximum size limit is 10MB + '&#10;' + Accepted document types are ..." buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"
 					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{oVisibilityModel>/_FinanceReviewEdit}"
 					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"></u:FileUploader>
 				<g:GridList width="auto" items="{oAttachmentList>/0/bankDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">

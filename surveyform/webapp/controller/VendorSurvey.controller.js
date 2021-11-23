@@ -3869,6 +3869,16 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         }
                     }
                 }
+                if(visiblility.isIntermediateBankProvided){
+                    if(that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.length == 0) {
+                        iError = true;
+                        oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithoutBorder");
+                        oView.byId("fileUploader_BIA").addStyleClass("attachmentWithBorder");
+                    } else {
+                        oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithBorder");
+                        oView.byId("fileUploader_BIA").addStyleClass("attachmentWithoutBorder");
+                    }
+                }
                 //  }
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
@@ -4600,6 +4610,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 var oItems = oView.byId("contTable").getItems();
                 $.each(vcontactList, function (index, row) {
                     var item = oView.byId("contTable").getItems()[index].getAggregation("cells");
+                    if(row.required){
                     if (row.email == null || row.email == "" || spaceRegex.test(row.email)) {
                         item[1].setValueState("Error");
                         item[1].setValueStateText(oi18n.getText("mandatoryEmail"));
@@ -4639,6 +4650,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         iError = true;
 
                     }
+                }
                 });
                 var aCompanyContact = oView.getModel("oLookUpModel").getData().tabledata;
                 for (var i = 0; i < aCompanyContact.length; i++) {
@@ -7105,9 +7117,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                             // @ts-ignore
                             file = domRef.files[0],
                             secName = that.oWizard.getCurrentStep().split("---VendorSurvey--")[1];
-                        // if (secName == "bankInfo" && fileUploadId == "fileUploader_BIA") {
-                        //     secName = "bankIntermediateInfo";
-                        // }
+                        if (secName == "bankInfo" && fileUploadId == "fileUploader_BIA") {
+                            secName = "bankIntermediateInfo";
+                        }
                         jQuery.sap.domById(fileUpload.getId() + "-fu").setAttribute("type", "file");
                         // @ts-ignore
                         oFormData.append("file", jQuery.sap.domById(fileUpload.getId() + "-fu").files[0]);
@@ -7224,9 +7236,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                     // @ts-ignore
                     file = domRef.files[0],
                     secName = that.oWizard.getCurrentStep().split("---VendorSurvey--")[1];
-                // if (secName == "bankInfo" && fileUploadId == "fileUploader_BIA") {
-                //     secName = "bankIntermediateInfo";
-                // }
+                if (secName == "bankInfo" && fileUploadId == "fileUploader_BIA") {
+                    secName = "bankIntermediateInfo";
+                }
                 if(file.name.length > 60){
                         var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
                         var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
@@ -7442,9 +7454,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 else if (fileUploadId == "fileUploader_BA") {
                     return "bankDArray";
                 }
-                // else if (fileUploadId == "fileUploader_BIA") {
-                //     return "bankINDArray";
-                // }
+                else if (fileUploadId == "fileUploader_BIA") {
+                    return "bankINDArray";
+                }
                 else if (fileUploadId == "fileUploader_SH") {
                     return "shippingDArray";
                 }
@@ -7633,6 +7645,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
 
                         oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
                         oView.getModel("oEnableMdl").refresh();
+                        this._fnNextStepSave();
                         this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getCurrentStep()).nextStep();
                         // this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
                         //}
@@ -7667,6 +7680,261 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 }
 
 
+            },
+
+            _fnNextStepSave: function(){
+                if (this.getView().byId(this.getView().byId("surveyWizard").getCurrentStep()).getValidated()) {
+                    var that = this;
+                    var oModel = new JSONModel();
+                    var oBusyDialogSave = new sap.m.BusyDialog({ text: "" });
+                    var spaceRegex = /^\s+$/;
+                    var oPayload = jQuery.extend(true, {}, this.getView().getModel("oDataModel").getData());
+                    oPayload.caseId = oView.getModel("oUserModel").getData().caseId;
+                    if (oPayload.surveyInfoDto.address[0]) {
+                        oPayload.surveyInfoDto.address[0].postal[0].email[0].email = oPayload.surveyInfoDto.authorityContact.email;
+                        oPayload.surveyInfoDto.address[0].postal[0].telephone[0].telephoneNum = oPayload.surveyInfoDto.authorityContact.contact;
+                        oPayload.surveyInfoDto.address[0].postal[0].telephone[0].extension = oPayload.surveyInfoDto.authorityContact.extension;
+                        if (oPayload.surveyInfoDto.address[0].postal[0].telephone.length == 1) {
+                            oPayload.surveyInfoDto.address[0].postal[0].telephone.push({
+                                "isMobileNumber": false,
+                                "telephoneId": "",
+                                "telephoneNum": "",
+                                "extension": ""
+                            });
+                            oPayload.surveyInfoDto.address[0].postal[0].telephone[1].isMobileNumber = true;
+                            oPayload.surveyInfoDto.address[0].postal[0].telephone[1].telephoneNum = oPayload.surveyInfoDto.authorityContact.mobile;
+                        }
+                    }
+
+                    oPayload.bpCentral.personGivenName = oPayload.surveyInfoDto.authorityContact.firstName;
+                    oPayload.bpCentral.personFamilyName = oPayload.surveyInfoDto.authorityContact.lastName;
+                    oPayload.bpCentral.personAcademicTitleCode = oPayload.surveyInfoDto.authorityContact.jobTitle;
+
+                    if (oPayload.bpInfoDto.siteHaveDunsNumber === false) {
+                        oPayload.bpInfoDto.dunsRegistrationNum = "";
+                        oPayload.bpInfoDto.dnbLegalBusinessName = "";
+                    } else {
+                        oPayload.bpInfoDto.encourgeDunsNumberReg = null;
+                        oPayload.bpInfoDto.isSiteCorporateHeadquaters = null;
+                        oPayload.bpInfoDto.noOfEmployees = "";
+                        oPayload.bpInfoDto.year = "";
+                    }
+                    if (oPayload.bpInfoDto.dunsRegistrationNum !== "" && oPayload.bpInfoDto.dunsRegistrationNum !== "NODUNS") {
+                        oPayload.ownerShipInfoDto.doesOtherEntityOwnSite = null;
+                        oPayload.ownerShipInfoDto.companyName = "";
+                    }
+                    if (oPayload.ownerShipInfoDto.isEntitySDNList === false) {
+                        $.each(oPayload.ownerShipInfoDto.sdnlistContact, function (index, row) {
+                            row.firstName = "";
+                            row.lastName = "";
+                        });
+
+                    }
+                    if (oPayload.ownerShipInfoDto.isEntityRegInCISNK === false) {
+
+                        $.each(oPayload.ownerShipInfoDto.regInCISNKContact, function (index, row) {
+                            row.firstName = "";
+                            row.lastName = "";
+                        });
+                    }
+                    if (oPayload.ownerShipInfoDto.isEntityManagedByGovt === false) {
+                        oPayload.ownerShipInfoDto.managedByGovtContact.contact = "";
+                        oPayload.ownerShipInfoDto.managedByGovtContact.email = "";
+                        oPayload.ownerShipInfoDto.managedByGovtContact.entityName = "";
+                        oPayload.ownerShipInfoDto.managedByGovtContact.extension = "";
+                        oPayload.ownerShipInfoDto.managedByGovtContact.firstName = "";
+                        oPayload.ownerShipInfoDto.managedByGovtContact.lastName = "";
+                        oPayload.ownerShipInfoDto.managedByGovtContact.jobTitle = "";
+                        oPayload.ownerShipInfoDto.managedByGovtContact.countryContactCode = "";
+                    }
+                    if (oPayload.ownerShipInfoDto.isEntityManagedByGovtFamily === false) {
+                        oPayload.ownerShipInfoDto.managedByGovtFamilyContact.contact = "";
+                        oPayload.ownerShipInfoDto.managedByGovtFamilyContact.email = "";
+                        oPayload.ownerShipInfoDto.managedByGovtFamilyContact.entityName = "";
+                        oPayload.ownerShipInfoDto.managedByGovtFamilyContact.extension = "";
+                        oPayload.ownerShipInfoDto.managedByGovtFamilyContact.firstName = "";
+                        oPayload.ownerShipInfoDto.managedByGovtFamilyContact.lastName = "";
+                        oPayload.ownerShipInfoDto.managedByGovtFamilyContact.jobTitle = "";
+                        oPayload.ownerShipInfoDto.managedByGovtFamilyContact.countryContactCode = "";
+                    }
+
+                    if (oPayload.comInfoDto.isRemitToAddress) {
+                        oPayload.bankDto.bankInfoDto[0].accountGroup = "Z004";
+                    } else {
+                        oPayload.bankDto.bankInfoDto[0].accountGroup = "ZVEN";
+                    }
+
+                    if (oPayload.shippingInfoDto.isDeliver === false) {
+                        oPayload.shippingInfoDto.deliverRepName = "";
+                        oPayload.shippingInfoDto.deliverRepAddress = "";
+                        oPayload.shippingInfoDto.supplierContactInLogistics = "";
+                        oPayload.shippingInfoDto.deliverRepCountryContactCode = "";
+                        oPayload.shippingInfoDto.deliverRepEmail = "";
+                        oPayload.shippingInfoDto.deliverRepContact = "";
+                        oPayload.shippingInfoDto.deliverRepFax = "";
+                    }
+
+
+                    oPayload.comContactDto = jQuery.extend(true, [], oView.getModel("oLookUpModel").getData().tabledata);
+                    $.each(oPayload.comContactDto, function (index, row) {
+                        delete row.tooltip;
+                        delete row.required;
+                    });
+                    if (oPayload.bankDto.isBankProvided === false) {
+                        oPayload.bankDto.bankInfoDto[0].bankName = "";
+                        oPayload.bankDto.bankInfoDto[0].bankAddress = "";
+                        oPayload.bankDto.bankInfoDto[0].bankCity = "";
+                        oPayload.bankDto.bankInfoDto[0].bankState = "";
+                        oPayload.bankDto.bankInfoDto[0].bankCountry = "";
+                        oPayload.bankDto.bankInfoDto[0].bankBranch = "";
+                        oPayload.bankDto.bankInfoDto[0].benefAccHolderName = "";
+                        oPayload.bankDto.bankInfoDto[0].bankAccNum = "";
+                        oPayload.bankDto.bankInfoDto[0].refBankDetails = "";
+                        oPayload.bankDto.bankInfoDto[0].swiftCode = "";
+                        oPayload.bankDto.bankInfoDto[0].bankNumber = "";
+                        oPayload.bankDto.bankInfoDto[0].bankAccNumConfirm = "";
+                        oPayload.bankDto.bankInfoDto[0].ibanNum = "";
+                        oPayload.bankDto.bankInfoDto[0].ibanNumConfirm = "";
+                        oPayload.bankDto.bankInfoDto[0].bankCode = "";
+                        oPayload.bankDto.bankInfoDto[0].partnerBankType = "";
+                        oPayload.bankDto.bankInfoDto[0].bankControlKey = "";
+                        // oPayload.bankDto.bankInfoDto[0].instructionKey = ""; // commented since the key is default value in all screens- siva ---- date:01/10/2021
+                        oPayload.bankDto.financeContact1.contactInSection = "FinanceSupplier";
+                        oPayload.bankDto.financeContact2.contactInSection = "Reviewer";
+                    } else {
+                        oPayload.bankDto.financeContact1.firstName = "";
+                        oPayload.bankDto.financeContact1.lastName = "";
+                        oPayload.bankDto.financeContact1.jobTitle = "";
+                        oPayload.bankDto.financeContact1.email = "";
+                        oPayload.bankDto.financeContact1.contact = "";
+                        oPayload.bankDto.financeContact1.extension = "";
+                        oPayload.bankDto.financeContact1.mobile = "";
+                        oPayload.bankDto.financeContact1.countryContactCode = "";
+                        oPayload.bankDto.financeContact1.countryMobileCode = "";
+                        oPayload.bankDto.financeContact1.contactInSection = "";
+                        oPayload.bankDto.financeContact2.contactInSection = "Reviewer";
+                    }
+
+                    if (oPayload.financeInfoDto.financeAuditedLast12M === false) {
+                        oPayload.financeInfoDto.userAudited = "";
+                    }
+                    if (oPayload.comComplianceDto.commitedToExpectations) {
+                        oPayload.comComplianceDto.notCommitedExplanation = "";
+                        oPayload.comComplianceDto.commitedToExpectationsContact.contact = "";
+                        oPayload.comComplianceDto.commitedToExpectationsContact.email = "";
+                        oPayload.comComplianceDto.commitedToExpectationsContact.extension = "";
+                        oPayload.comComplianceDto.commitedToExpectationsContact.firstName = "";
+                        oPayload.comComplianceDto.commitedToExpectationsContact.lastName = "";
+                        oPayload.comComplianceDto.commitedToExpectationsContact.jobTitle = "";
+                        oPayload.comComplianceDto.commitedToExpectationsContact.countryContactCode = "";
+                    }
+                    if (oPayload.comComplianceDto.companyRelationWithJabilEmp === false) {
+                        oPayload.comComplianceDto.companyRelationWithJabilEmpContact.firstName = "";
+                        oPayload.comComplianceDto.companyRelationWithJabilEmpContact.department = "";
+                        oPayload.comComplianceDto.companyRelationWithJabilEmpContact.jobTitle = "";
+                        oPayload.comComplianceDto.companyRelationWithJabilEmpContact.email = "";
+                    }
+                    if (oPayload.comComplianceDto.companyContactWithPreviouseJabilEmp === false) {
+                        oPayload.comComplianceDto.employeeName = "";
+                        oPayload.comComplianceDto.jobTitle = "";
+                        oPayload.comComplianceDto.startDate = "";
+                        oPayload.comComplianceDto.endDate = "";
+                    } else {
+
+                        oPayload.comComplianceDto.startDate = oPayload.comComplianceDto.startDate ? formatter.fnFormatDate(oPayload.comComplianceDto.startDate) : null;
+                        oPayload.comComplianceDto.endDate = oPayload.comComplianceDto.endDate ? formatter.fnFormatDate(oPayload.comComplianceDto.endDate) : null;
+                    }
+                    if (oPayload.itCyberDto.orgConnectToJabilSystem) {
+                        var networkCC = oView.getModel("oLookUpModel").getData().orgEstablishConnection;
+                        oPayload.itCyberDto.orgEstablishConnection = [];
+                        $.each(networkCC, function (index, value) {
+                            if (value.isSelected) {
+                                oPayload.itCyberDto.orgEstablishConnection.push(value);
+                            }
+
+                        });
+
+                    } else { oPayload.itCyberDto.orgEstablishConnection = []; }
+                    if (oPayload.itCyberDto.orgMaintainProcessDataFromJabil) {
+                        var networkCC = oView.getModel("oLookUpModel").getData().orgBusinessActivities;
+                        oPayload.itCyberDto.orgBusinessActivities = [];
+                        $.each(networkCC, function (index, value) {
+                            if (value.isSelected) {
+                                oPayload.itCyberDto.orgBusinessActivities.push(value);
+                            }
+                        });
+                    } else { oPayload.itCyberDto.orgBusinessActivities = []; }
+                    if (oPayload.itCyberDto.orgConnectToJabilSystem || oPayload.itCyberDto.orgMaintainProcessDataFromJabil) {
+
+                    } else {
+                        oPayload.itCyberDto.responsibleForInforSecurity = null;
+                        oPayload.itCyberDto.certifiedForInfoSecurity = null;
+                        oPayload.itCyberDto.validateCertificate = null;
+                    }
+
+                    if (oPayload.businessPartnerId == "") {
+                        oPayload.userCreated = oView.getModel("oUserModel").getData().user.givenName;
+                        var sUrl = "/comjabilsurveyform/plcm_portal_services/supplier/create";
+                        oBusyDialogSave.open();
+                        oModel.loadData(sUrl, JSON.stringify(oPayload), true, "POST", false, true, {
+                            "Content-Type": "application/json"
+                        });
+                        oModel.attachRequestCompleted(function (oEvent) {
+                            // @ts-ignore
+                           
+                           
+                        
+                            if (oEvent.getParameter("success")) {
+                                
+
+                                oView.getModel("oDataModel").setData(oEvent.getSource().oData);
+                                oView.getModel("oDataModel").refresh();
+                                oBusyDialogSave.close();
+                                } 
+
+                            else {
+                                var eMsg = oEvent.getParameter("errorobject").responseText;
+                                MessageBox.show(eMsg, {
+                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                    title: oi18n.getText("error")
+                                });
+                                oBusyDialogSave.close();
+                            }
+                        });
+                    } else if (oPayload.businessPartnerId != "") {
+
+                        oPayload.userUpdated = oView.getModel("oUserModel").getData().user.givenName;
+                        var sUrl = "/comjabilsurveyform/plcm_portal_services/supplier/update";
+                       
+                        oBusyDialogSave.open();
+                       
+                        oModel.loadData(sUrl, JSON.stringify(oPayload), true, "PUT", false, true, {
+                            "Content-Type": "application/json"
+                        });
+                        oModel.attachRequestCompleted(function (oEvent) {
+                            // @ts-ignore
+                            
+                              
+                            
+                            if (oEvent.getParameter("success")) {
+                               
+                                oView.getModel("oDataModel").setData(oEvent.getSource().oData);
+                                oView.getModel("oDataModel").refresh();
+                                oBusyDialogSave.close();
+                                } 
+
+
+                            else {
+                                var eMsg = oEvent.getParameter("errorobject").responseText;
+                                MessageBox.show(eMsg, {
+                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                    title: oi18n.getText("error")
+                                });
+                                oBusyDialogSave.close();
+                            }
+                        });
+                    }
+                }
             },
 
             nextStepDisplayOnly: function () {
@@ -7727,7 +7995,6 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
 
                     }
                 });
-
             },
             onActivatePreview: function (event) {
                 if (this.getView().byId("surveyWizard")._aStepPath.length == 11 || (this.getView().byId("surveyWizard")._aStepPath.length == 8 && this.getView().byId("surveyWizard")._getProgressNavigator().getStepCount() == 8)) {
@@ -7975,6 +8242,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                     oPayload.comContactDto = jQuery.extend(true, [], oView.getModel("oLookUpModel").getData().tabledata);
                     $.each(oPayload.comContactDto, function (index, row) {
                         delete row.tooltip;
+                        delete row.required;
                     });
                     if (oPayload.bankDto.isBankProvided === false) {
                         oPayload.bankDto.bankInfoDto[0].bankName = "";
