@@ -1740,6 +1740,17 @@ sap.ui.define([
             },
             _fnReadDocumentList: function (caseId, that) {
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/document/findByRequestId/" + caseId;
+                that.getView().getModel("oAttachmentList").getData()[0].bPDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].ownerDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].compDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].bankDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].bankINDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].shippingDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].compProdDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].compContDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].compFinDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].compComplDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].compSecuDArray = [];
                 $.ajax({
                     url: sUrl,
 
@@ -1748,41 +1759,41 @@ sap.ui.define([
 
                         $.each(data, function (index, value) {
                             if (value.docInSection == "businessPartnerInfo") {
-                                that.getView().getModel("oAttachmentList").getData()[0].bPDArray = [];
+                             //   that.getView().getModel("oAttachmentList").getData()[0].bPDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].bPDArray.push(value);
                             } else if (value.docInSection == "ownerShipInfo") {
-                                that.getView().getModel("oAttachmentList").getData()[0].ownerDArray = [];
+                               // that.getView().getModel("oAttachmentList").getData()[0].ownerDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].ownerDArray.push(value);
                             } else if (value.docInSection == "companyInfo") {
-                                that.getView().getModel("oAttachmentList").getData()[0].compDArray = [];
+                                //that.getView().getModel("oAttachmentList").getData()[0].compDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].compDArray.push(value);
                             } else if (value.docInSection == "bankInfo") {
-                                that.getView().getModel("oAttachmentList").getData()[0].bankDArray = [];
+                                //that.getView().getModel("oAttachmentList").getData()[0].bankDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].bankDArray.push(value);
                             }
                              else if (value.docInSection == "bankIntermediateInfo") {
-                                that.getView().getModel("oAttachmentList").getData()[0].bankINDArray = [];
+                               // that.getView().getModel("oAttachmentList").getData()[0].bankINDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.push(value);
                             } 
                             else if (value.docInSection == "shippingInfo") {
-                                that.getView().getModel("oAttachmentList").getData()[0].shippingDArray = [];
+                                //that.getView().getModel("oAttachmentList").getData()[0].shippingDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].shippingDArray.push(value);
                             } else if (value.docInSection == "prodAndServInfo") {
-                                that.getView().getModel("oAttachmentList").getData()[0].compProdDArray = [];
+                                //that.getView().getModel("oAttachmentList").getData()[0].compProdDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].compProdDArray.push(value);
                             } else if (value.docInSection == "contactInfo") {
-                                that.getView().getModel("oAttachmentList").getData()[0].compContDArray = [];
+                                //that.getView().getModel("oAttachmentList").getData()[0].compContDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].compContDArray.push(value);
                             } else if (value.docInSection == "financialInfo") {
-                                that.getView().getModel("oAttachmentList").getData()[0].compFinDArray = [];
+                               // that.getView().getModel("oAttachmentList").getData()[0].compFinDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].compFinDArray.push(value);
                             }
                             else if (value.docInSection == "cComplianceInfo") {
-                                that.getView().getModel("oAttachmentList").getData()[0].compComplDArray = [];
+                               // that.getView().getModel("oAttachmentList").getData()[0].compComplDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].compComplDArray.push(value);
                             }
                             else if (value.docInSection == "cyberSecInfo") {
-                                that.getView().getModel("oAttachmentList").getData()[0].compSecuDArray = [];
+                               // that.getView().getModel("oAttachmentList").getData()[0].compSecuDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].compSecuDArray.push(value);
                             }
                         });
