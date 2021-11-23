@@ -535,9 +535,15 @@ sap.ui.define([
 
             fnCloseMessage: function () {
                 this.oBPSuccess.close();
+                
             },
             fnDoneSubmit: function () {
                 window.history.go(-1);
+            },
+            
+            fnSaveContinue:function(){
+                this.oBPSuccessDraft.close();
+                that.fnLoadCaseDetail(oView.getModel("JMBPCreate").getData().caseId);//Load Case ID Details
             },
             fnNavToExtend: function () {
                 this.getOwnerComponent().getRouter().navTo("BPExtend", {
@@ -1073,8 +1079,10 @@ sap.ui.define([
                 var vConflictOfIntSel1 = oView.getModel("JMBPCreate").getData().requestorConflictOfInterests;
                 if (vConflictOfIntSel1 == 0) {
                     vConflictOfInt1 = false;
-                } else {
+                } else if(vConflictOfIntSel1 == 1){
                     vConflictOfInt1 = true;
+                }else{
+                    vConflictOfInt1 = null;  
                 }
                 var vAdditionalSuvey;
                 var vAdditionalSuvey = oView.getModel("JMBPCreate").getData().addlSurveyForSuppliers;
@@ -1234,7 +1242,8 @@ sap.ui.define([
                     oModel.attachRequestCompleted(function (oEvent) {
 
                         if (oEvent.getParameter("success")) {
-
+                            oView.getModel("JMBPCreate").getData().caseId = oEvent.getSource().getData().caseId;
+                            oView.getModel("JMBPCreate").refresh;
                             var temp = {
                                 "Message": "",
                                 "caseId": oEvent.getSource().getData().caseId
@@ -1247,16 +1256,17 @@ sap.ui.define([
                             that.savedData = oEvent.getSource().getData();
                             if (vBtnActn == "SD") {
                                 temp.Message = oi18n.getProperty("BPCSaveAsDraftMessage");
+                               temp.saveContinue = true;
                                 var oJosnMessage = new sap.ui.model.json.JSONModel();
                                 oJosnMessage.setData(temp);
                                 oView.setModel(oJosnMessage, "JMMessageData");
-                                if (!that.oBPSuccess) {
-                                    that.oBPSuccess = sap.ui.xmlfragment(
-                                        "ns.BuyerRegistration.fragments.CreateSuccess", that);
-                                    oView.addDependent(that.oBPSuccess);
+                                if (!that.oBPSuccessDraft) {
+                                    that.oBPSuccessDraft = sap.ui.xmlfragment(
+                                        "ns.BuyerRegistration.fragments.CreateSuccessDraft", that);
+                                    oView.addDependent(that.oBPSuccessDraft);
                                 }
                                 oBusyDilog.close();
-                                that.oBPSuccess.open();
+                                that.oBPSuccessDraft.open();
                             } else if (vBtnActn == "SU") {
 
 
@@ -1471,7 +1481,7 @@ sap.ui.define([
                                 oModel.attachRequestCompleted(function (oEvent) {
 
                                     if (oEvent.getParameter("success")) {
-
+                                        oView.getModel("JMBPCreate").getData().caseId = oEvent.getSource().getData().caseId;
                                         var temp = {
                                             "Message": "",
                                             "caseId": oEvent.getSource().getData().caseId
@@ -1487,13 +1497,13 @@ sap.ui.define([
                                             var oJosnMessage = new sap.ui.model.json.JSONModel();
                                             oJosnMessage.setData(temp);
                                             oView.setModel(oJosnMessage, "JMMessageData");
-                                            if (!that.oBPSuccess) {
-                                                that.oBPSuccess = sap.ui.xmlfragment(
-                                                    "ns.BuyerRegistration.fragments.CreateSuccess", that);
-                                                oView.addDependent(that.oBPSuccess);
+                                            if (!that.oBPSuccessDraft) {
+                                                that.oBPSuccessDraft = sap.ui.xmlfragment(
+                                                    "ns.BuyerRegistration.fragments.CreateSuccessDraft", that);
+                                                oView.addDependent(that.oBPSuccessDraft);
                                             }
                                             oBusyDilog.close();
-                                            that.oBPSuccess.open();
+                                            that.oBPSuccessDraft.open();
                                         } else if (vBtnActn == "SU") {
 
                                             var vBuyerEmail = ""
@@ -1612,6 +1622,7 @@ sap.ui.define([
                     });
                 }
             },
+            
 
             fnLiveChangeSupplier: function () {
                 if (oView.getModel("JMBPCreate").getData().materialGroupe == "Error") {

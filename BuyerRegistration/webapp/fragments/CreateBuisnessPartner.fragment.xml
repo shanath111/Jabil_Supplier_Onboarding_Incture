@@ -3,16 +3,11 @@
 	xmlns:g="sap.f" displayBlock="true"
 	xmlns="sap.m"  xmlns:l="sap.ui.layout"
 >
-		   <l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
-								
-                                    
+		   <l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop"> 
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCBuyerName}" class="cl_VRLablCls "></Label>
 										<Input width="95%" enabled="false" class="cl_VRInputCls" maxLength="100" value="{JMBPCreate>/buyerName}"></Input>
 									</VBox>
-                                 
-									
-									
 								</l:Grid>
 								<Label class="sapUiTinyMarginBegin  cl_BPCrSectHeader" wrapping="true" text="{i18n>EnterBPDetails}"></Label>
 								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
