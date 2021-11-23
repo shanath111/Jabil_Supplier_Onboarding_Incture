@@ -2423,7 +2423,7 @@ var aError = false;
                     oView.getModel("oErrorModel").getData().ppocEmailE = "Error";
                     oView.getModel("oErrorModel").getData().ppocEmailM = oi18n.getText("mandatoryEmail");
 
-                    iError = iError || false;
+                    iError = true;
                 }
                 if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryContactCode)) {
                     oView.getModel("oErrorModel").getData().ppocCountryContCodeE = "Error";
@@ -2471,7 +2471,7 @@ var aError = false;
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.email.length && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.email.length > 241) {
-                    iError = iError || false;
+                    iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact.length > 30) {
 
@@ -5505,17 +5505,17 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         if (email2) {
                             if (!email2.match(mailregex)) {
                                 oView.getModel("oErrorModel").getData().pEmpE = "Error";
-                                oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
+                                oView.getModel("oErrorModel").getData().pEmpM = oi18n.getText("invalidEmail");
 
                                 iError = true;
                             } else if (!email2.toUpperCase().includes("JABIL.COM")) {
                                 oView.getModel("oErrorModel").getData().pEmpE = "Error";
-                                oView.getModel("oErrorModel").getData().cocM = oi18n.getText("invalidEmail");
+                                oView.getModel("oErrorModel").getData().pEmpM = oi18n.getText("invalidEmail");
 
                                 iError = true;
                             } else {
                                 oView.getModel("oErrorModel").getData().pEmpE = "None";
-                                oView.getModel("oErrorModel").getData().cocM = "";
+                                oView.getModel("oErrorModel").getData().pEmpM = "";
 
                                 iError = iError || false;
                             }
@@ -5628,7 +5628,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         oEvent.getSource().setValue("");
                     }
                 }
-                var sIndex = oEvent.getParameter("id").split("-", 3)[2];
+                var sIndex = oEvent.getParameter("id").split("-", 9)[8];
                 var nIndex = parseInt(sIndex);
                 var selectedCountryCode = oEvent.getSource().getSelectedKey();
                 var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/taxType/" + selectedCountryCode;
@@ -5712,7 +5712,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         oEvent.getSource().setValueStateText("");
                     }
                 }
-                var sIndex = oEvent.getParameter("id").split("__")[1].split("-")[1];
+                var sIndex = oEvent.getParameter("id").split("--bpInfoTaxId-")[1];
                 var nIndex = parseInt(sIndex);
                 var selectedTaxType = oEvent.getSource().getSelectedKey();
 
@@ -5880,16 +5880,12 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
             },
 
             fnVerifyTaxID: function (oEvent) {
-                 var spaceRegex = /^\s+$/;
-                   if(spaceRegex.test(oEvent.getSource().getValue())){
-                       oEvent.getSource().setValue(""); 
-                   }
                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
                 }
                 var taxID = oEvent.getSource().getValue();
-                var sIndex = oEvent.getParameter("id").split("-", 3)[2];
+                var sIndex = oEvent.getParameter("id").split("-", 9)[8];
                 var nIndex = parseInt(sIndex) + 1;
                 var indexStr = "/taxIDValidation" + nIndex;
                 var taxIDValidationData = oView.getModel("oLookUpModel").getProperty(indexStr);
@@ -6251,10 +6247,6 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
             },
 
             fnInputBankAccNumber: function (oEvent) {
-                  var spaceRegex = /^\s+$/;
-                   if(spaceRegex.test(oEvent.getSource().getValue())){
-                       oEvent.getSource().setValue(""); 
-                   }
                 if (oEvent.getSource().getValue()) {
                     if (oEvent.getSource().getValue().length == oEvent.getSource().getMaxLength()) {
                         oEvent.getSource().setValueState("Error");
@@ -6292,10 +6284,6 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
             },
 
             fnInputConfirmBankAccNumber: function(oEvent){
-                  var spaceRegex = /^\s+$/;
-                   if(spaceRegex.test(oEvent.getSource().getValue())){
-                       oEvent.getSource().setValue(""); 
-                   }
                 if (oEvent.getSource().getValue()) {
                     if (oEvent.getSource().getValue().length == oEvent.getSource().getMaxLength()) {
                         oEvent.getSource().setValueState("Error");
@@ -6325,10 +6313,6 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 }
             },
             fnInputIban: function (oEvent) {
-                  var spaceRegex = /^\s+$/;
-                   if(spaceRegex.test(oEvent.getSource().getValue())){
-                       oEvent.getSource().setValue(""); 
-                   }
                 if (oEvent.getSource().getValue()) {
 
                     if (oEvent.getSource().getMaxLength() && oEvent.getSource().getValue().length !== oEvent.getSource().getMaxLength()) {
@@ -6355,10 +6339,6 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
             },
 
             fnInputConfirmIban: function(oEvent) {
-                    var spaceRegex = /^\s+$/;
-                   if(spaceRegex.test(oEvent.getSource().getValue())){
-                       oEvent.getSource().setValue(""); 
-                   }
                 if (oEvent.getSource().getValue()) {
 
                     if (oEvent.getSource().getMaxLength() && oEvent.getSource().getValue().length !== oEvent.getSource().getMaxLength()) {
@@ -6563,6 +6543,12 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                     oEvent.getSource().setValueStateText("");
                 }
             },
+            fnRemoveSpace: function (oEvent){
+                var spaceRegex = /^\s+$/;
+                   if(spaceRegex.test(oEvent.getSource().getValue())){
+                       oEvent.getSource().setValue(""); 
+                   }
+            },
             fnClearValueState: function (oEvent) {
                 var selectedIndex = oEvent.getParameter("selectedIndex");
                 if (selectedIndex !== -1) {
@@ -6604,10 +6590,6 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 }
             },
             fnLiveEmailJValid: function (oEvent) {
-                  var spaceRegex = /^\s+$/;
-                   if(spaceRegex.test(oEvent.getSource().getValue())){
-                       oEvent.getSource().setValue(""); 
-                   }
                 var email = oEvent.getSource().getValue();
                 var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
                 if (email) {
@@ -6626,10 +6608,6 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
 
             fnLiveEmailNotJValid: function (oEvent) {
                 var that = this;
-                      var spaceRegex = /^\s+$/;
-                   if(spaceRegex.test(oEvent.getSource().getValue())){
-                       oEvent.getSource().setValue(""); 
-                   }
                 var email = oEvent.getSource().getValue();
                 var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
                 var sDeferred = $.Deferred();
@@ -8000,22 +7978,23 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
 
                     }
                 });
-            //     if(oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == ""){
-            //     var CountryCode1 = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode;
-            //     var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/taxType/" + CountryCode1;
-            //     $.ajax({
-            //         url: loadTaxTypeUrl,
-            //         type: 'GET',
-            //         success: function (data) {
-            //             oView.getModel("oLookUpModel").setProperty("/taxType1", data);
-            //             oView.getModel("oLookUpModel").refresh();
-            //         },
-            //         async: false,
-            //         error: function (data) {
+                if(oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == ""){
+                var CountryCode1 = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode;
+                oView.byId("bpInfoTaxId").getAggregation("items")[0].getAggregation("cells")[0].getAggregation("items")[1].setSelectedKey(CountryCode1);
+                var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/taxType/" + CountryCode1;
+                $.ajax({
+                    url: loadTaxTypeUrl,
+                    type: 'GET',
+                    success: function (data) {
+                        oView.getModel("oLookUpModel").setProperty("/taxType1", data);
+                        oView.getModel("oLookUpModel").refresh();
+                    },
+                    async: false,
+                    error: function (data) {
 
-            //         }
-            //     });
-            // }
+                    }
+                });
+            }
             },
             onActivatePreview: function (event) {
                 if (this.getView().byId("surveyWizard")._aStepPath.length == 11 || (this.getView().byId("surveyWizard")._aStepPath.length == 8 && this.getView().byId("surveyWizard")._getProgressNavigator().getStepCount() == 8)) {
@@ -8070,7 +8049,23 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                     });
                 }
                 this.getView().getModel("oDataModel").refresh();
+                if (taxCount < 8) {
+                    oView.byId("bpInfoTaxId").getAggregation("items")[this.getView().getModel("oDataModel").getData().bpInfoDto.tax.length-1].getAggregation("cells")[0].getAggregation("items")[1].setSelectedKey(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode);
+                this.getView().getModel("oDataModel").refresh();
+                var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/taxType/" + oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode;
+                $.ajax({
+                    url: loadTaxTypeUrl,
+                    type: 'GET',
+                    success: function (data) {
+                            oView.getModel("oLookUpModel").setProperty("/taxType"+ (taxCount+1) , data);
+                            oView.getModel("oLookUpModel").refresh();
+                    },
+                    async: false,
+                    error: function (data) {
 
+                    }
+                });
+            }
             },
             // @ts-ignore
 
