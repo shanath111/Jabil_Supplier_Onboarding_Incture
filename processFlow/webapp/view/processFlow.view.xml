@@ -4,13 +4,20 @@
 	<Page showHeader="false">
 		<content>
 			<VBox height="100%" >
+            
                 <!-- <Label text="Enter the case ID :"/> -->
                  <HBox width="100%" class="wbCaseIdHbox sapUiSmallMarginTopBottom sapUiSmallMarginBeginEnd">
                     <VBox>
+                    <HBox>
+                 
                     <Label text="Case ID:"/>
+                       </HBox>
                     <Input value="{oProcessFlowModel>/caseIdInput}" id="id_CaseId" maxLength="7" class="sapUiSizeCompact"/>
-				    <Button text="View Flow" id="id_ViewProcessBtn" press="onClickViewFLowBtn" class="sapUiSizeCompact"/>
-                    </VBox>
+                    <HBox>
+				    <Button  text="View Flow" id="id_ViewProcessBtn" press="onClickViewFLowBtn" class="sapUiSizeCompact"/>
+                      <Button text="View Mail Notification" id="id_ViewEmail" press="fnOpenEmail" class="sapUiSizeCompact sapUiTinyMarginBegin"/>
+            </HBox>
+             </VBox>
                     
 			    </HBox>
                 <!-- <VBox class="VRVboxStyle1">

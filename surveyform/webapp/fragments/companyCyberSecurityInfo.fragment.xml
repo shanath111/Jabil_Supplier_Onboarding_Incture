@@ -42,7 +42,7 @@
         <Text text="{oLookUpModel>value}" class="sapUiTinyMarginTop" wrapping="true"/>
         <Button visible="{=${oLookUpModel>value} === 'Other connection type'? false: true}" tooltip="{oLookUpModel>tooltip}" icon="sap-icon://message-information" type="Transparent" press="fnOnPressInfoIcon" class="sapUiSizeCompact infoBtn"/>
        </HBox>
-       <TextArea value="{oLookUpModel>otherValue}" placeholder="{i18n>otherData}" enabled="{oEnableMdl>/orgEstablishConnectionotherValueEnb}" visible="{=${oLookUpModel>value} === 'Other connection type'? true: false}" maxLength="255" class="inputStyle inputStyleTA2 sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin"/>
+       <TextArea value="{oLookUpModel>otherValue}" liveChange="fnValueChange" placeholder="{i18n>otherData}" enabled="{oEnableMdl>/orgEstablishConnectionotherValueEnb}" visible="{=${oLookUpModel>value} === 'Other connection type'? true: false}" maxLength="255" class="inputStyle inputStyleTA2 sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin"/>
         <!-- </VBox> -->
          </g:GridListItem>
      	<!-- <g:GridListItem>
@@ -106,7 +106,7 @@
          <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/orgBusinessActivitiesisSelectedEnb}" valueState="{oErrorModel>/orgBusinessActivitiesisSelectedE}" select="onSelectOrgBusinessActivities"></CheckBox>
         <Text text="{oLookUpModel>value}" class="sapUiTinyMarginTop"/>
         <Button visible="{=${oLookUpModel>tooltip} === ''? false: true}" tooltip="{oLookUpModel>tooltip}" icon="sap-icon://message-information" type="Transparent" press="fnOnPressInfoIcon" class="sapUiSizeCompact infoBtn"/>
-      </HBox>  <TextArea value="{oLookUpModel>otherValue}" placeholder="{i18n>otherData}" enabled="{oEnableMdl>/orgBusinessActivitiesotherValueEnb}" visible="{=${oLookUpModel>value} === 'Other data type'? true: false}" maxLength="255" class="inputStyle inputStyleTA2 sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin" />
+      </HBox>  <TextArea value="{oLookUpModel>otherValue}"  liveChange="fnValueChange" placeholder="{i18n>otherData}" enabled="{oEnableMdl>/orgBusinessActivitiesotherValueEnb}" visible="{=${oLookUpModel>value} === 'Other data type'? true: false}" maxLength="255" class="inputStyle inputStyleTA2 sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin" />
         <!-- </VBox> -->
         </g:GridListItem>
    </g:GridList>
@@ -148,7 +148,7 @@
 								<VBox>
 									<Label text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input value="{oDataModel>/itCyberDto/itcyberSecurityContact/jobTitle}" enabled="{oEnableMdl>/itcyberSecurityContactjobTitleEnb}" class="inputStyle"></Input>
+									<Input value="{oDataModel>/itCyberDto/itcyberSecurityContact/jobTitle}" liveChange="fnValueChange" enabled="{oEnableMdl>/itcyberSecurityContactjobTitleEnb}" class="inputStyle"></Input>
 								</VBox>
 								<VBox>
 									<Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>

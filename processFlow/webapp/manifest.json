@@ -7,7 +7,7 @@
         "applicationVersion": {
             "version": "1.0.0"
         },
-        "title": "Process Flow",
+        "title": "Case History",
         "description": " ",
         "resources": "resources.json",
         "ach": "ach",
@@ -20,7 +20,7 @@
                     },
                     "semanticObject": "processFlow",
                     "action": "display",
-                    "title": "Process Flow",
+                    "title": "Case History",
                     "subTitle": " ",
                     "icon": "sap-icon://manager-insight"
                 }

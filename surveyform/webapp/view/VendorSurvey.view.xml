@@ -24,7 +24,7 @@
                         	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 							<VBox >
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey} +'&#10;' + ${i18n>countrykey}}" wrapping="true"  required="true" class="fontStyle "></Label>
-                                    	<ComboBox id="hello" width="100%" items="{oLookUpModel>/SupplierCountry}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/countryEnb}"  valueState="{oErrorModel>/countryE}" valueStateText="{oErrorModel>/countryM}" filterSecondaryValues="true" selectionChange="fnChangeSupplierCountry"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/countryCode}">
+                                    	<ComboBox id="hello" width="100%" items="{oLookUpModel>/SupplierCountry}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/countryEnb}"  valueState="{oErrorModel>/countryE}" valueStateText="{oErrorModel>/countryM}" filterSecondaryValues="true" selectionChange="fnChangeSupplierCountry"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" value="{oDataModel>/surveyInfoDto/address/0/postal/0/country}" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/countryCode}">
 <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
 			</ComboBox>
                                     <!-- <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/country}" class="inputStyle" /> -->
@@ -65,7 +65,7 @@
                                 </VBox>				
 								<VBox >
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>region}:${oi18n_En>region} +'&#10;' + ${i18n>region}}" wrapping="true"   required="true" class="fontStyle "></Label>
-                                    <ComboBox width="100%" items="{oLookUpModel>/SupplierRegion}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/regionEnb}"  valueState="{oErrorModel>/stateE}" valueStateText="{oErrorModel>/stateM}"  filterSecondaryValues="true" showSecondaryValues="true" selectionChange="fnChangeSupplierRegion"  placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/regionCode}">
+                                    <ComboBox width="100%" items="{oLookUpModel>/SupplierRegion}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/regionEnb}"  valueState="{oErrorModel>/stateE}" valueStateText="{oErrorModel>/stateM}"  filterSecondaryValues="true" showSecondaryValues="true" selectionChange="fnChangeSupplierRegion"  placeholder="{i18n>select}" class="inputStyle" value="{oDataModel>/surveyInfoDto/address/0/postal/0/region}" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/regionCode}">
 <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
 			</ComboBox>
                                     <!-- <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/region}" class="inputStyle" /> -->
@@ -98,7 +98,7 @@
                                              <VBox>
                               
                                  	<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>SupUrl}:${oi18n_En>SupUrl} +'&#10;' + ${i18n>SupUrl}}" wrapping="true" required="false" class="fontStyle "></Label>
-                                       <Input maxLength="2048" value="{oDataModel>/surveyInfoDto/address/0/postal/0/url/0/websiteUrl}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/websiteUrlEnb}" class="inputStyle" />
+                                       <Input maxLength="2048" value="{oDataModel>/surveyInfoDto/address/0/postal/0/url/0/websiteUrl}" liveChange="fnValueChange" editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/websiteUrlEnb}" class="inputStyle" />
                                         </VBox>
 									
 								
@@ -379,7 +379,7 @@
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>jobTitle}:${oi18n_En>jobTitle} +'&#10;' + ${i18n>jobTitle}}" class="fontStyle"></Label> -->
                                     <Label text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input value="{oDataModel>/surveyInfoDto/altContact/jobTitle}" enabled="{oEnableMdl>/altContactjobTitleEnb}"  valueState="None" class="inputStyle"></Input>
+									<Input value="{oDataModel>/surveyInfoDto/altContact/jobTitle}" enabled="{oEnableMdl>/altContactjobTitleEnb}" liveChange="fnValueChange"  valueState="None" class="inputStyle"></Input>
 									
                                 </VBox>
 								<VBox >

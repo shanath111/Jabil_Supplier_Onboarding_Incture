@@ -71,7 +71,7 @@
                 	<c:items>
 			<ColumnListItem class="sapUiSizeCompact">
             <cells >
-            <Text text="{oLookUpModel>contactType}" tooltip="{oLookUpModel>tooltip}" wrapping="true" />
+            <Label text="{oLookUpModel>contactType}" tooltip="{oLookUpModel>tooltip}" required="{oLookUpModel>required}" wrapping="true" />
             <Input maxLength="242" value="{oLookUpModel>email}" enabled="{oEnableMdl>/comContactemailEnb}" change="fnLiveEmailNotJValid" class="inputStyle" />
             <Input maxLength="31" value="{oLookUpModel>firstName}" enabled="{oEnableMdl>/comContactfirstNameEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
             <Input maxLength="31" value="{oLookUpModel>lastName}" enabled="{oEnableMdl>/comContactlastNameEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>

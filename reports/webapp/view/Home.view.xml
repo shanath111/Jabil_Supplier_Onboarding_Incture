@@ -125,7 +125,7 @@
 														state="{path: 'JMSuppReqList>status', formatter: 'oneapp.incture.report.reports.util.formatter.fnStatusColour' }"/>
                                                         	<Text text="{path: 'JMSuppReqList>dateCreated', formatter: 'oneapp.incture.report.reports.util.formatter.fnFormatDate'}" class="cl_ListNameClass"></Text>
 													<Text text="{JMSuppReqList>sapBPNumber}"  class="cl_ListNameClass"></Text>
-                                                    <Link text="{i18n>ProcessFlow}" press="fnNavToProcessFlow"></Link>
+                                                    <Link text="{i18n>caseHistory}" press="fnNavToProcessFlow"></Link>
                                                 </cells>
 											</ColumnListItem>
 										</items>

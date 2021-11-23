@@ -10,7 +10,7 @@
 					class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 					<VBox class="fontStyle">
 						<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>legalName}: ${oi18n_En>legalName} +'&#10;' + ${i18n>legalName}}" required="true"></Label>
-						<Input value="{oDataModel>/bpInfoDto/legalName}" class="inputStyle" required="true"  valueState="{oErrorModel>/legalNameE}" valueStateText="{oErrorModel>/legalNameM}" change="fnValueChange" enabled="{=!${oDataModel>/bpInfoDto/isLegalCorrect}}"></Input>
+						<Input value="{oDataModel>/bpInfoDto/legalName}" class="inputStyle" required="true"  valueState="{oErrorModel>/legalNameE}" valueStateText="{oErrorModel>/legalNameM}" liveChange="fnValueChange" enabled="{=!${oDataModel>/bpInfoDto/isLegalCorrect}}"></Input>
 					</VBox>
 					<!-- <VBox class="fontStyle sapUiSizeCompact">
 						<Label wrapping= "true" labelFor="legal" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isCorrect}:${oi18n_En>isCorrect} +'&#10;' +${i18n>isCorrect}}"/>
@@ -48,11 +48,11 @@
 				<l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M4 S12" class="gridSpacing">
 					<VBox class="fontStyle sapUiSizeCompact">
 						<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsRegNum}:${oi18n_En>dunsRegNum} +'&#10;' +${i18n>dunsRegNum}}" ></Label>
-						<Input maxLength="9" value="{oDataModel>/bpInfoDto/dunsRegistrationNum}"  valueState="{oErrorModel>/dunsRegistrationNumE}" valueStateText="{oErrorModel>/dunsRegistrationNumM}" change="fnValueChange" enabled="{oEnableMdl>/dunsRegistrationNumEnb}" class="inputStyle"></Input>
+						<Input maxLength="9" value="{oDataModel>/bpInfoDto/dunsRegistrationNum}"  valueState="{oErrorModel>/dunsRegistrationNumE}" valueStateText="{oErrorModel>/dunsRegistrationNumM}" liveChange="fnValueChange" enabled="{oEnableMdl>/dunsRegistrationNumEnb}" class="inputStyle"></Input>
 					</VBox>
 					<VBox class="fontStyle sapUiSizeCompact">
 						<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dandBLegalName}:${oi18n_En>dandBLegalName} +'&#10;' +${i18n>dandBLegalName}}" ></Label>
-						<Input value="{oDataModel>/bpInfoDto/dnbLegalBusinessName}" enabled="{oEnableMdl>/dnbLegalBusinessNameEnb}" class="inputStyle"></Input>
+						<Input value="{oDataModel>/bpInfoDto/dnbLegalBusinessName}" enabled="{oEnableMdl>/dnbLegalBusinessNameEnb}" liveChange="fnValueChange" class="inputStyle"></Input>
 					</VBox>
 				</l:Grid>
 			</VBox>
@@ -204,7 +204,7 @@
 				
 				<VBox class="fontStyle sapUiSizeCompact">
 					<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>other}:${oi18n_En>other} +'&#10;' +${i18n>other}}"></Label>
-					<Input class="inputStyle" value="{oDataModel>ifOther}" enabled="{oEnableMdl>/ifOtherEnb}"></Input>
+					<Input class="inputStyle" value="{oDataModel>ifOther}" liveChange="fnValueChange" enabled="{oEnableMdl>/ifOtherEnb}"></Input>
 				</VBox>
 				<VBox class="sapUiSizeCompact">
 					<Label/>
@@ -276,7 +276,7 @@
                                     <Label text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
 									<!-- <Input value="{oDataModel>/surveyInfoDto/authorityContact/jobTitle}"  valueState="{oErrorModel>/authorityJobTitleE}" valueStateText="{oErrorModel>/authorityJobTitleM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input> -->
-									<Input value="{oDataModel>/bpInfoDto/pointOfContact/jobTitle}" enabled="{oEnableMdl>/ppocJobTitleEnb}"  class="inputStyle"/>
+									<Input value="{oDataModel>/bpInfoDto/pointOfContact/jobTitle}" enabled="{oEnableMdl>/ppocJobTitleEnb}" liveChange="fnValueChange"  class="inputStyle"/>
                                 </VBox>
 								<VBox >
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
@@ -341,7 +341,7 @@
 			<Text text="{i18n>Attachments}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>
             <Text text="{oi18n_En>Attachments}/&#160;{i18n>Attachments}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>
 			<HBox wrap="Wrap">
-				<u:FileUploader id="fileUploader" buttonOnly="true" buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"
+				<u:FileUploader id="fileUploader" buttonOnly="true" maximumFileSize="10" placeholder="Maximum size limit is 10MB + '&#10;' + Accepted document types are ..." buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"
 					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" enabled="{oEnableMdl>/bpInfoAttachmentEnb}"
 					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"></u:FileUploader>
 				<g:GridList width="auto" items="{oAttachmentList>/0/bPDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">

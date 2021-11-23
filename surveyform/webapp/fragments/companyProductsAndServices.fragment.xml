@@ -19,7 +19,7 @@
         <g:GridListItem class="inputStyle" >
         <HBox>
         <Label text="{oLookUpModel>value}" tooltip="{oLookUpModel>tooltip}" class="sapUiTinyMarginTop" labelFor="OprServId"/>
-        <Input id="OprServId" maxLength="255" value="{oLookUpModel>otherValue}" visible="{=${oLookUpModel>value} === 'Other'? true: false}" enabled="{oEnableMdl>/operationServicesotherValueEnb}" required="{=${oLookUpModel>value} === 'Other' &amp;&amp; ${oDataModel>/comProductsUiDto/isoperServOtherSelected}===true ? true: false}" valueState="{oErrorModel>/operServOtherValE}" valueStateText="{oErrorModel>/operServOtherValM}" change="onEnterOtherValueOperServ" class="otherStyle" />
+        <Input id="OprServId" maxLength="255" value="{oLookUpModel>otherValue}" visible="{=${oLookUpModel>value} === 'Other'? true: false}" enabled="{oEnableMdl>/operationServicesotherValueEnb}" required="{=${oLookUpModel>value} === 'Other' &amp;&amp; ${oDataModel>/comProductsUiDto/isoperServOtherSelected}===true ? true: false}" valueState="{oErrorModel>/operServOtherValE}" valueStateText="{oErrorModel>/operServOtherValM}" change="onEnterOtherValueOperServ" liveChange="fnValueChange" class="otherStyle" />
         </HBox>
         </g:GridListItem>
      	<!-- <g:GridListItem class="inputStyle">
@@ -65,7 +65,7 @@
          <g:GridListItem class="inputStyle">
         <HBox>
         <Label text="{oLookUpModel>value}"  tooltip="{oLookUpModel>tooltip}" class="sapUiTinyMarginTop" labelFor="ManProdId"/>
-        <Input id="ManProdId" maxLength="255" value="{oLookUpModel>otherValue}" visible="{=${oLookUpModel>value} === 'Other'? true: false}" enabled="{oEnableMdl>/manufacturingProcessSuppliesotherValueEnb}" required="{=${oLookUpModel>value} === 'Other' &amp;&amp; ${oDataModel>/comProductsUiDto/isManProdOtherSelected}===true ? true: false}" valueState="{oErrorModel>/manProOtherValE}" valueStateText="{oErrorModel>/manProOtherValM}" change="onEnterOtherValueManProd" class="otherStyle" />
+        <Input id="ManProdId" maxLength="255" value="{oLookUpModel>otherValue}" visible="{=${oLookUpModel>value} === 'Other'? true: false}" enabled="{oEnableMdl>/manufacturingProcessSuppliesotherValueEnb}" required="{=${oLookUpModel>value} === 'Other' &amp;&amp; ${oDataModel>/comProductsUiDto/isManProdOtherSelected}===true ? true: false}" valueState="{oErrorModel>/manProOtherValE}" valueStateText="{oErrorModel>/manProOtherValM}" change="onEnterOtherValueManProd" liveChange="fnValueChange" class="otherStyle" />
         </HBox>
         </g:GridListItem>
      	<!-- <g:GridListItem class="inputStyle">

@@ -175,7 +175,7 @@
 												<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIPaymentMethod}" required="true" class="cl_VRLablCls "></Label>
 													<Input width="95%" class="cl_VRInputCls" editable="false" liveChange="fnLiveChangeIncoTerms" valueState="{JMBPCreate>/incoTermse}"
-														valueStateText="" maxLength="200" value="{oDataModel>/shippingInfoDto/paymentMethod}"></Input>
+														valueStateText="" change="fnInputSpaceCheck" maxLength="200" value="{oDataModel>/shippingInfoDto/paymentMethod}"></Input>
 												</VBox>
 											
 												<VBox class="VRVboxStyle1">
@@ -225,39 +225,39 @@
                                                 </VBox>
                                                 	<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIBankKey}" class="cl_VRLablCls "></Label>
-													<Input width="95%" class="cl_VRInputCls" maxLength="200" editable="false" value="{oDataModel>/bankDto/bankInfoDto/0/bankKey}"></Input>
+													<Input width="95%" class="cl_VRInputCls" maxLength="200" editable="false" value="{oDataModel>/bankDto/bankInfoDto/0/bankKey}" change="fnInputSpaceCheck"></Input>
 												</VBox>
                                                 <VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIBankControlKey}" class="cl_VRLablCls "></Label>
-													<Input width="95%" class="cl_VRInputCls" maxLength="200" editable="false" value="{oDataModel>/bankDto/bankInfoDto/0/bankControlKey}"></Input>
+													<Input width="95%" class="cl_VRInputCls" change="fnInputSpaceCheck" maxLength="200" editable="false" value="{oDataModel>/bankDto/bankInfoDto/0/bankControlKey}"></Input>
 												</VBox>
                                                 	<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TICreditMemoTerm}" class="cl_VRLablCls "></Label>
-													<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/defaultEnable}"  maxLength="200" value="{oDataModel>/defaultValuesDto/creditMemoTeam}"></Input>
+													<Input width="95%" class="cl_VRInputCls" change="fnInputSpaceCheck" editable="{oConfigMdl>/defaultEnable}"  maxLength="200" value="{oDataModel>/defaultValuesDto/creditMemoTeam}"></Input>
 												</VBox>
                                                 <VBox class="VRVboxStyle1">
 													<Label text="{i18n>TISearchTerm1}" required="true" class="cl_VRLablCls "></Label>
-													<Input width="95%" class="cl_VRInputCls" liveChange="fnChangeSearchTerm" valueState="{JMValidateDefault>/searchTerm1e}" valueStateText="{JMValidateDefault>/searchTerm1m}"  editable="{=${oConfigMdl>/defaultEnable} &amp;&amp;${JMBPCreate>/isNew}}"   value="{oDataModel>/defaultValuesDto/searchTerm1}"></Input>
+													<Input width="95%" class="cl_VRInputCls" change="fnInputSpaceCheck" liveChange="fnChangeSearchTerm" valueState="{JMValidateDefault>/searchTerm1e}" valueStateText="{JMValidateDefault>/searchTerm1m}"  editable="{=${oConfigMdl>/defaultEnable} &amp;&amp;${JMBPCreate>/isNew}}"   value="{oDataModel>/defaultValuesDto/searchTerm1}"></Input>
 												</VBox>
 												<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TISearchTerm2}" required="false" class="cl_VRLablCls "></Label>
 													<Input width="95%" class="cl_VRInputCls" liveChange="fnChangeSearchTerm2" valueState="{JMValidateDefault>/searchTerm2e}"
-														valueStateText="{JMValidateDefault>/searchTerm2m}" editable="{=${oConfigMdl>/defaultEnable} &amp;&amp;${JMBPCreate>/isNew}}"  value="{oDataModel>/defaultValuesDto/searchTerm2}"></Input>
+														valueStateText="{JMValidateDefault>/searchTerm2m}" change="fnInputSpaceCheck" editable="{=${oConfigMdl>/defaultEnable} &amp;&amp;${JMBPCreate>/isNew}}"  value="{oDataModel>/defaultValuesDto/searchTerm2}"></Input>
 												</VBox>
                                                 <VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIAccNoAltPay}" wrapping="false" required="false" class="cl_VRLablCls "></Label>
 													<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/defaultEnable}" liveChange="fnLiveChangeIncoTerms" valueState="{JMBPCreate>/incoTermse}"
-														valueStateText="{JMBPCreate>/incoTermm}" maxLength="200" value="{oDataModel>/defaultValuesDto/accNumOfAltPayee}"></Input>
+														valueStateText="{JMBPCreate>/incoTermm}" change="fnInputSpaceCheck" maxLength="200" value="{oDataModel>/defaultValuesDto/accNumOfAltPayee}"></Input>
 												</VBox>
                                                 <VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIMemo}" wrapping="false" required="false" class="cl_VRLablCls "></Label>
 													<Input width="95%" class="cl_VRInputCls" liveChange="fnLiveChangeIncoTerms" valueState="{JMBPCreate>/incoTermse}"
-														valueStateText="{JMBPCreate>/incoTermm}" editable="{oConfigMdl>/defaultEnable}" maxLength="200" value="{oDataModel>/defaultValuesDto/memo}"></Input>
+														valueStateText="{JMBPCreate>/incoTermm}" change="fnInputSpaceCheck" editable="{oConfigMdl>/defaultEnable}" maxLength="200" value="{oDataModel>/defaultValuesDto/memo}"></Input>
 												</VBox>
 												<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIGroupforClaSchema}" wrapping="false" required="false" class="cl_VRLablCls "></Label>
 													<Input width="95%" class="cl_VRInputCls" liveChange="fnLiveChangeIncoTerms" valueState="{JMBPCreate>/incoTermse}"
-														valueStateText="{JMBPCreate>/incoTermm}" editable="{oConfigMdl>/defaultEnable}" maxLength="200" value="{oDataModel>/defaultValuesDto/groupForCalSchema}"></Input>
+														valueStateText="{JMBPCreate>/incoTermm}" change="fnInputSpaceCheck" editable="{oConfigMdl>/defaultEnable}" maxLength="200" value="{oDataModel>/defaultValuesDto/groupForCalSchema}"></Input>
 												</VBox>
                                                 
 											</l:Grid>
