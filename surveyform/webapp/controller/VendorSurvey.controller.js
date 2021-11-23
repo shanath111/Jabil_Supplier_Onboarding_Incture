@@ -7818,6 +7818,10 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                     if (oPayload.financeInfoDto.financeAuditedLast12M === false) {
                         oPayload.financeInfoDto.userAudited = "";
                     }
+                    oPayload.shippingInfoDto.paymentTermsDescription =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentTerm, oView.getModel("oDataModel").getData().shippingInfoDto.paymentTerms);
+                    if(oView.getModel("oUserModel").getData().isNew === false){
+                        oPayload.shippingInfoDto.newPaymentTermsDescription =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentTerm, oView.getModel("oDataModel").getData().shippingInfoDto.newpaymentTerms);
+                    }
                     if (oPayload.comComplianceDto.commitedToExpectations) {
                         oPayload.comComplianceDto.notCommitedExplanation = "";
                         oPayload.comComplianceDto.commitedToExpectationsContact.contact = "";
