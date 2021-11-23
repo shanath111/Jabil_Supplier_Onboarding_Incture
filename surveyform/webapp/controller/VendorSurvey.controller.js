@@ -6963,6 +6963,20 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
 
             fnActivateBankScreen: function () {
                 var that = this;
+                oView.byId('bankInfo').addEventDelegate({
+                    onAfterRendering: function () {
+                        var bID = oView.byId('bankAccNumConfirmField').sId;
+                        $('#' + bID).bind("cut copy paste", function (e) {
+                            e.preventDefault();
+                            return false;
+                        });
+                        var cID = oView.byId('ibanConfirmField').sId;
+                        $('#' + cID).bind("cut copy paste", function (e) {
+                            e.preventDefault();
+                            return false;
+                        });
+                    }
+                });
                  this._fnLoadBankRegion(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry); 
                 //  var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
                 // if(oView.getModel("oLookUpModel").getData().PaymentMethod && oView.getModel("oLookUpModel").getData().PaymentMethod !=="" && apaymentMethod === 'Optional'){
