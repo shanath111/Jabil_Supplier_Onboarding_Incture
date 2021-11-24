@@ -17,8 +17,8 @@
             </VBox>
 			<OverflowToolbar class="barClass sapUiTinyMarginTop">
             	<ToolbarSpacer/>
-				<Button class="cl_VRActnBtnClear" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>cancel}:${oi18n_En>cancel} + '/&#160;' + ${i18n>cancel}}" visible="false"  press="fnCloseDialog" tooltip="{i18n>cancel}"/>
-				<Button  class="cl_VRActnBtnApply" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>done}:${oi18n_En>done} + '/&#160;' + ${i18n>done}}" press="fnCloseDialog" tooltip="{i18n>done}"/>
+				<Button class="cl_VRActnBtnApply" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>SaveContinue}:${oi18n_En>SaveContinue} + '/&#160;' + ${i18n>SaveContinue}}" press="fnSaveContinue" tooltip="{i18n>SaveContinue}"/>
+				<Button  class="cl_VRActnBtnApply" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>SaveClose}:${oi18n_En>SaveClose} + '/&#160;' + ${i18n>SaveClose}}" press="fnCloseDialog" tooltip="{i18n>SaveClose}"/>
 			</OverflowToolbar>
 		</content>
 	</Dialog>
