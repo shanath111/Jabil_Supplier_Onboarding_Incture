@@ -16,6 +16,27 @@ ns.BuyerRegistration.util.formatter = {
             return "Warning";
         }
     },
+    fnSearchResultErrorMandt:function(val){
+     if(val){
+         return false;
+     }else{
+         return true;
+     }
+    },
+    fnSearchResultErrorBlock:function(val){
+        if(val){
+            return true;
+        }else{
+            return false;
+        }
+       },
+       fnSearchResultErrorRelInd:function(val){
+        if(val=="PRIMARY"){
+            return false;
+        }else{
+            return true;
+        }
+       },
     fnSetColorValidate: function (vStatus) {
 
 
