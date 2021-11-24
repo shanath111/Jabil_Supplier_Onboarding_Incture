@@ -1,5 +1,6 @@
 jQuery.sap.declare("ns.BuyerRegistration.util.formatter");
 jQuery.sap.require("sap.ui.core.format.NumberFormat");
+jQuery.sap.require("sap.ui.core.format.DateFormat");
 
 ns.BuyerRegistration.util.formatter = {
 
