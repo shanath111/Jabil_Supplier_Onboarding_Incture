@@ -410,8 +410,8 @@
                             </VBox>
                             </HBox>
 							<VBox alignItems="Center" class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">
-								<core:Icon src="sap-icon://decline" class="docIconStyle sapUiTinyMarginBottom" />
-                                <core:Icon src="sap-icon://download" class="docIconStyle" />
+								<!-- <core:Icon src="sap-icon://decline" class="docIconStyle sapUiTinyMarginBottom" /> -->
+                                <core:Icon src="sap-icon://download"  press="fnOnDownlAttachment"/>
 							</VBox>
 						</HBox>
 			</gl:GridListItem>
@@ -1240,8 +1240,8 @@
                             </VBox>
                             </HBox>
 							<VBox alignItems="Center" class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">
-								<core:Icon src="sap-icon://decline" class="docIconStyle sapUiTinyMarginBottom" />
-                                <core:Icon src="sap-icon://download" class="docIconStyle" />
+								<!-- <core:Icon src="sap-icon://decline" class="docIconStyle sapUiTinyMarginBottom" /> -->
+                                <core:Icon src="sap-icon://download" press="fnOnDownlAttachment" />
 							</VBox>
 						</HBox>
 			</gl:GridListItem>

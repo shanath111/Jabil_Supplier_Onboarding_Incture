@@ -857,6 +857,10 @@ outline: none !important;
     white-space: normal;
     line-height: 15px;
     vertical-align: middle;
+} 
+.sapMFlexBoxAlignItemsCenter{
+    align-items: center !important;
+    justify-content: end !important;
 }
 /* .boxStyle.sapMCb {
     height: 2rem;
