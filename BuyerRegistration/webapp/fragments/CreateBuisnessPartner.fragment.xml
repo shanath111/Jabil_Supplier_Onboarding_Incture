@@ -7,6 +7,34 @@
                    	<Label text="{i18n>BuyerHeaderTxt1}" wrapping="true"  class="cl_VRLablCls "></Label>
                        	<Label text="{i18n>BuyerHeaderTxt2}" wrapping="true" class="cl_VRLablCls "></Label>               
 								</l:Grid>
+                <l:Grid defaultSpan="XL3 L3 M3 S12" visible="{oConfigMdl>/caseDeailVis}" class="sapUiSizeCompact sapUiTinyMarginTop"> 
+                  <VBox class="VRVboxStyle1">
+												<Label text="{i18n>VRRequestID}" class="cl_VRLablCls "></Label>
+												<Label text="{JMBPCreate>/caseId}" class="cl_PreviewLablClsValue "></Label>
+											</VBox>
+                                           
+                                            <VBox class="VRVboxStyle1">
+												<Label text="{i18n>CreatedDate}" class="cl_VRLablCls "></Label>
+												<Label text="{path: 'JMBPCreate>/dateCreated', formatter: 'ns.BuyerRegistration.util.formatter.fnFormatDate'}" class="cl_PreviewLablClsValue "></Label>
+                                                 
+											</VBox>
+                                            <VBox class="VRVboxStyle1">
+												<Label text="{i18n>VRStatus}" class="cl_VRLablCls "></Label>
+												<Label text="{JMBPCreate>/status}" class="cl_PreviewLablClsValue "></Label>
+											</VBox>
+                                            <VBox class="VRVboxStyle1">
+												<Label text="{i18n>VendorCodeBPID}" class="cl_VRLablCls "></Label>
+												<Label text="{JMBPCreate>/bpNumber}" class="cl_PreviewLablClsValue "></Label>
+											</VBox>
+                                            <VBox class="VRVboxStyle1">
+												<Label text="{i18n>LastUpdated}" class="cl_VRLablCls "></Label>
+												<Label text="{path: 'JMBPCreate>/dateUpdated', formatter: 'ns.BuyerRegistration.util.formatter.fnFormatDate'}" class="cl_PreviewLablClsValue "></Label>
+											</VBox>
+                                            <VBox class="VRVboxStyle1">
+												<Label text="{i18n>LastUpdatedBy}" class="cl_VRLablCls "></Label>
+												<Label text="{JMBPCreate>/userUpdated}" class="cl_PreviewLablClsValue "></Label>
+											</VBox>
+								</l:Grid>
 		   <l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop"> 
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCBuyerName}" class="cl_VRLablCls "></Label>

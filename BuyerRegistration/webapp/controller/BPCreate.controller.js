@@ -72,12 +72,13 @@ sap.ui.define([
             },
 
             fnSetConfigModel: function (oContext) {
-
+                oView.getModel("oConfigMdl").getData().caseDeailVis = true;
                 if (oContext.Id == "New") {
                     oView.getModel("oConfigMdl").getData().HeaderNavLink = true;
-
+                    oView.getModel("oConfigMdl").getData().caseDeailVis = false;
                     oView.getModel("oConfigMdl").getData().screenEditable = true;
                     oView.getModel("oConfigMdl").getData().searchAddress = false;
+                    
                     oView.getModel("oConfigMdl").getData().HeaderLinkTxt = oi18n.getProperty("VRVendorDetails1");
                 } else {
                     oView.getModel("oConfigMdl").getData().HeaderNavLink = false;
@@ -283,6 +284,7 @@ sap.ui.define([
                 try {
                     var temp = {
                         "buyerName": oView.getModel("oConfigMdl").getData().usrData.givenName,
+                        "userCreated":oView.getModel("oConfigMdl").getData().usrData.givenName,
                         "rfcv": false,
                         "conflictOfInterests": -1,
                         "representAnotherCompanys": 1,
@@ -1233,8 +1235,8 @@ sap.ui.define([
                         "dateCreated": oView.getModel("JMBPCreate").getData().dateCreated,
                         "dateUpdated": oView.getModel("JMBPCreate").getData().dateUpdated,
                         "status": vStatus,
-                        "userCreated": oView.getModel("JMBPCreate").getData().buyerName,
-                        "userUpdated": oView.getModel("JMBPCreate").getData().userUpdated
+                        "userCreated": oView.getModel("JMBPCreate").getData().userCreated,
+                        "userUpdated": oView.getModel("JMBPCreate").getData().buyerName
                     }
                     oModel.loadData(sUrl, JSON.stringify(oPayload), true, vQuery, false, true, {
                         "Content-Type": "application/json"
@@ -1472,8 +1474,8 @@ sap.ui.define([
                                     "dateCreated": oView.getModel("JMBPCreate").getData().dateCreated,
                                     "dateUpdated": oView.getModel("JMBPCreate").getData().dateUpdated,
                                     "status": vStatus,
-                                    "userCreated": oView.getModel("JMBPCreate").getData().buyerName,
-                                    "userUpdated": oView.getModel("JMBPCreate").getData().userUpdated
+                                    "userCreated": oView.getModel("JMBPCreate").getData().userCreated,
+                                    "userUpdated": oView.getModel("JMBPCreate").getData().buyerName
                                 }
                                 oModel.loadData(sUrl, JSON.stringify(oPayload), true, vQuery, false, true, {
                                     "Content-Type": "application/json"

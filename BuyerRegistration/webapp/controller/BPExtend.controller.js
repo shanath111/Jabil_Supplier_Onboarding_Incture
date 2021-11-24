@@ -39,8 +39,10 @@ sap.ui.define([
                 this.fnClearData();
             },
             fnSetConfigModel: function (oContext) {
+                oView.getModel("oConfigMdl").getData().caseDeailVis = true;
                 if (oContext.Name == "Display") {
                     if (oContext.Id == "New") {
+                        oView.getModel("oConfigMdl").getData().caseDeailVis = false;
                         this.fnScreenResize();
                         this.fnLoadPersonalizationData();
                         var oFCL = this.getView().byId("flexibleColumnLayout");
@@ -123,6 +125,7 @@ sap.ui.define([
                                     "workCell": data.bpRequestScope.workCell,
                                     "workCelld": "",
                                     "buyerName": vBuyer,
+                                   
                                     "incoTerms": data.bpRequestScope.incoTerms,
                                     "incoTermsd": "",
                                     "isNew": data.bpRequestScope.isNew,
@@ -911,6 +914,7 @@ sap.ui.define([
                             // "workCelld": that.fnFetchDescriptionWorkCell(oView.getModel("oBPLookUpMdl").getData().WorkCell, "", "WorkCell"),
                             "workCell": "",
                             "buyerName": vBuyer,
+                            "userCreated":vBuyer,
                             "incoTermsd": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().Incoterms, temp.INCO_TERMS, "Incoterms"),
                             "incoTerms": temp.INCO_TERMS,
                             "newincoTerms": "",
@@ -1560,8 +1564,8 @@ sap.ui.define([
                         "dateCreated": oView.getModel("JMBPCreate").getData().dateCreated,
                         "dateUpdated": oView.getModel("JMBPCreate").getData().dateUpdated,
                         "status": vStatus,
-                        "userCreated": vBuyer,
-                        "userUpdated": oView.getModel("JMBPCreate").getData().userUpdated,
+                        "userCreated": oView.getModel("JMBPCreate").getData().userCreated,
+                        "userUpdated": vBuyer,
                         "bpSearch": oView.getModel("JMBPCreate").getData().bpSearch,
                     }
                     oModel.loadData(sUrl, JSON.stringify(oPayload), true, vQuery, false, true, {
@@ -1795,8 +1799,8 @@ sap.ui.define([
                                     "dateCreated": oView.getModel("JMBPCreate").getData().dateCreated,
                                     "dateUpdated": oView.getModel("JMBPCreate").getData().dateUpdated,
                                     "status": vStatus,
-                                    "userCreated": vBuyer,
-                                    "userUpdated": oView.getModel("JMBPCreate").getData().userUpdated,
+                                    "userCreated": oView.getModel("JMBPCreate").getData().userCreated,
+                        "userUpdated": vBuyer,
                                     "bpSearch": oView.getModel("JMBPCreate").getData().bpSearch,
                                 }
                                 oModel.loadData(sUrl, JSON.stringify(oPayload), true, vQuery, false, true, {
