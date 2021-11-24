@@ -257,6 +257,12 @@ sap.ui.define([
             fnClose: function () {
                 this.oComment.close();
             },
+            fnRemoveSpace: function (oEvent){
+                var spaceRegex = /^\s+$/;
+                   if(spaceRegex.test(oEvent.getSource().getValue())){
+                       oEvent.getSource().setValue(""); 
+                   }
+            },
 
             fnLiveEmailNotJValid: function (oEvent) {
                 var email = oEvent.getSource().getValue();

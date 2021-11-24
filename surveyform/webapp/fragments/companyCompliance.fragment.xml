@@ -79,7 +79,7 @@
 								<VBox class="fontStyle" >
 									<Label required="true"  text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                       <Label required="true"  text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input maxLength="242" value="{oDataModel>/comComplianceDto/commitedToExpectationsContact/email}" enabled="{oEnableMdl>/commitedToExpectationsContactemailEnb}" valueState="{oErrorModel>/cocE}" valueStateText="{oErrorModel>/cocM}" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
+									<Input maxLength="242" value="{oDataModel>/comComplianceDto/commitedToExpectationsContact/email}" enabled="{oEnableMdl>/commitedToExpectationsContactemailEnb}" valueState="{oErrorModel>/cocE}" valueStateText="{oErrorModel>/cocM}" liveChange="fnRemoveSpace" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
 										
                                 </VBox>
 								<VBox class="fontStyle" >
@@ -148,7 +148,7 @@
 								<VBox class="fontStyle" >
 									<Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                       <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input maxLength="242" value="{oDataModel>/comComplianceDto/companyRelationWithJabilEmpContact/email}" enabled="{oEnableMdl>/companyRelationWithJabilEmpContactemailEnb}"  valueState="{oErrorModel>/pEmpE}" valueStateText="{oErrorModel>/pEmpM}" change="fnLiveEmailJValid" class="inputStyle"></Input>
+									<Input maxLength="242" value="{oDataModel>/comComplianceDto/companyRelationWithJabilEmpContact/email}" enabled="{oEnableMdl>/companyRelationWithJabilEmpContactemailEnb}"  valueState="{oErrorModel>/pEmpE}" valueStateText="{oErrorModel>/pEmpM}" liveChange="fnRemoveSpace" change="fnLiveEmailJValid" class="inputStyle"></Input>
 										
                                 </VBox>
                                 </l:Grid>

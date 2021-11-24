@@ -1,5 +1,6 @@
 jQuery.sap.declare("ns.BuyerRegistration.util.formatter");
 jQuery.sap.require("sap.ui.core.format.NumberFormat");
+jQuery.sap.require("sap.ui.core.format.DateFormat");
 
 ns.BuyerRegistration.util.formatter = {
 
@@ -15,6 +16,27 @@ ns.BuyerRegistration.util.formatter = {
             return "Warning";
         }
     },
+    fnSearchResultErrorMandt:function(val){
+     if(val){
+         return false;
+     }else{
+         return true;
+     }
+    },
+    fnSearchResultErrorBlock:function(val){
+        if(val){
+            return true;
+        }else{
+            return false;
+        }
+       },
+       fnSearchResultErrorRelInd:function(val){
+        if(val=="PRIMARY"){
+            return false;
+        }else{
+            return true;
+        }
+       },
     fnSetColorValidate: function (vStatus) {
 
 

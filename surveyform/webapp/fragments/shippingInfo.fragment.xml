@@ -97,7 +97,7 @@
                 <VBox class="fontStyle">
 					<Label text="{i18n>eMail}"  required="true" visible= "{oVisibilityModel>/isdefaultLan}" ></Label>
                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}"  required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-						<Input maxLength="242" value="{oDataModel>/shippingInfoDto/deliverRepEmail}" enabled="{oEnableMdl>/deliverRepEmailEnb}" valueState="{oErrorModel>/dRespEmailE}" valueStateText="{oErrorModel>/dRespEmailM}" change="fnLiveEmailNotJValid"  class="inputStyle"/>
+						<Input maxLength="242" value="{oDataModel>/shippingInfoDto/deliverRepEmail}" enabled="{oEnableMdl>/deliverRepEmailEnb}" valueState="{oErrorModel>/dRespEmailE}" valueStateText="{oErrorModel>/dRespEmailM}" liveChange="fnRemoveSpace" change="fnLiveEmailNotJValid"  class="inputStyle"/>
 				</VBox>
                 <VBox>
 									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>

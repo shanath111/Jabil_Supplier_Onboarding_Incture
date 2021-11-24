@@ -6,7 +6,7 @@
       <Label text="{i18n>compProdVerb}" required="true" wrapping="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinyMarginTop sapUiTinyMarginBegin fontStyle fontStyleItalic"/>
     <Label text="{oi18n_En>compProdVerb}&#10;{i18n>compProdVerb}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinyMarginTop sapUiTinyMarginBegin fontStyle fontStyleItalic"/>
      <HBox fitContainer= "true" wrap="Wrap" class="sapUiSizeCompact">
-     <CheckBox id="OperServId" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>OprSer}:${oi18n_En>OprSer} +'&#10;' + ${i18n>OprSer}}" class="fontStyle inputStyle" selected="{oDataModel>/comProductsUiDto/isOperationServices}" enabled="{oEnableMdl>/isOperationServicesEnb}" visible= "{oVisibilityModel>/isdefaultLan}" />
+     <CheckBox id="OperServId" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>OprSer}:${oi18n_En>OprSer} +'/' + ${i18n>OprSer}}" class="fontStyle inputStyle" selected="{oDataModel>/comProductsUiDto/isOperationServices}" enabled="{oEnableMdl>/isOperationServicesEnb}"  />
      <!-- <CheckBox text="{oi18n_En>OprSer}/&#160;{i18n>OprSer}" class="fontStyle inputStyle" selected="{oDataModel>/comProductsUiDto/isOperationServices}" enabled="{oEnableMdl>/isOperationServicesEnb}" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/> -->
      <!-- <Link text="{i18n>moreInfo}" target="_blank" href="" wrapping="true" class="sapUiTinyMarginBegin sapUiTinyMarginTop"/> -->
      <layoutData>

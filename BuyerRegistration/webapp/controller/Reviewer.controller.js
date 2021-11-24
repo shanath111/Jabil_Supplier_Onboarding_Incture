@@ -46,6 +46,8 @@ sap.ui.define([
 
             fnSetConfigModel: function (oContext) {
                 oView.getModel("oConfigMdl").getData().CommentsVis = false;
+                oView.getModel("oConfigMdl").getData().bankNotFoundTitle = false;
+                
                 if (oContext.Name == "Buyer") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = true;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;
@@ -109,6 +111,7 @@ sap.ui.define([
                     oView.byId("id_SegmentedBtn").setSelectedKey("BuyerData");
                     oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
                     oView.getModel("oConfigMdl").getData().defaultEnable = true;
+                    oView.getModel("oConfigMdl").getData().bankNotFoundTitle = true;
                     this._fnLoadCurrency();
 
                 } else if (oContext.Name == "Approver1") {
@@ -236,16 +239,29 @@ sap.ui.define([
                 this.fnLoadTaskClaimed(oContext.Id);
 
             },
-
+            _fnLoadBankRegion: function(vCountry){
+                var oModel = new JSONModel();
+               var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/regions/?country=" + vCountry;
+               oModel.loadData(sUrl, {
+                   "Content-Type": "application/json"
+               });
+               oModel.attachRequestCompleted(function (oEvent) {
+                   if (oEvent.getParameter("success")) {
+                       oView.getModel("oBPLookUpMdl").setProperty("/BankRegion", oEvent.getSource().getData());
+                       oView.getModel("oBPLookUpMdl").refresh();
+                   }
+               });
+           },
             fnActivateBankScreen: function () {
                 var that = this;
+                that._fnLoadBankRegion(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry); 
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry) {
                     var requestData = {
                         "companyCodeCountry": oView.getModel("oDataModel").getData().shippingInfoDto.comCode,
                         "purchaseOrderCurrency": oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency,
                         "supplierBankCountry": formatter.fnFetchDescription1(oView.getModel("oBPLookUpMdl").getData().Country, oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry)
                     }
-                    var sUrl = "/comjabilsurveyform/plcm_portal_services/api/v1/bank/matrix";
+                    var sUrl = "/nsBuyerRegistration/plcm_portal_services/api/v1/bank/matrix";
                     var bModel = new JSONModel();
 
                     bModel.loadData(sUrl, JSON.stringify(requestData), true, "POST", false, true, {

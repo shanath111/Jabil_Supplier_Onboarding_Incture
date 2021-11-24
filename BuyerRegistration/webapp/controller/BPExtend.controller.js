@@ -39,8 +39,10 @@ sap.ui.define([
                 this.fnClearData();
             },
             fnSetConfigModel: function (oContext) {
+                oView.getModel("oConfigMdl").getData().caseDeailVis = true;
                 if (oContext.Name == "Display") {
                     if (oContext.Id == "New") {
+                        oView.getModel("oConfigMdl").getData().caseDeailVis = false;
                         this.fnScreenResize();
                         this.fnLoadPersonalizationData();
                         var oFCL = this.getView().byId("flexibleColumnLayout");
@@ -123,6 +125,7 @@ sap.ui.define([
                                     "workCell": data.bpRequestScope.workCell,
                                     "workCelld": "",
                                     "buyerName": vBuyer,
+
                                     "incoTerms": data.bpRequestScope.incoTerms,
                                     "incoTermsd": "",
                                     "isNew": data.bpRequestScope.isNew,
@@ -305,9 +308,10 @@ sap.ui.define([
                     var vTableHeight;
                     vTableHeight = that.getView().byId("id_FilterHeight").getDomRef().offsetHeight - that.getView().byId("id_FilterPanel").getDomRef()
                         .offsetHeight;
-
+                    vTableHeight = vTableHeight - that.getView().byId("id_FilterPanel0").getDomRef()
+                        .offsetHeight;
                     //   vTableHeight = vTableHeight - 40;
-                    vTableHeight = vTableHeight - 110;
+                    vTableHeight = vTableHeight - 120;
                     var vRow = parseInt(vTableHeight / 33);
                     oView.getModel("oConfigMdl").getData().visibleRowCnt = vRow;
                     oView.getModel("oConfigMdl").refresh();
@@ -862,7 +866,7 @@ sap.ui.define([
                 if (oView.getModel("oConfigMdl").getData().contextPath.Id == "New") {
 
                     var temp = oView.getModel("oVendorListModel").getData().data[oEvent.getSource().getSelectedIndex()];
-                    if (temp.PENDING_CHANGE_REQUEST) {
+                    if (temp.isError == true) {
                         var oBPCreateModel = new sap.ui.model.json.JSONModel();
                         oBPCreateModel.setData([]);
                         oView.setModel(oBPCreateModel, "JMBPCreate");
@@ -910,6 +914,7 @@ sap.ui.define([
                             // "workCelld": that.fnFetchDescriptionWorkCell(oView.getModel("oBPLookUpMdl").getData().WorkCell, "", "WorkCell"),
                             "workCell": "",
                             "buyerName": vBuyer,
+                            "userCreated": vBuyer,
                             "incoTermsd": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().Incoterms, temp.INCO_TERMS, "Incoterms"),
                             "incoTerms": temp.INCO_TERMS,
                             "newincoTerms": "",
@@ -1007,6 +1012,10 @@ sap.ui.define([
             },
             fnDoneSubmit: function () {
                 window.history.go(-1);
+            },
+            fnSaveContinue: function () {
+                this.oBPSuccessDraft.close();
+                that.fnLoadCaseDetail(oView.getModel("JMBPCreate").getData().caseId);//Load Case ID Details
             },
             fnCancelAction: function () {
                 window.history.go(-1);
@@ -1555,8 +1564,8 @@ sap.ui.define([
                         "dateCreated": oView.getModel("JMBPCreate").getData().dateCreated,
                         "dateUpdated": oView.getModel("JMBPCreate").getData().dateUpdated,
                         "status": vStatus,
-                        "userCreated": vBuyer,
-                        "userUpdated": oView.getModel("JMBPCreate").getData().userUpdated,
+                        "userCreated": oView.getModel("JMBPCreate").getData().userCreated,
+                        "userUpdated": vBuyer,
                         "bpSearch": oView.getModel("JMBPCreate").getData().bpSearch,
                     }
                     oModel.loadData(sUrl, JSON.stringify(oPayload), true, vQuery, false, true, {
@@ -1564,6 +1573,7 @@ sap.ui.define([
                     });
                     oModel.attachRequestCompleted(function (oEvent) {
                         if (oEvent.getParameter("success")) {
+                            oView.getModel("JMBPCreate").getData().caseId = oEvent.getSource().getData().caseId;
                             var temp = {
                                 "Message": "",
                                 "caseId": oEvent.getSource().getData().caseId
@@ -1577,13 +1587,13 @@ sap.ui.define([
                                 var oJosnMessage = new sap.ui.model.json.JSONModel();
                                 oJosnMessage.setData(temp);
                                 oView.setModel(oJosnMessage, "JMMessageData");
-                                if (!that.oBPSuccess) {
-                                    that.oBPSuccess = sap.ui.xmlfragment(
-                                        "ns.BuyerRegistration.fragments.CreateSuccess", that);
-                                    oView.addDependent(that.oBPSuccess);
+                                if (!that.oBPSuccessDraft) {
+                                    that.oBPSuccessDraft = sap.ui.xmlfragment(
+                                        "ns.BuyerRegistration.fragments.CreateSuccessDraft", that);
+                                    oView.addDependent(that.oBPSuccessDraft);
                                 }
                                 oBusyDilog.close();
-                                that.oBPSuccess.open();
+                                that.oBPSuccessDraft.open();
                             } else if (vBtnActn == "SU") {
 
                                 var oModelWf = new JSONModel();
@@ -1789,8 +1799,8 @@ sap.ui.define([
                                     "dateCreated": oView.getModel("JMBPCreate").getData().dateCreated,
                                     "dateUpdated": oView.getModel("JMBPCreate").getData().dateUpdated,
                                     "status": vStatus,
-                                    "userCreated": vBuyer,
-                                    "userUpdated": oView.getModel("JMBPCreate").getData().userUpdated,
+                                    "userCreated": oView.getModel("JMBPCreate").getData().userCreated,
+                                    "userUpdated": vBuyer,
                                     "bpSearch": oView.getModel("JMBPCreate").getData().bpSearch,
                                 }
                                 oModel.loadData(sUrl, JSON.stringify(oPayload), true, vQuery, false, true, {
@@ -1798,6 +1808,7 @@ sap.ui.define([
                                 });
                                 oModel.attachRequestCompleted(function (oEvent) {
                                     if (oEvent.getParameter("success")) {
+                                        oView.getModel("JMBPCreate").getData().caseId = oEvent.getSource().getData().caseId;
                                         var temp = {
                                             "Message": "",
                                             "caseId": oEvent.getSource().getData().caseId
@@ -1811,13 +1822,13 @@ sap.ui.define([
                                             var oJosnMessage = new sap.ui.model.json.JSONModel();
                                             oJosnMessage.setData(temp);
                                             oView.setModel(oJosnMessage, "JMMessageData");
-                                            if (!that.oBPSuccess) {
-                                                that.oBPSuccess = sap.ui.xmlfragment(
-                                                    "ns.BuyerRegistration.fragments.CreateSuccess", that);
-                                                oView.addDependent(that.oBPSuccess);
+                                            if (!that.oBPSuccessDraft) {
+                                                that.oBPSuccessDraft = sap.ui.xmlfragment(
+                                                    "ns.BuyerRegistration.fragments.CreateSuccessDraft", that);
+                                                oView.addDependent(that.oBPSuccessDraft);
                                             }
                                             oBusyDilog.close();
-                                            that.oBPSuccess.open();
+                                            that.oBPSuccessDraft.open();
                                         } else if (vBtnActn == "SU") {
 
                                             var oModelWf = new JSONModel();
@@ -2056,7 +2067,7 @@ sap.ui.define([
                 }
             },
             fnLiveChangePurchOrg: function (oEvent) {
-            //    var vSelected = oEvent.getParameter("itemPressed");
+                //    var vSelected = oEvent.getParameter("itemPressed");
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
@@ -2164,6 +2175,82 @@ sap.ui.define([
                                 vrenable = false;
                             } else {
                                 vrenable = true;
+                            }
+                            var vError;
+                            for (var i = 0; i < oEvent.getSource().getData().d.results.length; i++) {
+                                vError = false;
+
+                                if (!oEvent.getSource().getData().d.results[i].VENDOR_NAME) {
+                                    vError = true;
+                                }
+                                if (!oEvent.getSource().getData().d.results[i].STREET) {
+                                    vError = true;
+                                }
+                                if (!oEvent.getSource().getData().d.results[i].POSTAL_CODE) {
+                                    vError = true;
+                                }
+                                if (!oEvent.getSource().getData().d.results[i].CITY) {
+                                    vError = true;
+                                }
+                                if (!oEvent.getSource().getData().d.results[i].COUNTRY) {
+                                    vError = true;
+                                }
+                                if (!oEvent.getSource().getData().d.results[i].REGION_STATE_PROVINCE) {
+                                    vError = true;
+                                }
+                                if (!oEvent.getSource().getData().d.results[i].PAYMENT_METHOD) {
+                                    vError = true;
+                                }
+                                if (!oEvent.getSource().getData().d.results[i].PAYMENT_TERMS) {
+                                    vError = true;
+                                }
+                                if (!oEvent.getSource().getData().d.results[i].CURRENCY) {
+                                    vError = true;
+                                }
+                                if (!oEvent.getSource().getData().d.results[i].INCO_TERMS) {
+                                    vError = true;
+                                }
+                                if (!oEvent.getSource().getData().d.results[i].INCOTERMS2) {
+                                    vError = true;
+                                }
+                                if (!oEvent.getSource().getData().d.results[i].BANK_COUNTRY) {
+                                    vError = true;
+                                }
+                                if (!oEvent.getSource().getData().d.results[i].IBAN) {
+                                    vError = true;
+                                }
+                                if (oEvent.getSource().getData().d.results[i].BLOCK_FUNCTION) {
+                                    vError = true;
+                                }
+                                if (oEvent.getSource().getData().d.results[i].CENTRAL_POSTING_BLOCK) {
+                                    vError = true;
+                                }
+                                if (oEvent.getSource().getData().d.results[i].CENTRAL_PURCHASING_BLOCK) {
+                                    vError = true;
+                                } if (oEvent.getSource().getData().d.results[i].COMPANY_CODE_POSTING_BLOCK) {
+                                    vError = true;
+                                } if (oEvent.getSource().getData().d.results[i].PURCHASING_ORG_BLOCK) {
+                                    vError = true;
+                                } if (oEvent.getSource().getData().d.results[i].CENTRAL_DELETION_FLAG) {
+                                    vError = true;
+                                } if (oEvent.getSource().getData().d.results[i].COMPANY_CODE_DEL_FLAG) {
+                                    vError = true;
+                                }
+                                if (oEvent.getSource().getData().d.results[i].PURCHASING_ORG_DEL_FLAG) {
+                                    vError = true;
+                                }
+
+                                if (oEvent.getSource().getData().d.results[i].CENTRAL_BLOCK_CODE) {
+                                    vError = true;
+                                }
+                                if (oEvent.getSource().getData().d.results[i].PENDING_CHANGE_REQUEST) {
+                                    vError = true;
+                                }
+
+                                if (oEvent.getSource().getData().d.results[i].RELATIONSHIP_INDICATOR !== "PRIMARY") {
+                                    vError = true;
+                                }
+                                oEvent.getSource().getData().d.results[i].isError = vError;
                             }
 
                             var temp = {
@@ -3556,7 +3643,8 @@ sap.ui.define([
             fnChangeCiscoGrub: function () {
                 oView.getModel("JMBPCreate").getData().isExclCiscoGhube = "None";
                 oView.getModel("JMBPCreate").refresh();
-            }
+            },
+
 
 
 
