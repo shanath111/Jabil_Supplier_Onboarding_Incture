@@ -153,7 +153,7 @@
 								<VBox>
 									<Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" required="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input maxLength="242" value="{oDataModel>/itCyberDto/itcyberSecurityContact/email}" enabled="{oEnableMdl>/itcyberSecurityContactemailEnb}" valueState="{oErrorModel>/cyberSurveyE}" valueStateText="{oErrorModel>/cyberSurveyM}" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
+									<Input maxLength="242" value="{oDataModel>/itCyberDto/itcyberSecurityContact/email}" enabled="{oEnableMdl>/itcyberSecurityContactemailEnb}" valueState="{oErrorModel>/cyberSurveyE}" valueStateText="{oErrorModel>/cyberSurveyM}" liveChange="fnRemoveSpace" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
 								</VBox>
 								<VBox>
 									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
