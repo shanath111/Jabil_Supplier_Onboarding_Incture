@@ -7715,7 +7715,6 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                     }
                     if(oPayload.bpInfoDto.tax[0].country == ""){
                         var CountryCode1 = oPayload.surveyInfoDto.address[0].postal[0].countryCode;
-                       // oView.byId("bpInfoTaxId").getAggregation("items")[0].getAggregation("cells")[0].getAggregation("items")[1].setSelectedKey(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode);
                        oPayload.bpInfoDto.tax[0].country = CountryCode1;
                        
                     }
@@ -7997,7 +7996,6 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 });
                 if(oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == ""){
                     var countryCode = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode;
-               // oView.byId("bpInfoTaxId").getAggregation("items")[0].getAggregation("cells")[0].getAggregation("items")[1].setSelectedKey(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode);
                 oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country = countryCode;
                 oView.getModel("oDataModel").refresh();
                 var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/taxType/" + oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode;
@@ -8071,7 +8069,6 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 if (taxCount < 8) {
                     var countryCode = oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode;
                      oView.getModel("oDataModel").getData().bpInfoDto.tax[this.getView().getModel("oDataModel").getData().bpInfoDto.tax.length-1].country = countryCode;
-                //     oView.byId("bpInfoTaxId").getAggregation("items")[this.getView().getModel("oDataModel").getData().bpInfoDto.tax.length-1].getAggregation("cells")[0].getAggregation("items")[1].setSelectedKey(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode);
                  this.getView().getModel("oDataModel").refresh();
                 var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/taxType/" + oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode;
                 $.ajax({
@@ -8737,14 +8734,14 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 });
             },
 
-            onSubmit: function (oEvent) {
-
+            fnSaveContinue: function(){
+                this.oSuccess.close();
             },
             fnCloseDialog: function () {
                 this.oSuccess.close();
-                if (this.oSuccess.getContent()[0] && this.oSuccess.getContent()[0].getItems()[3] && this.oSuccess.getContent()[0].getItems()[3].getText() == "submitS") {
+               // if (this.oSuccess.getContent()[0] && this.oSuccess.getContent()[0].getItems()[3] && this.oSuccess.getContent()[0].getItems()[3].getText() == "submitS") {
                     window.parent.location.reload();
-                }
+               // }
 
             },
             fnClose: function () {
