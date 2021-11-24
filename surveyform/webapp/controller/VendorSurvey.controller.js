@@ -4654,7 +4654,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         iError = true;
 
                     }
-                    if (row.contact !== "" && Number(row.contact.replaceAll("-", "")) == 0) {
+                    if (row.contact !== null && row.contact !== "" && Number(row.contact.replaceAll("-", "")) == 0) {
                         item[5].mAggregations.items[1].setValueState("Error")
                         item[5].mAggregations.items[1].setValueStateText(oi18n.getText("invalidContact"));
 
