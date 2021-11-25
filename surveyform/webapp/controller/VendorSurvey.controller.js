@@ -1700,9 +1700,9 @@ sap.ui.define([
 
                 oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].region = "";
                 oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].regionCode = "";
-                oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].country = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().SupplierCountry, oEvent.getParameter("selectedItem").getKey());
+                oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].country = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().SupplierCountry, selectedCountryCode);
                 oView.getModel("oDataModel").refresh();
-                var vCountry = oEvent.getParameter("selectedItem").getKey();
+                var vCountry = selectedCountryCode;
                 this._fnLoadSupplierRegion(vCountry);
             },
             fnChangeSupplierRegion: function (oEvent) {
@@ -1719,7 +1719,7 @@ sap.ui.define([
                         oEvent.getSource().setValue("");
                     }
                 }
-                oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].region = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().SupplierRegion, oEvent.getParameter("selectedItem").getKey());
+                oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].region = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().SupplierRegion, oEvent.getSource().getSelectedKey());
                 oView.getModel("oDataModel").refresh();
             },
 
