@@ -8405,10 +8405,16 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                                     if (isDefaultLan) {
                                         that.oSuccess.getContent()[0].getItems()[2].setText(oi18n.getText("draftDialogMsg"));
                                         that.oSuccess.getContent()[0].getItems()[3].setText(btn);
+                                        that.oSuccess.getContent()[1].getContent()[1].setVisible(true);
+                                        that.oSuccess.getContent()[1].getContent()[2].setVisible(true);
+                                        that.oSuccess.getContent()[1].getContent()[3].setVisible(false);
 
                                     } else {
                                         that.oSuccess.getContent()[0].getItems()[2].setText(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.draftDialogMsg + "\n" + oi18n.getText("draftDialogMsg"));
                                         that.oSuccess.getContent()[0].getItems()[3].setText(btn);
+                                        that.oSuccess.getContent()[1].getContent()[1].setVisible(true);
+                                        that.oSuccess.getContent()[1].getContent()[2].setVisible(true);
+                                        that.oSuccess.getContent()[1].getContent()[3].setVisible(false);
 
                                     }
                                     that.oSuccess.open();
@@ -8416,9 +8422,15 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                                     if (isDefaultLan) {
                                         that.oSuccess.getContent()[0].getItems()[2].setText(oi18n.getText("successDialogMsg"));
                                         that.oSuccess.getContent()[0].getItems()[3].setText(btn);
+                                        that.oSuccess.getContent()[1].getContent()[1].setVisible(false);
+                                        that.oSuccess.getContent()[1].getContent()[2].setVisible(false);
+                                        that.oSuccess.getContent()[1].getContent()[3].setVisible(true);
                                     } else {
                                         that.oSuccess.getContent()[0].getItems()[2].setText(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.successDialogMsg + "\n" + oi18n.getText("successDialogMsg"));
                                         that.oSuccess.getContent()[0].getItems()[3].setText(btn);
+                                        that.oSuccess.getContent()[1].getContent()[1].setVisible(false);
+                                        that.oSuccess.getContent()[1].getContent()[2].setVisible(false);
+                                        that.oSuccess.getContent()[1].getContent()[3].setVisible(true);
                                     }
                                     if (oView.getModel("oDataModel").getData().isFormAccepted) {
                                         that._fnTaskComplete(oEvent.getSource().oData.businessPartnerId, that.oSuccess);
@@ -8474,10 +8486,16 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                                     if (isDefaultLan) {
                                         that.oSuccess.getContent()[0].getItems()[2].setText(oi18n.getText("draftDialogMsg"));
                                         that.oSuccess.getContent()[0].getItems()[3].setText(btn);
+                                        that.oSuccess.getContent()[1].getContent()[1].setVisible(true);
+                                        that.oSuccess.getContent()[1].getContent()[2].setVisible(true);
+                                        that.oSuccess.getContent()[1].getContent()[3].setVisible(false);
 
                                     } else {
                                         that.oSuccess.getContent()[0].getItems()[2].setText(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.draftDialogMsg + "\n" + oi18n.getText("draftDialogMsg"));
                                         that.oSuccess.getContent()[0].getItems()[3].setText(btn);
+                                        that.oSuccess.getContent()[1].getContent()[1].setVisible(true);
+                                        that.oSuccess.getContent()[1].getContent()[2].setVisible(true);
+                                        that.oSuccess.getContent()[1].getContent()[3].setVisible(false);
 
                                     }
                                     that.oSuccess.open();
@@ -8486,9 +8504,15 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                                     if (isDefaultLan) {
                                         that.oSuccess.getContent()[0].getItems()[2].setText(oi18n.getText("successDialogMsg"));
                                         that.oSuccess.getContent()[0].getItems()[3].setText(btn);
+                                        that.oSuccess.getContent()[1].getContent()[1].setVisible(false);
+                                        that.oSuccess.getContent()[1].getContent()[2].setVisible(false);
+                                        that.oSuccess.getContent()[1].getContent()[3].setVisible(true);
                                     } else {
                                         that.oSuccess.getContent()[0].getItems()[2].setText(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.successDialogMsg + "\n" + oi18n.getText("successDialogMsg"));
                                         that.oSuccess.getContent()[0].getItems()[3].setText(btn);
+                                        that.oSuccess.getContent()[1].getContent()[1].setVisible(false);
+                                        that.oSuccess.getContent()[1].getContent()[2].setVisible(false);
+                                        that.oSuccess.getContent()[1].getContent()[3].setVisible(true);
                                     }
 
                                     if (oView.getModel("oDataModel").getData().isFormAccepted) {
