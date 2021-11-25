@@ -86,7 +86,8 @@
             <Input maxLength="31" class="inputStyle" value="{oLookUpModel>contact}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/comContactcontactEnb}" />
             </HBox>
            <HBox>  <Input maxLength="11" class="inputStyle" value="{oLookUpModel>extension}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/comContactextensionEnb}" />
-             <Button icon="sap-icon://copy" press="fnCopyContactData" visible="{oVisibilityModel>/copiedData}" type="Transparent" class="addMoreBtn"/>
+             <Button icon="sap-icon://copy" press="fnCopyContactData" visible="{oVisibilityModel>/copiedData}" type="Transparent" class="addMoreBtn" tooltip="You can use the copy (copy icon)/paste (paste icon) feature to help fill in the additional contacts. 
+Once you copy (copy icon) the row, then select the paste (paste icon) option, just above the list, to add to the other lines."/>
                 <Button icon="sap-icon://paste" press="fnPasteContactData" visible="{oVisibilityModel>/pasteData}" type="Transparent" class="addMoreBtn"/>
                 </HBox>
             </cells>
