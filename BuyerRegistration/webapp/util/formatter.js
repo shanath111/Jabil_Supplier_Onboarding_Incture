@@ -28,8 +28,8 @@ ns.BuyerRegistration.util.formatter = {
         }
 
         else {
-            sap.ui.getCore().byId(id).removeStyleClass("whiteColorLine");
-            sap.ui.getCore().byId(id).addStyleClass("errorColorLine");
+            sap.ui.getCore().byId(id).removeStyleClass("errorColorLine");
+            sap.ui.getCore().byId(id).addStyleClass("whiteColorLine");
             return false;
         }
     },
