@@ -2,6 +2,12 @@
 .cl_VRPageBackGrnd {
     background: #F0F2F4 0% 0% no-repeat padding-box !important;
 }
+.errorColorLine {
+    border-bottom: 1px solid #FF0000 !important;
+}
+.whiteColorLine {
+    border-bottom: 1px solid #fdfdaa;
+}
 .cl_BuyerTitle{
    
 color: #000000 !important;
