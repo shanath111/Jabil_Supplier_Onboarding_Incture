@@ -16,27 +16,44 @@ ns.BuyerRegistration.util.formatter = {
             return "Warning";
         }
     },
-    fnSearchResultErrorMandt:function(val){
-     if(val){
-         return false;
-     }else{
-         return true;
-     }
+    ErrorLine: function (status) {
+        debugger;
+        var id = this.oParent.oParent.sId;
+        var cid = this.oParent.sId;
+        sap.ui.getCore().byId(id).addStyleClass("whiteColorLine");
+        if (status == true) {
+            sap.ui.getCore().byId(id).removeStyleClass("whiteColorLine");
+            sap.ui.getCore().byId(id).addStyleClass("errorColorLine");
+            return true;
+        }
+
+        else {
+            sap.ui.getCore().byId(id).removeStyleClass("whiteColorLine");
+            sap.ui.getCore().byId(id).addStyleClass("errorColorLine");
+            return false;
+        }
     },
-    fnSearchResultErrorBlock:function(val){
-        if(val){
-            return true;
-        }else{
+    fnSearchResultErrorMandt: function (val) {
+        if (val) {
             return false;
-        }
-       },
-       fnSearchResultErrorRelInd:function(val){
-        if(val=="PRIMARY"){
-            return false;
-        }else{
+        } else {
             return true;
         }
-       },
+    },
+    fnSearchResultErrorBlock: function (val) {
+        if (val) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    fnSearchResultErrorRelInd: function (val) {
+        if (val == "PRIMARY") {
+            return false;
+        } else {
+            return true;
+        }
+    },
     fnSetColorValidate: function (vStatus) {
 
 

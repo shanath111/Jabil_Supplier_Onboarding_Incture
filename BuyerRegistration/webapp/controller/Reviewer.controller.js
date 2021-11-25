@@ -1984,13 +1984,43 @@ sap.ui.define([
                                                     }
                                                     that.fnLoadValidationDone(oView.getModel("JMEulaComments").getData().caseId);
                                                     oBusyDilog.close();
-                                                    if (!that.oValidateResult) {
-                                                        that.oValidateResult = sap.ui.xmlfragment(
-                                                            "ns.BuyerRegistration.fragments.ValidateResult", that);
-                                                        oView.addDependent(that.oValidateResult);
+                                                    if(data.mdgLogDto[0].responseReceived == "S"){
+                                                        MessageBox.success(oi18n.getProperty("ValidationSuccessFull"));
+                                                    }else if(data.mdgLogDto[0].responseReceived == "W"){
+                                                        MessageBox.warning(oi18n.getProperty("ValidationSuccessFullWarning"), {
+                                                            actions: ["View Details", MessageBox.Action.CANCEL],
+                                                            emphasizedAction: MessageBox.Action.OK,
+                                                            onClose: function (sAction) {
+                                                                if(sAction == "View Details"){
+                                                                    if (!that.oValidateResult) {
+                                                                        that.oValidateResult = sap.ui.xmlfragment(
+                                                                            "ns.BuyerRegistration.fragments.ValidateResult", that);
+                                                                        oView.addDependent(that.oValidateResult);
+                                                                    }
+                                                                    that.oValidateResult.open();
+                                                                    sap.ui.getCore().byId('id_SegmentValidate').setSelectedKey("CentralData");
+                                                                }
+                                                            }
+                                                        });
+                                                       
+                                                    }else{
+                                                        MessageBox.error(oi18n.getProperty("ValidationSuccessFullError"), {
+                                                            actions: ["View Details", MessageBox.Action.CANCEL],
+                                                            emphasizedAction: MessageBox.Action.OK,
+                                                            onClose: function (sAction) {
+                                                                if(sAction == "View Details"){
+                                                                    if (!that.oValidateResult) {
+                                                                        that.oValidateResult = sap.ui.xmlfragment(
+                                                                            "ns.BuyerRegistration.fragments.ValidateResult", that);
+                                                                        oView.addDependent(that.oValidateResult);
+                                                                    }
+                                                                    that.oValidateResult.open();
+                                                                    sap.ui.getCore().byId('id_SegmentValidate').setSelectedKey("CentralData");
+                                                                }
+                                                            }
+                                                        });
                                                     }
-                                                    that.oValidateResult.open();
-                                                    sap.ui.getCore().byId('id_SegmentValidate').setSelectedKey("CentralData");
+                                                  
                                                     vBreak = true;
 
                                                 }
