@@ -69,6 +69,15 @@ sap.ui.define([
                 // }
             },
             fnOnLanguageSelect: function (oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                if(oEvent.getSource().getValue() == ""){
+                    oEvent.getSource().setSelectedKey("en");
+                }
                 var _selLan = oEvent.getSource().getSelectedKey();
                 sap.ui.getCore().getConfiguration().setLanguage(_selLan);
                 sap.ui.getCore().getConfiguration().setFormatLocale("en-US");
