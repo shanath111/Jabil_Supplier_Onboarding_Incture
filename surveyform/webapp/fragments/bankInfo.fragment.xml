@@ -210,7 +210,15 @@
           <CheckBox enabled="{oVisibilityModel>/_FinanceReviewEdit}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/bankDto/isIntermediateBankProvided}" class=" sapUiTinyMarginTop fontStyle inputStyle" />
 			<HBox>	<u:FileUploader  visible="{=${oDataModel>/bankDto/isIntermediateBankProvided} === true}" id="fileUploader_BIA" buttonOnly="true" iconOnly="true" icon="sap-icon://attachment" multiple="true"
 					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{oVisibilityModel>/_FinanceReviewEdit}"
-					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin addMoreBtn paperClipOuter"></u:FileUploader>
+					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin addMoreBtn paperClipOuter">
+                        <u:tooltip>
+                            <c:Tooltip 
+                            text="{i18n>DocumentTooltip}"
+                            offset="10 -5"
+                            closeDuration="0"
+                            />
+                        </u:tooltip>
+                    </u:FileUploader>
                      <Label class="sapUiSmallMarginTop" required="{=${oDataModel>/bankDto/isIntermediateBankProvided} === true}"/>
             <Text wrapping="true" class="sapUiSmallMarginTop sapUiTinyMarginbegin" visible="{=${oDataModel>/bankDto/isIntermediateBankProvided} === true}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBankAttachVerbiage}:${oi18n_En>interMBankAttachVerbiage}+ '&#10;' +${i18n>interMBankAttachVerbiage}}"/>
               </HBox></VBox>
