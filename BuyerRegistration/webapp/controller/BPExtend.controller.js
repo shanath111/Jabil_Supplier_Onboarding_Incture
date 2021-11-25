@@ -880,6 +880,59 @@ sap.ui.define([
                         oFCL.setLayout(library.LayoutType.OneColumn);
                         return;
 
+                    } else {
+
+
+                        var vBankValid = false;
+                        var vMessage = "";
+                        var requestData = {
+                            "companyCodeCountry": temp.COMPANY_CODE,
+                            "purchaseOrderCurrency": temp.CURRENCY,
+                            "supplierBankCountry": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().Country, temp.COUNTRY, "Country"),
+                        }
+                        var sUrl = "/nsBuyerRegistration/plcm_portal_services/api/v1/bank/matrix";
+                        var bModel = new JSONModel();
+                        $.ajax({
+                            type: "POST",
+                            url: sUrl,
+                            data: JSON.stringify(requestData),
+                            dataType: "json",
+                            async: false,
+                            contentType: 'application/json; charset=utf-8',
+                            success: function (data) {
+                                if (data.bankCountry == "Mandatory") {
+                                    if (!temp.BANK_COUNTRY) {
+                                        vBankValid = true;
+                                        vMessage = "Bank Country is Required \n"
+                                    }
+
+                                }
+                                if (data.iban == "Mandatory") {
+                                    if (!temp.IBAN) {
+                                        vBankValid = true;
+                                        vMessage = vMessage + " IBAN is Required"
+                                    }
+
+                                }
+
+                            },
+                           
+                            error: function (data) {
+                                vBankValid = true;
+
+                            }
+                        });
+
+
+                        if (vBankValid == true) {
+                            MessageBox.show(vMessage, {
+                                icon: MessageBox.Icon.ERROR,
+                                title: "Error"
+                            });
+                            return;
+                        }
+
+
                     }
                     if (temp.ACCOUNT_GROUP !== "ZVEN") {
                         var oBPCreateModel = new sap.ui.model.json.JSONModel();
@@ -2176,7 +2229,7 @@ sap.ui.define([
                             } else {
                                 vrenable = true;
                             }
-                            var vError;
+                            var vError = false;
                             for (var i = 0; i < oEvent.getSource().getData().d.results.length; i++) {
                                 vError = false;
 
@@ -2213,12 +2266,12 @@ sap.ui.define([
                                 if (!oEvent.getSource().getData().d.results[i].INCOTERMS2) {
                                     vError = true;
                                 }
-                                if (!oEvent.getSource().getData().d.results[i].BANK_COUNTRY) {
-                                    vError = true;
-                                }
-                                if (!oEvent.getSource().getData().d.results[i].IBAN) {
-                                    vError = true;
-                                }
+                                // if (!oEvent.getSource().getData().d.results[i].BANK_COUNTRY) {
+                                //     vError = true;
+                                // }
+                                // if (!oEvent.getSource().getData().d.results[i].IBAN) {
+                                //     vError = true;
+                                // }
                                 if (oEvent.getSource().getData().d.results[i].BLOCK_FUNCTION) {
                                     vError = true;
                                 }

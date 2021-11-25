@@ -213,7 +213,7 @@
                 
                     <core:Icon
 			src="sap-icon://status-error"
-			visible="{oVendorListModel>isError}"
+			visible="{path: 'oVendorListModel>isError' ,formatter: 'ns.BuyerRegistration.util.formatter.ErrorLine'}"
             tooltip="Error"
 			color="#FF0000" >
 		
@@ -654,13 +654,13 @@
                     <u:template>
                      <HBox>
                 
-                    <core:Icon
+                    <!-- <core:Icon
 			src="sap-icon://status-error"
 			visible="{path: 'oVendorListModel>BANK_COUNTRY' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorMandt'}"
             tooltip="Error"
 			color="#FF0000" >
 		
-		</core:Icon>
+		</core:Icon> -->
           <Text text="{oVendorListModel>BANK_COUNTRY}" class="cl_ListNameClass"/>
         </HBox>
                  
@@ -701,13 +701,13 @@
                     <u:template>
                       <HBox>
                 
-                    <core:Icon
+                    <!-- <core:Icon
 			src="sap-icon://status-error"
 			visible="{path: 'oVendorListModel>IBAN' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorMandt'}"
             tooltip="Error"
 			color="#FF0000" >
 		
-		</core:Icon>
+		</core:Icon> -->
           <Text text="{oVendorListModel>IBAN}" class="cl_ListNameClass"/>
         </HBox>
                    
