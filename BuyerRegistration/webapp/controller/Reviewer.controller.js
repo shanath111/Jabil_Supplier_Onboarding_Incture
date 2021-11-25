@@ -1984,9 +1984,9 @@ sap.ui.define([
                                                     }
                                                     that.fnLoadValidationDone(oView.getModel("JMEulaComments").getData().caseId);
                                                     oBusyDilog.close();
-                                                    if(data.mdgLogDto[0].responseReceived == "S"){
+                                                    if(data.mdgLogDto[0].checkStatusCode == "S"){
                                                         MessageBox.success(oi18n.getProperty("ValidationSuccessFull"));
-                                                    }else if(data.mdgLogDto[0].responseReceived == "W"){
+                                                    }else if(data.mdgLogDto[0].checkStatusCode == "W"){
                                                         MessageBox.warning(oi18n.getProperty("ValidationSuccessFullWarning"), {
                                                             actions: ["View Details", MessageBox.Action.CANCEL],
                                                             emphasizedAction: MessageBox.Action.OK,
