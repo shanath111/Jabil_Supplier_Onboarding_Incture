@@ -86,8 +86,31 @@
             <Input maxLength="31" class="inputStyle" value="{oLookUpModel>contact}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/comContactcontactEnb}" />
             </HBox>
            <HBox>  <Input maxLength="11" class="inputStyle" value="{oLookUpModel>extension}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/comContactextensionEnb}" />
-             <Button icon="sap-icon://copy" press="fnCopyContactData" visible="{oVisibilityModel>/copiedData}" type="Transparent" class="addMoreBtn" tooltip="You can use the copy (copy icon)/paste (paste icon) feature to help fill in the additional contacts. 
-Once you copy (copy icon) the row, then select the paste (paste icon) option, just above the list, to add to the other lines."/>
+             <Button icon="sap-icon://copy" press="fnCopyContactData" visible="{oVisibilityModel>/copiedData}" type="Transparent" class="addMoreBtn" >
+                <tooltip>
+                    <c:Tooltip 
+                    closeDuration="0"
+                    >
+                    <VBox class="sapUiTinyMargin">
+                        <HBox>
+                            <Text text="You can use the copy " class="sapUiTinyMarginEnd"/>
+                            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd"/>
+                            <Text text="/ " class="sapUiTinyMarginEnd"/>
+                            <core:Icon src="sap-icon://paste" class="sapUiTinyMarginEnd"/>
+                            <Text text="feature to help fill in the additional contacts. "/>
+                        </HBox>
+                        <HBox>
+                            <Text text="Once you copy  " class="sapUiTinyMarginEnd"/>
+                            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd"/>
+                            <Text text="the row, then select the paste " class="sapUiTinyMarginEnd"/>
+                            <core:Icon src="sap-icon://course-program" class="sapUiTinyMarginEnd"/>
+                            <Text text=" option, just above the list, to add to the other lines. "/>
+                        </HBox>
+
+                    </VBox>
+                    </c:Tooltip>
+                </tooltip>
+            </Button>
                 <Button icon="sap-icon://paste" press="fnPasteContactData" visible="{oVisibilityModel>/pasteData}" type="Transparent" class="addMoreBtn"/>
                 </HBox>
             </cells>
