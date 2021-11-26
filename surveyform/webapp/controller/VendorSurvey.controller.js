@@ -7083,7 +7083,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
             },
             // @ts-ignore
             //File Upload function with Date Input
-            fnOnFileUpload1: function (oEvt) {
+            fnOnFileUploadBP: function (oEvt) {
                 var that = this;
 
                 var fileUploadId = oEvt.oSource.sId.split("VendorSurvey--")[1];
@@ -7091,24 +7091,21 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
 
                 if (!that.oPopup) {
                     that.oPopup = sap.ui.xmlfragment(
-                        "com.jabil.surveyform.fragments.date", that);
+                        "com.jabil.surveyform.fragments.selectDocType", that);
                     oView.addDependent(that.oPopup);
                 }
                 that.oPopup.open();
                 that.oPopup.attachAfterClose(function (oEvt) {
-                    var expiryDate = this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].getValue();
-                    var reminderDays = Number(this.oPopup.getContent().getAggregation("content")[0].getItems()[1].getAggregation("items")[1].getValue());
+                    var docType = this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].getValue();
                     // @ts-ignore
-                    if (expiryDate && reminderDays) {
+                    if (docType) {
                         var oFormData = new FormData(),
                             fileUpload = oView.byId(fileUploadId),
                             domRef = fileUpload.getFocusDomRef(),
                             // @ts-ignore
                             file = domRef.files[0],
                             secName = that.oWizard.getCurrentStep().split("---VendorSurvey--")[1];
-                        if (secName == "bankInfo" && fileUploadId == "fileUploader_BIA") {
-                            secName = "bankIntermediateInfo";
-                        }
+                       
                         jQuery.sap.domById(fileUpload.getId() + "-fu").setAttribute("type", "file");
                         // @ts-ignore
                         oFormData.append("file", jQuery.sap.domById(fileUpload.getId() + "-fu").files[0]);
@@ -7118,8 +7115,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         oFormData.append("docInSection", secName);
                         oFormData.append("fileExt", file.name.split(".")[1]);
                         oFormData.append("type", "application/octet-stream");
-                        oFormData.append("expiryDate", expiryDate);
-                        oFormData.append("reminderDays", reminderDays);
+                        // oFormData.append("expiryDate", expiryDate);
+                        // oFormData.append("reminderDays", reminderDays);
+                        oFormData.append("docFormType", docType);
                         oFormData.append("overwriteFlag", false);
 
                         if (oView.getModel("oUserModel")) {
@@ -7130,6 +7128,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                             "fileExt": file.name.split(".")[1],
 
                             "name": file.name,
+                            "docType": docType
                         };
 
                         var _arrayTitle = that._fnGetUploaderId(fileUploadId);
@@ -7147,7 +7146,6 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                                 oAttachData.dmsDocumentId = data.dmsDocumentId;
                                 oAttachData.dmsFolderId = data.dmsFolderId;
                                 oAttachData.fileSize = data.fileSize;
-
                                 that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).push(oAttachData);
                                 that.getView().getModel("oAttachmentList").refresh(true);
 
@@ -7208,12 +7206,11 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
 
                             }
                         });
-                        this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].setValue("");
-                        this.oPopup.getContent().getAggregation("content")[0].getItems()[1].getAggregation("items")[1].setValue("");
+                       // this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].setValue("");
+                       
                     } else {
-                        this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].setValue("");
-                        this.oPopup.getContent().getAggregation("content")[0].getItems()[1].getAggregation("items")[1].setValue("");
-                    }
+                       // this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].setValue("");
+                                            }
                 });
             },
             fnOnFileUpload: function (oEvt) {
@@ -7306,6 +7303,12 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                                         //  oFormData.append("deletedBy", oView.getModel("oUserModel").getData().user.givenName);
                                         var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).findIndex(function (docId) { return docId.name == file.name });
                                         that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).splice(index, 1);
+                                    //     if(_arrayTitle === "bankINDArray" || _arrayTitle === "bankDArray"){
+                                    //         var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").findIndex(function (docId) { return docId.name == file.name });
+                                    //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").splice(index, 1);
+                                    //     var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").findIndex(function (docId) { return docId.name == file.name });
+                                    //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").splice(index, 1);
+                                    //    }
                                         that.getView().getModel("oAttachmentList").refresh(true);
                                         var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
                                         oBusyDialogFile.open();

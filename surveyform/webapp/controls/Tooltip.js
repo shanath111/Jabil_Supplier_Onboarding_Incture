@@ -30,7 +30,7 @@ sap.ui.define([
       onfocusin: function() {
         // Will be called on focus of this tooltip. But ...
         // Will be called on focus of the owner too, even if this is not rendered.
-        debugger;
+       // debugger;
         TooltipBase.prototype.onfocusin.apply(this, arguments);
        
       },
