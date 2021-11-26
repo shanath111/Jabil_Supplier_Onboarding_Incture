@@ -12,6 +12,7 @@ return Renderer.extend("com.jabil.surveyform.controls.TooltipRenderer", {
           .accessibilityState(control, { role: "tooltip" })
           .style("max-width", "95vw")
           .style("width", control.getWidth())
+          .style("background-color", "#fff")
           .openEnd()
           .renderControl(child)
           .close("div");

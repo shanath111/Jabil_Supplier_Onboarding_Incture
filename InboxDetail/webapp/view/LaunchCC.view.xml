@@ -17,7 +17,13 @@
 							</Toolbar>
 						</headerToolbar>
  	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
-								
+							<VBox class="VRVboxStyle1">	
+								<Label text="{i18n>BPCSiteName}" required="true" class="cl_VRLablCls "></Label>
+                                <ComboBox width="95%" items="{oBPLookUpMdl>/SiteName1}"  autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter1>/siteName}"
+                                    class="cl_VRInputCls"  >
+                                    <core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+                                </ComboBox>
+							</VBox>	
                              <VBox class="VRVboxStyle1">
 								
 								<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls "></Label>
@@ -35,8 +41,21 @@
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
 							</VBox>
-                           
-                              
+                           <VBox class="VRVboxStyle1">	
+								<Label text="{i18n>BPCDocName}" required="true" class="cl_VRLablCls "></Label>
+                                <ComboBox width="95%" items="{oBPLookUpMdl>/DocName1}"  autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter1>/DocName}"
+                                    class="cl_VRInputCls"  >
+                                    <core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+                                </ComboBox>
+							</VBox>	
+                            <VBox class="VRVboxStyle1">	
+								<Label text="{i18n>BPCDocLink}" required="true" class="cl_VRLablCls "></Label>
+                                <Input value="{JMFilter1>/DocLink}" editable="{oConfigMdl>/screenEditable}" class="cl_VRInputCls"></Input>
+							</VBox>	
+                            <VBox class="VRVboxStyle1">	
+								<Label text="{i18n>BPCAffirmationStatement}" required="true" class="cl_VRLablCls "></Label>
+                                <Input value="{JMFilter1>/AffirmationStatement}" editable="{oConfigMdl>/screenEditable}" class="cl_VRInputCls"></Input>
+							</VBox>	  
 							</l:Grid>
                             
 						
@@ -51,7 +70,13 @@
 							</Toolbar>
 						</headerToolbar>
  	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
-								
+							<VBox class="VRVboxStyle1">	
+								<Label text="{i18n>BPCSiteName}" required="false" class="cl_VRLablCls "></Label>
+                                <ComboBox width="95%" items="{oBPLookUpMdl>/SiteName}"  autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter>/siteName}"
+                                    class="cl_VRInputCls"  >
+                                    <core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+                                </ComboBox>
+							</VBox>		
                             <VBox class="VRVboxStyle1">
 								
 								<Label text="{i18n>BPCCompanyCode}" required="false" class="cl_VRLablCls "></Label>
@@ -69,13 +94,22 @@
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
 							</VBox>
-                              
+                            <VBox class="VRVboxStyle1">	
+								<Label text="{i18n>BPCDocName}" required="false" class="cl_VRLablCls "></Label>
+                                <ComboBox width="95%" items="{oBPLookUpMdl>/DocName}"  autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter>/DocName}"
+                                    class="cl_VRInputCls"  >
+                                    <core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+                                </ComboBox>
+							</VBox>  
                               
                           
 							</l:Grid>
                             <Table class="sapUiSizeCompact cl_BPListTable"   alternateRowColors="true" items="{JMCompSearchResult>/}">
 										
 										<columns>
+                                            <Column >
+												<Label text="{i18n>BPCSiteName}" class="cl_VRLablCls "></Label>
+											</Column>
 											<Column >
 												<Label text="{i18n>BPECompanyCode}" class="cl_VRLablCls "></Label>
 											</Column>
@@ -89,9 +123,18 @@
                                                <Column >
 												<Label text="{i18n>BPEPurchasingOrgDesc}" class="cl_VRLablCls "></Label>
 											</Column>
-                                               <Column width="6rem">
-											
+                                            <Column >
+												<Label text="{i18n>BPCDocName}" class="cl_VRLablCls "></Label>
 											</Column>
+                                            <Column >
+												<Label text="{i18n>BPCDocLink}" class="cl_VRLablCls "></Label>
+											</Column>
+                                            <Column >
+												<Label text="{i18n>BPCAffirmationStatement}" class="cl_VRLablCls "></Label>
+											</Column>
+                                               <!-- <Column width="6rem">
+											
+											</Column> -->
                                                <Column width="6rem" >
 												
 											</Column>
@@ -101,6 +144,7 @@
 										<items>
 											<ColumnListItem press="fnCaseListPressNav"  type="Active"  >
 												<cells>
+                                                    <Text text="{JMCompSearchResult>siteName}" class="cl_ListNameClass"></Text>
 													<Text text="{JMCompSearchResult>companyCode}" class="cl_ListNameClass"></Text>
 												 <Text text="{JMCompSearchResult>companyCodeDescription}"  wrapping="false" class="cl_ListNameClass"></Text>
                                                   <Text text="{JMCompSearchResult>purchasingOrganisation}"  wrapping="false" class="cl_ListNameClass"></Text>
@@ -110,6 +154,10 @@
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox> -->
 													<Text text="{JMCompSearchResult>purchasingOrganisationDescription}" class="cl_ListNameClass"></Text>
+                                                    <Text text="{JMCompSearchResult>documentName}" class="cl_ListNameClass"></Text>
+                                                    <Link text="{JMCompSearchResult>documentLink}" href="{JMCompSearchResult>documentLink}" wrapping="false" ></Link>
+                                                    <Text text="{JMCompSearchResult>affirmationStatement}" class="cl_ListNameClass"></Text>
+                                                    
 														<!-- <Button text="{i18n>Update}"  type="Accept" press="fnUpdateCC" class="cl_BPCDraft sapUiSmallMarginEnd sapUiSizeCompact" /> -->
                                                     <Button text="{i18n>Delete}" press="fnDeleteCC" type="Reject" class="sapUiSmallMarginBegin  cl_BPCDraft1 sapUiSizeCompact" />
 			
