@@ -85,9 +85,23 @@ sap.ui.define([
                     }
                     oView.getModel("oEnableMdl").refresh();
 
+                    // this.byId("copyContactInfo").addEventDelegate({
+                    //     onmouseover: this._showPopover,
+                    //     onmouseout: this._clearPopover,
+                    //   }, this);
             },
 
-
+            // _showPopover: function () {
+            //     this._timeId = setTimeout(() => {
+            //       this.byId("popover").openBy(this.byId("copyContactInfo"));
+            //     }, 500);
+            //   },
+          
+            // _clearPopover: function () {
+            //     clearTimeout(this._timeId);
+            //     this.byId("popover").close();
+            //   },
+          
             _fnHandleRouteMatched: function (oEvent) {
                 var that = this;
                 var taskId = oEvent.getParameter("arguments").contextPath;

@@ -45,12 +45,45 @@ sap.ui.define([
                 };
                 oJsonFilter.setData(temp);
                 oView.setModel(oJsonFilter, "JMFilter1");
+                this.fnLoadSiteName();
+                this.fnLoadSiteName1();
                 this.fnLoadCompanyCode();
                 this.fnLoadCompanyCode1();
-
+                this.fnLoadDocName();
+                this.fnLoadDocName1();
 
 
             },
+
+            fnLoadSiteName: function() {
+                var oModel = new JSONModel();
+                var sUrl = "/InboxDetail/plcm_portal_services/ccpo/siteNames";
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/SiteName", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
+            },
+
+            fnLoadSiteName1: function() {
+                var oModel = new JSONModel();
+                var sUrl = "/InboxDetail/plcm_portal_services/ccpo/siteNames";
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/SiteName1", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
+            },
+
+
             fnLoadCompanyCode: function () {
                 var oModel = new JSONModel();
                 var sUrl = "/InboxDetail/plcm_portal_services/api/v1/reference-data/company-codes";
@@ -167,6 +200,34 @@ sap.ui.define([
                 });
 
             },
+
+            fnLoadDocName: function() {
+                var oModel = new JSONModel();
+                var sUrl = "/InboxDetail/plcm_portal_services/ccpo/documentNames";
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/DocName", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
+            },
+            fnLoadDocName1: function() {
+                var oModel = new JSONModel();
+                var sUrl = "/InboxDetail/plcm_portal_services/ccpo/documentNames";
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/DocName1", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
+            },
+
             fnLoadCountry: function () {
                 var oModel = new JSONModel();
                 var sUrl = "/InboxDetail/plcm_reference_data/api/v1/reference-data/countries";
@@ -230,6 +291,9 @@ sap.ui.define([
                     var oPayload = {
                         "companyCode": oView.getModel("JMFilter").getData().companyCode,
                         "purchasingOrganisation": oView.getModel("JMFilter").getData().purchasingOrganisation,
+                        "siteName":oView.getModel("JMFilter").getData().siteName,
+                        "documentName":oView.getModel("JMFilter").getData().DocName
+
                     }
 
                     oModel.loadData(sUrl, JSON.stringify(
@@ -285,10 +349,22 @@ sap.ui.define([
             },
             fnSubmitCCPO: function () {
                 var vError = false;
+                if (oView.getModel("JMFilter1").getData().siteName == "") {
+                    vError = true
+                }
                 if (oView.getModel("JMFilter1").getData().companyCode == "") {
                     vError = true
                 }
                 if (oView.getModel("JMFilter1").getData().purchasingOrganisation == "") {
+                    vError = true
+                }
+                if (oView.getModel("JMFilter1").getData().DocName == "") {
+                    vError = true
+                }
+                if (oView.getModel("JMFilter1").getData().DocLink == "") {
+                    vError = true
+                }
+                if (oView.getModel("JMFilter1").getData().AffirmationStatement == "") {
                     vError = true
                 }
 
@@ -316,6 +392,10 @@ sap.ui.define([
                                     "purchasingOrganisation": oView.getModel("JMFilter1").getData().companyCode,
                                     "companyCodeDescription": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode1, oView.getModel("JMFilter1").getData().companyCode, "CompanyCode"),
                                     "purchasingOrganisationDescription": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurOrg1, oView.getModel("JMFilter1").getData().purchasingOrganisation, "PurchOrg"),
+                                    "siteName": oView.getModel("JMFilter1").getData().siteName,
+                                    "documentName": oView.getModel("JMFilter1").getData().DocName,
+                                    "documentLink": oView.getModel("JMFilter1").getData().DocLink,
+                                    "affirmationStatement": oView.getModel("JMFilter1").getData().AffirmationStatement,
                                     "createdOn": new Date(),
                                     //"updatedOn": null,
                                     "createdBy": vBuyer

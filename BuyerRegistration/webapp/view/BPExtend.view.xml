@@ -186,43 +186,39 @@
               
                 class="cl_UITableExtn"
 				ariaLabelledBy="title">
-				<u:extension>
-			
-											<OverflowToolbar class="VRTableTBHeight">
-												<Text text="{oVendorListModel>/headerText}"/>
-												<ToolbarSpacer/>
-                                               
-											
-										        	 <Button text="{i18n>BPNewBuisnessPartner}" enabled="{=${oConfigMdl>/searchEnable} &amp;&amp;${oConfigMdl>/createNewBtn}}" press="fnNewBuinessPartner" class="cl_VRActnBtnApply sapUiSizeCompact"  tooltip="{i18n>SearchTooltip}" />
-			<Button text="{i18n>BPSendToGBS}" visible="false"   press="fnSendToGBS" enabled="{oConfigMdl>/searchEnableGBS}" class="cl_VRActnBtnApply sapUiTinyarginBegin sapUiSizeCompact" />
-              	 <Button icon="sap-icon://action-settings"  press="fnPersonaliseColumns" class="cl_VRActnBtnApply sapUiSizeCompact"  />
-										</OverflowToolbar>
-				</u:extension>
-				<u:columns>
+				    <u:extension>
+                        <OverflowToolbar class="VRTableTBHeight">
+                            <Text text="{oVendorListModel>/headerText}"/>
+                            <ToolbarSpacer/>
+                                <Button text="{i18n>BPNewBuisnessPartner}" enabled="{=${oConfigMdl>/searchEnable} &amp;&amp;${oConfigMdl>/createNewBtn}}" press="fnNewBuinessPartner" class="cl_VRActnBtnApply sapUiSizeCompact"  tooltip="{i18n>SearchTooltip}" />
+			                    <Button text="{i18n>BPSendToGBS}" visible="false"   press="fnSendToGBS" enabled="{oConfigMdl>/searchEnableGBS}" class="cl_VRActnBtnApply sapUiTinyarginBegin sapUiSizeCompact" />
+              	                <Button icon="sap-icon://action-settings"  press="fnPersonaliseColumns" class="cl_VRActnBtnApply sapUiSizeCompact"  />
+						</OverflowToolbar>
+				    </u:extension>
+				    <u:columns>
                    
-                <!-- <u:Column width="3rem">
-						<CheckBox  id="id_SelectAllCheck" visible="false" class="sapUiSizeCompact cl_ChkBoxHeight"  select="fnSelectAllTable" />
-						<u:template>
-							<CheckBox select="fnHadleTableSelection"  selected="{oVendorListModel>isSelect}" />
-						</u:template>
-					</u:Column> -->
-					<u:Column width="16rem" sortProperty="VENDOR_NAME" filterProperty="VENDOR_NAME" visible="{path: 'personalizationModel>/columnList/7/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEVendorName}" class="cl_VRLablCls "/>
-                    <u:template>
-                    	<HBox>
-                
-                    <core:Icon
-			src="sap-icon://status-error"
-			visible="{path: 'oVendorListModel>isError' ,formatter: 'ns.BuyerRegistration.util.formatter.ErrorLine'}"
-            tooltip="Error"
-			color="#FF0000" >
-		
-		</core:Icon>
-          <Text text="{oVendorListModel>VENDOR_NAME}" class="cl_ListNameClass sapUiTinyMarginBegin"/> 
-        </HBox>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="7rem" sortProperty="VENDOR_NUMBER" filterProperty="VENDOR_NUMBER" visible="{path: 'personalizationModel>/columnList/4/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                        <!-- <u:Column width="3rem">
+                                <CheckBox  id="id_SelectAllCheck" visible="false" class="sapUiSizeCompact cl_ChkBoxHeight"  select="fnSelectAllTable" />
+                                <u:template>
+                                    <CheckBox select="fnHadleTableSelection"  selected="{oVendorListModel>isSelect}" />
+                                </u:template>
+                            </u:Column> -->
+					    <u:Column width="16rem" sortProperty="VENDOR_NAME" filterProperty="VENDOR_NAME" visible="{path: 'personalizationModel>/columnList/7/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                            <Label text="{i18n>BPEVendorName}" class="cl_VRLablCls "/>
+                            <u:template>
+                                <HBox>
+                                    <core:Icon
+                                        src="sap-icon://status-error"
+                                        visible="{path: 'oVendorListModel>isError' ,formatter: 'ns.BuyerRegistration.util.formatter.ErrorLine'}"
+                                        tooltip="Error"
+                                        color="#FF0000" >
+            
+                                    </core:Icon>
+                                    <Text text="{oVendorListModel>VENDOR_NAME}" class="cl_ListNameClass sapUiTinyMarginBegin"/> 
+                                </HBox>
+                            </u:template>
+                        </u:Column>
+                        <u:Column width="7rem" sortProperty="VENDOR_NUMBER" filterProperty="VENDOR_NUMBER" visible="{path: 'personalizationModel>/columnList/4/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEVendorNumber}" class="cl_VRLablCls "/>
                     <u:template>
                     <Text text="{oVendorListModel>VENDOR_NUMBER}" class="cl_ListNameClass"/>

@@ -2340,6 +2340,7 @@ sap.ui.define([
                             var oVendorListJson = new sap.ui.model.json.JSONModel();
                             oVendorListJson.setData(temp);
                             that.getView().setModel(oVendorListJson, "oVendorListModel");
+                            
                             if (oView.getModel("oVendorListModel").getData().currentPage == 1) {
                                 if (temp.data.length > 1) {
                                     MessageBox.information(oi18n.getProperty("DuplicateInfoText"));

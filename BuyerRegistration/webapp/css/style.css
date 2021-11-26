@@ -2,10 +2,10 @@
 .cl_VRPageBackGrnd {
     background: #F0F2F4 0% 0% no-repeat padding-box !important;
 }
-.errorColorLine {
+.errorColorLine .sapUiTableCell {
     border-bottom: 1px solid #FF0000 !important;
 }
-.whiteColorLine {
+.whiteColorLine .sapUiTableCell{
     border-bottom: 1px solid #fdfdaa;
 }
 .cl_BuyerTitle{
