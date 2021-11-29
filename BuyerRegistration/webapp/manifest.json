@@ -173,7 +173,7 @@
                 },
                 {
                     "name": "BuyerRem",
-                    "pattern": "BuyerRem/{contextPath}",
+                    "pattern": "BuyerRem/{Name}/{contextPath}",
                     "target": "BuyerRem"
                 }
             ],

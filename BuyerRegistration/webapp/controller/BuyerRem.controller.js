@@ -31,14 +31,21 @@ sap.ui.define([
             fnBuyerReminderval: function (oEvent) {
                 oView.getModel("oBPLookUpMdl").setSizeLimit(10000);
                 var vContext = {
-                    "Id": oEvent.getParameter("arguments").contextPath
+                    "Id": oEvent.getParameter("arguments").contextPath,
+                    "Name":oEvent.getParameter("arguments").Name
                 };
                 //   that.fnClearData();
                 that.fnSetConfigModel(vContext);
             },
             fnSetConfigModel: function (oContext) {
 
-
+                if(oContext.Name == "EulaReject"){
+                    oView.getModel("oConfigMdl").getData().BuyerFollowUpVis = false;
+                    oView.getModel("oConfigMdl").getData().EulaRejectVis = true;
+                }else{
+                    oView.getModel("oConfigMdl").getData().BuyerFollowUpVis = true;
+                    oView.getModel("oConfigMdl").getData().EulaRejectVis = false;
+                }
                 oView.getModel("oConfigMdl").getData().contextPath = oContext;
                 oView.getModel("oConfigMdl").refresh();
                 this.fnLoadTaskDetail(oContext.Id);
@@ -79,6 +86,12 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
+                        if (oEvent.getSource().getData().comments) {
+                            oView.getModel("oConfigMdl").getData().CommentsVis = true;
+                            oView.getModel("oConfigMdl").getData().comments = oEvent.getSource().getData().comments;
+                        }else{
+                            oView.getModel("oConfigMdl").getData().CommentsVis = false;
+                        }
                        if (oEvent.getSource().getData().isTaskCompleted == true) {
                             oView.getModel("oConfigMdl").getData().isClaimed = false;
                         } else {
@@ -90,20 +103,33 @@ sap.ui.define([
                         if (oView.getModel("oConfigMdl").getData().isClaimed == false) {
                             oView.getModel("oConfigMdl").getData().defaultEnable = false;
                         }
+                        oView.getModel("oConfigMdl").getData().isClaimed = true;
                         oView.getModel("oConfigMdl").getData().validationMessage = oEvent.getSource().getData().validationMessage;
                         oView.getModel("oConfigMdl").refresh();
                     }
                 });
             },
             fnApproveSub: function (vBtn) {
-                if(oView.byId("id_ConfirmFollowUp").getSelected() == false){
-                       var sErMsg = oi18n.getProperty("pleaseConfirmCheckBox");
-                                    MessageBox.show(sErMsg, {
-                                        icon: MessageBox.Icon.ERROR,
-                                        title: "Error"
-                                    });
-                                    return;
+                if(oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaReject"){
+                    if(oView.byId("id_ConfirmFollowUp1").getSelected() == false){
+                        var sErMsg = oi18n.getProperty("pleaseConfirmCheckBox");
+                                     MessageBox.show(sErMsg, {
+                                         icon: MessageBox.Icon.ERROR,
+                                         title: "Error"
+                                     });
+                                     return;
+                 }
+                }else{
+                    if(oView.byId("id_ConfirmFollowUp").getSelected() == false){
+                        var sErMsg = oi18n.getProperty("pleaseConfirmCheckBox");
+                                     MessageBox.show(sErMsg, {
+                                         icon: MessageBox.Icon.ERROR,
+                                         title: "Error"
+                                     });
+                                     return;
+                 }
                 }
+              
                 var vConfirmTxt, vAprActn, vSccuessTxt;
                 vBtn = "AP";
                 if (vBtn == "AP") {
