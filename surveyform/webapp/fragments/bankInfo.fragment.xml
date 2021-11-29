@@ -206,7 +206,7 @@
             <VBox class="sapUiSizeCompact">
            <Button enabled="false" icon="sap-icon://add" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addMore}:${oi18n_En>addMore}+ '/&#160;' +${i18n>addMore}}" type="Transparent" iconFirst="true" press="" class="addMoreBtn"/></VBox>
 		 <VBox>
-          <VBox class="fontStyle sapUiSizeCompact">
+          <VBox class="fontStyle sapUiSizeCompact" visible="{oUserModel>/isNew}">
           <CheckBox enabled="{oVisibilityModel>/_FinanceReviewEdit}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/bankDto/isIntermediateBankProvided}" class=" sapUiTinyMarginTop fontStyle inputStyle" />
 			<HBox>	<u:FileUploader  visible="{=${oDataModel>/bankDto/isIntermediateBankProvided} === true}" maximumFileSize="10" id="fileUploader_BIA" buttonOnly="true" iconOnly="true" icon="sap-icon://attachment" multiple="true"
 					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{oVisibilityModel>/_FinanceReviewEdit}"
@@ -222,7 +222,7 @@
                      <Label class="sapUiSmallMarginTop" required="{=${oDataModel>/bankDto/isIntermediateBankProvided} === true}"/>
             <Text wrapping="true" class="sapUiSmallMarginTop sapUiTinyMarginbegin" visible="{=${oDataModel>/bankDto/isIntermediateBankProvided} === true}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBankAttachVerbiage}:${oi18n_En>interMBankAttachVerbiage}+ '&#10;' +${i18n>interMBankAttachVerbiage}}"/>
               </HBox></VBox>
-			 <HBox wrap="Wrap">	
+			 <HBox wrap="Wrap" visible="{oUserModel>/isNew}">	
            
   <g:GridList width="auto" items="{oAttachmentList>/0/bankINDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiSmallMarginBegin">
 					<g:customLayout>

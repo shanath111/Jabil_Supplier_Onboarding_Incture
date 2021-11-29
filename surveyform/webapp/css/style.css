@@ -849,6 +849,12 @@ outline: none !important;
 .attachmentWithoutBorder .sapUiFupInputMask{
     border: 0px !important;
 }
+.attachmentWithBorderBP>span {
+    border: 2px solid red !important;
+}
+.attachmentWithoutBorderBP>span {
+    border: 0px !important;
+}
 .hideWizard .sapMWizardStepContainer {
     overflow-x: hidden !important;
     overflow-y: hidden !important;
