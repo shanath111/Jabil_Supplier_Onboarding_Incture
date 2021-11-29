@@ -29,7 +29,7 @@
 							</VBox>
                              <VBox class="VRVboxStyle1">
 									<Label text="{i18n>TaxCategory}"  required="true" class="cl_VRLablCls "></Label>
-										<ComboBox  items="{oBPLookUpMdl>/taxCategory}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
+										<ComboBox  items="{oBPLookUpMdl>/taxCategory}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}" change="fnChangeTaxCategory"
 											filterSecondaryValues="true"  showSecondaryValues="true" selectedKey="{JMFilter>/taxCategory}"
 											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}" >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
@@ -90,7 +90,7 @@
 							</VBox>
                              <VBox class="VRVboxStyle1">
 									<Label text="{i18n>TaxCategory}" required="true" class="cl_VRLablCls "></Label>
-										<ComboBox  items="{oBPLookUpMdl>/taxCategory1}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
+										<ComboBox  items="{oBPLookUpMdl>/taxCategory1}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}" change="fnChangeTaxCategory"
 											filterSecondaryValues="true"  showSecondaryValues="true" selectedKey="{JMFilter1>/taxCategory}"
 											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}" >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>

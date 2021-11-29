@@ -162,7 +162,7 @@ sap.ui.define([
 		_doNavigate: function (sRouteName, oParams) {
 			this.oAppModel.setProperty("/transitionWait", true);
 			var router = sap.ui.core.UIComponent.getRouterFor(this);
-			router.navTo(sRouteName, oParams, false);
+			router.navTo(sRouteName, oParams, true);
 		},
 		/**
 		 * Event handler  for navigating back.
