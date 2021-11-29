@@ -159,10 +159,15 @@ sap.ui.define([
 		 * @public
 		 * @returns null
 		 */
-		_doNavigate: function (sRouteName, oParams) {
+		_doNavigate: function (sRouteName, oParams,vcond) {
 			this.oAppModel.setProperty("/transitionWait", true);
 			var router = sap.ui.core.UIComponent.getRouterFor(this);
-			router.navTo(sRouteName, oParams, true);
+            if( sRouteName == "UnifiedInbox"){
+                vcond = true;
+            }else{
+                vcond = false; 
+            }
+			router.navTo(sRouteName, oParams, vcond);
 		},
 		/**
 		 * Event handler  for navigating back.

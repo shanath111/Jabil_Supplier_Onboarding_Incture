@@ -1945,7 +1945,7 @@ sap.ui.define([
 			}
 
 			if (this.getModel("oAdvanceFilterModel").getProperty("/customTileClicked")) {
-				this._doNavigate("UnifiedInbox", {});
+				this._doNavigate("UnifiedInbox", {},true);
 
 			} else {
 				oAppModel.setProperty("/graphClicked", false);
@@ -1958,7 +1958,7 @@ sap.ui.define([
 						this.setCurrentPage("MyInbox", "MyInbox", "My Task", true, true);
 					}
 
-					this._doNavigate("UnifiedInbox", {});
+					this._doNavigate("UnifiedInbox", {},true);
 				} else {
 					sap.ui.core.UIComponent.getRouterFor(this).getView('oneapp.incture.workbox.view.UnifiedInbox').getController().onClickFilterDetail();
 					if (oAppModel.getProperty("/WB_TASK_BOARD_VIEW")) {
@@ -3581,7 +3581,7 @@ sap.ui.define([
 		onOpenCreateTaskFragment: function () {
 			this.oAppModel.setProperty("/draftEventId", "");
 			this.oAppModel.setProperty("/currentView", "CreateTask");
-			this._doNavigate("CreateTask", {});
+			this._doNavigate("CreateTask", {},true);
 		},
 
 		//validation of new task creation and service call
@@ -3714,7 +3714,7 @@ sap.ui.define([
 					} else if (that.oAppModel.getProperty("/currentViewPage") === "CreatedTasks") {
 						that.setCurrentPage("CreatedTasks", "CreatedTasks", "Created Tasks", true, true);
 					}
-					that._doNavigate("UnifiedInbox", {});
+					that._doNavigate("UnifiedInbox", {},true);
 				},
 				function (clearTabPress) {});
 		},
@@ -3777,7 +3777,7 @@ sap.ui.define([
 				} else if (this.oAppModel.getProperty("/currentViewPage") === "CreatedTasks") {
 					this.setCurrentPage("CreatedTasks", "CreatedTasks", "Created Tasks", true, true);
 				}
-				this._doNavigate("UnifiedInbox", {});
+				this._doNavigate("UnifiedInbox", {},true);
 			}
 		},
 
