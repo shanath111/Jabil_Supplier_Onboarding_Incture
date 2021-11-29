@@ -671,6 +671,7 @@ sap.ui.define([
                                                     "oCountryC": oEvent.getSource().oData.comInfoDto.address[0].postal[0].countryCode,
                                                     "oRegionC": oEvent.getSource().oData.comInfoDto.address[0].postal[0].regionCode,
                                                     "oTeleNum": oEvent.getSource().oData.comInfoDto.address[0].postal[0].telephone[0].telephoneNum,
+                                                    "oTeleNumCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].telephone[0].telephoneCountryCode,
                                                     "oFaxNum": oEvent.getSource().oData.comInfoDto.address[0].postal[0].fax[0].faxNum,
                                                     "oPostOffBox": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBox,
                                                     "oPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBoxZipCode,
@@ -694,6 +695,7 @@ sap.ui.define([
                                                 "rCountryC": oEvent.getSource().oData.comInfoDto.address[1].postal[0].countryCode,
                                                 "rRegionC": oEvent.getSource().oData.comInfoDto.address[1].postal[0].regionCode,
                                                 "rTeleNum": oEvent.getSource().oData.comInfoDto.address[1].postal[0].telephone[0].telephoneNum,
+                                                "rTeleNumCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].telephone[0].telephoneCountryCode,
                                                 "rFaxNum": oEvent.getSource().oData.comInfoDto.address[1].postal[0].fax[0].faxNum,
                                                 "rPostOffBox": oEvent.getSource().oData.comInfoDto.address[1].postal[0].postOfficeBox,
                                                 "rPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[1].postal[0].postOfficeBoxZipCode
@@ -819,6 +821,7 @@ sap.ui.define([
                                                     "oRegionC": oEvent.getSource().oData.comInfoDto.address[0].postal[0].regionCode,
 
                                                     "oTeleNum": oEvent.getSource().oData.comInfoDto.address[0].postal[0].telephone[0].telephoneNum,
+                                                    "oTeleNumCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].telephone[0].telephoneCountryCode,
                                                     "oFaxNum": oEvent.getSource().oData.comInfoDto.address[0].postal[0].fax[0].faxNum,
                                                     "oPostOffBox": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBox,
                                                     "oPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBoxZipCode,
@@ -839,6 +842,7 @@ sap.ui.define([
                                                 "rCountry": "",
                                                 "rRegion": "",
                                                 "rTeleNum": "",
+                                                "rTeleNumCode": "",
                                                 "rFaxNum": "",
                                                 "rPostOffBox": "",
                                                 "rPostOffZipCode": ""
@@ -915,6 +919,7 @@ sap.ui.define([
                                                     "oCountry": "",
                                                     "oRegion": "",
                                                     "oTeleNum": "",
+                                                    "oTeleNumCode":"",
                                                     "oFaxNum": "",
                                                     "oPostOffBox": "",
                                                     "oPostOffZipCode": "",
@@ -938,6 +943,7 @@ sap.ui.define([
                                                 "rCountryC": oEvent.getSource().oData.comInfoDto.address[0].postal[0].countryCode,
                                                 "rRegionC": oEvent.getSource().oData.comInfoDto.address[0].postal[0].regionCode,
                                                 "rTeleNum": oEvent.getSource().oData.comInfoDto.address[0].postal[0].telephone[0].telephoneNum,
+                                                "rTeleNumCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].telephone[0].telephoneCountryCode,
                                                 "rFaxNum": oEvent.getSource().oData.comInfoDto.address[0].postal[0].fax[0].faxNum,
                                                 "rPostOffBox": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBox,
                                                 "rPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBoxZipCode,
@@ -1015,6 +1021,7 @@ sap.ui.define([
                                                     "oCountryC": "",
                                                     "oRegionC": "",
                                                     "oTeleNum": "",
+                                                    "oTeleNumCode": "",
                                                     "oFaxNum": "",
                                                     "oPostOffBox": "",
                                                     "oPostOffZipCode": "",
@@ -1037,6 +1044,7 @@ sap.ui.define([
                                                 "rCountryC": "",
                                                 "rRegionC": "",
                                                 "rTeleNum": "",
+                                                "rTeleNumCode": "",
                                                 "rFaxNum": "",
                                                 "rPostOffBox": "",
                                                 "rPostOffZipCode": ""
@@ -1158,6 +1166,7 @@ sap.ui.define([
                                         "oCountryC": "",
                                         "oRegionC": "",
                                         "oTeleNum": "",
+                                        "oTeleNumCode":"",
                                         "oFaxNum": "",
                                         "oPostOffBox": "",
                                         "oPostOffZipCode": "",
@@ -1180,6 +1189,7 @@ sap.ui.define([
                                     "rCountryC": "",
                                     "rRegionC": "",
                                     "rTeleNum": "",
+                                    "rTeleNumCode": "",
                                     "rFaxNum": "",
                                     "rPostOffBox": "",
                                     "rPostOffZipCode": "",
@@ -2969,7 +2979,12 @@ var aError = false;
                             iError = true;
 
                         }
+                        if (!oView.getModel("companyInfoModel").getData().oTeleNumCode || spaceRegex.test(oView.getModel("companyInfoModel").getData().oTeleNumCode)) {
+                            oView.getModel("oErrorModel").getData().oFATeleNumCodeE = "Error";
+                            oView.getModel("oErrorModel").getData().oFATeleNumCodeM = oi18n.getText("mandatoryCountryConatactCode");;
 
+                            iError = true;
+                        }
                         if (!oView.getModel("companyInfoModel").getData().oTeleNum || spaceRegex.test(oView.getModel("companyInfoModel").getData().oTeleNum)) {
                             oView.getModel("oErrorModel").getData().oFATeleNumE = "Error";
                             oView.getModel("oErrorModel").getData().oFATeleNumM = oi18n.getText("mandatoryTel");
@@ -3128,6 +3143,11 @@ var aError = false;
                             oView.getModel("oErrorModel").getData().rTACounE = "Error";
                             oView.getModel("oErrorModel").getData().rTACounM = oi18n.getText("mandatoryCountry");
 
+                            iError = true;
+                        }
+                        if (!oView.getModel("remitModel").getData().rTeleNumCode || spaceRegex.test(oView.getModel("remitModel").getData().rTeleNumCode)) {
+                            oView.getModel("oErrorModel").getData().rTATeleNumCodeE = "Error";
+                            oView.getModel("oErrorModel").getData().rTATeleNumCodeM = oi18n.getText("mandatoryCountryConatactCode");
                             iError = true;
                         }
                         if (!oView.getModel("remitModel").getData().rTeleNum || spaceRegex.test(oView.getModel("remitModel").getData().rTeleNum)) {
@@ -9113,7 +9133,8 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                                     "telephone": [
                                         {
                                             "telephoneId": "",
-                                            "telephoneNum": oView.getModel("companyInfoModel").getData().oTeleNum
+                                            "telephoneNum": oView.getModel("companyInfoModel").getData().oTeleNum,
+                                            "telephoneCountryCode":oView.getModel("companyInfoModel").getData().oTeleNumCode
                                         }
                                     ]
                                 }
@@ -9216,7 +9237,8 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                                     "telephone": [
                                         {
                                             "telephoneId": "",
-                                            "telephoneNum": oView.getModel("remitModel").getData().rTeleNum
+                                            "telephoneNum": oView.getModel("remitModel").getData().rTeleNum,
+                                            "telephoneCountryCode":oView.getModel("companyInfoModel").getData().rTeleNumCode
                                         }
                                     ]
                                 }

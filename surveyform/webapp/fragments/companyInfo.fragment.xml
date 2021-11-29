@@ -96,9 +96,21 @@
             <!-- <html:input type="text" id="iState" class="cl_HTMLInput" /> -->
          </VBox>
          <VBox class="fontStyle">
+									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
+									 <VBox>
+										<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="false" items="{oLookUpModel>/countryContactCode}" value="{oVisibilityModel>/OFAContactCode}" selectedKey="{companyInfoModel>/oTeleNumCode}" class="inputStyle" valueState="{oErrorModel>/oFATeleNumCodeE}" valueStateText="{oErrorModel>/oFATeleNumCodeM}" change="fnLiveValueCountryCodeChange">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                        </ComboBox>
+                                    </VBox>
+                                  <layoutData>
+                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                       </VBox>
+         <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>teleNum}:${oi18n_En>teleNum}+ '&#xA;' +${i18n>teleNum}}" wrapping="true" required="true" />
             <Input maxLength="31" value="{companyInfoModel>/oTeleNum}" valueState="{oErrorModel>/oFATeleNumE}" valueStateText="{oErrorModel>/oFATeleNumM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle" />
-           
+           <layoutData>
+                                  <l:GridData spanM="2" spanL="2" spanXL="1"></l:GridData></layoutData>
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>faxNum}:${oi18n_En>faxNum}+ '&#xA;'+${i18n>faxNum}}" wrapping="true" />
@@ -203,10 +215,23 @@
 									 <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
             <!-- <html:input type="text" id="iStateR" value="" class="textInput cl_HTMLInput" /> -->
          </VBox>
+          <VBox class="fontStyle">
+									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
+									 <VBox>
+										<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="false" items="{oLookUpModel>/countryContactCode}" value="{oVisibilityModel>/RTAContactCode}" selectedKey="{remitModel>/rTeleNumCode}" enabled="{oEnableMdl>/rTeleNumEnb}"  class="inputStyle" valueState="{oErrorModel>/rTATeleNumCodeE}" valueStateText="{oErrorModel>/rTATeleNumCodeM}" change="fnLiveValueCountryCodeChange">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                        </ComboBox>
+                                    </VBox>
+                                  <layoutData>
+                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                       </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>teleNum}:${oi18n_En>teleNum}+'&#xA;'+${i18n>teleNum}}" wrapping="true" required="true" />
             <Input maxLength="31" value="{remitModel>/rTeleNum}" enabled="{oEnableMdl>/rTeleNumEnb}" valueState="{oErrorModel>/rTATeleNumE}" valueStateText="{oErrorModel>/rTATeleNumM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle" />
             <!-- <html:input type="text" id="iTeleNumR"   class="cl_HTMLInput" ></html:input>  -->
+            <layoutData>
+                                  <l:GridData spanM="2" spanL="2" spanXL="1"></l:GridData></layoutData>
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>faxNum}:${oi18n_En>faxNum}+'&#xA;'+${i18n>faxNum}}" wrapping="true" />
