@@ -486,6 +486,16 @@
             </layoutData>
 									</VBox> 
 								</l:Grid>
+                                   <l:Grid visible="{= ${oConfigMdl>/ReqCOIVis} === 'ReqCOI' ? true : false}" defaultSpan="XL12 L12 M12 S12"  class="sapUiSizeCompact">
+ <VBox  class="VRVboxStyle1">
+ <Label text="{i18n>ConflitOfIntrest1}" required="true"  class="cl_ConflictQtnCls sapUiTinyMarginTop"></Label>
+					<RadioButtonGroup  enabled="{= ${oConfigMdl>/ReqCOIVis} === 'ReqCOI' ? true : false}" select="fnConflictOfIntChnage1" valueState="{JMBPCreate>/conflict1e}" selectedIndex="{JMBPCreate>/conflictOfInterests1}"  columns="1">
+									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>BPCIDoNotHaveCOI}"/>
+									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>BPCIHaveCOI}"/>
+                                    		</RadioButtonGroup>					
+									</VBox> 
+                                    
+								</l:Grid>
                            
                                                 <l:Grid  class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBottom">
                                
