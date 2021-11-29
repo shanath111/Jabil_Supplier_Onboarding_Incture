@@ -97,7 +97,7 @@
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>teleNum}:${oi18n_En>teleNum}+ '&#xA;' +${i18n>teleNum}}" wrapping="true" required="true" />
-            <Input maxLength="31" value="{companyInfoModel>/oTeleNum}" valueState="{oErrorModel>/oFATeleNumE}" valueStateText="{oErrorModel>/oFATeleNumM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+            <Input maxLength="31" value="{companyInfoModel>/oTeleNum}" valueState="{oErrorModel>/oFATeleNumE}" valueStateText="{oErrorModel>/oFATeleNumM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle" />
            
          </VBox>
          <VBox class="fontStyle">
@@ -205,7 +205,7 @@
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>teleNum}:${oi18n_En>teleNum}+'&#xA;'+${i18n>teleNum}}" wrapping="true" required="true" />
-            <Input maxLength="31" value="{remitModel>/rTeleNum}" enabled="{oEnableMdl>/rTeleNumEnb}" valueState="{oErrorModel>/rTATeleNumE}" valueStateText="{oErrorModel>/rTATeleNumM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+            <Input maxLength="31" value="{remitModel>/rTeleNum}" enabled="{oEnableMdl>/rTeleNumEnb}" valueState="{oErrorModel>/rTATeleNumE}" valueStateText="{oErrorModel>/rTATeleNumM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle" />
             <!-- <html:input type="text" id="iTeleNumR"   class="cl_HTMLInput" ></html:input>  -->
          </VBox>
          <VBox class="fontStyle">
