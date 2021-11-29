@@ -112,7 +112,13 @@ sap.ui.define([
             },
             fnLiveChangeCompCode: function (oEvent) {
                 var vSelected = oEvent.getParameter("itemPressed");
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
 
+                }
                 this.fnLoadPurOrg(oView.getModel("JMFilter").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
                 oView.getModel("JMFilter").getData().purchasingOrg = "";
                 oView.getModel("JMFilter").refresh();
@@ -125,7 +131,13 @@ sap.ui.define([
             },
             fnLiveChangeCompCode1: function (oEvent) {
                 var vSelected = oEvent.getParameter("itemPressed");
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
 
+                }
                 this.fnLoadPurOrg1(oView.getModel("JMFilter1").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
                 oView.getModel("JMFilter").getData().purchasingOrg = "";
                 oView.getModel("JMFilter").refresh();
@@ -520,6 +532,26 @@ sap.ui.define([
             },
             fnNavToHome: function () {
                 this.getOwnerComponent().getRouter().navTo("Home");
+            },
+            onChangeLookupValue: function(oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+
+                }
+            },
+            onChangeDocLink: function(oEvent) {
+                if(oEvent.getSource().getValue().length > 255) {
+                    oView.getModel("JMFilter").getData().docLinke ="Error";
+                    oView.getModel("JMFilter").getData().docLinkm =oi18n.getProperty("BPCMaxLengthExceeds");
+                    oView.getModel("JMFilter").refresh();
+                } else{
+                    oView.getModel("JMFilter").getData().docLinke ="None";
+                    oView.getModel("JMFilter").getData().docLinkm ="";
+                    oView.getModel("JMFilter").refresh();
+                }
             }
         });
     });
