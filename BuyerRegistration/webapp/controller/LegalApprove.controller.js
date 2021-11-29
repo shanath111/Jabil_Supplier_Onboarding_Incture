@@ -38,6 +38,11 @@ sap.ui.define([
                 that.fnSetConfigModel(vContext);
                 that.fnLoadLookUpData();
             },
+            fnConflictOfIntChnage1: function (oEvent) {
+              
+                oView.getModel("JMBPCreate").getData().conflict1e = "None";          
+                oView.getModel("JMBPCreate").refresh();
+            },
             fnSetConfigModel: function (oContext) {
                 oView.getModel("oConfigMdl").getData().closeFullScreenButton = false;
                 oView.getModel("oConfigMdl").getData().enterFullScreen = false;
@@ -48,9 +53,9 @@ sap.ui.define([
                 oView.getModel("oConfigMdl").getData().contextPath = oContext;
                 oView.getModel("oConfigMdl").getData().searchAddress = false;
                 oView.getModel("oConfigMdl").getData().coiLegalActnTxt = false;
-
+                oView.getModel("oConfigMdl").getData().ReqCOIVis = oContext.Name;
                 oView.getModel("oConfigMdl").getData().CommentsVis = false;
-
+                
                 if (oContext.Name == "COILegal") {
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = false;
                     oView.getModel("oConfigMdl").getData().ButtonNameReject = "Reject";
@@ -59,7 +64,18 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().RejectBtnVis = true;
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
 
-                } else {
+                }else if(oContext.Name == "ReqCOI"){
+                  
+                    oView.getModel("oConfigMdl").getData().ReqCOIVis = "ReqCOI";
+                    oView.getModel("oConfigMdl").getData().EulaCommentsVis = false;
+                    oView.getModel("oConfigMdl").getData().ButtonNameReject = "Reject";
+                    oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Submit";
+                    oView.getModel("oConfigMdl").getData().coiLegalActnTxt = true;
+                    oView.getModel("oConfigMdl").getData().RejectBtnVis = false;
+                    oView.getModel("oConfigMdl").getData().MitgationVis = false;
+                }
+                
+                else {
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = true;
                     oView.getModel("oConfigMdl").getData().ButtonNameReject = "Reject";
                     oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Approve";
@@ -89,7 +105,7 @@ sap.ui.define([
                         } else {
                             oView.getModel("oConfigMdl").getData().isClaimed = oEvent.getSource().getData().isClaimed;
                         }
-
+                        oView.getModel("oConfigMdl").getData().isClaimed = true;
 
                         oView.getModel("oConfigMdl").getData().isTaskCompleted = oEvent.getSource().getData().isTaskCompleted;
  oView.getModel("oConfigMdl").getData().validationMessage = oEvent.getSource().getData().validationMessage;
@@ -221,6 +237,7 @@ sap.ui.define([
                                         temp.conflictOfInterests = 0;
                                         temp.CoIFields = false;
                                     }
+                                    temp.conflictOfInterests1 = -1;
                                     if (temp.requestorConflictOfInterest == true) {
                                         temp.requestorConflictOfInterests = 1;
                                         temp.reqCoIFields = true;
@@ -652,6 +669,7 @@ sap.ui.define([
                 //    this.getOwnerComponent().getRouter().navTo("VendorRequest");
             },
             fnOpenBankCommentsApp: function () {
+              
                 var temp = {};
                 temp.Action = "AP";
                 //  temp.Comments = "";
@@ -662,8 +680,26 @@ sap.ui.define([
                 var oJosnComments = new sap.ui.model.json.JSONModel();
                 oJosnComments.setData(temp);
                 oView.setModel(oJosnComments, "JMAppvrComments");
-                if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COILegal") {
-                    this.fnApproveSub("AP");
+                if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COILegal" || oView.getModel("oConfigMdl").getData().contextPath.Name == "ReqCOI") {
+                    if(oView.getModel("oConfigMdl").getData().contextPath.Name == "ReqCOI"){
+                        if (oView.getModel("JMBPCreate").getData().conflictOfInterests1 == -1) {
+                            oView.getModel("JMBPCreate").getData().conflict1e = "Error";
+                            
+                            oView.getModel("JMBPCreate").refresh();
+                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                            return;
+                        }else{
+                            this.fnApproveSub("AP");
+                        }
+                    }else{
+                        this.fnApproveSub("AP");
+                    }
+                    
                 } else {
                     if (!this.oBankComments) {
                         this.oBankComments = sap.ui.xmlfragment(
@@ -916,6 +952,40 @@ sap.ui.define([
                                     "comments": oView.getModel("JMAppvrComments").getData().Comments
                                 }
                             }
+                            else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "ReqCOI") {
+                                var vConflict ;
+                             
+                                if(oView.getModel("JMBPCreate").getData().conflictOfInterests1 == 0){
+                                    vConflict = false;
+                                }else{
+                                    vConflict = true;
+                                }
+                                var vActn = "";
+                                if (vAprActn) {
+                                    vActn = "approved";
+                                } else {
+                                    vActn = "rejected";
+                                }
+                                var vCommentsActn;
+                                if (vAprActn) {
+                                    vCommentsActn = "approve";
+                                } else {
+                                    vCommentsActn = "reject";
+                                }
+                                var oPayload = {
+                                    "context": {
+                                        "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
+                                        "caseId": oView.getModel("JMEulaComments").getData().caseId,
+                                        "requestorConflictOfInterestSubmit":vConflict
+                                        
+                                    },
+                                    "status": "",
+                                    "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                                    "action": vCommentsActn,
+                                    "comments": oView.getModel("JMAppvrComments").getData().Comments
+                                }
+                            }
+
 
                             else {
                                 var vCommentsActn;

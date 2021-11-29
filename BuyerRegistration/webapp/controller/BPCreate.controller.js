@@ -1722,6 +1722,7 @@ sap.ui.define([
                 oView.getModel("JMBPCreate").getData().additionalInformation = "";
                 oView.getModel("JMBPCreate").refresh();
             },
+            
             fnCustDirChange: function (oEvent) {
                 if (oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicators == 0) {
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicatorsMan = true;
