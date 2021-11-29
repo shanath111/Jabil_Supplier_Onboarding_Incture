@@ -5,7 +5,7 @@
         <VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
             <Label required="true" text="{i18n>FirstLevelReason}" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
           <ComboBox width="95%"  items="{oBPLookUpMdl>/firstLevelReason}" valueState="{JMAppvrComments>/firstLevelReasone}" valueStateText="{JMAppvrComments>/firstLevelReasonm}"
-											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnChangeMitigationReason" showSecondaryValues="false" selectedKey="{JMAppvrComments>/firstLevelReason}"
+											filterSecondaryValues="true" change="fnChangeMitigationReason" showSecondaryValues="false" selectedKey="{JMAppvrComments>/firstLevelReason}"
 											class="cl_VRInputCls sapUiSmallMarginBegin"  >
 											<core:ListItem key="{oBPLookUpMdl>}" text="{oBPLookUpMdl>}" />
 										</ComboBox>
@@ -13,7 +13,7 @@
             <VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
             <Label required="true" text="{i18n>SecondLevelReason}" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
           <ComboBox width="95%"  items="{oBPLookUpMdl>/SecondLevelReason}" valueState="{JMAppvrComments>/secondLevelReasone}" valueStateText="{JMAppvrComments>/secondLevelReasonm}"
-											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnChangeSeconLevelReason" showSecondaryValues="false" selectedKey="{JMAppvrComments>/secondLevelReason}"
+											filterSecondaryValues="true"  change="fnChangeSeconLevelReason" showSecondaryValues="false" selectedKey="{JMAppvrComments>/secondLevelReason}"
 											class="cl_VRInputCls sapUiSmallMarginBegin"  >
 											<core:ListItem key="{oBPLookUpMdl>}" text="{oBPLookUpMdl>}" />
 										</ComboBox>
