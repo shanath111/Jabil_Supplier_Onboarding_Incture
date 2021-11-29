@@ -2669,10 +2669,7 @@ var aError = false;
             _fnValidateOwnerInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
                 var iError = false;
-                if (this.emailValidResult) {
-                    iError = true;
-                }
-                
+               
                 if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityTradedCompany === null) {
                     oView.getModel("oErrorModel").getData().isEntityTradedCompanyE = "Error";
                     iError = true;
@@ -2758,6 +2755,9 @@ var aError = false;
                         iError = true;
                     }
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt) {
+                        if (this.emailValidResult) {
+                            iError = true;
+                        }        
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName)) {
                             oView.getModel("oErrorModel").getData().govtEntityNameE = "Error";
                             oView.getModel("oErrorModel").getData().govtEntityNameM = oi18n.getText("mandatoryGEName");
@@ -2833,6 +2833,9 @@ var aError = false;
                         iError = true;
                     }
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily) {
+                        if (this.emailValidResult) {
+                            iError = true;
+                        }        
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName)) {
                             oView.getModel("oErrorModel").getData().closegovtEntityNameE = "Error";
                             oView.getModel("oErrorModel").getData().closegovtEntityNameM = oi18n.getText("mandatoryGEName");
@@ -3955,9 +3958,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
             _fnValidateShippingInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
                 var iError = false;
-                if (this.emailValidResult) {
-                    iError = true;
-                }
+                
                 if (oView.getModel("oUserModel").getData().isNew) {
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.incoterm) {
                         oView.getModel("oErrorModel").getData().incotermE = "Error";
@@ -3999,6 +4000,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 }
 
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isDeliver) {
+                    if (this.emailValidResult) {
+                        iError = true;
+                    }
                     //check field validation
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepName || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepName)) {
                         oView.getModel("oErrorModel").getData().dRespNameE = "Error";
@@ -4213,9 +4217,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
             _fnValidateCompanyCompliance: function () {
                 var spaceRegex = /^\s+$/;
                 var iError = false;
-                if (this.emailValidResult) {
-                    iError = true;
-                }
+             
                 if (oView.getModel("oDataModel").getData().comComplianceDto.ndaSignedBefore === -1) {
                     oView.getModel("oErrorModel").getData().ndaSignedBeforeE = "Error";
                     iError = true;
@@ -4251,6 +4253,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                     }
 
                     if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectations === false) {
+                        if (this.emailValidResult) {
+                            iError = true;
+                        }
                         var email = oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.email
                         var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
                         if (email) {
@@ -4335,6 +4340,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         }
                     }
                     if (oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmp) {
+                        if (this.emailValidResult) {
+                            iError = true;
+                        }
                         if (!oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmpContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmpContact.firstName)) {
                             oView.getModel("oErrorModel").getData().relationFNameE = "Error";
                             oView.getModel("oErrorModel").getData().relationFNameM = oi18n.getText("mandatoryName");
@@ -4442,9 +4450,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 var olist1 = oView.getModel("oLookUpModel").getData().orgBusinessActivities;
                 var oListLength = [], oListLength1 = [];
                 var oSelectedList = [], oSelectedList1 = [];
-                if (this.emailValidResult) {
-                    iError = true;
-                }
+               
                 if (oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem === null) {
                     oView.getModel("oErrorModel").getData().orgConnectToJabilSystemE = "Error";
                     iError = true;
@@ -4454,6 +4460,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil) {
+                    if (this.emailValidResult) {
+                        iError = true;
+                    }
                     if (oView.getModel("oDataModel").getData().itCyberDto.certifiedForInfoSecurity === null) {
                         oView.getModel("oErrorModel").getData().certifiedForInfoSecurityE = "Error";
                         iError = true;
@@ -5031,9 +5040,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
 
             _fnValidateDraftOwnershipInfo: function () {
                 var iError = false;
-                if (this.emailValidResult) {
-                    iError = true;
-                }
+              
                 if (oView.getModel("oUserModel").getData().isNew) {
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList) {
                         var sdnList = oView.getModel("oDataModel").getData().ownerShipInfoDto.sdnlistContact;
@@ -5058,6 +5065,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         }
                     }
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt) {
+                        if (this.emailValidResult) {
+                            iError = true;
+                        }
                         if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName.length > 30) {
                             iError = true;
                         }
@@ -5078,6 +5088,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         }
                     }
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily) {
+                        if (this.emailValidResult) {
+                            iError = true;
+                        }
                         if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName.length > 30) {
                             iError = true;
                         }
@@ -8787,7 +8800,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         "caseId": oView.getModel("oUserModel").getData().caseId,
                         "isEULAAccepted": true,
                         "supplierAction": "EULA_accepted",
-                        "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided ? "YES" : "NO",
+                        // "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided ? "YES" : "NO",
                         "bankDetailsProvided": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "YES" : "NO",
                         "financeContact1": {
                             "firstName": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "" : oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName,

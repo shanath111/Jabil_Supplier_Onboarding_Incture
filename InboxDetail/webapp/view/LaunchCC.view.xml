@@ -20,7 +20,7 @@
 							<VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCSiteName}" required="true" class="cl_VRLablCls "></Label>
                                 <ComboBox width="95%" items="{oBPLookUpMdl>/SiteName1}"  autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter1>/siteName}"
-                                    class="cl_VRInputCls"  >
+                                    class="cl_VRInputCls" change="onChangeLookupValue" >
                                     <core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
                                 </ComboBox>
 							</VBox>	
@@ -29,32 +29,32 @@
 								<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/CompanyCode1}"  autocomplete="false" valueState="{JMFilter>/companyCodee}" valueStateText="{JMFilter>/companyCodem}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeCompCode1" showSecondaryValues="true" selectedKey="{JMFilter1>/companyCode}"
-											class="cl_VRInputCls"  >
+											class="cl_VRInputCls">
 											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
 							</VBox>
                              <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg1}" valueState="{JMFilter>/purchasingOrganisatione}" valueStateText="{JMFilter>/purchasingOrganisationm}"
-											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMFilter1>/purchasingOrganisation}"
-											class="cl_VRInputCls"  >
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="onChangeLookupValue" showSecondaryValues="true" selectedKey="{JMFilter1>/purchasingOrganisation}"
+											class="cl_VRInputCls" >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
 							</VBox>
                            <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCDocName}" required="true" class="cl_VRLablCls "></Label>
                                 <ComboBox width="95%" items="{oBPLookUpMdl>/DocName1}"  autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter1>/DocName}"
-                                    class="cl_VRInputCls"  >
+                                    class="cl_VRInputCls" change="onChangeLookupValue" >
                                     <core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
                                 </ComboBox>
 							</VBox>	
                             <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCDocLink}" required="true" class="cl_VRLablCls "></Label>
-                                <Input value="{JMFilter1>/DocLink}" editable="{oConfigMdl>/screenEditable}" class="cl_VRInputCls"></Input>
+                                <Input value="{JMFilter1>/DocLink}" maxLength="256" valueState="{JMFilter>/docLinke}" valueStateText="{JMFilter>/docLinkm}" liveChange="onChangeDocLink" editable="{oConfigMdl>/screenEditable}" class="cl_VRInputCls"></Input>
 							</VBox>	
                             <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCAffirmationStatement}" required="true" class="cl_VRLablCls "></Label>
-                                <Input value="{JMFilter1>/AffirmationStatement}" editable="{oConfigMdl>/screenEditable}" class="cl_VRInputCls"></Input>
+                                <TextArea value="{JMFilter1>/AffirmationStatement}" editable="{oConfigMdl>/screenEditable}" class="cl_VRInputCls"></TextArea>
 							</VBox>	  
 							</l:Grid>
                             
@@ -73,7 +73,7 @@
 							<VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCSiteName}" required="false" class="cl_VRLablCls "></Label>
                                 <ComboBox width="95%" items="{oBPLookUpMdl>/SiteName}"  autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter>/siteName}"
-                                    class="cl_VRInputCls"  >
+                                    class="cl_VRInputCls" change="onChangeLookupValue" >
                                     <core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
                                 </ComboBox>
 							</VBox>		
@@ -89,7 +89,7 @@
                              <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPPurchasingOrg}" required="false" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMFilter>/purchasingOrge}" valueStateText="{JMFilter>/purchasingOrgm}"
-											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMFilter>/purchasingOrg}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="onChangeLookupValue" showSecondaryValues="true" selectedKey="{JMFilter>/purchasingOrg}"
 											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
@@ -97,7 +97,7 @@
                             <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCDocName}" required="false" class="cl_VRLablCls "></Label>
                                 <ComboBox width="95%" items="{oBPLookUpMdl>/DocName}"  autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter>/DocName}"
-                                    class="cl_VRInputCls"  >
+                                    class="cl_VRInputCls" change="onChangeLookupValue"  >
                                     <core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
                                 </ComboBox>
 							</VBox>  

@@ -83,7 +83,7 @@
                 <FlexItemData styleClass="contactStyle"></FlexItemData></layoutData>
 				</ComboBox>
 
-            <Input maxLength="31" class="inputStyle" value="{oLookUpModel>contact}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/comContactcontactEnb}" />
+            <Input maxLength="31" class="inputStyle" value="{oLookUpModel>contact}" liveChange="fnLiveInputNumericValueChange" enabled="{oEnableMdl>/comContactcontactEnb}" />
             </HBox>
            <HBox>  <Input maxLength="11" class="inputStyle" value="{oLookUpModel>extension}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/comContactextensionEnb}" />
              <Button icon="sap-icon://copy" press="fnCopyContactData" visible="{oVisibilityModel>/copiedData}" type="Transparent" class="addMoreBtn" >
