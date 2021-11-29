@@ -3928,15 +3928,15 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                             iError = true;
                         }
                     }
-                }
-                if(visiblility.isIntermediateBankProvided){
-                    if(that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.length == 0) {
-                        iError = true;
-                        oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithoutBorder");
-                        oView.byId("fileUploader_BIA").addStyleClass("attachmentWithBorder");
-                    } else {
-                        oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithBorder");
-                        oView.byId("fileUploader_BIA").addStyleClass("attachmentWithoutBorder");
+                    if(visiblility.isIntermediateBankProvided){
+                        if(that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.length == 0) {
+                            iError = true;
+                            oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithoutBorder");
+                            oView.byId("fileUploader_BIA").addStyleClass("attachmentWithBorder");
+                        } else {
+                            oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithBorder");
+                            oView.byId("fileUploader_BIA").addStyleClass("attachmentWithoutBorder");
+                        }
                     }
                 }
                 //  }
