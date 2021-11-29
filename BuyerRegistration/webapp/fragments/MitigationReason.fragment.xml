@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>MitigationReason}" contentWidth="35%">
+		<content>
+        <VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
+            <Label required="true" text="{i18n>FirstLevelReason}" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
+          <ComboBox width="95%"  items="{oBPLookUpMdl>/firstLevelReason}" valueState="{JMAppvrComments>/firstLevelReasone}" valueStateText="{JMAppvrComments>/firstLevelReasonm}"
+											filterSecondaryValues="true" change="fnChangeMitigationReason" showSecondaryValues="false" selectedKey="{JMAppvrComments>/firstLevelReason}"
+											class="cl_VRInputCls sapUiSmallMarginBegin"  >
+											<core:ListItem key="{oBPLookUpMdl>}" text="{oBPLookUpMdl>}" />
+										</ComboBox>
+            </VBox>
+            <VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
+            <Label required="true" text="{i18n>SecondLevelReason}" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
+          <ComboBox width="95%"  items="{oBPLookUpMdl>/SecondLevelReason}" valueState="{JMAppvrComments>/secondLevelReasone}" valueStateText="{JMAppvrComments>/secondLevelReasonm}"
+											filterSecondaryValues="true"  change="fnChangeSeconLevelReason" showSecondaryValues="false" selectedKey="{JMAppvrComments>/secondLevelReason}"
+											class="cl_VRInputCls sapUiSmallMarginBegin"  >
+											<core:ListItem key="{oBPLookUpMdl>}" text="{oBPLookUpMdl>}" />
+										</ComboBox>
+            </VBox>
+             <VBox fitContainer="true" visible="{JMAppvrComments>/commentVisible}" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
+            <Label required="true" text="Comments" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
+            <TextArea change="fnInputSpaceCheck" value="{JMAppvrComments>/Comments}" liveChange="fnLiveChangeCmntTxtArea" valueState="{JMAppvrComments>/Commentse}" valueStateText="{JMAppvrComments>/Commentsm}" class="sapUiSmallMarginBegin" required="true"  width="95%" ></TextArea>
+            </VBox>
+			<OverflowToolbar class="barClass sapUiTinyMarginTop">
+            	<ToolbarSpacer/>
+				<Button class="cl_VRActnBtnClear" text="{i18n>close}" visible="true" press="fnCloseMitigationReason" tooltip="{i18n>close}"/>
+				<Button  class="cl_VRActnBtnApply" text="{i18n>submit}" press="fnSubmitMitigation" tooltip="{i18n>submit}"/>
+			</OverflowToolbar>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

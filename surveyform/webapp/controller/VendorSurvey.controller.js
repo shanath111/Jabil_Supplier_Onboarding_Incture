@@ -2623,6 +2623,41 @@ var aError = false;
                         }
                     }
                 }
+                if(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode == "US"){
+                    this.getView().getModel("oAttachmentList").refresh();
+                  var findDomesticDoc= this.getView().getModel("oAttachmentList").getProperty("/0/" + "bPDArray").findIndex(function(doc){
+                       return doc.docFormType == "W8";
+                    });
+                    if(findDomesticDoc === -1){
+                        iError = true;
+                        oView.byId("bpAttachBtn").removeStyleClass("attachmentWithoutBorderBP");
+                        oView.byId("bpAttachBtn").addStyleClass("attachmentWithBorderBP");
+                        MessageBox.show(oi18n.getText("attachW8Er"), {
+                            icon: MessageBox.Icon.ERROR,
+                            title: "Error"
+                        });
+                    } else{
+                        oView.byId("bpAttachBtn").removeStyleClass("attachmentWithBorderBP");
+                            oView.byId("bpAttachBtn").addStyleClass("attachmentWithoutBorderBP");
+                    }
+                } else {
+                    this.getView().getModel("oAttachmentList").refresh();
+                    var findDomesticDoc= this.getView().getModel("oAttachmentList").getProperty("/0/" + "bPDArray").findIndex(function(doc){
+                        return doc.docFormType == "W9";
+                     });
+                     if(findDomesticDoc === -1){
+                        oView.byId("bpAttachBtn").removeStyleClass("attachmentWithoutBorderBP");
+                        oView.byId("bpAttachBtn").addStyleClass("attachmentWithBorderBP");
+                         iError = true;
+                         MessageBox.show(oi18n.getText("attachW9Er"), {
+                             icon: MessageBox.Icon.ERROR,
+                             title: "Error"
+                         });
+                     } else{
+                        oView.byId("bpAttachBtn").removeStyleClass("attachmentWithBorderBP");
+                        oView.byId("bpAttachBtn").addStyleClass("attachmentWithoutBorderBP");
+                     }
+                }
 
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
@@ -2634,10 +2669,7 @@ var aError = false;
             _fnValidateOwnerInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
                 var iError = false;
-                if (this.emailValidResult) {
-                    iError = true;
-                }
-                
+               
                 if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityTradedCompany === null) {
                     oView.getModel("oErrorModel").getData().isEntityTradedCompanyE = "Error";
                     iError = true;
@@ -2723,6 +2755,9 @@ var aError = false;
                         iError = true;
                     }
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt) {
+                        if (this.emailValidResult) {
+                            iError = true;
+                        }        
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName)) {
                             oView.getModel("oErrorModel").getData().govtEntityNameE = "Error";
                             oView.getModel("oErrorModel").getData().govtEntityNameM = oi18n.getText("mandatoryGEName");
@@ -2798,6 +2833,9 @@ var aError = false;
                         iError = true;
                     }
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily) {
+                        if (this.emailValidResult) {
+                            iError = true;
+                        }        
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName)) {
                             oView.getModel("oErrorModel").getData().closegovtEntityNameE = "Error";
                             oView.getModel("oErrorModel").getData().closegovtEntityNameM = oi18n.getText("mandatoryGEName");
@@ -3893,15 +3931,15 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                             iError = true;
                         }
                     }
-                }
-                if(visiblility.isIntermediateBankProvided){
-                    if(that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.length == 0) {
-                        iError = true;
-                        oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithoutBorder");
-                        oView.byId("fileUploader_BIA").addStyleClass("attachmentWithBorder");
-                    } else {
-                        oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithBorder");
-                        oView.byId("fileUploader_BIA").addStyleClass("attachmentWithoutBorder");
+                    if(visiblility.isIntermediateBankProvided){
+                        if(that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.length == 0) {
+                            iError = true;
+                            oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithoutBorder");
+                            oView.byId("fileUploader_BIA").addStyleClass("attachmentWithBorder");
+                        } else {
+                            oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithBorder");
+                            oView.byId("fileUploader_BIA").addStyleClass("attachmentWithoutBorder");
+                        }
                     }
                 }
                 //  }
@@ -3920,9 +3958,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
             _fnValidateShippingInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
                 var iError = false;
-                if (this.emailValidResult) {
-                    iError = true;
-                }
+                
                 if (oView.getModel("oUserModel").getData().isNew) {
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.incoterm) {
                         oView.getModel("oErrorModel").getData().incotermE = "Error";
@@ -3964,6 +4000,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 }
 
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isDeliver) {
+                    if (this.emailValidResult) {
+                        iError = true;
+                    }
                     //check field validation
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepName || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepName)) {
                         oView.getModel("oErrorModel").getData().dRespNameE = "Error";
@@ -4178,9 +4217,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
             _fnValidateCompanyCompliance: function () {
                 var spaceRegex = /^\s+$/;
                 var iError = false;
-                if (this.emailValidResult) {
-                    iError = true;
-                }
+             
                 if (oView.getModel("oDataModel").getData().comComplianceDto.ndaSignedBefore === -1) {
                     oView.getModel("oErrorModel").getData().ndaSignedBeforeE = "Error";
                     iError = true;
@@ -4216,6 +4253,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                     }
 
                     if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectations === false) {
+                        if (this.emailValidResult) {
+                            iError = true;
+                        }
                         var email = oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.email
                         var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
                         if (email) {
@@ -4300,6 +4340,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         }
                     }
                     if (oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmp) {
+                        if (this.emailValidResult) {
+                            iError = true;
+                        }
                         if (!oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmpContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmpContact.firstName)) {
                             oView.getModel("oErrorModel").getData().relationFNameE = "Error";
                             oView.getModel("oErrorModel").getData().relationFNameM = oi18n.getText("mandatoryName");
@@ -4407,9 +4450,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 var olist1 = oView.getModel("oLookUpModel").getData().orgBusinessActivities;
                 var oListLength = [], oListLength1 = [];
                 var oSelectedList = [], oSelectedList1 = [];
-                if (this.emailValidResult) {
-                    iError = true;
-                }
+               
                 if (oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem === null) {
                     oView.getModel("oErrorModel").getData().orgConnectToJabilSystemE = "Error";
                     iError = true;
@@ -4419,6 +4460,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                     iError = true;
                 }
                 if (oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil) {
+                    if (this.emailValidResult) {
+                        iError = true;
+                    }
                     if (oView.getModel("oDataModel").getData().itCyberDto.certifiedForInfoSecurity === null) {
                         oView.getModel("oErrorModel").getData().certifiedForInfoSecurityE = "Error";
                         iError = true;
@@ -4996,9 +5040,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
 
             _fnValidateDraftOwnershipInfo: function () {
                 var iError = false;
-                if (this.emailValidResult) {
-                    iError = true;
-                }
+              
                 if (oView.getModel("oUserModel").getData().isNew) {
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList) {
                         var sdnList = oView.getModel("oDataModel").getData().ownerShipInfoDto.sdnlistContact;
@@ -5023,6 +5065,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         }
                     }
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt) {
+                        if (this.emailValidResult) {
+                            iError = true;
+                        }
                         if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName.length > 30) {
                             iError = true;
                         }
@@ -5043,6 +5088,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         }
                     }
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily) {
+                        if (this.emailValidResult) {
+                            iError = true;
+                        }
                         if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName.length > 30) {
                             iError = true;
                         }
@@ -7095,34 +7143,45 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                     that.getOwnerComponent().getModel("oVisibilityModel").refresh();
                 }
             },
-            // @ts-ignore
-            //File Upload function with Date Input
-            fnOnFileUploadBP: function (oEvt) {
-                var that = this;
-
-                var fileUploadId = oEvt.oSource.sId.split("VendorSurvey--")[1];
-
-
+            fnFileUploadBtn: function(oEvt){
+                var that= this;
                 if (!that.oPopup) {
                     that.oPopup = sap.ui.xmlfragment(
                         "com.jabil.surveyform.fragments.selectDocType", that);
                     oView.addDependent(that.oPopup);
                 }
                 that.oPopup.open();
-                that.oPopup.attachAfterClose(function (oEvt) {
-                    var docType = this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].getValue();
+            },
+            // @ts-ignore
+            //File Upload function with Date Input
+            fnOnFileUploadBP: function (oEvt) {
+                var that = this;
+
+                var fileUploadId = oEvt.mParameters.id,
+                fileUpload = oEvt.getSource(),
+                domRef = fileUpload.getFocusDomRef(),
+                // @ts-ignore
+                file = domRef.files[0];
+
+
+                // if (!that.oPopup) {
+                //     that.oPopup = sap.ui.xmlfragment(
+                //         "com.jabil.surveyform.fragments.selectDocType", that);
+                //     oView.addDependent(that.oPopup);
+                // }
+                // that.oPopup.open();
+             
+                    var docType = this.oPopup.getContent()[0].getAggregation("items")[0].getAggregation("items")[1].getValue();
                     // @ts-ignore
                     if (docType) {
                         var oFormData = new FormData(),
-                            fileUpload = oView.byId(fileUploadId),
-                            domRef = fileUpload.getFocusDomRef(),
-                            // @ts-ignore
-                            file = domRef.files[0],
+                           
                             secName = that.oWizard.getCurrentStep().split("---VendorSurvey--")[1];
                        
-                        jQuery.sap.domById(fileUpload.getId() + "-fu").setAttribute("type", "file");
+                        // jQuery.sap.domById(fileUploadId + "-fu").setAttribute("type", "file");
                         // @ts-ignore
-                        oFormData.append("file", jQuery.sap.domById(fileUpload.getId() + "-fu").files[0]);
+                        // oFormData.append("file", jQuery.sap.domById(fileUploadId + "-fu").files[0]);
+                        oFormData.append("file", file);
                         oFormData.append("name", file.name);
                         oFormData.append("folderName", oView.getModel("oUserModel").getData().caseId);
                         oFormData.append("requestId", oView.getModel("oUserModel").getData().caseId);
@@ -7142,7 +7201,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                             "fileExt": file.name.split(".")[1],
 
                             "name": file.name,
-                            "docType": docType
+                            "docFormType": docType
                         };
 
                         var _arrayTitle = that._fnGetUploaderId(fileUploadId);
@@ -7160,10 +7219,11 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                                 oAttachData.dmsDocumentId = data.dmsDocumentId;
                                 oAttachData.dmsFolderId = data.dmsFolderId;
                                 oAttachData.fileSize = data.fileSize;
+                                oAttachData.docFormType = data.docFormType;
                                 that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).push(oAttachData);
                                 that.getView().getModel("oAttachmentList").refresh(true);
-
-
+        
+                                oBusyDialogFile.close();
                             },
                             error: function (data) {
                                 var eMsg = data.responseText;
@@ -7178,10 +7238,18 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                                             if (oAction == "YES") {
                                                 oFormData.set("overwriteFlag", true);
                                                 //  oFormData.append("deletedBy", oView.getModel("oUserModel").getData().user.givenName);
-                                                var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).findIndex(function (docId) { return docId.name == file.name });
-                                                that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).splice(index, 1);
+                                                var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).findIndex(function (docId) { return docId.name === file.name });
+                                                if(index !== -1){
+                                                that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).splice(index, 1);}
+                                            //     if(_arrayTitle === "bankINDArray" || _arrayTitle === "bankDArray"){
+                                            //         var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").findIndex(function (docId) { return docId.name == file.name });
+                                            //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").splice(index, 1);
+                                            //     var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").findIndex(function (docId) { return docId.name == file.name });
+                                            //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").splice(index, 1);
+                                            //    }
                                                 that.getView().getModel("oAttachmentList").refresh(true);
                                                 var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
+                                                oBusyDialogFile.open();
                                                 // @ts-ignore
                                                 $.ajax({
                                                     url: sUrl,
@@ -7194,38 +7262,38 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                                                         oAttachData.dmsDocumentId = data.dmsDocumentId;
                                                         oAttachData.dmsFolderId = data.dmsFolderId;
                                                         oAttachData.fileSize = data.fileSize;
-
+                                                        oAttachData.docFormType = data.docFormType;
                                                         that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).push(oAttachData);
                                                         that.getView().getModel("oAttachmentList").refresh(true);
-
-
+                                                        oBusyDialogFile.close();
+        
                                                     }, error: function (data) {
                                                         var eMsg = data.responseText
                                                         MessageBox.show(eMsg, {
                                                             icon: sap.m.MessageBox.Icon.ERROR,
                                                             title: oi18n.getText("error")
                                                         });
+                                                        oBusyDialogFile.close();
                                                     }
                                                 });
+                                            } else {
+                                                if(oBusyDialogFile){
+                                                oBusyDialogFile.close();}
                                             }
                                         }
                                     });
                                 } else {
-
+        
                                     MessageBox.show(eMsg, {
                                         icon: sap.m.MessageBox.Icon.ERROR,
                                         title: oi18n.getText("error")
                                     });
                                 }
-
+        
                             }
                         });
-                       // this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].setValue("");
-                       
-                    } else {
-                       // this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].setValue("");
-                                            }
-                });
+                }
+                this.oPopup.close();
             },
             fnOnFileUpload: function (oEvt) {
                 var that = this;
@@ -7315,8 +7383,9 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                                     if (oAction == "YES") {
                                         oFormData.set("overwriteFlag", true);
                                         //  oFormData.append("deletedBy", oView.getModel("oUserModel").getData().user.givenName);
-                                        var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).findIndex(function (docId) { return docId.name == file.name });
-                                        that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).splice(index, 1);
+                                        var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).findIndex(function (docId) { return docId.name === file.name });
+                                        if(index !== -1){
+                                        that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).splice(index, 1);}
                                     //     if(_arrayTitle === "bankINDArray" || _arrayTitle === "bankDArray"){
                                     //         var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").findIndex(function (docId) { return docId.name == file.name });
                                     //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").splice(index, 1);
@@ -7352,6 +7421,8 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                                                 oBusyDialogFile.close();
                                             }
                                         });
+                                    } else {
+                                        oBusyDialogFile.close();
                                     }
                                 }
                             });
@@ -8029,6 +8100,18 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                     }
                 });
             }
+            
+            // oView.byId("fileUploader").addEventDelegate({
+            //     onAfterRendering: function(){
+            //         oView.byId("fileUploader").oFileUpload.click(function(){  sap.m.MessageBox.alert("Valid");});
+            //         oView.byId("fileUploader").oFilePath._oSuggestionPopup.attachBeforeOpen(function(){
+            //             sap.m.MessageBox.alert("Valid");
+            //         }, this);
+            //         oView.byId("fileUploader").oBrowse.attachTap(function(){  sap.m.MessageBox.alert("Valid");});
+            //         oView.byId("fileUploader").oBrowse.attachPress(function(){  sap.m.MessageBox.alert("Valid");});
+            //     }
+            // }, this);
+            
             },
             onActivatePreview: function (event) {
                 if (this.getView().byId("surveyWizard")._aStepPath.length == 11 || (this.getView().byId("surveyWizard")._aStepPath.length == 8 && this.getView().byId("surveyWizard")._getProgressNavigator().getStepCount() == 8)) {
@@ -8717,7 +8800,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         "caseId": oView.getModel("oUserModel").getData().caseId,
                         "isEULAAccepted": true,
                         "supplierAction": "EULA_accepted",
-                        "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided ? "YES" : "NO",
+                        // "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided ? "YES" : "NO",
                         "bankDetailsProvided": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "YES" : "NO",
                         "financeContact1": {
                             "firstName": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "" : oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName,

@@ -342,8 +342,8 @@
             <Text text="{oi18n_En>Attachments}/&#160;{i18n>Attachments}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>
 			<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bpDocVerbiage}:${oi18n_En>bpDocVerbiage}+ '/&#160;'+${i18n>bpDocVerbiage}}" wrapping="true" class="fontStyle fontStyleItalic sapUiTinyMarginTop sapUiTinyMarginBegin"/>
             <HBox wrap="Wrap">
-				<u:FileUploader id="fileUploader" buttonOnly="true" maximumFileSize="10" buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"
-					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" enabled="{oEnableMdl>/bpInfoAttachmentEnb}"
+				<!-- <u:FileUploader id="fileUploader" buttonOnly="true" maximumFileSize="10" buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"
+					useMultipart="true" change="fnOnFileUploadBP" sameFilenameAllowed="true" enabled="{oEnableMdl>/bpInfoAttachmentEnb}"
 					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin">
                     <u:tooltip>
                         <c:Tooltip id="textTooltip"
@@ -352,7 +352,8 @@
                         closeDuration="0"
                         />
                     </u:tooltip>
-                    </u:FileUploader>
+                    </u:FileUploader> -->
+                    <Button id="bpAttachBtn" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" icon="sap-icon://add" press="fnFileUploadBtn" tooltip="{i18n>DocumentTooltip}" class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 				<g:GridList width="auto" items="{oAttachmentList>/0/bPDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">
 					<g:customLayout>
 						<!-- <grid:GridBasicLayout gridTemplateColumns="repeat(auto-fit, minmax(16rem, 1fr))" gridAutoFlow="Column" gridGap="0.5rem" /> -->

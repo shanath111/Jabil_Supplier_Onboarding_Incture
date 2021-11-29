@@ -694,25 +694,129 @@ sap.ui.define([
 
                 this.oBankComments.open();
             },
+            // fnOpenBankCommentsReject: function () {
+            //     var temp = {};
+            //     temp.Action = "RJ";
+            //     //temp.Comments ;
+            //     temp.commentsTxt = "Comments";
+            //     temp.Commentse = "None";
+            //     temp.Commentsm = "";
+            //     temp.required = true;
+            //     var oJosnComments = new sap.ui.model.json.JSONModel();
+            //     oJosnComments.setData(temp);
+            //     oView.setModel(oJosnComments, "JMAppvrComments");
+            //     if (!this.oBankComments) {
+            //         this.oBankComments = sap.ui.xmlfragment(
+            //             "ns.BuyerRegistration.fragments.ApproverComments", this);
+            //         oView.addDependent(this.oBankComments);
+            //     }
+
+            //     this.oBankComments.open();
+            // },
             fnOpenBankCommentsReject: function () {
+                oView.getModel("oBPLookUpMdl").setProperty("/firstLevelReason", []);
+                oView.getModel("oBPLookUpMdl").setProperty("/SecondLevelReason", []);
+                oView.getModel("oBPLookUpMdl").refresh();
+                this.fnLoadFirstLevelReason();
                 var temp = {};
                 temp.Action = "RJ";
                 //temp.Comments ;
-                temp.commentsTxt = "Comments";
                 temp.Commentse = "None";
-                temp.Commentsm = "";
                 temp.required = true;
+                temp.Commentsm = "";
+                temp.commentVisible = false;
+                temp.commentsTxt = "Comments";
                 var oJosnComments = new sap.ui.model.json.JSONModel();
                 oJosnComments.setData(temp);
                 oView.setModel(oJosnComments, "JMAppvrComments");
-                if (!this.oBankComments) {
-                    this.oBankComments = sap.ui.xmlfragment(
-                        "ns.BuyerRegistration.fragments.ApproverComments", this);
-                    oView.addDependent(this.oBankComments);
+                if (!this.oBankCommentsMitigate) {
+                    this.oBankCommentsMitigate = sap.ui.xmlfragment(
+                        "ns.BuyerRegistration.fragments.MitigationReason", this);
+                    oView.addDependent(this.oBankCommentsMitigate);
                 }
 
-                this.oBankComments.open();
+                this.oBankCommentsMitigate.open();
             },
+            fnLoadFirstLevelReason: function () {
+                var oModel = new JSONModel();
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/reason-codes/firstLevel";
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/firstLevelReason", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
+            },
+            fnChangeMitigationReason: function () {
+                oView.getModel("JMAppvrComments").getData().firstLevelReasone = "None";
+                oView.getModel("JMAppvrComments").getData().firstLevelReasonm = "";
+                oView.getModel("JMAppvrComments").refresh();
+                oView.getModel("oBPLookUpMdl").setProperty("/SecondLevelReason", []);
+                oView.getModel("oBPLookUpMdl").refresh();
+                this.fnLoadSecondLevelReason(oView.getModel("JMAppvrComments").getData().firstLevelReason);
+            },
+            fnChangeSeconLevelReason: function () {
+                oView.getModel("JMAppvrComments").getData().secondLevelReasone = "None";
+                oView.getModel("JMAppvrComments").getData().secondLevelReasonm = "";
+                oView.getModel("JMAppvrComments").refresh();
+
+                if (oView.getModel("JMAppvrComments").getData().secondLevelReason == "Other") {
+                    oView.getModel("JMAppvrComments").getData().commentVisible = true;
+                } else {
+                    oView.getModel("JMAppvrComments").getData().commentVisible = false;
+                }
+
+                oView.getModel("JMAppvrComments").refresh();
+
+            },
+            fnLoadSecondLevelReason: function (vReasonCode) {
+                var oModel = new JSONModel();
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/reason-codes/secondLevel?firstLevelReasonCode=" + vReasonCode;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/SecondLevelReason", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
+            },
+
+            fnCloseMitigationReason: function () {
+                this.oBankCommentsMitigate.close();
+            },
+
+            fnSubmitMitigation: function () {
+                var vError = false;
+                if (!oView.getModel("JMAppvrComments").getData().firstLevelReason) {
+                    oView.getModel("JMAppvrComments").getData().firstLevelReasone = "Error";
+                    oView.getModel("JMAppvrComments").getData().firstLevelReasonm = oi18n.getProperty("EnterFirstLevelReasonCode")
+                    vError = true;
+                }
+                if (!oView.getModel("JMAppvrComments").getData().secondLevelReason) {
+                    oView.getModel("JMAppvrComments").getData().secondLevelReasone = "Error";
+                    oView.getModel("JMAppvrComments").getData().secondLevelReasonm = oi18n.getProperty("EnterSecondLevelReasonCode")
+                    vError = true;
+                }
+                if (oView.getModel("JMAppvrComments").getData().secondLevelReason == "Other") {
+                    if (!oView.getModel("JMAppvrComments").getData().Comments) {
+                        oView.getModel("JMAppvrComments").getData().Commentse = "Error";
+                        oView.getModel("JMAppvrComments").getData().Commentsm = oi18n.getProperty("EnterCommentsTxt");
+                        vError = true;
+                    }
+                }
+                oView.getModel("JMAppvrComments").refresh();
+                if (vError == false) {
+                    this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
+                    this.oBankCommentsMitigate.close();
+                }
+            },
+
+
             fnCloseBankComments: function () {
                 this.oBankComments.close();
             },
@@ -773,12 +877,16 @@ sap.ui.define([
                                         "caseId": oView.getModel("JMEulaComments").getData().caseId,
                                         "coiLegalApproved": vCommentsActn,
                                         "COIComments": oView.getModel("JMAppvrComments").getData().Comments,
-                                        "legal_coi_comment": oView.getModel("JMAppvrComments").getData().Comments
+                                        "legal_coi_comment": oView.getModel("JMAppvrComments").getData().Comments,
+                                        "legal_coi_first_level_reason":  oView.getModel("JMAppvrComments").getData().firstLevelReason,
+                                        "legal_coi_second_level_reason":oView.getModel("JMAppvrComments").getData().secondLevelReason
                                     },
                                     "status": "",
                                     "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                                     "action": vCommentsActn,
-                                    "comments": oView.getModel("JMAppvrComments").getData().Comments
+                                    "comments": oView.getModel("JMAppvrComments").getData().Comments,
+                                    "firstLevelReasonCode":  oView.getModel("JMAppvrComments").getData().firstLevelReason,
+                                    "secondLevelReasonCode":oView.getModel("JMAppvrComments").getData().secondLevelReason
                                 }
                             } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COIBuyer") {
                                 var vActn = "";
@@ -798,7 +906,9 @@ sap.ui.define([
                                         "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                                         "caseId": oView.getModel("JMEulaComments").getData().caseId,
                                         "buyerActionOnRemediation": vActn,
-                                        "buyer_coi_comment": oView.getModel("JMAppvrComments").getData().Comments
+                                        "buyer_coi_comment": oView.getModel("JMAppvrComments").getData().Comments,
+                                        "buyer_coi_first_level_reason":  oView.getModel("JMAppvrComments").getData().firstLevelReason,
+                                        "buyer_coi_second_level_reason":oView.getModel("JMAppvrComments").getData().secondLevelReason
                                     },
                                     "status": "",
                                     "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,

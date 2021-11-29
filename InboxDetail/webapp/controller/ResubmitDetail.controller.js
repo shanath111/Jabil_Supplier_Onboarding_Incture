@@ -62,12 +62,32 @@ sap.ui.define([
                     }
                 });
             },
-            fnLiveChangeCountry() {
+            fnLiveChangeCountry(oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 oView.getModel("JMFilter").getData().taxCategory = "";
                 oView.getModel("JMFilter").refresh();
                 this.fnLoadTaxCategory(oView.getModel("JMFilter").getData().country);
             },
-            fnLiveChangeCountry1() {
+            fnChangeTaxCategory:function(oEvent){
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+            },
+            fnLiveChangeCountry1(oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
                 oView.getModel("JMFilter1").getData().taxCategory = "";
                 oView.getModel("JMFilter1").refresh();
                 this.fnLoadTaxCategory1(oView.getModel("JMFilter1").getData().country);

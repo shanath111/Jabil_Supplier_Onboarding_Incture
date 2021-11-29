@@ -113,7 +113,7 @@
 								<VBox>
                                 <Label text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}" required ="true" class="fontStyle"></Label>
                                 <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required ="true"></Label>
-											<Input maxLength="31" valueState="{oErrorModel>/dRespContactE}" valueStateText="{oErrorModel>/dRespContactM}" liveChange="fnLiveInputValueChange" value="{oDataModel>/shippingInfoDto/deliverRepContact}" enabled="{oEnableMdl>/deliverRepContactEnb}" class="inputStyle"></Input>
+											<Input maxLength="31" valueState="{oErrorModel>/dRespContactE}" valueStateText="{oErrorModel>/dRespContactM}" liveChange="fnLiveInputNumericValueChange" value="{oDataModel>/shippingInfoDto/deliverRepContact}" enabled="{oEnableMdl>/deliverRepContactEnb}" class="inputStyle"></Input>
                                 <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
                                 <layoutData>
                                   <l:GridData spanM="2" spanL="2" spanXL="1"></l:GridData></layoutData>

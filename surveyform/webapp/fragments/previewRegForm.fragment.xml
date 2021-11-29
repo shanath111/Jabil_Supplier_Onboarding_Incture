@@ -1071,8 +1071,8 @@
 										<Label text="{=${oDataModel>/bankDto/bankInfoDto/0/instructionKey}?${oDataModel>/bankDto/bankInfoDto/0/instructionKey}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>
-                                <VBox class="fontStyle sapUiSizeCompact">
-                                    <CheckBox editable="false" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/bankDto/isIntermediateBankProvided}" class=" sapUiTinyMarginTop fontStyle inputStyle" />
+                                <VBox class="fontStyle sapUiSizeCompact" visible="{oUserModel>/isNew}">
+                                    <CheckBox editable="false" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/bankDto/isIntermediateBankProvided}" class="cl_PreviewLablCls" />
                                     <gl:GridList width="auto" items="{oAttachmentList>/0/bankINDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin">
                                         <gl:customLayout>
                                             <grid:GridResponsiveLayout>

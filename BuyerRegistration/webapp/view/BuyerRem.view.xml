@@ -7,7 +7,7 @@
 				</subHeader>
 				<content>
 				    
-					<Panel width="auto"   expandable="false" expanded="true"
+					<Panel width="auto"  visible="{oConfigMdl>/BuyerFollowUpVis}" expandable="false" expanded="true"
 						class="cl_VRPanelClass cl_PanelMargonTop sapUiSmallMarginBottom sapUiTinyMarginBegin sapUiTinyMarginEnd">
 						<content>
                         <VBox >
@@ -19,6 +19,29 @@ and they understand what we need from them." class="sapUiTinyMarginTop  sapUiTin
 												alignItems="Center"  justifyContent="Start">
 											<CheckBox id="id_ConfirmFollowUp" text="Yes, I have called the Supplier Contact and spoke to them, letting them know we have initiated their
 onboarding, confirmed they received the email, and will begin reviewing and completing the form." wrapping="true" class="sapUiTinyMarginTop fontStyle"></CheckBox>
+											</HBox>
+
+						</VBox>
+                        </content>
+					</Panel>
+                    			<Panel width="auto" visible="{oConfigMdl>/EulaRejectVis}"   expandable="false" expanded="true"
+						class="cl_VRPanelClass cl_PanelMargonTop sapUiSmallMarginBottom sapUiTinyMarginBegin sapUiTinyMarginEnd">
+						<content>
+                         <VBox class="" visible="{oConfigMdl>/CommentsVis}" >
+										<Label text="{i18n>Comments}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
+										 <Label text="{oConfigMdl>/comments}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
+									<!-- <Label text="Not Agreeing NDA" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label> -->
+                                     <HBox class="cl_HBoxBlockSep">
+                                </HBox>
+                                    </VBox>
+                        <VBox >
+						<Text text="The Welcome email has been sent to the Supplier contact you provided." class="sapUiTinyMarginTop  sapUiTinyMarginBegin fontStyle" wrapping="true"></Text>
+                        						<Text text="We request that you follow-up with the Supplier and determine why they chose not to accept the Portal End User Licensing Agreement. This may have been in error. However, with a follow-up conversation the Supplier may be willing to accept the EULA." class="sapUiTinyMarginTop  sapUiTinyMarginBegin fontStyle" wrapping="true"></Text>
+                                               	<Text text="If not, the Supplier will need to utilize the standard Vendor Management Maintenance form and supporting documents that have been used prior to the Portal." class="sapUiTinyMarginTop  sapUiTinyMarginBegin fontStyle" wrapping="true"></Text> 
+	 	<Text text="Your follow-up call will ensure that there are no unnecessary delays in the process. By checking the box below, you are you have called and personally spoken to the Supplier Contact and they understand they must accept the Jabil EULA to complete the online form." class="sapUiTinyMarginTop  sapUiTinyMarginBegin fontStyle" wrapping="true"></Text> 
+    <HBox  renderType="Bare" wrap="Wrap"
+												alignItems="Center"  justifyContent="Start">
+											<CheckBox id="id_ConfirmFollowUp1" text="Yes, I have called the Supplier Contact and spoken to them, letting them know they must accept the Portal EULA to complete the online form" wrapping="true" class="sapUiTinyMarginTop fontStyle"></CheckBox>
 											</HBox>
 
 						</VBox>

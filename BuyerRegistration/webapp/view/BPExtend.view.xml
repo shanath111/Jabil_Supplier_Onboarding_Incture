@@ -17,7 +17,7 @@
         <VBox fitContainer="true" id="id_FilterHeight"> 
         <Panel width="auto" expandable="false" id="id_FilterPanel0"  expand="fnPanelCollapse" expanded="true" class="cl_VRPanelClass cl_PanelMargonTop sapUiTinyMarginBegin sapUiTinyMarginEnd">
         	<content>
-             <l:Grid  defaultSpan="XL2 L12 M12 S12" class="sapUiSizeCompact cl_ExtendSearchGrid">
+             <l:Grid  defaultSpan="XL12 L12 M12 S12" class="sapUiSizeCompact cl_ExtendSearchGrid">
             <Label text="{i18n>BuyerWelcomeTxt}" class="cl_BuyerTitle sapUiTinyMarginTop"  wrapping="true" ></Label>
              <Label text="{i18n>BuyerWelcomeTxt1}" class="cl_VRLablCls" wrapping="true" ></Label>
               <Label text="{i18n>BuyerWelcomeTxt2}" class="cl_VRLablCls" wrapping="true" ></Label>
@@ -34,7 +34,7 @@
 							</Toolbar>
 						</headerToolbar>
 						<content>
-                            <l:Grid  defaultSpan="XL2 L2 M6 S12" class="sapUiSizeCompact cl_ExtendSearchGrid">
+                            <l:Grid  defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact cl_ExtendSearchGrid">
                              <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPEVendorName}:" class="cl_VRLablCls "></Label>
 									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/vendorName}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
