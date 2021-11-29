@@ -155,7 +155,7 @@
 										</ComboBox> -->
 													<Text text="{JMCompSearchResult>purchasingOrganisationDescription}" class="cl_ListNameClass"></Text>
                                                     <Text text="{JMCompSearchResult>documentName}" class="cl_ListNameClass"></Text>
-                                                    <Text text="{JMCompSearchResult>documentLink}" class="cl_ListNameClass"></Text>
+                                                    <Link text="{JMCompSearchResult>documentLink}" href="{JMCompSearchResult>documentLink}" wrapping="false" ></Link>
                                                     <Text text="{JMCompSearchResult>affirmationStatement}" class="cl_ListNameClass"></Text>
                                                     
 														<!-- <Button text="{i18n>Update}"  type="Accept" press="fnUpdateCC" class="cl_BPCDraft sapUiSmallMarginEnd sapUiSizeCompact" /> -->
