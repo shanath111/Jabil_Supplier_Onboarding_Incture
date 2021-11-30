@@ -85,22 +85,10 @@ sap.ui.define([
                     }
                     oView.getModel("oEnableMdl").refresh();
 
-                    // this.byId("copyContactInfo").addEventDelegate({
-                    //     onmouseover: this._showPopover,
-                    //     onmouseout: this._clearPopover,
-                    //   }, this);
+                    
             },
 
-            // _showPopover: function () {
-            //     this._timeId = setTimeout(() => {
-            //       this.byId("popover").openBy(this.byId("copyContactInfo"));
-            //     }, 500);
-            //   },
-          
-            // _clearPopover: function () {
-            //     clearTimeout(this._timeId);
-            //     this.byId("popover").close();
-            //   },
+            
           
             _fnHandleRouteMatched: function (oEvent) {
                 var that = this;
@@ -8921,7 +8909,10 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 jQuery.sap.delayedCall(0, this, function() {
                     $("input:text:visible:first").focus();
                 });
+
+               
             },
+            
             onActivateBasicInfo: function(){
                  oView.byId("iAddress").addEventDelegate({
                     onAfterRendering: this.onActivateBasicInfoAddressSearch
