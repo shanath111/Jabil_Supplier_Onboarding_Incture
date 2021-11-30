@@ -339,9 +339,16 @@
                 span="XL12 L12 M12 S12" />
             </layoutData>
                                 </VBox>
-                                 <VBox visible="false">
-								<Label text="{i18n>RequesterConflictofInterest}" tooltip="{i18n>RequesterConflictofInterest}" required="false" class="cl_ConflictQtnCls sapUiTinyMarginTop"></Label>
-									<RadioButtonGroup select="fnChangeReqCOI" enabled="{oConfigMdl>/screenEditable}"  selectedIndex="{JMBPCreate>/requestorConflictOfInterests}"  columns="2">
+                                
+                                  
+                                </l:Grid>
+                                 <HBox class="cl_BPCBlockSep">
+                                </HBox> 
+                                  <l:Grid  class="sapUiSizeCompact  cl_extendBuyerRegGrid" defaultSpan="XL3 L3 M3 S12">
+                                   
+                                 <VBox visible="true">
+								<Label text="{i18n>RequesterConflictofInterest}" tooltip="{i18n>RequesterConflictofInterest}" required="false" class="cl_ConflictQtnCls sapUiSmallMarginBegin sapUiTinyMarginTop"></Label>
+									<RadioButtonGroup select="fnChangeReqCOI" class="sapUiTinyMarginBegin" enabled="{oConfigMdl>/screenEditable}"  selectedIndex="{JMBPCreate>/requestorConflictOfInterests}" valueState="{JMBPCreate>/requestorConflictOfInterestse}"  columns="2">
 									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>Yes}"/>
 									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
                                     		</RadioButtonGroup>
@@ -350,7 +357,7 @@
                 span="XL12 L12 M12 S12" />
             </layoutData>
                                 </VBox>
-                                </l:Grid>
+                                    </l:Grid>
                                  <l:Grid  class="sapUiSizeCompact  sapUiSmallMarginBegin cl_extendBuyerRegGrid" defaultSpan="XL3 L3 M3 S12">
                                  <VBox class="VRVboxStyle1" visible="{JMBPCreate>/reqCoIFields}">
 										<Label text="{i18n>BPCNameReq}" required="true" class="cl_VRLablCls "></Label>
@@ -478,6 +485,16 @@
                 span="XL6 L6 M6 S6" />
             </layoutData>
 									</VBox> 
+								</l:Grid>
+                                   <l:Grid visible="{= ${oConfigMdl>/ReqCOIVis} === 'ReqCOI' ? true : false}" defaultSpan="XL12 L12 M12 S12"  class="sapUiSizeCompact">
+ <VBox  class="VRVboxStyle1">
+ <Label text="{i18n>ConflitOfIntrest1}" required="true"  class="cl_ConflictQtnCls sapUiTinyMarginTop"></Label>
+					<RadioButtonGroup  enabled="{= ${oConfigMdl>/ReqCOIVis} === 'ReqCOI' ? true : false}" select="fnConflictOfIntChnage1" valueState="{JMBPCreate>/conflict1e}" selectedIndex="{JMBPCreate>/conflictOfInterests1}"  columns="1">
+									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>BPCIDoNotHaveCOI}"/>
+									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>BPCIHaveCOI}"/>
+                                    		</RadioButtonGroup>					
+									</VBox> 
+                                    
 								</l:Grid>
                            
                                                 <l:Grid  class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBottom">

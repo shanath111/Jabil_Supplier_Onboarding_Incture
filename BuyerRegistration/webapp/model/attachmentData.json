@@ -9,5 +9,6 @@
  "compFinDArray": [],
  "compComplDArray": [],
  "compSecuDArray": [],
- "buyerAttachment":[]
+ "buyerAttachment":[],
+ "MitigationDoc":[]
 }]

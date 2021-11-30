@@ -215,9 +215,12 @@ sap.ui.define([
                                 if (temp.requestorConflictOfInterest == true) {
                                     temp.requestorConflictOfInterests = 1;
                                     temp.reqCoIFields = true;
-                                } else {
-                                    temp.requestorConflictOfInterests = 0;
+                                } else if(temp.requestorConflictOfInterest == false){
                                     temp.reqCoIFields = false;
+                                    temp.requestorConflictOfInterests = 0;
+                                }else{
+                                    temp.reqCoIFields = false;
+                                    temp.requestorConflictOfInterests = -1;
                                 }
                                 if (temp.isExclCiscoGhub == true) {
                                     temp.isExclCiscoGhub = 0;
@@ -686,9 +689,12 @@ sap.ui.define([
                                 if (temp.requestorConflictOfInterest == true) {
                                     temp.requestorConflictOfInterests = 1;
                                     temp.reqCoIFields = true;
-                                } else {
-                                    temp.requestorConflictOfInterests = 0;
+                                } else if(temp.requestorConflictOfInterest == false){
                                     temp.reqCoIFields = false;
+                                    temp.requestorConflictOfInterests = 0;
+                                }else{
+                                    temp.reqCoIFields = false;
+                                    temp.requestorConflictOfInterests = -1;
                                 }
 
                                 if (temp.isExclCiscoGhub == true) {
@@ -1024,7 +1030,7 @@ sap.ui.define([
                             "customerDirectedSupplierIndicators": -1,
                             "outsideProcessiongSupplierIndicators": 1,
                             "manualAddressOverrideSupplierIndicators": 1,
-                            "requestorConflictOfInterests": 0,
+                            "requestorConflictOfInterests": -1,
                             "reqCoIFields": false,
                             "CoIFields": false,
                             "buyerAttachmentVis": false,
@@ -1082,6 +1088,7 @@ sap.ui.define([
                 this.fnSubmitBP("SU");
             },
             fnChangeReqCOI: function () {
+                oView.getModel("JMBPCreate").getData().requestorConflictOfInterestse = "None";
                 if (oView.getModel("JMBPCreate").getData().requestorConflictOfInterests == 1) {
                     oView.getModel("JMBPCreate").getData().reqCoIFields = true;
                     oView.getModel("JMBPCreate").refresh();
@@ -1113,6 +1120,7 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").getData().requestorCOIPhoneNumberm = "";
                     oView.getModel("JMBPCreate").refresh();
                 }
+                oView.getModel("JMBPCreate").refresh();
             },
 
             fnSubmitBP: function (vBtnActn) {
@@ -1286,6 +1294,12 @@ sap.ui.define([
                     if (oView.getModel("JMBPCreate").getData().incotermNameLocatione == "Error") {
                         vError = true;
                     }
+                    if (oView.getModel("JMBPCreate").getData().requestorConflictOfInterests == -1) {
+                        oView.getModel("JMBPCreate").getData().requestorConflictOfInterestse = "Error";
+                       
+                        oView.getModel("JMBPCreate").refresh();
+                        vError = true;
+                    }
                     if (oView.getModel("JMBPCreate").getData().requestorConflictOfInterests == 1) {
                         if (!oView.getModel("JMBPCreate").getData().requestorCOIName) {
                             oView.getModel("JMBPCreate").getData().requestorCOINamee = "Error";
@@ -1450,8 +1464,10 @@ sap.ui.define([
                 var vConflictOfIntSel1 = oView.getModel("JMBPCreate").getData().requestorConflictOfInterests;
                 if (vConflictOfIntSel1 == 0) {
                     vConflictOfInt1 = false;
-                } else {
+                } else if(vConflictOfIntSel1 == 1){
                     vConflictOfInt1 = true;
+                }else{
+                    vConflictOfInt1 = null;  
                 }
                 var vCiscoGrub;
                 var isExclCiscoGhubSel1 = oView.getModel("JMBPCreate").getData().isExclCiscoGhub;
@@ -3145,6 +3161,7 @@ sap.ui.define([
                 oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicatorse = "None";
                 oView.getModel("JMBPCreate").getData().oneTimePurchaseSupplierIndicatorse = "None";
                 oView.getModel("JMBPCreate").getData().isExclCiscoGhube = "None";
+                oView.getModel("JMBPCreate").getData().requestorConflictOfInterestse = "None";
                 oView.getModel("JMBPCreate").refresh();
             },
             fnLiveChangeIncotermLoc: function (oEvent) {

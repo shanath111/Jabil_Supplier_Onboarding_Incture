@@ -38,6 +38,11 @@ sap.ui.define([
                 that.fnSetConfigModel(vContext);
                 that.fnLoadLookUpData();
             },
+            fnConflictOfIntChnage1: function (oEvent) {
+              
+                oView.getModel("JMBPCreate").getData().conflict1e = "None";          
+                oView.getModel("JMBPCreate").refresh();
+            },
             fnSetConfigModel: function (oContext) {
                 oView.getModel("oConfigMdl").getData().closeFullScreenButton = false;
                 oView.getModel("oConfigMdl").getData().enterFullScreen = false;
@@ -48,9 +53,9 @@ sap.ui.define([
                 oView.getModel("oConfigMdl").getData().contextPath = oContext;
                 oView.getModel("oConfigMdl").getData().searchAddress = false;
                 oView.getModel("oConfigMdl").getData().coiLegalActnTxt = false;
-
+                oView.getModel("oConfigMdl").getData().ReqCOIVis = oContext.Name;
                 oView.getModel("oConfigMdl").getData().CommentsVis = false;
-
+                
                 if (oContext.Name == "COILegal") {
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = false;
                     oView.getModel("oConfigMdl").getData().ButtonNameReject = "Reject";
@@ -59,7 +64,18 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().RejectBtnVis = true;
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
 
-                } else {
+                }else if(oContext.Name == "ReqCOI"){
+                  
+                    oView.getModel("oConfigMdl").getData().ReqCOIVis = "ReqCOI";
+                    oView.getModel("oConfigMdl").getData().EulaCommentsVis = false;
+                    oView.getModel("oConfigMdl").getData().ButtonNameReject = "Reject";
+                    oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Submit";
+                    oView.getModel("oConfigMdl").getData().coiLegalActnTxt = true;
+                    oView.getModel("oConfigMdl").getData().RejectBtnVis = false;
+                    oView.getModel("oConfigMdl").getData().MitgationVis = false;
+                }
+                
+                else {
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = true;
                     oView.getModel("oConfigMdl").getData().ButtonNameReject = "Reject";
                     oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Approve";
@@ -89,7 +105,7 @@ sap.ui.define([
                         } else {
                             oView.getModel("oConfigMdl").getData().isClaimed = oEvent.getSource().getData().isClaimed;
                         }
-
+                        oView.getModel("oConfigMdl").getData().isClaimed = true;
 
                         oView.getModel("oConfigMdl").getData().isTaskCompleted = oEvent.getSource().getData().isTaskCompleted;
  oView.getModel("oConfigMdl").getData().validationMessage = oEvent.getSource().getData().validationMessage;
@@ -221,6 +237,7 @@ sap.ui.define([
                                         temp.conflictOfInterests = 0;
                                         temp.CoIFields = false;
                                     }
+                                    temp.conflictOfInterests1 = -1;
                                     if (temp.requestorConflictOfInterest == true) {
                                         temp.requestorConflictOfInterests = 1;
                                         temp.reqCoIFields = true;
@@ -652,6 +669,7 @@ sap.ui.define([
                 //    this.getOwnerComponent().getRouter().navTo("VendorRequest");
             },
             fnOpenBankCommentsApp: function () {
+              
                 var temp = {};
                 temp.Action = "AP";
                 //  temp.Comments = "";
@@ -662,8 +680,26 @@ sap.ui.define([
                 var oJosnComments = new sap.ui.model.json.JSONModel();
                 oJosnComments.setData(temp);
                 oView.setModel(oJosnComments, "JMAppvrComments");
-                if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COILegal") {
-                    this.fnApproveSub("AP");
+                if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COILegal" || oView.getModel("oConfigMdl").getData().contextPath.Name == "ReqCOI") {
+                    if(oView.getModel("oConfigMdl").getData().contextPath.Name == "ReqCOI"){
+                        if (oView.getModel("JMBPCreate").getData().conflictOfInterests1 == -1) {
+                            oView.getModel("JMBPCreate").getData().conflict1e = "Error";
+                            
+                            oView.getModel("JMBPCreate").refresh();
+                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                            return;
+                        }else{
+                            this.fnApproveSub("AP");
+                        }
+                    }else{
+                        this.fnApproveSub("AP");
+                    }
+                    
                 } else {
                     if (!this.oBankComments) {
                         this.oBankComments = sap.ui.xmlfragment(
@@ -736,6 +772,7 @@ sap.ui.define([
                 }
 
                 this.oBankCommentsMitigate.open();
+                this._fnReadDocumentListMitigate();
             },
             fnLoadFirstLevelReason: function () {
                 var oModel = new JSONModel();
@@ -916,6 +953,41 @@ sap.ui.define([
                                     "comments": oView.getModel("JMAppvrComments").getData().Comments
                                 }
                             }
+                            else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "ReqCOI") {
+                                var vConflict ;
+                             
+                                if(oView.getModel("JMBPCreate").getData().conflictOfInterests1 == 0){
+                                    vConflict = false;
+                                }else{
+                                    vConflict = true;
+                                }
+                                var vActn = "";
+                                if (vAprActn) {
+                                    vActn = "approved";
+                                } else {
+                                    vActn = "rejected";
+                                }
+                                var vCommentsActn;
+                                if (vAprActn) {
+                                    vCommentsActn = "approve";
+                                } else {
+                                    vCommentsActn = "reject";
+                                }
+                                var oPayload = {
+                                    "context": {
+                                        "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
+                                        "caseId": oView.getModel("JMEulaComments").getData().caseId,
+                                        "requestorConflictOfInterestSubmit":vConflict,
+                                        "isBuyerApprovedonEULA": vAprActn,
+                                        
+                                    },
+                                    "status": "",
+                                    "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                                    "action": vCommentsActn,
+                                    "comments": oView.getModel("JMAppvrComments").getData().Comments
+                                }
+                            }
+
 
                             else {
                                 var vCommentsActn;
@@ -1340,6 +1412,234 @@ sap.ui.define([
             fnLiveChangeCmntTxtArea: function () {
                 oView.getModel("JMAppvrComments").getData().Commentse = "None";
                 oView.getModel("JMAppvrComments").refresh();
-            }
+            },
+            fnOnFileUploadMitigate: function (oEvt) {
+                var oFormData = new FormData(),
+                    that = this,
+                    fileUpload = sap.ui.getCore().byId("id_MitigationDoc"),
+                    domRef = fileUpload.getFocusDomRef(),
+                    // @ts-ignore
+                    file = domRef.files[0];
+
+
+                // @ts-ignore
+                jQuery.sap.domById(fileUpload.getId() + "-fu").setAttribute("type", "file");
+                // @ts-ignore
+                oFormData.append("file", jQuery.sap.domById(fileUpload.getId() + "-fu").files[0]);
+                oFormData.append("name", file.name);
+                oFormData.append("reminderDays", 5);
+                oFormData.append("overwriteFlag", false);
+                oFormData.append("folderName", oView.getModel("JMEulaComments").getData().caseId);
+                oFormData.append("requestId", oView.getModel("JMEulaComments").getData().caseId);
+                oFormData.append("docInSection", oView.getModel("oConfigMdl").getData().contextPath.Name);
+                oFormData.append("fileExt", file.name.split(".")[1]);
+                oFormData.append("type", "application/octet-stream");
+
+
+                oFormData.append("addedBy", oView.getModel("oConfigMdl").getData().usrData.givenName);
+
+                var oAttachData = {
+
+                    "fileExt": file.name.split(".")[1],
+
+                    "name": file.name,
+                };
+
+                var _arrayTitle = "NDADocuments";
+
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/document/upload";
+                // @ts-ignore
+                $.ajax({
+                    url: sUrl,
+                    data: oFormData,
+                    contentType: false,
+                    accept: '*/*',
+                    type: 'POST',
+                    processData: false,
+                    success: function (data) {
+                        oAttachData.dmsDocumentId = data.dmsDocumentId;
+                        oAttachData.dmsFolderId = data.dmsFolderId;
+                        oAttachData.fileSize = data.fileSize;
+                        that.getView().getModel("oAttachmentList").getData().MitigationDoc.push(oAttachData);
+                        that.getView().getModel("oAttachmentList").refresh(true);
+                    },
+                    error: function (data) {
+                        var _arrayTitle = "MitigationDoc";
+                        var eMsg = data.responseText;
+                        if (data.status == 406) {
+                            var eMsg = "The file already exists. Do you want to overwrite it?"
+                            MessageBox.confirm(eMsg, {
+                                icon: MessageBox.Icon.Confirmation,
+                                title: "Confirmation",
+                                actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                                emphasizedAction: MessageBox.Action.YES,
+                                onClose: function (oAction) {
+                                    if (oAction == "YES") {
+                                        oFormData.set("overwriteFlag", true);
+                                        //  oFormData.append("deletedBy", oView.getModel("oUserModel").getData().user.givenName);
+                                        var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).findIndex(function (docId) { return docId.name === file.name });
+                                        if(index !== -1){
+                                        that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).splice(index, 1);}
+                                    //     if(_arrayTitle === "bankINDArray" || _arrayTitle === "bankDArray"){
+                                    //         var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").findIndex(function (docId) { return docId.name == file.name });
+                                    //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").splice(index, 1);
+                                    //     var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").findIndex(function (docId) { return docId.name == file.name });
+                                    //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").splice(index, 1);
+                                    //    }
+                                        that.getView().getModel("oAttachmentList").refresh(true);
+                                        var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
+                                        oBusyDialogFile.open();
+                                        // @ts-ignore
+                                        $.ajax({
+                                            url: sUrl,
+                                            data: oFormData,
+                                            contentType: false,
+                                            accept: '*/*',
+                                            type: 'POST',
+                                            processData: false,
+                                            success: function (data) {
+                                                oAttachData.dmsDocumentId = data.dmsDocumentId;
+                                                oAttachData.dmsFolderId = data.dmsFolderId;
+                                                oAttachData.fileSize = data.fileSize;
+
+                                                that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).push(oAttachData);
+                                                that.getView().getModel("oAttachmentList").refresh(true);
+                                                oBusyDialogFile.close();
+
+                                            }, error: function (data) {
+                                                var eMsg = data.responseText
+                                                MessageBox.show(eMsg, {
+                                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                                    title: oi18n.getText("error")
+                                                });
+                                                oBusyDialogFile.close();
+                                            }
+                                        });
+                                    } else {
+                                        oBusyDialogFile.close();
+                                    }
+                                }
+                            });
+                        } else {
+
+                            MessageBox.show(eMsg, {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: oi18n.getText("error")
+                            });
+                        }
+
+
+
+                    }
+                });
+            },
+            _fnReadDocumentListMitigate: function (caseId, that) {
+                that = this;
+                caseId = oView.getModel("JMEulaComments").getData().caseId;
+                that.getView().getModel("oAttachmentList").setProperty("/MitigationDoc", []);
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/document/findByRequestId/" + caseId;
+                $.ajax({
+                    url: sUrl,
+                    type: 'GET',
+                    success: function (data) {
+
+                        $.each(data, function (index, value) {
+                            if (value.docInSection == oView.getModel("oConfigMdl").getData().contextPath.Name) {
+                                that.getView().getModel("oAttachmentList").getData().MitigationDoc.push(value);
+                            }
+                        });
+                        that.getView().getModel("oAttachmentList").refresh();
+                    },
+                    error: function (data) {
+                        var eMsg = data.responseText
+                        MessageBox.show(eMsg, {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: oi18n.getProperty("Error")
+                        });
+
+                    }
+                });
+
+
+            },
+            fnOnCancelAttachmentMitigate: function (oEvt) {
+                this.getView().getModel("oAttachmentList").refresh(true);
+                var name = oEvt.getSource().getParent().oParent.getItems()[0].mAggregations.items[1].mAggregations.items[0].getProperty("text");
+                // @ts-ignore
+                var dmsDocId = this.getView().getModel("oAttachmentList").getData().MitigationDoc.filter(function (docId) {
+                    return docId.name == name
+                })[0].dmsDocumentId;
+
+                var deletedBy = oView.getModel("oConfigMdl").getData().usrData.givenName;
+
+                // var _arrayTitle= this._fnGetUploaderId(fileUploadId);
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/document/deleteByDmsDocumentId/" + dmsDocId + "/" + deletedBy;
+                $.ajax({
+                    url: sUrl,
+                    contentType: false,
+                    accept: '*/*',
+                    type: 'DELETE',
+                    processData: false,
+                    success: function () {
+                        var index = that.getView().getModel("oAttachmentList").getData().MitigationDoc.findIndex(function (docId) { return docId.name == name });
+                        that.getView().getModel("oAttachmentList").getData().MitigationDoc.splice(index, 1);
+                        that.getView().getModel("oAttachmentList").refresh(true);
+                    },
+                    error: function (data) {
+                        var eMsg = data.responseText
+                        MessageBox.show(eMsg, {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: oi18n.getProperty("Error")
+                        });
+
+                    }
+                });
+            },
+
+            fnOnDownlAttachmentMitigate: function (oEvt) {
+                this.getView().getModel("oAttachmentList").refresh(true);
+                var name = oEvt.getSource().getParent().oParent.getItems()[0].mAggregations.items[1].mAggregations.items[0].getProperty("text"),
+                    _arrayTitle = oEvt.oSource.oParent.oParent.oParent.oParent.mBindingInfos.items.path.split("/0/")[1];
+                // @ts-ignore
+                var dmsDocId = this.getView().getModel("oAttachmentList").getData().MitigationDoc.filter(function (docId) {
+                    return docId.name == name
+                })[0].dmsDocumentId;
+                //var _arrayTitle= this._fnGetUploaderId(fileUploadId);
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/document/download/" + dmsDocId;
+                // @ts-ignore
+                $.ajax({
+                    url: sUrl,
+                    //   contentType: false,
+                    //   accept:'*/*',
+                    //   localUri: "/Downloads",
+                    type: 'GET',
+                    xhrFields: {
+                        responseType: 'blob'
+                    },
+                    //   processData: false,
+                    success: function (data) {
+                        var a = document.createElement('a');
+                        var url = window.URL.createObjectURL(data);
+                        a.href = url;
+                        a.download = name;
+                        document.body.append(a);
+                        a.click();
+                        a.remove();
+                        window.URL.revokeObjectURL(url);
+
+                    },
+                    error: function () {
+                        var eMsg = data.responseText
+                        MessageBox.show(eMsg, {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: oi18n.getProperty("Error")
+                        });
+
+                    }
+                });
+
+            },
+
+
         });
     });
