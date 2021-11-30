@@ -977,8 +977,8 @@ sap.ui.define([
                                     "context": {
                                         "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                                         "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                                        "requestorConflictOfInterestSubmit":vConflict,
-                                        "isBuyerApprovedonEULA": vAprActn,
+                                        "requestorConflictOfInterestSubmit":vConflict
+                                       
                                         
                                     },
                                     "status": "",
