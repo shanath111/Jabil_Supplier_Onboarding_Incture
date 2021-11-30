@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
-	xmlns:u="sap.ui.unified" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f" xmlns:c="com.jabil.surveyform.controls" async="true">
+	xmlns:u="sap.ui.unified" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f" async="true">
     <Panel width="100%" class="sapUiTinyMarginTop panelPadding">
 		<content>
 			<Text text="{i18n>paymentTermsL}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontBold sapUiTinyMarginBegin sapUiTinyMarginBottom"/>

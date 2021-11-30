@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
-	xmlns:u="sap.ui.unified" xmlns:uc="sap.ui.unified.calendar" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f" xmlns:upload="sap.m.upload" xmlns:c="com.jabil.surveyform.controls" async="true">
+	xmlns:u="sap.ui.unified" xmlns:uc="sap.ui.unified.calendar" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f" xmlns:upload="sap.m.upload" async="true">
 	<VBox class=" sapUiTinyMarginTop">
 		<Panel width="100%" class="panelPadding">
 			<Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>businessPartInfo}:${oi18n_En>businessPartInfo} +'&#10;&#10;' +${i18n>businessPartInfo}}" class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
