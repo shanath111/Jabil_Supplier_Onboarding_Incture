@@ -889,7 +889,7 @@ sap.ui.define([
                         "financeContact2Action": vActn,
                         "bank_details_provider_comment": oView.getModel("JMBankComments").getData().Comments,
                         "bnkaPayload": vBnkaPayload,
-                        "isIntermediateBankProvided": false,
+                        "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided,
                         // "financeContact2": {
                         //     "firstName": "",
                         //     "lastName": "",
