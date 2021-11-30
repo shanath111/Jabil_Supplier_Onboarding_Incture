@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
-	xmlns:u="sap.ui.unified" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f" xmlns:c="com.jabil.surveyform.controls" async="true">
+	xmlns:u="sap.ui.unified" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f" async="true">
     <Panel width="100%" class="sapUiTinyMarginTop panelPadding">
 		<content>
 			<Text text="{i18n>paymentTermsL}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontBold sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
@@ -211,13 +211,13 @@
 			<HBox>	<u:FileUploader  visible="{=${oDataModel>/bankDto/isIntermediateBankProvided} === true}" maximumFileSize="10" id="fileUploader_BIA" buttonOnly="true" iconOnly="true" icon="sap-icon://attachment" multiple="true"
 					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{oVisibilityModel>/_FinanceReviewEdit}"
 					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin addMoreBtn paperClipOuter">
-                        <u:tooltip>
+                        <!-- <u:tooltip>
                             <c:Tooltip 
                             text="{i18n>DocumentTooltip}"
                             offset="10 -5"
                             closeDuration="0"
                             />
-                        </u:tooltip>
+                        </u:tooltip> -->
                     </u:FileUploader>
                      <Label class="sapUiSmallMarginTop" required="{=${oDataModel>/bankDto/isIntermediateBankProvided} === true}"/>
             <Text wrapping="true" class="sapUiSmallMarginTop sapUiTinyMarginbegin" visible="{=${oDataModel>/bankDto/isIntermediateBankProvided} === true}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBankAttachVerbiage}:${oi18n_En>interMBankAttachVerbiage}+ '&#10;' +${i18n>interMBankAttachVerbiage}}"/>
@@ -475,16 +475,17 @@
 <HBox><Label required="{oDataModel>/bankDto/isBankProvided}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankAttachText1}:${oi18n_En>bankAttachText1}+ '/&#160;'+${i18n>bankAttachText1}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 			<Button tooltip="{oPopoverModel>/bankInfoInfoText/info}" icon="sap-icon://message-information" type="Transparent" class="sapUiSizeCompact infoBtn"/>
            </HBox> <HBox wrap="Wrap">
+                <!-- <Button id="fileUploader_BA" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" tooltip="{i18n>DocumentTooltip}" icon="sap-icon://add" press="fnOnFileUpload" class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin" ></Button> -->
 				<u:FileUploader id="fileUploader_BA" buttonOnly="true" maximumFileSize="10"  buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"
 					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{oVisibilityModel>/_FinanceReviewEdit}"
 					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin">
-                    <u:tooltip>
+                    <!-- <u:tooltip>
                         <c:Tooltip 
                         text="{i18n>DocumentTooltip}"
                         offset="10 -5"
                         closeDuration="0"
                         />
-                    </u:tooltip>
+                    </u:tooltip> -->
                     </u:FileUploader>
 				<g:GridList width="auto" items="{oAttachmentList>/0/bankDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">
 					<g:customLayout>

@@ -868,6 +868,13 @@ outline: none !important;
     align-items: center !important;
     justify-content: end !important;
 }
+.copyPasteInfo{
+    justify-content: flex-end;
+}
+
+.blueIcon {
+    color: #427cac;
+}
 /* .boxStyle.sapMCb {
     height: 2rem;
     line-height: 2rem;

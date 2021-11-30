@@ -15,6 +15,22 @@
                  <Text  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" 
 				text="{i18n>companyContactTableTex1}"></Text> 
                 </VBox>
+    <VBox class="fontStyle sapUiSizeCompact sapUiSmallMarginTop">
+        <HBox class="copyPasteInfo sapUiSmallMarginEnd">
+            <Text wrapping="true" text="You can use the copy " class="sapUiTinyMarginEnd"/>
+            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon"/>
+            <Text wrapping="true" text="/ " class="sapUiTinyMarginEnd"/>
+            <core:Icon src="sap-icon://paste" class="sapUiTinyMarginEnd blueIcon"/>
+            <Text wrapping="true" text="feature to help fill in the additional contacts. "/>
+        </HBox>
+        <HBox class="copyPasteInfo sapUiSmallMarginEnd">
+            <Text wrapping="true" text="Once you copy  " class="sapUiTinyMarginEnd"/>
+            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon"/>
+            <Text wrapping="true" text="the row, then select the paste " class="sapUiTinyMarginEnd"/>
+            <core:Icon src="sap-icon://course-program" class="sapUiTinyMarginEnd blueIcon"/>
+            <Text wrapping="true" text=" option, just above the list, to add to the other lines. "/>
+        </HBox> 
+    </VBox>
     </Panel>
 				
                  <VBox fitContainer="true" class="fontStyle" >
@@ -87,7 +103,7 @@
             </HBox>
            <HBox>  <Input maxLength="11" class="inputStyle" value="{oLookUpModel>extension}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/comContactextensionEnb}" />
              <Button icon="sap-icon://copy" press="fnCopyContactData" visible="{oVisibilityModel>/copiedData}" type="Transparent" class="addMoreBtn" >
-                <tooltip>
+                <!-- <tooltip>
                     <c:Tooltip 
                     closeDuration="0"
                     >
@@ -109,7 +125,7 @@
 
                     </VBox>
                     </c:Tooltip>
-                </tooltip>
+                </tooltip> -->
             </Button>
                 <Button icon="sap-icon://paste" press="fnPasteContactData" visible="{oVisibilityModel>/pasteData}" type="Transparent" class="addMoreBtn"/>
                 </HBox>
