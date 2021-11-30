@@ -7172,11 +7172,23 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 }
                 that.oPopup.open();
             },
+            fnDocTypeChange: function(oEvent){
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                if(oEvent.getSource().getValue() == ""){
+                    oEvent.getSource().setSelectedKey("w8");
+                }
+            },
             // @ts-ignore
             //File Upload function with Date Input
             fnOnFileUploadBP: function (oEvt) {
                 var that = this;
-
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
+                var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 var fileUploadId = oEvt.mParameters.id,
                 fileUpload = oEvt.getSource(),
                 domRef = fileUpload.getFocusDomRef(),
@@ -7190,7 +7202,41 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 //     oView.addDependent(that.oPopup);
                 // }
                 // that.oPopup.open();
-             
+                if(file.name.length > 60){
+            
+                    if (isDefaultLan) {
+                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                    } else {
+                        sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.docFileNameExtendedMessage + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                    } 
+            } else if(Number((file.size*0.000001).toFixed(1))> 8){
+                if (isDefaultLan) {
+                    sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileSizeExtendedMessage")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
+                } else {
+                    sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.docFileNameExtendedMessage + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("docFileSizeExtendedMessage")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
+                } 
+            }
+            else{
                     var docType = this.oPopup.getContent()[0].getAggregation("items")[0].getAggregation("items")[1].getValue();
                     // @ts-ignore
                     if (docType) {
@@ -7225,7 +7271,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         };
 
                         var _arrayTitle = that._fnGetUploaderId(fileUploadId);
-
+                        oBusyDialogFile.open();
                         var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
                         // @ts-ignore
                         $.ajax({
@@ -7313,10 +7359,14 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                             }
                         });
                 }
-                this.oPopup.close();
+              
+            }
+            this.oPopup.close();
             },
             fnOnFileUpload: function (oEvt) {
                 var that = this;
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
+                var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 var fileUploadId = oEvt.oSource.sId.split("VendorSurvey--")[1];
                 var oFormData = new FormData(),
                     fileUpload = oView.byId(fileUploadId),
@@ -7327,9 +7377,7 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                 if (secName == "bankInfo" && fileUploadId == "fileUploader_BIA") {
                     secName = "bankIntermediateInfo";
                 }
-                if(file.name.length > 60){
-                        var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
-                        var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                if(file.name.length > 60){                   
                         if (isDefaultLan) {
                             sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
                                 icon: sap.m.MessageBox.Icon.ERROR,
@@ -7345,7 +7393,24 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                                 styleClass: "sapUiSizeCompact"
                             });
                         } 
-                }else{
+                }else if(Number((file.size*0.000001).toFixed(1))> 8){
+                    if (isDefaultLan) {
+                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileSizeExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                    } else {
+                        sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.docFileNameExtendedMessage + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("docFileSizeExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                    } 
+                }
+                else{
                 jQuery.sap.domById(fileUpload.getId() + "-fu").setAttribute("type", "file");
                 // @ts-ignore
                 oFormData.append("file", jQuery.sap.domById(fileUpload.getId() + "-fu").files[0]);
