@@ -19,7 +19,7 @@
         <HBox class="copyPasteInfo sapUiSmallMarginEnd">
             <Text wrapping="true" text="You can use the copy " class="sapUiTinyMarginEnd"/>
             <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon"/>
-            <Text wrapping="true" text="/ " class="sapUiTinyMarginEnd"/>
+            <Text wrapping="true" text="/ paste " class="sapUiTinyMarginEnd"/>
             <core:Icon src="sap-icon://paste" class="sapUiTinyMarginEnd blueIcon"/>
             <Text wrapping="true" text="feature to help fill in the additional contacts. "/>
         </HBox>
