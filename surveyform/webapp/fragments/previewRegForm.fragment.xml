@@ -801,6 +801,12 @@
 										<Label text="{=${companyInfoModel>/oRegion}?${companyInfoModel>/oRegion}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                      <VBox class="VRVboxStyle1">
+                                    <Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+									<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/OFAContactCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue"></Label>
+                                        
+                                </VBox>
+                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>teleNum}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         	<Label text="{oi18n_En>teleNum}&#10;{i18n>teleNum}"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
 										<Label text="{companyInfoModel>/oTeleNum}" class="cl_PreviewLablClsValue "></Label>
@@ -877,7 +883,12 @@
 										
 										<Label text="{=${remitModel>/rRegion}?${remitModel>/rRegion}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
-                                     
+                                    <VBox class="VRVboxStyle1">
+                                    <Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+									<Label text="{parts:['oLookUpModel>/countryContactCode','oVisibilityModel>/RTAContactCode'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchCode'}" class="cl_PreviewLablClsValue"></Label>
+                                              
+                                </VBox> 
                                      <VBox class="VRVboxStyle1">
                                      <Label text="{i18n>teleNum}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         	<Label text="{oi18n_En>teleNum}&#10;{i18n>teleNum}"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
