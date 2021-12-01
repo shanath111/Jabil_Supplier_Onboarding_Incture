@@ -2137,6 +2137,11 @@ sap.ui.define([
             },
             fnLiveChangePurchOrg: function (oEvent) {
                 //    var vSelected = oEvent.getParameter("itemPressed");
+                var compCode= oView.getModel("JMBPCreate").getData().companyCode;
+                if(compCode === "" || compCode === undefined){
+                    sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
+                    
+                }
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
@@ -3650,11 +3655,16 @@ sap.ui.define([
                 }
             },
             fnLiveChangeTelephone: function (oEvent) {
+                var numRegex = /^[0-9]*$/;
+                var val = oEvent.getSource().getValue();
                 var vLength = oEvent.getParameter("value").length
                 if (vLength > 40) {
                     oView.getModel("JMBPCreate").getData().telephonee = "Error";
                     oView.getModel("JMBPCreate").getData().telephonem = oi18n.getProperty("BPCMaxLengthExceeds");;
                     oView.getModel("JMBPCreate").refresh();
+                } else if (!numRegex.test(oEvent.getSource().getValue())) {
+                    var newval = val.substring(0, val.length - 1);
+                    oEvent.getSource().setValue(newval);
                 }
                 else {
                     if (oView.getModel("JMBPCreate").getData().telephonee == "Error") {
@@ -3665,11 +3675,17 @@ sap.ui.define([
                 }
             },
             fnLiveChangeTelephoneMob: function (oEvent) {
+                var numRegex = /^[0-9]*$/;
+                var val = oEvent.getSource().getValue();
                 var vLength = oEvent.getParameter("value").length
                 if (vLength > 30) {
                     oView.getModel("JMBPCreate").getData().contactMobilePhonee = "Error";
                     oView.getModel("JMBPCreate").getData().contactMobilePhonem = oi18n.getProperty("BPCMaxLengthExceeds");;
                     oView.getModel("JMBPCreate").refresh();
+                } else if (!numRegex.test(oEvent.getSource().getValue())) {
+                    var newval = val.substring(0, val.length - 1);
+                    oEvent.getSource().setValue(newval);
+
                 }
                 else {
                     if (oView.getModel("JMBPCreate").getData().contactMobilePhonee == "Error") {
