@@ -34,7 +34,7 @@
         <HBox class="copyPasteInfo sapUiSmallMarginEnd sapUiSmallMarginTop">
             <Text wrapping="true" text="{oi18n_En>copyPasteInfo1}&#10;{i18n>copyPasteInfo1}" class="sapUiTinyMarginEnd" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
             <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon"/>
-            <Text wrapping="true" text="/ " class="sapUiTinyMarginEnd" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <Text wrapping="true" text="/ paste " class="sapUiTinyMarginEnd"/>
             <core:Icon src="sap-icon://paste" class="sapUiTinyMarginEnd blueIcon"/>
             <Text wrapping="true" text="{oi18n_En>copyPasteInfo2}&#10;{i18n>copyPasteInfo2}" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
         </HBox>

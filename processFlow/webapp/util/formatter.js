@@ -834,19 +834,19 @@ oneapp.incture.processFlow.processFlow.util.formatter = {
 			if (mins < 10) {
 				mins = "0" + mins;
 			}
-			if (diffDays === 0) {
-				sTime = "" + sentAt.toLocaleTimeString(navigator.language, {
-					hour: '2-digit',
-					minute: '2-digit'
-				});
-			}
-			if (diffDays === 1) {
-				sTime = "Yesterday " + sentAt.toLocaleTimeString(navigator.language, {
-					hour: '2-digit',
-					minute: '2-digit'
-				});
-			}
-			if (diffDays > 1) {
+			// if (diffDays === 0) {
+			// 	sTime = "" + sentAt.toLocaleTimeString(navigator.language, {
+			// 		hour: '2-digit',
+			// 		minute: '2-digit'
+			// 	});
+			// }
+			// if (diffDays === 1) {
+			// 	sTime = "Yesterday " + sentAt.toLocaleTimeString(navigator.language, {
+			// 		hour: '2-digit',
+			// 		minute: '2-digit'
+			// 	});
+			// }
+		//	if (diffDays > 1) {
 				var dd = sentAt.getDate();
 				if (dd < 10) {
 					dd = '0' + sentAt.getDate();
@@ -857,7 +857,7 @@ oneapp.incture.processFlow.processFlow.util.formatter = {
 					hour: '2-digit',
 					minute: '2-digit'
 				});
-			}
+		//	}
 		}
 		return sTime;
 	},

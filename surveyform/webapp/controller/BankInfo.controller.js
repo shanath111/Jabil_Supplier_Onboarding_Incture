@@ -66,7 +66,7 @@ sap.ui.define([
                 });
             },
 
-             fnLoadTaskClaimed: function (vTaskId) {
+            fnLoadTaskClaimed: function (vTaskId) {
                 var oModel = new JSONModel();
                 var that = this;
                 var sUrl = "/comjabilsurveyform/WorkboxJavaService/inbox/isClaimed?eventId=" + vTaskId;
@@ -75,11 +75,12 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
+                        oEvent.getSource().getData().isTaskCompleted = false;
                         if (oEvent.getSource().getData().isTaskCompleted == true) {
                             that.getOwnerComponent().getModel("oVisibilityModel").getData()._FinanceReviewEdit = false
-                        that.getOwnerComponent().getModel("oVisibilityModel").getData()._CompletedTask = false
-                        }else{
-                              that.getOwnerComponent().getModel("oVisibilityModel").getData()._CompletedTask = true
+                            that.getOwnerComponent().getModel("oVisibilityModel").getData()._CompletedTask = false
+                        } else {
+                            that.getOwnerComponent().getModel("oVisibilityModel").getData()._CompletedTask = true
                         }
                     }
                     that.getOwnerComponent().getModel("oVisibilityModel").refresh();
@@ -92,7 +93,7 @@ sap.ui.define([
                 this._fnLoadCountryContactCode();
                 this.getUser();
                 var taskId = oEvent.getParameter("arguments").contextPath;
-                
+
                 vAppName = oEvent.getParameter("arguments").Name;
                 var oContactInfo = {
                     "firstName": "",
@@ -126,7 +127,7 @@ sap.ui.define([
                                 if (oEvent.getSource().oData.businessPartnerId !== "") {
                                     oView.getModel("oDataModel").setData(oEvent.getSource().oData);
                                     oView.getModel("oDataModel").refresh();
-                                      that._fnLoadBankRegion(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry); 
+                                    that._fnLoadBankRegion(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry);
                                     that.fnActivateBankScreen();
                                     that._fnReadDocumentList(oEvent.getSource().oData.caseId, that);
                                 }
@@ -225,15 +226,15 @@ sap.ui.define([
                 var that = this;
                 var vError = this._fnValidateBankInfo();
                 if (!vError) {
-                     if (that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
-                   var sErMsg = "Please provide Attachment";
-                                    MessageBox.show(sErMsg, {
-                                        icon: MessageBox.Icon.ERROR,
-                                        title: "Error"
-                                    });
-                                    return;
+                    if (that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
+                        var sErMsg = "Please provide Attachment";
+                        MessageBox.show(sErMsg, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: "Error"
+                        });
+                        return;
 
-                } 
+                    }
                     var that = this;
                     oBusyDialog.open();
                     var vActionTxt = "";
@@ -330,8 +331,8 @@ sap.ui.define([
                             });
                         }
                     });
-                }else{
-                      sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                } else {
+                    sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
                         icon: sap.m.MessageBox.Icon.ERROR,
                         title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
                         contentWidth: "30%",
@@ -488,7 +489,7 @@ sap.ui.define([
             _fnValidateBankInfo: function (oEvent) {
                 var bankFields = this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
                 var iError = false;
-                 var spaceRegex = /^\s+$/;
+                var spaceRegex = /^\s+$/;
                 var visiblility = this.getOwnerComponent().getModel("oVisibilityModel").getData();
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
                     isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
@@ -524,26 +525,26 @@ sap.ui.define([
                     }
 
                     if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum && bankFields.benificiaryAccountNumber) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum)) {
-                            oView.getModel("oErrorModel").getData().bankAccNumE = "Error";
-                            oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("mandatoryAccNum");
+                        oView.getModel("oErrorModel").getData().bankAccNumE = "Error";
+                        oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("mandatoryAccNum");
 
-                            iError = true;
-                        }
+                        iError = true;
+                    }
 
-                        if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm && bankFields.benificiaryAccountNumber) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm)) {
+                    if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm && bankFields.benificiaryAccountNumber) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm)) {
+                        oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
+                        oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("mandatoryAccNumConfirm");
+
+                        iError = true;
+                    } else if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm) {
+                        if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm !== oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum) {
                             oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
-                            oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("mandatoryAccNumConfirm");
+                            oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
 
                             iError = true;
-                        } else if(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm) {
-                            if(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm !== oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum){
-                                oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
-                                oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
-
-                                iError = true;
-                            }
                         }
-                        
+                    }
+
                     if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName && bankFields.benificiaryAccHolderName) {
                         oView.getModel("oErrorModel").getData().benifAccHNameE = "Error";
                         oView.getModel("oErrorModel").getData().benifAccHNameM = oi18n.getText("mandatoryHolderName");
@@ -577,20 +578,20 @@ sap.ui.define([
 
                         iError = true;
                     }
-                         if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm && bankFields.iban) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm)) {
-                            
-                                oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
-                                oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("mandatoryIbanConfirm");
-                                iError = true;
-                            
-                        } else if(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm) {
-                            if(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm !== oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum){
-                                oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
-                                oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
+                    if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm && bankFields.iban) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm)) {
 
-                                iError = true;
-                            }
+                        oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
+                        oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("mandatoryIbanConfirm");
+                        iError = true;
+
+                    } else if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm) {
+                        if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm !== oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum) {
+                            oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
+                            oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
+
+                            iError = true;
                         }
+                    }
                     if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].partnerBankType && bankFields.benificiaryAccCurrency) {
                         oView.getModel("oErrorModel").getData().benifAccCurrE = "Error";
                         oView.getModel("oErrorModel").getData().benifAccCurrM = oi18n.getText("mandatoryAccCurr");
@@ -641,6 +642,16 @@ sap.ui.define([
                     // }
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey.length > 3) {
                         iError = true;
+                    }
+                    if(oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided){
+                        if(that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.length == 0) {
+                            iError = true;
+                            oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithoutBorder");
+                            oView.byId("fileUploader_BIA").addStyleClass("attachmentWithBorder");
+                        } else {
+                            oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithBorder");
+                            oView.byId("fileUploader_BIA").addStyleClass("attachmentWithoutBorder");
+                        }
                     }
                 }
 
@@ -702,14 +713,14 @@ sap.ui.define([
                 // }
 
                 // this.oBankComments.open();
-                 this.fnApproveSub("AP");
+                this.fnApproveSub("AP");
             },
             fnLiveChangeCmntTxtArea: function () {
                 oView.getModel("JMBankComments").getData().Commentse = "None";
                 oView.getModel("JMBankComments").refresh();
             },
-            
-            fnInputConfirmBankAccNumber: function(oEvent){
+
+            fnInputConfirmBankAccNumber: function (oEvent) {
                 if (oEvent.getSource().getValue()) {
                     if (oEvent.getSource().getValue().length == oEvent.getSource().getMaxLength()) {
                         oEvent.getSource().setValueState("Error");
@@ -719,11 +730,11 @@ sap.ui.define([
                         oEvent.getSource().setValueStateText("");
                     }
                 }
-                
+
                 var that = this;
                 var confirmBankAccNum = oEvent.getSource().getValue();
                 var InputBankAccNum = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum;
-                if(confirmBankAccNum !== InputBankAccNum){
+                if (confirmBankAccNum !== InputBankAccNum) {
                     oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
                     oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
                     oView.getModel("oErrorModel").refresh();
@@ -738,8 +749,8 @@ sap.ui.define([
                     // that.emailValidResult = false;
                 }
             },
-            
-            fnInputConfirmIban: function(oEvent) {
+
+            fnInputConfirmIban: function (oEvent) {
                 if (oEvent.getSource().getValue()) {
 
                     if (oEvent.getSource().getMaxLength() && oEvent.getSource().getValue().length !== oEvent.getSource().getMaxLength()) {
@@ -751,12 +762,12 @@ sap.ui.define([
                     }
 
 
-                } 
-                
+                }
+
                 var that = this;
                 var confirmIBAN = oEvent.getSource().getValue();
                 var InputIBAN = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum;
-                if(confirmIBAN !== InputIBAN){
+                if (confirmIBAN !== InputIBAN) {
                     oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
                     oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
                     oView.getModel("oErrorModel").refresh();
@@ -876,8 +887,9 @@ sap.ui.define([
                         "bpNumber": oView.getModel("oUserModel").getData().bpNumber,
                         "caseId": oView.getModel("oUserModel").getData().caseId,
                         "financeContact2Action": vActn,
-                        "bank_details_provider_comment":oView.getModel("JMBankComments").getData().Comments,
+                        "bank_details_provider_comment": oView.getModel("JMBankComments").getData().Comments,
                         "bnkaPayload": vBnkaPayload,
+                        "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided,
                         // "financeContact2": {
                         //     "firstName": "",
                         //     "lastName": "",
@@ -971,7 +983,7 @@ sap.ui.define([
                     }
                 }
                 var firstDigit = "", secondDigit = "";
-                 var bankCountryDesc = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().Country, oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry);
+                var bankCountryDesc = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().Country, oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry);
                 if (bankCountryDesc == "Russian Fed.") {
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum) {
                         oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey = oEvent.getSource().getValue().substring(2, 0);
@@ -1022,7 +1034,7 @@ sap.ui.define([
                 }
             },
 
-   
+
             fnLiveValueBankInput: function (oEvent) {
                 var that = this;
                 if (oEvent.getSource().getValue()) {
@@ -1065,16 +1077,16 @@ sap.ui.define([
                 oView.getModel("oErrorModel").getData().bankCtrlKeyM = "";
                 oView.getModel("oErrorModel").getData().paymentCurrE = "None";
                 oView.getModel("oErrorModel").getData().paymentCurrM = "";
-                oView.getModel("oErrorModel").refresh();  
-                if(!oEvent.getSource().getBindingPath("items").includes('Currency')){
+                oView.getModel("oErrorModel").refresh();
+                if (!oEvent.getSource().getBindingPath("items").includes('Currency')) {
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState = "";
                     oView.getModel("oDataModel").refresh();
-                this._fnLoadBankRegion(oEvent.getSource().getSelectedKey()); 
-                }           
+                    this._fnLoadBankRegion(oEvent.getSource().getSelectedKey());
+                }
                 this.fnActivateBankScreen();
             },
-               _fnLoadBankRegion: function(vCountry){
-                 var oModel = new JSONModel();
+            _fnLoadBankRegion: function (vCountry) {
+                var oModel = new JSONModel();
                 var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/regions/?country=" + vCountry;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
@@ -1088,7 +1100,7 @@ sap.ui.define([
             },
 
             fnActivateBankScreen: function () {
-                
+
                 var that = this;
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry) {
                     var requestData = {
@@ -1127,8 +1139,8 @@ sap.ui.define([
                             bankFields.bankKeyVal1 = oEvent.getSource().oData.bankKeyVal1;
                             bankFields.bankKeyVal2 = oEvent.getSource().oData.bankKeyVal2;
                             bankFields.bankKeyVal3 = oEvent.getSource().oData.bankKeyVal3;
-                              bankFields.bankKeyVal4 = oEvent.getSource().oData.bankKeyVal4;
-                                bankFields.bankKeyVal5 = oEvent.getSource().oData.bankKeyVal5;
+                            bankFields.bankKeyVal4 = oEvent.getSource().oData.bankKeyVal4;
+                            bankFields.bankKeyVal5 = oEvent.getSource().oData.bankKeyVal5;
                             that.getOwnerComponent().getModel("oVisibilityModel").refresh();
 
                         }
@@ -1181,8 +1193,9 @@ sap.ui.define([
             fnOnFileUpload: function (oEvt) {
                 var that = this;
 
-                var fileUploadId = oEvt.oSource.sId.split("VendorSurvey--")[1];
-
+                var fileUploadId = oEvt.oSource.sId.split("BankInfo--")[1];
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
+                var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
 
                 // if (!that.oPopup) {
                 //     that.oPopup = sap.ui.xmlfragment(
@@ -1193,123 +1206,164 @@ sap.ui.define([
                 // that.oPopup.attachAfterClose(function (oEvt) {
                 //     var expiryDate = this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].getValue();
                 //     var reminderDays = Number(this.oPopup.getContent().getAggregation("content")[0].getItems()[1].getAggregation("items")[1].getValue());
+                // @ts-ignore
+                //   if (expiryDate && reminderDays) {
+                var oFormData = new FormData(),
+                    fileUpload = oView.byId(fileUploadId),
+                    domRef = fileUpload.getFocusDomRef(),
                     // @ts-ignore
-                 //   if (expiryDate && reminderDays) {
-                        var oFormData = new FormData(),
-                            fileUpload = oView.byId("fileUploader_BA"),
-                            domRef = fileUpload.getFocusDomRef(),
-                            // @ts-ignore
-                            file = domRef.files[0],
-                            secName = "bankInfo";
-                        // if (secName == "bankInfo" && fileUploadId == "fileUploader_BIA") {
-                        //     secName = "bankIntermediateInfo";
-                        // }
-                        jQuery.sap.domById(fileUpload.getId() + "-fu").setAttribute("type", "file");
-                        // @ts-ignore
-                        oFormData.append("file", jQuery.sap.domById(fileUpload.getId() + "-fu").files[0]);
-                        oFormData.append("name", file.name);
-                        oFormData.append("folderName", oView.getModel("oUserModel").getData().caseId);
-                        oFormData.append("requestId", oView.getModel("oUserModel").getData().caseId);
-                        oFormData.append("docInSection", secName);
-                        oFormData.append("fileExt", file.name.split(".")[1]);
-                        oFormData.append("type", "application/octet-stream");
-                     //   oFormData.append("expiryDate", expiryDate);
-                    //    oFormData.append("reminderDays", reminderDays);
-                        oFormData.append("overwriteFlag", false);
-
-                        if (oView.getModel("oUserModel")) {
-                            oFormData.append("addedBy", oView.getModel("oUserModel").getData().user.givenName);
-                        }
-                        var oAttachData = {
-
-                            "fileExt": file.name.split(".")[1],
-
-                            "name": file.name,
-                        };
-
-                        var _arrayTitle = "bankDArray";
-
-                        var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
-                        // @ts-ignore
-                        $.ajax({
-                            url: sUrl,
-                            data: oFormData,
-                            contentType: false,
-                            accept: '*/*',
-                            type: 'POST',
-                            processData: false,
-                            success: function (data) {
-                                oAttachData.dmsDocumentId = data.dmsDocumentId;
-                                oAttachData.dmsFolderId = data.dmsFolderId;
-                                oAttachData.fileSize = data.fileSize;
-
-                                that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).push(oAttachData);
-                                that.getView().getModel("oAttachmentList").refresh(true);
-
-
-                            },
-                            error: function (data) {
-                                var eMsg = data.responseText;
-                                if (data.status == 406) {
-                                    var eMsg = "The file already exists. Do you want to overwrite it?"
-                                    MessageBox.confirm(eMsg, {
-                                        icon: MessageBox.Icon.Confirmation,
-                                        title: "Confirmation",
-                                        actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-                                        emphasizedAction: MessageBox.Action.YES,
-                                        onClose: function (oAction) {
-                                            if (oAction == "YES") {
-                                                oFormData.set("overwriteFlag", true);
-                                                //  oFormData.append("deletedBy", oView.getModel("oUserModel").getData().user.givenName);
-                                                var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).findIndex(function (docId) { return docId.name == file.name });
-                                                that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).splice(index, 1);
-                                                that.getView().getModel("oAttachmentList").refresh(true);
-                                                var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
-                                                // @ts-ignore
-                                                $.ajax({
-                                                    url: sUrl,
-                                                    data: oFormData,
-                                                    contentType: false,
-                                                    accept: '*/*',
-                                                    type: 'POST',
-                                                    processData: false,
-                                                    success: function (data) {
-                                                        oAttachData.dmsDocumentId = data.dmsDocumentId;
-                                                        oAttachData.dmsFolderId = data.dmsFolderId;
-                                                        oAttachData.fileSize = data.fileSize;
-
-                                                        that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).push(oAttachData);
-                                                        that.getView().getModel("oAttachmentList").refresh(true);
-
-
-                                                    }, error: function (data) {
-                                                        var eMsg = data.responseText
-                                                        MessageBox.show(eMsg, {
-                                                            icon: sap.m.MessageBox.Icon.ERROR,
-                                                            title: oi18n.getText("error")
-                                                        });
-                                                    }
-                                                });
-                                            }
-                                        }
-                                    });
-                                
-                                } else {
-
-                                    MessageBox.show(eMsg, {
-                                        icon: sap.m.MessageBox.Icon.ERROR,
-                                        title: oi18n.getText("error")
-                                    });
-                                }
-
-                            }
+                    file = domRef.files[0],
+                    secName = "";
+                var _arrayTitle = "";
+                if (fileUploadId == "fileUploader_BIA") {
+                    secName = "bankIntermediateInfo";
+                    _arrayTitle = "bankINDArray"
+                } else {
+                    secName = "bankInfo";
+                    _arrayTitle = "bankDArray";
+                }
+                if (file.name.length > 60) {
+                    if (isDefaultLan) {
+                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
                         });
-                    //     this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].setValue("");
-                    //     this.oPopup.getContent().getAggregation("content")[0].getItems()[1].getAggregation("items")[1].setValue("");
-                    // } else {
-                    //     this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].setValue("");
-                    //     this.oPopup.getContent().getAggregation("content")[0].getItems()[1].getAggregation("items")[1].setValue("");
-                    // }
+                    } else {
+                        sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.docFileNameExtendedMessage + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                    }
+                } else if (Number((file.size * 0.000001).toFixed(1)) > 8) {
+                    if (isDefaultLan) {
+                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileSizeExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                    } else {
+                        sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.docFileNameExtendedMessage + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("docFileSizeExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                    }
+                }
+                else {
+                    jQuery.sap.domById(fileUpload.getId() + "-fu").setAttribute("type", "file");
+                    // @ts-ignore
+                    oFormData.append("file", jQuery.sap.domById(fileUpload.getId() + "-fu").files[0]);
+                    oFormData.append("name", file.name);
+                    oFormData.append("folderName", oView.getModel("oUserModel").getData().caseId);
+                    oFormData.append("requestId", oView.getModel("oUserModel").getData().caseId);
+                    oFormData.append("docInSection", secName);
+                    oFormData.append("fileExt", file.name.split(".")[1]);
+                    oFormData.append("type", "application/octet-stream");
+                    //   oFormData.append("expiryDate", expiryDate);
+                    //    oFormData.append("reminderDays", reminderDays);
+                    oFormData.append("overwriteFlag", false);
+
+                    if (oView.getModel("oUserModel")) {
+                        oFormData.append("addedBy", oView.getModel("oUserModel").getData().user.givenName);
+                    }
+                    var oAttachData = {
+
+                        "fileExt": file.name.split(".")[1],
+
+                        "name": file.name,
+                    };
+
+
+
+                    var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
+                    // @ts-ignore
+                    $.ajax({
+                        url: sUrl,
+                        data: oFormData,
+                        contentType: false,
+                        accept: '*/*',
+                        type: 'POST',
+                        processData: false,
+                        success: function (data) {
+                            oAttachData.dmsDocumentId = data.dmsDocumentId;
+                            oAttachData.dmsFolderId = data.dmsFolderId;
+                            oAttachData.fileSize = data.fileSize;
+
+                            that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).push(oAttachData);
+                            that.getView().getModel("oAttachmentList").refresh(true);
+
+
+                        },
+                        error: function (data) {
+                            var eMsg = data.responseText;
+                            if (data.status == 406) {
+                                var eMsg = "The file already exists. Do you want to overwrite it?"
+                                MessageBox.confirm(eMsg, {
+                                    icon: MessageBox.Icon.Confirmation,
+                                    title: "Confirmation",
+                                    actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                                    emphasizedAction: MessageBox.Action.YES,
+                                    onClose: function (oAction) {
+                                        if (oAction == "YES") {
+                                            oFormData.set("overwriteFlag", true);
+                                            //  oFormData.append("deletedBy", oView.getModel("oUserModel").getData().user.givenName);
+                                            var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).findIndex(function (docId) { return docId.name == file.name });
+                                            that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).splice(index, 1);
+                                            that.getView().getModel("oAttachmentList").refresh(true);
+                                            var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
+                                            // @ts-ignore
+                                            $.ajax({
+                                                url: sUrl,
+                                                data: oFormData,
+                                                contentType: false,
+                                                accept: '*/*',
+                                                type: 'POST',
+                                                processData: false,
+                                                success: function (data) {
+                                                    oAttachData.dmsDocumentId = data.dmsDocumentId;
+                                                    oAttachData.dmsFolderId = data.dmsFolderId;
+                                                    oAttachData.fileSize = data.fileSize;
+
+                                                    that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).push(oAttachData);
+                                                    that.getView().getModel("oAttachmentList").refresh(true);
+
+
+                                                }, error: function (data) {
+                                                    var eMsg = data.responseText
+                                                    MessageBox.show(eMsg, {
+                                                        icon: sap.m.MessageBox.Icon.ERROR,
+                                                        title: oi18n.getText("error")
+                                                    });
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+
+                            } else {
+
+                                MessageBox.show(eMsg, {
+                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                    title: oi18n.getText("error")
+                                });
+                            }
+
+                        }
+
+                    });
+                }
+                //     this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].setValue("");
+                //     this.oPopup.getContent().getAggregation("content")[0].getItems()[1].getAggregation("items")[1].setValue("");
+                // } else {
+                //     this.oPopup.getContent().getAggregation("content")[0].getItems()[0].getAggregation("items")[1].setValue("");
+                //     this.oPopup.getContent().getAggregation("content")[0].getItems()[1].getAggregation("items")[1].setValue("");
+                // }
                 // });
             },
             // @ts-ignore
@@ -1391,12 +1445,12 @@ sap.ui.define([
                 });
 
             },
-          
+
             fnClose: function () {
                 this.oPopup.close();
             },
             _fnReadDocumentList: function (caseId, that) {
-                 that.getView().getModel("oAttachmentList").getData()[0].bankDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].bankDArray = [];
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/document/findByRequestId/" + caseId;
                 $.ajax({
                     url: sUrl,
@@ -1404,8 +1458,9 @@ sap.ui.define([
                     success: function (data) {
                         $.each(data, function (index, value) {
                             if (value.docInSection == "bankInfo") {
-                               
                                 that.getView().getModel("oAttachmentList").getData()[0].bankDArray.push(value);
+                            }else if(value.docInSection == "bankIntermediateInfo"){
+                                that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.push(value);
                             }
 
                         });

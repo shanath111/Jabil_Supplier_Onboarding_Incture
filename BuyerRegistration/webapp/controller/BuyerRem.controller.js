@@ -163,6 +163,7 @@ sap.ui.define([
                                 "context": {
                                     "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                                     "caseId": oView.getModel("JMEulaComments").getData().caseId,
+                                    "isBuyerApprovedonEULA": vContextActn,
                                    // "gtsAction": vContextActn
                                 },
                                 "status": "",
