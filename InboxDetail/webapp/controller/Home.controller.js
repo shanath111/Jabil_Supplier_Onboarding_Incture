@@ -17,9 +17,12 @@ sap.ui.define([
             fnNavToCRResubmitDetail: function () {
                 this.getOwnerComponent().getRouter().navTo("ResubmitDetail");
             },
-              fnNavTolaunchCC: function () {
+            fnNavTolaunchCC: function () {
                 this.getOwnerComponent().getRouter().navTo("LaunchCC");
             },
+            fnNavToLocalDocAdmin : function() {
+                this.getOwnerComponent().getRouter().navTo("LocalDocAdmin");
+            }
             
 
         });

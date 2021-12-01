@@ -1,4 +1,4 @@
-<mvc:View controllerName="InboxDetail.controller.LaunchCC" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+<mvc:View controllerName="InboxDetail.controller.LocalDocAdmin" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
 	displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout">
 			<Page id="id_Container" class="cl_VRPageBackGrnd" enableScrolling="true" showHeader="false">
 				<subHeader>
@@ -17,13 +17,13 @@
 							</Toolbar>
 						</headerToolbar>
  	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
-							<!-- <VBox class="VRVboxStyle1">	
+							<VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCSiteName}" required="true" class="cl_VRLablCls "></Label>
                                 <ComboBox width="95%" items="{oBPLookUpMdl>/SiteName1}"  autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter1>/siteName}"
                                     class="cl_VRInputCls" change="onChangeLookupValue" >
                                     <core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
                                 </ComboBox>
-							</VBox>	 -->
+							</VBox>	
                              <VBox class="VRVboxStyle1">
 								
 								<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls "></Label>
@@ -41,7 +41,7 @@
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
 							</VBox>
-                           <!-- <VBox class="VRVboxStyle1">	
+                           <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCDocName}" required="true" class="cl_VRLablCls "></Label>
                                 <ComboBox width="95%" items="{oBPLookUpMdl>/DocName1}"  autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter1>/DocName}"
                                     class="cl_VRInputCls" change="onChangeLookupValue" >
@@ -51,11 +51,11 @@
                             <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCDocLink}" required="true" class="cl_VRLablCls "></Label>
                                 <Input value="{JMFilter1>/DocLink}" maxLength="256" valueState="{JMFilter>/docLinke}" valueStateText="{JMFilter>/docLinkm}" liveChange="onChangeDocLink" editable="{oConfigMdl>/screenEditable}" class="cl_VRInputCls"></Input>
-							</VBox>	 -->
-                            <!-- <VBox class="VRVboxStyle1">	
+							</VBox>	
+                            <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCAffirmationStatement}" required="true" class="cl_VRLablCls "></Label>
                                 <TextArea value="{JMFilter1>/AffirmationStatement}" editable="{oConfigMdl>/screenEditable}" class="cl_VRInputCls"></TextArea>
-							</VBox>	   -->
+							</VBox>	  
 							</l:Grid>
                             
 						
@@ -70,13 +70,13 @@
 							</Toolbar>
 						</headerToolbar>
  	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
-							<!-- <VBox class="VRVboxStyle1">	
+							<VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCSiteName}" required="false" class="cl_VRLablCls "></Label>
                                 <ComboBox width="95%" items="{oBPLookUpMdl>/SiteName}"  autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter>/siteName}"
                                     class="cl_VRInputCls" change="onChangeLookupValue" >
                                     <core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
                                 </ComboBox>
-							</VBox>		 -->
+							</VBox>		
                             <VBox class="VRVboxStyle1">
 								
 								<Label text="{i18n>BPCCompanyCode}" required="false" class="cl_VRLablCls "></Label>
@@ -94,22 +94,22 @@
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
 							</VBox>
-                            <!-- <VBox class="VRVboxStyle1">	
+                            <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCDocName}" required="false" class="cl_VRLablCls "></Label>
                                 <ComboBox width="95%" items="{oBPLookUpMdl>/DocName}"  autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter>/DocName}"
                                     class="cl_VRInputCls" change="onChangeLookupValue"  >
                                     <core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
                                 </ComboBox>
-							</VBox>   -->
+							</VBox>  
                               
                           
 							</l:Grid>
                             <Table class="sapUiSizeCompact cl_BPListTable"   alternateRowColors="true" items="{JMCompSearchResult>/}">
 										
 										<columns>
-                                            <!-- <Column >
+                                            <Column >
 												<Label text="{i18n>BPCSiteName}" class="cl_VRLablCls "></Label>
-											</Column> -->
+											</Column>
 											<Column >
 												<Label text="{i18n>BPECompanyCode}" class="cl_VRLablCls "></Label>
 											</Column>
@@ -123,7 +123,7 @@
                                                <Column >
 												<Label text="{i18n>BPEPurchasingOrgDesc}" class="cl_VRLablCls "></Label>
 											</Column>
-                                            <!-- <Column >
+                                            <Column >
 												<Label text="{i18n>BPCDocName}" class="cl_VRLablCls "></Label>
 											</Column>
                                             <Column >
@@ -131,7 +131,7 @@
 											</Column>
                                             <Column >
 												<Label text="{i18n>BPCAffirmationStatement}" class="cl_VRLablCls "></Label>
-											</Column> -->
+											</Column>
                                                <!-- <Column width="6rem">
 											
 											</Column> -->
