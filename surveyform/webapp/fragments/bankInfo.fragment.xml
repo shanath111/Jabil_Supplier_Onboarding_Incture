@@ -121,6 +121,7 @@
 				  <ComboBox width="100%" items="{oLookUpModel>/BankRegion}" filterSecondaryValues="true" showSecondaryValues="true"  editable="{oUserModel>/isNew}" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" selectedKey="{oDataModel>/bankDto/bankInfoDto/0/bankState}"  placeholder="{i18n>select}" valueState="{oErrorModel>/bankStateE}" valueStateText="{oErrorModel>/bankStateM}" selectionChange="fnLiveValueChange" required="true" class="inputStyle">
                   <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
                   </ComboBox>
+                   <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selectNAText}:${oi18n_En>selectNAText}+ '&#10;' +${i18n>selectNAText}}" textAlign="End" class="disabledFontClr"/>
                 </VBox>
 				
 				<VBox class="fontStyle">
@@ -143,6 +144,8 @@
                     </HBox>
 					<Input maxLength="19" id="bankAccNumConfirmField" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankAccNumConfirm}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/bankAccNumConfirmE}" valueStateText="{oErrorModel>/bankAccNumConfirmM}" liveChange="fnRemoveSpace"  change="fnInputConfirmBankAccNumber" required="true" class="inputStyle">
                     </Input>
+                     <layoutData>
+                               <l:GridData linebreak = "true"></l:GridData></layoutData>
 				</VBox>
                  <VBox  class="fontStyle">
 					<Label tooltip="{oi18n_En>refDetTT}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>refDetails}:${oi18n_En>refDetails}+ '&#10;' +${i18n>refDetails}}" wrapping="true" required="{oVisibilityModel>/bankValidation/referenceDetails}"></Label>

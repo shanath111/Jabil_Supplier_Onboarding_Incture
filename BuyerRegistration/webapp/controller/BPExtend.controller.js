@@ -215,10 +215,10 @@ sap.ui.define([
                                 if (temp.requestorConflictOfInterest == true) {
                                     temp.requestorConflictOfInterests = 1;
                                     temp.reqCoIFields = true;
-                                } else if(temp.requestorConflictOfInterest == false){
+                                } else if (temp.requestorConflictOfInterest == false) {
                                     temp.reqCoIFields = false;
                                     temp.requestorConflictOfInterests = 0;
-                                }else{
+                                } else {
                                     temp.reqCoIFields = false;
                                     temp.requestorConflictOfInterests = -1;
                                 }
@@ -689,10 +689,10 @@ sap.ui.define([
                                 if (temp.requestorConflictOfInterest == true) {
                                     temp.requestorConflictOfInterests = 1;
                                     temp.reqCoIFields = true;
-                                } else if(temp.requestorConflictOfInterest == false){
+                                } else if (temp.requestorConflictOfInterest == false) {
                                     temp.reqCoIFields = false;
                                     temp.requestorConflictOfInterests = 0;
-                                }else{
+                                } else {
                                     temp.reqCoIFields = false;
                                     temp.requestorConflictOfInterests = -1;
                                 }
@@ -922,7 +922,7 @@ sap.ui.define([
                                 }
 
                             },
-                           
+
                             error: function (data) {
                                 vBankValid = true;
 
@@ -1296,7 +1296,7 @@ sap.ui.define([
                     }
                     if (oView.getModel("JMBPCreate").getData().requestorConflictOfInterests == -1) {
                         oView.getModel("JMBPCreate").getData().requestorConflictOfInterestse = "Error";
-                       
+
                         oView.getModel("JMBPCreate").refresh();
                         vError = true;
                     }
@@ -1464,10 +1464,10 @@ sap.ui.define([
                 var vConflictOfIntSel1 = oView.getModel("JMBPCreate").getData().requestorConflictOfInterests;
                 if (vConflictOfIntSel1 == 0) {
                     vConflictOfInt1 = false;
-                } else if(vConflictOfIntSel1 == 1){
+                } else if (vConflictOfIntSel1 == 1) {
                     vConflictOfInt1 = true;
-                }else{
-                    vConflictOfInt1 = null;  
+                } else {
+                    vConflictOfInt1 = null;
                 }
                 var vCiscoGrub;
                 var isExclCiscoGhubSel1 = oView.getModel("JMBPCreate").getData().isExclCiscoGhub;
@@ -1679,6 +1679,8 @@ sap.ui.define([
                                             "division": "",
                                             "conflictOfInterest": vConflictOfInt,
                                             "requestorConflictOfInterest": vConflictOfInt1,
+                                            "requestorCOIEmail": oView.getModel("JMBPCreate").getData().requestorCOIEmail,
+                                            "requestorCOIName": oView.getModel("JMBPCreate").getData().requestorCOIName,
                                             "coiReason": oView.getModel("JMBPCreate").getData().additionalInformation,
                                             "supplierName": oView.getModel("JMBPCreate").getData().firstName + " " + oView.getModel("JMBPCreate").getData().lastName,
                                             "supplierAddress": oView.getModel("JMBPCreate").getData().address1,
@@ -1914,6 +1916,8 @@ sap.ui.define([
                                                         "division": "",
                                                         "conflictOfInterest": vConflictOfInt,
                                                         "requestorConflictOfInterest": vConflictOfInt1,
+                                                        "requestorCOIEmail": oView.getModel("JMBPCreate").getData().requestorCOIEmail,
+                                                        "requestorCOIName": oView.getModel("JMBPCreate").getData().requestorCOIName,
                                                         "coiReason": oView.getModel("JMBPCreate").getData().additionalInformation,
                                                         "supplierName": oView.getModel("JMBPCreate").getData().firstName + " " + oView.getModel("JMBPCreate").getData().lastName,
                                                         "supplierAddress": oView.getModel("JMBPCreate").getData().address1,
@@ -2137,10 +2141,10 @@ sap.ui.define([
             },
             fnLiveChangePurchOrg: function (oEvent) {
                 //    var vSelected = oEvent.getParameter("itemPressed");
-                var compCode= oView.getModel("JMBPCreate").getData().companyCode;
-                if(compCode === "" || compCode === undefined){
+                var compCode = oView.getModel("JMBPCreate").getData().companyCode;
+                if (compCode === "" || compCode === undefined) {
                     sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
-                    
+
                 }
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
@@ -2361,7 +2365,7 @@ sap.ui.define([
                             var oVendorListJson = new sap.ui.model.json.JSONModel();
                             oVendorListJson.setData(temp);
                             that.getView().setModel(oVendorListJson, "oVendorListModel");
-                            
+
                             if (oView.getModel("oVendorListModel").getData().currentPage == 1) {
                                 if (temp.data.length > 1) {
                                     MessageBox.information(oi18n.getProperty("DuplicateInfoText"));
@@ -2958,6 +2962,13 @@ sap.ui.define([
                 }
                 else {
                     //    var vResonse = this.fnValidateEmailDomain(email);
+                    var domain = email.substring(email.lastIndexOf("@") + 1);
+                    if(domain.toUpperCase() != "JABIL.COM"){
+                     oView.getModel("JMBPCreate").getData().requestorCOIEmaile = "Error";
+                     oView.getModel("JMBPCreate").getData().requestorCOIEmailm = oi18n.getProperty("pleaseEnterJabilEmail");
+                     oView.getModel("JMBPCreate").refresh();
+                     return;
+                    }
                     var vResonse = "Valid"
                     if (vResonse == "Invalid") {
                         oView.getModel("JMBPCreate").getData().requestorCOIEmaile = "Error";

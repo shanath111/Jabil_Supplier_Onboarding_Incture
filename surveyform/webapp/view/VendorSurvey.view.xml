@@ -68,6 +68,7 @@
                                     <ComboBox width="100%" items="{oLookUpModel>/SupplierRegion}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/regionEnb}"  valueState="{oErrorModel>/stateE}" valueStateText="{oErrorModel>/stateM}"  filterSecondaryValues="true" showSecondaryValues="true" selectionChange="fnChangeSupplierRegion"  placeholder="{i18n>select}" class="inputStyle" value="{oDataModel>/surveyInfoDto/address/0/postal/0/region}" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/regionCode}">
 <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
 			</ComboBox>
+              <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selectNAText}:${oi18n_En>selectNAText}+ '&#10;' +${i18n>selectNAText}}" textAlign="End" class="disabledFontClr"/>
                                     <!-- <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/region}" class="inputStyle" /> -->
                                 </VBox>
 							
@@ -78,6 +79,8 @@
                                                  <VBox >
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>city}:${oi18n_En>city} +'&#10;' + ${i18n>city}}" wrapping="true"  required="true" class="fontStyle "></Label>
                                      <Input maxLength="41" value="{oDataModel>/surveyInfoDto/address/0/postal/0/city}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/cityEnb}" valueState="{oErrorModel>/cityE}" valueStateText="{oErrorModel>/cityM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+                               <layoutData>
+                               <l:GridData linebreak = "true"></l:GridData></layoutData>
                                 </VBox>
 							
                                 <VBox>
