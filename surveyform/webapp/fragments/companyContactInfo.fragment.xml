@@ -17,33 +17,34 @@
                 </VBox>
     <VBox class="fontStyle sapUiSizeCompact sapUiSmallMarginTop">
         <HBox class="copyPasteInfo sapUiSmallMarginEnd">
-            <Text wrapping="true" text="{i18n>copyPasteInfo1}" class="sapUiTinyMarginEnd" visible= "{oVisibilityModel>/isdefaultLan}"/>
-            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon" visible= "{oVisibilityModel>/isdefaultLan}"/>
-            <Text wrapping="true" text="/ " class="sapUiTinyMarginEnd" visible= "{oVisibilityModel>/isdefaultLan}"/>
-            <core:Icon src="sap-icon://paste" class="sapUiTinyMarginEnd blueIcon" visible= "{oVisibilityModel>/isdefaultLan}"/>
-            <Text wrapping="true" text="{i18n>copyPasteInfo2}" visible= "{oVisibilityModel>/isdefaultLan}"/>
+            <Text wrapping="true" text="{oi18n_En>copyPasteInfo1}" class="sapUiTinyMarginEnd" />
+            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon" />
+            <Text wrapping="true" text="{oi18n_En>copyPasteInfo6}" class="sapUiTinyMarginEnd" />
+            <core:Icon src="sap-icon://paste" class="sapUiTinyMarginEnd blueIcon" />
+            <Text wrapping="true" text="{oi18n_En>copyPasteInfo2}" />
         </HBox>
         <HBox class="copyPasteInfo sapUiSmallMarginEnd">
-            <Text wrapping="true" text="{i18n>copyPasteInfo3}" class="sapUiTinyMarginEnd" visible= "{oVisibilityModel>/isdefaultLan}" />
-            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon" visible= "{oVisibilityModel>/isdefaultLan}" />
-            <Text wrapping="true" text="{i18n>copyPasteInfo4}" class="sapUiTinyMarginEnd" visible= "{oVisibilityModel>/isdefaultLan}"/>
-            <core:Icon src="sap-icon://course-program" class="sapUiTinyMarginEnd blueIcon" visible= "{oVisibilityModel>/isdefaultLan}"/>
-            <Text wrapping="true" text="{i18n>copyPasteInfo5}" visible= "{oVisibilityModel>/isdefaultLan}"/>
-        </HBox> 
-    
-        <HBox class="copyPasteInfo sapUiSmallMarginEnd sapUiSmallMarginTop">
-            <Text wrapping="true" text="{oi18n_En>copyPasteInfo1}&#10;{i18n>copyPasteInfo1}" class="sapUiTinyMarginEnd" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
-            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon"/>
-            <Text wrapping="true" text="/ paste " class="sapUiTinyMarginEnd"/>
-            <core:Icon src="sap-icon://paste" class="sapUiTinyMarginEnd blueIcon"/>
-            <Text wrapping="true" text="{oi18n_En>copyPasteInfo2}&#10;{i18n>copyPasteInfo2}" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
-        </HBox>
-        <HBox class="copyPasteInfo sapUiSmallMarginEnd">
-            <Text wrapping="true" text="{oi18n_En>copyPasteInfo3}&#10;{i18n>copyPasteInfo3}" class="sapUiTinyMarginEnd" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
-            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon"/>
-            <Text wrapping="true" text="{oi18n_En>copyPasteInfo4}&#10;{i18n>copyPasteInfo4}" class="sapUiTinyMarginEnd" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <Text wrapping="true" text="{oi18n_En>copyPasteInfo3}" class="sapUiTinyMarginEnd"  />
+            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon" />
+            <Text wrapping="true" text="{oi18n_En>copyPasteInfo4}" class="sapUiTinyMarginEnd" />
             <core:Icon src="sap-icon://course-program" class="sapUiTinyMarginEnd blueIcon" />
-            <Text wrapping="true" text="{oi18n_En>copyPasteInfo5}&#10;{i18n>copyPasteInfo5}" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <Text wrapping="true" text="{oi18n_En>copyPasteInfo5}" />
+        </HBox> 
+    </VBox>
+    <VBox class="fontStyle sapUiSizeCompact sapUiTinyMarginTop">
+        <HBox class="copyPasteInfo sapUiSmallMarginEnd">
+            <Text wrapping="true" text="{i18n>copyPasteInfo1}" class="sapUiTinyMarginEnd" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <Text wrapping="true" text="{i18n>copyPasteInfo6} " class="sapUiTinyMarginEnd" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <core:Icon src="sap-icon://paste" class="sapUiTinyMarginEnd blueIcon" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <Text wrapping="true" text="{i18n>copyPasteInfo2}" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+        </HBox>
+        <HBox class="copyPasteInfo sapUiSmallMarginEnd">
+            <Text wrapping="true" text="{i18n>copyPasteInfo3}" class="sapUiTinyMarginEnd" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <Text wrapping="true" text="{i18n>copyPasteInfo4}" class="sapUiTinyMarginEnd" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <core:Icon src="sap-icon://course-program" class="sapUiTinyMarginEnd blueIcon" visible= "{=!${oVisibilityModel>/isdefaultLan}}" />
+            <Text wrapping="true" text="{i18n>copyPasteInfo5}" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
         </HBox> 
     </VBox>
     </Panel>
