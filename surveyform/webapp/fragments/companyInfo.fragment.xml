@@ -93,6 +93,7 @@
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>region}:${oi18n_En>region}+ '&#xA;' +${i18n>region}}" wrapping="true" required="false" />
              <ComboBox width="100%" value="{companyInfoModel>/oRegion}" selectedKey="{companyInfoModel>/oRegionC}" items="{oLookUpModel>/StateOFA}" showSecondaryValues="true" filterSecondaryValues="true" change="fnLiveValueChange" placeholder="{i18n>select}" class="inputStyle">
 									 <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+            <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selectNAText}:${oi18n_En>selectNAText}+ '&#10;' +${i18n>selectNAText}}" textAlign="End" class="disabledFontClr"/>
             <!-- <html:input type="text" id="iState" class="cl_HTMLInput" /> -->
          </VBox>
          <VBox class="fontStyle">
@@ -115,7 +116,8 @@
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>faxNum}:${oi18n_En>faxNum}+ '&#xA;'+${i18n>faxNum}}" wrapping="true" />
             <Input maxLength="31" value="{companyInfoModel>/oFaxNum}" class="inputStyle" liveChange="fnLiveInputValueChange" />
-            
+             <layoutData>
+                               <l:GridData linebreak = "true"></l:GridData></layoutData>
          </VBox>
          <!-- <VBox class="fontStyle">
 								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postOfcBox}:${oi18n_En>postOfcBox}+ '&#10;' +${i18n>postOfcBox}}" wrapping="true"></Label>
@@ -213,6 +215,7 @@
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>region}:${oi18n_En>region}+'&#xA;'+${i18n>region}}" wrapping="true" required="false" />
             <ComboBox width="100%" value="{remitModel>/rRegion}" selectedKey="{remitModel>/rRegionC}" items="{oLookUpModel>/StateRTA}" showSecondaryValues="true" filterSecondaryValues="true" change="fnLiveValueChange" placeholder="{i18n>select}" class="inputStyle">
 									 <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+            <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selectNAText}:${oi18n_En>selectNAText}+ '&#10;' +${i18n>selectNAText}}" textAlign="End" class="disabledFontClr"/>
             <!-- <html:input type="text" id="iStateR" value="" class="textInput cl_HTMLInput" /> -->
          </VBox>
           <VBox class="fontStyle">
@@ -237,6 +240,8 @@
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>faxNum}:${oi18n_En>faxNum}+'&#xA;'+${i18n>faxNum}}" wrapping="true" />
             <Input maxLength="31" value="{remitModel>/rFaxNum}" enabled="{oEnableMdl>/rFaxNumEnb}" liveChange="fnLiveInputValueChange" class="inputStyle" />
             <!-- <html:input type="text" id="iFaxNumR"   class="cl_HTMLInput" ></html:input>  -->
+             <layoutData>
+                               <l:GridData linebreak = "true"></l:GridData></layoutData>
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postOfcBox}:${oi18n_En>postOfcBox}+'&#xA;'+${i18n>postOfcBox}}" wrapping="true" />
