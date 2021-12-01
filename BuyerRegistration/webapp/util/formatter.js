@@ -20,16 +20,16 @@ ns.BuyerRegistration.util.formatter = {
         debugger;
         var id = this.oParent.oParent.sId;
         var cid = this.oParent.sId;
-        sap.ui.getCore().byId(id).addStyleClass("whiteColorLine");
+      //  sap.ui.getCore().byId(id).addStyleClass("whiteColorLine");
         if (status == true) {
-            sap.ui.getCore().byId(id).removeStyleClass("whiteColorLine");
-            sap.ui.getCore().byId(id).addStyleClass("errorColorLine");
+         //   sap.ui.getCore().byId(id).removeStyleClass("whiteColorLine");
+          //  sap.ui.getCore().byId(id).addStyleClass("errorColorLine");
             return true;
         }
 
         else {
-            sap.ui.getCore().byId(id).removeStyleClass("errorColorLine");
-            sap.ui.getCore().byId(id).addStyleClass("whiteColorLine");
+            // sap.ui.getCore().byId(id).removeStyleClass("errorColorLine");
+            // sap.ui.getCore().byId(id).addStyleClass("whiteColorLine");
             return false;
         }
     },

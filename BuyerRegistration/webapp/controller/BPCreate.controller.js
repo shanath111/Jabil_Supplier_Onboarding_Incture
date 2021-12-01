@@ -1304,6 +1304,7 @@ sap.ui.define([
                                         "supplierEmail": oView.getModel("JMBPCreate").getData().email,
                                         "plant": oView.getModel("JMBPCreate").getData().plant,
                                         "requestorCOIEmail":oView.getModel("JMBPCreate").getData().requestorCOIEmail,
+                                        "requestorCOIName":oView.getModel("JMBPCreate").getData().requestorCOIName,
                                         "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                                         "purchasingGroup": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurchasingGroup, oView.getModel("JMBPCreate").getData().purchasingGroup, "PurchasingGroup"),
                                         "workCell": that.fnFetchDescriptionWorkCell(oView.getModel("oBPLookUpMdl").getData().WorkCell, oView.getModel("JMBPCreate").getData().workCell, "WorkCell"),
@@ -1544,6 +1545,7 @@ sap.ui.define([
                                                     "supplierEmail": oView.getModel("JMBPCreate").getData().email,
                                                     "plant": oView.getModel("JMBPCreate").getData().plant,
                                                     "requestorCOIEmail":oView.getModel("JMBPCreate").getData().requestorCOIEmail,
+                                                    "requestorCOIName":oView.getModel("JMBPCreate").getData().requestorCOIName,
                                                     "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                                                     "purchasingGroup": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurchasingGroup, oView.getModel("JMBPCreate").getData().purchasingGroup, "PurchasingGroup"),
                                                     "workCell": that.fnFetchDescriptionWorkCell(oView.getModel("oBPLookUpMdl").getData().WorkCell, oView.getModel("JMBPCreate").getData().workCell, "WorkCell"),
@@ -2621,6 +2623,14 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").refresh();
                 }
                 else {
+                    var domain = email.substring(email.lastIndexOf("@") + 1);
+                   if(domain.toUpperCase() != "JABIL.COM"){
+                    oView.getModel("JMBPCreate").getData().requestorCOIEmaile = "Error";
+                    oView.getModel("JMBPCreate").getData().requestorCOIEmailm = oi18n.getProperty("pleaseEnterJabilEmail");
+                    oView.getModel("JMBPCreate").refresh();
+                    return;
+                   }
+
                     // var vResonse = this.fnValidateEmailDomain(email);
                     var vResonse = "Valid"
                     if (vResonse == "Invalid") {
