@@ -1,4 +1,5 @@
 sap.ui.define([
+    
     "sap/ui/core/mvc/Controller",
     "oneapp/incture/report/reports/util/formatter",
     "sap/ui/model/json/JSONModel",
@@ -178,6 +179,16 @@ sap.ui.define([
                 }
 
             },
+
+            fnLiveChangePurchaseOrg: function(oEvent){
+                
+                var compCode= oView.getModel("JMSuppReqListHeader").getData().companyCode;
+                if(compCode === "" || compCode === undefined){
+                    sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
+                    
+                }
+            },
+
             fnLoadStatus: function () {
                 var aStatus = ["Draft", "In Progress", "Completed", "Disqualified"
 
