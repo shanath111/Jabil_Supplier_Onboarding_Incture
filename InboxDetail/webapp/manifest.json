@@ -133,6 +133,11 @@
                     "target": "LaunchCC"
                 },
                 {
+                    "name": "LocalDocAdmin",
+                    "pattern": "LocalDocAdmin",
+                    "target": "LocalDocAdmin"
+                },
+                {
                     "name": "BPExtend",
                     "pattern": "BPExtend/{contextPath}",
                     "target": "BPExtend"
@@ -198,7 +203,12 @@
                 "LaunchCC": {
                     "viewType": "XML",
                     "viewName": "LaunchCC"
+                },
+                "LocalDocAdmin": {
+                    "viewType": "XML",
+                    "viewName": "LocalDocAdmin"
                 }
+
             }
         }
     },
