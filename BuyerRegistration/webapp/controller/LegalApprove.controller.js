@@ -38,8 +38,34 @@ sap.ui.define([
                 that.fnSetConfigModel(vContext);
                 that.fnLoadLookUpData();
             },
+            fnLiveChangeAdditionalInfo: function (oEvent) {
+                var vLength = oEvent.getParameter("value").length;
+                if (vLength > 400) {
+                    oView.getModel("JMBPCreate").getData().requestorCOIReasone = "Error";
+                    oView.getModel("JMBPCreate").getData().requestorCOIReasonm = oi18n.getProperty("BPCMaxLengthExceeds");
+                    oView.getModel("JMBPCreate").refresh();
+                } else {
+                    if (oView.getModel("JMBPCreate").getData().requestorCOIReasone == "Error") {
+                        oView.getModel("JMBPCreate").getData().requestorCOIReasone = "None";
+                        oView.getModel("JMBPCreate").getData().requestorCOIReasonm = "";
+                        oView.getModel("JMBPCreate").refresh();
+                    }
+                }
+            },
+            fnInputSpaceCheck: function (oEvent) {
+                var spaceRegex = /^\s+$/;
+                if (spaceRegex.test(oEvent.getSource().getValue())) {
+                    oEvent.getSource().setValue("");
+                }
+            },
             fnConflictOfIntChnage1: function (oEvent) {
-              
+                if (oView.getModel("JMBPCreate").getData().conflictOfInterests1 == 1) {
+                    oView.getModel("JMBPCreate").getData().CoIFields1 = true;
+                    oView.getModel("JMBPCreate").refresh();
+                } else {
+                    oView.getModel("JMBPCreate").getData().CoIFields1 = false;
+                    oView.getModel("JMBPCreate").refresh();
+                }
                 oView.getModel("JMBPCreate").getData().conflict1e = "None";          
                 oView.getModel("JMBPCreate").refresh();
             },
@@ -215,6 +241,7 @@ sap.ui.define([
                                         "requestorCOIName": data.bpRequestScope.bpRequestScopeAddlDetails.requestorCOIName,
                                         "requestorCOIPhoneNumber": data.bpRequestScope.bpRequestScopeAddlDetails.requestorCOIPhoneNumber,
                                         "requestorCOIReason": data.bpRequestScope.bpRequestScopeAddlDetails.requestorCOIReason,
+                                        "requestorCOISelected": data.bpRequestScope.bpRequestScopeAddlDetails.requestorCOISelected,
                                         "addlSurveyForSupplier": data.bpRequestScope.bpRequestScopeAddlDetails.addlSurveyForSupplier,
                                         "instructionKey": data.bpRequestScope.bpRequestScopeAddlDetails.instructionKey,
                                         "materialGroup": data.bpRequestScope.materialGroup
@@ -237,14 +264,26 @@ sap.ui.define([
                                         temp.conflictOfInterests = 0;
                                         temp.CoIFields = false;
                                     }
-                                    temp.conflictOfInterests1 = -1;
+                                    if (temp.requestorCOISelected == true) {
+                                        temp.conflictOfInterests1 = 1;
+                                        temp.CoIFields1 = true;
+                                    } else if(temp.requestorCOISelected == false) {
+                                        temp.conflictOfInterests = 0;
+                                        temp.CoIFields1 = false;
+                                    }else{
+                                        temp.conflictOfInterests1 = -1;
+                                        temp.CoIFields1 = false;  
+                                    }
+                                   
                                     if (temp.requestorConflictOfInterest == true) {
                                         temp.requestorConflictOfInterests = 1;
                                         temp.reqCoIFields = true;
+                                        temp.ReqCOIVis1 = "ReqCOI";
 
                                     } else {
                                         temp.requestorConflictOfInterests = 0;
                                         temp.reqCoIFields = false;
+                                        temp.ReqCOIVis1 = "";
                                     }
                                     if (temp.isExclCiscoGhub == true) {
                                         temp.isExclCiscoGhub = 0;
@@ -293,6 +332,12 @@ sap.ui.define([
                                     var oBPCreateModel = new sap.ui.model.json.JSONModel();
                                     oBPCreateModel.setData(temp);
                                     oView.setModel(oBPCreateModel, "JMBPCreate");
+
+                                         var oBPCreateModel1 = new sap.ui.model.json.JSONModel();
+                                    oBPCreateModel1.setData(data);
+                                    oView.setModel(oBPCreateModel1, "JMBPCreate1");
+
+                                    
 
                                     if (oView.getModel("JMBPCreate").getData().plant == "CN30" || oView.getModel("JMBPCreate").getData().plant == "CN81") {
                                         oView.getModel("JMBPCreate").getData().materialGroupVis = true;
@@ -682,7 +727,8 @@ sap.ui.define([
                 oView.setModel(oJosnComments, "JMAppvrComments");
                 if (oView.getModel("oConfigMdl").getData().contextPath.Name == "COILegal" || oView.getModel("oConfigMdl").getData().contextPath.Name == "ReqCOI") {
                     if(oView.getModel("oConfigMdl").getData().contextPath.Name == "ReqCOI"){
-                        if (oView.getModel("JMBPCreate").getData().conflictOfInterests1 == -1) {
+                        
+                        if (oView.getModel("JMBPCreate").getData().conflictOfInterests1 == -1 ) {
                             oView.getModel("JMBPCreate").getData().conflict1e = "Error";
                             
                             oView.getModel("JMBPCreate").refresh();
@@ -694,6 +740,14 @@ sap.ui.define([
                             });
                             return;
                         }else{
+                            if(oView.getModel("JMBPCreate").getData().conflictOfInterests1 == 1){
+                                if(!oView.getModel("JMBPCreate").getData().requestorCOIReason ){
+                                    oView.getModel("JMBPCreate").getData().requestorCOIReasone = "Error";
+                                    oView.getModel("JMBPCreate").getData().requestorCOIReasonm =  oi18n.getProperty("pleaseProvideRCOIReason");
+                                    oView.getModel("JMBPCreate").refresh();
+                                    return;
+                                }
+                            }
                             this.fnApproveSub("AP");
                         }
                     }else{
@@ -973,6 +1027,15 @@ sap.ui.define([
                                 } else {
                                     vCommentsActn = "reject";
                                 }
+                                var oPayloadUpdate = that.getView().getModel("JMBPCreate1").getData();
+                                oPayloadUpdate.bpRequestScope.bpRequestScopeAddlDetails.requestorCOISelected = vConflict;
+                                oPayloadUpdate.bpRequestScope.bpRequestScopeAddlDetails.requestorCOIReason = oView.getModel("JMBPCreate").getData().requestorCOIReason;
+                                oPayloadUpdate.userUpdated = oView.getModel("oConfigMdl").getData().usrData.givenName
+                                var sUrl1 = "/nsBuyerRegistration/plcm_portal_services/case/updateBP";
+                                var oModelSave = new JSONModel();
+                                oModelSave.loadData(sUrl1, JSON.stringify(oPayloadUpdate), true, "PUT", false, true, {
+                                    "Content-Type": "application/json"
+                                });
                                 var oPayload = {
                                     "context": {
                                         "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,

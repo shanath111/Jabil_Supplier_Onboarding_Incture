@@ -831,17 +831,29 @@ oneapp.incture.processFlow.processFlow.util.formatter = {
 			sentAt.setMinutes(mins);
 			var diffTime = Math.abs(new Date() - sentAt);
 			var diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-			if (mins < 10) {
-				mins = "0" + mins;
-			}
+			// if (mins < 10) {
+			// 	mins = "0" + mins;
+			// }
 			if (diffDays === 0) {
-				sTime = "" + sentAt.toLocaleTimeString(navigator.language, {
+                var dd = sentAt.getDate();
+				if (dd < 10) {
+					dd = '0' + sentAt.getDate();
+				}
+				sTime = dd + " " + sentAt.toLocaleString('default', {
+					month: 'short'
+				}) + " " + sentAt.getFullYear() + " " + sentAt.toLocaleTimeString(navigator.language, {
 					hour: '2-digit',
 					minute: '2-digit'
 				});
 			}
 			if (diffDays === 1) {
-				sTime = "Yesterday " + sentAt.toLocaleTimeString(navigator.language, {
+				var dd = sentAt.getDate();
+				if (dd < 10) {
+					dd = '0' + sentAt.getDate();
+				}
+				sTime = dd + " " + sentAt.toLocaleString('default', {
+					month: 'short'
+				}) + " " + sentAt.getFullYear() + " " + sentAt.toLocaleTimeString(navigator.language, {
 					hour: '2-digit',
 					minute: '2-digit'
 				});

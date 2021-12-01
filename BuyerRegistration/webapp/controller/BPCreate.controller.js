@@ -1304,6 +1304,7 @@ sap.ui.define([
                                         "supplierEmail": oView.getModel("JMBPCreate").getData().email,
                                         "plant": oView.getModel("JMBPCreate").getData().plant,
                                         "requestorCOIEmail":oView.getModel("JMBPCreate").getData().requestorCOIEmail,
+                                        "requestorCOIName":oView.getModel("JMBPCreate").getData().requestorCOIName,
                                         "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                                         "purchasingGroup": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurchasingGroup, oView.getModel("JMBPCreate").getData().purchasingGroup, "PurchasingGroup"),
                                         "workCell": that.fnFetchDescriptionWorkCell(oView.getModel("oBPLookUpMdl").getData().WorkCell, oView.getModel("JMBPCreate").getData().workCell, "WorkCell"),
@@ -1544,6 +1545,7 @@ sap.ui.define([
                                                     "supplierEmail": oView.getModel("JMBPCreate").getData().email,
                                                     "plant": oView.getModel("JMBPCreate").getData().plant,
                                                     "requestorCOIEmail":oView.getModel("JMBPCreate").getData().requestorCOIEmail,
+                                                    "requestorCOIName":oView.getModel("JMBPCreate").getData().requestorCOIName,
                                                     "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                                                     "purchasingGroup": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurchasingGroup, oView.getModel("JMBPCreate").getData().purchasingGroup, "PurchasingGroup"),
                                                     "workCell": that.fnFetchDescriptionWorkCell(oView.getModel("oBPLookUpMdl").getData().WorkCell, oView.getModel("JMBPCreate").getData().workCell, "WorkCell"),
@@ -1887,6 +1889,11 @@ sap.ui.define([
                 }
             },
             fnLiveChangePurchOrg: function (oEvent) {
+                var compCode= oView.getModel("JMBPCreate").getData().companyCode;
+                if(compCode === "" || compCode === undefined){
+                    sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
+                    
+                }
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
@@ -2239,11 +2246,16 @@ sap.ui.define([
 
 
             fnLiveChangeTelephone: function (oEvent) {
+                var numRegex = /^[0-9]*$/;
+                var val = oEvent.getSource().getValue();
                 var vLength = oEvent.getParameter("value").length
                 if (vLength > 40) {
                     oView.getModel("JMBPCreate").getData().telephonee = "Error";
                     oView.getModel("JMBPCreate").getData().telephonem = oi18n.getProperty("BPCMaxLengthExceeds");;
                     oView.getModel("JMBPCreate").refresh();
+                } else if (!numRegex.test(oEvent.getSource().getValue())) {
+                    var newval = val.substring(0, val.length - 1);
+                    oEvent.getSource().setValue(newval);
                 }
                 else {
                     if (oView.getModel("JMBPCreate").getData().telephonee == "Error") {
@@ -2254,11 +2266,17 @@ sap.ui.define([
                 }
             },
             fnLiveChangeTelephoneMob: function (oEvent) {
+                var numRegex = /^[0-9]*$/;
+                var val = oEvent.getSource().getValue();
                 var vLength = oEvent.getParameter("value").length
                 if (vLength > 30) {
                     oView.getModel("JMBPCreate").getData().contactMobilePhonee = "Error";
                     oView.getModel("JMBPCreate").getData().contactMobilePhonem = oi18n.getProperty("BPCMaxLengthExceeds");;
                     oView.getModel("JMBPCreate").refresh();
+                } else if (!numRegex.test(oEvent.getSource().getValue())) {
+                    var newval = val.substring(0, val.length - 1);
+                    oEvent.getSource().setValue(newval);
+
                 }
                 else {
                     if (oView.getModel("JMBPCreate").getData().contactMobilePhonee == "Error") {
@@ -2605,6 +2623,14 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").refresh();
                 }
                 else {
+                    var domain = email.substring(email.lastIndexOf("@") + 1);
+                   if(domain.toUpperCase() != "JABIL.COM"){
+                    oView.getModel("JMBPCreate").getData().requestorCOIEmaile = "Error";
+                    oView.getModel("JMBPCreate").getData().requestorCOIEmailm = oi18n.getProperty("pleaseEnterJabilEmail");
+                    oView.getModel("JMBPCreate").refresh();
+                    return;
+                   }
+
                     // var vResonse = this.fnValidateEmailDomain(email);
                     var vResonse = "Valid"
                     if (vResonse == "Invalid") {

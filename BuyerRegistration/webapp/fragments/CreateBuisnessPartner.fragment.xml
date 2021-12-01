@@ -510,7 +510,7 @@
 									</VBox> 
                                     
 								</l:Grid>
-                                           <l:Grid visible="{= ${oConfigMdl>/ReqCOIVis} === 'ReqCOI' ? true : false}" defaultSpan="XL12 L12 M12 S12"  class="sapUiSizeCompact">
+                                           <l:Grid visible="{= ${JMBPCreate>/ReqCOIVis1} === 'ReqCOI' ? true : false}" defaultSpan="XL12 L12 M12 S12"  class="sapUiSizeCompact">
  <VBox  class="VRVboxStyle1">
  <Label text="{i18n>ConflitOfIntrest1}" required="true"  class="cl_ConflictQtnCls sapUiTinyMarginTop"></Label>
 					<RadioButtonGroup  enabled="{= ${oConfigMdl>/ReqCOIVis} === 'ReqCOI' ? true : false}" select="fnConflictOfIntChnage1" valueState="{JMBPCreate>/conflict1e}" selectedIndex="{JMBPCreate>/conflictOfInterests1}"  columns="1">
@@ -518,7 +518,14 @@
 									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>BPCIHaveCOI}"/>
                                     		</RadioButtonGroup>					
 									</VBox> 
-                                    
+                                    <VBox  class="VRVboxStyle1" visible="{JMBPCreate>/CoIFields1}" >
+										<Label text="{i18n>ExpalinReqCOI}" required="true" class="cl_VRLablCls "></Label>
+										<Input width="98%" editable="{= ${oConfigMdl>/ReqCOIVis} === 'ReqCOI' ? true : false}" value="{JMBPCreate>/requestorCOIReason}" liveChange="fnLiveChangeAdditionalInfo" change="fnInputSpaceCheck" valueState="{JMBPCreate>/requestorCOIReasone}" valueStateText="{JMBPCreate>/requestorCOIReasonm}"  class="cl_VRInputCls" ></Input>
+                                           <layoutData>
+              <l:GridData
+                span="XL6 L6 M6 S6" />
+            </layoutData>
+									</VBox> 
 								</l:Grid>
                                                 <l:Grid  class="sapUiSizeCompact sapUiTinyMarginTop">
                                

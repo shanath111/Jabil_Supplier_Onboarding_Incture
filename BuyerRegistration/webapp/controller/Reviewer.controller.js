@@ -364,7 +364,7 @@ sap.ui.define([
                             oView.getModel("oConfigMdl").getData().defaultEnable = false;
                         }
                         // oView.getModel("oConfigMdl").getData().isTaskCompleted = true;
-                        oView.getModel("oConfigMdl").getData().isClaimed = true;
+                      //  oView.getModel("oConfigMdl").getData().isClaimed = true;
                         oView.getModel("oConfigMdl").getData().validationMessage = oEvent.getSource().getData().validationMessage;
                         oView.getModel("oConfigMdl").refresh();
                     }
@@ -1848,7 +1848,11 @@ sap.ui.define([
             },
 
             fnLiveChangePurchOrg: function (oEvent) {
-
+                var compCode= oView.getModel("oDataModel").getData().defaultValuesDto.reqCompanyCode;
+                if(compCode === "" || compCode === undefined){
+                    sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
+                    
+                }
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
