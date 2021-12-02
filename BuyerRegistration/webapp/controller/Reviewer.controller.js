@@ -586,9 +586,10 @@ sap.ui.define([
 
 
             },
+          
             fnLoadCurrency: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/currency-list";
+                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/currency-list";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -1114,6 +1115,7 @@ sap.ui.define([
             fnChangeMitigationReason: function () {
                 oView.getModel("JMAppvrComments").getData().firstLevelReasone = "None";
                 oView.getModel("JMAppvrComments").getData().firstLevelReasonm = "";
+                oView.getModel("JMAppvrComments").getData().secondLevelReason = "";
                 oView.getModel("JMAppvrComments").refresh();
                 oView.getModel("oBPLookUpMdl").setProperty("/SecondLevelReason", []);
                 oView.getModel("oBPLookUpMdl").refresh();
@@ -1328,6 +1330,7 @@ sap.ui.define([
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover1Approved": vAprActn,
                             "operational_approver1_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
+                            "operational_approver1_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
                             "operational_approver1_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver1_comment": oView.getModel("JMAppvrComments").getData().Comments
                         },
@@ -1355,6 +1358,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover2Approved": vAprActn,
+                            "operational_approver2_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
                             "operational_approver2_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "operational_approver2_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver2_comment": oView.getModel("JMAppvrComments").getData().Comments
@@ -1383,6 +1387,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover3Approved": vAprActn,
+                            "operational_approver3_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
                             "operational_approver3_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "operational_approver3_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver3_comment": oView.getModel("JMAppvrComments").getData().Comments
@@ -1411,6 +1416,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover4Approved": vAprActn,
+                            "operational_approver4_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
                             "operational_approver4_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "operational_approver4_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver4_comment": oView.getModel("JMAppvrComments").getData().Comments
@@ -1439,6 +1445,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover5Approved": vAprActn,
+                            "operational_approver5_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
                             "operational_approver5_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "operational_approver5_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver5_comment": oView.getModel("JMAppvrComments").getData().Comments
