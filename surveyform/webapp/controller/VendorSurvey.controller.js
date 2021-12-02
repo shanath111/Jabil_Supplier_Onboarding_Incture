@@ -3814,7 +3814,24 @@ var aError = false;
                         if (oView.getModel("oDataModel").getData().bankDto.financeContact1.extension && oView.getModel("oDataModel").getData().bankDto.financeContact1.extension.length > 10) {
                             iError = true;
                         }
+                        var that = this;
+                        var email = oView.getModel("oDataModel").getData().bankDto.financeContact1.email;
+                        var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
+                        var sDeferred = $.Deferred();
+                        if (email) {
+                            if (!email.match(mailregex)) {
+                                oView.getModel("oErrorModel").getData().finance1EmailE = "Error";
+                                oView.getModel("oErrorModel").getData().finance1EmailM = oi18n.getText("invalidEmail");
+                                iError = true;
+                              
+                            } else if (email.match(mailregex) && email.toUpperCase() == "NA@JABIL.COM") {
+                                oView.getModel("oErrorModel").getData().finance1EmailE = "None";
+                                oView.getModel("oErrorModel").getData().finance1EmailM = "";
+                               
+                            }
+                            
                     }
+                }
 
                     if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName)) {
                         oView.getModel("oErrorModel").getData().finance2FNameE = "Error";
@@ -3893,11 +3910,29 @@ var aError = false;
                     if (oView.getModel("oDataModel").getData().bankDto.financeContact2.extension && oView.getModel("oDataModel").getData().bankDto.financeContact2.extension.length > 10) {
                         iError = true;
                     }
+                    var that = this;
+                    var email = oView.getModel("oDataModel").getData().bankDto.financeContact2.email;
+                    var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
+                    var sDeferred = $.Deferred();
+                    if (email) {
+                        if (!email.match(mailregex)) {
+                            oView.getModel("oErrorModel").getData().finance2EmailE = "Error";
+                            oView.getModel("oErrorModel").getData().finance2EmailM = oi18n.getText("invalidEmail");
+                            iError = true;
+                          
+                        } else if (email.match(mailregex) && email.toUpperCase() == "NA@JABIL.COM") {
+                            oView.getModel("oErrorModel").getData().finance2EmailE = "None";
+                            oView.getModel("oErrorModel").getData().finance2EmailM = "";
+                           
+                        }
+                        
+                }
                     if (visiblility.isBankProvided === false) {
+                     if(oView.getModel("oDataModel").getData().bankDto.financeContact1.email !== "" && oView.getModel("oDataModel").getData().bankDto.financeContact2.email !== ""){
                         if (oView.getModel("oDataModel").getData().bankDto.financeContact1.email && oView.getModel("oDataModel").getData().bankDto.financeContact1.email == oView.getModel("oDataModel").getData().bankDto.financeContact2.email) {
                             iError = true;
-oView.getModel("oErrorModel").getData().finance2EmailE = "Error";
-oView.getModel("oErrorModel").getData().finance1EmailE = "Error";
+// oView.getModel("oErrorModel").getData().finance2EmailE = "Error";
+// oView.getModel("oErrorModel").getData().finance1EmailE = "Error";
 
                             if (isDefaultLan) {
                                 sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("correctFC")), {
@@ -3912,9 +3947,10 @@ oView.getModel("oErrorModel").getData().finance1EmailE = "Error";
                                 });
                             }
                         } else{
-                            oView.getModel("oErrorModel").getData().finance2EmailE = "None";
-oView.getModel("oErrorModel").getData().finance1EmailE = "None";
+//                             oView.getModel("oErrorModel").getData().finance2EmailE = "None";
+// oView.getModel("oErrorModel").getData().finance1EmailE = "None";
                         }
+                     }
                         // else if (oView.getModel("oDataModel").getData().bankDto.financeContact1.contact && oView.getModel("oDataModel").getData().bankDto.financeContact1.contact == oView.getModel("oDataModel").getData().bankDto.financeContact2.contact) {
                         //     iError = true;
                         //     if (isDefaultLan) {
