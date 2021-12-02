@@ -107,9 +107,9 @@
                             <Table class="sapUiSizeCompact cl_BPListTable"   alternateRowColors="true" items="{JMCompSearchResult>/}">
 										
 										<columns>
-                                            <Column >
+                                            <!-- <Column >
 												<Label text="{i18n>BPCSiteName}" class="cl_VRLablCls "></Label>
-											</Column>
+											</Column> -->
 											<Column >
 												<Label text="{i18n>BPECompanyCode}" class="cl_VRLablCls "></Label>
 											</Column>
@@ -123,7 +123,7 @@
                                                <Column >
 												<Label text="{i18n>BPEPurchasingOrgDesc}" class="cl_VRLablCls "></Label>
 											</Column>
-                                            <Column >
+                                            <!-- <Column >
 												<Label text="{i18n>BPCDocName}" class="cl_VRLablCls "></Label>
 											</Column>
                                             <Column >
@@ -131,10 +131,10 @@
 											</Column>
                                             <Column >
 												<Label text="{i18n>BPCAffirmationStatement}" class="cl_VRLablCls "></Label>
-											</Column>
-                                               <!-- <Column width="6rem">
-											
 											</Column> -->
+                                               <Column width="6rem">
+											
+											</Column>
                                                <Column width="6rem" >
 												
 											</Column>
