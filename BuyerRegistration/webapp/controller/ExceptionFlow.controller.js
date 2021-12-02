@@ -297,8 +297,7 @@ sap.ui.define([
                         });
                     });
                 }
-
-               
+                oView.getModel("oLookUpModel").refresh();              
             },
             _fnLoadEstablishConnList: function () {
                 var oModel = new JSONModel();
