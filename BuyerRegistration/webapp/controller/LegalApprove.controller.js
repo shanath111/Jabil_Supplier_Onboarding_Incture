@@ -131,7 +131,7 @@ sap.ui.define([
                         } else {
                             oView.getModel("oConfigMdl").getData().isClaimed = oEvent.getSource().getData().isClaimed;
                         }
-                        oView.getModel("oConfigMdl").getData().isClaimed = true;
+                        // oView.getModel("oConfigMdl").getData().isClaimed = true;
 
                         oView.getModel("oConfigMdl").getData().isTaskCompleted = oEvent.getSource().getData().isTaskCompleted;
  oView.getModel("oConfigMdl").getData().validationMessage = oEvent.getSource().getData().validationMessage;
@@ -844,6 +844,7 @@ sap.ui.define([
             fnChangeMitigationReason: function () {
                 oView.getModel("JMAppvrComments").getData().firstLevelReasone = "None";
                 oView.getModel("JMAppvrComments").getData().firstLevelReasonm = "";
+                oView.getModel("JMAppvrComments").getData().secondLevelReason = "";
                 oView.getModel("JMAppvrComments").refresh();
                 oView.getModel("oBPLookUpMdl").setProperty("/SecondLevelReason", []);
                 oView.getModel("oBPLookUpMdl").refresh();
@@ -967,6 +968,7 @@ sap.ui.define([
                                         "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                                         "caseId": oView.getModel("JMEulaComments").getData().caseId,
                                         "coiLegalApproved": vCommentsActn,
+                                        "legal_coi_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
                                         "COIComments": oView.getModel("JMAppvrComments").getData().Comments,
                                         "legal_coi_comment": oView.getModel("JMAppvrComments").getData().Comments,
                                         "legal_coi_first_level_reason":  oView.getModel("JMAppvrComments").getData().firstLevelReason,
@@ -997,6 +999,7 @@ sap.ui.define([
                                         "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                                         "caseId": oView.getModel("JMEulaComments").getData().caseId,
                                         "buyerActionOnRemediation": vActn,
+                                        "buyer_coi_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
                                         "buyer_coi_comment": oView.getModel("JMAppvrComments").getData().Comments,
                                         "buyer_coi_first_level_reason":  oView.getModel("JMAppvrComments").getData().firstLevelReason,
                                         "buyer_coi_second_level_reason":oView.getModel("JMAppvrComments").getData().secondLevelReason

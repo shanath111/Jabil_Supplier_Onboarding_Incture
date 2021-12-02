@@ -89,6 +89,9 @@
             "oBPLookUpMdl": {
                 "type": "sap.ui.model.json.JSONModel"
             },
+            "oLookUpModel": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
             "oConfigMdl": {
                 "type": "sap.ui.model.json.JSONModel"
             },
