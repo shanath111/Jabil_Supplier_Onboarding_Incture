@@ -1796,7 +1796,7 @@ sap.ui.define([
                 oFormData.append("overwriteFlag", false);
                 oFormData.append("folderName", oView.getModel("JMEulaComments").getData().caseId);
                 oFormData.append("requestId", oView.getModel("JMEulaComments").getData().caseId);
-                oFormData.append("docInSection", oView.getModel("oConfigMdl").getData().contextPath.Name);
+                oFormData.append("docInSection", oView.getModel("oConfigMdl").getData().contextPath.Id);
                 oFormData.append("fileExt", file.name.split(".")[1]);
                 oFormData.append("type", "application/octet-stream");
 
