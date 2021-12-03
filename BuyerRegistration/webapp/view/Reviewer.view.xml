@@ -28,7 +28,7 @@
 										<Label text="{i18n>Comments}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
 										 <Label text="{oConfigMdl>/comments}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
 									   <VBox visible="{oConfigMdl>/AttachVis}">
-                                       	<g:GridList width="auto" items="{oAttachmentList>/RejectDoc}" growing="true" class=" sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">
+                                       	<g:GridList width="auto" items="{oAttachmentList>/RejectDoc}" growing="true" class=" sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin">
 					<g:customLayout>
 						<grid:GridResponsiveLayout>
 							<grid:layoutS>
