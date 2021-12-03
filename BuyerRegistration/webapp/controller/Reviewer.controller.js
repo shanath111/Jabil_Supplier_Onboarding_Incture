@@ -45,6 +45,7 @@ sap.ui.define([
             },
 
             fnSetConfigModel: function (oContext) {
+                this.fnLoadTaskClaimed(oContext.Id);
                 oView.getModel("oConfigMdl").getData().CommentsVis = false;
                 oView.getModel("oConfigMdl").getData().bankNotFoundTitle = false;
 
@@ -236,7 +237,7 @@ sap.ui.define([
                 oValidationDefult.setData({});
                 oView.setModel(oValidationDefult, "JMValidateDefault")
                 this.fnLoadTaskDetail(oContext.Id);
-                this.fnLoadTaskClaimed(oContext.Id);
+                
 
             },
             _fnLoadBankRegion: function (vCountry) {
@@ -357,14 +358,19 @@ sap.ui.define([
                         } else {
                             oView.getModel("oConfigMdl").getData().isClaimed = oEvent.getSource().getData().isClaimed;
                         }
-
-
+                        
                         oView.getModel("oConfigMdl").getData().isTaskCompleted = oEvent.getSource().getData().isTaskCompleted;
                         if (oView.getModel("oConfigMdl").getData().isClaimed == false) {
                             oView.getModel("oConfigMdl").getData().defaultEnable = false;
                         }
                         // oView.getModel("oConfigMdl").getData().isTaskCompleted = true;
                       //  oView.getModel("oConfigMdl").getData().isClaimed = true;
+                      oView.getModel("oConfigMdl").getData().documentSection = oEvent.getSource().getData().documentSection;
+                      if(oEvent.getSource().getData().documentSection){
+                        oView.getModel("oConfigMdl").getData().AttachVis = true;
+                      }else{
+                        oView.getModel("oConfigMdl").getData().AttachVis = false;  
+                      }
                         oView.getModel("oConfigMdl").getData().validationMessage = oEvent.getSource().getData().validationMessage;
                         oView.getModel("oConfigMdl").refresh();
                     }
@@ -586,9 +592,10 @@ sap.ui.define([
 
 
             },
+          
             fnLoadCurrency: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/currency-list";
+                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/currency-list";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -875,6 +882,9 @@ sap.ui.define([
                                     }
 
                                     that.fnLoadSurveyFormDetail(temp.caseId, that);
+                                    if(oView.getModel("oConfigMdl").getData().documentSection){
+                                        that.fnReadRejectDoc(temp.caseId);
+                                    }
                                 }
 
 
@@ -1114,6 +1124,7 @@ sap.ui.define([
             fnChangeMitigationReason: function () {
                 oView.getModel("JMAppvrComments").getData().firstLevelReasone = "None";
                 oView.getModel("JMAppvrComments").getData().firstLevelReasonm = "";
+                oView.getModel("JMAppvrComments").getData().secondLevelReason = "";
                 oView.getModel("JMAppvrComments").refresh();
                 oView.getModel("oBPLookUpMdl").setProperty("/SecondLevelReason", []);
                 oView.getModel("oBPLookUpMdl").refresh();
@@ -1327,7 +1338,9 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover1Approved": vAprActn,
+                            
                             "operational_approver1_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
+                            "operational_approver1_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "operational_approver1_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver1_comment": oView.getModel("JMAppvrComments").getData().Comments
                         },
@@ -1355,6 +1368,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover2Approved": vAprActn,
+                            "operational_approver2_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "operational_approver2_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "operational_approver2_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver2_comment": oView.getModel("JMAppvrComments").getData().Comments
@@ -1383,6 +1397,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover3Approved": vAprActn,
+                            "operational_approver3_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "operational_approver3_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "operational_approver3_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver3_comment": oView.getModel("JMAppvrComments").getData().Comments
@@ -1411,6 +1426,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover4Approved": vAprActn,
+                            "operational_approver4_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "operational_approver4_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "operational_approver4_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver4_comment": oView.getModel("JMAppvrComments").getData().Comments
@@ -1439,6 +1455,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover5Approved": vAprActn,
+                            "operational_approver5_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "operational_approver5_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "operational_approver5_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver5_comment": oView.getModel("JMAppvrComments").getData().Comments
@@ -2208,7 +2225,7 @@ sap.ui.define([
                 oFormData.append("overwriteFlag", false);
                 oFormData.append("folderName", oView.getModel("JMEulaComments").getData().caseId);
                 oFormData.append("requestId", oView.getModel("JMEulaComments").getData().caseId);
-                oFormData.append("docInSection", oView.getModel("oConfigMdl").getData().contextPath.Name);
+                oFormData.append("docInSection",  oView.getModel("oConfigMdl").getData().contextPath.Id);
                 oFormData.append("fileExt", file.name.split(".")[1]);
                 oFormData.append("type", "application/octet-stream");
 
@@ -2321,7 +2338,7 @@ sap.ui.define([
                     success: function (data) {
 
                         $.each(data, function (index, value) {
-                            if (value.docInSection == oView.getModel("oConfigMdl").getData().contextPath.Name) {
+                            if (value.docInSection == oView.getModel("oConfigMdl").getData().contextPath.Id) {
                                 that.getView().getModel("oAttachmentList").getData().MitigationDoc.push(value);
                             }
                         });
@@ -2416,6 +2433,79 @@ sap.ui.define([
                 });
 
             },
+            fnReadRejectDoc: function (caseId) {
+                var that = this;
+                that.getView().getModel("oAttachmentList").setProperty("/RejectDoc", []);
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/document/findByRequestId/" + caseId;
+                $.ajax({
+                    url: sUrl,
+                    type: 'GET',
+                    success: function (data) {
+
+                        $.each(data, function (index, value) {
+                            if (value.docInSection == oView.getModel("oConfigMdl").getData().documentSection) {
+                                that.getView().getModel("oAttachmentList").getData().RejectDoc.push(value);
+                            }
+                            
+                        });
+
+                        that.getView().getModel("oAttachmentList").refresh();
+                    },
+                    error: function (data) {
+                        var eMsg = data.responseText
+                        MessageBox.show(eMsg, {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: oi18n.getProperty("Error")
+                        });
+
+                    }
+                });
+
+            },
+            fnOnDownlRejectDoc: function (oEvt) {
+                this.getView().getModel("oAttachmentList").refresh(true);
+                var name = oEvt.getSource().getParent().oParent.getItems()[0].mAggregations.items[1].mAggregations.items[0].getProperty("text"),
+                    _arrayTitle = oEvt.oSource.oParent.oParent.oParent.oParent.mBindingInfos.items.path.split("/0/")[1];
+                // @ts-ignore
+                var dmsDocId = this.getView().getModel("oAttachmentList").getData().RejectDoc.filter(function (docId) {
+                    return docId.name == name
+                })[0].dmsDocumentId;
+                //var _arrayTitle= this._fnGetUploaderId(fileUploadId);
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/document/download/" + dmsDocId;
+                // @ts-ignore
+                $.ajax({
+                    url: sUrl,
+                    //   contentType: false,
+                    //   accept:'*/*',
+                    //   localUri: "/Downloads",
+                    type: 'GET',
+                    xhrFields: {
+                        responseType: 'blob'
+                    },
+                    //   processData: false,
+                    success: function (data) {
+                        var a = document.createElement('a');
+                        var url = window.URL.createObjectURL(data);
+                        a.href = url;
+                        a.download = name;
+                        document.body.append(a);
+                        a.click();
+                        a.remove();
+                        window.URL.revokeObjectURL(url);
+
+                    },
+                    error: function () {
+                        var eMsg = data.responseText
+                        MessageBox.show(eMsg, {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: oi18n.getProperty("Error")
+                        });
+
+                    }
+                });
+
+            },
+          
 
         });
     });

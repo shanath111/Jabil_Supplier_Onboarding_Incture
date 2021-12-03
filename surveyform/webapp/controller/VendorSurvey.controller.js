@@ -9803,7 +9803,7 @@ var aError = false;
             },
             fnNavBackToHome: function () {
                 var vName = vAppName.split(":")[1];
-                if (vName == "LegalExp" || vName == "GTS" || vName == "GTS1" || vName == "COISupp" || vName == "COIBuyer") {
+                if (vName == "LegalExp" || vName == "GTS" || vName == "GTS1" || vName == "COISupp" || vName == "COIBuyer" || vName == "CyberSec" ||  vName == "CyberSecBuyer") {
                     var vUrl = window.location.origin + "/nsBuyerRegistration/index.html#/ExceptionFlow/" + vName + "/" + oView.getModel("oUserModel").getData().taskId
                 } else {
                     var vUrl = window.location.origin + "/nsBuyerRegistration/index.html#/Reviewer/" + vName + "/" + oView.getModel("oUserModel").getData().taskId

@@ -132,9 +132,9 @@
                                             <Column >
 												<Label text="{i18n>BPCAffirmationStatement}" class="cl_VRLablCls "></Label>
 											</Column>
-                                               <!-- <Column width="6rem">
+                                               <Column width="6rem">
 											
-											</Column> -->
+											</Column>
                                                <Column width="6rem" >
 												
 											</Column>

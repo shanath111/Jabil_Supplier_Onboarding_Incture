@@ -18,6 +18,42 @@
 										<Label text="{i18n>Comments}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
 										 <Label text="{oConfigMdl>/comments}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
 									<!-- <Label text="Not Agreeing NDA" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label> -->
+                                    <VBox visible="{oConfigMdl>/AttachVis}">
+                                       	<g:GridList width="auto" items="{oAttachmentList>/RejectDoc}" growing="true" class=" sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin">
+					<g:customLayout>
+						<grid:GridResponsiveLayout>
+							<grid:layoutS>
+								<grid:GridSettings gridTemplateColumns="1fr" gridGap="1rem"/>
+							</grid:layoutS>
+							<grid:layoutM>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr" gridGap="1rem"/>
+							</grid:layoutM>
+							<grid:layoutL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutL>
+							<grid:layoutXL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutXL>
+						</grid:GridResponsiveLayout>
+					</g:customLayout>
+					<g:GridListItem>
+						<HBox>
+							<HBox width="90%" class="sapUiTinyMarginBegin sapUiSizeCompact">
+								<core:Icon src="{path:'oAttachmentList>fileExt',formatter:'ns.BuyerRegistration.util.formatter.mediaTypeformatter'}"
+									class="attachmentIcon sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom" size="2.5rem" color="#48639d"/>
+							<VBox>	<Text text="{oAttachmentList>name}" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+						<Text text="{oAttachmentList>fileSize}" class="sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+                      </VBox>  	</HBox>
+							<VBox alignItems="Center" class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">
+								<core:Icon src="sap-icon://decline" visible="false" class="docIconStyle" press="fnOnCancelAttachment"/>
+								<core:Icon src="sap-icon://download" class="docIconStyle" press="fnOnDownlRejectDoc"/>
+							</VBox>
+						</HBox>
+					</g:GridListItem>
+				</g:GridList>
+			
+                                       </VBox>
+                                     
                                      <HBox class="cl_HBoxBlockSep">
                                 </HBox>
                                     </VBox>
@@ -358,6 +394,149 @@
                                
                   </VBox>
                        </VBox>   
+                         <VBox visible="{oConfigMdl>/CyberSecVis}">
+                         <VBox class="fontStyle sapUiSizeCompact">
+    <Label labelFor="securitySys" required="true" text="{i18n>cyberHeader}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+        <core:HTML visible="{oVisibilityModel>/isdefaultLan}"
+						content='&lt;p style=&quot;font-size:0.875rem;letter-spacing: 0.17px;&quot;class=&quot;fontStyle1 sapUiTinyMarginBegin&quot;&gt;{i18n>cyberNote1}&lt;a target=&quot;_blank&quot; href=&quot;https://www.jabil.com/dam/jcr:fbd18f53-7575-4143-abf0-886ae3b54db6/Supplier%20Information%20Security%20Requirements.pdf&quot;&gt;{i18n>cyberNoteLink}&lt;/a&gt;{i18n>cyberNote2}&lt;/p&gt;'></core:HTML>
+          <core:HTML visible="{=!${oVisibilityModel>/isdefaultLan}}"
+						content='&lt;p style=&quot;font-size:0.875rem;letter-spacing: 0.17px;&quot;class=&quot;fontStyle1 sapUiTinyMarginBegin&quot;&gt;{oi18n_En>cyberNote1}/&#160;{i18n>cyberNote1}&lt;a target=&quot;_blank&quot; href=&quot;https://www.jabil.com/dam/jcr:fbd18f53-7575-4143-abf0-886ae3b54db6/Supplier%20Information%20Security%20Requirements.pdf&quot;&gt;{oi18n_En>cyberNoteLink}/&#160;{i18n>cyberNoteLink}&lt;/a&gt;{oi18n_En>cyberNote2}/&#160;{i18n>cyberNote2}&lt;/p&gt;'></core:HTML>
+        <RadioButtonGroup id="securitySys" columns="2" selectedIndex="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem} === true? 0 :(${oDataModel>/itCyberDto/orgConnectToJabilSystem}=== false ?1: -1)}"  valueState="{oErrorModel>/orgConnectToJabilSystemE}" select="fnClearValueState" class="inputStyle" enabled="false">
+			<RadioButton text="{i18n>Yes}" selected="{oDataModel>/itCyberDto/orgConnectToJabilSystem}"></RadioButton>
+			<RadioButton text="{i18n>No}" select="fnSelectionChange"></RadioButton>
+		</RadioButtonGroup>
+         <Label text="{i18n>securitySysQues}" visible="{oDataModel>/itCyberDto/orgConnectToJabilSystem}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+         <g:GridList items="{path:'oLookUpModel>/orgEstablishConnection', sorter:{path:'value'}}" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem} === true}" class="gList sapUiTinyMarginTop sapUiSizeCompact">
+     	<g:customLayout>
+			  <!-- <grid:GridBasicLayout gridTemplateColumns="2fr 2fr" gridGap="0.5rem" />  -->
+              	<grid:GridResponsiveLayout>
+							<grid:layoutS>
+								<grid:GridSettings gridTemplateColumns="1fr" gridGap="1rem"/>
+							</grid:layoutS>
+							<grid:layoutM>
+								<grid:GridSettings gridTemplateColumns="2fr 2fr" gridGap="1rem"/>
+							</grid:layoutM>
+                            <grid:layoutL>
+								<grid:GridSettings gridTemplateColumns="2fr 2fr" gridGap="1rem"/>
+							</grid:layoutL>
+                            <grid:layoutXL>
+								<grid:GridSettings gridTemplateColumns="2fr 2fr" gridGap="1rem"/>
+							</grid:layoutXL>
+				</grid:GridResponsiveLayout>
+        </g:customLayout> 
+        
+        <g:GridListItem>
+         	 <!-- <VBox> -->
+         <HBox width="{deviceModel>/hBoxWidth}">
+         <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="false" valueState="{oErrorModel>/orgEstablishConnectionSelectedE}" select="onSelectOrgEstablishConnection"></CheckBox>
+        <Text text="{oLookUpModel>value}" class="sapUiTinyMarginTop" wrapping="true"/>
+        <Button visible="{=${oLookUpModel>value} === 'Other connection type'? false: true}" tooltip="{oLookUpModel>tooltip}" icon="sap-icon://message-information" type="Transparent" press="fnOnPressInfoIcon" class="sapUiSizeCompact infoBtn"/>
+       </HBox>
+       <TextArea value="{oLookUpModel>otherValue}" liveChange="fnValueChange" placeholder="{i18n>otherData}" editable="false" visible="{=${oLookUpModel>value} === 'Other connection type'? true: false}" maxLength="255" class="inputStyle inputStyleTA2 sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin"/>
+        <!-- </VBox> -->
+         </g:GridListItem>
+     	
+   </g:GridList>
+   <Label required="true" labelFor="willOrgCollectJabilData" text="{i18n>willOrgCollectJabilData}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+        <RadioButtonGroup id="willOrgCollectJabilData" columns="2" selectedIndex="{=${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil} === true? 0 :(${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}=== false ?1: -1)}"  valueState="{oErrorModel>/orgMaintainProcessDataFromJabilE}" select="fnClearValueState" class="inputStyle" enabled="false">
+			<RadioButton text="{i18n>yes}" selected="{oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}"></RadioButton>
+			<RadioButton text="{i18n>no}" select="fnSelectionChange"></RadioButton>
+		</RadioButtonGroup>
+         <g:GridList  items="{oLookUpModel>/orgBusinessActivities}" visible="{=${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil}=== true}" class="gList fontStyle sapUiTinyMarginTop sapUiSizeCompact">
+     	<g:customLayout>
+			  <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" /> 
+			
+        </g:customLayout> 
+        
+     
+   <g:GridListItem>
+         <!-- <VBox> -->
+         <HBox width="{deviceModel>/hBoxWidth}">	
+         <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="false" valueState="{oErrorModel>/orgBusinessActivitiesisSelectedE}" select="onSelectOrgBusinessActivities"></CheckBox>
+        <Text text="{oLookUpModel>value}" class="sapUiTinyMarginTop"/>
+        <Button visible="{=${oLookUpModel>tooltip} === ''? false: true}" tooltip="{oLookUpModel>tooltip}" icon="sap-icon://message-information" type="Transparent" press="fnOnPressInfoIcon" class="sapUiSizeCompact infoBtn"/>
+      </HBox>  <TextArea value="{oLookUpModel>otherValue}"  liveChange="fnValueChange" placeholder="{i18n>otherData}" editable="false" visible="{=${oLookUpModel>value} === 'Other data type'? true: false}" maxLength="255" class="inputStyle inputStyleTA2 sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin" />
+        <!-- </VBox> -->
+        </g:GridListItem>
+   </g:GridList>
+   <VBox class="fontStyle sapUiSizeCompact" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem} === true || ${oDataModel>/itCyberDto/orgMaintainProcessDataFromJabil} === true}">
+    <!-- <core:HTML
+						content='&lt;p style=&quot;font-size:0.875rem;letter-spacing: 0.17px;&quot;class=&quot;fontStyle1 sapUiTinyMarginBegin&quot;&gt;{i18n>orgCertificate1}&lt;a target=&quot;_blank&quot; href=&quot;http://en.wikipedia.org/wiki/Lorem_ipsum&quot;&gt;{i18n>orgCertificateLink}&lt;/a&gt;{i18n>orgCertificate2}&lt;/p&gt;'></core:HTML> -->
+    <HBox class="fontStyle sapUiSizeCompact">
+   <Label required="true" labelFor="isOrgCertified" visible="true" text="{i18n>orgCertificate}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+     <Text text="{i18n>hoverText}" class="hOverInfo sapUiTinyMarginTop" tooltip="{oPopoverModel>/orgCertInfo/info}"/></HBox>
+        <RadioButtonGroup id="isOrgCertified" enabled="false" columns="2" selectedIndex="{=${oDataModel>/itCyberDto/certifiedForInfoSecurity} === true? 0 :(${oDataModel>/itCyberDto/certifiedForInfoSecurity}=== false ?1: -1)}"  valueState="{oErrorModel>/certifiedForInfoSecurityE}" select="fnClearValueState" class="inputStyle">
+			<RadioButton text="{i18n>yes}" selected="{oDataModel>/itCyberDto/certifiedForInfoSecurity}"></RadioButton>
+			<RadioButton text="{i18n>no}" select="fnSelectionChange"></RadioButton>
+		</RadioButtonGroup>
+        <Label required="true" labelFor="isValidCert" text="{i18n>validCertificate}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+        <RadioButtonGroup id="isValidCert" columns="2" selectedIndex="{=${oDataModel>/itCyberDto/validateCertificate} === true? 0 :(${oDataModel>/itCyberDto/validateCertificate}=== false ?1: -1)}"  valueState="{oErrorModel>/validateCertificateE}" select="fnClearValueState" class="inputStyle" enabled="false">
+			<RadioButton text="{i18n>yes}" selected="{oDataModel>/itCyberDto/validateCertificate}"></RadioButton>
+			<RadioButton text="{i18n>no}" select="fnSelectionChange"></RadioButton>
+		</RadioButtonGroup>
+        <Label required="true" labelFor="infoSecPOC" text="{i18n>informationSecurityContactDetails}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+        <RadioButtonGroup id="infoSecPOC" columns="2" selectedIndex="{=${oDataModel>/itCyberDto/responsibleForInforSecurity} === true? 0 :(${oDataModel>/itCyberDto/responsibleForInforSecurity}=== false ?1: -1)}"  valueState="{oErrorModel>/responsibleForInforSecurityE}" select="fnClearValueState" class="inputStyle" enabled="false">
+			<RadioButton text="{i18n>yes}" selected="{oDataModel>/itCyberDto/responsibleForInforSecurity}"></RadioButton>
+			<RadioButton text="{i18n>no}" select="fnSelectionChange"></RadioButton>
+		</RadioButtonGroup>
+        <Text text="{i18n>infoSecurityContact}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle sapUiSizeCompact sapUiTinyMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop"/>
+         <Text text="{i18n>infoSecurityContact}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle sapUiSizeCompact sapUiTinyMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop"/>	
+          <l:VerticalLayout class="fontStyle sapUiSizeCompact" width="100%">
+							<l:Grid containerQuery="true" defaultSpan="XL3 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+								<VBox>
+									<Label text="{i18n>firstNameG}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
+                                   
+									<Input maxLength="31" value="{oDataModel>/itCyberDto/itcyberSecurityContact/firstName}" valueState="{oErrorModel>/cyberSurveyFNE}" valueStateText="{oErrorModel>/cyberSurveyFNM}"  editable="false"  liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
+								</VBox>
+								<VBox>
+									<Label text="{i18n>lastNameG}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
+                                  
+									<Input maxLength="31" value="{oDataModel>/itCyberDto/itcyberSecurityContact/lastName}" valueState="{oErrorModel>/cyberSurveyLNE}" valueStateText="{oErrorModel>/cyberSurveyLNM}" editable="false"  liveChange="fnLiveInputValueChange"  class="inputStyle"></Input>
+								
+								</VBox>
+								<VBox>
+									<Label text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                   
+									<Input value="{oDataModel>/itCyberDto/itcyberSecurityContact/jobTitle}" liveChange="fnValueChange" editable="false"  class="inputStyle"></Input>
+								</VBox>
+								<VBox>
+									<Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
+                                
+									<Input maxLength="242" value="{oDataModel>/itCyberDto/itcyberSecurityContact/email}" editable="false" valueState="{oErrorModel>/cyberSurveyE}" valueStateText="{oErrorModel>/cyberSurveyM}" liveChange="fnRemoveSpace" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
+								</VBox>
+								<VBox>
+									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                   
+									 <VBox>
+											<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="false"  items="{oLookUpModel>/countryContactCode}"  selectedKey="{oDataModel>/itCyberDto/itcyberSecurityContact/countryContactCode}" valueState="{oErrorModel>/cyberSurveyCountryCodeE}" valueStateText="{oErrorModel>/cyberSurveyCountryCodeM}" change="fnLiveValueCountryCodeChange" editable="false" class="inputStyle">
+                                                    <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                                </ComboBox>
+                                            </VBox>
+                                  <layoutData>
+                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                       </VBox>
+								<VBox>
+                                <Label text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
+                               
+											<Input maxLength="31" value="{oDataModel>/itCyberDto/itcyberSecurityContact/contact}" valueState="{oErrorModel>/cyberSurveyMNE}" valueStateText="{oErrorModel>/cyberSurveyMNM}" editable="false" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
+                                <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
+                                <layoutData>
+                                  <l:GridData spanM="2" spanL="2" spanXL="1"></l:GridData></layoutData>
+                                        </VBox> 
+                               
+								<VBox>
+									<Label text="{i18n>extension}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                  
+									<Input maxLength="11" value="{oDataModel>/itCyberDto/itcyberSecurityContact/extension}" editable="false" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+                                     
+								</VBox>
+							</l:Grid>
+						</l:VerticalLayout>
+        </VBox>
+        
+         </VBox>
+       
+                         </VBox>
                                   	</content>
                                       </Panel> 
                                             		
