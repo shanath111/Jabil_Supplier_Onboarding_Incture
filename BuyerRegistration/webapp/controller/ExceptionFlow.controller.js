@@ -38,6 +38,7 @@ sap.ui.define([
             },
 
             fnSetConfigModel: function (oContext) {
+                this.fnLoadTaskClaimed(oContext.Id);
                 oView.getModel("oConfigMdl").getData().CommentsVis = false;
                 if (oContext.Name == "GTS") {
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
@@ -86,7 +87,7 @@ sap.ui.define([
                 oView.getModel("oConfigMdl").getData().contextPath = oContext;
                 oView.getModel("oConfigMdl").refresh();
                 this.fnLoadTaskDetail(oContext.Id);
-                this.fnLoadTaskClaimed(oContext.Id);
+             
                 this._fnLoadCountryContactCode();
 
             },
@@ -115,6 +116,12 @@ sap.ui.define([
                             oView.getModel("oConfigMdl").getData().defaultEnable = false;
                         }
                       
+                        oView.getModel("oConfigMdl").getData().documentSection = oEvent.getSource().getData().documentSection;
+                        if(oEvent.getSource().getData().documentSection){
+                          oView.getModel("oConfigMdl").getData().AttachVis = true;
+                        }else{
+                          oView.getModel("oConfigMdl").getData().AttachVis = false;  
+                        }
                         oView.getModel("oConfigMdl").getData().validationMessage = oEvent.getSource().getData().validationMessage;
                         oView.getModel("oConfigMdl").refresh();
                     }
@@ -603,6 +610,9 @@ sap.ui.define([
                                     }
 
                                     that.fnLoadSurveyFormDetail(temp.caseId, that);
+                                    if(oView.getModel("oConfigMdl").getData().documentSection){
+                                        that.fnReadRejectDoc(temp.caseId);
+                                    }
 
                                 }
 
@@ -895,7 +905,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "gtsAction": vContextActn,
-                            "gts_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
+                            "gts_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "gts_comment": oView.getModel("JMAppvrComments").getData().Comments,
                             "gts_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "gts_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason
@@ -923,7 +933,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "gtsAction": vContextActn,
-                            "gts_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
+                            "gts_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "gts_comment": oView.getModel("JMAppvrComments").getData().Comments,
                             "gts_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "gts_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason
@@ -950,7 +960,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "buyerActionOnGTSRemediation": vContextActn,
-                            "gts_exception_buyer_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
+                            "gts_exception_buyer_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "gts_exception_buyer_comment": oView.getModel("JMAppvrComments").getData().Comments,
                             "gts_exception_buyer_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "gts_exception_buyer_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason
@@ -981,7 +991,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "legalAction": vContextActn,
-                            "legal_exceptional_flow_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
+                            "legal_exceptional_flow_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "legal_exceptional_flow_comment": oView.getModel("JMAppvrComments").getData().Comments,
                             "legal_exceptional_flow_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "legal_exceptional_flow_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason
@@ -1015,7 +1025,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "legal_action_supplier_coi": vContextActn,
-                            "legal_supplier_coi_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
+                            "legal_supplier_coi_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "legal_supplier_coi_comment": oView.getModel("JMAppvrComments").getData().Comments,
                              "legal_supplier_coi_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "legal_supplier_coi_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason
@@ -1047,7 +1057,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "buyerActionOnSupplierCOI": vContextActn,
-                            "buyer_supplier_coi_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
+                            "buyer_supplier_coi_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "buyer_supplier_coi_comment": oView.getModel("JMAppvrComments").getData().Comments,
                             "buyer_supplier_coi_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "buyer_supplier_coi_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason
@@ -1078,7 +1088,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "cyberSecurityAction": vContextActn,
-                            "cs_exception_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
+                            "cs_exception_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "cs_exception_comment": oView.getModel("JMAppvrComments").getData().Comments,
                             "cs_exception_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "cs_exception_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason
@@ -1109,7 +1119,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "cyberSecurityBuyerAction": vContextActn,
-                            "cs_exception_buyer_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Name,
+                            "cs_exception_buyer_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "cs_exception_buyer_comment": oView.getModel("JMAppvrComments").getData().Comments,
                             "cs_exception_buyer_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "cs_exception_buyer_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason
@@ -1899,7 +1909,7 @@ sap.ui.define([
                     success: function (data) {
 
                         $.each(data, function (index, value) {
-                            if (value.docInSection == oView.getModel("oConfigMdl").getData().contextPath.Name) {
+                            if (value.docInSection == oView.getModel("oConfigMdl").getData().contextPath.Id) {
                                 that.getView().getModel("oAttachmentList").getData().MitigationDoc.push(value);
                             }
                         });
@@ -1994,6 +2004,79 @@ sap.ui.define([
                 });
 
             },
+            fnReadRejectDoc: function (caseId) {
+                var that = this;
+                that.getView().getModel("oAttachmentList").setProperty("/RejectDoc", []);
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/document/findByRequestId/" + caseId;
+                $.ajax({
+                    url: sUrl,
+                    type: 'GET',
+                    success: function (data) {
+
+                        $.each(data, function (index, value) {
+                            if (value.docInSection == oView.getModel("oConfigMdl").getData().documentSection) {
+                                that.getView().getModel("oAttachmentList").getData().RejectDoc.push(value);
+                            }
+                            
+                        });
+
+                        that.getView().getModel("oAttachmentList").refresh();
+                    },
+                    error: function (data) {
+                        var eMsg = data.responseText
+                        MessageBox.show(eMsg, {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: oi18n.getProperty("Error")
+                        });
+
+                    }
+                });
+
+            },
+            fnOnDownlRejectDoc: function (oEvt) {
+                this.getView().getModel("oAttachmentList").refresh(true);
+                var name = oEvt.getSource().getParent().oParent.getItems()[0].mAggregations.items[1].mAggregations.items[0].getProperty("text"),
+                    _arrayTitle = oEvt.oSource.oParent.oParent.oParent.oParent.mBindingInfos.items.path.split("/0/")[1];
+                // @ts-ignore
+                var dmsDocId = this.getView().getModel("oAttachmentList").getData().RejectDoc.filter(function (docId) {
+                    return docId.name == name
+                })[0].dmsDocumentId;
+                //var _arrayTitle= this._fnGetUploaderId(fileUploadId);
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/document/download/" + dmsDocId;
+                // @ts-ignore
+                $.ajax({
+                    url: sUrl,
+                    //   contentType: false,
+                    //   accept:'*/*',
+                    //   localUri: "/Downloads",
+                    type: 'GET',
+                    xhrFields: {
+                        responseType: 'blob'
+                    },
+                    //   processData: false,
+                    success: function (data) {
+                        var a = document.createElement('a');
+                        var url = window.URL.createObjectURL(data);
+                        a.href = url;
+                        a.download = name;
+                        document.body.append(a);
+                        a.click();
+                        a.remove();
+                        window.URL.revokeObjectURL(url);
+
+                    },
+                    error: function () {
+                        var eMsg = data.responseText
+                        MessageBox.show(eMsg, {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: oi18n.getProperty("Error")
+                        });
+
+                    }
+                });
+
+            },
+          
 
 
 
