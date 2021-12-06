@@ -3742,6 +3742,12 @@ sap.ui.define([
                 oView.getModel("JMBPCreate").getData().isExclCiscoGhube = "None";
                 oView.getModel("JMBPCreate").refresh();
             },
+            onAfterRendering: function () {
+                
+                oView.byId("purchaseOrgId").addEventDelegate({
+                    ontap: this.fnLiveChangePurchOrg
+                }, this);
+            },
 
 
 

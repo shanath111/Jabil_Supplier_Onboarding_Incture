@@ -9103,7 +9103,7 @@ var aError = false;
                     $("input:text:visible:first").focus();
                 });
 
-               
+                
             },
             
             onActivateBasicInfo: function(){
