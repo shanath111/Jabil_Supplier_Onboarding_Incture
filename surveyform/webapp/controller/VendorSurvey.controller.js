@@ -4780,7 +4780,7 @@ var aError = false;
                         iError = true;
 
                     }
-                    if (row.contact !== null && row.contact !== "" && Number(row.contact.replaceAll("-", "")) == 0) {
+                    if (row.contact !== undefined && row.contact !== null && row.contact !== "" && Number(row.contact.replaceAll("-", "")) == 0) {
                         item[5].mAggregations.items[1].setValueState("Error")
                         item[5].mAggregations.items[1].setValueStateText(oi18n.getText("invalidContact"));
 
