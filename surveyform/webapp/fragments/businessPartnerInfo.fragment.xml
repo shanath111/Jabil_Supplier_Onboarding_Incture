@@ -44,7 +44,25 @@
 					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}"  select="fnSelectionChange"/>
 				</RadioButtonGroup>
 			</HBox>
-			<VBox alignContent="Start" visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === true}" class="fontStyle">
+            <VBox alignContent="Start">
+                <HBox>
+                    <Text  text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsReg}:${oi18n_En>dunsReg} +'&#10;' +${i18n>dunsReg}}" wrapping="true" class="fontStyle fontStyleItalic sapUiTinyMarginBegin"/>
+                    <Link enabled="{oEnableMdl>/encourgeDunsNumberRegEnb}" text="https://www.dnb.com/duns-number/get-a-duns.html"
+                            target="_blank"
+                            href="https://www.dnb.com/duns-number/get-a-duns.html"
+                            class="sapUiTinyMarginBegin sapUiContentPadding"
+                            wrapping="true"/>
+                </HBox>
+                <HBox>
+                    <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsUnsure}:${oi18n_En>dunsUnsure} +'&#10;' +${i18n>dunsUnsure}}" wrapping="true" class="fontStyle  fontStyleItalic sapUiTinyMarginBegin"/>
+                    <Link enabled="{oEnableMdl>/encourgeDunsNumberRegEnb}" text="https://www.dnb.com/duns-number/lookup.html"
+                            target="_blank"
+                            href="https://www.dnb.com/duns-number/lookup.html"
+                            class="sapUiTinyMarginBegin sapUiContentPadding"
+                            wrapping="true"/>
+                </HBox>
+            </VBox>
+			<VBox alignContent="Start" visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === true}" class="fontStyle sapUiTinyMarginTop">
 				<l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M4 S12" class="gridSpacing">
 					<VBox class="fontStyle sapUiSizeCompact">
 						<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsRegNum}:${oi18n_En>dunsRegNum} +'&#10;' +${i18n>dunsRegNum}}" ></Label>
@@ -62,18 +80,7 @@
 					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" valueState="{oErrorModel>/dunsNumE}" selected="{oDataModel>/bpInfoDto/encourgeDunsNumberReg}"/>
 					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" selected="{=!${oDataModel>/bpInfoDto/encourgeDunsNumberReg}}"/>
 				</RadioButtonGroup> -->
-                <Text  text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsReg}:${oi18n_En>dunsReg} +'&#10;' +${i18n>dunsReg}}" wrapping="true" class="fontStyle fontStyleItalic sapUiTinyMarginBegin"/>
-                <Link enabled="{oEnableMdl>/encourgeDunsNumberRegEnb}" text="https://www.dnb.com/duns-number/get-a-duns.html"
-						target="_blank"
-						href="https://www.dnb.com/duns-number/get-a-duns.html"
-                        class="fontStyle sapUiTinyMarginBegin sapUiContentPadding"
-                        wrapping="true"/>
-                         <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsUnsure}:${oi18n_En>dunsUnsure} +'&#10;' +${i18n>dunsUnsure}}" wrapping="true" class="fontStyle  fontStyleItalic sapUiTinyMarginBegin"/>
-                <Link enabled="{oEnableMdl>/encourgeDunsNumberRegEnb}" text="https://www.dnb.com/duns-number/lookup.html"
-						target="_blank"
-						href="https://www.dnb.com/duns-number/lookup.html"
-                        class="fontStyle sapUiTinyMarginBegin sapUiContentPadding"
-                        wrapping="true"/>
+                
 				<Label wrapping= "true" labelFor="corpHead" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isSiteTheCorpHead}:${oi18n_En>isSiteTheCorpHead} +'&#10;&#10;' +${i18n>isSiteTheCorpHead}}" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin" required="true"></Label>
 				<RadioButtonGroup id="corpHead" enabled="{oEnableMdl>/isSiteCorporateHeadquatersEnb}" columns="2" selectedIndex="{=${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters} === true? 0 :(${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}=== false ?1: -1)}" class="inputStyle" valueState="{oErrorModel>/isSiteCorporateHeadquatersE}" select="fnClearValueState">
 					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" valueState="{oErrorModel>/corpHQE}" selected="{oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}"/>
