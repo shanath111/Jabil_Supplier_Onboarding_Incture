@@ -204,7 +204,7 @@
 				
 				<VBox class="fontStyle sapUiSizeCompact">
 					<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>other}:${oi18n_En>other} +'&#10;' +${i18n>other}}"></Label>
-					<Input class="inputStyle" value="{oDataModel>ifOther}" liveChange="fnValueChange" enabled="{oEnableMdl>/ifOtherEnb}"></Input>
+					<Input class="inputStyle" value="{oDataModel>ifOther}" liveChange="fnValueChange" enabled="{oEnableMdl>/ifOtherEnb}" maxLength="20"></Input>
 				</VBox>
 				<VBox class="sapUiSizeCompact">
 					<Label/>
