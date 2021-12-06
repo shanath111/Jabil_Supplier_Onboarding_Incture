@@ -16,11 +16,12 @@ sap.m.Table.extend("com.jabil.surveyform.controls.TabbingTable", {
 		oDomTable = this.$(),
 		aRows = this.getItems(),
 		i;
+        jQuery.sap.delayedCall(500, this, function() {
         $("input:text:visible:first").focus();  //focus on 1st input field.
-
+        });
 		oDomTable.focusin(function() {
 			// remember current focused cell
-			jQuery.sap.delayedCall(100, null, function() {
+			jQuery.sap.delayedCall(500, null, function() {
 				// find the focused input field
 				var oField = (oDomTable.find('.sapMInputFocused')[0] || oDomTable.find('.sapMFocus')[0]);
 				if (oField) {
@@ -108,7 +109,7 @@ sap.m.Table.extend("com.jabil.surveyform.controls.TabbingTable", {
 		// get index of first and last input fields of table row
 		for (var i = 0; i < aCells.length; i++) {
 			var field = aCells[i];
-			if (field.getMetadata()._sClassName !== "sap.m.Text") {
+			if (field.getMetadata()._sClassName !== "sap.m.Label") {
 				mInputInfo.aIndices.push(i);
 				if (typeof mInputInfo.iFirstInput === "undefined") {
 					mInputInfo.iFirstInput = i;
