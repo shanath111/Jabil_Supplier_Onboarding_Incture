@@ -1679,7 +1679,13 @@ sap.ui.define([
                         oEvent.getSource().setValue("");
                     }
                 }
-
+                if(oEvent.getSource().getSelectedKey() == "BR"){
+                    this.getOwnerComponent().getModel("oVisibilityModel").getData().enableNPI = true;
+                    this.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                } else {
+                    this.getOwnerComponent().getModel("oVisibilityModel").getData().enableNPI = false;
+                    this.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                }
                 var selectedCountryCode = oEvent.getSource().getSelectedKey();
                 var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + selectedCountryCode;
                 $.ajax({
@@ -7718,11 +7724,16 @@ var aError = false;
                             onAfterRendering: function(){
                                 if(isNew){
                                    // jQuery.sap.delayedCall(500, this, function() {
-                                    oView.byId("site").focus();
+                                    setTimeout(function(){
+                                        oView.byId("site").focus();
+                                    }, 500)
+                                  
                                    // });
                                 } else if(!isNew) {
                                    // jQuery.sap.delayedCall(500, this, function() {
+                                    setTimeout(function(){
                                     $("input:text:visible:enabled:first").focus(); 
+                                    },500);
                                    // });
                                 }
                                 
@@ -7739,12 +7750,16 @@ var aError = false;
                                 onAfterRendering: function(){
                                     if(!isDunsRegNum || isDunsRegNum === 'NODUNS'){
                                        // jQuery.sap.delayedCall(500, this, function() {
+                                        setTimeout(function(){
                                         oView.byId("ownSite").focus();
+                                        },500);
                                        // });
                                     }
                                     else {
                                         //jQuery.sap.delayedCall(500, this, function() {
+                                            setTimeout(function(){
                                         oView.byId("ownershipTypeId").focus();
+                                            },500);
                                        // });
                                     }  
                                     
@@ -7763,12 +7778,16 @@ var aError = false;
                                 onAfterRendering: function(){
                                     if(!isDunsRegNum || isDunsRegNum === 'NODUNS'){
                                        // jQuery.sap.delayedCall(500, this, function() {
+                                        setTimeout(function(){
                                         oView.byId("ownSite").focus();
+                                        },500);
                                        // });
                                     }
                                     else {
                                       //  jQuery.sap.delayedCall(500, this, function() {
+                                        setTimeout(function(){
                                         oView.byId("ownershipTypeId").focus();
+                                        },500);
                                        // });
                                     }  
                                 }
@@ -7783,7 +7802,9 @@ var aError = false;
                         oView.byId('companyInfo').addEventDelegate({
                             onAfterRendering: function(){
                              //   jQuery.sap.delayedCall(500, this, function() {
+                                setTimeout(function(){
                                 oView.byId("orderfromAddrCheckBoxId").focus();
+                                },500);
                               //  });
                             }
                         });
@@ -7796,11 +7817,15 @@ var aError = false;
                             onAfterRendering: function(){
                                 if(isNew) {
                                   //  jQuery.sap.delayedCall(500, this, function() {
+                                    setTimeout(function(){
                                     oView.byId("PaymentTermCreateId").focus();
+                                    },500);
                                 //});
                                 } else {
                                    // jQuery.sap.delayedCall(500, this, function() {
+                                    setTimeout(function(){
                                     oView.byId("PaymentTermExtendId").focus();
+                                    },500);
                                    // });
                                 }
                                 
@@ -7816,7 +7841,9 @@ var aError = false;
                         oView.byId('shippingInfo').addEventDelegate({
                             onAfterRendering: function(){
                               //  jQuery.sap.delayedCall(500, this, function() {
+                                setTimeout(function(){
                                 $("input:text:visible:first").focus(); 
+                                },500);
                                // });
                             }
                         });
@@ -7829,7 +7856,9 @@ var aError = false;
                             oView.byId('prodAndServInfo').addEventDelegate({
                                 onAfterRendering: function(){
                                    // jQuery.sap.delayedCall(500, this, function() {
+                                    setTimeout(function(){
                                     oView.byId("OperServId").focus();
+                                    },500);
                                    // });
                                 }
                             });
@@ -7837,7 +7866,9 @@ var aError = false;
                             oView.byId('cComplianceInfo').addEventDelegate({
                                 onAfterRendering: function(){
                                     //jQuery.sap.delayedCall(500, this, function() {
+                                        setTimeout(function(){
                                     oView.byId("agreement").focus();
+                                        },500);
                                    // });
                                 }
                             });
@@ -7850,7 +7881,9 @@ var aError = false;
                         oView.byId('cComplianceInfo').addEventDelegate({
                             onAfterRendering: function(){
                                // jQuery.sap.delayedCall(500, this, function() {
+                                setTimeout(function(){
                                 oView.byId("srmMeet").focus();
+                                },500);
                                // });
                             }
                         });
@@ -7863,7 +7896,9 @@ var aError = false;
                             oView.byId('cyberSecInfo').addEventDelegate({
                                 onAfterRendering: function(){
                                   //  jQuery.sap.delayedCall(500, this, function() {
+                                    setTimeout(function(){
                                     oView.byId("securitySys").focus();
+                                    },500);
                                    // });
                                 }
                             });
@@ -7871,7 +7906,9 @@ var aError = false;
                             oView.addEventDelegate({
                                 onAfterRendering: function(){
                                    // jQuery.sap.delayedCall(500, this, function() {
+                                    setTimeout(function(){
                                     oView.byId("formAcceptanceId").focus();
+                                    },500);
                                    // });
                                 }
                             });
@@ -7981,7 +8018,23 @@ var aError = false;
                     if(oPayload.bpInfoDto.tax[0].country == ""){
                         var CountryCode1 = oPayload.surveyInfoDto.address[0].postal[0].countryCode;
                        oPayload.bpInfoDto.tax[0].country = CountryCode1;
+                       var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/taxType/" + CountryCode1;
+                       $.ajax({
+                           url: loadTaxTypeUrl,
+                           type: 'GET',
+                           success: function (data) {
+                               oView.getModel("oLookUpModel").setProperty("/taxType1", data);
+                               oView.getModel("oLookUpModel").refresh();
+                           },
+                           async: false,
+                           error: function (data) {
+       
+                           }
+                       });
                        
+                    }
+                    if(oPayload.bpInfoDto.tax[0].country == "BR"){
+                       oPayload.bpInfoDto.tax[0].type = "BR2";
                     }
                     if (oPayload.ownerShipInfoDto.isEntitySDNList === false) {
                         $.each(oPayload.ownerShipInfoDto.sdnlistContact, function (index, row) {
@@ -8243,6 +8296,12 @@ var aError = false;
 
             onActivateBPInfo: function (event) {
                 var bpTaxDetails = oView.getModel("oDataModel").getData().bpInfoDto.tax;
+                if(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode == "BR"){
+                    this.getOwnerComponent().getModel("oVisibilityModel").getData().enableNPI = true;
+                    this.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                    oView.getModel("oDataModel").getData().bpInfoDto.tax[0].type = "BR2";
+                    oView.getModel("oDataModel").refresh();
+                }
                 $.each(bpTaxDetails, function (index, row) {
                     if (row.country && row.type) {
                         var tooltipUrl = "/comjabilsurveyform/plcm_portal_services/api/v1/tax-tooltip/findById/" + row.type;
