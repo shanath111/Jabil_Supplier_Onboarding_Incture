@@ -882,6 +882,12 @@ sap.ui.define([
                 if (bankData.bankKeyVal5 == "bankBranch") {
                     vBnkaPayload.bankBranch = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch;
                 }
+                var vInterMedbank;
+                if(oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided == true){
+                    vInterMedbank = true;
+                }else{
+                    vInterMedbank = false;
+                }
                 var oPayload = {
                     "context": {
                         "bpNumber": oView.getModel("oUserModel").getData().bpNumber,
@@ -889,7 +895,7 @@ sap.ui.define([
                         "financeContact2Action": vActn,
                         "bank_details_provider_comment": oView.getModel("JMBankComments").getData().Comments,
                         "bnkaPayload": vBnkaPayload,
-                        "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided,
+                        "isIntermediateBankProvided": vInterMedbank,
                         // "financeContact2": {
                         //     "firstName": "",
                         //     "lastName": "",
