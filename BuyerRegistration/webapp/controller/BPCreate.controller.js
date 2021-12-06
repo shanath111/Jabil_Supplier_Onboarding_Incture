@@ -3203,6 +3203,11 @@ sap.ui.define([
                 if (spaceRegex.test(oEvent.getSource().getValue())) {
                     oEvent.getSource().setValue("");
                 }
+            },
+            onAfterRendering: function () {
+                oView.byId("purchaseOrgId").addEventDelegate({
+                    ontap: this.fnLiveChangePurchOrg
+                }, this);
             }
 
         });

@@ -2506,6 +2506,11 @@ sap.ui.define([
                 });
 
             },
+            onAfterRendering: function () {
+                oView.byId("purchaseOrgId").addEventDelegate({
+                    ontap: this.fnLiveChangePurchOrg
+                }, this);
+            }
           
 
         });
