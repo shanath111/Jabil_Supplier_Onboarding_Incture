@@ -16,9 +16,9 @@ sap.m.Table.extend("com.jabil.surveyform.controls.TabbingTable", {
 		oDomTable = this.$(),
 		aRows = this.getItems(),
 		i;
-        jQuery.sap.delayedCall(500, this, function() {
+      //  jQuery.sap.delayedCall(500, this, function() {
         $("input:text:visible:first").focus();  //focus on 1st input field.
-        });
+       // });
 		oDomTable.focusin(function() {
 			// remember current focused cell
 			jQuery.sap.delayedCall(500, null, function() {

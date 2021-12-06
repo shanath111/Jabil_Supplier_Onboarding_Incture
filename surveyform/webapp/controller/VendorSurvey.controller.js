@@ -7717,13 +7717,13 @@ var aError = false;
                         oView.byId('businessPartnerInfo').addEventDelegate({
                             onAfterRendering: function(){
                                 if(isNew){
-                                    jQuery.sap.delayedCall(500, this, function() {
+                                   // jQuery.sap.delayedCall(500, this, function() {
                                     oView.byId("site").focus();
-                                    });
+                                   // });
                                 } else if(!isNew) {
-                                    jQuery.sap.delayedCall(500, this, function() {
+                                   // jQuery.sap.delayedCall(500, this, function() {
                                     $("input:text:visible:enabled:first").focus(); 
-                                    });
+                                   // });
                                 }
                                 
                             }
@@ -7738,14 +7738,14 @@ var aError = false;
                             oView.byId('ownerShipInfo').addEventDelegate({
                                 onAfterRendering: function(){
                                     if(!isDunsRegNum || isDunsRegNum === 'NODUNS'){
-                                        jQuery.sap.delayedCall(500, this, function() {
+                                       // jQuery.sap.delayedCall(500, this, function() {
                                         oView.byId("ownSite").focus();
-                                        });
+                                       // });
                                     }
                                     else {
-                                        jQuery.sap.delayedCall(500, this, function() {
+                                        //jQuery.sap.delayedCall(500, this, function() {
                                         oView.byId("ownershipTypeId").focus();
-                                        });
+                                       // });
                                     }  
                                     
                                 }
@@ -7762,14 +7762,14 @@ var aError = false;
                             oView.byId('ownerShipInfo').addEventDelegate({
                                 onAfterRendering: function(){
                                     if(!isDunsRegNum || isDunsRegNum === 'NODUNS'){
-                                        jQuery.sap.delayedCall(500, this, function() {
+                                       // jQuery.sap.delayedCall(500, this, function() {
                                         oView.byId("ownSite").focus();
-                                        });
+                                       // });
                                     }
                                     else {
-                                        jQuery.sap.delayedCall(500, this, function() {
+                                      //  jQuery.sap.delayedCall(500, this, function() {
                                         oView.byId("ownershipTypeId").focus();
-                                        });
+                                       // });
                                     }  
                                 }
                             });
@@ -7782,9 +7782,9 @@ var aError = false;
                       
                         oView.byId('companyInfo').addEventDelegate({
                             onAfterRendering: function(){
-                                jQuery.sap.delayedCall(500, this, function() {
+                             //   jQuery.sap.delayedCall(500, this, function() {
                                 oView.byId("orderfromAddrCheckBoxId").focus();
-                                });
+                              //  });
                             }
                         });
                   
@@ -7795,12 +7795,13 @@ var aError = false;
                         oView.byId('bankInfo').addEventDelegate({
                             onAfterRendering: function(){
                                 if(isNew) {
-                                    jQuery.sap.delayedCall(500, this, function() {
-                                    oView.byId("PaymentTermCreateId").focus();});
+                                  //  jQuery.sap.delayedCall(500, this, function() {
+                                    oView.byId("PaymentTermCreateId").focus();
+                                //});
                                 } else {
-                                    jQuery.sap.delayedCall(500, this, function() {
+                                   // jQuery.sap.delayedCall(500, this, function() {
                                     oView.byId("PaymentTermExtendId").focus();
-                                    });
+                                   // });
                                 }
                                 
                             }
@@ -7814,9 +7815,9 @@ var aError = false;
                        
                         oView.byId('shippingInfo').addEventDelegate({
                             onAfterRendering: function(){
-                                jQuery.sap.delayedCall(500, this, function() {
+                              //  jQuery.sap.delayedCall(500, this, function() {
                                 $("input:text:visible:first").focus(); 
-                                });
+                               // });
                             }
                         });
                   
@@ -7827,17 +7828,17 @@ var aError = false;
                         if(isNew){
                             oView.byId('prodAndServInfo').addEventDelegate({
                                 onAfterRendering: function(){
-                                    jQuery.sap.delayedCall(500, this, function() {
+                                   // jQuery.sap.delayedCall(500, this, function() {
                                     oView.byId("OperServId").focus();
-                                    });
+                                   // });
                                 }
                             });
                         } else {
                             oView.byId('cComplianceInfo').addEventDelegate({
                                 onAfterRendering: function(){
-                                    jQuery.sap.delayedCall(500, this, function() {
+                                    //jQuery.sap.delayedCall(500, this, function() {
                                     oView.byId("agreement").focus();
-                                    });
+                                   // });
                                 }
                             });
                         }
@@ -7848,9 +7849,9 @@ var aError = false;
                        
                         oView.byId('cComplianceInfo').addEventDelegate({
                             onAfterRendering: function(){
-                                jQuery.sap.delayedCall(500, this, function() {
+                               // jQuery.sap.delayedCall(500, this, function() {
                                 oView.byId("srmMeet").focus();
-                                });
+                               // });
                             }
                         });
                    
@@ -7861,17 +7862,17 @@ var aError = false;
                         if(isNew) {
                             oView.byId('cyberSecInfo').addEventDelegate({
                                 onAfterRendering: function(){
-                                    jQuery.sap.delayedCall(500, this, function() {
+                                  //  jQuery.sap.delayedCall(500, this, function() {
                                     oView.byId("securitySys").focus();
-                                    });
+                                   // });
                                 }
                             });
                         } else {
                             oView.addEventDelegate({
                                 onAfterRendering: function(){
-                                    jQuery.sap.delayedCall(500, this, function() {
+                                   // jQuery.sap.delayedCall(500, this, function() {
                                     oView.byId("formAcceptanceId").focus();
-                                    });
+                                   // });
                                 }
                             });
                         }
