@@ -1787,7 +1787,7 @@ sap.ui.define([
 
             fnLiveChangeCustomerDirectSupplierCustNmbr: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
-                if (vLength > 255) {
+                if (vLength > 71) {
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierCustNamee = "Error";
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierCustNamem = oi18n.getProperty("BPCMaxLengthExceeds");
                     oView.getModel("JMBPCreate").refresh();
@@ -1802,7 +1802,7 @@ sap.ui.define([
 
             fnLiveChangeCustomerDirectContact: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
-                if (vLength > 255) {
+                if (vLength > 71) {
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierContracte = "Error";
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierContractm = oi18n.getProperty("BPCMaxLengthExceeds");
                     oView.getModel("JMBPCreate").refresh();
@@ -3203,6 +3203,11 @@ sap.ui.define([
                 if (spaceRegex.test(oEvent.getSource().getValue())) {
                     oEvent.getSource().setValue("");
                 }
+            },
+            onAfterRendering: function () {
+                oView.byId("purchaseOrgId").addEventDelegate({
+                    ontap: this.fnLiveChangePurchOrg
+                }, this);
             }
 
         });

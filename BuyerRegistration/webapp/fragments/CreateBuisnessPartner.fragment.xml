@@ -87,7 +87,7 @@
 									
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
-										<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMBPCreate>/purchasingOrge}" valueStateText="{JMBPCreate>/purchasingOrgm}"
+										<ComboBox id="purchaseOrgId" width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMBPCreate>/purchasingOrge}" valueStateText="{JMBPCreate>/purchasingOrgm}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMBPCreate>/purchasingOrg}"
 											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>

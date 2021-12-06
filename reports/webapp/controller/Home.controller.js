@@ -31,6 +31,9 @@ sap.ui.define([
                
             onAfterRendering: function () {
                 // this.fnVendorRequestRoute();
+                oView.byId("purchaseOrgId").addEventDelegate({
+                    ontap: this.fnLiveChangePurchaseOrg
+                }, this);
             },
             fnNavToGraph: function () {
                 this.getOwnerComponent().getRouter().navTo("Reports");
@@ -187,6 +190,7 @@ sap.ui.define([
                     sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
                     
                 }
+                
             },
 
             fnLoadStatus: function () {
