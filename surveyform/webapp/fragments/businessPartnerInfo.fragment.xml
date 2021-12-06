@@ -54,7 +54,7 @@
                             class="sapUiTinyMarginBegin sapUiContentPadding"
                             wrapping="true"/>
                 </HBox>
-                <HBox>
+                <HBox class="sapUiTinyMarginTop">
                     <Text  text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsReg}:${oi18n_En>dunsReg} +'&#10;' +${i18n>dunsReg}}" wrapping="true" class="fontStyle fontStyleItalic sapUiTinyMarginBegin"/>
                     <Link enabled="{oEnableMdl>/encourgeDunsNumberRegEnb}" text="https://www.dnb.com/duns-number/get-a-duns.html"
                             target="_blank"
@@ -63,7 +63,7 @@
                             wrapping="true"/>
                 </HBox>
             </VBox>
-			<VBox alignContent="Start" visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === true}" class="fontStyle sapUiTinyMarginTop">
+			<VBox alignContent="Start" visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === true}" class="fontStyle sapUiSmallMarginTop">
 				<l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M4 S12" class="gridSpacing">
 					<VBox class="fontStyle sapUiSizeCompact">
 						<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsRegNum}:${oi18n_En>dunsRegNum} +'&#10;' +${i18n>dunsRegNum}}" ></Label>
@@ -75,7 +75,7 @@
 					</VBox>
 				</l:Grid>
 			</VBox>
-			<VBox visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber}=== false}" fitContainer="true" class="fontStyle sapUiSizeCompact">
+			<VBox visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber}=== false}" fitContainer="true" class="fontStyle sapUiSizeCompact sapUiSmallMarginTop">
 				<!-- <Label labelFor="regnew" wrapping="true" class="sapUiTinyMarginBegin" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isSiteNotRegwithDunandBradText}:${oi18n_En>isSiteNotRegwithDunandBradText} +'&#10;&#10;' +${i18n>isSiteNotRegwithDunandBradText}}" required="true"></Label>
 				<RadioButtonGroup id="regnew" columns="2" selectedIndex="0" class="inputStyle">
 					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" valueState="{oErrorModel>/dunsNumE}" selected="{oDataModel>/bpInfoDto/encourgeDunsNumberReg}"/>
