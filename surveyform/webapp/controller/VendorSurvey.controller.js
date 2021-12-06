@@ -2648,13 +2648,13 @@ var aError = false;
                 if(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode == "US"){
                     this.getView().getModel("oAttachmentList").refresh();
                   var findDomesticDoc= this.getView().getModel("oAttachmentList").getProperty("/0/" + "bPDArray").findIndex(function(doc){
-                       return doc.docFormType == "W8";
+                       return doc.docFormType == "W9";
                     });
                     if(findDomesticDoc === -1){
                         iError = true;
                         oView.byId("bpAttachBtn").removeStyleClass("attachmentWithoutBorderBP");
                         oView.byId("bpAttachBtn").addStyleClass("attachmentWithBorderBP");
-                        MessageBox.show(oi18n.getText("attachW8Er"), {
+                        MessageBox.show(oi18n.getText("attachW9Er"), {
                             icon: MessageBox.Icon.ERROR,
                             title: "Error"
                         });
@@ -2665,13 +2665,13 @@ var aError = false;
                 } else {
                     this.getView().getModel("oAttachmentList").refresh();
                     var findDomesticDoc= this.getView().getModel("oAttachmentList").getProperty("/0/" + "bPDArray").findIndex(function(doc){
-                        return doc.docFormType == "W9";
+                        return doc.docFormType == "W8";
                      });
                      if(findDomesticDoc === -1){
                         oView.byId("bpAttachBtn").removeStyleClass("attachmentWithoutBorderBP");
                         oView.byId("bpAttachBtn").addStyleClass("attachmentWithBorderBP");
                          iError = true;
-                         MessageBox.show(oi18n.getText("attachW9Er"), {
+                         MessageBox.show(oi18n.getText("attachW8Er"), {
                              icon: MessageBox.Icon.ERROR,
                              title: "Error"
                          });
@@ -7713,129 +7713,169 @@ var aError = false;
                 if (!oView.getModel("oEnableMdl").getData().nextBtnExtensionDisplayVsb) {
                     if (currentStepId == "basicInfo") {
                         this._fnValidateBasicInfo();
-                        
+                     
                         oView.byId('businessPartnerInfo').addEventDelegate({
                             onAfterRendering: function(){
                                 if(isNew){
+                                    jQuery.sap.delayedCall(500, this, function() {
                                     oView.byId("site").focus();
+                                    });
                                 } else if(!isNew) {
+                                    jQuery.sap.delayedCall(500, this, function() {
                                     $("input:text:visible:enabled:first").focus(); 
+                                    });
                                 }
                                 
                             }
                         });
+                    
                     }
                     else if (currentStepId == "businessPartnerInfo") {
                         this._fnValidateBusinessPartner();
-                        
+                      
                         if(!isNew){
                             var isDunsRegNum = oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum;
                             oView.byId('ownerShipInfo').addEventDelegate({
                                 onAfterRendering: function(){
                                     if(!isDunsRegNum || isDunsRegNum === 'NODUNS'){
+                                        jQuery.sap.delayedCall(500, this, function() {
                                         oView.byId("ownSite").focus();
+                                        });
                                     }
                                     else {
+                                        jQuery.sap.delayedCall(500, this, function() {
                                         oView.byId("ownershipTypeId").focus();
+                                        });
                                     }  
                                     
                                 }
                             });
                         }
+                  
 
                     }
                     else if (currentStepId == "contactInfo") {
                         this._fnValidateContactInfo();
+                      
                         if(isNew){
                             var isDunsRegNum = oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum;
                             oView.byId('ownerShipInfo').addEventDelegate({
                                 onAfterRendering: function(){
                                     if(!isDunsRegNum || isDunsRegNum === 'NODUNS'){
+                                        jQuery.sap.delayedCall(500, this, function() {
                                         oView.byId("ownSite").focus();
+                                        });
                                     }
                                     else {
+                                        jQuery.sap.delayedCall(500, this, function() {
                                         oView.byId("ownershipTypeId").focus();
+                                        });
                                     }  
                                 }
                             });
                         }
+                  
                         
                     }
                     else if (currentStepId == "ownerShipInfo") {
                         this._fnValidateOwnerInfo();
+                      
                         oView.byId('companyInfo').addEventDelegate({
                             onAfterRendering: function(){
+                                jQuery.sap.delayedCall(500, this, function() {
                                 oView.byId("orderfromAddrCheckBoxId").focus();
+                                });
                             }
                         });
+                  
                     }
                     else if (currentStepId == "companyInfo") {
                         this._fnValidateCompanyInfo();
+                      
                         oView.byId('bankInfo').addEventDelegate({
                             onAfterRendering: function(){
                                 if(isNew) {
-                                    oView.byId("PaymentTermCreateId").focus();
+                                    jQuery.sap.delayedCall(500, this, function() {
+                                    oView.byId("PaymentTermCreateId").focus();});
                                 } else {
+                                    jQuery.sap.delayedCall(500, this, function() {
                                     oView.byId("PaymentTermExtendId").focus();
+                                    });
                                 }
                                 
                             }
                         });
-
+                   
 
                     }
                     
                     else if (currentStepId == "bankInfo") {
                         this._fnValidateBankInfo();
+                       
                         oView.byId('shippingInfo').addEventDelegate({
                             onAfterRendering: function(){
+                                jQuery.sap.delayedCall(500, this, function() {
                                 $("input:text:visible:first").focus(); 
+                                });
                             }
                         });
-
+                  
                     }
                     else if (currentStepId == "shippingInfo") {
                         this._fnValidateShippingInfo();
+                      
                         if(isNew){
                             oView.byId('prodAndServInfo').addEventDelegate({
                                 onAfterRendering: function(){
+                                    jQuery.sap.delayedCall(500, this, function() {
                                     oView.byId("OperServId").focus();
+                                    });
                                 }
                             });
                         } else {
                             oView.byId('cComplianceInfo').addEventDelegate({
                                 onAfterRendering: function(){
+                                    jQuery.sap.delayedCall(500, this, function() {
                                     oView.byId("agreement").focus();
+                                    });
                                 }
                             });
                         }
-                        
+                  
                     }
                     else if (currentStepId == "prodAndServInfo") {
                         this._fnValidateComProductServiceInfo();
-                        
+                       
                         oView.byId('cComplianceInfo').addEventDelegate({
                             onAfterRendering: function(){
+                                jQuery.sap.delayedCall(500, this, function() {
                                 oView.byId("srmMeet").focus();
+                                });
                             }
                         });
+                   
                     }
                     else if (currentStepId == "cComplianceInfo") {
                         this._fnValidateCompanyCompliance();
+                      
                         if(isNew) {
                             oView.byId('cyberSecInfo').addEventDelegate({
                                 onAfterRendering: function(){
+                                    jQuery.sap.delayedCall(500, this, function() {
                                     oView.byId("securitySys").focus();
+                                    });
                                 }
                             });
                         } else {
                             oView.addEventDelegate({
                                 onAfterRendering: function(){
+                                    jQuery.sap.delayedCall(500, this, function() {
                                     oView.byId("formAcceptanceId").focus();
+                                    });
                                 }
                             });
                         }
-                        
+                 
                     }
                     else if (currentStepId == "cyberSecInfo") {
 
@@ -7849,6 +7889,9 @@ var aError = false;
                     }
 
 
+
+
+                    
                     // if (this.getView().byId(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).getValidated()) {
                     if (this.getView().byId(this.getView().byId("surveyWizard").getCurrentStep()).getValidated()) {
                         this.getView().byId("surveyWizard")._oScroller.scrollTo(0, 0);
@@ -8109,6 +8152,7 @@ var aError = false;
 
                                 oView.getModel("oDataModel").setData(oEvent.getSource().oData);
                                 oView.getModel("oDataModel").refresh();
+                              
                                 oBusyDialogSave.close();
                                 } 
 
@@ -8118,6 +8162,7 @@ var aError = false;
                                     icon: sap.m.MessageBox.Icon.ERROR,
                                     title: oi18n.getText("error")
                                 });
+                                
                                 oBusyDialogSave.close();
                             }
                         });
@@ -8140,6 +8185,7 @@ var aError = false;
                                
                                 oView.getModel("oDataModel").setData(oEvent.getSource().oData);
                                 oView.getModel("oDataModel").refresh();
+
                                 oBusyDialogSave.close();
                                 } 
 
@@ -8150,6 +8196,7 @@ var aError = false;
                                     icon: sap.m.MessageBox.Icon.ERROR,
                                     title: oi18n.getText("error")
                                 });
+                               
                                 oBusyDialogSave.close();
                             }
                         });
