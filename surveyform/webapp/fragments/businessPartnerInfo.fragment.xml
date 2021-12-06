@@ -45,19 +45,20 @@
 				</RadioButtonGroup>
 			</HBox>
             <VBox alignContent="Start">
-                <HBox>
-                    <Text  text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsReg}:${oi18n_En>dunsReg} +'&#10;' +${i18n>dunsReg}}" wrapping="true" class="fontStyle fontStyleItalic sapUiTinyMarginBegin"/>
-                    <Link enabled="{oEnableMdl>/encourgeDunsNumberRegEnb}" text="https://www.dnb.com/duns-number/get-a-duns.html"
-                            target="_blank"
-                            href="https://www.dnb.com/duns-number/get-a-duns.html"
-                            class="sapUiTinyMarginBegin sapUiContentPadding"
-                            wrapping="true"/>
-                </HBox>
+                
                 <HBox>
                     <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsUnsure}:${oi18n_En>dunsUnsure} +'&#10;' +${i18n>dunsUnsure}}" wrapping="true" class="fontStyle  fontStyleItalic sapUiTinyMarginBegin"/>
                     <Link enabled="{oEnableMdl>/encourgeDunsNumberRegEnb}" text="https://www.dnb.com/duns-number/lookup.html"
                             target="_blank"
                             href="https://www.dnb.com/duns-number/lookup.html"
+                            class="sapUiTinyMarginBegin sapUiContentPadding"
+                            wrapping="true"/>
+                </HBox>
+                <HBox>
+                    <Text  text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsReg}:${oi18n_En>dunsReg} +'&#10;' +${i18n>dunsReg}}" wrapping="true" class="fontStyle fontStyleItalic sapUiTinyMarginBegin"/>
+                    <Link enabled="{oEnableMdl>/encourgeDunsNumberRegEnb}" text="https://www.dnb.com/duns-number/get-a-duns.html"
+                            target="_blank"
+                            href="https://www.dnb.com/duns-number/get-a-duns.html"
                             class="sapUiTinyMarginBegin sapUiContentPadding"
                             wrapping="true"/>
                 </HBox>
