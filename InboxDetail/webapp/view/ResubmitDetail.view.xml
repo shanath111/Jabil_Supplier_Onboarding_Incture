@@ -52,6 +52,9 @@
                                             <Column >
 												<Label text="{i18n>Tooltip}" class="cl_VRLablCls "></Label>
 											</Column>
+                                             <Column >
+												<!-- <Label text="{i18n>Tooltip}" class="cl_VRLablCls "></Label> -->
+											</Column>
 											
 										
 										</columns>
@@ -61,7 +64,7 @@
 													<Text text="{JMTooltipSearch>country}"  class="cl_ListNameClass"></Text>
 												 <Text text="{JMTooltipSearch>taxType}"  wrapping="false" class="cl_ListNameClass"></Text>
 													<Text text="{JMTooltipSearch>toolTip}" class="cl_ListNameClass"></Text>
-													
+													     <Button text="{i18n>Delete}" press="fnDeleteCC" type="Reject" class="sapUiSmallMarginBegin  cl_BPCDraft1 sapUiSizeCompact" />
 													
                                                 </cells>
 											</ColumnListItem>

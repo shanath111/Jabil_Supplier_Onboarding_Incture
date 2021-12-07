@@ -1384,7 +1384,9 @@ sap.ui.define([
                     //     }
                     // });
                 } else if (vBtnActn == "SU") {
-                    vConfirmMsg = oi18n.getProperty("BPCConfirmSubmit");
+                    vConfirmMsg = "Please confirm submission request for " + oView.getModel("JMBPCreate").getData().corporationName +" in Company Code " + oView.getModel("JMBPCreate").getData().companyCode + " and Purchasing Org: " + oView.getModel("JMBPCreate").getData().purchasingOrg;
+
+                    // vConfirmMsg = oi18n.getProperty("BPCConfirmSubmit");
                     vStatus = "In Progress"
                     MessageBox.confirm(vConfirmMsg, {
                         icon: MessageBox.Icon.Confirmation,
