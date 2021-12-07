@@ -176,6 +176,10 @@ sap.ui.define([
                                         existingData.bpInfoDto.corporateGroupName = oEvent.getSource().oData.bpInfoDto.corporateGroupName;
                                         existingData.bpInfoDto.procurementTransactionBlockingCode = oEvent.getSource().oData.bpInfoDto.procurementTransactionBlockingCode;
                                         existingData.bpInfoDto.receiverRespTaxOfficePartyInternalId = oEvent.getSource().oData.bpInfoDto.receiverRespTaxOfficePartyInternalId;
+                                        existingData.bpInfoDto.pointOfContact.firstName =oEvent.getSource().oData.bpInfoDto.pointOfContact.firstName;
+                                        existingData.bpInfoDto.pointOfContact.lastName =oEvent.getSource().oData.bpInfoDto.pointOfContact.lastName;
+                                        existingData.bpInfoDto.pointOfContact.email = oEvent.getSource().oData.bpInfoDto.pointOfContact.email;
+                                        existingData.bpInfoDto.pointOfContact.jobTitle = oEvent.getSource().oData.bpInfoDto.pointOfContact.jobTitle;
                                         existingData.dateUpdated = oEvent.getSource().oData.dateUpdated;
                                         existingData.surveyInfoDto.isAuthority = null;
                                         existingData.surveyInfoDto.isJabilMainContact = null;
@@ -1072,6 +1076,7 @@ sap.ui.define([
                                         var c = that.getView().getModel("oDataModel").getData().shippingInfoDto;
                                         var d = that.getView().getModel("oDataModel").getData().bpCentral[0];
                                         var e = that.getView().getModel("oDataModel").getData().bankDto.bankInfoDto[0];
+                                        var f = that.getView().getModel("oDataModel").getData().bpInfoDto;
                                         var address = that.getView().getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0];
                                         a.contactName = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.firstName + " " + oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.lastName;
                                         a.firstName = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.firstName;
@@ -1095,6 +1100,12 @@ sap.ui.define([
                                         d.organisationName3 = oEvent.getSource().getData().bpRequestScope.corporationName3;
                                         d.organisationName4 = oEvent.getSource().getData().bpRequestScope.corporationName4;
                                         e.instructionKey = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.instructionKey;
+                                        f.pointOfContact.email =oEvent.getSource().getData().bpRequestScope.buyerEmailId;
+                                        var firstNameLowerCase =oEvent.getSource().getData().bpRequestScope.buyerName.split("_")[0].toLowerCase();
+                                        f.pointOfContact.firstName = firstNameLowerCase.charAt(firstNameLowerCase[0]).toUpperCase() + firstNameLowerCase.slice(1);
+                                        var lastNameLowerCase =oEvent.getSource().getData().bpRequestScope.buyerName.split("_")[1].toLowerCase();
+                                        f.pointOfContact.lastName = lastNameLowerCase.charAt(lastNameLowerCase[0]).toUpperCase() + lastNameLowerCase.slice(1);
+                                        f.pointOfContact.jobTitle = "Buyer";
                                         address.address1 = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.address1;
                                         address.address2 = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.address2;
                                         address.address3 = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.address3;
@@ -2466,29 +2477,29 @@ var aError = false;
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryMobileCode || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryMobileCode)) {
-                    oView.getModel("oErrorModel").getData().ppocCountryContCodeMobE = "Error";
-                    oView.getModel("oErrorModel").getData().ppocCountryContCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
+                // if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryMobileCode || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryMobileCode)) {
+                //     oView.getModel("oErrorModel").getData().ppocCountryContCodeMobE = "Error";
+                //     oView.getModel("oErrorModel").getData().ppocCountryContCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
 
-                    iError = true;
-                }
-                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile)) {
-                    oView.getModel("oErrorModel").getData().ppocMobE = "Error";
-                    oView.getModel("oErrorModel").getData().ppocMobM = oi18n.getText("mandatoryMContact");
+                //     iError = true;
+                // }
+                // if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile)) {
+                //     oView.getModel("oErrorModel").getData().ppocMobE = "Error";
+                //     oView.getModel("oErrorModel").getData().ppocMobM = oi18n.getText("mandatoryMContact");
 
-                    iError = true;
-                }
+                //     iError = true;
+                // }
                 if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact !== "" && Number(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact.replaceAll("-", "")) == 0) {
                     oView.getModel("oErrorModel").getData().ppocContE = "Error";
                     oView.getModel("oErrorModel").getData().ppocContM = oi18n.getText("invalidContact");
 
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile !== "" && Number(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile.replaceAll("-", "")) == 0) {
-                    oView.getModel("oErrorModel").getData().ppocMobE = "Error";
-                    oView.getModel("oErrorModel").getData().ppocMobM = oi18n.getText("invalidMContact");
-                    iError = true;
-                }
+                // if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile !== "" && Number(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile.replaceAll("-", "")) == 0) {
+                //     oView.getModel("oErrorModel").getData().ppocMobE = "Error";
+                //     oView.getModel("oErrorModel").getData().ppocMobM = oi18n.getText("invalidMContact");
+                //     iError = true;
+                // }
 
                 if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName.length > 30) {
 
@@ -2506,10 +2517,10 @@ var aError = false;
 
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile.length > 30) {
+                // if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile.length > 30) {
 
-                    iError = true;
-                }
+                //     iError = true;
+                // }
                 if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.extension && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.extension.length > 10) {
                     iError = true;
                 }
@@ -2522,6 +2533,7 @@ var aError = false;
                         var taxIDValidationData = oView.getModel("oLookUpModel").getProperty(indexStr);
                         var taxIDMaxLength = taxIDValidationData ? taxIDValidationData.taxMaxLength : "";
                         var taxIDNumRule = taxIDValidationData ? taxIDValidationData.taxNumRule : "";
+                        if(taxID){
                         switch (taxIDNumRule) {
                             case 1:
                                 if (/\s/.test(taxID) || taxID.includes("_") || taxID.length > taxIDMaxLength) {
@@ -2587,6 +2599,7 @@ var aError = false;
                                     this.emailValidResult = false;
                                 }
                         }
+                    }
                     }
                     // var taxCountryArr = taxArr.map(function(item){ return item.country });
                     // var isDuplicateCountry = taxCountryArr.some(function(item, idx){ 
@@ -5017,9 +5030,9 @@ var aError = false;
 
             _fnValidateDraftBusinessPartnerInfo: function () {
                 var iError = false;
-                if (this.emailValidResult) {
-                    iError = true;
-                }
+                // if (this.emailValidResult) {
+                //     iError = true;
+                // }
                 var email = oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.email
                 var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
                 if (email) {
@@ -5071,9 +5084,9 @@ var aError = false;
                 if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.extension && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.extension.length > 10) {
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile.length > 30) {
-                    iError = true;
-                }
+                // if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile.length > 30) {
+                //     iError = true;
+                // }
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("businessPartnerInfo").setValidated(false);
@@ -6038,6 +6051,7 @@ var aError = false;
                 var taxIDValidationData = oView.getModel("oLookUpModel").getProperty(indexStr);
                 var taxIDMaxLength = taxIDValidationData.taxMaxLength;
                 var taxIDNumRule = taxIDValidationData.taxNumRule;
+                if(taxID){
                 switch (taxIDNumRule) {
                     case 1:
                         if (/\s/.test(taxID) || (taxID.includes("_") || taxID.length > taxIDMaxLength)) {
@@ -6110,7 +6124,7 @@ var aError = false;
                             this.emailValidResult = true;
                         }
                 }
-
+            }
             },
 
             fnVerifyPostalCode: function (oEvent) {
@@ -8085,24 +8099,24 @@ var aError = false;
                     if(oPayload.bpInfoDto.tax[0].country == ""){
                         var CountryCode1 = oPayload.surveyInfoDto.address[0].postal[0].countryCode;
                        oPayload.bpInfoDto.tax[0].country = CountryCode1;
-                       var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/taxType/" + CountryCode1;
-                       $.ajax({
-                           url: loadTaxTypeUrl,
-                           type: 'GET',
-                           success: function (data) {
-                               oView.getModel("oLookUpModel").setProperty("/taxType1", data);
-                               oView.getModel("oLookUpModel").refresh();
-                           },
-                           async: false,
-                           error: function (data) {
+                    //    var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/taxType/" + CountryCode1;
+                    //    $.ajax({
+                    //        url: loadTaxTypeUrl,
+                    //        type: 'GET',
+                    //        success: function (data) {
+                    //            oView.getModel("oLookUpModel").setProperty("/taxType1", data);
+                    //            oView.getModel("oLookUpModel").refresh();
+                    //        },
+                    //        async: false,
+                    //        error: function (data) {
        
-                           }
-                       });
+                    //        }
+                    //    });
                        
                     }
-                    if(oPayload.bpInfoDto.tax[0].country == "BR"){
-                       oPayload.bpInfoDto.tax[0].type = "BR2";
-                    }
+                    // if(oPayload.bpInfoDto.tax[0].country == "BR"){
+                    //    oPayload.bpInfoDto.tax[0].type = "BR2";
+                    // }
                     if (oPayload.ownerShipInfoDto.isEntitySDNList === false) {
                         $.each(oPayload.ownerShipInfoDto.sdnlistContact, function (index, row) {
                             row.firstName = "";
@@ -8363,12 +8377,20 @@ var aError = false;
 
             onActivateBPInfo: function (event) {
                 var bpTaxDetails = oView.getModel("oDataModel").getData().bpInfoDto.tax;
+                if(oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == ""){
                 if(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode == "BR"){
                     this.getOwnerComponent().getModel("oVisibilityModel").getData().enableNPI = true;
                     this.getOwnerComponent().getModel("oVisibilityModel").refresh();
-                    oView.getModel("oDataModel").getData().bpInfoDto.tax[0].type = "BR2";
-                    oView.getModel("oDataModel").refresh();
+                    // oView.getModel("oDataModel").getData().bpInfoDto.tax[0].type = "BR2";
+                    // oView.getModel("oDataModel").refresh();
                 }
+            }else if(oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country &&  oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == "BR"){
+                this.getOwnerComponent().getModel("oVisibilityModel").getData().enableNPI = true;
+                    this.getOwnerComponent().getModel("oVisibilityModel").refresh();
+            } else{
+                this.getOwnerComponent().getModel("oVisibilityModel").getData().enableNPI = false;
+                this.getOwnerComponent().getModel("oVisibilityModel").refresh();
+            }
                 $.each(bpTaxDetails, function (index, row) {
                     if (row.country && row.type) {
                         var tooltipUrl = "/comjabilsurveyform/plcm_portal_services/api/v1/tax-tooltip/findById/" + row.type;
@@ -8419,6 +8441,14 @@ var aError = false;
             //     }
             // }, this);
             
+            },
+            fnSelectNPI: function(oEvent){
+                if(oEvent.getParameters('selected')){
+                    if(oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == "BR"){
+                        oView.getModel("oDataModel").getData().bpInfoDto.tax[0].type = "BR2";
+                        oView.getModel("oDataModel").refresh();
+                    }
+                }
             },
             onActivatePreview: function (event) {
                 if (this.getView().byId("surveyWizard")._aStepPath.length == 11 || (this.getView().byId("surveyWizard")._aStepPath.length == 8 && this.getView().byId("surveyWizard")._getProgressNavigator().getStepCount() == 8)) {

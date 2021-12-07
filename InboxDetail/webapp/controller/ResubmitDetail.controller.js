@@ -193,11 +193,16 @@ sap.ui.define([
                                 oBusyDilog.open();
                                 var oModel = new JSONModel();
                                 var sUrl = "/InboxDetail/plcm_portal_services/api/v1/tax-tooltip/create"
+                                var vBuyer = ""
+                                if (oView.getModel("oConfigMdl").getData().usrData) {
+                                    vBuyer = oView.getModel("oConfigMdl").getData().usrData.givenName;
 
+                                }
                                 var oPayload = {
                                     "country": oView.getModel("JMFilter1").getData().country,
                                     "taxType": oView.getModel("JMFilter1").getData().taxCategory,
-                                    "toolTip": oView.getModel("JMFilter1").getData().toolTip
+                                    "toolTip": oView.getModel("JMFilter1").getData().toolTip,
+                                    "createdBy": vBuyer
                                 }
 
                                 oModel.loadData(sUrl, JSON.stringify(
@@ -232,9 +237,6 @@ sap.ui.define([
 
                                     }
                                 });
-
-
-
 
                             }
                         }
@@ -281,7 +283,7 @@ sap.ui.define([
                                 dataType: 'json',
                                 success: function (data) {
                                     var temp = {};
-                                    var vSccuessTxt = oi18n.getProperty("CCCPPDeleteSuccess");
+                                    var vSccuessTxt = oi18n.getProperty("ToolTipDelSuccess");
                                     temp.Message = vSccuessTxt;
                                     var oJosnMessage = new sap.ui.model.json.JSONModel();
                                     oJosnMessage.setData(temp);
@@ -293,7 +295,7 @@ sap.ui.define([
                                     }
                                     oBusyDilog.close();
                                     that.oBPSuccess.open();
-                                    that.fnSearchCompanyCode();
+                                  //  that.fnSearchTooltip();
 
                                 },
                                 async: false,
