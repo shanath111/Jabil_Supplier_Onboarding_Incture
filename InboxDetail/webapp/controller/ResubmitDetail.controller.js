@@ -283,7 +283,7 @@ sap.ui.define([
                                 dataType: 'json',
                                 success: function (data) {
                                     var temp = {};
-                                    var vSccuessTxt = oi18n.getProperty("CCCPPDeleteSuccess");
+                                    var vSccuessTxt = oi18n.getProperty("ToolTipDelSuccess");
                                     temp.Message = vSccuessTxt;
                                     var oJosnMessage = new sap.ui.model.json.JSONModel();
                                     oJosnMessage.setData(temp);
@@ -295,7 +295,7 @@ sap.ui.define([
                                     }
                                     oBusyDilog.close();
                                     that.oBPSuccess.open();
-                                    that.fnSearchTooltip();
+                                  //  that.fnSearchTooltip();
 
                                 },
                                 async: false,
