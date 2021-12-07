@@ -1384,7 +1384,9 @@ sap.ui.define([
                     //     }
                     // });
                 } else if (vBtnActn == "SU") {
-                    vConfirmMsg = oi18n.getProperty("BPCConfirmSubmit");
+                    vConfirmMsg = "Please confirm submission request for " + oView.getModel("JMBPCreate").getData().corporationName +" in Company Code " + oView.getModel("JMBPCreate").getData().companyCode + " and Purchasing Org: " + oView.getModel("JMBPCreate").getData().purchasingOrg;
+
+                    // vConfirmMsg = oi18n.getProperty("BPCConfirmSubmit");
                     vStatus = "In Progress"
                     MessageBox.confirm(vConfirmMsg, {
                         icon: MessageBox.Icon.Confirmation,
@@ -1787,7 +1789,7 @@ sap.ui.define([
 
             fnLiveChangeCustomerDirectSupplierCustNmbr: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
-                if (vLength > 255) {
+                if (vLength > 71) {
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierCustNamee = "Error";
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierCustNamem = oi18n.getProperty("BPCMaxLengthExceeds");
                     oView.getModel("JMBPCreate").refresh();
@@ -1802,7 +1804,7 @@ sap.ui.define([
 
             fnLiveChangeCustomerDirectContact: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
-                if (vLength > 255) {
+                if (vLength > 71) {
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierContracte = "Error";
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierContractm = oi18n.getProperty("BPCMaxLengthExceeds");
                     oView.getModel("JMBPCreate").refresh();

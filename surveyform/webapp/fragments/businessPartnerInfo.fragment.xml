@@ -133,7 +133,7 @@
         <Panel width="100%" visible="{oUserModel>/isNew}" class="sapUiTinyMarginTop panelPadding">
         <VBox class="fontStyle sapUiSizeCompact">
         <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>comRegInfo}:${oi18n_En>comRegInfo} +'&#10;&#10;' +${i18n>comRegInfo}}" class="sapUiTinyMarginBegin fontBold"/>
-        <CheckBox editable="{oUserModel>/isNew}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>naturalPerson}:${oi18n_En>naturalPerson}+ '/ ' +${i18n>naturalPerson}}" selected="{oDataModel>/bpCentral/0/naturalPersonalIndicator}" enabled="{oEnableMdl>/naturalPersonEnb}" class=" sapUiTinyMarginTop fontStyle inputStyle" />
+        <CheckBox editable="{=${oUserModel>/isNew} &amp;&amp; ${oVisibilityModel>/enableNPI}}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>naturalPerson}:${oi18n_En>naturalPerson}+ '/ ' +${i18n>naturalPerson}}" selected="{oDataModel>/bpCentral/0/naturalPersonalIndicator}" enabled="{oEnableMdl>/naturalPersonEnb}" class=" sapUiTinyMarginTop fontStyle inputStyle" />
         </VBox>
                <Table id="bpInfoTaxId" items="{oDataModel>/bpInfoDto/tax}" class="taxTableMargin sapUiSizeCompact sapUiTinyMarginTop">
                <columns>

@@ -29,6 +29,7 @@
     "isTaskCompleted": false,
     "FinanceReviewVis1": false,
     "_CompletedTask": false,
+    "enableNPI":false,
     "bankValidation": {
         "bankMatrixId": "",
         "companyCodeCountry": "",
