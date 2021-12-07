@@ -193,11 +193,16 @@ sap.ui.define([
                                 oBusyDilog.open();
                                 var oModel = new JSONModel();
                                 var sUrl = "/InboxDetail/plcm_portal_services/api/v1/tax-tooltip/create"
+                                var vBuyer = ""
+                                if (oView.getModel("oConfigMdl").getData().usrData) {
+                                    vBuyer = oView.getModel("oConfigMdl").getData().usrData.givenName;
 
+                                }
                                 var oPayload = {
                                     "country": oView.getModel("JMFilter1").getData().country,
                                     "taxType": oView.getModel("JMFilter1").getData().taxCategory,
-                                    "toolTip": oView.getModel("JMFilter1").getData().toolTip
+                                    "toolTip": oView.getModel("JMFilter1").getData().toolTip,
+                                    "createdBy": vBuyer
                                 }
 
                                 oModel.loadData(sUrl, JSON.stringify(
@@ -233,9 +238,6 @@ sap.ui.define([
                                     }
                                 });
 
-
-
-
                             }
                         }
 
@@ -258,6 +260,66 @@ sap.ui.define([
             },
              fnNavToHome: function () {
                 this.getOwnerComponent().getRouter().navTo("Home");
-            }
+            },
+            fnDeleteCC: function (oEvent) {
+                var vccId = oEvent.getSource().getBindingContext("JMTooltipSearch").getProperty("taxType");
+                var that = this;
+                var vConfirmTxt = oi18n.getProperty("BPCConfirmDelete");
+                MessageBox.confirm(vConfirmTxt, {
+                    icon: MessageBox.Icon.Confirmation,
+                    title: "Confirmation",
+                    actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                    emphasizedAction: MessageBox.Action.YES,
+                    onClose: function (oAction) {
+                        if (oAction == "YES") {
+                            oBusyDilog.open();
+                            var oModel = new JSONModel();
+
+                         
+                            var sUrl = "/InboxDetail/plcm_portal_services/api/v1/tax-tooltip/deleteById/" + vccId;
+                            $.ajax({
+                                url: sUrl,
+                                type: 'DELETE',
+                                dataType: 'json',
+                                success: function (data) {
+                                    var temp = {};
+                                    var vSccuessTxt = oi18n.getProperty("CCCPPDeleteSuccess");
+                                    temp.Message = vSccuessTxt;
+                                    var oJosnMessage = new sap.ui.model.json.JSONModel();
+                                    oJosnMessage.setData(temp);
+                                    oView.setModel(oJosnMessage, "JMMessageData");
+                                    if (!that.oBPSuccess) {
+                                        that.oBPSuccess = sap.ui.xmlfragment(
+                                            "InboxDetail.fragments.CreateSuccessGBS", that);
+                                        oView.addDependent(that.oBPSuccess);
+                                    }
+                                    oBusyDilog.close();
+                                    that.oBPSuccess.open();
+                                    that.fnSearchTooltip();
+
+                                },
+                                async: false,
+                                error: function (data) {
+                                    oBusyDilog.close();
+                                    var sErMsg = data.responseText;
+                                    MessageBox.show(sErMsg, {
+                                        icon: MessageBox.Icon.ERROR,
+                                        title: "Error"
+                                    });
+                                }
+                            });
+
+
+
+
+
+
+                        }
+                    }
+
+                });
+
+
+            },
         });
     });
