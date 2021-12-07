@@ -6328,6 +6328,73 @@ var aError = false;
                 }
             },
 
+            fnVerifyPostalCodeCorpHeadquarters: function(oEvent) {
+                if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                }
+                var postalCode = oEvent.getSource().getValue();
+
+                var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationCorpHeadquarters;
+                var postalCodeLength = PostalCodeValidationData.postalCodeLength;
+                var postalCodeRule = PostalCodeValidationData.postalCodeRule;
+                switch (postalCodeRule) {
+                    case 1:
+                        if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                            oEvent.getSource().setValueState("Error");
+                            oEvent.getSource().setValueStateText("ID shouldn't exceed max length with no gaps");
+                            // oView.getModel("oDataModel").getData().bpInfoDto.tax[nIndex].taxNumE = "Error";
+                            // oView.getModel("oDataModel").getData().bpInfoDto.tax[nIndex].taxNumM = "ID shouldn't exceed max length with no gaps";
+                        }
+                        break;
+                    case 2:
+                        if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                            oEvent.getSource().setValueState("Error");
+                            oEvent.getSource().setValueStateText("Accepts only numbers without spaces");
+                            
+                        }
+                    case 3:
+                        if (/\s/.test(postalCode) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
+                            oEvent.getSource().setValueState("Error");
+                            oEvent.getSource().setValueStateText("ID must be of " + postalCodeLength + " characters in length without any spaces");
+                           
+                        }
+                        break;
+                    case 4:
+                        if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
+                            oEvent.getSource().setValueState("Error");
+                            oEvent.getSource().setValueStateText("ID must be of " + postalCodeLength + " numerical digits in length without any spaces");
+                            
+                        }
+                        break;
+                    case 5:
+                        if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
+                            oEvent.getSource().setValueState("Error");
+                            oEvent.getSource().setValueStateText("Maximum length exceeded");
+                            
+                        }
+                        break;
+                    case 6:
+                        if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                            oEvent.getSource().setValueState("Error");
+                            oEvent.getSource().setValueStateText("Accepts only numbers");
+                            
+                        }
+                        break;
+                    case 7:
+                        if (!(postalCode.length === postalCodeLength) || (postalCode.includes("_"))) {
+                            oEvent.getSource().setValueState("Error");
+                            oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "characters in length"); 
+                        }
+                        break;
+                    case 8:
+                        if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
+                            oEvent.getSource().setValueState("Error");
+                            oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "digits in length");
+                        }
+                }
+            },
+
             fnVerifyBankNumber: function (oEvent) {
                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
