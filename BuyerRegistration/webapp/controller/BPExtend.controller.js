@@ -2857,11 +2857,17 @@ sap.ui.define([
             },
 
             fnChangeContactNumber1: function (oEvent) {
+                var numRegex = /^[1-9]\d*$/;
+                var val = oEvent.getSource().getValue();
                 var vLength = oEvent.getParameter("value").length
                 if (vLength > 30) {
                     oView.getModel("JMBPCreate").getData().altPhoneNumbere = "Error";
                     oView.getModel("JMBPCreate").getData().altPhoneNumberm = oi18n.getProperty("BPCMaxLengthExceeds");
                     oView.getModel("JMBPCreate").refresh();
+                }  else if (!numRegex.test(oEvent.getSource().getValue())) {
+                    var newval = val.substring(0, val.length - 1);
+                    oEvent.getSource().setValue(newval);
+
                 }
                 else {
                     if (oView.getModel("JMBPCreate").getData().altPhoneNumbere == "Error") {
@@ -3667,7 +3673,7 @@ sap.ui.define([
                 }
             },
             fnLiveChangeTelephone: function (oEvent) {
-                var numRegex = /^[0-9]*$/;
+                var numRegex = /^[1-9]\d*$/;
                 var val = oEvent.getSource().getValue();
                 var vLength = oEvent.getParameter("value").length
                 if (vLength > 40) {
@@ -3687,7 +3693,7 @@ sap.ui.define([
                 }
             },
             fnLiveChangeTelephoneMob: function (oEvent) {
-                var numRegex = /^[0-9]*$/;
+                var numRegex = /^[1-9]\d*$/;
                 var val = oEvent.getSource().getValue();
                 var vLength = oEvent.getParameter("value").length
                 if (vLength > 30) {
