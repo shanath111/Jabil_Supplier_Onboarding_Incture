@@ -227,7 +227,7 @@
                                                 	<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIReqPO}" required="true" class="cl_VRLablCls "></Label>
 												
-											<ComboBox id="purchaseOrgId" width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMValidateDefault>/reqPurchasingOrge}" valueStateText="{JMValidateDefault>/reqPurchasingOrgm}"
+											<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMValidateDefault>/reqPurchasingOrge}" valueStateText="{JMValidateDefault>/reqPurchasingOrgm}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/defaultEnable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{oDataModel>/defaultValuesDto/reqPurchasingOrg}"
 											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
