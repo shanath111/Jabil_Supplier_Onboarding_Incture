@@ -140,7 +140,66 @@
             "userUpdated": "",
             "countryMobileCode": "",
             "mobile": ""
+        },
+        "corpHeaderQuartersAddress": [
+           {        
+                    "addressId": "",
+                    "addressInSection": "",
+                    "postal": [
+                        {
+                            "address1": "",
+                            "address2": "",
+                            "address3": "",
+                            "address4": "",
+                            "address5": "",
+                            "city": "",
+                            "country": "",
+                            "countryCode": "",
+                            "district": "",
+                            "email": [
+                                {
+                                    "email": "",
+                                    "emailId":""
+                                }
+                            ],
+                            "fax": [
+                                {
+                                    "faxId": "",
+                                    "faxNum": ""
+                                }
+                            ],
+                            "name": "",
+                            "postOfficeBox": "",
+                            "postOfficeBoxZipCode": "",
+                            "postalCode": "",
+                            "postalId": "",
+                            "poBoxPostalCode": "",
+                            "region": "",
+                            "regionCode": "",
+                            "telephone": [
+                                {
+                                    "isMobileNumber": false,
+                                    "telephoneId": "",
+                                    "telephoneNum": "",
+                                    "telephoneCountryCode":"",
+                                    "extension": ""
+                                }
+                            ],
+                            "url": [
+                                {
+                                    "webId": "",
+                                    "websiteUrl": ""
+                                }
+                            ]
+                        }
+                    ]
         }
+    ],
+    "corpHeadquartersLegalBusinessName1":"",
+    "corpHeadquartersLegalBusinessName2":"",
+    "isCorpHeadquartersDunsRegistered":false,
+    "corpHeadquartersDunsRegNum":"",
+    "corpHeadquartersDnbLegalBusinessName":""
     },
     "businessPartnerId": "",
     "caseId": "",

@@ -1072,6 +1072,7 @@ sap.ui.define([
                                         var c = that.getView().getModel("oDataModel").getData().shippingInfoDto;
                                         var d = that.getView().getModel("oDataModel").getData().bpCentral[0];
                                         var e = that.getView().getModel("oDataModel").getData().bankDto.bankInfoDto[0];
+                                        var f = that.getView().getModel("oDataModel").getData().bpInfoDto;
                                         var address = that.getView().getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0];
                                         a.contactName = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.firstName + " " + oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.lastName;
                                         a.firstName = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.firstName;
@@ -1095,6 +1096,10 @@ sap.ui.define([
                                         d.organisationName3 = oEvent.getSource().getData().bpRequestScope.corporationName3;
                                         d.organisationName4 = oEvent.getSource().getData().bpRequestScope.corporationName4;
                                         e.instructionKey = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.instructionKey;
+                                        f.pointOfContact.email =oEvent.getSource().getData().bpRequestScope.buyerEmailId;
+                                        f.pointOfContact.firstName =oEvent.getSource().getData().bpRequestScope.buyerName.split("_")[0];
+                                        f.pointOfContact.lastName =oEvent.getSource().getData().bpRequestScope.buyerName.split("_")[1];
+                                        f.pointOfContact.jobTitle = "Buyer";
                                         address.address1 = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.address1;
                                         address.address2 = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.address2;
                                         address.address3 = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.address3;
@@ -2466,29 +2471,29 @@ var aError = false;
 
                     iError = true;
                 }
-                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryMobileCode || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryMobileCode)) {
-                    oView.getModel("oErrorModel").getData().ppocCountryContCodeMobE = "Error";
-                    oView.getModel("oErrorModel").getData().ppocCountryContCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
+                // if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryMobileCode || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryMobileCode)) {
+                //     oView.getModel("oErrorModel").getData().ppocCountryContCodeMobE = "Error";
+                //     oView.getModel("oErrorModel").getData().ppocCountryContCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
 
-                    iError = true;
-                }
-                if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile)) {
-                    oView.getModel("oErrorModel").getData().ppocMobE = "Error";
-                    oView.getModel("oErrorModel").getData().ppocMobM = oi18n.getText("mandatoryMContact");
+                //     iError = true;
+                // }
+                // if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile)) {
+                //     oView.getModel("oErrorModel").getData().ppocMobE = "Error";
+                //     oView.getModel("oErrorModel").getData().ppocMobM = oi18n.getText("mandatoryMContact");
 
-                    iError = true;
-                }
+                //     iError = true;
+                // }
                 if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact !== "" && Number(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.contact.replaceAll("-", "")) == 0) {
                     oView.getModel("oErrorModel").getData().ppocContE = "Error";
                     oView.getModel("oErrorModel").getData().ppocContM = oi18n.getText("invalidContact");
 
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile !== "" && Number(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile.replaceAll("-", "")) == 0) {
-                    oView.getModel("oErrorModel").getData().ppocMobE = "Error";
-                    oView.getModel("oErrorModel").getData().ppocMobM = oi18n.getText("invalidMContact");
-                    iError = true;
-                }
+                // if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile !== "" && Number(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile.replaceAll("-", "")) == 0) {
+                //     oView.getModel("oErrorModel").getData().ppocMobE = "Error";
+                //     oView.getModel("oErrorModel").getData().ppocMobM = oi18n.getText("invalidMContact");
+                //     iError = true;
+                // }
 
                 if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName.length > 30) {
 
@@ -2506,10 +2511,10 @@ var aError = false;
 
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile.length > 30) {
+                // if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile.length > 30) {
 
-                    iError = true;
-                }
+                //     iError = true;
+                // }
                 if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.extension && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.extension.length > 10) {
                     iError = true;
                 }
@@ -5073,9 +5078,9 @@ var aError = false;
                 if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.extension && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.extension.length > 10) {
                     iError = true;
                 }
-                if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile.length > 30) {
-                    iError = true;
-                }
+                // if (oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile && oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.mobile.length > 30) {
+                //     iError = true;
+                // }
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("businessPartnerInfo").setValidated(false);
