@@ -1097,8 +1097,10 @@ sap.ui.define([
                                         d.organisationName4 = oEvent.getSource().getData().bpRequestScope.corporationName4;
                                         e.instructionKey = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.instructionKey;
                                         f.pointOfContact.email =oEvent.getSource().getData().bpRequestScope.buyerEmailId;
-                                        f.pointOfContact.firstName =oEvent.getSource().getData().bpRequestScope.buyerName.split("_")[0];
-                                        f.pointOfContact.lastName =oEvent.getSource().getData().bpRequestScope.buyerName.split("_")[1];
+                                        var firstNameLowerCase =oEvent.getSource().getData().bpRequestScope.buyerName.split("_")[0].toLowerCase();
+                                        f.pointOfContact.firstName = firstNameLowerCase.charAt(firstNameLowerCase[0]).toUpperCase() + firstNameLowerCase.slice(1);
+                                        var lastNameLowerCase =oEvent.getSource().getData().bpRequestScope.buyerName.split("_")[1].toLowerCase();
+                                        f.pointOfContact.lastName = lastNameLowerCase.charAt(lastNameLowerCase[0]).toUpperCase() + lastNameLowerCase.slice(1);
                                         f.pointOfContact.jobTitle = "Buyer";
                                         address.address1 = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.address1;
                                         address.address2 = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.address2;
