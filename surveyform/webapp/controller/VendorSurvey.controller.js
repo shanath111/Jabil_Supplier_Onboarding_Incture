@@ -3446,6 +3446,17 @@ var aError = false;
 
                         iError = true;
                     }
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.isPaymentTermsAgreed === null) {
+                        oView.getModel("oErrorModel").getData().isPaymentTermsAgreedE = "Error";
+                        iError = true;
+                    }
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.isPaymentTermsAgreed === false) {
+                          if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentTermsComments) {
+                        oView.getModel("oErrorModel").getData().paymentTermCmtE = "Error";
+                        oView.getModel("oErrorModel").getData().paymentTermCmtM = oi18n.getText("mandatoryPayTermComment");
+                        iError = true;
+                          }
+                    }
                     if (visiblility.isBankProvided === null) {
                         oView.getModel("oErrorModel").getData().isBankProvidedE = "Error";
                         iError = true;
@@ -8100,7 +8111,9 @@ var aError = false;
                         oPayload.shippingInfoDto.deliverRepContact = "";
                         oPayload.shippingInfoDto.deliverRepFax = "";
                     }
-
+                    if (oPayload.shippingInfoDto.isPaymentTermsAgreed === true) {
+                        oPayload.shippingInfoDto.paymentTermsComments = "";
+                    }
 
                     oPayload.comContactDto = jQuery.extend(true, [], oView.getModel("oLookUpModel").getData().tabledata);
                     $.each(oPayload.comContactDto, function (index, row) {
