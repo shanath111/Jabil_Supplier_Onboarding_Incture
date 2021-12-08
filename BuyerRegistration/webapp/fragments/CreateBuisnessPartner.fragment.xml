@@ -104,6 +104,16 @@
                                     
                                     	
 									</VBox>
+                                     <VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCPayemntTerms}" required="true" tooltip="{i18n>JabilPaymentTermStd}"  class="cl_VRLablCls "></Label>
+									<ComboBox width="95%" items="{oBPLookUpMdl>/PaymentTerms}"  tooltip="{i18n>JabilPaymentTermStd}" valueState="{JMBPCreate>/paymentTermse}" valueStateText="{JMBPCreate>/paymentTermsm}"
+											filterSecondaryValues="true" selectedKey="{JMBPCreate>/paymentTerms}" change="fnLiveChangePaymentTerms" showSecondaryValues="true" 
+											class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}" />
+										</ComboBox>
+    
+									</VBox>
+									
                                     <!-- <VBox class="VRVboxStyle1" >
 										<Label text="{i18n>BPCIncoterms1}" required="true" class="cl_VRLablCls "></Label>
 									<ComboBox width="95%" items="{oBPLookUpMdl>/Incoterms}" valueState="{JMBPCreate>/incoTermse}" valueStateText="{JMBPCreate>/incoTermsm}"
