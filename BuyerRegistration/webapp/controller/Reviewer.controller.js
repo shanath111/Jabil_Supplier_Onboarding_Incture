@@ -1065,6 +1065,18 @@ sap.ui.define([
                 oView.getModel("JMAppvrComments").refresh();
             },
             fnOpenBankCommentsReject: function () {
+                if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
+                 var oPayloadSupp = that.getView().getModel("oDataModel").getData();
+                        if(!oPayloadSupp.shippingInfoDto.paymentTerms){
+                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("PleaseSelectPaymentTerms")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                            return;
+                        }
+                    }
                 var temp = {};
                 temp.Action = "RJ";
                 //temp.Comments ;
@@ -1272,6 +1284,18 @@ sap.ui.define([
                             "action": "reject",
                             "comments": oView.getModel("JMAppvrComments").getData().Comments
                         }
+                       
+                        var oPayloadSupp = that.getView().getModel("oDataModel").getData();
+                        // oPayloadSupp.shippingInfoDto.comCode = oPayloadSupp.defaultValuesDto.reqCompanyCode;
+                        // oPayloadSupp.shippingInfoDto.purchasingOrg = oPayloadSupp.defaultValuesDto.reqPurchasingOrg;
+                        // oPayloadSupp.defaultValuesDto.orderAddrBpNumber = orderBpNumber.replace(/^0+/, '');
+                        // oPayloadSupp.defaultValuesDto.invoiceAddrBpNumber = invoiceBpNumber.replace(/^0+/, '');
+                        oPayloadSupp.userUpdated = oView.getModel("oConfigMdl").getData().usrData.givenName
+                        var sUrl1 = "/nsBuyerRegistration/plcm_portal_services/supplier/update";
+                        var oModelSave = new JSONModel();
+                        oModelSave.loadData(sUrl1, JSON.stringify(oPayloadSupp), true, "PUT", false, true, {
+                            "Content-Type": "application/json"
+                        });
                     }
 
                 } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "NDARejectLegal") {
@@ -1956,6 +1980,16 @@ sap.ui.define([
             fnValidateData: function () {
 
                 var vError = false;
+                 if(that.getView().getModel("oDataModel").getData().shippingInfoDto.isPaymentTermsAgreed == false){
+                    sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("paymentTermsNotAgreed")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
+                    return;
+                 }
+
 
                 if (!that.getView().getModel("oDataModel").getData().defaultValuesDto.reqCompanyCode) {
                     oView.getModel("JMValidateDefault").getData().reqCompanyCodee = "Error";
