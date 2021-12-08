@@ -5799,6 +5799,14 @@ var aError = false;
                         oEvent.getSource().setValue("");
                     }
                 }
+                var sPathIndex= sPath.split("/bpInfoDto/tax/")[1];
+                if(sPath && sPathIndex && Number(sPathIndex) === 0 &&  oEvent.getSource().getSelectedKey() === "BR"){
+                    this.getOwnerComponent().getModel("oVisibilityModel").getData().enableNPI = true;
+                    this.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                } else if(sPathIndex && Number(sPathIndex) === 0 ){
+                    this.getOwnerComponent().getModel("oVisibilityModel").getData().enableNPI = false;
+                    this.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                }
                 var sIndex = oEvent.getParameter("id").split("-", 9)[8];
                 var nIndex = parseInt(sIndex);
                 var selectedCountryCode = oEvent.getSource().getSelectedKey();
@@ -8394,8 +8402,6 @@ var aError = false;
                 if(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode == "BR"){
                     this.getOwnerComponent().getModel("oVisibilityModel").getData().enableNPI = true;
                     this.getOwnerComponent().getModel("oVisibilityModel").refresh();
-                    // oView.getModel("oDataModel").getData().bpInfoDto.tax[0].type = "BR2";
-                    // oView.getModel("oDataModel").refresh();
                 }
             }else if(oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country &&  oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == "BR"){
                 this.getOwnerComponent().getModel("oVisibilityModel").getData().enableNPI = true;
@@ -8403,6 +8409,13 @@ var aError = false;
             } else{
                 this.getOwnerComponent().getModel("oVisibilityModel").getData().enableNPI = false;
                 this.getOwnerComponent().getModel("oVisibilityModel").refresh();
+            }
+            if(oView.getModel("oDataModel").getData().bpCentral[0].naturalPersonalIndicator === true){
+                oView.byId("bpInfoTaxId").getItems()[0].getCells()[0].mAggregations.items[1].setEditable(false);
+                oView.byId("bpInfoTaxId").getItems()[0].getCells()[1].mAggregations.items[1].setEditable(false);
+            } else{
+                oView.byId("bpInfoTaxId").getItems()[0].getCells()[0].mAggregations.items[1].setEditable(true);
+                oView.byId("bpInfoTaxId").getItems()[0].getCells()[1].mAggregations.items[1].setEditable(true);
             }
                 $.each(bpTaxDetails, function (index, row) {
                     if (row.country && row.type) {
@@ -8456,11 +8469,16 @@ var aError = false;
             
             },
             fnSelectNPI: function(oEvent){
-                if(oEvent.getParameters('selected')){
+                if(oEvent.getParameters('selected').selected){
                     if(oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == "BR"){
                         oView.getModel("oDataModel").getData().bpInfoDto.tax[0].type = "BR2";
                         oView.getModel("oDataModel").refresh();
                     }
+                    oView.byId("bpInfoTaxId").getItems()[0].getCells()[0].mAggregations.items[1].setEditable(false);
+                    oView.byId("bpInfoTaxId").getItems()[0].getCells()[1].mAggregations.items[1].setEditable(false);
+                }else {
+                    oView.byId("bpInfoTaxId").getItems()[0].getCells()[0].mAggregations.items[1].setEditable(true);
+                    oView.byId("bpInfoTaxId").getItems()[0].getCells()[1].mAggregations.items[1].setEditable(true);
                 }
             },
             onActivatePreview: function (event) {
