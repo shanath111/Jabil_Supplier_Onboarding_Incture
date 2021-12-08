@@ -108,7 +108,7 @@
 										<Label text="{i18n>BPCPayemntTerms}" required="true" tooltip="{i18n>JabilPaymentTermStd}"  class="cl_VRLablCls "></Label>
 									<ComboBox width="95%" items="{oBPLookUpMdl>/PaymentTerms}"  tooltip="{i18n>JabilPaymentTermStd}" valueState="{JMBPCreate>/paymentTermse}" valueStateText="{JMBPCreate>/paymentTermsm}"
 											filterSecondaryValues="true" selectedKey="{JMBPCreate>/paymentTerms}" change="fnLiveChangePaymentTerms" showSecondaryValues="true" 
-											class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}" editable="{oBTHeaderMdl>/EDITABLE}">
+											class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}" >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}" />
 										</ComboBox>
     

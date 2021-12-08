@@ -141,9 +141,32 @@
 										<Label text="{i18n>TIPayment}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
 											<l:Grid defaultSpan="XL2 L2 M2 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
                                               <VBox class="VRVboxStyle1">
-												<Label text="{i18n>TIPaymentTerms}" class="cl_PreviewLablCls "></Label>
-												<Label text="{JMBPCreate>/paymentTermsd}" class="cl_PreviewLablClsValue "></Label>
+												<Label text="{i18n>TIPaymentTerms}" required="true" class="cl_PreviewLablCls "></Label>
+												<!-- <Label text="{JMBPCreate>/paymentTermsd}" class="cl_PreviewLablClsValue "></Label> -->
+                                                	<ComboBox width="95%" items="{oBPLookUpMdl>/PaymentTerms}"  tooltip="{i18n>JabilPaymentTermStd}" valueState="{JMBPCreate>/paymentTermse}" valueStateText="{JMBPCreate>/paymentTermsm}"
+											filterSecondaryValues="true" selectedKey="{oDataModel>/shippingInfoDto/paymentTerms}" change="fnLiveChangePaymentTerms" showSecondaryValues="true" 
+											class="cl_VRInputCls" editable="{=${oConfigMdl>/defaultEnable} &amp;&amp; ${oDataModel>/shippingInfoDto/isPaymentTermsAgreed} === false}">
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}" />
+										</ComboBox>
+    
 											</VBox>
+                                                  <VBox visible="{oUserModel>/isNew}" class="fontStyle sapUiSizeCompact">
+         <Label  labelFor="idPaymentAgree" text="{i18n>paymentTermsAgree}" wrapping="true" class="cl_PreviewLablCls  sapUiTinyMarginBegin"/>
+            <RadioButtonGroup id="idPaymentAgree" class="inputStyle" columns="2" selectedIndex="{=${oDataModel>/shippingInfoDto/isPaymentTermsAgreed} === true? 0 :(${oDataModel>/shippingInfoDto/isPaymentTermsAgreed}=== false ?1: -1)}" valueState="{oErrorModel>/isPaymentTermsAgreedE}" enabled="false" select="fnClearValueState">
+			<RadioButton text="{i18n>Yes}" selected="{oDataModel>/shippingInfoDto/isPaymentTermsAgreed}"></RadioButton>
+			<RadioButton text="{i18n>No}"  select="fnSelectionChange"></RadioButton>
+		</RadioButtonGroup>
+         <layoutData>
+                                  <l:GridData spanM="4" spanL="4" spanXL="4"></l:GridData></layoutData>
+        </VBox>
+   <VBox visible="{oUserModel>/isNew}" class="fontStyle sapUiSizeCompact">
+          <Label required="false" text="{i18n>prvdComment}" visible="{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oDataModel>/shippingInfoDto/isPaymentTermsAgreed} === false}"  class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
+               <Label  required="true"  text="{oi18n_En>prvdComment}/&#160;{i18n>prvdComment}"  visible= "{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oDataModel>/shippingInfoDto/isPaymentTermsAgreed} === false}" wrapping="true" class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
+					<TextArea value="{oDataModel>/shippingInfoDto/paymentTermsComments}" editable="false" visible="{=${oDataModel>/shippingInfoDto/isPaymentTermsAgreed} === false}"  liveChange="fnLiveInputValueChange" valueState="{oErrorModel>/paymentTermCmtE}" valueStateText="{oErrorModel>/paymentTermCmtM}" width="50%" maxLength="255" class="inputStyle sapUiSizeCompact sapUiTinyMarginBegin sapUiTinyMarginBottom">
+                 </TextArea>
+                  <layoutData>
+                                  <l:GridData spanM="6" spanL="6" spanXL="6"></l:GridData></layoutData>
+                    </VBox>
                                             </l:Grid>
                                             	<HBox class="cl_HBoxBlockSep"></HBox>
                                         <l:Grid defaultSpan="XL2 L2 M2 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
