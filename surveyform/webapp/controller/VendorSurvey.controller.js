@@ -609,7 +609,7 @@ sap.ui.define([
                                         }
                                     }
 
-                                    if (oEvent.getSource().oData.bpInfoDto.corpHeaderQuartersAddress) {
+                                    if (oEvent.getSource().oData.bpInfoDto.corpHeaderQuartersAddress && oEvent.getSource().oData.bpInfoDto.corpHeaderQuartersAddress.length >0) {
                                         var countryCode = oEvent.getSource().oData.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].countryCode;
                                         var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + countryCode;
                                         $.ajax({
@@ -8386,6 +8386,7 @@ var aError = false;
                         oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered = null;
                     }
                     if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== false){
+                        if(oPayload.bpInfoDto.corpHeaderQuartersAddress && oPayload.bpInfoDto.corpHeaderQuartersAddress.length >0){
                         oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country = "";
                         oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].countryCode = "";
                         oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 = "";
@@ -8398,6 +8399,7 @@ var aError = false;
                         oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].district = "";
                         oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city = "";
                         oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode = "";
+                        }
 
                     } else if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== true){
                         oPayload.bpInfoDto.corpHeadquartersDunsRegNum = "";
@@ -9005,6 +9007,7 @@ var aError = false;
                         oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered = null;
                     }
                     if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== false){
+                        if(oPayload.bpInfoDto.corpHeaderQuartersAddress && oPayload.bpInfoDto.corpHeaderQuartersAddress.length >0){
                         oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country = "";
                         oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].countryCode = "";
                         oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 = "";
@@ -9017,7 +9020,7 @@ var aError = false;
                         oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].district = "";
                         oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city = "";
                         oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode = "";
-
+                        }
                     } else if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== true){
                         oPayload.bpInfoDto.corpHeadquartersDunsRegNum = "";
                         oPayload.bpInfoDto.corpHeadquartersDnbLegalBusinessName = "";
