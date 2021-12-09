@@ -223,7 +223,7 @@
           <VBox class="sapUiSizeCompact sapUiTinyMarginBegin" visible="{oUserModel>/isNew}">
           <CheckBox enabled="{oVisibilityModel>/_FinanceReviewEdit}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/bankDto/isIntermediateBankProvided}" class=" sapUiTinyMarginTop fontStyle inputStyle" />
 			<HBox>	<u:FileUploader  visible="{=${oDataModel>/bankDto/isIntermediateBankProvided} === true}" id="fileUploader_BIA" buttonOnly="true" iconOnly="true" icon="sap-icon://attachment" multiple="true"
-					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{oVisibilityModel>/_FinanceReviewEdit}"
+					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} === true ? (${oAttachmentList>/0/bankINDArray}.length === 0 ? true : false): false}"
 					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin addMoreBtn paperClipOuter">
                         
                     </u:FileUploader>
