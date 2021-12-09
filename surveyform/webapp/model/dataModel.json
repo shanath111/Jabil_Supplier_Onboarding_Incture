@@ -511,7 +511,9 @@
         "newpaymentCurrency": "",
         "newpaymentTerms": "",
         "newincoterm": "",
-        "newincotermNamedPlace": ""
+        "newincotermNamedPlace": "",
+        "isPaymentTermsAgreed":null,
+        "paymentTermsComments":""
     },
     "surveyInfoDto": {
         "altContact": {

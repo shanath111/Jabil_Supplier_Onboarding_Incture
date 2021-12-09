@@ -277,5 +277,8 @@
 "orgEstablishConnectionSelectedE":"None",
 "orgBusinessActivitiesisSelectedE":"None",
 "financeUserAuditE":"None",
-"financeUserAuditM":""
+"financeUserAuditM":"",
+"isPaymentTermsAgreedE":"None",
+"paymentTermCmtE":"None",
+"paymentTermCmtM":""
 }

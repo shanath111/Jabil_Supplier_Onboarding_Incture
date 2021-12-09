@@ -287,6 +287,7 @@ sap.ui.define([
                         "userCreated":oView.getModel("oConfigMdl").getData().usrData.givenName,
                         "rfcv": false,
                         "conflictOfInterests": -1,
+                        "paymentTerms":"ZE90",
                         "representAnotherCompanys": 1,
                         "oneTimePurchaseSupplierIndicators": 1,
                         "customerDirectedSupplierIndicators": -1,
@@ -595,12 +596,12 @@ sap.ui.define([
                     //     vError = true;
                     //     oView.getModel("JMBPCreate").refresh();
                     // }
-                    // if (!oView.getModel("JMBPCreate").getData().paymentTerms) {
-                    //     oView.getModel("JMBPCreate").getData().paymentTermse = "Error";
-                    //     oView.getModel("JMBPCreate").getData().paymentTermsm = oi18n.getProperty("BPCMandatoryValidationPaymentTerms");
-                    //     vError = true;
-                    //     oView.getModel("JMBPCreate").refresh();
-                    // }
+                    if (!oView.getModel("JMBPCreate").getData().paymentTerms) {
+                        oView.getModel("JMBPCreate").getData().paymentTermse = "Error";
+                        oView.getModel("JMBPCreate").getData().paymentTermsm = oi18n.getProperty("BPCMandatoryValidationPaymentTerms");
+                        vError = true;
+                        oView.getModel("JMBPCreate").refresh();
+                    }
 
                     if (oView.getModel("JMBPCreate").getData().incotermNameLocatione == "Error") {
                         vError = true;
