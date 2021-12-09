@@ -467,7 +467,7 @@
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyFinInfo" type="XML"/>
 					</WizardStep> -->
 					<WizardStep id="cComplianceInfo" nextStep="cyberSecInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcompanyCompliance}:${oi18n_En>wizardStepcompanyCompliance} +'/&#160;' +${i18n>wizardStepcompanyCompliance}}"
-						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" >
+						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" activate="onActivateComCompliance">
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyCompliance" type="XML"/>
 					</WizardStep>
 					<WizardStep id="cyberSecInfo" nextStep="previewRegForm" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcyberSecurityInfo}:${oi18n_En>wizardStepcyberSecurityInfo} +'/&#160;' +${i18n>wizardStepcyberSecurityInfo}}"
@@ -497,7 +497,7 @@
 							<Button id="saveS" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>save}:${oi18n_En>save} + '/&#160;' + ${i18n>save}}" visible="{oVisibilityModel>/_SaveAsDraftButton}" enabled="{=${oDataModel>/surveyInfoDto/isAuthority} === true &amp;&amp; ${oVisibilityModel>/claimedTask}}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="onSaveAsDraft"></Button>
                            <!-- <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>save}:${oi18n_En>save} + '/&#160;' + ${i18n>save}}" visible="true" enabled="false" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="onSaveAsDraft"></Button> -->
                             <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>forward}:${oi18n_En>forward} + '/&#160;' + ${i18n>forward}}" enabled="{oVisibilityModel>/claimedTask}" visible="{=${oDataModel>/surveyInfoDto/isAuthority} === false}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="fnSupplierForward"></Button>
-                            <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>next}:${oi18n_En>next} + '/&#160;' + ${i18n>next}}"  visible="{=!${oVisibilityModel>/_finalStep}}" enabled="{=${oDataModel>/surveyInfoDto/isAuthority} &amp;&amp; ${oVisibilityModel>/claimedTask}}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="nextStep"></Button>
+                            <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>next}:${oi18n_En>next} + '/&#160;' + ${i18n>next}}"  visible="{=!${oVisibilityModel>/_finalStep}}" enabled="{=${oDataModel>/surveyInfoDto/isAuthority} &amp;&amp; ${oVisibilityModel>/claimedTask} || ${oVisibilityModel>/isTaskCompleted}}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="nextStep"></Button>
                             
 							<!-- <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>next}:${oi18n_En>next} + '/&#160;' + ${i18n>next}}" visible="{=!${oVisibilityModel>/_finalStep} &amp;&amp; ${oDataModel>/surveyInfoDto/isJabilMainContact}}" enabled="{oDataModel>/surveyInfoDto/isAuthority}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="nextStep"></Button> -->
 							<Button id="submitS" enabled="{=${oVisibilityModel>/claimedTask} &amp;&amp; ${oEnableMdl>/submitBtnEnb}}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>submit}:${oi18n_En>submit} + '/&#160;' + ${i18n>submit}}" visible="{oVisibilityModel>/_finalStepSave}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="onSaveAsDraft"></Button>
