@@ -142,9 +142,9 @@
             "mobile": ""
         },
         "corpHeaderQuartersAddress": [
-           {        
+                {        
                     "addressId": "",
-                    "addressInSection": "",
+                    "addressInSection": "Corporate_Headquarters",
                     "postal": [
                         {
                             "address1": "",
@@ -193,13 +193,13 @@
                             ]
                         }
                     ]
-        }
-    ],
-    "corpHeadquartersLegalBusinessName1":"",
-    "corpHeadquartersLegalBusinessName2":"",
-    "isCorpHeadquartersDunsRegistered":false,
-    "corpHeadquartersDunsRegNum":"",
-    "corpHeadquartersDnbLegalBusinessName":""
+                }
+            ],
+        "corpHeadquartersLegalBusinessName1":"",
+        "corpHeadquartersLegalBusinessName2":"",
+        "isCorpHeadquartersDunsRegistered":null,
+        "corpHeadquartersDunsRegNum":"",
+        "corpHeadquartersDnbLegalBusinessName":""
     },
     "businessPartnerId": "",
     "caseId": "",

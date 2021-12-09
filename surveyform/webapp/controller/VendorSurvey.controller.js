@@ -180,6 +180,7 @@ sap.ui.define([
                                         existingData.bpInfoDto.pointOfContact.lastName =oEvent.getSource().oData.bpInfoDto.pointOfContact.lastName;
                                         existingData.bpInfoDto.pointOfContact.email = oEvent.getSource().oData.bpInfoDto.pointOfContact.email;
                                         existingData.bpInfoDto.pointOfContact.jobTitle = oEvent.getSource().oData.bpInfoDto.pointOfContact.jobTitle;
+                                        
                                         existingData.dateUpdated = oEvent.getSource().oData.dateUpdated;
                                         existingData.surveyInfoDto.isAuthority = null;
                                         existingData.surveyInfoDto.isJabilMainContact = null;
@@ -606,6 +607,37 @@ sap.ui.define([
 
 
                                         }
+                                    }
+
+                                    if (oEvent.getSource().oData.bpInfoDto.corpHeaderQuartersAddress) {
+                                        var countryCode = oEvent.getSource().oData.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].countryCode;
+                                        var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + countryCode;
+                                        $.ajax({
+                                            url: loadTaxTypeUrl,
+                                            type: 'GET',
+                                            success: function (data) {
+                                                var postalCodeLength = parseInt(data[0].postalCodeLength);
+                                                var postalCodeRule = parseInt(data[0].postalCodeRule)
+                                                if (postalCodeLength == 0) {
+                                                    var PostalCodeValidation = {
+                                                        "postalCodeLength": 10,
+                                                        "postalCodeRule": postalCodeRule
+                                                    };
+                                                } else {
+                                                    var PostalCodeValidation = {
+                                                        "postalCodeLength": postalCodeLength,
+                                                        "postalCodeRule": postalCodeRule
+                                                    };
+                                                }
+
+                                                oView.getModel("oLookUpModel").setProperty("/PostalCodeValidationCorpHeadquarters", PostalCodeValidation);
+                                                oView.getModel("oLookUpModel").refresh();
+                                            },
+                                            async: false,
+                                            error: function (data) {
+
+                                            }
+                                        });
                                     }
                                     //commented validation logic for bank fields based on country- Siva, Date:05/10/2021
                                     // if (oEvent.getSource().oData.bankDto.bankInfoDto[0].bankCountry && oEvent.getSource().oData.bankDto.bankInfoDto[0].bankCountry != "") {
@@ -1358,6 +1390,7 @@ sap.ui.define([
                 this._fnLoadCurrency();
                 this._fnLoadRegion();
                 this._fnLoadCountryContactCode();
+                this._fnLoadCorpHeadquartersCountry();
 
             },
 
@@ -1391,6 +1424,8 @@ sap.ui.define([
                     }
                 });
             },
+
+
             _fnLoadTax: function () {
                 var oModel = new JSONModel();
                 var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/tax-types";
@@ -2434,12 +2469,124 @@ var aError = false;
                         if (oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === null) {
                             oView.getModel("oErrorModel").getData().isSiteCorporateHeadquatersE = "Error";
                             iError = true;
+                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === false){
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === null) {
+                                oView.getModel("oErrorModel").getData().isCorpHeadquartersDunsRegisteredE = "Error";
+                                iError = true;
+                            } else if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === false){
+                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country)) {
+                                    oView.getModel("oErrorModel").getData().corpHeadCountryE = "Error";
+                                    oView.getModel("oErrorModel").getData().corpHeadCountryM = oi18n.getText("mandatoryCountry");
+                                    iError = true;
+                                } 
+                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1) {
+                                    oView.getModel("oErrorModel").getData().corpHeadAddressL1E = "Error";
+                                    oView.getModel("oErrorModel").getData().corpHeadAddressL1M = oi18n.getText("mandatoryAddr1");
+                                    iError = true;
+                                } 
+                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region) {
+                                    oView.getModel("oErrorModel").getData().corpHeadRegionE = "Error";
+                                    oView.getModel("oErrorModel").getData().corpHeadRegionM = oi18n.getText("mandatoryState");
+                                    iError = true;
+                                } 
+                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city) {
+                                    oView.getModel("oErrorModel").getData().corpHeadCityE = "Error";
+                                    oView.getModel("oErrorModel").getData().corpHeadCityM = oi18n.getText("mandatoryCity");
+                                    iError = true;
+                                } 
+                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {
+                                    oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                    oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("mandatoryPostalCode");
+                                    iError = true;
+                                } 
+
+                                if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1.length > 60) {
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city.length > 40) {
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {
+                                    var postalCode = oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode;
+                                    var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationCorpHeadquarters;
+                                    var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
+                                    var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
+                                    switch (postalCodeRule) {
+                                        case 1:
+                                            if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule1");
+                                                iError = true;
+                                            }
+                                            break;
+                                        case 2:
+                                            if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule2");
+                                                iError = true;
+                                            }
+                                            break;
+                                        case 3:
+                                            if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
+                                                iError = true;
+                                            }
+                                            break;
+                                        case 4:
+                                            if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
+                                                iError = true;
+                                            }
+                                            break;
+                                        case 5:
+                                            if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule5");
+                                                iError = true;
+                                            }
+                                            break;
+                                        case 6:
+                                            if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule6");
+                                                iError = true;
+                                            }
+                                            break;
+                                        case 7:
+                                            if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "characters in length";
+                                                iError = true;
+                                            }
+                                            break;
+                                        case 8:
+                                            if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "digits in length";
+                                                iError = true;
+                                            }
+                                    }
+                                }
+                            }
+                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters ===true) {
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
+                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
+                                iError = true;
+                            } else {
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "None";
+                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
+    
+                            }
                         }
                         if (!oView.getModel("oDataModel").getData().bpInfoDto.noOfEmployees) {
                             oView.getModel("oErrorModel").getData().numOfEmpE = "Error";
                             oView.getModel("oErrorModel").getData().numOfEmpM = oi18n.getText("mandatoryNumber");
                             iError = true;
-                        } if (!oView.getModel("oDataModel").getData().bpInfoDto.year) {
+                        } 
+                        if (!oView.getModel("oDataModel").getData().bpInfoDto.year) {
                             oView.getModel("oErrorModel").getData().yearE = "Error";
                             oView.getModel("oErrorModel").getData().yearM = oi18n.getText("mandatoryYear");
 
@@ -5065,6 +5212,88 @@ var aError = false;
                             oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
                             // iError = false;
                         }
+                    } else if (oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber === false) {
+                        if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === false){
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1.length > 60) {
+                                iError = true;
+                            }
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city.length > 40) {
+                                iError = true;
+                            }
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {    
+                                var postalCode = oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode;
+                                var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationCorpHeadquarters;
+                                var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
+                                var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
+                                switch (postalCodeRule) {
+                                    case 1:
+                                        if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule1");
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 2:
+                                        if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule2");
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 3:
+                                        if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 4:
+                                        if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 5:
+                                        if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule5");
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 6:
+                                        if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule6");
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 7:
+                                        if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "characters in length";
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 8:
+                                        if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "digits in length";
+                                            iError = true;
+                                        }
+                                }
+                            }
+                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === true){
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
+                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
+                                iError = true;
+                            } else {
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "None";
+                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
+    
+                            }
+                        }
                     }
                 }
 
@@ -6367,6 +6596,7 @@ var aError = false;
                             oEvent.getSource().setValueStateText("Accepts only numbers without spaces");
                             
                         }
+                        break;
                     case 3:
                         if (/\s/.test(postalCode) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
@@ -8092,6 +8322,31 @@ var aError = false;
                         oPayload.bpInfoDto.noOfEmployees = "";
                         oPayload.bpInfoDto.year = "";
                     }
+
+                    if(oPayload.bpInfoDto.isSiteCorporateHeadquaters !== false){
+                        oPayload.bpInfoDto.corpHeadquartersLegalBusinessName1 ="";
+                        oPayload.bpInfoDto.corpHeadquartersLegalBusinessName2 ="";
+                        oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered = null;
+                    }
+                    if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== false){
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].countryCode = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address2 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address3 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address4 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address5 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].regionCode = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].district = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode = "";
+
+                    } else if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== true){
+                        oPayload.bpInfoDto.corpHeadquartersDunsRegNum = "";
+                        oPayload.bpInfoDto.corpHeadquartersDnbLegalBusinessName = "";
+                    }
+                    
                     if (oPayload.bpInfoDto.dunsRegistrationNum !== "" && oPayload.bpInfoDto.dunsRegistrationNum !== "NODUNS") {
                         oPayload.ownerShipInfoDto.doesOtherEntityOwnSite = null;
                         oPayload.ownerShipInfoDto.companyName = "";
@@ -8653,6 +8908,29 @@ var aError = false;
                         oPayload.bpInfoDto.isSiteCorporateHeadquaters = null;
                         oPayload.bpInfoDto.noOfEmployees = "";
                         oPayload.bpInfoDto.year = "";
+                    }
+                    if(oPayload.bpInfoDto.isSiteCorporateHeadquaters !== false){
+                        oPayload.bpInfoDto.corpHeadquartersLegalBusinessName1 ="";
+                        oPayload.bpInfoDto.corpHeadquartersLegalBusinessName2 ="";
+                        oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered = null;
+                    }
+                    if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== false){
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].countryCode = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address2 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address3 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address4 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address5 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].regionCode = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].district = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode = "";
+
+                    } else if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== true){
+                        oPayload.bpInfoDto.corpHeadquartersDunsRegNum = "";
+                        oPayload.bpInfoDto.corpHeadquartersDnbLegalBusinessName = "";
                     }
                     if (oPayload.bpInfoDto.dunsRegistrationNum !== "" && oPayload.bpInfoDto.dunsRegistrationNum !== "NODUNS") {
                         oPayload.ownerShipInfoDto.doesOtherEntityOwnSite = null;
@@ -9791,6 +10069,21 @@ var aError = false;
                         "dnbLegalBusinessNameEnb": false,
                         "encourgeDunsNumberRegEnb": false,
                         "isSiteCorporateHeadquatersEnb": false,
+                        "LegalBusinessName1Enb": false,
+                        "LegalBusinessName2Enb": false,
+                        "isRegWithDunsEnb": false,
+                        "corpHeaderQuartersCountryEnb": false,
+                        "corpHeaderQuartersAddress1": false,
+                        "corpHeaderQuartersAddress2": false,
+                        "corpHeaderQuartersAddress3": false,
+                        "corpHeaderQuartersAddress4": false,
+                        "corpHeaderQuartersAddress5": false,
+                        "corpHeaderQuartersRegionEnb": false,
+                        "corpHeaderQuartersDistrictEnb": false,
+                        "corpHeaderQuartersCityEnb": false,
+                        "corpHeaderQuartersPostalCodeEnb": false,
+                        "CorpHeadDunsRegNumEnb": false,
+                        "corpHeadDnbLegalBusinessNameEnb": false,
                         "noOfEmployeesEnb": false,
                         "yearEnb": false,
                         "cfrComplaintEnb": false,
@@ -10154,6 +10447,110 @@ var aError = false;
                 var selPath = oEvent.getSource().getParent().getButtons()[0].getBindingPath("selected");
                 oView.getModel("companyInfoModel").setProperty(selPath, false);
                 oView.getModel("companyInfoModel").refresh(true);
-            }
+            },
+
+            _fnLoadCorpHeadquartersCountry: function () {
+                var oModel = new JSONModel();
+                var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/countries";
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+
+                        oView.getModel("oLookUpModel").setProperty("/CorpHeadquarterCountry", oEvent.getSource().getData());
+                        oView.getModel("oLookUpModel").refresh();
+                        
+                    }
+                });
+            },
+            
+            fnChangeCorpHeadquartersCountry: function (oEvent) {
+                // oView.byId("hello").addEventListener("change",function(){
+                //     console.log(oEvent);
+                // });
+                if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                    oView.getModel("oDataModel").refresh();
+                }
+
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                
+                var selectedCountryCode = oEvent.getSource().getSelectedKey();
+                var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + selectedCountryCode;
+                $.ajax({
+                    url: loadTaxTypeUrl,
+                    type: 'GET',
+                    success: function (data) {
+                        var postalCodeLength = parseInt(data[0].postalCodeLength);
+                        var postalCodeRule = parseInt(data[0].postalCodeRule)
+
+                        if (postalCodeLength == 0) {
+                            var PostalCodeValidation = {
+                                "postalCodeLength": 10,
+                                "postalCodeRule": postalCodeRule
+                            };
+                        } else {
+                            var PostalCodeValidation = {
+                                "postalCodeLength": postalCodeLength,
+                                "postalCodeRule": postalCodeRule
+                            };
+                        }
+
+                        oView.getModel("oLookUpModel").setProperty("/PostalCodeValidationCorpHeadquarters", PostalCodeValidation);
+                        oView.getModel("oLookUpModel").refresh();
+                    },
+                    async: false,
+                    error: function (data) {
+
+                    }
+                });
+
+                oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region = "";
+                oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].regionCode = "";
+                oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().CorpHeadquarterCountry, selectedCountryCode);
+                oView.getModel("oDataModel").refresh();
+                var vCountry = selectedCountryCode;
+                this._fnLoadCorpHeadquartersRegion(vCountry);
+            },
+
+            _fnLoadCorpHeadquartersRegion: function (vCountry) {
+                var oModel = new JSONModel();
+                var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/regions/?country=" + vCountry;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oLookUpModel").setProperty("/CorpHeadquarterRegion", oEvent.getSource().getData());
+                        oView.getModel("oLookUpModel").refresh();
+                    }
+                });
+            },
+
+            fnChangeCorpHeadquartersRegion: function (oEvent) {
+                if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                    oView.getModel("oDataModel").refresh();
+                }
+
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().CorpHeadquarterRegion, oEvent.getSource().getSelectedKey());
+                oView.getModel("oDataModel").refresh();
+            },
         });
     });
