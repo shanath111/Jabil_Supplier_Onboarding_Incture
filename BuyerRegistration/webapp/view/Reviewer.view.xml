@@ -141,7 +141,7 @@
 										<Label text="{i18n>TIPayment}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
 											<l:Grid defaultSpan="XL2 L2 M2 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
                                               <VBox class="VRVboxStyle1">
-												<Label text="{i18n>TIPaymentTerms}" required="true" class="cl_PreviewLablCls "></Label>
+												<Label text="{i18n>TIPaymentTerms}" required="true" tooltip="{i18n>JabilPaymentTermStd}" class="cl_PreviewLablCls "></Label>
 												<!-- <Label text="{JMBPCreate>/paymentTermsd}" class="cl_PreviewLablClsValue "></Label> -->
                                                 	<ComboBox width="95%" items="{oBPLookUpMdl>/PaymentTerms}"  tooltip="{i18n>JabilPaymentTermStd}" valueState="{JMBPCreate>/paymentTermse}" valueStateText="{JMBPCreate>/paymentTermsm}"
 											filterSecondaryValues="true" selectedKey="{oDataModel>/shippingInfoDto/paymentTerms}" change="fnLiveChangePaymentTerms" showSecondaryValues="true" 
