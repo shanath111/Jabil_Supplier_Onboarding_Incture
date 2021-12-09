@@ -1514,7 +1514,21 @@
 				        
    <Label text="{i18n>wizardStepcompanyCompliance}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>   
       <Label text="{oi18n_En>wizardStepcompanyCompliance}/&#160;{i18n>wizardStepcompanyCompliance}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>   
-  <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid sapUiTinyMarginTop">
+                                <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid sapUiTinyMarginTop">
+									   <VBox class="VRVboxStyle1">
+										<Label text="{i18n>supplierSrmMeet}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
+                                        <Label text="{oi18n_En>supplierSrmMeet}/&#160;{i18n>supplierSrmMeet}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
+                                        <Label text="{=${oDataModel>/comComplianceDto/isSrmReceived}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
+								</l:Grid> 
+                                <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="{=${oDataModel>/comComplianceDto/isSrmReceived} === false &amp;&amp; ${oUserModel>/isNew}}">
+									   <VBox class="VRVboxStyle1">
+										<Label text="{i18n>prvdExplanation}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
+                                        	<Label text="{oi18n_En>prvdExplanation}/&#160;{i18n>prvdExplanation}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
+                                        <Label text="{=${oDataModel>/comComplianceDto/supplierReqManualExplanation}?${oDataModel>/comComplianceDto/supplierReqManualExplanation}:'---'}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
+								</l:Grid>
+                                <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid sapUiTinyMarginTop">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>supplierCocMeet}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
                                         <Label text="{oi18n_En>supplierCocMeet}/&#160;{i18n>supplierCocMeet}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls"></Label>
