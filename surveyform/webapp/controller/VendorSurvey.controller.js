@@ -10658,11 +10658,7 @@ var that = this;
                        
                       
                     } else { 
-                        var sErMsg = oEvent.getParameter("errorobject").responseText;
-                        MessageBox.show(sErMsg, {
-                            icon: MessageBox.Icon.ERROR,
-                            title: oi18n.getText("error")
-                        });
+                       
                         aDeferred.resolve();
                     }
                 });
