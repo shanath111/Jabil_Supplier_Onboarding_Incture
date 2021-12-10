@@ -454,7 +454,7 @@
                         />
                     </u:tooltip>
                     </u:FileUploader> -->
-                    <Button id="bpAttachBtn" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" icon="sap-icon://add" press="fnFileUploadBtn" class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+                    <Button id="bpAttachBtn" enabled="{oEnableMdl>/bpInfoAttachmentEnb}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" icon="sap-icon://add" press="fnFileUploadBtn" class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 				<g:GridList width="auto" items="{oAttachmentList>/0/bPDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">
 					<g:customLayout>
 						<!-- <grid:GridBasicLayout gridTemplateColumns="repeat(auto-fit, minmax(16rem, 1fr))" gridAutoFlow="Column" gridGap="0.5rem" /> -->
