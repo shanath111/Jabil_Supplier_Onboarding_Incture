@@ -381,7 +381,7 @@ sap.ui.define([
                 }
                 if(oView.getModel("JMFilter1").getData().DocLink){
                     var link = oView.getModel("JMFilter1").getData().DocLink;
-                    if(!(link.startsWith('https') && link.endsWith('.xx'))){
+                    if(!(link.startsWith('https'))){
                         vError = true
                     }
                 }
@@ -566,7 +566,7 @@ sap.ui.define([
             },
             onChangeDocLink: function(oEvent) {
                 var link = oEvent.getSource().getValue();
-                if(link.startsWith('https') && link.endsWith('.xx')){
+                if(link.startsWith('https')){
                     oView.getModel("JMFilter").getData().docLinke ="None";
                     oView.getModel("JMFilter").getData().docLinkm ="";
                     oView.getModel("JMFilter").refresh();

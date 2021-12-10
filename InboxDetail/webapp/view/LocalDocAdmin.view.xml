@@ -42,11 +42,15 @@
 							</VBox>
                             <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCDocType}" required="true" class="cl_VRLablCls "></Label>
-                                <Select width="95%"  editable="{oConfigMdl>/screenEditable}" selectedKey="{JMFilter1>/DocType}" forceSelection="false"
+                                <ComboBox width="95%" editable="{oConfigMdl>/screenEditable}" change="onChangeLookupValue"  selectedKey="{JMFilter1>/DocType}" class="cl_VRInputCls" >
+									<core:Item key="Acknowledge Only" text="Acknowledge Only" />
+                                    <core:Item key="Signature Required" text="Signature Required" />
+								</ComboBox>
+                                <!-- <Select width="95%"  editable="{oConfigMdl>/screenEditable}" selectedKey="{JMFilter1>/DocType}" forceSelection="false"
                                     class="cl_VRInputCls">
                                     <core:Item key="Acknowledge Only" text="Acknowledge Only" />
                                     <core:Item key="Signature Required" text="Signature Required" />
-                                </Select>
+                                </Select> -->
 							</VBox>	
                            <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCDocName}" required="true" class="cl_VRLablCls "></Label>
