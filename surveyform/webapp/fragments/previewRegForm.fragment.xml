@@ -1726,16 +1726,16 @@
 		</gl:GridList> -->
          <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid " visible="{=${oDataModel>/comComplianceDto/localDocuments}.length > 0 ? true : false}">
 									   <VBox class="VRVboxStyle1">
-										<Label text="{i18n>locDocTitle}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="sapUiTinyMarginTop cl_PreviewLablClsValue"></Label>
-                                        <Label text="{oi18n_En>locDocTitle}/&#160;{i18n>locDocTitle}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class=" sapUiTinyMarginTop cl_PreviewLablClsValue"></Label>
+										<Label text="{i18n>locDocTitle}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="sapUiSmallMarginTop cl_PreviewLablClsValue"></Label>
+                                        <Label text="{oi18n_En>locDocTitle}/&#160;{i18n>locDocTitle}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class=" sapUiSmallMarginTop cl_PreviewLablClsValue"></Label>
 									</VBox>
-                                    <gl:GridList  items="{oDataModel>/comComplianceDto/localDocuments}" class="gList fontStyle sapUiTinyMarginTop sapUiSizeCompact">
+                                    <gl:GridList  items="{oDataModel>/comComplianceDto/localDocuments}" class="gList fontStyle sapUiSizeCompact">
      	<gl:customLayout>
 			  <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" /> 
 			
         </gl:customLayout> 
         <gl:GridListItem>
-         <VBox class="fontStyle">
+         <VBox class="fontStyle sapUiTinyMarginTop">
         
             <Link text="{oDataModel>documentName}" wrapping="true" class="fontStyleBlue cl_PreviewLablCls"/>
             <Label text ="{oDataModel>affirmationStatement}" class="cl_PreviewLablCls"/>
