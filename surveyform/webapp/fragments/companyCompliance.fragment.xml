@@ -270,7 +270,7 @@
              <Label text=" /&#160;{i18n>locDocTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyleBold"></Label>
                           <Label text="{i18n>locDocTitle1}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle sapUiTinyMarginBegin"></Label>
        </HBox>
-     <g:GridList  items="{oDataModel>/comComplianceDto/localDocuments}" visible="true" class="gList fontStyle sapUiTinyMarginTop sapUiSizeCompact">
+     <g:GridList  items="{oDataModel>/comComplianceDto/localDocuments}" class="gList fontStyle sapUiTinyMarginTop sapUiSizeCompact">
      	<g:customLayout>
 			  <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" /> 
 			
@@ -281,7 +281,7 @@
             <Link text="{oDataModel>documentName}" target="_blank" href="{oDataModel>documentLink}" wrapping="true" class="sapUiTinyMarginBegin"/>
             <Label text ="{oDataModel>affirmationStatement}" required="true" class="sapUiTinyMarginTop sapUiTinyMarginBegin"/>
            <RadioButtonGroup  columns="1" selectedIndex="-1" select="fnClearValueState" valueState="{oDataModel>state}" class="inputStyle" visible="{=${oDataModel>documentType} === 'Acknowledge Only'}">
-                    <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" class="inputStyle" selected="{oDataModel>/isAcknowledged}" visible="{=${oDataModel>documentType} === 'Acknowledge Only'}" enabled="{oEnableMdl>/companyCmplianceAttachmentEnb}"></RadioButton>
+                    <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" class="inputStyle" selected="{oDataModel>isAcknowledged}" visible="{=${oDataModel>documentType} === 'Acknowledge Only'}" enabled="{oEnableMdl>/companyCmplianceAttachmentEnb}"></RadioButton>
                 </RadioButtonGroup>
                 <Label text="{oi18n_En>signDocVerbiage}" class="fontStyle fontStyleItalic sapUiTinyMarginBegin"  visible="{=${oDataModel>documentType} === 'Signature Required'}"/>
        

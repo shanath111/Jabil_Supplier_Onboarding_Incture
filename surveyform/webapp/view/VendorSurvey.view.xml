@@ -467,7 +467,7 @@
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyFinInfo" type="XML"/>
 					</WizardStep> -->
 					<WizardStep id="cComplianceInfo" nextStep="cyberSecInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcompanyCompliance}:${oi18n_En>wizardStepcompanyCompliance} +'/&#160;' +${i18n>wizardStepcompanyCompliance}}"
-						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" activate="onActivateComCompliance">
+						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
 						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyCompliance" type="XML"/>
 					</WizardStep>
 					<WizardStep id="cyberSecInfo" nextStep="previewRegForm" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcyberSecurityInfo}:${oi18n_En>wizardStepcyberSecurityInfo} +'/&#160;' +${i18n>wizardStepcyberSecurityInfo}}"

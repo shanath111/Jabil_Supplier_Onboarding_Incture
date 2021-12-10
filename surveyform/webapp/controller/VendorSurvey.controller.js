@@ -4682,21 +4682,65 @@ var aError = false;
                         }
                     }
                 }
+                // if(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments && oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.length >0){
+                //     oView.getModel("oAttachmentList").refresh();
+                //     $.each(oView.getModel("oAttachmentList").getProperty("/0/" + "compComplDArray"), function(index, row){
+                //     var findLocDoc= oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.some(function(doc){
+                //          return doc.documentName == row.docFormType;
+                //       });
+                //       if(!findLocDoc){
+                //           iError = true;
+                //       } else{
+                //               oView.getModel("oDataModel").refresh();
+                //       }
+                //     });
+                // }
+                    if (oView.getModel("oDataModel").getData().comComplianceDto.localDocuments && oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.length > 0) {
+                        $.each(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments, function (index, row) {
+                            if(row.documentType == "Signature Required"){
+                                var findLocDocSigned= oView.getModel("oAttachmentList").getProperty("/0/" + "compComplDArray").some(function(doc){
+                                    return row.documentName == doc.docFormType;
+                                 });
+                                 if(!findLocDocSigned){
+                                    iError = true;
+                                    row.isSigned = false;
+                                    oView.getModel("oDataModel").refresh();
+                                } else{
+                                    row.isSigned = true;
+                                        oView.getModel("oDataModel").refresh();
+                                }
+                            }
+                            // $.each(oView.getModel("oAttachmentList").getProperty("/0/" + "compComplDArray"), function (index1, row1) {
+                            //     if(row.documentType == "Signature Required"){
+                            //     if(row.documentName == row1.docFormType){
+                            //         row.isSigned =true;
+                            //     } else{
+                            //         row.isSigned =false;
+                            //     }
+                            //     }
+                            // });
+                        });
+                    }
+                
                 if(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments && oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.length >0){
                     $.each(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments, function(index, row){
-                        if(row.documentType ="Acknowledge Only" && row.isAcknowledged  && (row.isAcknowledged == null || row.isAcknowledged == false)){
-                         iError = true;
-                         row.state = "Error";
-                        } else { row.state = "None";}
-                        if(row.documentType ="Signature Required"  && row.isSigned  && row.isSigned == false){
-                            iError = true;
-                            oView.byId("ccAttachBtn").removeStyleClass("attachmentWithoutBorderBP");
-                            oView.byId("ccAttachBtn").addStyleClass("attachmentWithBorderBP");
-                        }else{
-                            oView.byId("ccAttachBtn").removeStyleClass("attachmentWithBorderBP");
-                            oView.byId("ccAttachBtn").addStyleClass("attachmentWithoutBorderBP");
-                        }
-                    });
+                        if(row.documentType == "Acknowledge Only"){
+                            if(row.isAcknowledged == null || row.isAcknowledged == false){
+                             iError = true;
+                             row.state = "Error";
+                            } else { row.state = "None";}
+                        }else if(row.documentType == "Signature Required"){  
+                                if(row.isSigned == false){
+                                iError = true;
+                                oView.byId("ccAttachBtn").removeStyleClass("attachmentWithoutBorderBP");
+                                oView.byId("ccAttachBtn").addStyleClass("attachmentWithBorderBP");
+                            }else{
+                                oView.byId("ccAttachBtn").removeStyleClass("attachmentWithBorderBP");
+                                oView.byId("ccAttachBtn").addStyleClass("attachmentWithoutBorderBP");
+                            }
+                            }
+                        });
+                        oView.getModel("oDataModel").refresh();
                 }
 
                 oView.getModel("oErrorModel").refresh();
@@ -7580,7 +7624,7 @@ var aError = false;
             fnFileUploadBtnCC: function(oEvt){
                 var docTypeArray =[];
                 $.each(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments, function(i,r){
-                    if(r.documentType="Signature Required"){
+                    if(r.documentType == "Signature Required"){
                     docTypeArray.push({"docName" : r.documentName});
                     }
                 });
@@ -8296,7 +8340,7 @@ var aError = false;
 
 
 
-
+var that = this;
                     
                     // if (this.getView().byId(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).getValidated()) {
                     if (this.getView().byId(this.getView().byId("surveyWizard").getCurrentStep()).getValidated()) {
@@ -8304,8 +8348,19 @@ var aError = false;
 
                         oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
                         oView.getModel("oEnableMdl").refresh();
+                        if(oView.getModel("oUserModel").getData().isNew === true && currentStepId == "prodAndServInfo"){
+                            var aDeferred= $.Deferred();
+                            this.onActivateComCompliance(aDeferred);
+                        } else if (oView.getModel("oUserModel").getData().isNew === false && currentStepId == "shippingInfo"){
+                            var aDeferred= $.Deferred();
+                            this.onActivateComCompliance(aDeferred);
+                        }
                         this.onCompleteCompanyInfo();
+                        if(aDeferred){
+                            aDeferred.done(function(){that._fnNextStepSave();});
+                        } else{
                         this._fnNextStepSave();
+                        }
                         this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getCurrentStep()).nextStep();
                         // this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
                         //}
@@ -10548,7 +10603,7 @@ var aError = false;
                 oView.getModel("companyInfoModel").setProperty(selPath, false);
                 oView.getModel("companyInfoModel").refresh(true);
             },
-            onActivateComCompliance: function () {
+            onActivateComCompliance: function (aDeferred) {
                
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/ccpo/localDocuments/search";
                 var ccPayload = {
@@ -10571,6 +10626,14 @@ var aError = false;
                         if(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments == null || oView.getModel("oDataModel").getData().comComplianceDto.localDocuments == undefined || oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.length == 0){
                         oView.getModel("oDataModel").setProperty("/comComplianceDto/localDocuments", oEvent.getSource().getData());
                         oView.getModel("oDataModel").refresh();
+                        $.each(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments,function (index, row){
+                            if (row.documentType == "Acknowledge Only") {
+                                row.isAcknowledged = null;
+                            } else if (row.documentType == "Signature Required") {
+                                row.isSigned = false;
+                            }
+                        });
+                        aDeferred.resolve();
                         }
                         else if(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.length >0){
                             var successData = oEvent.getSource().getData();
@@ -10590,15 +10653,17 @@ var aError = false;
                             }
                           
                             });
-                            oView.getModel("oDataModel").refresh();
+                            aDeferred.resolve();
                         }
+                       
+                      
                     } else { 
                         var sErMsg = oEvent.getParameter("errorobject").responseText;
                         MessageBox.show(sErMsg, {
                             icon: MessageBox.Icon.ERROR,
                             title: oi18n.getText("error")
                         });
-                       
+                        aDeferred.resolve();
                     }
                 });
             
