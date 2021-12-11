@@ -104,6 +104,7 @@ sap.ui.define([
                             oView.getModel("oConfigMdl").getData().defaultEnable = false;
                         }
                      
+                        oView.getModel("oConfigMdl").getData().isClaimed = true;
                         oView.getModel("oConfigMdl").getData().validationMessage = oEvent.getSource().getData().validationMessage;
                         oView.getModel("oConfigMdl").refresh();
                     }
@@ -212,6 +213,58 @@ sap.ui.define([
             },
              fnDoneSubmit: function () {
                 window.parent.location.reload();
+            },
+            fnResendEmail: function () {
+               
+                    var vConfirmTxt = oi18n.getProperty("BPCConfirmSubmit");
+                    MessageBox.confirm(vConfirmTxt, {
+                        icon: MessageBox.Icon.Confirmation,
+                        title: "Confirmation",
+                        actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                        emphasizedAction: MessageBox.Action.YES,
+                        onClose: function (oAction) {
+                            if (oAction == "YES") {
+                                oBusyDilog.open();
+                                var oModel = new JSONModel();
+                                var sUrl = "/nsBuyerRegistration/plcm_portal_services/email/resendOnboardingMail/"+oView.getModel("JMEulaComments").getData().caseId;
+
+                                oModel.loadData(sUrl, {
+                                    "Content-Type": "application/json"
+                                });
+                                oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                                    if (oEvent.getParameter("success")) {
+                                        var temp = {};
+                                        var vSccuessTxt = oi18n.getProperty("EmailResentSuccess");
+                                        temp.Message = vSccuessTxt;
+                                        var oJosnMessage = new sap.ui.model.json.JSONModel();
+                                        oJosnMessage.setData(temp);
+                                        oView.setModel(oJosnMessage, "JMMessageData");
+                                        if (!that.oBPSuccess) {
+                                            that.oBPSuccess = sap.ui.xmlfragment(
+                                                "ns.BuyerRegistration.fragments.CreateSuccessGBS", that);
+                                            oView.addDependent(that.oBPSuccess);
+                                        }
+                                        oBusyDilog.close();
+                                        that.oBPSuccess.open();
+
+                                    } else {
+                                        oBusyDilog.close();
+                                        var sErMsg = oEvent.getParameter("errorobject").responseText;
+                                        MessageBox.show(sErMsg, {
+                                            icon: MessageBox.Icon.ERROR,
+                                            title: "Error"
+                                        });
+
+
+                                    }
+                                });
+
+                            }
+                        }
+
+                    });
+               
+
             },
 
         });
