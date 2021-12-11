@@ -45,8 +45,8 @@ sap.ui.define([
                 };
                 oJsonFilter.setData(temp);
                 oView.setModel(oJsonFilter, "JMFilter1");
-                this.fnLoadSiteName();
-                this.fnLoadSiteName1();
+                // this.fnLoadSiteName();
+                // this.fnLoadSiteName1();
                 this.fnLoadCompanyCode();
                 this.fnLoadCompanyCode1();
                 this.fnLoadDocName();
@@ -55,33 +55,33 @@ sap.ui.define([
 
             },
 
-            fnLoadSiteName: function() {
-                var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_portal_services/ccpo/localDocuments/siteNames";
-                oModel.loadData(sUrl, {
-                    "Content-Type": "application/json"
-                });
-                oModel.attachRequestCompleted(function (oEvent) {
-                    if (oEvent.getParameter("success")) {
-                        oView.getModel("oBPLookUpMdl").setProperty("/SiteName", oEvent.getSource().getData());
-                        oView.getModel("oBPLookUpMdl").refresh();
-                    }
-                });
-            },
+            // fnLoadSiteName: function() {
+            //     var oModel = new JSONModel();
+            //     var sUrl = "/InboxDetail/plcm_portal_services/ccpo/localDocuments/siteNames";
+            //     oModel.loadData(sUrl, {
+            //         "Content-Type": "application/json"
+            //     });
+            //     oModel.attachRequestCompleted(function (oEvent) {
+            //         if (oEvent.getParameter("success")) {
+            //             oView.getModel("oBPLookUpMdl").setProperty("/SiteName", oEvent.getSource().getData());
+            //             oView.getModel("oBPLookUpMdl").refresh();
+            //         }
+            //     });
+            // },
 
-            fnLoadSiteName1: function() {
-                var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_portal_services/ccpo/localDocuments/siteNames";
-                oModel.loadData(sUrl, {
-                    "Content-Type": "application/json"
-                });
-                oModel.attachRequestCompleted(function (oEvent) {
-                    if (oEvent.getParameter("success")) {
-                        oView.getModel("oBPLookUpMdl").setProperty("/SiteName1", oEvent.getSource().getData());
-                        oView.getModel("oBPLookUpMdl").refresh();
-                    }
-                });
-            },
+            // fnLoadSiteName1: function() {
+            //     var oModel = new JSONModel();
+            //     var sUrl = "/InboxDetail/plcm_portal_services/ccpo/localDocuments/siteNames";
+            //     oModel.loadData(sUrl, {
+            //         "Content-Type": "application/json"
+            //     });
+            //     oModel.attachRequestCompleted(function (oEvent) {
+            //         if (oEvent.getParameter("success")) {
+            //             oView.getModel("oBPLookUpMdl").setProperty("/SiteName1", oEvent.getSource().getData());
+            //             oView.getModel("oBPLookUpMdl").refresh();
+            //         }
+            //     });
+            // },
 
 
             fnLoadCompanyCode: function () {
@@ -303,7 +303,7 @@ sap.ui.define([
                     var oPayload = {
                         "companyCode": oView.getModel("JMFilter").getData().companyCode,
                         "purchasingOrganisation": oView.getModel("JMFilter").getData().purchasingOrganisation,
-                        "siteName":oView.getModel("JMFilter").getData().siteName,
+                        // "siteName":oView.getModel("JMFilter").getData().siteName,
                         "documentName":oView.getModel("JMFilter").getData().DocName
 
                     }
@@ -361,13 +361,16 @@ sap.ui.define([
             },
             fnSubmitCCPO: function () {
                 var vError = false;
-                if (oView.getModel("JMFilter1").getData().siteName == "") {
-                    vError = true
-                }
+                // if (oView.getModel("JMFilter1").getData().siteName == "") {
+                //     vError = true
+                // }
                 if (oView.getModel("JMFilter1").getData().companyCode == "") {
                     vError = true
                 }
                 if (oView.getModel("JMFilter1").getData().purchasingOrganisation == "") {
+                    vError = true
+                }
+                if (oView.getModel("JMFilter1").getData().DocType == "") {
                     vError = true
                 }
                 if (oView.getModel("JMFilter1").getData().DocName == "") {
@@ -376,6 +379,13 @@ sap.ui.define([
                 if (oView.getModel("JMFilter1").getData().DocLink == "") {
                     vError = true
                 }
+                if(oView.getModel("JMFilter1").getData().DocLink){
+                    var link = oView.getModel("JMFilter1").getData().DocLink;
+                    if(!(link.startsWith('https'))){
+                        vError = true
+                    }
+                }
+                
                 if (oView.getModel("JMFilter1").getData().AffirmationStatement == "") {
                     vError = true
                 }
@@ -404,7 +414,8 @@ sap.ui.define([
                                     "purchasingOrganisation": oView.getModel("JMFilter1").getData().companyCode,
                                     "companyCodeDescription": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode1, oView.getModel("JMFilter1").getData().companyCode, "CompanyCode"),
                                     "purchasingOrganisationDescription": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurOrg1, oView.getModel("JMFilter1").getData().purchasingOrganisation, "PurchOrg"),
-                                    "siteName": oView.getModel("JMFilter1").getData().siteName,
+                                    // "siteName": oView.getModel("JMFilter1").getData().siteName,
+                                    "documentType": oView.getModel("JMFilter1").getData().DocType,
                                     "documentName": oView.getModel("JMFilter1").getData().DocName,
                                     "documentLink": oView.getModel("JMFilter1").getData().DocLink,
                                     "affirmationStatement": oView.getModel("JMFilter1").getData().AffirmationStatement,
@@ -542,16 +553,29 @@ sap.ui.define([
 
                 }
             },
-            onChangeDocLink: function(oEvent) {
+            onChangeDocName: function(oEvent) {
                 if(oEvent.getSource().getValue().length > 255) {
-                    oView.getModel("JMFilter").getData().docLinke ="Error";
-                    oView.getModel("JMFilter").getData().docLinkm =oi18n.getProperty("BPCMaxLengthExceeds");
+                    oView.getModel("JMFilter").getData().docNamee ="Error";
+                    oView.getModel("JMFilter").getData().docNamem =oi18n.getProperty("BPCMaxLengthExceeds");
                     oView.getModel("JMFilter").refresh();
                 } else{
+                    oView.getModel("JMFilter").getData().docNamee ="None";
+                    oView.getModel("JMFilter").getData().docNamem ="";
+                    oView.getModel("JMFilter").refresh();
+                }
+            },
+            onChangeDocLink: function(oEvent) {
+                var link = oEvent.getSource().getValue();
+                if(link.startsWith('https')){
                     oView.getModel("JMFilter").getData().docLinke ="None";
                     oView.getModel("JMFilter").getData().docLinkm ="";
                     oView.getModel("JMFilter").refresh();
+                } else {
+                    oView.getModel("JMFilter").getData().docLinke ="Error";
+                    oView.getModel("JMFilter").getData().docLinkm =oi18n.getProperty("DocLinkErrorMsg");
+                    oView.getModel("JMFilter").refresh();
                 }
-            }
+            },
+            
         });
     });

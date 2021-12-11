@@ -88,23 +88,24 @@
 					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"/>
 				</RadioButtonGroup>
 
-                <VBox alignContent="Start" visible="{=!${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters} === true}" class="fontStyle sapUiTinyMarginTop">
+                <VBox alignContent="Start" visible="{=${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters} === false}" class="fontStyle sapUiTinyMarginTop">
                     
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>EnterCorporateHeadquarterDetail}:${oi18n_En>EnterCorporateHeadquarterDetail} +'/&#160;' + ${i18n>EnterCorporateHeadquarterDetail}}" class="fontStyle fontStyleBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-					
+					<HBox class="sapUiTinyMarginBegin">
+                        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>LegalBusinessName}:${oi18n_En>LegalBusinessName} +'&#10;' +${i18n>LegalBusinessName}}" class="fontStyle "></Label>
+						<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>LegalBusinessNameInfo}:${oi18n_En>LegalBusinessNameInfo} +'&#10;' +${i18n>LegalBusinessNameInfo}}" class="fontStyle "></Label>
+                    </HBox>
                     <l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M4 S12" class="gridSpacing fontStyle">
                         <VBox class="fontStyle sapUiSizeCompact">
-                            <Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>LegalBusinessName}:${oi18n_En>LegalBusinessName} +'&#10;' +${i18n>LegalBusinessName}}" ></Label>
-                            <Input maxLength="35" value="{oDataModel>/bpInfoDto/corpHeadquartersLegalBusinessName1}"  valueState="{oErrorModel>/dunsRegistrationNumE}" valueStateText="{oErrorModel>/dunsRegistrationNumM}" enabled="{oEnableMdl>/LegalBusinessName1Enb}" class="inputStyle"></Input>
+                            <Input maxLength="35" value="{oDataModel>/bpInfoDto/corpHeadquartersLegalBusinessName1}"   enabled="{oEnableMdl>/LegalBusinessName1Enb}" class="inputStyle"></Input>
                         </VBox>
                         <VBox class="fontStyle sapUiSizeCompact">
-                            <Label text=""/>
-                            <Input value="{oDataModel>/bpInfoDto/corpHeadquartersLegalBusinessName2}" enabled="{oEnableMdl>/LegalBusinessName2Enb}" class="inputStyle"></Input>
+                            <Input maxLength="35" value="{oDataModel>/bpInfoDto/corpHeadquartersLegalBusinessName2}" enabled="{oEnableMdl>/LegalBusinessName2Enb}" class="inputStyle"></Input>
                         </VBox>
                     </l:Grid>
                     <VBox class=" fontStyle sapUiSizeCompact sapUiTinyMarginBottom"> 
                         <Label wrapping="true" labelFor="isDunsRegistered" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>IsRegisteredWithDuns}:${oi18n_En>IsRegisteredWithDuns} +'/&#160;' + ${i18n>IsRegisteredWithDuns}}" class="fontStyle sapUiTinyMarginBegin"/>
-                        <RadioButtonGroup id="isDunsRegistered" enabled="{oEnableMdl>/isRegWithDunsEnb}" columns="2" selectedIndex="{=${oDataModel>/bpInfoDto/isCorpHeadquartersDunsRegistered} === true? 0 :(${oDataModel>/bpInfoDto/isCorpHeadquartersDunsRegistered}=== false ?1: -1)}" class="inputStyle" select="fnClearValueState">
+                        <RadioButtonGroup id="isDunsRegistered" enabled="{oEnableMdl>/isRegWithDunsEnb}" columns="2" selectedIndex="{=${oDataModel>/bpInfoDto/isCorpHeadquartersDunsRegistered} === true? 0 :(${oDataModel>/bpInfoDto/isCorpHeadquartersDunsRegistered}=== false ?1: -1)}" valueState="{oErrorModel>/isCorpHeadquartersDunsRegisteredE}" class="inputStyle" select="fnClearValueState">
                             <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/bpInfoDto/isCorpHeadquartersDunsRegistered}" />
                             <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"/>
                         </RadioButtonGroup>       
@@ -112,60 +113,72 @@
                     <l:VerticalLayout visible="{=${oDataModel>/bpInfoDto/isCorpHeadquartersDunsRegistered} === false}" width="100%">
 							<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
                                 <VBox >
-									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey} +'&#10;' + ${i18n>countrykey}}" wrapping="true"  class="fontStyle "></Label>
-                                    <ComboBox width="100%" items="{oLookUpModel>/SupplierCountry}"  enabled="{oEnableMdl>/corpHeaderQuartersCountryEnb}" filterSecondaryValues="true" selectionChange="fnChangeSupplierCountry"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/postal/0/country}" selectedKey="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/postal/0/countryCode}">
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey} +'&#10;' + ${i18n>countrykey}}" wrapping="true"  class="fontStyle " required="true"></Label>
+                                    <ComboBox width="100%" items="{oLookUpModel>/CorpHeadquarterCountry}"  enabled="{oEnableMdl>/corpHeaderQuartersCountryEnb}" filterSecondaryValues="true" selectionChange="fnChangeCorpHeadquartersCountry" showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/country}" valueState="{oErrorModel>/corpHeadCountryE}" valueStateText="{oErrorModel>/corpHeadCountryM}" selectedKey="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/countryCode}">
                                         <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
                                     </ComboBox>
                                 </VBox>
                                 <VBox>
-                                    <Label text="{i18n>addressL1}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
-                                    <Label text="{oi18n_En>addressL1}&#10;{i18n>addressL1}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/postal/0/address1}" enabled="{oEnableMdl>/corpHeaderQuartersAddress1}"  class="inputStyle" liveChange="fnLiveInputValueChange"></Input> 
+                                    <Label text="{i18n>addressL1}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true"></Label>
+                                    <Label text="{oi18n_En>addressL1}&#10;{i18n>addressL1}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address1}" valueState="{oErrorModel>/corpHeadAddressL1E}" valueStateText="{oErrorModel>/corpHeadAddressL1M}" enabled="{oEnableMdl>/corpHeaderQuartersAddress1}"  class="inputStyle" liveChange="fnLiveInputValueChange" maxLength="61"></Input> 
                                 </VBox>
                                 <VBox>
                                     <Label text="{i18n>addressL2}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>addressL2}&#10;{i18n>addressL2}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/postal/0/address2}" enabled="{oEnableMdl>/corpHeaderQuartersAddress2}"  class="inputStyle" liveChange="fnLiveInputValueChange"></Input> 
+									<Input value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address2}" enabled="{oEnableMdl>/corpHeaderQuartersAddress2}"  class="inputStyle" liveChange="fnLiveInputValueChange" maxLength="41"></Input> 
                                 </VBox>
                                 <VBox>
                                     <Label text="{i18n>addressL3}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>addressL3}&#10;{i18n>addressL3}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/postal/0/address3}" enabled="{oEnableMdl>/corpHeaderQuartersAddress3}"  class="inputStyle" liveChange="fnLiveInputValueChange"></Input> 
+									<Input value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address3}" enabled="{oEnableMdl>/corpHeaderQuartersAddress3}"  class="inputStyle" liveChange="fnLiveInputValueChange" maxLength="41"></Input> 
                                 </VBox>
                                 <VBox>
                                     <Label text="{i18n>addressL4}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>addressL4}&#10;{i18n>addressL4}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/postal/0/address4}" enabled="{oEnableMdl>/corpHeaderQuartersAddress4}"  class="inputStyle" liveChange="fnLiveInputValueChange"></Input> 
+									<Input value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address4}" enabled="{oEnableMdl>/corpHeaderQuartersAddress4}"  class="inputStyle" liveChange="fnLiveInputValueChange" maxLength="41"></Input> 
                                 </VBox>
                                 <VBox>
                                     <Label text="{i18n>addressL5}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>addressL5}&#10;{i18n>addressL5}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-									<Input value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/postal/0/address5}" enabled="{oEnableMdl>/corpHeaderQuartersAddress5}"  class="inputStyle" liveChange="fnLiveInputValueChange"></Input> 
+									<Input value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address5}" enabled="{oEnableMdl>/corpHeaderQuartersAddress5}"  class="inputStyle" liveChange="fnLiveInputValueChange" maxLength="41"></Input> 
                                 </VBox>
                                 <VBox >
-									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>region}:${oi18n_En>region} +'&#10;' + ${i18n>region}}" wrapping="true" class="fontStyle "></Label>
-                                    <ComboBox width="100%" items="{oLookUpModel>/SupplierRegion}"  enabled="{oEnableMdl>/corpHeaderQuartersRegionEnb}" filterSecondaryValues="true" showSecondaryValues="true" selectionChange="fnChangeSupplierRegion"  placeholder="{i18n>select}" class="inputStyle" value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/postal/0/region}" selectedKey="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/postal/0/regionCode}">
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>region}:${oi18n_En>region} +'&#10;' + ${i18n>region}}" wrapping="true" class="fontStyle " required="true"></Label>
+                                    <ComboBox width="100%" items="{oLookUpModel>/CorpHeadquarterRegion}"  enabled="{oEnableMdl>/corpHeaderQuartersRegionEnb}" filterSecondaryValues="true" showSecondaryValues="true" selectionChange="fnChangeSupplierRegion"  placeholder="{i18n>select}" class="inputStyle" value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/region}" valueState="{oErrorModel>/corpHeadRegionE}" valueStateText="{oErrorModel>/corpHeadRegionM}" selectedKey="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/regionCode}">
                                         <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
                                     </ComboBox>
                                     <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selectNAText}:${oi18n_En>selectNAText}+ '&#10;' +${i18n>selectNAText}}" textAlign="End" class="disabledFontClr"/>
                                 </VBox>
                                 <VBox>
                                	    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dist}:${oi18n_En>dist} +'&#10;' + ${i18n>dist}}" wrapping="true" class="fontStyle "></Label>
-                                   <Input maxLength="41" value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/postal/0/district}"  liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/corpHeaderQuartersDistrictEnb}" class="inputStyle" />
+                                   <Input maxLength="41" value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/district}"  liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/corpHeaderQuartersDistrictEnb}" class="inputStyle" />
                                 </VBox> 
                                 <VBox >
-									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>city}:${oi18n_En>city} +'&#10;' + ${i18n>city}}" wrapping="true"  class="fontStyle "></Label>
-                                     <Input maxLength="41" value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/postal/0/city}"  enabled="{oEnableMdl>/corpHeaderQuartersCityEnb}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>city}:${oi18n_En>city} +'&#10;' + ${i18n>city}}" wrapping="true"  class="fontStyle " required="true"></Label>
+                                     <Input maxLength="41" value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/city}" valueState="{oErrorModel>/corpHeadCityE}" valueStateText="{oErrorModel>/corpHeadCityM}" enabled="{oEnableMdl>/corpHeaderQuartersCityEnb}" liveChange="fnLiveInputValueChange" class="inputStyle" />
                                <layoutData>
                                <l:GridData linebreak = "true"></l:GridData></layoutData>
                                 </VBox>
                                 <VBox>
-                               	    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>PostalCode}:${oi18n_En>PostalCode} +'&#10;' + ${i18n>PostalCode}}" wrapping="true" class="fontStyle "></Label>
-                                    <Input maxLength="{oLookUpModel>/PostalCodeValidation/postalCodeLength}" value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/postal/0/postalCode}"  enabled="{oEnableMdl>/corpHeaderQuartersPostalCodeEnb}" change="fnVerifyPostalCodeCorpHeadquarters" class="inputStyle" />
+                               	    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>PostalCode}:${oi18n_En>PostalCode} +'&#10;' + ${i18n>PostalCode}}" wrapping="true" class="fontStyle " required="true"></Label>
+                                    <Input maxLength="{oLookUpModel>/PostalCodeValidationCorpHeadquarters/postalCodeLength}" value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/postalCode}" valueState="{oErrorModel>/corpHeadPostalCodeE}" valueStateText="{oErrorModel>/corpHeadPostalCodeM}" enabled="{oEnableMdl>/corpHeaderQuartersPostalCodeEnb}" change="fnVerifyPostalCodeCorpHeadquarters" class="inputStyle" />
                                 </VBox>  
                             </l:Grid>
                     </l:VerticalLayout>
+                    <l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M4 S12" visible="{=${oDataModel>/bpInfoDto/isCorpHeadquartersDunsRegistered}=== true}" class="gridSpacing fontStyle">
+                        <VBox class="fontStyle sapUiSizeCompact">
+                            <Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsRegNum}:${oi18n_En>dunsRegNum} +'&#10;' +${i18n>dunsRegNum}}" ></Label>
+                            <Input maxLength="9" value="{oDataModel>/bpInfoDto/corpHeadquartersDunsRegNum}"  valueState="{oErrorModel>/corpHeaddunsRegistrationNumE}" valueStateText="{oErrorModel>/corpHeaddunsRegistrationNumM}" enabled="{oEnableMdl>/CorpHeadDunsRegNumEnb}" liveChange="fnValueChange" class="inputStyle"></Input>
+                        </VBox>
+                        <VBox class="fontStyle sapUiSizeCompact">
+                            <Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dandBLegalName}:${oi18n_En>dandBLegalName} +'&#10;' +${i18n>dandBLegalName}}"/>
+                            <Input value="{oDataModel>/bpInfoDto/corpHeadquartersDnbLegalBusinessName}" enabled="{oEnableMdl>/corpHeadDnbLegalBusinessNameEnb}" class="inputStyle" liveChange="fnValueChange"></Input>
+                        </VBox>
+                    </l:Grid>
                 </VBox>
+
+                
 				<l:Grid containerQuery="true" class="gridSpacing fontStyle" width="90%" defaultSpan="XL3 L3 M4 S12">
 					<VBox class="fontStyle sapUiSizeCompact">
 						<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>numOfEmployees}:${oi18n_En>numOfEmployees} +'&#10;' +${i18n>numOfEmployees}}" wrapping="true" required="true" ></Label>
@@ -441,7 +454,7 @@
                         />
                     </u:tooltip>
                     </u:FileUploader> -->
-                    <Button id="bpAttachBtn" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" icon="sap-icon://add" press="fnFileUploadBtn" class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+                    <Button id="bpAttachBtn" enabled="{oEnableMdl>/bpInfoAttachmentEnb}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" icon="sap-icon://add" press="fnFileUploadBtn" class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 				<g:GridList width="auto" items="{oAttachmentList>/0/bPDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">
 					<g:customLayout>
 						<!-- <grid:GridBasicLayout gridTemplateColumns="repeat(auto-fit, minmax(16rem, 1fr))" gridAutoFlow="Column" gridGap="0.5rem" /> -->

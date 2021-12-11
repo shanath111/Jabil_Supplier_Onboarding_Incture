@@ -180,6 +180,7 @@ sap.ui.define([
                                         existingData.bpInfoDto.pointOfContact.lastName =oEvent.getSource().oData.bpInfoDto.pointOfContact.lastName;
                                         existingData.bpInfoDto.pointOfContact.email = oEvent.getSource().oData.bpInfoDto.pointOfContact.email;
                                         existingData.bpInfoDto.pointOfContact.jobTitle = oEvent.getSource().oData.bpInfoDto.pointOfContact.jobTitle;
+                                        
                                         existingData.dateUpdated = oEvent.getSource().oData.dateUpdated;
                                         existingData.surveyInfoDto.isAuthority = null;
                                         existingData.surveyInfoDto.isJabilMainContact = null;
@@ -606,6 +607,37 @@ sap.ui.define([
 
 
                                         }
+                                    }
+
+                                    if (oEvent.getSource().oData.bpInfoDto.corpHeaderQuartersAddress && oEvent.getSource().oData.bpInfoDto.corpHeaderQuartersAddress.length >0) {
+                                        var countryCode = oEvent.getSource().oData.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].countryCode;
+                                        var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + countryCode;
+                                        $.ajax({
+                                            url: loadTaxTypeUrl,
+                                            type: 'GET',
+                                            success: function (data) {
+                                                var postalCodeLength = parseInt(data[0].postalCodeLength);
+                                                var postalCodeRule = parseInt(data[0].postalCodeRule)
+                                                if (postalCodeLength == 0) {
+                                                    var PostalCodeValidation = {
+                                                        "postalCodeLength": 10,
+                                                        "postalCodeRule": postalCodeRule
+                                                    };
+                                                } else {
+                                                    var PostalCodeValidation = {
+                                                        "postalCodeLength": postalCodeLength,
+                                                        "postalCodeRule": postalCodeRule
+                                                    };
+                                                }
+
+                                                oView.getModel("oLookUpModel").setProperty("/PostalCodeValidationCorpHeadquarters", PostalCodeValidation);
+                                                oView.getModel("oLookUpModel").refresh();
+                                            },
+                                            async: false,
+                                            error: function (data) {
+
+                                            }
+                                        });
                                     }
                                     //commented validation logic for bank fields based on country- Siva, Date:05/10/2021
                                     // if (oEvent.getSource().oData.bankDto.bankInfoDto[0].bankCountry && oEvent.getSource().oData.bankDto.bankInfoDto[0].bankCountry != "") {
@@ -1358,6 +1390,7 @@ sap.ui.define([
                 this._fnLoadCurrency();
                 this._fnLoadRegion();
                 this._fnLoadCountryContactCode();
+                this._fnLoadCorpHeadquartersCountry();
 
             },
 
@@ -1391,6 +1424,8 @@ sap.ui.define([
                     }
                 });
             },
+
+
             _fnLoadTax: function () {
                 var oModel = new JSONModel();
                 var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/tax-types";
@@ -2434,12 +2469,124 @@ var aError = false;
                         if (oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === null) {
                             oView.getModel("oErrorModel").getData().isSiteCorporateHeadquatersE = "Error";
                             iError = true;
+                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === false){
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === null) {
+                                oView.getModel("oErrorModel").getData().isCorpHeadquartersDunsRegisteredE = "Error";
+                                iError = true;
+                            } else if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === false){
+                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country)) {
+                                    oView.getModel("oErrorModel").getData().corpHeadCountryE = "Error";
+                                    oView.getModel("oErrorModel").getData().corpHeadCountryM = oi18n.getText("mandatoryCountry");
+                                    iError = true;
+                                } 
+                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1) {
+                                    oView.getModel("oErrorModel").getData().corpHeadAddressL1E = "Error";
+                                    oView.getModel("oErrorModel").getData().corpHeadAddressL1M = oi18n.getText("mandatoryAddr1");
+                                    iError = true;
+                                } 
+                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region) {
+                                    oView.getModel("oErrorModel").getData().corpHeadRegionE = "Error";
+                                    oView.getModel("oErrorModel").getData().corpHeadRegionM = oi18n.getText("mandatoryState");
+                                    iError = true;
+                                } 
+                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city) {
+                                    oView.getModel("oErrorModel").getData().corpHeadCityE = "Error";
+                                    oView.getModel("oErrorModel").getData().corpHeadCityM = oi18n.getText("mandatoryCity");
+                                    iError = true;
+                                } 
+                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {
+                                    oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                    oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("mandatoryPostalCode");
+                                    iError = true;
+                                } 
+
+                                if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1.length > 60) {
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city.length > 40) {
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {
+                                    var postalCode = oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode;
+                                    var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationCorpHeadquarters;
+                                    var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
+                                    var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
+                                    switch (postalCodeRule) {
+                                        case 1:
+                                            if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule1");
+                                                iError = true;
+                                            }
+                                            break;
+                                        case 2:
+                                            if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule2");
+                                                iError = true;
+                                            }
+                                            break;
+                                        case 3:
+                                            if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
+                                                iError = true;
+                                            }
+                                            break;
+                                        case 4:
+                                            if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
+                                                iError = true;
+                                            }
+                                            break;
+                                        case 5:
+                                            if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule5");
+                                                iError = true;
+                                            }
+                                            break;
+                                        case 6:
+                                            if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule6");
+                                                iError = true;
+                                            }
+                                            break;
+                                        case 7:
+                                            if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "characters in length";
+                                                iError = true;
+                                            }
+                                            break;
+                                        case 8:
+                                            if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "digits in length";
+                                                iError = true;
+                                            }
+                                    }
+                                }
+                            }
+                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters ===true) {
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
+                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
+                                iError = true;
+                            } else {
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "None";
+                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
+    
+                            }
                         }
                         if (!oView.getModel("oDataModel").getData().bpInfoDto.noOfEmployees) {
                             oView.getModel("oErrorModel").getData().numOfEmpE = "Error";
                             oView.getModel("oErrorModel").getData().numOfEmpM = oi18n.getText("mandatoryNumber");
                             iError = true;
-                        } if (!oView.getModel("oDataModel").getData().bpInfoDto.year) {
+                        } 
+                        if (!oView.getModel("oDataModel").getData().bpInfoDto.year) {
                             oView.getModel("oErrorModel").getData().yearE = "Error";
                             oView.getModel("oErrorModel").getData().yearM = oi18n.getText("mandatoryYear");
 
@@ -2664,7 +2811,8 @@ var aError = false;
                     oView.byId("businessPartnerInfo").setValidated(true);
                 }
                 if(!iError){
-                if(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode == "US"){
+
+                if(oView.getModel("oUserModel").getData().comCodeDesc == "US" && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == "US"){
                     this.getView().getModel("oAttachmentList").refresh();
                   var findDomesticDoc= this.getView().getModel("oAttachmentList").getProperty("/0/" + "bPDArray").findIndex(function(doc){
                        return doc.docFormType == "W9";
@@ -2681,7 +2829,7 @@ var aError = false;
                         oView.byId("bpAttachBtn").removeStyleClass("attachmentWithBorderBP");
                             oView.byId("bpAttachBtn").addStyleClass("attachmentWithoutBorderBP");
                     }
-                } else {
+                } else if(oView.getModel("oUserModel").getData().comCodeDesc== "US" && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country !== "US"){
                     this.getView().getModel("oAttachmentList").refresh();
                     var findDomesticDoc= this.getView().getModel("oAttachmentList").getProperty("/0/" + "bPDArray").findIndex(function(doc){
                         return doc.docFormType == "W8";
@@ -2698,8 +2846,12 @@ var aError = false;
                         oView.byId("bpAttachBtn").removeStyleClass("attachmentWithBorderBP");
                         oView.byId("bpAttachBtn").addStyleClass("attachmentWithoutBorderBP");
                      }
+                } else{
+                    oView.byId("bpAttachBtn").removeStyleClass("attachmentWithBorderBP");
+                    oView.byId("bpAttachBtn").addStyleClass("attachmentWithoutBorderBP");
                 }
-            }
+
+               }
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
                     oView.byId("businessPartnerInfo").setValidated(false);
@@ -4530,6 +4682,66 @@ var aError = false;
                         }
                     }
                 }
+                // if(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments && oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.length >0){
+                //     oView.getModel("oAttachmentList").refresh();
+                //     $.each(oView.getModel("oAttachmentList").getProperty("/0/" + "compComplDArray"), function(index, row){
+                //     var findLocDoc= oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.some(function(doc){
+                //          return doc.documentName == row.docFormType;
+                //       });
+                //       if(!findLocDoc){
+                //           iError = true;
+                //       } else{
+                //               oView.getModel("oDataModel").refresh();
+                //       }
+                //     });
+                // }
+                    if (oView.getModel("oDataModel").getData().comComplianceDto.localDocuments && oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.length > 0) {
+                        $.each(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments, function (index, row) {
+                            if(row.documentType == "Signature Required"){
+                                var findLocDocSigned= oView.getModel("oAttachmentList").getProperty("/0/" + "compComplDArray").some(function(doc){
+                                    return row.documentName == doc.docFormType;
+                                 });
+                                 if(!findLocDocSigned){
+                                    iError = true;
+                                    row.isSigned = false;
+                                    oView.getModel("oDataModel").refresh();
+                                } else{
+                                    row.isSigned = true;
+                                        oView.getModel("oDataModel").refresh();
+                                }
+                            }
+                            // $.each(oView.getModel("oAttachmentList").getProperty("/0/" + "compComplDArray"), function (index1, row1) {
+                            //     if(row.documentType == "Signature Required"){
+                            //     if(row.documentName == row1.docFormType){
+                            //         row.isSigned =true;
+                            //     } else{
+                            //         row.isSigned =false;
+                            //     }
+                            //     }
+                            // });
+                        });
+                    }
+                
+                if(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments && oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.length >0){
+                    $.each(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments, function(index, row){
+                        if(row.documentType == "Acknowledge Only"){
+                            if(row.isAcknowledged == null || row.isAcknowledged == false){
+                             iError = true;
+                             row.state = "Error";
+                            } else { row.state = "None";}
+                        }else if(row.documentType == "Signature Required"){  
+                                if(row.isSigned == false){
+                                iError = true;
+                                oView.byId("ccAttachBtn").removeStyleClass("attachmentWithoutBorderBP");
+                                oView.byId("ccAttachBtn").addStyleClass("attachmentWithBorderBP");
+                            }else{
+                                oView.byId("ccAttachBtn").removeStyleClass("attachmentWithBorderBP");
+                                oView.byId("ccAttachBtn").addStyleClass("attachmentWithoutBorderBP");
+                            }
+                            }
+                        });
+                        oView.getModel("oDataModel").refresh();
+                }
 
                 oView.getModel("oErrorModel").refresh();
                 if (iError) {
@@ -5075,6 +5287,88 @@ var aError = false;
                             oView.getModel("oErrorModel").getData().dunsRegistrationNumE = "None";
                             oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
                             // iError = false;
+                        }
+                    } else if (oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber === false) {
+                        if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === false){
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1.length > 60) {
+                                iError = true;
+                            }
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city.length > 40) {
+                                iError = true;
+                            }
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {    
+                                var postalCode = oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode;
+                                var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationCorpHeadquarters;
+                                var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
+                                var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
+                                switch (postalCodeRule) {
+                                    case 1:
+                                        if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule1");
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 2:
+                                        if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule2");
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 3:
+                                        if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 4:
+                                        if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 5:
+                                        if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule5");
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 6:
+                                        if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule6");
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 7:
+                                        if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "characters in length";
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 8:
+                                        if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "digits in length";
+                                            iError = true;
+                                        }
+                                }
+                            }
+                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === true){
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
+                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
+                                iError = true;
+                            } else {
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "None";
+                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
+    
+                            }
                         }
                     }
                 }
@@ -6386,6 +6680,7 @@ var aError = false;
                             oEvent.getSource().setValueStateText("Accepts only numbers without spaces");
                             
                         }
+                        break;
                     case 3:
                         if (/\s/.test(postalCode) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
@@ -7326,6 +7621,23 @@ var aError = false;
                 }
                 that.oPopup.open();
             },
+            fnFileUploadBtnCC: function(oEvt){
+                var docTypeArray =[];
+                $.each(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments, function(i,r){
+                    if(r.documentType == "Signature Required"){
+                    docTypeArray.push({"docName" : r.documentName});
+                    }
+                });
+                oView.getModel("oLookUpModel").setProperty("/docTypeArray", docTypeArray);
+                oView.getModel("oLookUpModel").refresh();
+                var that= this;
+                if (!that.oPopup) {
+                    that.oPopup = sap.ui.xmlfragment(
+                        "com.jabil.surveyform.fragments.selectDocNameForLocDoc", that);
+                    oView.addDependent(that.oPopup);
+                }
+                that.oPopup.open();
+            },
             fnDocTypeChange: function(oEvent){
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
@@ -7335,6 +7647,14 @@ var aError = false;
                 }
                 if(oEvent.getSource().getValue() == ""){
                     oEvent.getSource().setSelectedKey("w8");
+                }
+            },
+            fnDocNameChange: function(oEvent){
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
                 }
             },
             // @ts-ignore
@@ -7348,14 +7668,6 @@ var aError = false;
                 domRef = fileUpload.getFocusDomRef(),
                 // @ts-ignore
                 file = domRef.files[0];
-
-
-                // if (!that.oPopup) {
-                //     that.oPopup = sap.ui.xmlfragment(
-                //         "com.jabil.surveyform.fragments.selectDocType", that);
-                //     oView.addDependent(that.oPopup);
-                // }
-                // that.oPopup.open();
                 if(file.name.length > 60){
             
                     if (isDefaultLan) {
@@ -7531,7 +7843,7 @@ var aError = false;
                 if (secName == "bankInfo" && fileUploadId == "fileUploader_BIA") {
                     secName = "bankIntermediateInfo";
                 }
-                if(file.name.length > 60){                   
+                 if(file.name.length > 60){                   
                         if (isDefaultLan) {
                             sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
                                 icon: sap.m.MessageBox.Icon.ERROR,
@@ -8028,7 +8340,7 @@ var aError = false;
 
 
 
-
+var that = this;
                     
                     // if (this.getView().byId(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).getValidated()) {
                     if (this.getView().byId(this.getView().byId("surveyWizard").getCurrentStep()).getValidated()) {
@@ -8036,8 +8348,19 @@ var aError = false;
 
                         oView.getModel("oEnableMdl").getData().BackBtnEnb = true;
                         oView.getModel("oEnableMdl").refresh();
+                        if(oView.getModel("oUserModel").getData().isNew === true && currentStepId == "prodAndServInfo"){
+                            var aDeferred= $.Deferred();
+                            this.onActivateComCompliance(aDeferred);
+                        } else if (oView.getModel("oUserModel").getData().isNew === false && currentStepId == "shippingInfo"){
+                            var aDeferred= $.Deferred();
+                            this.onActivateComCompliance(aDeferred);
+                        }
                         this.onCompleteCompanyInfo();
+                        if(aDeferred){
+                            aDeferred.done(function(){that._fnNextStepSave();});
+                        } else{
                         this._fnNextStepSave();
+                        }
                         this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getCurrentStep()).nextStep();
                         // this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
                         //}
@@ -8111,6 +8434,33 @@ var aError = false;
                         oPayload.bpInfoDto.noOfEmployees = "";
                         oPayload.bpInfoDto.year = "";
                     }
+
+                    if(oPayload.bpInfoDto.isSiteCorporateHeadquaters !== false){
+                        oPayload.bpInfoDto.corpHeadquartersLegalBusinessName1 ="";
+                        oPayload.bpInfoDto.corpHeadquartersLegalBusinessName2 ="";
+                        oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered = null;
+                    }
+                    if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== false){
+                        if(oPayload.bpInfoDto.corpHeaderQuartersAddress && oPayload.bpInfoDto.corpHeaderQuartersAddress.length >0){
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].countryCode = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address2 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address3 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address4 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address5 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].regionCode = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].district = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode = "";
+                        }
+
+                    } else if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== true){
+                        oPayload.bpInfoDto.corpHeadquartersDunsRegNum = "";
+                        oPayload.bpInfoDto.corpHeadquartersDnbLegalBusinessName = "";
+                    }
+                    
                     if (oPayload.bpInfoDto.dunsRegistrationNum !== "" && oPayload.bpInfoDto.dunsRegistrationNum !== "NODUNS") {
                         oPayload.ownerShipInfoDto.doesOtherEntityOwnSite = null;
                         oPayload.ownerShipInfoDto.companyName = "";
@@ -8262,6 +8612,13 @@ var aError = false;
 
                         oPayload.comComplianceDto.startDate = oPayload.comComplianceDto.startDate ? formatter.fnFormatDate(oPayload.comComplianceDto.startDate) : null;
                         oPayload.comComplianceDto.endDate = oPayload.comComplianceDto.endDate ? formatter.fnFormatDate(oPayload.comComplianceDto.endDate) : null;
+                    }
+                    if (oView.getModel("oDataModel").getData().comComplianceDto.localDocuments && oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.length > 0) {
+                        $.each(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments, function (index, row) {
+                            if (row.state) {
+                                delete row.state;
+                            }
+                        });
                     }
                     if (oPayload.itCyberDto.orgConnectToJabilSystem) {
                         var networkCC = oView.getModel("oLookUpModel").getData().orgEstablishConnection;
@@ -8455,6 +8812,20 @@ var aError = false;
                     }
                 });
             }
+            var comCodeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/countryName/" + oView.getModel("oDataModel").getData().shippingInfoDto.comCode;
+            var ccCountry = "";
+            $.ajax({
+                url: comCodeUrl,
+                type: 'GET',
+                success: function (data) {
+                    oView.getModel("oUserModel").getData().comCodeDesc = data.code;
+                    oView.getModel("oUserModel").refresh();
+                },
+                 error: function (data) {
+                  
+                }
+            });
+           
             
             // oView.byId("fileUploader").addEventDelegate({
             //     onAfterRendering: function(){
@@ -8685,6 +9056,30 @@ var aError = false;
                         oPayload.bpInfoDto.noOfEmployees = "";
                         oPayload.bpInfoDto.year = "";
                     }
+                    if(oPayload.bpInfoDto.isSiteCorporateHeadquaters !== false){
+                        oPayload.bpInfoDto.corpHeadquartersLegalBusinessName1 ="";
+                        oPayload.bpInfoDto.corpHeadquartersLegalBusinessName2 ="";
+                        oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered = null;
+                    }
+                    if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== false){
+                        if(oPayload.bpInfoDto.corpHeaderQuartersAddress && oPayload.bpInfoDto.corpHeaderQuartersAddress.length >0){
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].countryCode = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address2 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address3 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address4 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address5 = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].regionCode = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].district = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city = "";
+                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode = "";
+                        }
+                    } else if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== true){
+                        oPayload.bpInfoDto.corpHeadquartersDunsRegNum = "";
+                        oPayload.bpInfoDto.corpHeadquartersDnbLegalBusinessName = "";
+                    }
                     if (oPayload.bpInfoDto.dunsRegistrationNum !== "" && oPayload.bpInfoDto.dunsRegistrationNum !== "NODUNS") {
                         oPayload.ownerShipInfoDto.doesOtherEntityOwnSite = null;
                         oPayload.ownerShipInfoDto.companyName = "";
@@ -8809,6 +9204,13 @@ var aError = false;
 
                         oPayload.comComplianceDto.startDate = oPayload.comComplianceDto.startDate ? formatter.fnFormatDate(oPayload.comComplianceDto.startDate) : null;
                         oPayload.comComplianceDto.endDate = oPayload.comComplianceDto.endDate ? formatter.fnFormatDate(oPayload.comComplianceDto.endDate) : null;
+                    }
+                    if (oView.getModel("oDataModel").getData().comComplianceDto.localDocuments && oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.length > 0) {
+                        $.each(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments, function (index, row) {
+                            if (row.state) {
+                                delete row.state;
+                            }
+                        });
                     }
                     if (oPayload.itCyberDto.orgConnectToJabilSystem) {
                         var networkCC = oView.getModel("oLookUpModel").getData().orgEstablishConnection;
@@ -9822,6 +10224,21 @@ var aError = false;
                         "dnbLegalBusinessNameEnb": false,
                         "encourgeDunsNumberRegEnb": false,
                         "isSiteCorporateHeadquatersEnb": false,
+                        "LegalBusinessName1Enb": false,
+                        "LegalBusinessName2Enb": false,
+                        "isRegWithDunsEnb": false,
+                        "corpHeaderQuartersCountryEnb": false,
+                        "corpHeaderQuartersAddress1": false,
+                        "corpHeaderQuartersAddress2": false,
+                        "corpHeaderQuartersAddress3": false,
+                        "corpHeaderQuartersAddress4": false,
+                        "corpHeaderQuartersAddress5": false,
+                        "corpHeaderQuartersRegionEnb": false,
+                        "corpHeaderQuartersDistrictEnb": false,
+                        "corpHeaderQuartersCityEnb": false,
+                        "corpHeaderQuartersPostalCodeEnb": false,
+                        "CorpHeadDunsRegNumEnb": false,
+                        "corpHeadDnbLegalBusinessNameEnb": false,
                         "noOfEmployeesEnb": false,
                         "yearEnb": false,
                         "cfrComplaintEnb": false,
@@ -10185,6 +10602,171 @@ var aError = false;
                 var selPath = oEvent.getSource().getParent().getButtons()[0].getBindingPath("selected");
                 oView.getModel("companyInfoModel").setProperty(selPath, false);
                 oView.getModel("companyInfoModel").refresh(true);
-            }
+            },
+            onActivateComCompliance: function (aDeferred) {
+               
+                var sUrl = "/comjabilsurveyform/plcm_portal_services/ccpo/localDocuments/search";
+                var ccPayload = {
+
+                    "companyCode": oView.getModel("oDataModel").getData().shippingInfoDto.purchasingOrg,
+
+                    "purchasingOrganisation": oView.getModel("oDataModel").getData().shippingInfoDto.comCode
+                };
+
+
+                var cModel = new JSONModel();
+                cModel.loadData(sUrl, JSON.stringify(ccPayload), true, "POST", false, true, {
+                    "Content-Type": "application/json"
+                });
+                cModel.attachRequestCompleted(function (oEvent) {
+                    // @ts-ignore
+
+
+                    if (oEvent.getParameter("success")) {
+                        if(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments == null || oView.getModel("oDataModel").getData().comComplianceDto.localDocuments == undefined || oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.length == 0){
+                        oView.getModel("oDataModel").setProperty("/comComplianceDto/localDocuments", oEvent.getSource().getData());
+                        oView.getModel("oDataModel").refresh();
+                        $.each(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments,function (index, row){
+                            if (row.documentType == "Acknowledge Only") {
+                                row.isAcknowledged = null;
+                            } else if (row.documentType == "Signature Required") {
+                                row.isSigned = false;
+                            }
+                        });
+                        aDeferred.resolve();
+                        }
+                        else if(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.length >0){
+                            var successData = oEvent.getSource().getData();
+                            $.each(successData, function (index, row) {
+                                var findDuplicate= oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.some(function(id){
+                                    return id.ccPoLocDocId === row.ccPoLocDocId;
+                                 });
+                                if(!findDuplicate){
+                                if (row.documentType == "Acknowledge Only") {
+                                    row.isAcknowledged = null;
+                                } else if (row.documentType == "Signature Required") {
+                                    row.isSigned = false;
+                                }
+                                oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.push(row);
+                                oView.getModel("oDataModel").refresh();
+                             
+                            }
+                          
+                            });
+                            aDeferred.resolve();
+                        }
+                       
+                      
+                    } else { 
+                       
+                        aDeferred.resolve();
+                    }
+                });
+            
+            },
+
+            _fnLoadCorpHeadquartersCountry: function () {
+                var oModel = new JSONModel();
+                var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/countries";
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+
+                        oView.getModel("oLookUpModel").setProperty("/CorpHeadquarterCountry", oEvent.getSource().getData());
+                        oView.getModel("oLookUpModel").refresh();
+                        
+                    }
+                });
+            },
+            
+            fnChangeCorpHeadquartersCountry: function (oEvent) {
+                // oView.byId("hello").addEventListener("change",function(){
+                //     console.log(oEvent);
+                // });
+                if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                    oView.getModel("oDataModel").refresh();
+                }
+
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                
+                var selectedCountryCode = oEvent.getSource().getSelectedKey();
+                var loadTaxTypeUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/validations/" + selectedCountryCode;
+                $.ajax({
+                    url: loadTaxTypeUrl,
+                    type: 'GET',
+                    success: function (data) {
+                        var postalCodeLength = parseInt(data[0].postalCodeLength);
+                        var postalCodeRule = parseInt(data[0].postalCodeRule)
+
+                        if (postalCodeLength == 0) {
+                            var PostalCodeValidation = {
+                                "postalCodeLength": 10,
+                                "postalCodeRule": postalCodeRule
+                            };
+                        } else {
+                            var PostalCodeValidation = {
+                                "postalCodeLength": postalCodeLength,
+                                "postalCodeRule": postalCodeRule
+                            };
+                        }
+
+                        oView.getModel("oLookUpModel").setProperty("/PostalCodeValidationCorpHeadquarters", PostalCodeValidation);
+                        oView.getModel("oLookUpModel").refresh();
+                    },
+                    async: false,
+                    error: function (data) {
+
+                    }
+                });
+
+                oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region = "";
+                oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].regionCode = "";
+                oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().CorpHeadquarterCountry, selectedCountryCode);
+                oView.getModel("oDataModel").refresh();
+                var vCountry = selectedCountryCode;
+                this._fnLoadCorpHeadquartersRegion(vCountry);
+            },
+
+            _fnLoadCorpHeadquartersRegion: function (vCountry) {
+                var oModel = new JSONModel();
+                var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/regions/?country=" + vCountry;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oLookUpModel").setProperty("/CorpHeadquarterRegion", oEvent.getSource().getData());
+                        oView.getModel("oLookUpModel").refresh();
+                    }
+                });
+            },
+
+            fnChangeCorpHeadquartersRegion: function (oEvent) {
+                if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                    oView.getModel("oDataModel").refresh();
+                }
+
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().CorpHeadquarterRegion, oEvent.getSource().getSelectedKey());
+                oView.getModel("oDataModel").refresh();
+            },
         });
     });
