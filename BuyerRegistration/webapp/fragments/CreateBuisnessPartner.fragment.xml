@@ -2,6 +2,7 @@
   xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:grid="sap.ui.layout.cssgrid"
 	xmlns:g="sap.f" displayBlock="true"
 	xmlns="sap.m"  xmlns:l="sap.ui.layout"
+    xmlns:c="ns.BuyerRegistration.ExtensionControl"
 >
 <l:Grid defaultSpan="XL12 L12 M12 S12" class="sapUiSizeCompact sapUiTinyMarginTop"> 
                    	<Label text="{i18n>BuyerHeaderTxt1}" wrapping="true"  class="cl_VRLablCls "></Label>
@@ -87,11 +88,11 @@
 									
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
-										<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMBPCreate>/purchasingOrge}" valueStateText="{JMBPCreate>/purchasingOrgm}"
-											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMBPCreate>/purchasingOrg}"
+										<c:ExtComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMBPCreate>/purchasingOrge}" valueStateText="{JMBPCreate>/purchasingOrgm}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" click="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMBPCreate>/purchasingOrg}"
 											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
-										</ComboBox>
+										</c:ExtComboBox>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPInstructionKey}" required="true" class="cl_VRLablCls "></Label>

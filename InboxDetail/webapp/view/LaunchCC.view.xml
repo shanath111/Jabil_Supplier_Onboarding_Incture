@@ -1,5 +1,5 @@
 <mvc:View controllerName="InboxDetail.controller.LaunchCC" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
-	displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout">
+	displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout" xmlns:c="InboxDetail.ExtensionControl">
 			<Page id="id_Container" class="cl_VRPageBackGrnd" enableScrolling="true" showHeader="false">
 				<subHeader>
 					<Toolbar class="cl_VRHeaderBackGrnd sapUiSizeCompact">
@@ -35,11 +35,11 @@
 							</VBox>
                              <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
-										<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg1}" valueState="{JMFilter>/purchasingOrganisatione}" valueStateText="{JMFilter>/purchasingOrganisationm}"
-											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="onChangeLookupValue" showSecondaryValues="true" selectedKey="{JMFilter1>/purchasingOrganisation}"
+										<c:ExtComboBox width="95%" items="{oBPLookUpMdl>/PurOrg1}" valueState="{JMFilter>/purchasingOrganisatione}" valueStateText="{JMFilter>/purchasingOrganisationm}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg1" click="fnLiveChangePurchOrg1" showSecondaryValues="true" selectedKey="{JMFilter1>/purchasingOrganisation}"
 											class="cl_VRInputCls" >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
-										</ComboBox>
+										</c:ExtComboBox>
 							</VBox>
                            <!-- <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCDocName}" required="true" class="cl_VRLablCls "></Label>
@@ -88,11 +88,11 @@
 							</VBox>
                              <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPPurchasingOrg}" required="false" class="cl_VRLablCls "></Label>
-										<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMFilter>/purchasingOrge}" valueStateText="{JMFilter>/purchasingOrgm}"
-											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="onChangeLookupValue" showSecondaryValues="true" selectedKey="{JMFilter>/purchasingOrg}"
+										<c:ExtComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMFilter>/purchasingOrge}" valueStateText="{JMFilter>/purchasingOrgm}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" click="fnLiveChangePurchOrg"  showSecondaryValues="true" selectedKey="{JMFilter>/purchasingOrg}"
 											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
-										</ComboBox>
+										</c:ExtComboBox>
 							</VBox>
                             <!-- <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCDocName}" required="false" class="cl_VRLablCls "></Label>
