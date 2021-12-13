@@ -113,7 +113,7 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
-
+                        
                         if (oEvent.getSource().getData().comments) {
                             oView.getModel("oConfigMdl").getData().CommentsVis = true;
                             oView.getModel("oConfigMdl").getData().comments = oEvent.getSource().getData().comments;
