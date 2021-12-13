@@ -2210,6 +2210,14 @@ sap.ui.define([
                                             break;
                                         }
                                     }
+                                    if (!vBreak) {
+                                        oBusyDilog.close();
+                                    var sErMsg = "We are unable to validate at this time, please try again later.";
+                                    MessageBox.show(sErMsg, {
+                                        icon: MessageBox.Icon.ERROR,
+                                        title: oi18n.getProperty("Error")
+                                    });
+                                    }
                                 } else {
                                     oBusyDilog.close();
                                     var sErMsg = "We are unable to validate at this time, please try again later.";
