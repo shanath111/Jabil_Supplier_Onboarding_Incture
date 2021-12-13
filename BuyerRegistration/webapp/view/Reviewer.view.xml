@@ -151,7 +151,7 @@
     
 											</VBox>
                                                   <VBox visible="{oUserModel>/isNew}" class="fontStyle sapUiSizeCompact">
-         <Label  labelFor="idPaymentAgree" text="{i18n>paymentTermsAgree}" wrapping="true" class="cl_PreviewLablCls  sapUiTinyMarginBegin"/>
+         <Label  labelFor="idPaymentAgree" text="{i18n>paymentTermsAgree}?" wrapping="true" class="cl_PreviewLablCls  sapUiTinyMarginBegin"/>
             <RadioButtonGroup id="idPaymentAgree" class="inputStyle" columns="2" selectedIndex="{=${oDataModel>/shippingInfoDto/isPaymentTermsAgreed} === true? 0 :(${oDataModel>/shippingInfoDto/isPaymentTermsAgreed}=== false ?1: -1)}" valueState="{oErrorModel>/isPaymentTermsAgreedE}" enabled="false" select="fnClearValueState">
 			<RadioButton text="{i18n>Yes}" selected="{oDataModel>/shippingInfoDto/isPaymentTermsAgreed}"></RadioButton>
 			<RadioButton text="{i18n>No}"  select="fnSelectionChange"></RadioButton>
