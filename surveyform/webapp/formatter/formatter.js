@@ -220,12 +220,12 @@ com.jabil.surveyform.formatter.formatter = {
     stringToArrays: function(stringValue){
         if(stringValue){
             var a= [];
-            var stringlistLen = stringValue.split("-").length;
+            var stringlistLen = stringValue.length;
             if(stringlistLen === 1){
                 a.push(stringValue);
             } else if(stringlistLen > 1){
 for(var i=0; i<stringlistLen;i++){
-    a.push(stringValue.split("-")[i]);
+    a.push(stringValue[i]);
 }
             }
         }

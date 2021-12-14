@@ -7394,7 +7394,7 @@ var aError = false;
             fnLivePaymentMethodFinish: function (oEvent) {
                 if (oEvent.getSource().getSelectedKeys().length !== 0) {
                     for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
-                        oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod  + "-" +  oEvent.getSource().getSelectedKeys()[i];
+                        oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod  +  oEvent.getSource().getSelectedKeys()[i];
                     }
                 } else {
                     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = "";
@@ -8496,8 +8496,8 @@ var that = this;
                         oPayload.shippingInfoDto.deliverRepContact = "";
                         oPayload.shippingInfoDto.deliverRepFax = "";
                     }
-                    var a = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod;
-                    oPayload.shippingInfoDto.paymentMethod = a.charAt(a[0]).replace("-","") + a.slice(1);
+                    // var a = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod;
+                    // oPayload.shippingInfoDto.paymentMethod = a.charAt(a[0]).replace("-","") + a.slice(1);
                     if (oPayload.shippingInfoDto.isPaymentTermsAgreed === true) {
                         oPayload.shippingInfoDto.paymentTermsComments = "";
                     }
