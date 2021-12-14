@@ -55,6 +55,10 @@ color: #404040 !important;
     border-radius: 3px !important;
     opacity: 1 !important;
 }
+.inputStyle .sapUiSizeCompact .sapMLIB>.sapMLIBSelectS:first-child, .sapUiSizeCompact .sapMLIB>.sapMLIBSelectM:first-child {
+    margin-left: -0.5rem;
+    margin-right: 0.5rem;
+}
 .inputStyle .sapMInputBaseContentWrapper {
     border-radius: 2px;
       /* border: 1px solid #bfbfbf;  */

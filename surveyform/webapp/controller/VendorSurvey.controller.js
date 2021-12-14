@@ -57,7 +57,7 @@ sap.ui.define([
                         that.getOwnerComponent().getModel("oVisibilityModel").refresh(true);
                     }
                     if (oEvent.getSource().getStepCount() == 11) {
-                           //oEvent.getSource().getParent().goToStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId); /// go to Step forward or backward
+                       //oEvent.getSource().getParent().goToStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId); /// go to Step forward or backward
                         oEvent.getSource().getParent().setCurrentStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId); //// go to step forward or backward making all ahead steps to inactive
                     } else if (oEvent.getSource().getStepCount() == 8) {
                         if (oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep == 1 || oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep == 2) {
@@ -2685,66 +2685,66 @@ var aError = false;
                         switch (taxIDNumRule) {
                             case 1:
                                 if (/\s/.test(taxID) || taxID.includes("_") || taxID.length > taxIDMaxLength) {
-                                    this.emailValidResult = true;
+                                 //   this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                   // this.emailValidResult = false;
                                 }
                                 break;
                             case 2:
                                 if (!(/^\d+$/.test(taxID)) || taxID.includes("_") || taxID.length > taxIDMaxLength) {
-                                    this.emailValidResult = true;
+                                   // this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 3:
                                 if (/\s/.test(taxID) || taxID.includes("_") || !(taxID.length === taxIDMaxLength) && taxID.length > 0) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 4:
                                 if (!(/^\d+$/.test(taxID)) || taxID.includes("_") || !(taxID.length === taxIDMaxLength) && taxID.length > 0) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 5:
                                 if (taxID.includes("_") || taxID.length > taxIDMaxLength) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 6:
                                 if (!(/^[\d ]*$/.test(taxID)) || taxID.includes("_") || taxID.length > taxIDMaxLength) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 7:
                                 if (taxID.includes("_") || (!(taxID.length === taxIDMaxLength) && taxID.length > 0)) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 8:
                                 if (!(/^[\d ]*$/.test(taxID)) || taxID.includes("_") || (!(taxID.length === taxIDMaxLength) && taxID.length > 0)) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
 
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                         }
                     }
@@ -6373,69 +6373,72 @@ var aError = false;
                             oEvent.getSource().setValueStateText("ID shouldn't exceed max length with no gaps");
                             // oView.getModel("oDataModel").getData().bpInfoDto.tax[nIndex].taxNumE = "Error";
                             // oView.getModel("oDataModel").getData().bpInfoDto.tax[nIndex].taxNumM = "ID shouldn't exceed max length with no gaps";
+                         //   this.emailValidResult = true;
+                        } else {
+                           // this.emailValidResult = false;
                         }
                         break;
                     case 2:
                         if (!(/^\d+$/.test(taxID)) || (taxID.includes("_") || taxID.length > taxIDMaxLength)) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Accepts only numbers without spaces");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 3:
                         if (/\s/.test(taxID) || (taxID.includes("_") || !(taxID.length === taxIDMaxLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of " + taxIDMaxLength + " characters in length without any spaces");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 4:
                         if (!(/^\d+$/.test(taxID)) || (taxID.includes("_") || !(taxID.length === taxIDMaxLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of " + taxIDMaxLength + " numerical digits in length without any spaces");
-                            this.emailValidResult = true;
+                            //this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                           // this.emailValidResult = false;
                         }
                         break;
                     case 5:
                         if (taxID.includes("_") || taxID.length > taxIDMaxLength) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Maximum length exceeded");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 6:
                         if (!(/^[\d ]*$/.test(taxID)) || (taxID.includes("_") || taxID.length > taxIDMaxLength)) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Accepts only numbers");
-                            this.emailValidResult = true;
+                            //this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 7:
                         if (!(taxID.length === taxIDMaxLength) || (taxID.includes("_"))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + taxIDMaxLength + "characters in length");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 8:
                         if (!(/^[\d ]*$/.test(taxID)) || (taxID.includes("_") || !(taxID.length === taxIDMaxLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + taxIDMaxLength + "digits in length");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = true;
+                            //this.emailValidResult = false;
                         }
                 }
             }
@@ -7370,12 +7373,16 @@ var aError = false;
             },
 
             fnLivePaymentMethodChange: function (oEvent){
-                 if (oEvent.getSource().getValue()) {
+                if(oEvent.getSource().getSelectedItems().length !== 0){
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
-                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
-                    oView.getModel("oDataModel").refresh();
                 }
+                //  if (oEvent.getSource().getValue()) {
+                //     oEvent.getSource().setValueState("None");
+                //     oEvent.getSource().setValueStateText("");
+                //     oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                //     oView.getModel("oDataModel").refresh();
+                // }
 
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
@@ -7383,64 +7390,16 @@ var aError = false;
                         oEvent.getSource().setValue("");
                     }
                 }
-                // var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
-                // if( apaymentMethod === 'Optional'){
-                // oView.getModel("oErrorModel").getData().bankNameE = "None";
-                // oView.getModel("oErrorModel").getData().bankNameM = "";
-                // oView.getModel("oErrorModel").getData().bankAddrE = "None";
-                // oView.getModel("oErrorModel").getData().bankAddrM = "";
-                // oView.getModel("oErrorModel").getData().bankCityE = "None";
-                // oView.getModel("oErrorModel").getData().bankCityM = "";
-                // oView.getModel("oErrorModel").getData().bankAccNumE = "None";
-                // oView.getModel("oErrorModel").getData().bankAccNumM = "";
-                // oView.getModel("oErrorModel").getData().benifAccHNameE = "None";
-                // oView.getModel("oErrorModel").getData().benifAccHNameM = "";
-                // oView.getModel("oErrorModel").getData().bankSwiftE = "None";
-                // oView.getModel("oErrorModel").getData().bankSwiftM = "";
-                // oView.getModel("oErrorModel").getData().bankBranchE = "None";
-                // oView.getModel("oErrorModel").getData().bankBranchM = "";
-                // oView.getModel("oErrorModel").getData().bankRefE = "None";
-                // oView.getModel("oErrorModel").getData().bankRefM = "";
-                // oView.getModel("oErrorModel").getData().bankNumE = "None";
-                // oView.getModel("oErrorModel").getData().bankNumM = "";
-                // oView.getModel("oErrorModel").getData().ibanE = "None";
-                // oView.getModel("oErrorModel").getData().ibanM = "";
-                // oView.getModel("oErrorModel").getData().benifAccCurrE = "None";
-                // oView.getModel("oErrorModel").getData().benifAccCurrM = "";
-                // oView.getModel("oErrorModel").getData().bankCtrlKeyE = "None";
-                // oView.getModel("oErrorModel").getData().bankCtrlKeyM = "";
-                // oView.getModel("oErrorModel").getData().paymentCurrE = "None";
-                // oView.getModel("oErrorModel").getData().paymentCurrM = "";
-                // oView.getModel("oErrorModel").refresh();
-                //  var bankFields = this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
-                //     bankFields.bankName = false;
-                //     bankFields.bankBranch = false;
-                //     bankFields.bankStreet = false;
-                //     bankFields.bankCity = false;
-                //     bankFields.benificiaryAccountNumber = false;
-                //     bankFields.swiftCode = false;
-                //     bankFields.bankNumber = false;
-                //     bankFields.bankCountry = false;
-                //     bankFields.benificiaryAccHolderName = false;
-                //     bankFields.bankKey = false;
-                //     bankFields.benificiaryAccCurrency = false;
-                //     bankFields.instructionKey = false;
-                //     bankFields.bankControlKey = false;
-                //     bankFields.referenceDetails = false;
-                //     bankFields.iban = false;
-                //     bankFields.ibanLength = null;
-                //     bankFields.bankControlKeyLogic = null;
-                //     bankFields.bankControlKeyDigitsLogic = null;
-                //     bankFields.companyCodeCountry = "";
-                //     bankFields.bankKeyVal1 = "";
-                //     bankFields.bankKeyVal2 = "";
-                //     bankFields.bankKeyVal3 = "";
-                //     this.getOwnerComponent().getModel("oVisibilityModel").refresh();
-                // } else {
-                //       this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.bankCountry = true;
-                //         this.getOwnerComponent().getModel("oVisibilityModel").refresh();
-                //      this.fnActivateBankScreen();
-                // }
+            },
+            fnLivePaymentMethodFinish: function (oEvent) {
+                if (oEvent.getSource().getSelectedKeys().length !== 0) {
+                    for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
+                        oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod  + "-" +  oEvent.getSource().getSelectedKeys()[i];
+                    }
+                } else {
+                    oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = "";
+                }
+                oView.getModel("oDataModel").refresh();
             },
 
             fnLiveValueBankInput: function (oEvent) {
@@ -8537,6 +8496,8 @@ var that = this;
                         oPayload.shippingInfoDto.deliverRepContact = "";
                         oPayload.shippingInfoDto.deliverRepFax = "";
                     }
+                    var a = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod;
+                    oPayload.shippingInfoDto.paymentMethod = a.charAt(a[0]).replace("-","") + a.slice(1);
                     if (oPayload.shippingInfoDto.isPaymentTermsAgreed === true) {
                         oPayload.shippingInfoDto.paymentTermsComments = "";
                     }
@@ -10609,9 +10570,9 @@ var that = this;
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/ccpo/localDocuments/search";
                 var ccPayload = {
 
-                    "companyCode": oView.getModel("oDataModel").getData().shippingInfoDto.purchasingOrg,
+                    "companyCode":oView.getModel("oDataModel").getData().shippingInfoDto.comCode,
 
-                    "purchasingOrganisation": oView.getModel("oDataModel").getData().shippingInfoDto.comCode
+                    "purchasingOrganisation": oView.getModel("oDataModel").getData().shippingInfoDto.purchasingOrg
                 };
 
 
