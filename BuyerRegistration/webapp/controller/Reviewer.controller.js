@@ -1158,6 +1158,7 @@ sap.ui.define([
             },
             fnLoadSecondLevelReason: function (vReasonCode) {
                 var oModel = new JSONModel();
+                
                 var sUrl = "/nsBuyerRegistration/plcm_portal_services/reason-codes/secondLevel?firstLevelReasonCode=" + vReasonCode;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"

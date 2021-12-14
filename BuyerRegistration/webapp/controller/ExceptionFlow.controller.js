@@ -766,7 +766,7 @@ sap.ui.define([
             },
             fnLoadFirstLevelReason: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_portal_services/reason-codes/firstLevel/"+oView.getModel("JMEulaComments").getData().GTSTaskSubject;
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/reason-codes/firstLevel?taskName="+oView.getModel("JMEulaComments").getData().GTSTaskSubject;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
