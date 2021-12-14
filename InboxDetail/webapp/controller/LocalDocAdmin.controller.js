@@ -471,7 +471,7 @@ sap.ui.define([
 
             },
             fnDeleteCC: function (oEvent) {
-                var vccId = oEvent.getSource().getBindingContext("JMCompSearchResult").getProperty("ccAndPoId");
+                var vccId = oEvent.getSource().getBindingContext("JMCompSearchResult").getProperty("ccPoLocDocId");
                 var that = this;
                 var vConfirmTxt = oi18n.getProperty("BPCConfirmDelete");
                 MessageBox.confirm(vConfirmTxt, {
@@ -492,7 +492,7 @@ sap.ui.define([
                                 dataType: 'json',
                                 success: function (data) {
                                     var temp = {};
-                                    var vSccuessTxt = oi18n.getProperty("CCCPPDeleteSuccess");
+                                    var vSccuessTxt = oi18n.getProperty("CCCPPDeleteSuccess1");
                                     temp.Message = vSccuessTxt;
                                     var oJosnMessage = new sap.ui.model.json.JSONModel();
                                     oJosnMessage.setData(temp);
