@@ -10609,9 +10609,9 @@ var that = this;
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/ccpo/localDocuments/search";
                 var ccPayload = {
 
-                    "companyCode": oView.getModel("oDataModel").getData().shippingInfoDto.purchasingOrg,
+                    "companyCode": oView.getModel("oDataModel").getData().shippingInfoDto.comCode,
 
-                    "purchasingOrganisation": oView.getModel("oDataModel").getData().shippingInfoDto.comCode
+                    "purchasingOrganisation": oView.getModel("oDataModel").getData().shippingInfoDto.purchasingOrg
                 };
 
 

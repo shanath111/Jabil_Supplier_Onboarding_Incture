@@ -279,7 +279,7 @@
          <VBox class="fontStyle sapUiTinyMarginTop">
         
             <Link text="{oDataModel>documentName}" target="_blank" href="{oDataModel>documentLink}" wrapping="true" class="sapUiTinyMarginBegin"/>
-            <Label text ="{oDataModel>affirmationStatement}" required="true" class="sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+            <Label text ="{oDataModel>affirmationStatement}" required="true" class="sapUiTinyMarginTop sapUiTinyMarginBegin" wrapping="true"/>
            <RadioButtonGroup  columns="1" selectedIndex="-1" select="fnClearValueState" valueState="{oDataModel>state}" class="inputStyle" visible="{=${oDataModel>documentType} === 'Acknowledge Only'}">
                     <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" class="inputStyle" selected="{oDataModel>isAcknowledged}" visible="{=${oDataModel>documentType} === 'Acknowledge Only'}" enabled="{oEnableMdl>/companyCmplianceAttachmentEnb}"></RadioButton>
                 </RadioButtonGroup>
