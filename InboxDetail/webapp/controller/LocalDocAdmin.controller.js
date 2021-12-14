@@ -410,8 +410,8 @@ sap.ui.define([
                                 }
 
                                 var oPayload = {
-                                    "companyCode": oView.getModel("JMFilter1").getData().purchasingOrganisation,
-                                    "purchasingOrganisation": oView.getModel("JMFilter1").getData().companyCode,
+                                    "companyCode": oView.getModel("JMFilter1").getData().companyCode,
+                                    "purchasingOrganisation": oView.getModel("JMFilter1").getData().purchasingOrganisation,
                                     "companyCodeDescription": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode1, oView.getModel("JMFilter1").getData().companyCode, "CompanyCode"),
                                     "purchasingOrganisationDescription": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurOrg1, oView.getModel("JMFilter1").getData().purchasingOrganisation, "PurchOrg"),
                                     // "siteName": oView.getModel("JMFilter1").getData().siteName,
