@@ -17,9 +17,15 @@ have called and personally spoken to the Supplier Contact, confirmed that they h
 and they understand what we need from them." class="sapUiTinyMarginTop  sapUiTinyMarginBegin fontStyle" wrapping="true"></Text>
 	<HBox  renderType="Bare" wrap="Wrap"
 												alignItems="Center"  justifyContent="Start">
+
 											<CheckBox id="id_ConfirmFollowUp" text="Yes, I have called the Supplier Contact and spoke to them, letting them know we have initiated their
 onboarding, confirmed they received the email, and will begin reviewing and completing the form." wrapping="true" class="sapUiTinyMarginTop fontStyle"></CheckBox>
 											</HBox>
+                                                <VBox class="VRVboxStyle1 sapUiTinyMarginBegin sapUiSmallMarginTop">
+										<Label text="{i18n>SupplierEmail}" class="cl_VRLablCls "></Label>
+										<Input width="20%" editable="false" class="cl_VRInputCls" maxLength="100" value="{JMEulaComments>/supplierEmail}"></Input>
+                                        	 <Button text="{i18n>Resend}" enabled="{=${oConfigMdl>/isClaimed} &amp;&amp;${oConfigMdl>/ApproveButtonVis}}"    type="Accept" press="fnResendEmail" class="cl_BPCDraft   sapUiSizeCompact" />
+									</VBox>
 
 						</VBox>
                         </content>

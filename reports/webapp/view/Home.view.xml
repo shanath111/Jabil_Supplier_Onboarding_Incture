@@ -1,5 +1,5 @@
 <mvc:View controllerName="oneapp.incture.report.reports.controller.Home" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
-	displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout">
+	displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout" xmlns:c="oneapp.incture.report.reports.controlExtension">
 			<Page id="id_Container" class="cl_VRPageBackGrnd" enableScrolling="true" showHeader="false">
 				<subHeader>
 					<Toolbar class="cl_VRHeaderBackGrnd sapUiSizeCompact">
@@ -40,11 +40,11 @@
 							</VBox>
                              <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPPurchasingOrg}" class="cl_VRLablCls "></Label>
-										<ComboBox width="95%"   items="{oBPLookUpMdl>/PurOrg}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
-											filterSecondaryValues="true"   showSecondaryValues="true" selectedKey="{JMSuppReqListHeader>/purchasingOrg}" change="fnLiveChangePurchaseOrg"
+										<c:ExtComboBox width="95%"   items="{oBPLookUpMdl>/PurOrg}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
+											filterSecondaryValues="true"   showSecondaryValues="true" selectedKey="{JMSuppReqListHeader>/purchasingOrg}" click="fnLiveChangePurchaseOrg" change="fnLiveChangePurchaseOrg"
 											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}" >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
-										</ComboBox>
+										</c:ExtComboBox>
 							</VBox>
                               
                             <VBox class="VRVboxStyle1">

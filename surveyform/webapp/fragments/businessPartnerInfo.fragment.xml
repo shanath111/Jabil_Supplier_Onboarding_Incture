@@ -90,10 +90,10 @@
 
                 <VBox alignContent="Start" visible="{=${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters} === false}" class="fontStyle sapUiTinyMarginTop">
                     
-					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>EnterCorporateHeadquarterDetail}:${oi18n_En>EnterCorporateHeadquarterDetail} +'/&#160;' + ${i18n>EnterCorporateHeadquarterDetail}}" class="fontStyle fontStyleBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>EnterCorporateHeadquarterDetail}:${oi18n_En>EnterCorporateHeadquarterDetail} +'/&#160;' + ${i18n>EnterCorporateHeadquarterDetail}}" class="fontStyle fontStyleBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 					<HBox class="sapUiTinyMarginBegin">
-                        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>LegalBusinessName}:${oi18n_En>LegalBusinessName} +'&#10;' +${i18n>LegalBusinessName}}" class="fontStyle "></Label>
-						<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>LegalBusinessNameInfo}:${oi18n_En>LegalBusinessNameInfo} +'&#10;' +${i18n>LegalBusinessNameInfo}}" class="fontStyle "></Label>
+                        <Label  wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>LegalBusinessName}:${oi18n_En>LegalBusinessName} +'&#10;' +${i18n>LegalBusinessName}}" class="fontStyle sapUiTinyMarginEnd"></Label>
+						<Label  wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>LegalBusinessNameInfo}:${oi18n_En>LegalBusinessNameInfo} +'&#10;' +${i18n>LegalBusinessNameInfo}}" class="fontStyle "></Label>
                     </HBox>
                     <l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M4 S12" class="gridSpacing fontStyle">
                         <VBox class="fontStyle sapUiSizeCompact">
@@ -161,7 +161,7 @@
                                <l:GridData linebreak = "true"></l:GridData></layoutData>
                                 </VBox>
                                 <VBox>
-                               	    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>PostalCode}:${oi18n_En>PostalCode} +'&#10;' + ${i18n>PostalCode}}" wrapping="true" class="fontStyle " required="true"></Label>
+                               	    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postalCode}:${oi18n_En>postalCode} +'&#10;' + ${i18n>postalCode}}" wrapping="true" class="fontStyle " required="true"></Label>
                                     <Input maxLength="{oLookUpModel>/PostalCodeValidationCorpHeadquarters/postalCodeLength}" value="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/postalCode}" valueState="{oErrorModel>/corpHeadPostalCodeE}" valueStateText="{oErrorModel>/corpHeadPostalCodeM}" enabled="{oEnableMdl>/corpHeaderQuartersPostalCodeEnb}" change="fnVerifyPostalCodeCorpHeadquarters" class="inputStyle" />
                                 </VBox>  
                             </l:Grid>

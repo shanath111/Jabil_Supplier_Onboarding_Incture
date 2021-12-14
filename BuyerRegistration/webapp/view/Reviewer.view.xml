@@ -1,6 +1,6 @@
 <mvc:View controllerName="ns.BuyerRegistration.controller.Reviewer" xmlns:tl="sap.suite.ui.commons" xmlns:l="sap.ui.layout"
 	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.table" xmlns:grid="sap.ui.layout.cssgrid"
-	xmlns:g="sap.f" displayBlock="true" xmlns="sap.m" xmlns:un="sap.ui.unified">
+	xmlns:g="sap.f" displayBlock="true" xmlns="sap.m" xmlns:un="sap.ui.unified" xmlns:c="ns.BuyerRegistration.ExtensionControl">
 			<Page class="cl_VRPageBackGrnd sapUiSizeCompact" enableScrolling="true" showHeader="false">
 			
 				<content>
@@ -151,7 +151,7 @@
     
 											</VBox>
                                                   <VBox visible="{oUserModel>/isNew}" class="fontStyle sapUiSizeCompact">
-         <Label  labelFor="idPaymentAgree" text="{i18n>paymentTermsAgree}" wrapping="true" class="cl_PreviewLablCls  sapUiTinyMarginBegin"/>
+         <Label  labelFor="idPaymentAgree" text="{i18n>paymentTermsAgree}?" wrapping="true" class="cl_PreviewLablCls  sapUiTinyMarginBegin"/>
             <RadioButtonGroup id="idPaymentAgree" class="inputStyle" columns="2" selectedIndex="{=${oDataModel>/shippingInfoDto/isPaymentTermsAgreed} === true? 0 :(${oDataModel>/shippingInfoDto/isPaymentTermsAgreed}=== false ?1: -1)}" valueState="{oErrorModel>/isPaymentTermsAgreedE}" enabled="false" select="fnClearValueState">
 			<RadioButton text="{i18n>Yes}" selected="{oDataModel>/shippingInfoDto/isPaymentTermsAgreed}"></RadioButton>
 			<RadioButton text="{i18n>No}"  select="fnSelectionChange"></RadioButton>
@@ -255,11 +255,11 @@
                                                 	<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIReqPO}" required="true" class="cl_VRLablCls "></Label>
 												
-											<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMValidateDefault>/reqPurchasingOrge}" valueStateText="{JMValidateDefault>/reqPurchasingOrgm}"
-											filterSecondaryValues="true" editable="{oConfigMdl>/defaultEnable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{oDataModel>/defaultValuesDto/reqPurchasingOrg}"
+											<c:ExtComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMValidateDefault>/reqPurchasingOrge}" valueStateText="{JMValidateDefault>/reqPurchasingOrgm}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/defaultEnable}" change="fnLiveChangePurchOrg" click="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{oDataModel>/defaultValuesDto/reqPurchasingOrg}"
 											class="cl_VRInputCls"  >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
-										</ComboBox>
+										</c:ExtComboBox>
                                             	</VBox>
 												<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIGBSRegion}" required="true" class="cl_VRLablCls "></Label>

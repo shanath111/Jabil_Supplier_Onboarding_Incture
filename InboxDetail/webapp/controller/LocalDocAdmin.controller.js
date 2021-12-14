@@ -576,6 +576,34 @@ sap.ui.define([
                     oView.getModel("JMFilter").refresh();
                 }
             },
+
+            fnLiveChangePurchOrg: function (oEvent) {
+                var compCode= oView.getModel("JMFilter").getData().companyCode;
+                if(compCode === "" || compCode === undefined){
+                    sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
+                    
+                }
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+            },
+
+            fnLiveChangePurchOrg1: function (oEvent) {
+                var compCode= oView.getModel("JMFilter1").getData().companyCode;
+                if(compCode === "" || compCode === undefined){
+                    sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
+                    
+                }
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+            }
             
         });
     });

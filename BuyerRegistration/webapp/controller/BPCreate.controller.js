@@ -27,7 +27,9 @@ sap.ui.define([
                 var oRouter = this.getOwnerComponent().getRouter();
                 oRouter.getRoute("BPCreate").attachPatternMatched(this.fnBuyerCreateRoute, this);
             },
-
+            fnChange22:function(){
+debugger;
+            },
             fnBuyerCreateRoute: function (oEvent) {
                 var vContext = {
                     "Id": oEvent.getParameter("arguments").Id
