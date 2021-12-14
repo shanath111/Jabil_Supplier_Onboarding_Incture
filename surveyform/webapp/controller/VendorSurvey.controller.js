@@ -57,7 +57,8 @@ sap.ui.define([
                         that.getOwnerComponent().getModel("oVisibilityModel").refresh(true);
                     }
                     if (oEvent.getSource().getStepCount() == 11) {
-                        oEvent.getSource().getParent().setCurrentStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId);
+                           //oEvent.getSource().getParent().goToStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId); /// go to Step forward or backward
+                        oEvent.getSource().getParent().setCurrentStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId); //// go to step forward or backward making all ahead steps to inactive
                     } else if (oEvent.getSource().getStepCount() == 8) {
                         if (oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep == 1 || oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep == 2) {
                             oEvent.getSource().getParent().setCurrentStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId);
@@ -2812,7 +2813,7 @@ var aError = false;
                 }
                 if(!iError){
 
-                if(oView.getModel("oUserModel").getData().comCodeDesc == "US" && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == "US"){
+                if(oView.getModel("oUserModel").getData().comCodeDesc == "US" && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == "US"){
                     this.getView().getModel("oAttachmentList").refresh();
                   var findDomesticDoc= this.getView().getModel("oAttachmentList").getProperty("/0/" + "bPDArray").findIndex(function(doc){
                        return doc.docFormType == "W9";
@@ -2829,7 +2830,7 @@ var aError = false;
                         oView.byId("bpAttachBtn").removeStyleClass("attachmentWithBorderBP");
                             oView.byId("bpAttachBtn").addStyleClass("attachmentWithoutBorderBP");
                     }
-                } else if(oView.getModel("oUserModel").getData().comCodeDesc== "US" && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country !== "US"){
+                } else if(oView.getModel("oUserModel").getData().comCodeDesc== "US" && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country !== "US"){
                     this.getView().getModel("oAttachmentList").refresh();
                     var findDomesticDoc= this.getView().getModel("oAttachmentList").getProperty("/0/" + "bPDArray").findIndex(function(doc){
                         return doc.docFormType == "W8";
