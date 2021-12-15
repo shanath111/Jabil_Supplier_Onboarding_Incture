@@ -40,14 +40,28 @@ sap.ui.define([
             fnSetConfigModel: function (oContext) {
                 this.fnLoadTaskClaimed(oContext.Id);
                 oView.getModel("oConfigMdl").getData().CommentsVis = false;
-                if (oContext.Name == "GTS") {
+                oView.getModel("oConfigMdl").getData().ApproveBtnVis = true;
+                oView.getModel("oConfigMdl").getData().RejectBtnVis = true;
+                oView.getModel("oConfigMdl").getData().DisqualifyBtnVis = false;
+              
+                if (oContext.Name == "GTS" ) {
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis1 = false;
                     oView.getModel("oConfigMdl").getData().COIVis = false;
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
 
-                } else if (oContext.Name == "GTS1" || oContext.Name == "GTS1Buyer") {
+                }   else if ( oContext.Name == "GTSBuyerBlockedCountry") {
+                    oView.getModel("oConfigMdl").getData().LegalVis = false;
+                    oView.getModel("oConfigMdl").getData().GTSVis = false;
+                    oView.getModel("oConfigMdl").getData().GTSVis1 = false;
+                    oView.getModel("oConfigMdl").getData().COIVis = false;
+                    oView.getModel("oConfigMdl").getData().MitgationVis = false;
+                    oView.getModel("oConfigMdl").getData().DisqualifyBtnVis = true;
+                    oView.getModel("oConfigMdl").getData().ApproveBtnVis = false;
+                    oView.getModel("oConfigMdl").getData().RejectBtnVis = false;
+
+                }  else if (oContext.Name == "GTS1" || oContext.Name == "GTS1Buyer") {
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis1 = false;
@@ -99,7 +113,7 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
-
+                        
                         if (oEvent.getSource().getData().comments) {
                             oView.getModel("oConfigMdl").getData().CommentsVis = true;
                             oView.getModel("oConfigMdl").getData().comments = oEvent.getSource().getData().comments;
@@ -122,6 +136,7 @@ sap.ui.define([
                         }else{
                           oView.getModel("oConfigMdl").getData().AttachVis = false;  
                         }
+                        
                         oView.getModel("oConfigMdl").getData().validationMessage = oEvent.getSource().getData().validationMessage;
                         oView.getModel("oConfigMdl").refresh();
                     }
@@ -216,7 +231,7 @@ sap.ui.define([
                                     oView.getModel("oConfigMdl").getData().companyInfoOrd = oEvent.getSource().getData().comInfoDto.address[i].postal;
                                 }
                             }
-                            if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS") {
+                            if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS" || oView.getModel("oConfigMdl").getData().contextPath.Name == "GTSBuyerBlockedCountry") {
                                 oView.getModel("oConfigMdl").getData().LegalVis = false;
                                 oView.getModel("oConfigMdl").getData().GTSVis = true;
                                 oView.getModel("oConfigMdl").getData().GTSVis1 = false;
@@ -705,25 +720,25 @@ sap.ui.define([
                 oView.getModel("JMAppvrComments").getData().Commentse = "None";
                 oView.getModel("JMAppvrComments").refresh();
             },
-            // fnOpenBankCommentsReject: function () {
-            //     var temp = {};
-            //     temp.Action = "RJ";
-            //     //temp.Comments ;
-            //     temp.Commentse = "None";
-            //     temp.Commentsm = "";
-            //     temp.commentsTxt = "Comments";
-            //     temp.required = true;
-            //     var oJosnComments = new sap.ui.model.json.JSONModel();
-            //     oJosnComments.setData(temp);
-            //     oView.setModel(oJosnComments, "JMAppvrComments");
-            //     if (!this.oBankComments) {
-            //         this.oBankComments = sap.ui.xmlfragment(
-            //             "ns.BuyerRegistration.fragments.ApproverComments", this);
-            //         oView.addDependent(this.oBankComments);
-            //     }
+            fnOpenBankCommentsRejectDisQualify: function () {
+                var temp = {};
+                temp.Action = "RJ";
+                //temp.Comments ;
+                temp.Commentse = "None";
+                temp.Commentsm = "";
+                temp.commentsTxt = "Comments";
+                temp.required = true;
+                var oJosnComments = new sap.ui.model.json.JSONModel();
+                oJosnComments.setData(temp);
+                oView.setModel(oJosnComments, "JMAppvrComments");
+                if (!this.oBankComments) {
+                    this.oBankComments = sap.ui.xmlfragment(
+                        "ns.BuyerRegistration.fragments.ApproverComments", this);
+                    oView.addDependent(this.oBankComments);
+                }
 
-            //     this.oBankComments.open();
-            // },
+                this.oBankComments.open();
+            },
             fnOpenBankCommentsReject: function () {
                 oView.getModel("oBPLookUpMdl").setProperty("/firstLevelReason", []);
                 oView.getModel("oBPLookUpMdl").setProperty("/SecondLevelReason", []);
@@ -751,7 +766,7 @@ sap.ui.define([
             },
             fnLoadFirstLevelReason: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_portal_services/reason-codes/firstLevel";
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/reason-codes/firstLevel?taskName="+oView.getModel("JMEulaComments").getData().GTSTaskSubject;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -919,7 +934,30 @@ sap.ui.define([
                         "secondLevelReasonCode": oView.getModel("JMAppvrComments").getData().secondLevelReason
 
                     }
-                } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS1") {
+                }else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTSBuyerBlockedCountry") {
+                    var vCommentsActn, vContextActn;
+                    if (vAprActn) {
+                        vCommentsActn = "approve";
+                        vContextActn = "approved";
+                    } else {
+                        vCommentsActn = "reject";
+                        vContextActn = "rejected";
+                    }
+                    var oPayload = {
+                        "context": {
+                            "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
+                            "caseId": oView.getModel("JMEulaComments").getData().caseId,
+                            "buyerActionOnGTSRemediation ": "disqualified",                    
+                            "gts_comment": oView.getModel("JMAppvrComments").getData().Comments
+                        },
+                        "status": "",
+                        "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                        "action": "disqualified",
+                        "comments": oView.getModel("JMAppvrComments").getData().Comments
+
+                    }
+                }
+                 else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS1") {
                     var vCommentsActn, vContextActn;
                     if (vAprActn) {
                         vCommentsActn = "approve";

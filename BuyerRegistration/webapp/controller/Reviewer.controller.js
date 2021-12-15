@@ -1158,6 +1158,7 @@ sap.ui.define([
             },
             fnLoadSecondLevelReason: function (vReasonCode) {
                 var oModel = new JSONModel();
+                
                 var sUrl = "/nsBuyerRegistration/plcm_portal_services/reason-codes/secondLevel?firstLevelReasonCode=" + vReasonCode;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
@@ -2122,8 +2123,9 @@ sap.ui.define([
                                     var vCaseId = oView.getModel("JMEulaComments").getData().caseId;
                                     var sUrlResp = "/nsBuyerRegistration/plcm_portal_services/api/v1/mdg/validate/response/" + vCaseId;
                                     var i = 0
+                                    var vBreak = false;
                                     for (; i < 6; i++) {
-                                        var vBreak = false;
+                                       
                                         //   setTimeout(function () {
                                         $.ajax({
                                             url: sUrlResp,
@@ -2131,6 +2133,7 @@ sap.ui.define([
                                             dataType: 'json',
                                             success: function (data) {
                                                 if (data.responseReceived == true) {
+                                                    vBreak = true;
                                                     var aValidateJson = new sap.ui.model.json.JSONModel();
                                                     that.aCheckData = data;
                                                     for (var i = 0; i < data.mdgLogDto.length; i++) {
@@ -2181,15 +2184,19 @@ sap.ui.define([
                                                         });
                                                     }
 
-                                                    vBreak = true;
+                                                
 
                                                 }else{
+                                                    if(i == 5){
                                                     oBusyDilog.close();
                                                     var sErMsg = "We are unable to validate at this time, please try again later.";
                                                     MessageBox.show(sErMsg, {
                                                         icon: MessageBox.Icon.ERROR,
                                                         title: oi18n.getProperty("Error")
                                                     });  
+                                                   // break;
+                                                   vBreak = true;
+                                                }
                                                 }
 
                                             },

@@ -548,11 +548,13 @@
 				<ToolbarSpacer/>
                
                
-                 <Button text="{i18n>Approve}" enabled="{oConfigMdl>/isClaimed}"    type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft  sapUiSizeCompact" />
+                 <Button text="{i18n>Approve}" visible="{oConfigMdl>/ApproveBtnVis}" enabled="{oConfigMdl>/isClaimed}"    type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft  sapUiSizeCompact" />
 				
                     	<Button text="{i18n>Mitigation}" visible="{oConfigMdl>/MitgationVis}" press="fnMitigate"  type="Accept" class="  cl_BPCDraft sapUiSizeCompact" enabled="{oConfigMdl>/isClaimed}" />
-               	<Button text="{i18n>Reject}"  press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
-			</OverflowToolbar>
+               	<Button text="{i18n>Reject}" visible="{oConfigMdl>/RejectBtnVis}" press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
+                   	<Button text="{i18n>Disqualify}" visible="{oConfigMdl>/DisqualifyBtnVis}" press="fnOpenBankCommentsRejectDisQualify" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
+			
+            </OverflowToolbar>
 		</footer>
 			</Page>
 	

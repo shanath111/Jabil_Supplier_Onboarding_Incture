@@ -57,7 +57,8 @@ sap.ui.define([
                         that.getOwnerComponent().getModel("oVisibilityModel").refresh(true);
                     }
                     if (oEvent.getSource().getStepCount() == 11) {
-                        oEvent.getSource().getParent().setCurrentStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId);
+                       //oEvent.getSource().getParent().goToStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId); /// go to Step forward or backward
+                        oEvent.getSource().getParent().setCurrentStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId); //// go to step forward or backward making all ahead steps to inactive
                     } else if (oEvent.getSource().getStepCount() == 8) {
                         if (oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep == 1 || oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep == 2) {
                             oEvent.getSource().getParent().setCurrentStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId);
@@ -700,7 +701,8 @@ sap.ui.define([
                                                     "oPostOffBox": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBox,
                                                     "oPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBoxZipCode,
                                                     "haveDiversityCertifications": oEvent.getSource().oData.comInfoDto.haveDiversityCertifications,
-                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite
+                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite,
+                                                    "paymentTerms": oEvent.getSource().oData.comInfoDto.orderAddrPaymentTerms
                                                 });
                                             rModel.setData({
                                                 "isRemitToAddress": oEvent.getSource().oData.comInfoDto.isRemitToAddress || false,
@@ -722,7 +724,8 @@ sap.ui.define([
                                                 "rTeleNumCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].telephone[0].telephoneCountryCode,
                                                 "rFaxNum": oEvent.getSource().oData.comInfoDto.address[1].postal[0].fax[0].faxNum,
                                                 "rPostOffBox": oEvent.getSource().oData.comInfoDto.address[1].postal[0].postOfficeBox,
-                                                "rPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[1].postal[0].postOfficeBoxZipCode
+                                                "rPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[1].postal[0].postOfficeBoxZipCode,
+                                                "paymentTerms": oEvent.getSource().oData.comInfoDto.invoiceAddrPaymentTerms
 
                                             });
                                             oView.setModel(cModel, "companyInfoModel");
@@ -850,7 +853,8 @@ sap.ui.define([
                                                     "oPostOffBox": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBox,
                                                     "oPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBoxZipCode,
                                                     "haveDiversityCertifications": oEvent.getSource().oData.comInfoDto.haveDiversityCertifications,
-                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite
+                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite,
+                                                    "paymentTerms": oEvent.getSource().oData.comInfoDto.orderAddrPaymentTerms
                                                 });
                                             rModel.setData({
                                                 "isRemitToAddress": oEvent.getSource().oData.comInfoDto.isRemitToAddress || false,
@@ -869,8 +873,8 @@ sap.ui.define([
                                                 "rTeleNumCode": "",
                                                 "rFaxNum": "",
                                                 "rPostOffBox": "",
-                                                "rPostOffZipCode": ""
-
+                                                "rPostOffZipCode": "",
+                                                "paymentTerms": oEvent.getSource().oData.comInfoDto.invoiceAddrPaymentTerms
                                             });
                                             oView.setModel(cModel, "companyInfoModel");
                                             oView.setModel(rModel, "remitModel");
@@ -948,7 +952,8 @@ sap.ui.define([
                                                     "oPostOffBox": "",
                                                     "oPostOffZipCode": "",
                                                     "haveDiversityCertifications": oEvent.getSource().oData.comInfoDto.haveDiversityCertifications,
-                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite
+                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite,
+                                                    "paymentTerms": oEvent.getSource().oData.comInfoDto.orderAddrPaymentTerms
                                                 });
 
                                             rModel.setData({
@@ -971,6 +976,7 @@ sap.ui.define([
                                                 "rFaxNum": oEvent.getSource().oData.comInfoDto.address[0].postal[0].fax[0].faxNum,
                                                 "rPostOffBox": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBox,
                                                 "rPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBoxZipCode,
+                                                "paymentTerms": oEvent.getSource().oData.comInfoDto.invoiceAddrPaymentTerms
 
                                             });
                                             oView.setModel(cModel, "companyInfoModel");
@@ -1050,7 +1056,8 @@ sap.ui.define([
                                                     "oPostOffBox": "",
                                                     "oPostOffZipCode": "",
                                                     "haveDiversityCertifications": oEvent.getSource().oData.comInfoDto.haveDiversityCertifications,
-                                                    "companyWebsite": oView.getModel("oDataModel").getData().comInfoDto.companyWebsite
+                                                    "companyWebsite": oView.getModel("oDataModel").getData().comInfoDto.companyWebsite,
+                                                    "paymentTerms": oEvent.getSource().oData.shippingInfoDto.paymentTerms
                                                 });
                                             rModel.setData({
                                                 "isRemitToAddress": false,
@@ -1071,7 +1078,8 @@ sap.ui.define([
                                                 "rTeleNumCode": "",
                                                 "rFaxNum": "",
                                                 "rPostOffBox": "",
-                                                "rPostOffZipCode": ""
+                                                "rPostOffZipCode": "",
+                                                "paymentTerms": oEvent.getSource().oData.shippingInfoDto.paymentTerms
 
 
                                             });
@@ -1095,7 +1103,7 @@ sap.ui.define([
 
                             }
 
-                            else if (oEvent.getParameter("errorobject").statusCode == 400 || oEvent.getParameter("errorobject").statusCode == 404 || oEvent.getParameter("errorobject").statusCode == 409 || oEvent.getParameter("errorobject").statusCode == 500) {
+                            else if (true || oEvent.getParameter("errorobject").statusCode == 400 || oEvent.getParameter("errorobject").statusCode == 404 || oEvent.getParameter("errorobject").statusCode == 409 || oEvent.getParameter("errorobject").statusCode == 500) {
 
                                 var sUrl = "/comjabilsurveyform/plcm_portal_services/case/findById/" + oView.getModel("oUserModel").getData().caseId;
                                 var oModel = new JSONModel();
@@ -1177,58 +1185,59 @@ sap.ui.define([
                                 that._fnLoadDropDownModel();
                                 cDeffered.done(function () {
                                     that._fnLoadPaymentMethod();
-                                });
-                                var cModel = new JSONModel();
-                                var rModel = new JSONModel();
-                                cModel.setData(
-                                    {
-                                        "isOrderFromAddress": false,
-                                        "oName": "",
-                                        "oAddress1": "",
-                                        "oAddress2": "",
-                                        "oAddress3": "",
-                                        "oAddress4": "",
-                                        "oAddress5": "",
-                                        "oDist": "",
-                                        "oPostalCode": "",
-                                        "oCity": "",
-                                        "oCountry": "",
-                                        "oRegion": "",
-                                        "oCountryC": "",
-                                        "oRegionC": "",
-                                        "oTeleNum": "",
-                                        "oTeleNumCode":"",
-                                        "oFaxNum": "",
-                                        "oPostOffBox": "",
-                                        "oPostOffZipCode": "",
-                                        "haveDiversityCertifications": null,
-                                        "companyWebsite": ""
+                                    var cModel = new JSONModel();
+                                    var rModel = new JSONModel();
+                                    cModel.setData(
+                                        {
+                                            "isOrderFromAddress": false,
+                                            "oName": "",
+                                            "oAddress1": "",
+                                            "oAddress2": "",
+                                            "oAddress3": "",
+                                            "oAddress4": "",
+                                            "oAddress5": "",
+                                            "oDist": "",
+                                            "oPostalCode": "",
+                                            "oCity": "",
+                                            "oCountry": "",
+                                            "oRegion": "",
+                                            "oCountryC": "",
+                                            "oRegionC": "",
+                                            "oTeleNum": "",
+                                            "oTeleNumCode":"",
+                                            "oFaxNum": "",
+                                            "oPostOffBox": "",
+                                            "oPostOffZipCode": "",
+                                            "haveDiversityCertifications": null,
+                                            "companyWebsite": "",
+                                            "paymentTerms": that.getView().getModel("oDataModel").getData().shippingInfoDto.paymentTerms
+                                        });
+                                    rModel.setData({
+                                        "isRemitToAddress": false,
+                                        "rName": "",
+                                        "rAddress1": "",
+                                        "rAddress2": "",
+                                        "rAddress3": "",
+                                        "rAddress4": "",
+                                        "rAddress5": "",
+                                        "rDist": "",
+                                        "rPostalCode": "",
+                                        "rCity": "",
+                                        "rCountry": "",
+                                        "rRegion": "",
+                                        "rCountryC": "",
+                                        "rRegionC": "",
+                                        "rTeleNum": "",
+                                        "rTeleNumCode": "",
+                                        "rFaxNum": "",
+                                        "rPostOffBox": "",
+                                        "rPostOffZipCode": "",
+                                        "paymentTerms": that.getView().getModel("oDataModel").getData().shippingInfoDto.paymentTerms
                                     });
-                                rModel.setData({
-                                    "isRemitToAddress": false,
-                                    "rName": "",
-                                    "rAddress1": "",
-                                    "rAddress2": "",
-                                    "rAddress3": "",
-                                    "rAddress4": "",
-                                    "rAddress5": "",
-                                    "rDist": "",
-                                    "rPostalCode": "",
-                                    "rCity": "",
-                                    "rCountry": "",
-                                    "rRegion": "",
-                                    "rCountryC": "",
-                                    "rRegionC": "",
-                                    "rTeleNum": "",
-                                    "rTeleNumCode": "",
-                                    "rFaxNum": "",
-                                    "rPostOffBox": "",
-                                    "rPostOffZipCode": "",
-
-
+                                    oView.setModel(cModel, "companyInfoModel");
+                                    oView.setModel(rModel, "remitModel");
+    
                                 });
-                                oView.setModel(cModel, "companyInfoModel");
-                                oView.setModel(rModel, "remitModel");
                                 that._fnReadDocumentList(oView.getModel("oUserModel").getData().caseId, that);
 
                             } else {
@@ -2683,66 +2692,66 @@ var aError = false;
                         switch (taxIDNumRule) {
                             case 1:
                                 if (/\s/.test(taxID) || taxID.includes("_") || taxID.length > taxIDMaxLength) {
-                                    this.emailValidResult = true;
+                                 //   this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                   // this.emailValidResult = false;
                                 }
                                 break;
                             case 2:
                                 if (!(/^\d+$/.test(taxID)) || taxID.includes("_") || taxID.length > taxIDMaxLength) {
-                                    this.emailValidResult = true;
+                                   // this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 3:
                                 if (/\s/.test(taxID) || taxID.includes("_") || !(taxID.length === taxIDMaxLength) && taxID.length > 0) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 4:
                                 if (!(/^\d+$/.test(taxID)) || taxID.includes("_") || !(taxID.length === taxIDMaxLength) && taxID.length > 0) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 5:
                                 if (taxID.includes("_") || taxID.length > taxIDMaxLength) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 6:
                                 if (!(/^[\d ]*$/.test(taxID)) || taxID.includes("_") || taxID.length > taxIDMaxLength) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 7:
                                 if (taxID.includes("_") || (!(taxID.length === taxIDMaxLength) && taxID.length > 0)) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 8:
                                 if (!(/^[\d ]*$/.test(taxID)) || taxID.includes("_") || (!(taxID.length === taxIDMaxLength) && taxID.length > 0)) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
 
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                         }
                     }
@@ -2811,7 +2820,7 @@ var aError = false;
                 }
                 if(!iError){
 
-                if(oView.getModel("oUserModel").getData().comCodeDesc == "US" && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == "US"){
+                if(oView.getModel("oUserModel").getData().comCodeDesc == "US" && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == "US"){
                     this.getView().getModel("oAttachmentList").refresh();
                   var findDomesticDoc= this.getView().getModel("oAttachmentList").getProperty("/0/" + "bPDArray").findIndex(function(doc){
                        return doc.docFormType == "W9";
@@ -2828,7 +2837,7 @@ var aError = false;
                         oView.byId("bpAttachBtn").removeStyleClass("attachmentWithBorderBP");
                             oView.byId("bpAttachBtn").addStyleClass("attachmentWithoutBorderBP");
                     }
-                } else if(oView.getModel("oUserModel").getData().comCodeDesc== "US" && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country !== "US"){
+                } else if(oView.getModel("oUserModel").getData().comCodeDesc== "US" && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country !== "US"){
                     this.getView().getModel("oAttachmentList").refresh();
                     var findDomesticDoc= this.getView().getModel("oAttachmentList").getProperty("/0/" + "bPDArray").findIndex(function(doc){
                         return doc.docFormType == "W8";
@@ -3113,6 +3122,12 @@ var aError = false;
                     var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
                         isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                     if (oView.getModel("companyInfoModel").getData().isOrderFromAddress) {
+                        if (!oView.getModel("companyInfoModel").getData().paymentTerms || spaceRegex.test(oView.getModel("companyInfoModel").getData().paymentTerms)) {
+                            oView.getModel("oErrorModel").getData().paymentTermOFAE = "Error";
+                            oView.getModel("oErrorModel").getData().paymentTermOFAM = oi18n.getText("mandatoryPrefPaymentTerms");
+
+                            iError = true;
+                        }
                         if (!oView.getModel("companyInfoModel").getData().oName || spaceRegex.test(oView.getModel("companyInfoModel").getData().oName)) {
                             oView.getModel("oErrorModel").getData().oFANameE = "Error";
                             oView.getModel("oErrorModel").getData().oFANameM = oi18n.getText("mandatoryName");
@@ -3287,6 +3302,12 @@ var aError = false;
                     }
 
                     if (oView.getModel("remitModel").getData().isRemitToAddress) {
+                        if (!oView.getModel("remitModel").getData().paymentTerms || spaceRegex.test(oView.getModel("remitModel").getData().paymentTerms)) {
+                            oView.getModel("oErrorModel").getData().paymentTermRTAE = "Error";
+                            oView.getModel("oErrorModel").getData().paymentTermRTAM = oi18n.getText("mandatoryPrefPaymentTerms");
+
+                            iError = true;
+                        }
                         if (!oView.getModel("remitModel").getData().rName || spaceRegex.test(oView.getModel("remitModel").getData().rName)) {
                             oView.getModel("oErrorModel").getData().rTANameE = "Error";
                             oView.getModel("oErrorModel").getData().rTANameM = oi18n.getText("mandatoryName");
@@ -6371,69 +6392,72 @@ var aError = false;
                             oEvent.getSource().setValueStateText("ID shouldn't exceed max length with no gaps");
                             // oView.getModel("oDataModel").getData().bpInfoDto.tax[nIndex].taxNumE = "Error";
                             // oView.getModel("oDataModel").getData().bpInfoDto.tax[nIndex].taxNumM = "ID shouldn't exceed max length with no gaps";
+                         //   this.emailValidResult = true;
+                        } else {
+                           // this.emailValidResult = false;
                         }
                         break;
                     case 2:
                         if (!(/^\d+$/.test(taxID)) || (taxID.includes("_") || taxID.length > taxIDMaxLength)) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Accepts only numbers without spaces");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 3:
                         if (/\s/.test(taxID) || (taxID.includes("_") || !(taxID.length === taxIDMaxLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of " + taxIDMaxLength + " characters in length without any spaces");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 4:
                         if (!(/^\d+$/.test(taxID)) || (taxID.includes("_") || !(taxID.length === taxIDMaxLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of " + taxIDMaxLength + " numerical digits in length without any spaces");
-                            this.emailValidResult = true;
+                            //this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                           // this.emailValidResult = false;
                         }
                         break;
                     case 5:
                         if (taxID.includes("_") || taxID.length > taxIDMaxLength) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Maximum length exceeded");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 6:
                         if (!(/^[\d ]*$/.test(taxID)) || (taxID.includes("_") || taxID.length > taxIDMaxLength)) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Accepts only numbers");
-                            this.emailValidResult = true;
+                            //this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 7:
                         if (!(taxID.length === taxIDMaxLength) || (taxID.includes("_"))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + taxIDMaxLength + "characters in length");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 8:
                         if (!(/^[\d ]*$/.test(taxID)) || (taxID.includes("_") || !(taxID.length === taxIDMaxLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + taxIDMaxLength + "digits in length");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = true;
+                            //this.emailValidResult = false;
                         }
                 }
             }
@@ -7368,12 +7392,16 @@ var aError = false;
             },
 
             fnLivePaymentMethodChange: function (oEvent){
-                 if (oEvent.getSource().getValue()) {
+                if(oEvent.getSource().getSelectedItems().length !== 0){
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
-                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
-                    oView.getModel("oDataModel").refresh();
                 }
+                //  if (oEvent.getSource().getValue()) {
+                //     oEvent.getSource().setValueState("None");
+                //     oEvent.getSource().setValueStateText("");
+                //     oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                //     oView.getModel("oDataModel").refresh();
+                // }
 
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
@@ -7381,64 +7409,16 @@ var aError = false;
                         oEvent.getSource().setValue("");
                     }
                 }
-                // var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
-                // if( apaymentMethod === 'Optional'){
-                // oView.getModel("oErrorModel").getData().bankNameE = "None";
-                // oView.getModel("oErrorModel").getData().bankNameM = "";
-                // oView.getModel("oErrorModel").getData().bankAddrE = "None";
-                // oView.getModel("oErrorModel").getData().bankAddrM = "";
-                // oView.getModel("oErrorModel").getData().bankCityE = "None";
-                // oView.getModel("oErrorModel").getData().bankCityM = "";
-                // oView.getModel("oErrorModel").getData().bankAccNumE = "None";
-                // oView.getModel("oErrorModel").getData().bankAccNumM = "";
-                // oView.getModel("oErrorModel").getData().benifAccHNameE = "None";
-                // oView.getModel("oErrorModel").getData().benifAccHNameM = "";
-                // oView.getModel("oErrorModel").getData().bankSwiftE = "None";
-                // oView.getModel("oErrorModel").getData().bankSwiftM = "";
-                // oView.getModel("oErrorModel").getData().bankBranchE = "None";
-                // oView.getModel("oErrorModel").getData().bankBranchM = "";
-                // oView.getModel("oErrorModel").getData().bankRefE = "None";
-                // oView.getModel("oErrorModel").getData().bankRefM = "";
-                // oView.getModel("oErrorModel").getData().bankNumE = "None";
-                // oView.getModel("oErrorModel").getData().bankNumM = "";
-                // oView.getModel("oErrorModel").getData().ibanE = "None";
-                // oView.getModel("oErrorModel").getData().ibanM = "";
-                // oView.getModel("oErrorModel").getData().benifAccCurrE = "None";
-                // oView.getModel("oErrorModel").getData().benifAccCurrM = "";
-                // oView.getModel("oErrorModel").getData().bankCtrlKeyE = "None";
-                // oView.getModel("oErrorModel").getData().bankCtrlKeyM = "";
-                // oView.getModel("oErrorModel").getData().paymentCurrE = "None";
-                // oView.getModel("oErrorModel").getData().paymentCurrM = "";
-                // oView.getModel("oErrorModel").refresh();
-                //  var bankFields = this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
-                //     bankFields.bankName = false;
-                //     bankFields.bankBranch = false;
-                //     bankFields.bankStreet = false;
-                //     bankFields.bankCity = false;
-                //     bankFields.benificiaryAccountNumber = false;
-                //     bankFields.swiftCode = false;
-                //     bankFields.bankNumber = false;
-                //     bankFields.bankCountry = false;
-                //     bankFields.benificiaryAccHolderName = false;
-                //     bankFields.bankKey = false;
-                //     bankFields.benificiaryAccCurrency = false;
-                //     bankFields.instructionKey = false;
-                //     bankFields.bankControlKey = false;
-                //     bankFields.referenceDetails = false;
-                //     bankFields.iban = false;
-                //     bankFields.ibanLength = null;
-                //     bankFields.bankControlKeyLogic = null;
-                //     bankFields.bankControlKeyDigitsLogic = null;
-                //     bankFields.companyCodeCountry = "";
-                //     bankFields.bankKeyVal1 = "";
-                //     bankFields.bankKeyVal2 = "";
-                //     bankFields.bankKeyVal3 = "";
-                //     this.getOwnerComponent().getModel("oVisibilityModel").refresh();
-                // } else {
-                //       this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.bankCountry = true;
-                //         this.getOwnerComponent().getModel("oVisibilityModel").refresh();
-                //      this.fnActivateBankScreen();
-                // }
+            },
+            fnLivePaymentMethodFinish: function (oEvent) {
+                if (oEvent.getSource().getSelectedKeys().length !== 0) {
+                    for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
+                        oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod  +  oEvent.getSource().getSelectedKeys()[i];
+                    }
+                } else {
+                    oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = "";
+                }
+                oView.getModel("oDataModel").refresh();
             },
 
             fnLiveValueBankInput: function (oEvent) {
@@ -8533,6 +8513,8 @@ var that = this;
                         oPayload.shippingInfoDto.deliverRepContact = "";
                         oPayload.shippingInfoDto.deliverRepFax = "";
                     }
+                    // var a = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod;
+                    // oPayload.shippingInfoDto.paymentMethod = a.charAt(a[0]).replace("-","") + a.slice(1);
                     if (oPayload.shippingInfoDto.isPaymentTermsAgreed === true) {
                         oPayload.shippingInfoDto.paymentTermsComments = "";
                     }
@@ -9817,7 +9799,9 @@ var that = this;
                         ],
 
                         "smallDisadvantagedBusiness": [
-                        ]
+                        ],
+                        "orderAddrPaymentTerms":oView.getModel("companyInfoModel").getData().paymentTerms,
+                        "invoiceAddrPaymentTerms":oView.getModel("remitModel").getData().paymentTerms
                     }
                     if (oPayload.comInfoDto.isOrderToAddress) {
                         //  if (oView.byId("iAddress1").getDomRef()) {
@@ -10451,7 +10435,7 @@ var that = this;
             },
             fnNavBackToHome: function () {
                 var vName = vAppName.split(":")[1];
-                if (vName == "LegalExp" || vName == "GTS" || vName == "GTS1" || vName == "COISupp" || vName == "COIBuyer" || vName == "CyberSec" ||  vName == "CyberSecBuyer") {
+                if (vName == "LegalExp" || vName == "GTS" || vName == "GTS1" || vName == "COISupp" || vName == "COIBuyer" || vName == "CyberSec" ||  vName == "CyberSecBuyer" || vName == "GTSBuyerBlockedCountry") {
                     var vUrl = window.location.origin + "/nsBuyerRegistration/index.html#/ExceptionFlow/" + vName + "/" + oView.getModel("oUserModel").getData().taskId
                 } else {
                     var vUrl = window.location.origin + "/nsBuyerRegistration/index.html#/Reviewer/" + vName + "/" + oView.getModel("oUserModel").getData().taskId
@@ -10604,9 +10588,9 @@ var that = this;
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/ccpo/localDocuments/search";
                 var ccPayload = {
 
-                    "companyCode": oView.getModel("oDataModel").getData().shippingInfoDto.purchasingOrg,
+                    "companyCode": oView.getModel("oDataModel").getData().shippingInfoDto.comCode,
 
-                    "purchasingOrganisation": oView.getModel("oDataModel").getData().shippingInfoDto.comCode
+                    "purchasingOrganisation": oView.getModel("oDataModel").getData().shippingInfoDto.purchasingOrg
                 };
 
 
