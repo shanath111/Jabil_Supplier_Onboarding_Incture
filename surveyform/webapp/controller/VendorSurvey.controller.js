@@ -701,7 +701,8 @@ sap.ui.define([
                                                     "oPostOffBox": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBox,
                                                     "oPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBoxZipCode,
                                                     "haveDiversityCertifications": oEvent.getSource().oData.comInfoDto.haveDiversityCertifications,
-                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite
+                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite,
+                                                    "paymentTerms": oEvent.getSource().oData.comInfoDto.orderAddrPaymentTerms
                                                 });
                                             rModel.setData({
                                                 "isRemitToAddress": oEvent.getSource().oData.comInfoDto.isRemitToAddress || false,
@@ -723,7 +724,8 @@ sap.ui.define([
                                                 "rTeleNumCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].telephone[0].telephoneCountryCode,
                                                 "rFaxNum": oEvent.getSource().oData.comInfoDto.address[1].postal[0].fax[0].faxNum,
                                                 "rPostOffBox": oEvent.getSource().oData.comInfoDto.address[1].postal[0].postOfficeBox,
-                                                "rPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[1].postal[0].postOfficeBoxZipCode
+                                                "rPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[1].postal[0].postOfficeBoxZipCode,
+                                                "paymentTerms": oEvent.getSource().oData.comInfoDto.invoiceAddrPaymentTerms
 
                                             });
                                             oView.setModel(cModel, "companyInfoModel");
@@ -851,7 +853,8 @@ sap.ui.define([
                                                     "oPostOffBox": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBox,
                                                     "oPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBoxZipCode,
                                                     "haveDiversityCertifications": oEvent.getSource().oData.comInfoDto.haveDiversityCertifications,
-                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite
+                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite,
+                                                    "paymentTerms": oEvent.getSource().oData.comInfoDto.orderAddrPaymentTerms
                                                 });
                                             rModel.setData({
                                                 "isRemitToAddress": oEvent.getSource().oData.comInfoDto.isRemitToAddress || false,
@@ -870,8 +873,8 @@ sap.ui.define([
                                                 "rTeleNumCode": "",
                                                 "rFaxNum": "",
                                                 "rPostOffBox": "",
-                                                "rPostOffZipCode": ""
-
+                                                "rPostOffZipCode": "",
+                                                "paymentTerms": oEvent.getSource().oData.comInfoDto.invoiceAddrPaymentTerms
                                             });
                                             oView.setModel(cModel, "companyInfoModel");
                                             oView.setModel(rModel, "remitModel");
@@ -949,7 +952,8 @@ sap.ui.define([
                                                     "oPostOffBox": "",
                                                     "oPostOffZipCode": "",
                                                     "haveDiversityCertifications": oEvent.getSource().oData.comInfoDto.haveDiversityCertifications,
-                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite
+                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite,
+                                                    "paymentTerms": oEvent.getSource().oData.comInfoDto.orderAddrPaymentTerms
                                                 });
 
                                             rModel.setData({
@@ -972,6 +976,7 @@ sap.ui.define([
                                                 "rFaxNum": oEvent.getSource().oData.comInfoDto.address[0].postal[0].fax[0].faxNum,
                                                 "rPostOffBox": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBox,
                                                 "rPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBoxZipCode,
+                                                "paymentTerms": oEvent.getSource().oData.comInfoDto.invoiceAddrPaymentTerms
 
                                             });
                                             oView.setModel(cModel, "companyInfoModel");
@@ -1051,7 +1056,8 @@ sap.ui.define([
                                                     "oPostOffBox": "",
                                                     "oPostOffZipCode": "",
                                                     "haveDiversityCertifications": oEvent.getSource().oData.comInfoDto.haveDiversityCertifications,
-                                                    "companyWebsite": oView.getModel("oDataModel").getData().comInfoDto.companyWebsite
+                                                    "companyWebsite": oView.getModel("oDataModel").getData().comInfoDto.companyWebsite,
+                                                    "paymentTerms": oEvent.getSource().oData.shippingInfoDto.paymentTerms
                                                 });
                                             rModel.setData({
                                                 "isRemitToAddress": false,
@@ -1072,7 +1078,8 @@ sap.ui.define([
                                                 "rTeleNumCode": "",
                                                 "rFaxNum": "",
                                                 "rPostOffBox": "",
-                                                "rPostOffZipCode": ""
+                                                "rPostOffZipCode": "",
+                                                "paymentTerms": oEvent.getSource().oData.shippingInfoDto.paymentTerms
 
 
                                             });
@@ -1096,7 +1103,7 @@ sap.ui.define([
 
                             }
 
-                            else if (oEvent.getParameter("errorobject").statusCode == 400 || oEvent.getParameter("errorobject").statusCode == 404 || oEvent.getParameter("errorobject").statusCode == 409 || oEvent.getParameter("errorobject").statusCode == 500) {
+                            else if (true || oEvent.getParameter("errorobject").statusCode == 400 || oEvent.getParameter("errorobject").statusCode == 404 || oEvent.getParameter("errorobject").statusCode == 409 || oEvent.getParameter("errorobject").statusCode == 500) {
 
                                 var sUrl = "/comjabilsurveyform/plcm_portal_services/case/findById/" + oView.getModel("oUserModel").getData().caseId;
                                 var oModel = new JSONModel();
@@ -1178,58 +1185,59 @@ sap.ui.define([
                                 that._fnLoadDropDownModel();
                                 cDeffered.done(function () {
                                     that._fnLoadPaymentMethod();
-                                });
-                                var cModel = new JSONModel();
-                                var rModel = new JSONModel();
-                                cModel.setData(
-                                    {
-                                        "isOrderFromAddress": false,
-                                        "oName": "",
-                                        "oAddress1": "",
-                                        "oAddress2": "",
-                                        "oAddress3": "",
-                                        "oAddress4": "",
-                                        "oAddress5": "",
-                                        "oDist": "",
-                                        "oPostalCode": "",
-                                        "oCity": "",
-                                        "oCountry": "",
-                                        "oRegion": "",
-                                        "oCountryC": "",
-                                        "oRegionC": "",
-                                        "oTeleNum": "",
-                                        "oTeleNumCode":"",
-                                        "oFaxNum": "",
-                                        "oPostOffBox": "",
-                                        "oPostOffZipCode": "",
-                                        "haveDiversityCertifications": null,
-                                        "companyWebsite": ""
+                                    var cModel = new JSONModel();
+                                    var rModel = new JSONModel();
+                                    cModel.setData(
+                                        {
+                                            "isOrderFromAddress": false,
+                                            "oName": "",
+                                            "oAddress1": "",
+                                            "oAddress2": "",
+                                            "oAddress3": "",
+                                            "oAddress4": "",
+                                            "oAddress5": "",
+                                            "oDist": "",
+                                            "oPostalCode": "",
+                                            "oCity": "",
+                                            "oCountry": "",
+                                            "oRegion": "",
+                                            "oCountryC": "",
+                                            "oRegionC": "",
+                                            "oTeleNum": "",
+                                            "oTeleNumCode":"",
+                                            "oFaxNum": "",
+                                            "oPostOffBox": "",
+                                            "oPostOffZipCode": "",
+                                            "haveDiversityCertifications": null,
+                                            "companyWebsite": "",
+                                            "paymentTerms": that.getView().getModel("oDataModel").getData().shippingInfoDto.paymentTerms
+                                        });
+                                    rModel.setData({
+                                        "isRemitToAddress": false,
+                                        "rName": "",
+                                        "rAddress1": "",
+                                        "rAddress2": "",
+                                        "rAddress3": "",
+                                        "rAddress4": "",
+                                        "rAddress5": "",
+                                        "rDist": "",
+                                        "rPostalCode": "",
+                                        "rCity": "",
+                                        "rCountry": "",
+                                        "rRegion": "",
+                                        "rCountryC": "",
+                                        "rRegionC": "",
+                                        "rTeleNum": "",
+                                        "rTeleNumCode": "",
+                                        "rFaxNum": "",
+                                        "rPostOffBox": "",
+                                        "rPostOffZipCode": "",
+                                        "paymentTerms": that.getView().getModel("oDataModel").getData().shippingInfoDto.paymentTerms
                                     });
-                                rModel.setData({
-                                    "isRemitToAddress": false,
-                                    "rName": "",
-                                    "rAddress1": "",
-                                    "rAddress2": "",
-                                    "rAddress3": "",
-                                    "rAddress4": "",
-                                    "rAddress5": "",
-                                    "rDist": "",
-                                    "rPostalCode": "",
-                                    "rCity": "",
-                                    "rCountry": "",
-                                    "rRegion": "",
-                                    "rCountryC": "",
-                                    "rRegionC": "",
-                                    "rTeleNum": "",
-                                    "rTeleNumCode": "",
-                                    "rFaxNum": "",
-                                    "rPostOffBox": "",
-                                    "rPostOffZipCode": "",
-
-
+                                    oView.setModel(cModel, "companyInfoModel");
+                                    oView.setModel(rModel, "remitModel");
+    
                                 });
-                                oView.setModel(cModel, "companyInfoModel");
-                                oView.setModel(rModel, "remitModel");
                                 that._fnReadDocumentList(oView.getModel("oUserModel").getData().caseId, that);
 
                             } else {
@@ -3115,6 +3123,12 @@ var aError = false;
                     var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
                         isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                     if (oView.getModel("companyInfoModel").getData().isOrderFromAddress) {
+                        if (!oView.getModel("companyInfoModel").getData().paymentTerms || spaceRegex.test(oView.getModel("companyInfoModel").getData().paymentTerms)) {
+                            oView.getModel("oErrorModel").getData().paymentTermOFAE = "Error";
+                            oView.getModel("oErrorModel").getData().paymentTermOFAM = oi18n.getText("mandatoryPrefPaymentTerms");
+
+                            iError = true;
+                        }
                         if (!oView.getModel("companyInfoModel").getData().oName || spaceRegex.test(oView.getModel("companyInfoModel").getData().oName)) {
                             oView.getModel("oErrorModel").getData().oFANameE = "Error";
                             oView.getModel("oErrorModel").getData().oFANameM = oi18n.getText("mandatoryName");
@@ -3289,6 +3303,12 @@ var aError = false;
                     }
 
                     if (oView.getModel("remitModel").getData().isRemitToAddress) {
+                        if (!oView.getModel("remitModel").getData().paymentTerms || spaceRegex.test(oView.getModel("remitModel").getData().paymentTerms)) {
+                            oView.getModel("oErrorModel").getData().paymentTermRTAE = "Error";
+                            oView.getModel("oErrorModel").getData().paymentTermRTAM = oi18n.getText("mandatoryPrefPaymentTerms");
+
+                            iError = true;
+                        }
                         if (!oView.getModel("remitModel").getData().rName || spaceRegex.test(oView.getModel("remitModel").getData().rName)) {
                             oView.getModel("oErrorModel").getData().rTANameE = "Error";
                             oView.getModel("oErrorModel").getData().rTANameM = oi18n.getText("mandatoryName");
@@ -9783,7 +9803,9 @@ var that = this;
                         ],
 
                         "smallDisadvantagedBusiness": [
-                        ]
+                        ],
+                        "orderAddrPaymentTerms":oView.getModel("companyInfoModel").getData().paymentTerms,
+                        "invoiceAddrPaymentTerms":oView.getModel("remitModel").getData().paymentTerms
                     }
                     if (oPayload.comInfoDto.isOrderToAddress) {
                         //  if (oView.byId("iAddress1").getDomRef()) {
