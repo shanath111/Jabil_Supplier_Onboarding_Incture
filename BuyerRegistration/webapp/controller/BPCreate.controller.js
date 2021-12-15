@@ -2259,8 +2259,8 @@ debugger;
                     oView.getModel("JMBPCreate").getData().telephonem = oi18n.getProperty("BPCMaxLengthExceeds");;
                     oView.getModel("JMBPCreate").refresh();
                 } else if (!numRegex.test(oEvent.getSource().getValue())) {
-                    var newval = val.substring(0, val.length - 1);
-                    oEvent.getSource().setValue(newval);
+                    // var newval = val.substring(0, val.length - 1);
+                    oEvent.getSource().setValue("");
                 }
                 else {
                     if (oView.getModel("JMBPCreate").getData().telephonee == "Error") {
@@ -2279,8 +2279,8 @@ debugger;
                     oView.getModel("JMBPCreate").getData().contactMobilePhonem = oi18n.getProperty("BPCMaxLengthExceeds");;
                     oView.getModel("JMBPCreate").refresh();
                 } else if (!numRegex.test(oEvent.getSource().getValue())) {
-                    var newval = val.substring(0, val.length - 1);
-                    oEvent.getSource().setValue(newval);
+                    // var newval = val.substring(0, val.length - 1);
+                    oEvent.getSource().setValue("");
 
                 }
                 else {
