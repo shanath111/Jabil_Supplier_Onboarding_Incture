@@ -2169,6 +2169,7 @@ sap.ui.define([
                                                     } else {
                                                         MessageBox.error(oi18n.getProperty("ValidationSuccessFullError"), {
                                                             actions: ["View Details", MessageBox.Action.CANCEL],
+                                                            title: "Validation Unsuccessful",
                                                             emphasizedAction: MessageBox.Action.OK,
                                                             onClose: function (sAction) {
                                                                 if (sAction == "View Details") {
@@ -2192,7 +2193,7 @@ sap.ui.define([
                                                     var sErMsg = "We are unable to validate at this time, please try again later.";
                                                     MessageBox.show(sErMsg, {
                                                         icon: MessageBox.Icon.ERROR,
-                                                        title: oi18n.getProperty("Error")
+                                                        title: "Validation Unsuccessful"
                                                     });  
                                                    // break;
                                                    vBreak = true;
@@ -2207,7 +2208,7 @@ sap.ui.define([
                                                 var sErMsg = "We are unable to validate at this time, please try again later.";
                                                 MessageBox.show(sErMsg, {
                                                     icon: MessageBox.Icon.ERROR,
-                                                    title: oi18n.getProperty("Error")
+                                                    title: "Validation Unsuccessful"
                                                 });
                                             }
                                         });
@@ -2222,7 +2223,7 @@ sap.ui.define([
                                     var sErMsg = "We are unable to validate at this time, please try again later.";
                                     MessageBox.show(sErMsg, {
                                         icon: MessageBox.Icon.ERROR,
-                                        title: oi18n.getProperty("Error")
+                                        title: "Validation Unsuccessful"
                                     });
                                     }
                                 } else {
@@ -2230,7 +2231,7 @@ sap.ui.define([
                                     var sErMsg = "We are unable to validate at this time, please try again later.";
                                     MessageBox.show(sErMsg, {
                                         icon: MessageBox.Icon.ERROR,
-                                        title: oi18n.getProperty("Error")
+                                        title: "Validation Unsuccessful"
                                     });
                                 }
 
@@ -2240,7 +2241,7 @@ sap.ui.define([
                                 var sErMsg = oEvent.getParameter("errorobject").responseText;
                                 MessageBox.show(sErMsg, {
                                     icon: MessageBox.Icon.ERROR,
-                                    title: oi18n.getProperty("Error")
+                                    title: "Validation Unsuccessful"
                                 });
                             }
 
@@ -2251,7 +2252,7 @@ sap.ui.define([
                         var sErMsg = oEvent.getParameter("errorobject").responseText;
                         MessageBox.show(sErMsg, {
                             icon: MessageBox.Icon.ERROR,
-                            title: oi18n.getProperty("Error")
+                            title: "Validation Unsuccessful"
                         });
                     }
 
