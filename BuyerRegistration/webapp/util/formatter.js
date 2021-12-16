@@ -17,7 +17,7 @@ ns.BuyerRegistration.util.formatter = {
         }
     },
     ErrorLine: function (status) {
-        debugger;
+     
         var id = this.oParent.oParent.sId;
         var cid = this.oParent.sId;
       //  sap.ui.getCore().byId(id).addStyleClass("whiteColorLine");
