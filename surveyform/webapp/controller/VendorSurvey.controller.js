@@ -2818,7 +2818,7 @@ var aError = false;
                 } else {
                     oView.byId("businessPartnerInfo").setValidated(true);
                 }
-                if(!iError){
+                if(!iError && oView.getModel("oUserModel").getData().isNew){
 
                 if(oView.getModel("oUserModel").getData().comCodeDesc == "US" && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country && oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country == "US"){
                     this.getView().getModel("oAttachmentList").refresh();
