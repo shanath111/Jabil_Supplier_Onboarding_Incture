@@ -263,8 +263,8 @@
     </l:VerticalLayout>
    <l:VerticalLayout visible="{=${oDataModel>/comComplianceDto/localDocuments} ? (${oDataModel>/comComplianceDto/localDocuments}.length !== 0 ? true : false): false}" width="100%" class="sapUiSizeCompact">
    <HBox>
-   	<Label text="{i18n>locDocTitle}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinyMarginBegin fontStyleBold"></Label>
-       	<Label text="{i18n>locDocTitle1}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinyMarginBegin fontStyle"></Label>
+   	<Label text="{i18n>locDocTitle}" wrapping="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinyMarginBegin fontStyleBold"></Label>
+       	<Label text="{i18n>locDocTitle1}" wrapping="true"  visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinyMarginBegin fontStyle"></Label>
             <Label text="{oi18n_En>locDocTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinyMarginBegin fontStyleBold"></Label>
                         <Label text="{oi18n_En>locDocTitle1}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
              <Label text=" /&#160;{i18n>locDocTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyleBold"></Label>

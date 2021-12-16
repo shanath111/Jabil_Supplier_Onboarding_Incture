@@ -57,7 +57,7 @@ sap.ui.define([
                         that.getOwnerComponent().getModel("oVisibilityModel").refresh(true);
                     }
                     if (oEvent.getSource().getStepCount() == 11) {
-                           //oEvent.getSource().getParent().goToStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId); /// go to Step forward or backward
+                       //oEvent.getSource().getParent().goToStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId); /// go to Step forward or backward
                         oEvent.getSource().getParent().setCurrentStep(oEvent.getSource().getParent().getSteps()[oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep - 1].sId); //// go to step forward or backward making all ahead steps to inactive
                     } else if (oEvent.getSource().getStepCount() == 8) {
                         if (oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep == 1 || oEvent.getSource().getParent()._getProgressNavigator()._iCurrentStep == 2) {
@@ -701,7 +701,8 @@ sap.ui.define([
                                                     "oPostOffBox": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBox,
                                                     "oPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBoxZipCode,
                                                     "haveDiversityCertifications": oEvent.getSource().oData.comInfoDto.haveDiversityCertifications,
-                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite
+                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite,
+                                                    "paymentTerms": oEvent.getSource().oData.comInfoDto.orderAddrPaymentTerms
                                                 });
                                             rModel.setData({
                                                 "isRemitToAddress": oEvent.getSource().oData.comInfoDto.isRemitToAddress || false,
@@ -723,7 +724,8 @@ sap.ui.define([
                                                 "rTeleNumCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].telephone[0].telephoneCountryCode,
                                                 "rFaxNum": oEvent.getSource().oData.comInfoDto.address[1].postal[0].fax[0].faxNum,
                                                 "rPostOffBox": oEvent.getSource().oData.comInfoDto.address[1].postal[0].postOfficeBox,
-                                                "rPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[1].postal[0].postOfficeBoxZipCode
+                                                "rPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[1].postal[0].postOfficeBoxZipCode,
+                                                "paymentTerms": oEvent.getSource().oData.comInfoDto.invoiceAddrPaymentTerms
 
                                             });
                                             oView.setModel(cModel, "companyInfoModel");
@@ -851,7 +853,8 @@ sap.ui.define([
                                                     "oPostOffBox": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBox,
                                                     "oPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBoxZipCode,
                                                     "haveDiversityCertifications": oEvent.getSource().oData.comInfoDto.haveDiversityCertifications,
-                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite
+                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite,
+                                                    "paymentTerms": oEvent.getSource().oData.comInfoDto.orderAddrPaymentTerms
                                                 });
                                             rModel.setData({
                                                 "isRemitToAddress": oEvent.getSource().oData.comInfoDto.isRemitToAddress || false,
@@ -870,8 +873,8 @@ sap.ui.define([
                                                 "rTeleNumCode": "",
                                                 "rFaxNum": "",
                                                 "rPostOffBox": "",
-                                                "rPostOffZipCode": ""
-
+                                                "rPostOffZipCode": "",
+                                                "paymentTerms": oEvent.getSource().oData.comInfoDto.invoiceAddrPaymentTerms
                                             });
                                             oView.setModel(cModel, "companyInfoModel");
                                             oView.setModel(rModel, "remitModel");
@@ -949,7 +952,8 @@ sap.ui.define([
                                                     "oPostOffBox": "",
                                                     "oPostOffZipCode": "",
                                                     "haveDiversityCertifications": oEvent.getSource().oData.comInfoDto.haveDiversityCertifications,
-                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite
+                                                    "companyWebsite": oEvent.getSource().oData.comInfoDto.companyWebsite,
+                                                    "paymentTerms": oEvent.getSource().oData.comInfoDto.orderAddrPaymentTerms
                                                 });
 
                                             rModel.setData({
@@ -972,6 +976,7 @@ sap.ui.define([
                                                 "rFaxNum": oEvent.getSource().oData.comInfoDto.address[0].postal[0].fax[0].faxNum,
                                                 "rPostOffBox": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBox,
                                                 "rPostOffZipCode": oEvent.getSource().oData.comInfoDto.address[0].postal[0].postOfficeBoxZipCode,
+                                                "paymentTerms": oEvent.getSource().oData.comInfoDto.invoiceAddrPaymentTerms
 
                                             });
                                             oView.setModel(cModel, "companyInfoModel");
@@ -1051,7 +1056,8 @@ sap.ui.define([
                                                     "oPostOffBox": "",
                                                     "oPostOffZipCode": "",
                                                     "haveDiversityCertifications": oEvent.getSource().oData.comInfoDto.haveDiversityCertifications,
-                                                    "companyWebsite": oView.getModel("oDataModel").getData().comInfoDto.companyWebsite
+                                                    "companyWebsite": oView.getModel("oDataModel").getData().comInfoDto.companyWebsite,
+                                                    "paymentTerms": oEvent.getSource().oData.shippingInfoDto.paymentTerms
                                                 });
                                             rModel.setData({
                                                 "isRemitToAddress": false,
@@ -1072,7 +1078,8 @@ sap.ui.define([
                                                 "rTeleNumCode": "",
                                                 "rFaxNum": "",
                                                 "rPostOffBox": "",
-                                                "rPostOffZipCode": ""
+                                                "rPostOffZipCode": "",
+                                                "paymentTerms": oEvent.getSource().oData.shippingInfoDto.paymentTerms
 
 
                                             });
@@ -1096,7 +1103,7 @@ sap.ui.define([
 
                             }
 
-                            else if (oEvent.getParameter("errorobject").statusCode == 400 || oEvent.getParameter("errorobject").statusCode == 404 || oEvent.getParameter("errorobject").statusCode == 409 || oEvent.getParameter("errorobject").statusCode == 500) {
+                            else if (true || oEvent.getParameter("errorobject").statusCode == 400 || oEvent.getParameter("errorobject").statusCode == 404 || oEvent.getParameter("errorobject").statusCode == 409 || oEvent.getParameter("errorobject").statusCode == 500) {
 
                                 var sUrl = "/comjabilsurveyform/plcm_portal_services/case/findById/" + oView.getModel("oUserModel").getData().caseId;
                                 var oModel = new JSONModel();
@@ -1178,58 +1185,59 @@ sap.ui.define([
                                 that._fnLoadDropDownModel();
                                 cDeffered.done(function () {
                                     that._fnLoadPaymentMethod();
-                                });
-                                var cModel = new JSONModel();
-                                var rModel = new JSONModel();
-                                cModel.setData(
-                                    {
-                                        "isOrderFromAddress": false,
-                                        "oName": "",
-                                        "oAddress1": "",
-                                        "oAddress2": "",
-                                        "oAddress3": "",
-                                        "oAddress4": "",
-                                        "oAddress5": "",
-                                        "oDist": "",
-                                        "oPostalCode": "",
-                                        "oCity": "",
-                                        "oCountry": "",
-                                        "oRegion": "",
-                                        "oCountryC": "",
-                                        "oRegionC": "",
-                                        "oTeleNum": "",
-                                        "oTeleNumCode":"",
-                                        "oFaxNum": "",
-                                        "oPostOffBox": "",
-                                        "oPostOffZipCode": "",
-                                        "haveDiversityCertifications": null,
-                                        "companyWebsite": ""
+                                    var cModel = new JSONModel();
+                                    var rModel = new JSONModel();
+                                    cModel.setData(
+                                        {
+                                            "isOrderFromAddress": false,
+                                            "oName": "",
+                                            "oAddress1": "",
+                                            "oAddress2": "",
+                                            "oAddress3": "",
+                                            "oAddress4": "",
+                                            "oAddress5": "",
+                                            "oDist": "",
+                                            "oPostalCode": "",
+                                            "oCity": "",
+                                            "oCountry": "",
+                                            "oRegion": "",
+                                            "oCountryC": "",
+                                            "oRegionC": "",
+                                            "oTeleNum": "",
+                                            "oTeleNumCode":"",
+                                            "oFaxNum": "",
+                                            "oPostOffBox": "",
+                                            "oPostOffZipCode": "",
+                                            "haveDiversityCertifications": null,
+                                            "companyWebsite": "",
+                                            "paymentTerms": that.getView().getModel("oDataModel").getData().shippingInfoDto.paymentTerms
+                                        });
+                                    rModel.setData({
+                                        "isRemitToAddress": false,
+                                        "rName": "",
+                                        "rAddress1": "",
+                                        "rAddress2": "",
+                                        "rAddress3": "",
+                                        "rAddress4": "",
+                                        "rAddress5": "",
+                                        "rDist": "",
+                                        "rPostalCode": "",
+                                        "rCity": "",
+                                        "rCountry": "",
+                                        "rRegion": "",
+                                        "rCountryC": "",
+                                        "rRegionC": "",
+                                        "rTeleNum": "",
+                                        "rTeleNumCode": "",
+                                        "rFaxNum": "",
+                                        "rPostOffBox": "",
+                                        "rPostOffZipCode": "",
+                                        "paymentTerms": that.getView().getModel("oDataModel").getData().shippingInfoDto.paymentTerms
                                     });
-                                rModel.setData({
-                                    "isRemitToAddress": false,
-                                    "rName": "",
-                                    "rAddress1": "",
-                                    "rAddress2": "",
-                                    "rAddress3": "",
-                                    "rAddress4": "",
-                                    "rAddress5": "",
-                                    "rDist": "",
-                                    "rPostalCode": "",
-                                    "rCity": "",
-                                    "rCountry": "",
-                                    "rRegion": "",
-                                    "rCountryC": "",
-                                    "rRegionC": "",
-                                    "rTeleNum": "",
-                                    "rTeleNumCode": "",
-                                    "rFaxNum": "",
-                                    "rPostOffBox": "",
-                                    "rPostOffZipCode": "",
-
-
+                                    oView.setModel(cModel, "companyInfoModel");
+                                    oView.setModel(rModel, "remitModel");
+    
                                 });
-                                oView.setModel(cModel, "companyInfoModel");
-                                oView.setModel(rModel, "remitModel");
                                 that._fnReadDocumentList(oView.getModel("oUserModel").getData().caseId, that);
 
                             } else {
@@ -2471,106 +2479,105 @@ var aError = false;
                             oView.getModel("oErrorModel").getData().isSiteCorporateHeadquatersE = "Error";
                             iError = true;
                         } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === false){
-                            if (oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === null) {
-                                oView.getModel("oErrorModel").getData().isCorpHeadquartersDunsRegisteredE = "Error";
+                            if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country)) {
+                                oView.getModel("oErrorModel").getData().corpHeadCountryE = "Error";
+                                oView.getModel("oErrorModel").getData().corpHeadCountryM = oi18n.getText("mandatoryCountry");
                                 iError = true;
-                            } else if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === false){
-                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country)) {
-                                    oView.getModel("oErrorModel").getData().corpHeadCountryE = "Error";
-                                    oView.getModel("oErrorModel").getData().corpHeadCountryM = oi18n.getText("mandatoryCountry");
-                                    iError = true;
-                                } 
-                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1) {
-                                    oView.getModel("oErrorModel").getData().corpHeadAddressL1E = "Error";
-                                    oView.getModel("oErrorModel").getData().corpHeadAddressL1M = oi18n.getText("mandatoryAddr1");
-                                    iError = true;
-                                } 
-                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region) {
-                                    oView.getModel("oErrorModel").getData().corpHeadRegionE = "Error";
-                                    oView.getModel("oErrorModel").getData().corpHeadRegionM = oi18n.getText("mandatoryState");
-                                    iError = true;
-                                } 
-                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city) {
-                                    oView.getModel("oErrorModel").getData().corpHeadCityE = "Error";
-                                    oView.getModel("oErrorModel").getData().corpHeadCityM = oi18n.getText("mandatoryCity");
-                                    iError = true;
-                                } 
-                                if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {
-                                    oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                    oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("mandatoryPostalCode");
-                                    iError = true;
-                                } 
-
-                                if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1.length > 60) {
-                                    iError = true;
-                                }
-                                if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city.length > 40) {
-                                    iError = true;
-                                }
-                                if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {
-                                    var postalCode = oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode;
-                                    var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationCorpHeadquarters;
-                                    var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
-                                    var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
-                                    switch (postalCodeRule) {
-                                        case 1:
-                                            if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule1");
-                                                iError = true;
-                                            }
-                                            break;
-                                        case 2:
-                                            if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule2");
-                                                iError = true;
-                                            }
-                                            break;
-                                        case 3:
-                                            if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
-                                                iError = true;
-                                            }
-                                            break;
-                                        case 4:
-                                            if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
-                                                iError = true;
-                                            }
-                                            break;
-                                        case 5:
-                                            if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule5");
-                                                iError = true;
-                                            }
-                                            break;
-                                        case 6:
-                                            if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule6");
-                                                iError = true;
-                                            }
-                                            break;
-                                        case 7:
-                                            if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "characters in length";
-                                                iError = true;
-                                            }
-                                            break;
-                                        case 8:
-                                            if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "digits in length";
-                                                iError = true;
-                                            }
-                                    }
+                            } 
+                            if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1) {
+                                oView.getModel("oErrorModel").getData().corpHeadAddressL1E = "Error";
+                                oView.getModel("oErrorModel").getData().corpHeadAddressL1M = oi18n.getText("mandatoryAddr1");
+                                iError = true;
+                            } 
+                            if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region) {
+                                oView.getModel("oErrorModel").getData().corpHeadRegionE = "Error";
+                                oView.getModel("oErrorModel").getData().corpHeadRegionM = oi18n.getText("mandatoryState");
+                                iError = true;
+                            } 
+                            if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city) {
+                                oView.getModel("oErrorModel").getData().corpHeadCityE = "Error";
+                                oView.getModel("oErrorModel").getData().corpHeadCityM = oi18n.getText("mandatoryCity");
+                                iError = true;
+                            } 
+                            if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {
+                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("mandatoryPostalCode");
+                                iError = true;
+                            } 
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1.length > 60) {
+                                iError = true;
+                            }
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city.length > 40) {
+                                iError = true;
+                            }
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {
+                                var postalCode = oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode;
+                                var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationCorpHeadquarters;
+                                var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
+                                var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
+                                switch (postalCodeRule) {
+                                    case 1:
+                                        if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule1");
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 2:
+                                        if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule2");
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 3:
+                                        if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 4:
+                                        if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 5:
+                                        if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule5");
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 6:
+                                        if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule6");
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 7:
+                                        if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "characters in length";
+                                            iError = true;
+                                        }
+                                        break;
+                                    case 8:
+                                        if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "digits in length";
+                                            iError = true;
+                                        }
                                 }
                             }
+                        }
+                        if (oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === null) {
+                                oView.getModel("oErrorModel").getData().isCorpHeadquartersDunsRegisteredE = "Error";
+                                iError = true;
+                            
                         } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters ===true) {
                             if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
                                 oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
@@ -2685,66 +2692,66 @@ var aError = false;
                         switch (taxIDNumRule) {
                             case 1:
                                 if (/\s/.test(taxID) || taxID.includes("_") || taxID.length > taxIDMaxLength) {
-                                    this.emailValidResult = true;
+                                 //   this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                   // this.emailValidResult = false;
                                 }
                                 break;
                             case 2:
                                 if (!(/^\d+$/.test(taxID)) || taxID.includes("_") || taxID.length > taxIDMaxLength) {
-                                    this.emailValidResult = true;
+                                   // this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 3:
                                 if (/\s/.test(taxID) || taxID.includes("_") || !(taxID.length === taxIDMaxLength) && taxID.length > 0) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 4:
                                 if (!(/^\d+$/.test(taxID)) || taxID.includes("_") || !(taxID.length === taxIDMaxLength) && taxID.length > 0) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 5:
                                 if (taxID.includes("_") || taxID.length > taxIDMaxLength) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 6:
                                 if (!(/^[\d ]*$/.test(taxID)) || taxID.includes("_") || taxID.length > taxIDMaxLength) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 7:
                                 if (taxID.includes("_") || (!(taxID.length === taxIDMaxLength) && taxID.length > 0)) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
                                     iError = true;
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                                 break;
                             case 8:
                                 if (!(/^[\d ]*$/.test(taxID)) || taxID.includes("_") || (!(taxID.length === taxIDMaxLength) && taxID.length > 0)) {
-                                    this.emailValidResult = true;
+                                    //this.emailValidResult = true;
 
                                 } else {
-                                    this.emailValidResult = false;
+                                    //this.emailValidResult = false;
                                 }
                         }
                     }
@@ -3115,6 +3122,12 @@ var aError = false;
                     var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
                         isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                     if (oView.getModel("companyInfoModel").getData().isOrderFromAddress) {
+                        if (!oView.getModel("companyInfoModel").getData().paymentTerms || spaceRegex.test(oView.getModel("companyInfoModel").getData().paymentTerms)) {
+                            oView.getModel("oErrorModel").getData().paymentTermOFAE = "Error";
+                            oView.getModel("oErrorModel").getData().paymentTermOFAM = oi18n.getText("mandatoryPrefPaymentTerms");
+
+                            iError = true;
+                        }
                         if (!oView.getModel("companyInfoModel").getData().oName || spaceRegex.test(oView.getModel("companyInfoModel").getData().oName)) {
                             oView.getModel("oErrorModel").getData().oFANameE = "Error";
                             oView.getModel("oErrorModel").getData().oFANameM = oi18n.getText("mandatoryName");
@@ -3289,6 +3302,12 @@ var aError = false;
                     }
 
                     if (oView.getModel("remitModel").getData().isRemitToAddress) {
+                        if (!oView.getModel("remitModel").getData().paymentTerms || spaceRegex.test(oView.getModel("remitModel").getData().paymentTerms)) {
+                            oView.getModel("oErrorModel").getData().paymentTermRTAE = "Error";
+                            oView.getModel("oErrorModel").getData().paymentTermRTAM = oi18n.getText("mandatoryPrefPaymentTerms");
+
+                            iError = true;
+                        }
                         if (!oView.getModel("remitModel").getData().rName || spaceRegex.test(oView.getModel("remitModel").getData().rName)) {
                             oView.getModel("oErrorModel").getData().rTANameE = "Error";
                             oView.getModel("oErrorModel").getData().rTANameM = oi18n.getText("mandatoryName");
@@ -6373,69 +6392,72 @@ var aError = false;
                             oEvent.getSource().setValueStateText("ID shouldn't exceed max length with no gaps");
                             // oView.getModel("oDataModel").getData().bpInfoDto.tax[nIndex].taxNumE = "Error";
                             // oView.getModel("oDataModel").getData().bpInfoDto.tax[nIndex].taxNumM = "ID shouldn't exceed max length with no gaps";
+                         //   this.emailValidResult = true;
+                        } else {
+                           // this.emailValidResult = false;
                         }
                         break;
                     case 2:
                         if (!(/^\d+$/.test(taxID)) || (taxID.includes("_") || taxID.length > taxIDMaxLength)) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Accepts only numbers without spaces");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 3:
                         if (/\s/.test(taxID) || (taxID.includes("_") || !(taxID.length === taxIDMaxLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of " + taxIDMaxLength + " characters in length without any spaces");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 4:
                         if (!(/^\d+$/.test(taxID)) || (taxID.includes("_") || !(taxID.length === taxIDMaxLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of " + taxIDMaxLength + " numerical digits in length without any spaces");
-                            this.emailValidResult = true;
+                            //this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                           // this.emailValidResult = false;
                         }
                         break;
                     case 5:
                         if (taxID.includes("_") || taxID.length > taxIDMaxLength) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Maximum length exceeded");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 6:
                         if (!(/^[\d ]*$/.test(taxID)) || (taxID.includes("_") || taxID.length > taxIDMaxLength)) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("Accepts only numbers");
-                            this.emailValidResult = true;
+                            //this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 7:
                         if (!(taxID.length === taxIDMaxLength) || (taxID.includes("_"))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + taxIDMaxLength + "characters in length");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = false;
+                            //this.emailValidResult = false;
                         }
                         break;
                     case 8:
                         if (!(/^[\d ]*$/.test(taxID)) || (taxID.includes("_") || !(taxID.length === taxIDMaxLength))) {
                             oEvent.getSource().setValueState("Error");
                             oEvent.getSource().setValueStateText("ID must be of exactly " + taxIDMaxLength + "digits in length");
-                            this.emailValidResult = true;
+                           // this.emailValidResult = true;
                         } else {
-                            this.emailValidResult = true;
+                            //this.emailValidResult = false;
                         }
                 }
             }
@@ -7244,8 +7266,8 @@ var aError = false;
                         oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
                     } else if (!alphaRegex.test(oEvent.getSource().getValue())) {
 
-                        var newval = val.substring(0, val.length - 1);
-                        oEvent.getSource().setValue(newval);
+                        // var newval = val.substring(0, val.length - 1);
+                        oEvent.getSource().setValue("");
 
                     }
                     else if (oEvent.getSource().getValue()) {
@@ -7256,14 +7278,14 @@ var aError = false;
             },
 
             fnLiveInputNumericValueChange: function (oEvent) {
-                var numRegex = /^[0-9]*$/;
+                var numRegex = /^[1-9]\d*$/;
                 var val = oEvent.getSource().getValue();
                 if (val.length == oEvent.getSource().getMaxLength()) {
                     oEvent.getSource().setValueState("Error");
                     oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
                 } else if (!numRegex.test(oEvent.getSource().getValue())) {
-                    var newval = val.substring(0, val.length - 1);
-                    oEvent.getSource().setValue(newval);
+                    // var newval = val.substring(0, val.length - 1);
+                    oEvent.getSource().setValue("");
 
                 }
                 else if (oEvent.getSource().getValue()) {
@@ -7370,12 +7392,16 @@ var aError = false;
             },
 
             fnLivePaymentMethodChange: function (oEvent){
-                 if (oEvent.getSource().getValue()) {
+                if(oEvent.getSource().getSelectedItems().length !== 0){
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
-                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
-                    oView.getModel("oDataModel").refresh();
                 }
+                //  if (oEvent.getSource().getValue()) {
+                //     oEvent.getSource().setValueState("None");
+                //     oEvent.getSource().setValueStateText("");
+                //     oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                //     oView.getModel("oDataModel").refresh();
+                // }
 
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
@@ -7383,64 +7409,16 @@ var aError = false;
                         oEvent.getSource().setValue("");
                     }
                 }
-                // var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
-                // if( apaymentMethod === 'Optional'){
-                // oView.getModel("oErrorModel").getData().bankNameE = "None";
-                // oView.getModel("oErrorModel").getData().bankNameM = "";
-                // oView.getModel("oErrorModel").getData().bankAddrE = "None";
-                // oView.getModel("oErrorModel").getData().bankAddrM = "";
-                // oView.getModel("oErrorModel").getData().bankCityE = "None";
-                // oView.getModel("oErrorModel").getData().bankCityM = "";
-                // oView.getModel("oErrorModel").getData().bankAccNumE = "None";
-                // oView.getModel("oErrorModel").getData().bankAccNumM = "";
-                // oView.getModel("oErrorModel").getData().benifAccHNameE = "None";
-                // oView.getModel("oErrorModel").getData().benifAccHNameM = "";
-                // oView.getModel("oErrorModel").getData().bankSwiftE = "None";
-                // oView.getModel("oErrorModel").getData().bankSwiftM = "";
-                // oView.getModel("oErrorModel").getData().bankBranchE = "None";
-                // oView.getModel("oErrorModel").getData().bankBranchM = "";
-                // oView.getModel("oErrorModel").getData().bankRefE = "None";
-                // oView.getModel("oErrorModel").getData().bankRefM = "";
-                // oView.getModel("oErrorModel").getData().bankNumE = "None";
-                // oView.getModel("oErrorModel").getData().bankNumM = "";
-                // oView.getModel("oErrorModel").getData().ibanE = "None";
-                // oView.getModel("oErrorModel").getData().ibanM = "";
-                // oView.getModel("oErrorModel").getData().benifAccCurrE = "None";
-                // oView.getModel("oErrorModel").getData().benifAccCurrM = "";
-                // oView.getModel("oErrorModel").getData().bankCtrlKeyE = "None";
-                // oView.getModel("oErrorModel").getData().bankCtrlKeyM = "";
-                // oView.getModel("oErrorModel").getData().paymentCurrE = "None";
-                // oView.getModel("oErrorModel").getData().paymentCurrM = "";
-                // oView.getModel("oErrorModel").refresh();
-                //  var bankFields = this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
-                //     bankFields.bankName = false;
-                //     bankFields.bankBranch = false;
-                //     bankFields.bankStreet = false;
-                //     bankFields.bankCity = false;
-                //     bankFields.benificiaryAccountNumber = false;
-                //     bankFields.swiftCode = false;
-                //     bankFields.bankNumber = false;
-                //     bankFields.bankCountry = false;
-                //     bankFields.benificiaryAccHolderName = false;
-                //     bankFields.bankKey = false;
-                //     bankFields.benificiaryAccCurrency = false;
-                //     bankFields.instructionKey = false;
-                //     bankFields.bankControlKey = false;
-                //     bankFields.referenceDetails = false;
-                //     bankFields.iban = false;
-                //     bankFields.ibanLength = null;
-                //     bankFields.bankControlKeyLogic = null;
-                //     bankFields.bankControlKeyDigitsLogic = null;
-                //     bankFields.companyCodeCountry = "";
-                //     bankFields.bankKeyVal1 = "";
-                //     bankFields.bankKeyVal2 = "";
-                //     bankFields.bankKeyVal3 = "";
-                //     this.getOwnerComponent().getModel("oVisibilityModel").refresh();
-                // } else {
-                //       this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.bankCountry = true;
-                //         this.getOwnerComponent().getModel("oVisibilityModel").refresh();
-                //      this.fnActivateBankScreen();
-                // }
+            },
+            fnLivePaymentMethodFinish: function (oEvent) {
+                if (oEvent.getSource().getSelectedKeys().length !== 0) {
+                    for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
+                        oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod  +  oEvent.getSource().getSelectedKeys()[i];
+                    }
+                } else {
+                    oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = "";
+                }
+                oView.getModel("oDataModel").refresh();
             },
 
             fnLiveValueBankInput: function (oEvent) {
@@ -8439,25 +8417,23 @@ var that = this;
                     if(oPayload.bpInfoDto.isSiteCorporateHeadquaters !== false){
                         oPayload.bpInfoDto.corpHeadquartersLegalBusinessName1 ="";
                         oPayload.bpInfoDto.corpHeadquartersLegalBusinessName2 ="";
+                        if(oPayload.bpInfoDto.corpHeaderQuartersAddress && oPayload.bpInfoDto.corpHeaderQuartersAddress.length >0){
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].countryCode = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address2 = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address3 = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address4 = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address5 = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].regionCode = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].district = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode = "";
+                            }
                         oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered = null;
                     }
-                    if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== false){
-                        if(oPayload.bpInfoDto.corpHeaderQuartersAddress && oPayload.bpInfoDto.corpHeaderQuartersAddress.length >0){
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].countryCode = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address2 = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address3 = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address4 = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address5 = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].regionCode = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].district = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode = "";
-                        }
-
-                    } else if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== true){
+                    if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== true){
                         oPayload.bpInfoDto.corpHeadquartersDunsRegNum = "";
                         oPayload.bpInfoDto.corpHeadquartersDnbLegalBusinessName = "";
                     }
@@ -8537,6 +8513,8 @@ var that = this;
                         oPayload.shippingInfoDto.deliverRepContact = "";
                         oPayload.shippingInfoDto.deliverRepFax = "";
                     }
+                    // var a = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod;
+                    // oPayload.shippingInfoDto.paymentMethod = a.charAt(a[0]).replace("-","") + a.slice(1);
                     if (oPayload.shippingInfoDto.isPaymentTermsAgreed === true) {
                         oPayload.shippingInfoDto.paymentTermsComments = "";
                     }
@@ -9060,24 +9038,23 @@ var that = this;
                     if(oPayload.bpInfoDto.isSiteCorporateHeadquaters !== false){
                         oPayload.bpInfoDto.corpHeadquartersLegalBusinessName1 ="";
                         oPayload.bpInfoDto.corpHeadquartersLegalBusinessName2 ="";
+                        if(oPayload.bpInfoDto.corpHeaderQuartersAddress && oPayload.bpInfoDto.corpHeaderQuartersAddress.length >0){
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].countryCode = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address2 = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address3 = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address4 = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address5 = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].regionCode = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].district = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city = "";
+                            oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode = "";
+                        }
                         oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered = null;
                     }
-                    if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== false){
-                        if(oPayload.bpInfoDto.corpHeaderQuartersAddress && oPayload.bpInfoDto.corpHeaderQuartersAddress.length >0){
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].countryCode = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address2 = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address3 = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address4 = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address5 = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].regionCode = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].district = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city = "";
-                        oPayload.bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode = "";
-                        }
-                    } else if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== true){
+                    if(oPayload.bpInfoDto.isCorpHeadquartersDunsRegistered !== true){
                         oPayload.bpInfoDto.corpHeadquartersDunsRegNum = "";
                         oPayload.bpInfoDto.corpHeadquartersDnbLegalBusinessName = "";
                     }
@@ -9822,7 +9799,9 @@ var that = this;
                         ],
 
                         "smallDisadvantagedBusiness": [
-                        ]
+                        ],
+                        "orderAddrPaymentTerms":oView.getModel("companyInfoModel").getData().paymentTerms,
+                        "invoiceAddrPaymentTerms":oView.getModel("remitModel").getData().paymentTerms
                     }
                     if (oPayload.comInfoDto.isOrderToAddress) {
                         //  if (oView.byId("iAddress1").getDomRef()) {
