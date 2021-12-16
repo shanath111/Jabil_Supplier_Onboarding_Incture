@@ -230,5 +230,28 @@ for(var i=0; i<stringlistLen;i++){
             }
         }
         return a;
-    }
+    },
+    fnFetchDescMultiplePayment: function(aArray, value){
+        if (aArray) {
+                           if (value) {
+                               var itemDesc ="";
+                               for(var i=0;i<value.length;i++){
+                               var item = aArray.find(item => item.code == value[i]);
+                               if (item) {
+                                itemDesc = itemDesc + item.description + ',';
+                                }
+                             } if(itemDesc){
+                                 return itemDesc.replace(/,([^,]*)$/, '$1')
+                             }
+                              else {
+                                return '---';
+                                }
+                               
+                           } else {
+                              return '---';
+                           }
+                       } else {
+                           return '---';
+                       }
+           }
 };
