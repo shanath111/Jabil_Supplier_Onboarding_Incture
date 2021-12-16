@@ -965,7 +965,7 @@
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>paymentMethod}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
                                         	<Label text="{oi18n_En>paymentMethod}&#10;{i18n>paymentMethod}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
-										<Label text="{parts:['oLookUpModel>/PaymentMethod','oDataModel>/shippingInfoDto/paymentMethod'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" class="cl_PreviewLablClsValue "></Label>
+										<Label text="{parts:['oLookUpModel>/PaymentMethod','oDataModel>/shippingInfoDto/paymentMethod'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescMultiplePayment'}" wrapping="true" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>paymentCurr}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>
