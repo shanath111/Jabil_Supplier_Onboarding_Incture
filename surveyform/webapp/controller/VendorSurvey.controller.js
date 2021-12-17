@@ -3631,6 +3631,7 @@ var aError = false;
                         iError = true;
                           }
                     }
+                    if(oView.getModel("oDataModel").getData().bankDto.isbankdetailsHidden === false){
                     if (visiblility.isBankProvided === null) {
                         oView.getModel("oErrorModel").getData().isBankProvidedE = "Error";
                         iError = true;
@@ -4186,6 +4187,7 @@ var aError = false;
                         //     }
                         // }
                     }
+                }
 
                     if (oView.getModel("oDataModel").getData().financeInfoDto.doesFinancialStatements === -1) {
                         oView.getModel("oErrorModel").getData().doesFinancialStatementsE = "Error";
