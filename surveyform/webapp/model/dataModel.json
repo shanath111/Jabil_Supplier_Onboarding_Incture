@@ -2,6 +2,7 @@
     "bankDto": {
         "isBankProvided": null,
         "isIntermediateBankProvided": null,
+        "isbankdetailsHidden": false,
         "bankInfoDto": [
             {
                 "mdgbankdetailsid": "",

@@ -2573,22 +2573,24 @@ var aError = false;
                                         }
                                 }
                             }
-                        }
-                        if (oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === null) {
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === null) {
                                 oView.getModel("oErrorModel").getData().isCorpHeadquartersDunsRegisteredE = "Error";
                                 iError = true;
                             
-                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters ===true) {
+                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered ===true) {
                             if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
                                 oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
-                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
                                 iError = true;
                             } else {
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "None";
-                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "None";
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "";
     
                             }
                         }
+                            
+                        }
+                       
                         if (!oView.getModel("oDataModel").getData().bpInfoDto.noOfEmployees) {
                             oView.getModel("oErrorModel").getData().numOfEmpE = "Error";
                             oView.getModel("oErrorModel").getData().numOfEmpM = oi18n.getText("mandatoryNumber");
@@ -5379,17 +5381,18 @@ var aError = false;
                                         }
                                 }
                             }
-                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === true){
+                        if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === true){
                             if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
                                 oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
-                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
                                 iError = true;
                             } else {
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "None";
-                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "None";
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "";
     
                             }
                         }
+                    }
                     }
                 }
 
@@ -7420,6 +7423,19 @@ var aError = false;
                     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = "";
                 }
                 oView.getModel("oDataModel").refresh();
+                var sUrl = "/comjabilsurveyform/plcm_portal_services/ccpaymentMethod/getBankVisibility/"+  oView.getModel("oUserModel").getData().comCodeDesc  + "/" +oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod;
+                $.ajax({
+                    url: sUrl,
+                    type: 'GET',
+                    success: function (data) {
+                        oView.getModel("oDataModel").getData().bankDto.isbankdetailsHidden = data.paymentVisibility.toLowerCase() === "optional" ? true : false;
+                        oView.getModel("oDataModel").refresh();
+                    },
+                    async: false,
+                    error: function (data) {
+
+                    }
+                });
             },
 
             fnLiveValueBankInput: function (oEvent) {
@@ -9551,6 +9567,7 @@ var that = this;
                         "supplierAction": "EULA_accepted",
                         // "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided ? "YES" : "NO",
                         "bankDetailsProvided": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "YES" : "NO",
+                        "isbankdetailsHidden":oView.getModel("oDataModel").getData().bankDto.isbankdetailsHidden ? "YES":"NO",
                         "financeContact1": {
                             "firstName": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "" : oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName,
                             "lastName": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "" : oView.getModel("oDataModel").getData().bankDto.financeContact1.lastName,
