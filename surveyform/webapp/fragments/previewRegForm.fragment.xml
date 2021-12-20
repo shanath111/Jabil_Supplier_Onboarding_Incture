@@ -744,6 +744,13 @@
                                    <Label text="{oi18n_En>wizardStepCompanyInfo}/&#160;{i18n>wizardStepCompanyInfo}"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
 <Label text="{i18n>orderfromAddr}"  wrapping="true" class="cl_PreviewPageSubHeader sapUiTinyMarginTop sapUiTinyMarginBegin" visible="{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${companyInfoModel>/isOrderFromAddress}}"></Label>
 <Label text="{oi18n_En>orderfromAddr}/&#160;{i18n>orderfromAddr}"  wrapping="true" class="cl_PreviewPageSubHeader sapUiTinyMarginTop sapUiTinyMarginBegin" visible="{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${companyInfoModel>/isOrderFromAddress}}"></Label>
+     <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiTinyMarginTop" visible="{companyInfoModel>/isOrderFromAddress}">
+   <VBox class="VRVboxStyle1">
+										<Label text="{i18n>preferredPaymentTerms}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                        <Label text="{oi18n_En>preferredPaymentTerms}&#10;{i18n>preferredPaymentTerms}"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
+										<Label text="{parts:['oLookUpModel>/PaymentTerm','companyInfoModel>/paymentTerms'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
+                                    </l:Grid>
    <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiTinyMarginTop" visible="{companyInfoModel>/isOrderFromAddress}">
    <VBox class="VRVboxStyle1">
 										<Label text="{i18n>countrykey}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
@@ -819,6 +826,13 @@
 								</l:Grid>
                                 <Label text="{i18n>remittoAddr}" wrapping="true" class="cl_PreviewPageSubHeader  sapUiTinyMarginBegin " visible="{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${remitModel>/isRemitToAddress}}"></Label>
                                   <Label text="{oi18n_En>remittoAddr}/&#160;{i18n>remittoAddr}" wrapping="true" class="cl_PreviewPageSubHeader  sapUiTinyMarginBegin " visible="{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${remitModel>/isRemitToAddress}}"></Label>
+     <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiTinyMarginTop" visible="{companyInfoModel>/isOrderFromAddress}">
+   <VBox class="VRVboxStyle1">
+										<Label text="{i18n>preferredPaymentTerms}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                        <Label text="{oi18n_En>preferredPaymentTerms}&#10;{i18n>preferredPaymentTerms}"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
+										<Label text="{parts:['oLookUpModel>/PaymentTerm','remitModel>/paymentTerms'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" class="cl_PreviewLablClsValue "></Label>
+									</VBox>
+                                    </l:Grid>
 <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiTinyMarginTop" visible="{remitModel>/isRemitToAddress}">
 								  <VBox class="VRVboxStyle1">
                                       <Label text="{i18n>countrykey}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
