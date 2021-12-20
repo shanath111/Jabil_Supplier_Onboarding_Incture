@@ -2573,22 +2573,24 @@ var aError = false;
                                         }
                                 }
                             }
-                        }
-                        if (oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === null) {
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === null) {
                                 oView.getModel("oErrorModel").getData().isCorpHeadquartersDunsRegisteredE = "Error";
                                 iError = true;
                             
-                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters ===true) {
+                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered ===true) {
                             if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
                                 oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
-                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
                                 iError = true;
                             } else {
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "None";
-                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "None";
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "";
     
                             }
                         }
+                            
+                        }
+                       
                         if (!oView.getModel("oDataModel").getData().bpInfoDto.noOfEmployees) {
                             oView.getModel("oErrorModel").getData().numOfEmpE = "Error";
                             oView.getModel("oErrorModel").getData().numOfEmpM = oi18n.getText("mandatoryNumber");
@@ -3629,6 +3631,7 @@ var aError = false;
                         iError = true;
                           }
                     }
+                    if(oView.getModel("oDataModel").getData().bankDto.isbankdetailsHidden === false || oView.getModel("oDataModel").getData().bankDto.isbankdetailsHidden === null || oView.getModel("oDataModel").getData().bankDto.isbankdetailsHidden === undefined){
                     if (visiblility.isBankProvided === null) {
                         oView.getModel("oErrorModel").getData().isBankProvidedE = "Error";
                         iError = true;
@@ -4128,62 +4131,8 @@ var aError = false;
                            
                         }
                         
+                }                 
                 }
-                    if (visiblility.isBankProvided === false) {
-                     if(oView.getModel("oDataModel").getData().bankDto.financeContact1.email !== "" && oView.getModel("oDataModel").getData().bankDto.financeContact2.email !== ""){
-                        if (oView.getModel("oDataModel").getData().bankDto.financeContact1.email && oView.getModel("oDataModel").getData().bankDto.financeContact1.email == oView.getModel("oDataModel").getData().bankDto.financeContact2.email) {
-                            iError = true;
-// oView.getModel("oErrorModel").getData().finance2EmailE = "Error";
-// oView.getModel("oErrorModel").getData().finance1EmailE = "Error";
-
-                            if (isDefaultLan) {
-                                sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("correctFC")), {
-                                    icon: sap.m.MessageBox.Icon.ERROR,
-                                    title: that.getView().getModel("i18n").getResourceBundle().getText("error")
-                                });
-                            } else {
-                                sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.correctFC + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("correctFC")), {
-                                    icon: sap.m.MessageBox.Icon.ERROR,
-                                    title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
-
-                                });
-                            }
-                        } else{
-//                             oView.getModel("oErrorModel").getData().finance2EmailE = "None";
-// oView.getModel("oErrorModel").getData().finance1EmailE = "None";
-                        }
-                     }
-                        // else if (oView.getModel("oDataModel").getData().bankDto.financeContact1.contact && oView.getModel("oDataModel").getData().bankDto.financeContact1.contact == oView.getModel("oDataModel").getData().bankDto.financeContact2.contact) {
-                        //     iError = true;
-                        //     if (isDefaultLan) {
-                        //         sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("correctFC")), {
-                        //             icon: sap.m.MessageBox.Icon.ERROR,
-                        //             title: that.getView().getModel("i18n").getResourceBundle().getText("error")
-                        //         });
-                        //     } else {
-                        //         sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.correctFC + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("correctFC")), {
-                        //             icon: sap.m.MessageBox.Icon.ERROR,
-                        //             title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
-
-                        //         });
-                        //     }
-                        // }
-                        // else if (oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile && oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile == oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile) {
-                        //     iError = true;
-                        //     if (isDefaultLan) {
-                        //         sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("correctFC")), {
-                        //             icon: sap.m.MessageBox.Icon.ERROR,
-                        //             title: that.getView().getModel("i18n").getResourceBundle().getText("error")
-                        //         });
-                        //     } else {
-                        //         sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.correctFC + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("correctFC")), {
-                        //             icon: sap.m.MessageBox.Icon.ERROR,
-                        //             title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
-
-                        //         });
-                        //     }
-                        // }
-                    }
 
                     if (oView.getModel("oDataModel").getData().financeInfoDto.doesFinancialStatements === -1) {
                         oView.getModel("oErrorModel").getData().doesFinancialStatementsE = "Error";
@@ -4210,6 +4159,54 @@ var aError = false;
                             oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithBorder");
                             oView.byId("fileUploader_BIA").addStyleClass("attachmentWithoutBorder");
                         }
+                    }
+                    if (iError) {
+                        oView.byId("bankInfo").setValidated(false);
+                           var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
+                            isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                        if (isDefaultLan) {
+                                sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                    title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                    contentWidth: "30%",
+                                    styleClass: "sapUiSizeCompact"
+                                });
+                            } else {
+                                sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.validationDefaultMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                    title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                    contentWidth: "30%",
+                                    styleClass: "sapUiSizeCompact"
+                                });
+                            }
+                    } else {
+                        oView.byId("bankInfo").setValidated(true);
+                    }
+                    if(!iError){
+                        if(oView.getModel("oDataModel").getData().bankDto.isbankdetailsHidden === false || oView.getModel("oDataModel").getData().bankDto.isbankdetailsHidden === null || oView.getModel("oDataModel").getData().bankDto.isbankdetailsHidden === undefined){
+                            if (visiblility.isBankProvided === false) {
+                                if(oView.getModel("oDataModel").getData().bankDto.financeContact1.email !== "" && oView.getModel("oDataModel").getData().bankDto.financeContact2.email !== ""){
+                                   if (oView.getModel("oDataModel").getData().bankDto.financeContact1.email && oView.getModel("oDataModel").getData().bankDto.financeContact1.email == oView.getModel("oDataModel").getData().bankDto.financeContact2.email) {
+                                       iError = true;
+                                       if (isDefaultLan) {
+                                           sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("correctFC")), {
+                                               icon: sap.m.MessageBox.Icon.ERROR,
+                                               title: that.getView().getModel("i18n").getResourceBundle().getText("error")
+                                           });
+                                       } else {
+                                           sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.correctFC + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("correctFC")), {
+                                               icon: sap.m.MessageBox.Icon.ERROR,
+                                               title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+           
+                                           });
+                                       }
+                                   } else{
+           
+                                   }
+                                }                     
+                               }
+                        }
+
                     }
                 }
                 //  }
@@ -5379,17 +5376,18 @@ var aError = false;
                                         }
                                 }
                             }
-                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === true){
+                        if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === true){
                             if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
                                 oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
-                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
                                 iError = true;
                             } else {
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "None";
-                                oView.getModel("oErrorModel").getData().dunsRegistrationNumM = "";
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "None";
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "";
     
                             }
                         }
+                    }
                     }
                 }
 
@@ -7412,6 +7410,7 @@ var aError = false;
             },
             fnLivePaymentMethodFinish: function (oEvent) {
                 if (oEvent.getSource().getSelectedKeys().length !== 0) {
+                    oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = "";
                     for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
                         oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod  +  oEvent.getSource().getSelectedKeys()[i];
                     }
@@ -7419,6 +7418,19 @@ var aError = false;
                     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = "";
                 }
                 oView.getModel("oDataModel").refresh();
+                var sUrl = "/comjabilsurveyform/plcm_portal_services/ccpaymentMethod/getBankVisibility/"+  oView.getModel("oUserModel").getData().comCodeDesc  + "/" +oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod;
+                $.ajax({
+                    url: sUrl,
+                    type: 'GET',
+                    success: function (data) {
+                        oView.getModel("oDataModel").getData().bankDto.isbankdetailsHidden = data.paymentVisibility.toLowerCase() === "optional" ? true : false;
+                        oView.getModel("oDataModel").refresh();
+                    },
+                    async: false,
+                    error: function (data) {
+
+                    }
+                });
             },
 
             fnLiveValueBankInput: function (oEvent) {
@@ -8343,7 +8355,7 @@ var that = this;
                         this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getCurrentStep()).nextStep();
                         // this.getView().byId("surveyWizard").setCurrentStep(this.getView().byId("surveyWizard").getSteps()[this.oWizard._getProgressNavigator()._iCurrentStep - 1].sId).nextStep();
                         //}
-                    } else if (currentStepId !== "basicInfo" && currentStepId !=="businessPartnerInfo" && currentStepId !== "companyInfo" && currentStepId !== "prodAndServInfo" && currentStepId !== "cyberSecInfo") {
+                    } else if (currentStepId !== "basicInfo" && currentStepId !=="businessPartnerInfo" && currentStepId !== "companyInfo" && currentStepId !== "bankInfo" && currentStepId !== "prodAndServInfo" && currentStepId !== "cyberSecInfo") {
                         var that = this;
                         var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
                         var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
@@ -9550,6 +9562,7 @@ var that = this;
                         "supplierAction": "EULA_accepted",
                         // "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided ? "YES" : "NO",
                         "bankDetailsProvided": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "YES" : "NO",
+                        "isbankdetailsHidden":oView.getModel("oDataModel").getData().bankDto.isbankdetailsHidden ? "YES":"NO",
                         "financeContact1": {
                             "firstName": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "" : oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName,
                             "lastName": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "" : oView.getModel("oDataModel").getData().bankDto.financeContact1.lastName,

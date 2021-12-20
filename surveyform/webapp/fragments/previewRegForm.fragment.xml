@@ -991,6 +991,7 @@
                                         	<Label text="{oi18n_En>prvdComment}/&#160;{i18n>prvdComment}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
                                         <Label text="{=${oDataModel>/shippingInfoDto/paymentTermsComments}?${oDataModel>/shippingInfoDto/paymentTermsComments}:'---'}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin "></Label>
     </VBox>
+        <l:VerticalLayout visible="{=${oDataModel>/bankDto/isbankdetailsHidden}=== true? false: true}">
                                       <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid ">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>bankInformation2}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls"></Label>
@@ -1089,6 +1090,7 @@
 										<Label text="{=${oDataModel>/bankDto/bankInfoDto/0/instructionKey}?${oDataModel>/bankDto/bankInfoDto/0/instructionKey}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>
+  </l:VerticalLayout>
                                 <VBox class="fontStyle sapUiSizeCompact" visible="{oUserModel>/isNew}">
                                     <CheckBox editable="false" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/bankDto/isIntermediateBankProvided}" class="cl_PreviewLablCls" />
                                     <gl:GridList width="auto" items="{oAttachmentList>/0/bankINDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin">
@@ -1125,7 +1127,7 @@
                                     </gl:GridList>
                                 </VBox>
 
-
+    <l:VerticalLayout visible="{=${oDataModel>/bankDto/isbankdetailsHidden}=== true? false: true}">
                                 <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid sapUiTinyMarginTop">
 									   <VBox class="VRVboxStyle1" visible="{=${oDataModel>/bankDto/isBankProvided} === false}">
 										<Label text="{i18n>financeContact1}" wrapping="true" class="cl_PreviewPageSubHeader" visible="{=${oVisibilityModel>/isdefaultLan}}"></Label>
@@ -1243,6 +1245,7 @@
 									<Label text="{oDataModel>/bankDto/financeContact2/mobile}" class="cl_PreviewLablClsValue"></Label>
                                 </VBox> 
 							</l:Grid> 
+                              </l:VerticalLayout>
                                 <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}"  class="cl_PreviewGrid sapUiSmallMarginTop">
 									   <VBox class="VRVboxStyle1">
 										<Label text="{i18n>allowFinStatText}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls "></Label>

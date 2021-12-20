@@ -96,6 +96,7 @@
 	</Panel>
 	<Panel width="100%" visible="true" class="sapUiTinyMarginTop panelPadding">
 		<content>
+         <l:VerticalLayout visible="{=${oDataModel>/bankDto/isbankdetailsHidden}=== true? false: true}">
         <VBox visible="{oUserModel>/isNew}" class="fontStyle sapUiSizeCompact">
          <Label required="true" visible="{oUserModel>/isNew}" labelFor="isSCFC1" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankInformation2}:${oi18n_En>bankInformation2} +'/&#160;' +${i18n>bankInformation2}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
         <RadioButtonGroup id="isSCFC1" visible="{oUserModel>/isNew}" editable="{oUserModel>/isNew}" class="inputStyle" columns="2" selectedIndex="{=${oDataModel>/bankDto/isBankProvided} === true? 0 :(${oDataModel>/bankDto/isBankProvided}=== false ?1: -1)}"  valueState="{oErrorModel>/isBankProvidedE}" enabled="{oEnableMdl>/bankInformationEnb}" select="fnSelectIsBankInfoProvided">
@@ -219,6 +220,7 @@
 			</l:Grid>
             <VBox class="sapUiSizeCompact">
            <Button enabled="false" icon="sap-icon://add" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addMore}:${oi18n_En>addMore}+ '/&#160;' +${i18n>addMore}}" type="Transparent" iconFirst="true" press="" class="addMoreBtn"/></VBox>
+           </l:VerticalLayout>
 		 <VBox>
           <VBox class="sapUiSizeCompact sapUiTinyMarginBegin" visible="{oUserModel>/isNew}">
           <CheckBox enabled="{oVisibilityModel>/_FinanceReviewEdit}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/bankDto/isIntermediateBankProvided}" class=" sapUiTinyMarginTop fontStyle inputStyle" />
@@ -274,7 +276,7 @@
 		</layoutData>
 	</Panel>
     <Panel width="100%" visible="{oUserModel>/isNew}" class="sapUiTinyMarginTop panelPadding">
-       <l:VerticalLayout class="fontStyle sapUiSizeCompact sapUiTinyMarginBottom">
+       <l:VerticalLayout class="fontStyle sapUiSizeCompact" visible="{=${oDataModel>/bankDto/isbankdetailsHidden}=== true? false: true}">
        <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepFinancialInfo}:${oi18n_En>wizardStepFinancialInfo} +'/&#160;' + ${i18n>wizardStepFinancialInfo}}" class="fontBold sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
         <!-- <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>financeVerbiage}:${oi18n_En>financeVerbiage} +'/&#160;' + ${i18n>financeVerbiage}}" class="fontBold fontStyleItalic sapUiTinyMarginBegin sapUiTinyMarginBottom"/> -->
         <Label  visible="{=${oDataModel>/bankDto/isBankProvided} === false || ${oDataModel>/bankDto/isBankProvided} === null}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>financeContact1}:${oi18n_En>financeContact1} +'/&#160;' + ${i18n>financeContact1}}"  class="inputStyle sapUiTinyMarginBegin fontStyleItalic sapUiTinyMarginBottom"/>
@@ -459,6 +461,8 @@
                             
                                         </VBox> 
 							</l:Grid>
+                            </l:VerticalLayout>
+                             <l:VerticalLayout class="fontStyle sapUiSizeCompact sapUiTinyMarginBottom">
       <Label labelFor="allowFinStat" required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>allowFinStatText}:${oi18n_En>allowFinStatText} +'/&#160;' +${i18n>allowFinStatText}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 		<RadioButtonGroup id="allowFinStat" columns="1" class="inputStyle" selectedIndex="{oDataModel>/financeInfoDto/doesFinancialStatements}"  valueState="{oErrorModel>/doesFinancialStatementsE}" select="fnClearValueState" enabled="{oEnableMdl>/doesFinancialStatementsEnb}">
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}"></RadioButton>
