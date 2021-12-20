@@ -1287,6 +1287,7 @@ sap.ui.define([
                                     "context": {
 
                                         "isNew": vIsNew,
+                                        "corporationName": oView.getModel("JMBPCreate").getData().corporationName,
                                         "isDplicatesFound": false,
                                         "caseId": oEvent.getSource().getData().caseId,
                                         "buyerName": oView.getModel("JMBPCreate").getData().buyerName,
@@ -1528,9 +1529,9 @@ sap.ui.define([
                                             var sUrlWf = "/nsBuyerRegistration/plcm_portal_services/workflow/trigger";
                                             var oPayload = {
                                                 "context": {
-
                                                     "isNew": vIsNew,
                                                     "isDplicatesFound": false,
+                                                    "corporationName": oView.getModel("JMBPCreate").getData().corporationName,
                                                     "caseId": oEvent.getSource().getData().caseId,
                                                     "buyerName": oView.getModel("JMBPCreate").getData().buyerName,
                                                     "buyerTelephone": "",

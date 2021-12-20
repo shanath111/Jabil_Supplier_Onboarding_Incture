@@ -1671,6 +1671,7 @@ sap.ui.define([
                                     var oPayload = {
                                         "context": {
                                             "isNew": vIsNew,
+                                            "corporationName": oView.getModel("JMBPCreate").getData().corporationName,
                                             "isDplicatesFound": false,
                                             "caseId": oEvent.getSource().getData().caseId,
                                             "buyerName": vBuyer,
@@ -1910,6 +1911,7 @@ sap.ui.define([
                                                     "context": {
                                                         "isNew": vIsNew,
                                                         "isDplicatesFound": false,
+                                                        "corporationName": oView.getModel("JMBPCreate").getData().corporationName,
                                                         "caseId": oEvent.getSource().getData().caseId,
                                                         "buyerName": vBuyer,
                                                         "buyerTelephone": "",
