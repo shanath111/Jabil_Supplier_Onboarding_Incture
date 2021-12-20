@@ -2755,6 +2755,15 @@ var aError = false;
                                 } else {
                                     //this.emailValidResult = false;
                                 }
+                                case 9:
+                                    var regex=/^([A-Z0-9]{6})*\.\/?([A-Z0-9]{5})*\.\/?([LE,SL,ME,BR,SP,SF,SD,SS,SB]{2})*\.([0-9]{3})*$/;
+                                    if(!(taxID.length === taxIDMaxLength)) {
+                                        iError = true;
+                                    } else if ( !regex.test(taxID) || taxID.includes("_")){
+                                        iError = true;
+                                    } else {
+                                        //this.emailValidResult = false;
+                                    }
                         }
                     }
                     }
@@ -6214,7 +6223,12 @@ var aError = false;
                     success: function (data) {
                         var taxMaxLength = parseInt(data[0].taxNumLength);
                         var taxNumRule = parseInt(data[0].taxNumRule);
-
+                        if(selectedTaxType == "US5" && (Number(taxMaxLength) == 0 || taxMaxLength == null || isNaN(Number(taxNumRule)))){
+                            taxMaxLength= 19;
+                        }
+                        if(selectedTaxType == "US5" && (Number(taxNumRule) == 0 || taxNumRule ==  null || isNaN(Number(taxNumRule))) ){
+                            taxNumRule= 9;
+                        }
                         if (taxMaxLength == 0) {
                             var taxIDValidationData = {
                                 "taxMaxLength": 20,
@@ -6227,8 +6241,8 @@ var aError = false;
                             }
                         }
 
-
-
+                       
+                        
                         if (nIndex == 0) {
                             oView.getModel("oLookUpModel").setProperty("/taxIDValidation1", taxIDValidationData);
                             oView.getModel("oLookUpModel").refresh();
@@ -6457,6 +6471,17 @@ var aError = false;
                         } else {
                             //this.emailValidResult = false;
                         }
+                        case 9:
+                            var regex=/^([A-Z0-9]{6})*\.\/?([A-Z0-9]{5})*\.\/?([LE,SL,ME,BR,SP,SF,SD,SS,SB]{2})*\.([0-9]{3})*$/;
+                            if(!(taxID.length === taxIDMaxLength)) {
+                                oEvent.getSource().setValueState("Error");
+                                oEvent.getSource().setValueStateText("ID must be of " + taxIDMaxLength + " characters in length without any spaces");
+                            } else if ( !regex.test(taxID) || taxID.includes("_")){
+                                oEvent.getSource().setValueState("Error");
+                                oEvent.getSource().setValueStateText("ID must be of format " + "e.g(7UIAAA.UI89A.XX.000)");
+                            } else {
+                                //this.emailValidResult = false;
+                            }
                 }
             }
             },
