@@ -253,6 +253,12 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
+                                                    if(selectedTaxType == "US5" && (Number(taxMaxLength) == 0 || taxMaxLength == null || isNaN(Number(taxNumRule)))){
+                                                        taxMaxLength= 19;
+                                                    }
+                                                    if(selectedTaxType == "US5" && (Number(taxNumRule) == 0 || taxNumRule ==  null || isNaN(Number(taxNumRule))) ){
+                                                        taxNumRule= 9;
+                                                    }
                                                     if (taxMaxLength == 0) {
                                                         var taxIDValidationData = {
                                                             "taxMaxLength": 20,
@@ -302,6 +308,12 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
+                                                    if(selectedTaxType == "US5" && (Number(taxMaxLength) == 0 || taxMaxLength == null || isNaN(Number(taxNumRule)))){
+                                                        taxMaxLength= 19;
+                                                    }
+                                                    if(selectedTaxType == "US5" && (Number(taxNumRule) == 0 || taxNumRule ==  null || isNaN(Number(taxNumRule))) ){
+                                                        taxNumRule= 9;
+                                                    }
                                                     if (taxMaxLength == 0) {
                                                         var taxIDValidationData = {
                                                             "taxMaxLength": 20,
@@ -349,6 +361,12 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
+                                                    if(selectedTaxType == "US5" && (Number(taxMaxLength) == 0 || taxMaxLength == null || isNaN(Number(taxNumRule)))){
+                                                        taxMaxLength= 19;
+                                                    }
+                                                    if(selectedTaxType == "US5" && (Number(taxNumRule) == 0 || taxNumRule ==  null || isNaN(Number(taxNumRule))) ){
+                                                        taxNumRule= 9;
+                                                    }
                                                     if (taxMaxLength == 0) {
                                                         var taxIDValidationData = {
                                                             "taxMaxLength": 20,
@@ -397,6 +415,12 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
+                                                    if(selectedTaxType == "US5" && (Number(taxMaxLength) == 0 || taxMaxLength == null || isNaN(Number(taxNumRule)))){
+                                                        taxMaxLength= 19;
+                                                    }
+                                                    if(selectedTaxType == "US5" && (Number(taxNumRule) == 0 || taxNumRule ==  null || isNaN(Number(taxNumRule))) ){
+                                                        taxNumRule= 9;
+                                                    }
                                                     if (taxMaxLength == 0) {
                                                         var taxIDValidationData = {
                                                             "taxMaxLength": 20,
@@ -444,6 +468,12 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
+                                                    if(selectedTaxType == "US5" && (Number(taxMaxLength) == 0 || taxMaxLength == null || isNaN(Number(taxNumRule)))){
+                                                        taxMaxLength= 19;
+                                                    }
+                                                    if(selectedTaxType == "US5" && (Number(taxNumRule) == 0 || taxNumRule ==  null || isNaN(Number(taxNumRule))) ){
+                                                        taxNumRule= 9;
+                                                    }
                                                     if (taxMaxLength == 0) {
                                                         var taxIDValidationData = {
                                                             "taxMaxLength": 20,
@@ -491,6 +521,12 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
+                                                    if(selectedTaxType == "US5" && (Number(taxMaxLength) == 0 || taxMaxLength == null || isNaN(Number(taxNumRule)))){
+                                                        taxMaxLength= 19;
+                                                    }
+                                                    if(selectedTaxType == "US5" && (Number(taxNumRule) == 0 || taxNumRule ==  null || isNaN(Number(taxNumRule))) ){
+                                                        taxNumRule= 9;
+                                                    }
                                                     if (taxMaxLength == 0) {
                                                         var taxIDValidationData = {
                                                             "taxMaxLength": 20,
@@ -538,6 +574,12 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
+                                                    if(selectedTaxType == "US5" && (Number(taxMaxLength) == 0 || taxMaxLength == null || isNaN(Number(taxNumRule)))){
+                                                        taxMaxLength= 19;
+                                                    }
+                                                    if(selectedTaxType == "US5" && (Number(taxNumRule) == 0 || taxNumRule ==  null || isNaN(Number(taxNumRule))) ){
+                                                        taxNumRule= 9;
+                                                    }
                                                     if (taxMaxLength == 0) {
                                                         var taxIDValidationData = {
                                                             "taxMaxLength": 20,
@@ -585,6 +627,12 @@ sap.ui.define([
                                                 success: function (data) {
                                                     var taxMaxLength = parseInt(data[0].taxNumLength);
                                                     var taxNumRule = parseInt(data[0].taxNumRule);
+                                                    if(selectedTaxType == "US5" && (Number(taxMaxLength) == 0 || taxMaxLength == null || isNaN(Number(taxNumRule)))){
+                                                        taxMaxLength= 19;
+                                                    }
+                                                    if(selectedTaxType == "US5" && (Number(taxNumRule) == 0 || taxNumRule ==  null || isNaN(Number(taxNumRule))) ){
+                                                        taxNumRule= 9;
+                                                    }
                                                     if (taxMaxLength == 0) {
                                                         var taxIDValidationData = {
                                                             "taxMaxLength": 20,
