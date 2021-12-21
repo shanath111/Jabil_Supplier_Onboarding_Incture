@@ -2804,7 +2804,7 @@ var aError = false;
                                     //this.emailValidResult = false;
                                 }
                                 case 9:
-                                    var regex=/^([A-Z0-9]{6})*\.\/?([A-Z0-9]{5})*\.\/?([LE,SL,ME,BR,SP,SF,SD,SS,SB]{2})*\.([0-9]{3})*$/;
+                                    var regex=/^([A-NP-Z0-9]{6})*\.\/?([A-NP-Z0-9]{5})*\.\/?([LE,SL,ME,BR,SP,SF,SD,SS,SB]{2})*\.([0-9]{3})*$/;
                                     if(!(taxID.length === taxIDMaxLength)) {
                                         iError = true;
                                     } else if ( !regex.test(taxID) || taxID.includes("_")){
