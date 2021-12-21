@@ -7902,6 +7902,8 @@ var aError = false;
               
             }
             this.oPopup.close();
+            this.oPopup.destroy();
+            this.oPopup = undefined;
             },
             fnOnFileUpload: function (oEvt) {
                 var that = this;
@@ -9715,6 +9717,8 @@ var that = this;
             },
             fnClose: function () {
                 this.oPopup.close();
+                this.oPopup.destroy();
+                this.oPopup = undefined;
             },
             fnOnPressInfoIcon: function (oEvent) {
 
@@ -10844,5 +10848,14 @@ var that = this;
                 oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().CorpHeadquarterRegion, oEvent.getSource().getSelectedKey());
                 oView.getModel("oDataModel").refresh();
             },
+            fnHandleTypeMissmatch: function(oEvent){
+             	var aFileTypes = oEvent.getSource().getFileType();
+			aFileTypes.map(function(sType) {
+				return "*." + sType;
+			});
+			sap.m.MessageToast.show("The file type *." + oEvent.getParameter("fileType") +
+									" is not supported. Choose one of the following types: " +
+									aFileTypes.join(", "));
+            }
         });
     });

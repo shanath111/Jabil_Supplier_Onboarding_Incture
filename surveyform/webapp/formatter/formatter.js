@@ -34,7 +34,7 @@ com.jabil.surveyform.formatter.formatter = {
             } else if (mediaType == "exe") {
                 return "sap-icon://attachment-html";
             } else if (mediaType == "gif") {
-                return "sap-icon://attachment-html";
+                return "sap-icon://end-user-experience-monitoring";
             }
         }
     },
