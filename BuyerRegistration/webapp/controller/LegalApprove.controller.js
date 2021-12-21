@@ -86,7 +86,7 @@ sap.ui.define([
                 if (oContext.Name == "COILegal") {
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = false;
                     oView.getModel("oConfigMdl").getData().ButtonNameReject = "Reject";
-                    oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Approve";
+                    oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Accept";
                     oView.getModel("oConfigMdl").getData().coiLegalActnTxt = true;
                     oView.getModel("oConfigMdl").getData().RejectBtnVis = true;
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
@@ -105,7 +105,7 @@ sap.ui.define([
                 else {
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = true;
                     oView.getModel("oConfigMdl").getData().ButtonNameReject = "Reject";
-                    oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Approve";
+                    oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Accept";
                     oView.getModel("oConfigMdl").getData().coiLegalActnTxt = false;
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
                 }

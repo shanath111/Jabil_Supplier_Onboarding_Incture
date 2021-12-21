@@ -59,7 +59,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisibleP = true;
 
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Reject";
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -88,7 +88,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().buyerData = false;
                     oView.getModel("oConfigMdl").getData().BankDetails = false;
                     oView.getModel("oConfigMdl").getData().onBoardDet = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Reject";
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
                     oView.getModel("oConfigMdl").getData().SegmentVisibleP = false;
@@ -122,7 +122,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
                     oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Disqualify";
                     oView.getModel("oConfigMdl").getData().MitgationVis = true;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -138,7 +138,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
                     oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Disqualify";
                     oView.getModel("oConfigMdl").getData().MitgationVis = true;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -154,7 +154,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
                     oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Disqualify";
                     oView.getModel("oConfigMdl").getData().MitgationVis = true;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -170,7 +170,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
                     oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Disqualify";
                     oView.getModel("oConfigMdl").getData().MitgationVis = true;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -186,7 +186,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
                     oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Disqualify";
                     oView.getModel("oConfigMdl").getData().MitgationVis = true;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -202,7 +202,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
                     oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Reject";
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -219,7 +219,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
                     oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Reject";
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
