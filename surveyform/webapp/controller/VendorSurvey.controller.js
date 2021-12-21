@@ -2652,6 +2652,12 @@ var aError = false;
                         }
 
                     }
+                    if (!oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country) {
+                        oView.getModel("oErrorModel").getData().taxC1E = "Error";
+                        oView.getModel("oErrorModel").getData().taxC1M = oi18n.getText("mandatoryTaxCountry");
+                        iError = true;
+                    } 
+                    
                 }
                 //}
                 if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName)) {
@@ -6169,6 +6175,10 @@ var aError = false;
                     }
                 }
                 var sPathIndex= sPath.split("/bpInfoDto/tax/")[1];
+                if(sPath && sPathIndex && Number(sPathIndex) === 0){
+                    oView.getModel("oErrorModel").getData().taxC1E = "None";
+                    oView.getModel("oErrorModel").getData().taxC1M = "";
+                }
                 if(sPath && sPathIndex && Number(sPathIndex) === 0 &&  oEvent.getSource().getSelectedKey() === "BR"){
                     this.getOwnerComponent().getModel("oVisibilityModel").getData().enableNPI = true;
                     this.getOwnerComponent().getModel("oVisibilityModel").refresh();
