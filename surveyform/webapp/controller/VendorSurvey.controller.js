@@ -2625,17 +2625,17 @@ var aError = false;
                                 oView.getModel("oErrorModel").getData().isCorpHeadquartersDunsRegisteredE = "Error";
                                 iError = true;
                             
-                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered ===true) {
-                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
-                                iError = true;
-                            } else {
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "None";
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "";
-    
+                            } else if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered ===true) {
+                                if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
+                                    oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
+                                    oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
+                                    iError = true;
+                                } else {
+                                    oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "None";
+                                    oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "";
+        
+                                }
                             }
-                        }
                             
                         }
                        

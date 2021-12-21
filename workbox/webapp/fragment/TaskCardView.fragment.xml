@@ -57,6 +57,10 @@
 								
 							</HBox>
 						</HBox>
+                         <HBox width="22%"
+							 renderType="Bare" justifyContent="Start" alignItems="Center">
+							<Text class="wbInboxCardDescStyle" text="{oTaskInboxModel>vendorName}" maxLines="2"/>
+						</HBox>
                         <HBox width="{= ${oAppModel>/isRightPaneVisible} === true ? '9%' : '16%'}"
 							visible="{= ${oAppModel>/currentViewPage} === 'Draft' ? false : true}" renderType="Bare" justifyContent="End" alignItems="Center">
 							<Text class="wbInboxStatusTextClass" text="{oTaskInboxModel>businessStatus}" maxLines="2"/>
@@ -66,6 +70,7 @@
 							<Button text="{i18n>EDIT_TEXT}" type="Transparent" class="sapUiTinyMarginEnd wbTransparentButtonStyleClass" press="onEditDraftFn"/>
 							<Button text="{i18n>DELETE_TEXT}" type="Reject" class="sapUiTinyMarginEnd wbInboxRemoveBtnClass" press="onDeleteDraftFn"/>
 						</HBox>
+                      
 						<Text text="{i18n>ON_TEXT}" class="wbInboxTextCreatedAtClass sapUiSmallMarginBegin"  maxLines="2"
 							visible="{= ${oAppModel>/currentViewPage} === 'CompletedTasks' || ${oAppModel>/currentViewPage} === 'RequestorCompletedTasks' ? true : false}"
 							width="1.4%"/>
@@ -85,6 +90,7 @@
 							text="{path:'oTaskInboxModel>createdAt', formatter:'oneapp.incture.workbox.util.formatter.wbDateFormatter'}"/>
 						<core:Icon src="sap-icon://feeder-arrow" tooltip="{i18n>SHOW_MORE_TEXT}" class="wbInboxMoreIconClass sapUiTinyMarginEnd"/>
 					</ExtHbox:ExtHbox>
+                   
 				</CustomListItem>
 			</List>
 		</VBox>

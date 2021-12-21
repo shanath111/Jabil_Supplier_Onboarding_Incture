@@ -364,7 +364,7 @@
 							<Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>submit}:${oi18n_En>submit} + '/&#160;' + ${i18n>submit}}"  class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" visible="{oVisibilityModel>/FinanceSaveVis}" enabled="{oVisibilityModel>/_CompletedTask}" press="fnSubmit"></Button>
                         
 				
-                <Button text="{i18n>Approve}" visible="{oVisibilityModel>/FinanceReviewVis}"  type="Accept" press="fnOpenBankCommentsApp" enabled="{oVisibilityModel>/_CompletedTask}" class="cl_BPCDraft  sapUiSizeCompact" />
+                <Button text="{i18n>Accept}" visible="{oVisibilityModel>/FinanceReviewVis}"  type="Accept" press="fnOpenBankCommentsApp" enabled="{oVisibilityModel>/_CompletedTask}" class="cl_BPCDraft  sapUiSizeCompact" />
                   <Button text="{i18n>Reject}" enabled="{oVisibilityModel>/_CompletedTask}"  visible="{oVisibilityModel>/FinanceReviewVis}" press="fnOpenBankCommentsReject" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />         
 			</OverflowToolbar>
 					
