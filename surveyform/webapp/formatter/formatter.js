@@ -166,8 +166,20 @@ com.jabil.surveyform.formatter.formatter = {
 
         }
     },
+
+    fnFormatDateMonth: function (oVal) {
+        if(oVal) {
+            var date = new Date(oVal);
+            var month = date.toLocaleString('default', {month: 'short'});
+            var day = date.getDate();
+            var year = date.getFullYear();
+            var formatDate = month + " " + day + ", "+ year;
+            return formatDate;
+        }
+        
+    },
     fnFetchDescription: function(aArray, value){
- if (aArray) {
+        if (aArray) {
                     if (value) {
                         var item = aArray.find(item => item.code == value);
                         if (item) {
@@ -182,6 +194,24 @@ com.jabil.surveyform.formatter.formatter = {
                 } else {
                     return '---';
                 }
+    },
+
+    fnFetchValue: function(aArray, val){
+        if (aArray) {
+            if (val) {
+                var item = aArray.find(item => item.key == val);
+                if (item) {
+                    return item.value;
+                } else {
+                    return '---';
+                }
+
+            } else {
+               return '---';
+            }
+        } else {
+            return '---';
+        }
     },
      fnFetchAdditionalDescription: function(aArray, value){
  if (aArray) {

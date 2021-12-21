@@ -81,7 +81,7 @@
 	<Panel id="idOwnerShipInfo1" visible="{=${oDataModel>/ownerShipInfoDto/isEntitySDNList} === true &amp;&amp; ${oUserModel>/isNew}}" class="panelPadding panelBottom sapUiTinyMarginBegin">
 	<VBox fitContainer="true" visible="{oUserModel>/isNew}" class="fontStyle">
     	<Label text="{i18n>legalEntityText}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact sapUiTinyMarginBottom"/>
-                <Label text="{oi18n_En>legalEntityText}&#10;{i18n>legalEntityText}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="sapUiSizeCompact sapUiTinyMarginBottom"/>
+        <Label text="{oi18n_En>legalEntityText}&#10;{i18n>legalEntityText}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="sapUiSizeCompact sapUiTinyMarginBottom"/>
    <Table items="{oDataModel>/ownerShipInfoDto/sdnlistContact}" id="sdnLC" class="entityContactTbl sapUiSizeCompact">
                <columns>
                 <Column width="19rem"  minScreenWidth="Desktop"
@@ -159,7 +159,7 @@
 	<Panel id="idOwnerShipInfo2" visible="{=${oDataModel>/ownerShipInfoDto/isEntityRegInCISNK} === true &amp;&amp; ${oUserModel>/isNew}}" class="panelPadding panelBottom sapUiTinyMarginBegin">
 	<VBox fitContainer="true" class="fontStyle">
     	<Label text="{i18n>legalEntityText}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact sapUiTinyMarginBottom"/>
-                <Label text="{oi18n_En>legalEntityText}&#10;{i18n>legalEntityText}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="sapUiSizeCompact sapUiTinyMarginBottom"/>
+        <Label text="{oi18n_En>legalEntityText}&#10;{i18n>legalEntityText}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="sapUiSizeCompact sapUiTinyMarginBottom"/>
      <Table items="{oDataModel>/ownerShipInfoDto/regInCISNKContact}" id="cisnkLC" class="entityContactTbl sapUiSizeCompact">
                <columns>
                 <Column width="19rem"  minScreenWidth="Desktop"

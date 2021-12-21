@@ -2573,12 +2573,13 @@ var aError = false;
                                         }
                                 }
                             }
-                        }
-                        if (oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === null) {
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === null) {
                                 oView.getModel("oErrorModel").getData().isCorpHeadquartersDunsRegisteredE = "Error";
                                 iError = true;
                             
-                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters ===true) {
+                            }
+                        }
+                         else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters ===true) {
                             if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
                                 oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
                                 oView.getModel("oErrorModel").getData().dunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
