@@ -59,7 +59,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisibleP = true;
 
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Reject";
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -88,7 +88,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().buyerData = false;
                     oView.getModel("oConfigMdl").getData().BankDetails = false;
                     oView.getModel("oConfigMdl").getData().onBoardDet = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Reject";
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
                     oView.getModel("oConfigMdl").getData().SegmentVisibleP = false;
@@ -122,7 +122,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
                     oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Disqualify";
                     oView.getModel("oConfigMdl").getData().MitgationVis = true;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -138,7 +138,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
                     oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Disqualify";
                     oView.getModel("oConfigMdl").getData().MitgationVis = true;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -154,7 +154,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
                     oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Disqualify";
                     oView.getModel("oConfigMdl").getData().MitgationVis = true;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -170,7 +170,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
                     oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Disqualify";
                     oView.getModel("oConfigMdl").getData().MitgationVis = true;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -186,7 +186,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
                     oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Disqualify";
                     oView.getModel("oConfigMdl").getData().MitgationVis = true;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -202,7 +202,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
                     oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Reject";
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -219,7 +219,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
                     oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                     oView.getModel("oConfigMdl").getData().SegmentVisible = true;
-                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Approve";
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Accept";
                     oView.getModel("oConfigMdl").getData().RjectBtnName = "Reject";
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -2169,6 +2169,7 @@ sap.ui.define([
                                                     } else {
                                                         MessageBox.error(oi18n.getProperty("ValidationSuccessFullError"), {
                                                             actions: ["View Details", MessageBox.Action.CANCEL],
+                                                            title: "Validation Unsuccessful",
                                                             emphasizedAction: MessageBox.Action.OK,
                                                             onClose: function (sAction) {
                                                                 if (sAction == "View Details") {
@@ -2192,7 +2193,7 @@ sap.ui.define([
                                                     var sErMsg = "We are unable to validate at this time, please try again later.";
                                                     MessageBox.show(sErMsg, {
                                                         icon: MessageBox.Icon.ERROR,
-                                                        title: oi18n.getProperty("Error")
+                                                        title: "Validation Unsuccessful"
                                                     });  
                                                    // break;
                                                    vBreak = true;
@@ -2207,7 +2208,7 @@ sap.ui.define([
                                                 var sErMsg = "We are unable to validate at this time, please try again later.";
                                                 MessageBox.show(sErMsg, {
                                                     icon: MessageBox.Icon.ERROR,
-                                                    title: oi18n.getProperty("Error")
+                                                    title: "Validation Unsuccessful"
                                                 });
                                             }
                                         });
@@ -2222,7 +2223,7 @@ sap.ui.define([
                                     var sErMsg = "We are unable to validate at this time, please try again later.";
                                     MessageBox.show(sErMsg, {
                                         icon: MessageBox.Icon.ERROR,
-                                        title: oi18n.getProperty("Error")
+                                        title: "Validation Unsuccessful"
                                     });
                                     }
                                 } else {
@@ -2230,7 +2231,7 @@ sap.ui.define([
                                     var sErMsg = "We are unable to validate at this time, please try again later.";
                                     MessageBox.show(sErMsg, {
                                         icon: MessageBox.Icon.ERROR,
-                                        title: oi18n.getProperty("Error")
+                                        title: "Validation Unsuccessful"
                                     });
                                 }
 
@@ -2240,7 +2241,7 @@ sap.ui.define([
                                 var sErMsg = oEvent.getParameter("errorobject").responseText;
                                 MessageBox.show(sErMsg, {
                                     icon: MessageBox.Icon.ERROR,
-                                    title: oi18n.getProperty("Error")
+                                    title: "Validation Unsuccessful"
                                 });
                             }
 
@@ -2251,7 +2252,7 @@ sap.ui.define([
                         var sErMsg = oEvent.getParameter("errorobject").responseText;
                         MessageBox.show(sErMsg, {
                             icon: MessageBox.Icon.ERROR,
-                            title: oi18n.getProperty("Error")
+                            title: "Validation Unsuccessful"
                         });
                     }
 

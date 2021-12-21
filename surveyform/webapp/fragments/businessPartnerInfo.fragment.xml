@@ -567,7 +567,7 @@
 						</l:VerticalLayout>
 			<Text text="{i18n>Attachments}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>
             <Text text="{oi18n_En>Attachments}/&#160;{i18n>Attachments}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>
-			<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bpDocVerbiage}:${oi18n_En>bpDocVerbiage}+ '/&#160;'+${i18n>bpDocVerbiage}}" wrapping="true" class="fontStyle fontStyleItalic sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+			<Label visible="{oUserModel>/isNew}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bpDocVerbiage}:${oi18n_En>bpDocVerbiage}+ '/&#160;'+${i18n>bpDocVerbiage}}" wrapping="true" class="fontStyle fontStyleItalic sapUiTinyMarginTop sapUiTinyMarginBegin"/>
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>docVerbiage}:${oi18n_En>docVerbiage}+ '/&#160;'+${i18n>docVerbiage}}" wrapping="true" class="fontStyle hOverInfo sapUiTinyMarginTop sapUiTinyMarginBegin"/>
             <HBox wrap="Wrap">
 				<!-- <u:FileUploader id="fileUploader" buttonOnly="true" maximumFileSize="10" buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"

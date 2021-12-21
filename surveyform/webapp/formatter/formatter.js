@@ -11,6 +11,8 @@ com.jabil.surveyform.formatter.formatter = {
                 return "sap-icon://pdf-attachment";
             } else if (mediaType == "jpg") {
                 return "sap-icon://attachment-photo";
+            } else if (mediaType == "jpeg") {
+                return "sap-icon://attachment-photo";
             } else if (mediaType == "png") {
                 return "sap-icon://attachment-photo";
             } else if (mediaType == "mp4") {
@@ -23,11 +25,15 @@ com.jabil.surveyform.formatter.formatter = {
                 return "sap-icon://ppt-attachment";
             } else if (mediaType == "docx") {
                 return "sap-icon://doc-attachment";
+            } else if (mediaType == "doc") {
+                return "sap-icon://doc-attachment";
             } else if (mediaType == "zip") {
                 return "sap-icon://attachment-zip-file";
             } else if (mediaType == "html") {
                 return "sap-icon://attachment-html";
             } else if (mediaType == "exe") {
+                return "sap-icon://attachment-html";
+            } else if (mediaType == "gif") {
                 return "sap-icon://attachment-html";
             }
         }
@@ -260,5 +266,28 @@ for(var i=0; i<stringlistLen;i++){
             }
         }
         return a;
-    }
+    },
+    fnFetchDescMultiplePayment: function(aArray, value){
+        if (aArray) {
+                           if (value) {
+                               var itemDesc ="";
+                               for(var i=0;i<value.length;i++){
+                               var item = aArray.find(item => item.code == value[i]);
+                               if (item) {
+                                itemDesc = itemDesc + item.description + ',';
+                                }
+                             } if(itemDesc){
+                                 return itemDesc.replace(/,([^,]*)$/, '$1')
+                             }
+                              else {
+                                return '---';
+                                }
+                               
+                           } else {
+                              return '---';
+                           }
+                       } else {
+                           return '---';
+                       }
+           }
 };

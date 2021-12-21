@@ -28,7 +28,7 @@ sap.ui.define([
                 oRouter.getRoute("BPCreate").attachPatternMatched(this.fnBuyerCreateRoute, this);
             },
             fnChange22:function(){
-debugger;
+
             },
             fnBuyerCreateRoute: function (oEvent) {
                 var vContext = {
@@ -1287,6 +1287,7 @@ debugger;
                                     "context": {
 
                                         "isNew": vIsNew,
+                                        "corporationName": oView.getModel("JMBPCreate").getData().corporationName,
                                         "isDplicatesFound": false,
                                         "caseId": oEvent.getSource().getData().caseId,
                                         "buyerName": oView.getModel("JMBPCreate").getData().buyerName,
@@ -1528,9 +1529,9 @@ debugger;
                                             var sUrlWf = "/nsBuyerRegistration/plcm_portal_services/workflow/trigger";
                                             var oPayload = {
                                                 "context": {
-
                                                     "isNew": vIsNew,
                                                     "isDplicatesFound": false,
+                                                    "corporationName": oView.getModel("JMBPCreate").getData().corporationName,
                                                     "caseId": oEvent.getSource().getData().caseId,
                                                     "buyerName": oView.getModel("JMBPCreate").getData().buyerName,
                                                     "buyerTelephone": "",
