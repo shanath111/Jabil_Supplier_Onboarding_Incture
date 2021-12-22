@@ -22,6 +22,9 @@ sap.ui.define([
             },
             fnNavToLocalDocAdmin : function() {
                 this.getOwnerComponent().getRouter().navTo("LocalDocAdmin");
+            },
+            fnNavToMaintenanceAdmin: function() {
+                this.getOwnerComponent().getRouter().navTo("MaintenanceAdmin");
             }
             
 
