@@ -236,9 +236,9 @@
          	<!-- <Label visible="{=!${oDataModel>/bpInfoDto/siteHaveDunsNumber} &amp;&amp; ${oUserModel>/isNew} &amp;&amp; ${oVisibilityModel>/isdefaultLan}}" text="{=${oDataModel>/bpInfoDto/encourgeDunsNumberReg}?${i18n>yes}:${i18n>no}}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin"></Label>  -->
     
     <HBox>
-        <Label visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === false  &amp;&amp; ${oVisibilityModel>/isdefaultLan}}"  text="{i18n>isSiteTheCorpHead}" wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginTop sapUiTinyMarginBegin"></Label>
-        <Label visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === false &amp;&amp; !${oVisibilityModel>/isdefaultLan}}"  text="{oi18n_En>isSiteTheCorpHead}/&#160;{i18n>isSiteTheCorpHead}" wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginTop sapUiTinyMarginBegin"></Label>
-        <Label visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === false}" text="{=${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue sapUiTinyMarginTop sapUiTinyMarginBegin"></Label> 
+        <Label visible="{oVisibilityModel>/isdefaultLan}"  text="{i18n>isSiteTheCorpHead}" wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginTop sapUiTinyMarginBegin"></Label>
+        <Label visible="{=!${oVisibilityModel>/isdefaultLan}}"  text="{oi18n_En>isSiteTheCorpHead}/&#160;{i18n>isSiteTheCorpHead}" wrapping="true" class="cl_PreviewLablCls sapUiTinyMarginTop sapUiTinyMarginBegin"></Label>
+        <Label text="{=${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue sapUiTinyMarginTop sapUiTinyMarginBegin"></Label> 
     </HBox>
        <l:Grid visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === false}" defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop">
                                     <VBox class="VRVboxStyle1">
@@ -252,58 +252,58 @@
 										<Label text="{=${oDataModel>/bpInfoDto/year}?${oDataModel>/bpInfoDto/year}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
        </l:Grid>
-        <VBox alignContent="Start" visible="{=${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters} === false}" class="sapUiSizeCompact">
+        <VBox alignContent="Start" class="sapUiSizeCompact">
             <Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>CorporateHeadquarterDetail}:${oi18n_En>CorporateHeadquarterDetail} +'/&#160;' + ${i18n>CorporateHeadquarterDetail}}" class="cl_PreviewPageSubHeader sapUiTinyMarginBegin"/>
             
             <Label  wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>LegalBusinessName}:${oi18n_En>LegalBusinessName} +'&#10;' +${i18n>LegalBusinessName}}" class="cl_PreviewLablCls sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>       
             <l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M4 S12" class="cl_PreviewGrid">
                 <VBox class="fontStyle sapUiSizeCompact">
-                    <Label text="{oDataModel>/bpInfoDto/corpHeadquartersLegalBusinessName1}" class="cl_PreviewLablClsValue"></Label>
+                    <Label text="{=${oDataModel>/bpInfoDto/corpHeadquartersLegalBusinessName1}?${oDataModel>/bpInfoDto/corpHeadquartersLegalBusinessName1}:'---'}" class="cl_PreviewLablClsValue"></Label>
                 </VBox>
                 <VBox class="fontStyle sapUiSizeCompact">
-                    <Label text="{oDataModel>/bpInfoDto/corpHeadquartersLegalBusinessName2}" class="cl_PreviewLablClsValue"></Label>
+                    <Label text="{=${oDataModel>/bpInfoDto/corpHeadquartersLegalBusinessName2}?${oDataModel>/bpInfoDto/corpHeadquartersLegalBusinessName2}:'---'}" class="cl_PreviewLablClsValue"></Label>
                 </VBox>
             </l:Grid>
             <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid">
                 <VBox>
                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey} +'&#10;' + ${i18n>countrykey}}" wrapping="true" class="cl_PreviewLablCls "></Label>
-                    <Label text="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/country}" class="cl_PreviewLablClsValue " />
+                    <Label text="{=${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/country}?${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/country}:'---'}" class="cl_PreviewLablClsValue " />
                 </VBox>
                 <VBox>
                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1} +'&#10;' + ${i18n>addressL1}}" wrapping="true" class="cl_PreviewLablCls "></Label>
-                    <Label text="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address1}" class="cl_PreviewLablClsValue " />
+                    <Label text="{=${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address1}?${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address1}:'---'}" class="cl_PreviewLablClsValue " />
                 </VBox>
                 <VBox>
                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2} +'&#10;' + ${i18n>addressL2}}" wrapping="true" class="cl_PreviewLablCls "></Label>
-                    <Label text="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address2}" class="cl_PreviewLablClsValue " />
+                    <Label text="{=${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address2}?${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address2}:'---'}" class="cl_PreviewLablClsValue " />
                 </VBox>
                 <VBox>
                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL3}:${oi18n_En>addressL3} +'&#10;' + ${i18n>addressL3}}" wrapping="true" class="cl_PreviewLablCls "></Label>
-                    <Label text="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address3}" class="cl_PreviewLablClsValue " />
+                    <Label text="{=${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address3}?${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address3}:'---'}" class="cl_PreviewLablClsValue " />
                 </VBox>
                 <VBox>
                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL4}:${oi18n_En>addressL4} +'&#10;' + ${i18n>addressL4}}" wrapping="true" class="cl_PreviewLablCls "></Label>
-                    <Label text="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address4}" class="cl_PreviewLablClsValue " />
+                    <Label text="{=${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address4}?${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address4}:'---'}" class="cl_PreviewLablClsValue " />
                 </VBox>
                 <VBox>
                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL5}:${oi18n_En>addressL5} +'&#10;' + ${i18n>addressL5}}" wrapping="true" class="cl_PreviewLablCls "></Label>
-                    <Label text="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address5}" class="cl_PreviewLablClsValue " />
+                    <Label text="{=${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address5}?${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/address5}:'---'}" class="cl_PreviewLablClsValue " />
                 </VBox>
                 <VBox>
                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>region}:${oi18n_En>region} +'&#10;' + ${i18n>region}}" wrapping="true" class="cl_PreviewLablCls "></Label>
-                    <Label text="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/region}" class="cl_PreviewLablClsValue " />
+                    <Label text="{=${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/region}?${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/region}:'---'}" class="cl_PreviewLablClsValue " />
                 </VBox>
                 <VBox>
                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dist}:${oi18n_En>dist} +'&#10;' + ${i18n>dist}}" wrapping="true" class="cl_PreviewLablCls "></Label>
-                    <Label text="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/district}" class="cl_PreviewLablClsValue " />
+                    <Label text="{=${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/district}?${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/district}:'---'}" class="cl_PreviewLablClsValue " />
                 </VBox>
                 <VBox>
                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>city}:${oi18n_En>city} +'&#10;' + ${i18n>city}}" wrapping="true" class="cl_PreviewLablCls "></Label>
-                    <Label text="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/city}" class="cl_PreviewLablClsValue " />
+                    <Label text="{=${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/city}?${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/city}:'---'}" class="cl_PreviewLablClsValue " />
                 </VBox>
                 <VBox>
                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postalCode}:${oi18n_En>postalCode} +'&#10;' + ${i18n>postalCode}}" wrapping="true" class="cl_PreviewLablCls "></Label>
-                    <Label text="{oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/postalCode}" class="cl_PreviewLablClsValue " />
+                    <Label text="{=${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/postalCode}?${oDataModel>/bpInfoDto/corpHeaderQuartersAddress/0/postal/0/postalCode}:'---'}" class="cl_PreviewLablClsValue " />
                 </VBox>
             </l:Grid>
             <HBox>
@@ -1090,9 +1090,9 @@
                                         	<Label text="{oi18n_En>paymentTermsAgree}&#10;{i18n>paymentTermsAgree}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls  sapUiTinyMarginBegin"></Label>
    										    <Label text="{=${oDataModel>/shippingInfoDto/isPaymentTermsAgreed}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue  sapUiTinyMarginBegin "></Label>
                                         </HBox>
-                                        <Label text="{i18n>Comment}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
-                                        <Label text="{oi18n_En>Comment}/&#160;{i18n>Comment}" visible="{=!${oVisibilityModel>/isdefaultLan}}"  wrapping="true" class="cl_PreviewLablCls sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
-                                        <Label text="{=${oDataModel>/shippingInfoDto/paymentTermsComments}?${oDataModel>/shippingInfoDto/paymentTermsComments}:'---'}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin "></Label>
+                                        <Label text="{i18n>Comment}" visible="{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oDataModel>/shippingInfoDto/isPaymentTermsAgreed} === false}"  wrapping="true" class="cl_PreviewLablCls sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
+                                        <Label text="{oi18n_En>Comment}/&#160;{i18n>Comment}" visible="{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oDataModel>/shippingInfoDto/isPaymentTermsAgreed} === false}"  wrapping="true" class="cl_PreviewLablCls sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
+                                        <Label text="{=${oDataModel>/shippingInfoDto/paymentTermsComments}?${oDataModel>/shippingInfoDto/paymentTermsComments}:'---'}" visible="{=${oDataModel>/shippingInfoDto/isPaymentTermsAgreed} === false}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin "></Label>
     </VBox>
         <l:VerticalLayout visible="{=${oDataModel>/bankDto/isbankdetailsHidden}=== true? false: true}">
                                       <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid ">
@@ -1193,7 +1193,6 @@
 										<Label text="{=${oDataModel>/bankDto/bankInfoDto/0/instructionKey}?${oDataModel>/bankDto/bankInfoDto/0/instructionKey}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>
-  </l:VerticalLayout>
                                 <VBox class="fontStyle sapUiSizeCompact" visible="{oUserModel>/isNew}">
                                     <CheckBox editable="false" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/bankDto/isIntermediateBankProvided}" class="cl_PreviewLablCls" />
                                     <gl:GridList width="auto" items="{oAttachmentList>/0/bankINDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin">
@@ -1229,8 +1228,6 @@
                                         </gl:GridListItem>
                                     </gl:GridList>
                                 </VBox>
-
-    <l:VerticalLayout visible="{=${oDataModel>/bankDto/isbankdetailsHidden}=== true? false: true}">
                                 <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oUserModel>/isNew}" class="cl_PreviewGrid sapUiTinyMarginTop">
 									   <VBox class="VRVboxStyle1" visible="{=${oDataModel>/bankDto/isBankProvided} === false}">
 										<Label text="{i18n>financeContact1}" wrapping="true" class="cl_PreviewPageSubHeader" visible="{=${oVisibilityModel>/isdefaultLan}}"></Label>
@@ -1415,7 +1412,7 @@
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>vendorName}"  visible="{oVisibilityModel>/isdefaultLan}"  wrapping="true" class="cl_PreviewLablCls "></Label>
 										<Label text="{oi18n_En>vendorName}&#10;{i18n>vendorName}"  wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
-                                        <Label text="{oDataModel>/shippingInfoDto/vendor}"  class="cl_PreviewLablClsValue "></Label>
+                                        <Label text="{=${oDataModel>/shippingInfoDto/vendor}?${oDataModel>/shippingInfoDto/vendor}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>incoterm}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
@@ -1443,7 +1440,7 @@
                                     <VBox class="VRVboxStyle1">
                                         <Label text="{i18n>deliveryLoc}"  visible= "{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>deliveryLoc}&#10;{i18n>deliveryLoc}"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
-                                        <Label text="{oDataModel>/shippingInfoDto/deliveryLocation}" class="cl_PreviewLablClsValue "/>
+                                        <Label text="{=${oDataModel>/shippingInfoDto/deliveryLocation}?${oDataModel>/shippingInfoDto/deliveryLocation}:'---'}"  class="cl_PreviewLablClsValue "/>
                                     </VBox>
                                 </l:Grid>
                                  <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid ">

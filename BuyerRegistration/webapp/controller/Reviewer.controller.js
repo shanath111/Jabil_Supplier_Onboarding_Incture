@@ -1635,6 +1635,15 @@ sap.ui.define([
                 var vUrl = window.location.origin + "/comjabilsurveyform/index.html#/VendorSurvey/" + "Display:" + oView.getModel("oConfigMdl").getData().contextPath.Name + "/" + oView.getModel("oConfigMdl").getData().contextPath.Id
                 sap.m.URLHelper.redirect(vUrl);
             },
+            fnHandleTypeMissmatch: function(oEvent){
+                var aFileTypes = oEvent.getSource().getFileType();
+           aFileTypes.map(function(sType) {
+               return "*." + sType;
+           });
+           sap.m.MessageToast.show("The file type *." + oEvent.getParameter("fileType") +
+                                   " is not supported. Choose one of the following types: " +
+                                   aFileTypes.join(", "));
+           },
             // @ts-ignore
             fnOnFileUpload: function (oEvt){ 
                 var oFormData = new FormData(),
@@ -1643,6 +1652,25 @@ sap.ui.define([
                     domRef = fileUpload.getFocusDomRef(),
                     // @ts-ignore
                     file = domRef.files[0];
+
+                    if (file.name.length > 60) {
+                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                        return;
+                    }  if (Number((file.size * 0.000001).toFixed(1)) > 8) {
+                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileSizeExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                        return;
+                    }
+    
 
 
                 // @ts-ignore
@@ -2273,7 +2301,23 @@ sap.ui.define([
                     // @ts-ignore
                     file = domRef.files[0];
 
-
+                    if (file.name.length > 60) {
+                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                        return;
+                    }  if (Number((file.size * 0.000001).toFixed(1)) > 8) {
+                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileSizeExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                        return;
+                    }
                 // @ts-ignore
                 jQuery.sap.domById(fileUpload.getId() + "-fu").setAttribute("type", "file");
                 // @ts-ignore
