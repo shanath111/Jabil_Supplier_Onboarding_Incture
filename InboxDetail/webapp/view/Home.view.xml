@@ -32,6 +32,12 @@
 				class="sapUiSizeCompact cl_TileHeight sapUiSmallMarginTop sapUiSmallMarginBegin"
 			title="{i18n>LocalDocumentsAdmin}"
 			/>
+            <StandardTile
+                    press="fnNavToMaintenanceAdmin"
+                   icon="sap-icon://action-settings"
+				class="sapUiSizeCompact cl_TileHeight sapUiSmallMarginTop sapUiSmallMarginBegin"
+			title="{i18n>MaintenanceAdmin}"
+			/>
 				</content>
                
 			</Page>
