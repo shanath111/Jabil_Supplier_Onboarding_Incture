@@ -138,6 +138,11 @@
                     "target": "LocalDocAdmin"
                 },
                 {
+                    "name": "MaintenanceAdmin",
+                    "pattern": "MaintenanceAdmin",
+                    "target": "MaintenanceAdmin"
+                },
+                {
                     "name": "BPExtend",
                     "pattern": "BPExtend/{contextPath}",
                     "target": "BPExtend"
@@ -207,6 +212,10 @@
                 "LocalDocAdmin": {
                     "viewType": "XML",
                     "viewName": "LocalDocAdmin"
+                },
+                "MaintenanceAdmin": {
+                    "viewType": "XML",
+                    "viewName": "MaintenanceAdmin"
                 }
 
             }
