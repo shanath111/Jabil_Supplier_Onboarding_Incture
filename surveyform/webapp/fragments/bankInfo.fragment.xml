@@ -94,9 +94,8 @@
 			<FlexItemData minWidth="100%"/>
 		</layoutData>
 	</Panel>
-	<Panel width="100%" visible="true" class="sapUiTinyMarginTop panelPadding">
+	<Panel width="100%"  visible="{=${oDataModel>/bankDto/isbankdetailsHidden}=== true? false: true}" class="sapUiTinyMarginTop panelPadding">
 		<content>
-         <l:VerticalLayout visible="{=${oDataModel>/bankDto/isbankdetailsHidden}=== true? false: true}">
         <VBox visible="{oUserModel>/isNew}" class="fontStyle sapUiSizeCompact">
          <Label required="true" visible="{oUserModel>/isNew}" labelFor="isSCFC1" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankInformation2}:${oi18n_En>bankInformation2} +'/&#160;' +${i18n>bankInformation2}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
         <RadioButtonGroup id="isSCFC1" visible="{oUserModel>/isNew}" editable="{oUserModel>/isNew}" class="inputStyle" columns="2" selectedIndex="{=${oDataModel>/bankDto/isBankProvided} === true? 0 :(${oDataModel>/bankDto/isBankProvided}=== false ?1: -1)}"  valueState="{oErrorModel>/isBankProvidedE}" enabled="{oEnableMdl>/bankInformationEnb}" select="fnSelectIsBankInfoProvided">
@@ -220,7 +219,6 @@
 			</l:Grid>
             <VBox class="sapUiSizeCompact">
            <Button enabled="false" icon="sap-icon://add" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addMore}:${oi18n_En>addMore}+ '/&#160;' +${i18n>addMore}}" type="Transparent" iconFirst="true" press="" class="addMoreBtn"/></VBox>
-           </l:VerticalLayout>
 		 <VBox>
           <VBox class="sapUiSizeCompact sapUiTinyMarginBegin" visible="{oUserModel>/isNew}">
           <CheckBox enabled="{oVisibilityModel>/_FinanceReviewEdit}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/bankDto/isIntermediateBankProvided}" class=" sapUiTinyMarginTop fontStyle inputStyle" />
@@ -341,7 +339,7 @@
                                                        
 									
 								
-						 <VBox >
+						 <VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>extension}:${oi18n_En>extension} +'&#10;' + ${i18n>extension}}" class="fontStyle"></Label> -->
                                      <Label text="{i18n>extension}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>extension}&#10;{i18n>extension}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>

@@ -2523,121 +2523,7 @@ var aError = false;
 
                         }
                     } else if (oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber === false) {
-                        if (oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === null) {
-                            oView.getModel("oErrorModel").getData().isSiteCorporateHeadquatersE = "Error";
-                            iError = true;
-                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === false){
-                            if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country)) {
-                                oView.getModel("oErrorModel").getData().corpHeadCountryE = "Error";
-                                oView.getModel("oErrorModel").getData().corpHeadCountryM = oi18n.getText("mandatoryCountry");
-                                iError = true;
-                            } 
-                            if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1) {
-                                oView.getModel("oErrorModel").getData().corpHeadAddressL1E = "Error";
-                                oView.getModel("oErrorModel").getData().corpHeadAddressL1M = oi18n.getText("mandatoryAddr1");
-                                iError = true;
-                            } 
-                            if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region) {
-                                oView.getModel("oErrorModel").getData().corpHeadRegionE = "Error";
-                                oView.getModel("oErrorModel").getData().corpHeadRegionM = oi18n.getText("mandatoryState");
-                                iError = true;
-                            } 
-                            if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city) {
-                                oView.getModel("oErrorModel").getData().corpHeadCityE = "Error";
-                                oView.getModel("oErrorModel").getData().corpHeadCityM = oi18n.getText("mandatoryCity");
-                                iError = true;
-                            } 
-                            if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {
-                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("mandatoryPostalCode");
-                                iError = true;
-                            } 
-                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1.length > 60) {
-                                iError = true;
-                            }
-                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city.length > 40) {
-                                iError = true;
-                            }
-                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {
-                                var postalCode = oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode;
-                                var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationCorpHeadquarters;
-                                var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
-                                var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
-                                switch (postalCodeRule) {
-                                    case 1:
-                                        if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule1");
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 2:
-                                        if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule2");
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 3:
-                                        if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 4:
-                                        if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 5:
-                                        if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule5");
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 6:
-                                        if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule6");
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 7:
-                                        if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "characters in length";
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 8:
-                                        if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "digits in length";
-                                            iError = true;
-                                        }
-                                }
-                            }
-                            if (oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === null) {
-                                oView.getModel("oErrorModel").getData().isCorpHeadquartersDunsRegisteredE = "Error";
-                                iError = true;
-                            
-                            } else if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered ===true) {
-                                if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
-                                    oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
-                                    oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
-                                    iError = true;
-                                } else {
-                                    oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "None";
-                                    oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "";
-        
-                                }
-                            }
-                            
-                        }
+                     
                        
                         if (!oView.getModel("oDataModel").getData().bpInfoDto.noOfEmployees) {
                             oView.getModel("oErrorModel").getData().numOfEmpE = "Error";
@@ -2651,6 +2537,121 @@ var aError = false;
                             iError = true;
                         }
 
+                    }
+                    if (oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === null) {
+                        oView.getModel("oErrorModel").getData().isSiteCorporateHeadquatersE = "Error";
+                        iError = true;
+                    } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === false){
+                        if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country)) {
+                            oView.getModel("oErrorModel").getData().corpHeadCountryE = "Error";
+                            oView.getModel("oErrorModel").getData().corpHeadCountryM = oi18n.getText("mandatoryCountry");
+                            iError = true;
+                        } 
+                        if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1) {
+                            oView.getModel("oErrorModel").getData().corpHeadAddressL1E = "Error";
+                            oView.getModel("oErrorModel").getData().corpHeadAddressL1M = oi18n.getText("mandatoryAddr1");
+                            iError = true;
+                        } 
+                        if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region) {
+                            oView.getModel("oErrorModel").getData().corpHeadRegionE = "Error";
+                            oView.getModel("oErrorModel").getData().corpHeadRegionM = oi18n.getText("mandatoryState");
+                            iError = true;
+                        } 
+                        if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city) {
+                            oView.getModel("oErrorModel").getData().corpHeadCityE = "Error";
+                            oView.getModel("oErrorModel").getData().corpHeadCityM = oi18n.getText("mandatoryCity");
+                            iError = true;
+                        } 
+                        if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {
+                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("mandatoryPostalCode");
+                            iError = true;
+                        } 
+                        if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1.length > 60) {
+                            iError = true;
+                        }
+                        if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city.length > 40) {
+                            iError = true;
+                        }
+                        if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {
+                            var postalCode = oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode;
+                            var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationCorpHeadquarters;
+                            var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
+                            var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
+                            switch (postalCodeRule) {
+                                case 1:
+                                    if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule1");
+                                        iError = true;
+                                    }
+                                    break;
+                                case 2:
+                                    if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule2");
+                                        iError = true;
+                                    }
+                                    break;
+                                case 3:
+                                    if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
+                                        iError = true;
+                                    }
+                                    break;
+                                case 4:
+                                    if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
+                                        iError = true;
+                                    }
+                                    break;
+                                case 5:
+                                    if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule5");
+                                        iError = true;
+                                    }
+                                    break;
+                                case 6:
+                                    if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule6");
+                                        iError = true;
+                                    }
+                                    break;
+                                case 7:
+                                    if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "characters in length";
+                                        iError = true;
+                                    }
+                                    break;
+                                case 8:
+                                    if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "digits in length";
+                                        iError = true;
+                                    }
+                            }
+                        }
+                        if (oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === null) {
+                            oView.getModel("oErrorModel").getData().isCorpHeadquartersDunsRegisteredE = "Error";
+                            iError = true;
+                        
+                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered ===true) {
+                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
+                                iError = true;
+                            } else {
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "None";
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "";
+    
+                            }
+                        }
+                        
                     }
                     if (!oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country) {
                         oView.getModel("oErrorModel").getData().taxC1E = "Error";
@@ -5369,89 +5370,91 @@ var aError = false;
                             // iError = false;
                         }
                     } else if (oView.getModel("oDataModel").getData().bpInfoDto.siteHaveDunsNumber === false) {
-                        if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === false){
-                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1.length > 60) {
-                                iError = true;
-                            }
-                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city.length > 40) {
-                                iError = true;
-                            }
-                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {    
-                                var postalCode = oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode;
-                                var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationCorpHeadquarters;
-                                var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
-                                var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
-                                switch (postalCodeRule) {
-                                    case 1:
-                                        if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule1");
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 2:
-                                        if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule2");
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 3:
-                                        if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 4:
-                                        if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 5:
-                                        if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule5");
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 6:
-                                        if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule6");
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 7:
-                                        if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "characters in length";
-                                            iError = true;
-                                        }
-                                        break;
-                                    case 8:
-                                        if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
-                                            oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "digits in length";
-                                            iError = true;
-                                        }
-                                }
-                            }
-                        if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === true){
-                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
-                                iError = true;
-                            } else {
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "None";
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "";
-    
+                        
+                    }
+                    if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === false){
+                        if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1 && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].address1.length > 60) {
+                            iError = true;
+                        }
+                        if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city && oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].city.length > 40) {
+                            iError = true;
+                        }
+                        if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode) {    
+                            var postalCode = oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].postalCode;
+                            var PostalCodeValidationData = oView.getModel("oLookUpModel").getData().PostalCodeValidationCorpHeadquarters;
+                            var postalCodeLength = PostalCodeValidationData ? PostalCodeValidationData.postalCodeLength : "";
+                            var postalCodeRule = PostalCodeValidationData ? PostalCodeValidationData.postalCodeRule : "";
+                            switch (postalCodeRule) {
+                                case 1:
+                                    if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule1");
+                                        iError = true;
+                                    }
+                                    break;
+                                case 2:
+                                    if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule2");
+                                        iError = true;
+                                    }
+                                    break;
+                                case 3:
+                                    if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
+                                        iError = true;
+                                    }
+                                    break;
+                                case 4:
+                                    if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
+                                        iError = true;
+                                    }
+                                    break;
+                                case 5:
+                                    if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule5");
+                                        iError = true;
+                                    }
+                                    break;
+                                case 6:
+                                    if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = oi18n.getText("postalCodeRule6");
+                                        iError = true;
+                                    }
+                                    break;
+                                case 7:
+                                    if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "characters in length";
+                                        iError = true;
+                                    }
+                                    break;
+                                case 8:
+                                    if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeE = "Error";
+                                        oView.getModel("oErrorModel").getData().corpHeadPostalCodeM = "Code must be of exactly " + postalCodeLength + "digits in length";
+                                        iError = true;
+                                    }
                             }
                         }
+                    if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered === true){
+                        if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
+                            oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
+                            oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
+                            iError = true;
+                        } else {
+                            oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "None";
+                            oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "";
+
+                        }
                     }
-                    }
+                }
+                    
                 }
 
 
@@ -8506,7 +8509,7 @@ var that = this;
                         oPayload.bpInfoDto.dnbLegalBusinessName = "";
                     } else {
                         oPayload.bpInfoDto.encourgeDunsNumberReg = null;
-                        oPayload.bpInfoDto.isSiteCorporateHeadquaters = null;
+                       // oPayload.bpInfoDto.isSiteCorporateHeadquaters = null;
                         oPayload.bpInfoDto.noOfEmployees = "";
                         oPayload.bpInfoDto.year = "";
                     }
@@ -9128,7 +9131,7 @@ var that = this;
                         oPayload.bpInfoDto.dnbLegalBusinessName = "";
                     } else {
                         oPayload.bpInfoDto.encourgeDunsNumberReg = null;
-                        oPayload.bpInfoDto.isSiteCorporateHeadquaters = null;
+                       // oPayload.bpInfoDto.isSiteCorporateHeadquaters = null;
                         oPayload.bpInfoDto.noOfEmployees = "";
                         oPayload.bpInfoDto.year = "";
                     }

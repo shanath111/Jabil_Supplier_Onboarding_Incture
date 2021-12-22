@@ -75,19 +75,15 @@
 					</VBox>
 				</l:Grid>
 			</VBox>
-			<VBox visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber}=== false}"  fitContainer="true" class="fontStyle sapUiSizeCompact sapUiSmallMarginTop">
+			<VBox fitContainer="true" class="fontStyle sapUiSizeCompact sapUiSmallMarginTop">
 				<!-- <Label labelFor="regnew" wrapping="true" class="sapUiTinyMarginBegin" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isSiteNotRegwithDunandBradText}:${oi18n_En>isSiteNotRegwithDunandBradText} +'&#10;&#10;' +${i18n>isSiteNotRegwithDunandBradText}}" required="true"></Label>
 				<RadioButtonGroup id="regnew" columns="2" selectedIndex="0" class="inputStyle">
 					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" valueState="{oErrorModel>/dunsNumE}" selected="{oDataModel>/bpInfoDto/encourgeDunsNumberReg}"/>
 					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" selected="{=!${oDataModel>/bpInfoDto/encourgeDunsNumberReg}}"/>
 				</RadioButtonGroup> -->
-                <Label wrapping= "true" labelFor="corpHead" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isSiteTheCorpHead}:${oi18n_En>isSiteTheCorpHead} +'&#10;&#10;' +${i18n>isSiteTheCorpHead}}" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin" required="true"></Label>
-				<RadioButtonGroup id="corpHead" enabled="{oEnableMdl>/isSiteCorporateHeadquatersEnb}" columns="2" selectedIndex="{=${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters} === true? 0 :(${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}=== false ?1: -1)}" class="inputStyle" valueState="{oErrorModel>/isSiteCorporateHeadquatersE}" select="fnClearValueState">
-					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" valueState="{oErrorModel>/corpHQE}" selected="{oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}"/>
-					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"/>
-				</RadioButtonGroup>
+               
 			
-                <l:Grid containerQuery="true" class="gridSpacing fontStyle" width="90%" defaultSpan="XL3 L3 M4 S12">
+                <l:Grid containerQuery="true" visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber}=== false}" class="gridSpacing fontStyle" width="90%" defaultSpan="XL3 L3 M4 S12">
 					<VBox class="fontStyle sapUiSizeCompact">
 						<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>numOfEmployees}:${oi18n_En>numOfEmployees} +'&#10;' +${i18n>numOfEmployees}}" wrapping="true" required="true" ></Label>
 						<ComboBox width="100%" placeholder="{i18n>select}" selectedKey="{oDataModel>/bpInfoDto/noOfEmployees}" enabled="{oEnableMdl>/noOfEmployeesEnb}" items="{oLookUpModel>/employeeCount}" valueState="{oErrorModel>/numOfEmpE}" valueStateText="{oErrorModel>/numOfEmpM}" class="inputStyle" change="fnLiveValueChange">
@@ -103,6 +99,11 @@
                     
                     </VBox>
 				</l:Grid>
+                 <Label wrapping= "true" labelFor="corpHead" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isSiteTheCorpHead}:${oi18n_En>isSiteTheCorpHead} +'&#10;&#10;' +${i18n>isSiteTheCorpHead}}" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin" required="true"></Label>
+				<RadioButtonGroup id="corpHead" enabled="{oEnableMdl>/isSiteCorporateHeadquatersEnb}" columns="2" selectedIndex="{=${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters} === true? 0 :(${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}=== false ?1: -1)}" class="inputStyle" valueState="{oErrorModel>/isSiteCorporateHeadquatersE}" select="fnClearValueState">
+					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" valueState="{oErrorModel>/corpHQE}" selected="{oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}"/>
+					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"/>
+				</RadioButtonGroup>
                 	
                 <VBox alignContent="Start" visible="{=${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters} === false}" class="fontStyle sapUiTinyMarginTop">
                     
