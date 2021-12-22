@@ -2625,17 +2625,17 @@ var aError = false;
                                 oView.getModel("oErrorModel").getData().isCorpHeadquartersDunsRegisteredE = "Error";
                                 iError = true;
                             
-                        } else if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered ===true) {
-                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
-                                iError = true;
-                            } else {
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "None";
-                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "";
-    
+                            } else if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered ===true) {
+                                if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
+                                    oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
+                                    oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
+                                    iError = true;
+                                } else {
+                                    oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "None";
+                                    oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "";
+        
+                                }
                             }
-                        }
                             
                         }
                        
@@ -2652,6 +2652,12 @@ var aError = false;
                         }
 
                     }
+                    if (!oView.getModel("oDataModel").getData().bpInfoDto.tax[0].country) {
+                        oView.getModel("oErrorModel").getData().taxC1E = "Error";
+                        oView.getModel("oErrorModel").getData().taxC1M = oi18n.getText("mandatoryTaxCountry");
+                        iError = true;
+                    } 
+                    
                 }
                 //}
                 if (!oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.firstName)) {
@@ -2804,7 +2810,7 @@ var aError = false;
                                     //this.emailValidResult = false;
                                 }
                                 case 9:
-                                    var regex=/^([A-Z0-9]{6})*\.\/?([A-Z0-9]{5})*\.\/?([LE,SL,ME,BR,SP,SF,SD,SS,SB]{2})*\.([0-9]{3})*$/;
+                                    var regex=/^([A-NP-Z0-9]{6})*\.\/?([A-NP-Z0-9]{5})*\.\/?([LE,SL,ME,BR,SP,SF,SD,SS,SB]{2})*\.([0-9]{3})*$/;
                                     if(!(taxID.length === taxIDMaxLength)) {
                                         iError = true;
                                     } else if ( !regex.test(taxID) || taxID.includes("_")){
@@ -6169,6 +6175,10 @@ var aError = false;
                     }
                 }
                 var sPathIndex= sPath.split("/bpInfoDto/tax/")[1];
+                if(sPath && sPathIndex && Number(sPathIndex) === 0){
+                    oView.getModel("oErrorModel").getData().taxC1E = "None";
+                    oView.getModel("oErrorModel").getData().taxC1M = "";
+                }
                 if(sPath && sPathIndex && Number(sPathIndex) === 0 &&  oEvent.getSource().getSelectedKey() === "BR"){
                     this.getOwnerComponent().getModel("oVisibilityModel").getData().enableNPI = true;
                     this.getOwnerComponent().getModel("oVisibilityModel").refresh();
@@ -7892,6 +7902,8 @@ var aError = false;
               
             }
             this.oPopup.close();
+            this.oPopup.destroy();
+            this.oPopup = undefined;
             },
             fnOnFileUpload: function (oEvt) {
                 var that = this;
@@ -9705,6 +9717,8 @@ var that = this;
             },
             fnClose: function () {
                 this.oPopup.close();
+                this.oPopup.destroy();
+                this.oPopup = undefined;
             },
             fnOnPressInfoIcon: function (oEvent) {
 
@@ -10834,5 +10848,14 @@ var that = this;
                 oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].region = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().CorpHeadquarterRegion, oEvent.getSource().getSelectedKey());
                 oView.getModel("oDataModel").refresh();
             },
+            fnHandleTypeMissmatch: function(oEvent){
+             	var aFileTypes = oEvent.getSource().getFileType();
+			aFileTypes.map(function(sType) {
+				return "*." + sType;
+			});
+			sap.m.MessageToast.show("The file type *." + oEvent.getParameter("fileType") +
+									" is not supported. Choose one of the following types: " +
+									aFileTypes.join(", "));
+            }
         });
     });

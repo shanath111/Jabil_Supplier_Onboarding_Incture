@@ -633,35 +633,64 @@ width:0
     border: none !important;
     box-shadow: 0 0 0 0px rgb(0 0 0 / 15%) !important;
 }
- .cl_CompContTabale.sapMList {
+
+ .cl_CompContactTabale.sapMList {
      background-color: #fff;
     position: relative;
     box-sizing: border-box;
-    /* margin-left: -8px !important;
-    padding: 0; */
+   
 }
-.cl_CompContTabale .sapMListTblRow {
+.cl_CompContactTabale .sapMListTblRow {
     height: 2rem;
 } 
-.cl_CompContTabale .sapMLIBShowSeparator>td {
+.cl_CompContactTabale .sapMLIBShowSeparator>td {
      border-top: 1px solid #e5e5e5;
      padding-left: 1rem !important;
    border-right: 0.25px solid #e5e5e5;
     border-left: 0.25px solid #e5e5e5;
      background-color: #fff;
-}
-.cl_CompContTabale .sapMListShowSeparatorsAll .sapMLIBShowSeparator:last-child>td:not(.sapMListTblDummyCell), .sapMListShowSeparatorsAll .sapMListTblSubRow:last-child>td:not(.sapMListTblDummyCell) {
+} .cl_CompContactTabale .sapMListShowSeparatorsAll .sapMLIBShowSeparator:last-child>td:not(.sapMListTblDummyCell), .sapMListShowSeparatorsAll .sapMListTblSubRow:last-child>td:not(.sapMListTblDummyCell) {
     border-bottom:  1px solid #e5e5e5;
 }
-.cl_CompContTabale .sapMTableTH { 
+.cl_CompContactTabale .sapMTableTH { 
         background: #e4e2e2;
+        /* background: #fff; */
     border-top: 1px solid #e5e5e5;  
-    /* background: #4B6B8029;
-    border-top: 1px solid #4B6B8029; */
+    
+}
+.cl_CompContactTabale .sapMColumnHeader {
+    height: fit-content;
+      padding: .5rem 2rem 1rem;
+}
+
+.cl_CompContTabale.sapMList {
+    background-color: #fff;
+   position: relative;
+   box-sizing: border-box;
+   /* margin-left: -8px !important;
+   padding: 0; */
+}
+.cl_CompContTabale .sapMListTblRow {
+   height: 2rem;
+} 
+.cl_CompContTabale .sapMLIBShowSeparator>td {
+    border-top: none;
+    padding-left: 1rem !important;
+  border-right: none;
+   border-left: none;
+    background-color: #fff;
+}
+.cl_CompContTabale .sapMListShowSeparatorsAll .sapMLIBShowSeparator:last-child>td:not(.sapMListTblDummyCell), .sapMListShowSeparatorsAll .sapMListTblSubRow:last-child>td:not(.sapMListTblDummyCell) {
+    border-bottom:  none;
+}
+.cl_CompContTabale .sapMTableTH { 
+        background: #fff;
+    border-top: none;  
+    
 }
 .cl_CompContTabale .sapMColumnHeader {
     height: fit-content;
-      padding: .5rem 2rem 1rem;
+      padding: .5rem 2rem .5rem 1rem;
 }
 .cl_BulletCss .sapMBtnInner {
     height: 8px !important;
