@@ -2221,7 +2221,7 @@ sap.ui.define([
                         if (oEvent.getParameter("success")) {
                             oView.getModel("oConfigMdl").getData().createNewBtn = true;
                             if (oEvent.getSource().getData().d.results.length > 1) {
-                                oView.getModel("oConfigMdl").getData().searchEnableGBS = false;
+                                oView.getModel("oConfigMdl").getData().searchEnableGBS = true;
 
                             } else {
                                 oView.getModel("oConfigMdl").getData().searchEnableGBS = false;
@@ -2407,16 +2407,66 @@ sap.ui.define([
 
 
             },
-            fnSendToGBS: function () {
+            fnLoadSME:function(){
+                var oModel = new JSONModel();
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/sme/smeList";
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/SMEList", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+
+                    }
+                });
+            },
+            fnSendToSME:function(){
                 var aSearchData = oView.getModel("oVendorListModel").getData().data;
                 if (aSearchData.length > 1) {
-                    MessageBox.confirm(oi18n.getProperty("GBSConfirm"), {
-                        icon: MessageBox.Icon.Confirmation,
-                        title: "Confirmation",
-                        actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-                        emphasizedAction: MessageBox.Action.YES,
-                        onClose: function (oAction) {
-                            if (oAction == "YES") {
+                this.fnLoadSME();
+                var temp = {
+                    "smeEmail":"",
+                    "smeEmaile":"None",
+                    "smeEmailm":""
+                }
+                var oJsonListSME = new sap.ui.model.json.JSONModel();
+                oJsonListSME.setData(temp);
+                oView.setModel(oJsonListSME,"JMSMESel")
+                if (!this.oBPSendToSME) {
+                    this.oBPSendToSME = sap.ui.xmlfragment(
+                        "ns.BuyerRegistration.fragments.SMEList", this);
+                    oView.addDependent(this.oBPSendToSME);
+                }
+                this.oBPSendToSME.open();
+            } else {
+                sap.m.MessageToast.show(oi18n.getProperty("BPEEnterAtLeastOneData"));
+            }
+               
+            },
+            fnLiveChangeSME:function(){
+           oView.getModel("JMSMESel").getData().smeEmaile = "None";
+           oView.getModel("JMSMESel").getData().smeEmailm = "";
+           oView.getModel("JMSMESel").refresh();
+            },
+            fnCloseSME:function(){
+                this.oBPSendToSME.close();
+            },
+            fnSendToGBS: function () {
+                if(!oView.getModel("JMSMESel").getData().smeEmail){
+                    oView.getModel("JMSMESel").getData().smeEmaile = "Error";
+                    oView.getModel("JMSMESel").getData().smeEmailm = oi18n.getProperty("EnterSMEEmail");
+                    oView.getModel("JMSMESel").refresh();
+                }else{
+                this.oBPSendToSME.close();
+              
+                    // MessageBox.confirm(oi18n.getProperty("GBSConfirm"), {
+                    //     icon: MessageBox.Icon.Confirmation,
+                    //     title: "Confirmation",
+                    //     actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                    //     emphasizedAction: MessageBox.Action.YES,
+                    //     onClose: function (oAction) {
+                    //         if (oAction == "YES") {
                                 var aSelData = [];
                                 for (var i = 0; i < oView.getModel("oVendorListModel").getData().data.length; i++) {
                                     if (oView.getModel("oVendorListModel").getData().data[i].isSelect == true) {
@@ -2480,6 +2530,7 @@ sap.ui.define([
                                                 "buyerName": vBuyer,
                                                 "buyerTelephone": "",
                                                 "buyerEmailid": vBuyerEmail,
+                                                "smeEmail":oView.getModel("JMSMESel").getData().smeEmail,
                                                 "bpSearchParams": oView.getModel("JMSearchFilter").getData(),
                                                 "bpSelectedResults": aSelData
                                             },
@@ -2529,13 +2580,12 @@ sap.ui.define([
                                         });
                                     }
                                 });
-                            }
-                        }
-                    });
+                    //         }
+                    //     }
+                    // });
 
-                } else {
-                    sap.m.MessageToast.show(oi18n.getProperty("BPEEnterAtLeastOneData"));
-                }
+             
+            }
             },
             fnLoadPersonalizationData: function () {
                 var clmnList = [
@@ -3751,6 +3801,7 @@ sap.ui.define([
                 oView.getModel("JMBPCreate").getData().isExclCiscoGhube = "None";
                 oView.getModel("JMBPCreate").refresh();
             },
+            
             onAfterRendering: function () {
                 
                 // oView.byId("purchaseOrgId").addEventDelegate({
