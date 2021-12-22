@@ -1635,6 +1635,15 @@ sap.ui.define([
                 var vUrl = window.location.origin + "/comjabilsurveyform/index.html#/VendorSurvey/" + "Display:" + oView.getModel("oConfigMdl").getData().contextPath.Name + "/" + oView.getModel("oConfigMdl").getData().contextPath.Id
                 sap.m.URLHelper.redirect(vUrl);
             },
+            fnHandleTypeMissmatch: function(oEvent){
+                var aFileTypes = oEvent.getSource().getFileType();
+           aFileTypes.map(function(sType) {
+               return "*." + sType;
+           });
+           sap.m.MessageToast.show("The file type *." + oEvent.getParameter("fileType") +
+                                   " is not supported. Choose one of the following types: " +
+                                   aFileTypes.join(", "));
+           },
             // @ts-ignore
             fnOnFileUpload: function (oEvt){ 
                 var oFormData = new FormData(),

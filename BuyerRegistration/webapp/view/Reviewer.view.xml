@@ -193,7 +193,7 @@
                                         	<HBox class="cl_HBoxBlockSep"></HBox>
                                          <Text text="{i18n>Attachments}" class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_TIDescTxt"/>
 			<HBox wrap="Wrap"  >
-				<un:FileUploader id="id_NDADocUpload" buttonOnly="true" buttonText="{i18n>addAttachment}" iconFirst="true" icon="sap-icon://add" multiple="true"
+				<un:FileUploader id="id_NDADocUpload" buttonOnly="true" buttonText="{i18n>addAttachment}" fileType="[doc,xls,pdf,jpeg,png,gif,docx,xlsx]" typeMissmatch="fnHandleTypeMissmatch" iconFirst="true" icon="sap-icon://add" multiple="true"
 					useMultipart="true"  change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete"
 					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"></un:FileUploader>
 				<g:GridList width="auto" items="{oAttachmentList>/NDADocuments}" growing="true" class=" sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">

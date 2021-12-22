@@ -25,7 +25,7 @@
             <Text text="{i18n>Attachments}" class="sapUiSmallMarginBegin sapUiTinyMarginTop cl_TIDescTxt"/>
 			<HBox wrap="Wrap"  >
 				<un:FileUploader id="id_MitigationDoc" buttonOnly="true" buttonText="{i18n>addAttachment}" iconFirst="true" icon="sap-icon://add" multiple="true"
-					useMultipart="true"  change="fnOnFileUploadMitigate" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete"
+					useMultipart="true"  fileType="[doc,xls,pdf,jpeg,png,gif,docx,xlsx]" typeMissmatch="fnHandleTypeMissmatch" change="fnOnFileUploadMitigate" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete"
 					class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin"></un:FileUploader>
 				<g:GridList width="auto" items="{oAttachmentList>/MitigationDoc}" growing="true" class=" sapUiSizeCompact addMoreBtn attachmentMargin sapUiSmallMarginBegin">
 					<g:customLayout>
