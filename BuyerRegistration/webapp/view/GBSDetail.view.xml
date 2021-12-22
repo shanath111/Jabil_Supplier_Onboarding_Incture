@@ -20,7 +20,27 @@
 						</headerToolbar>
 						<content>
 							<l:Grid  defaultSpan="XL2 L2 M6 S12" class="sapUiSizeCompact cl_ExtendSearchGrid">
-								<VBox class="VRVboxStyle1">
+							 <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPEVendorName}:" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/vendorName}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
+							</VBox>
+                              <VBox class="VRVboxStyle1">
+								<Label text="{i18n>BPEVendorNumber}:" class="cl_VRLablCls"></Label>
+								<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/vendorNumber}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
+                            </VBox>
+                             <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPECountry}:" class="cl_VRLablCls "></Label>
+                                    <ComboBox width="100%" items="{oBPLookUpMdl>/Country}" enabled="{oConfigMdl>/searchEnable}"  valueState="{JMBPCreate>/countrye}" valueStateText="{JMBPCreate>/countrym}"
+                                        filterSecondaryValues="true" change="fnChangeDropDown" showSecondaryValues="true" 
+                                        class="cl_VRInputCls" selectedKey="{JMSearchFilter>/country}" editable="{oBTHeaderMdl>/EDITABLE}">
+                                        <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
+                                    </ComboBox>
+							</VBox>
+                            <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPEDUNSNumber}:" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/duns}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
+							</VBox>
+                            	<!-- <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPEAccountGroup}:" class="cl_VRLablCls "></Label>
 									<ComboBox width="100%" items="{oStaticData>/AccGrpLp}" enabled="{oConfigMdl>/searchEnable}" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}"
 											filterSecondaryValues="true" change="fnChangeDropDown" showSecondaryValues="true" selectedKey="{JMSearchFilter>/accountingGroup}"
@@ -155,7 +175,7 @@
                                  <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPEPrimaryDup}:" class="cl_VRLablCls "></Label>
 									<Input placeholder="{i18n>VRSearch}" enabled="{oConfigMdl>/searchEnable}" value="{JMSearchFilter>/relationshipIndicator}" class="cl_VRInputCls"></Input>
-							</VBox>
+							</VBox> -->
                	
 							</l:Grid>
 						</content>
