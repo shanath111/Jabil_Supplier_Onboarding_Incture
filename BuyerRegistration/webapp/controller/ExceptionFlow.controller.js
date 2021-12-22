@@ -2130,9 +2130,14 @@ sap.ui.define([
                 });
 
             },
-          
-
-
-
+            fnHandleTypeMissmatch: function(oEvent){
+                var aFileTypes = oEvent.getSource().getFileType();
+           aFileTypes.map(function(sType) {
+               return "*." + sType;
+           });
+           sap.m.MessageToast.show("The file type *." + oEvent.getParameter("fileType") +
+                                   " is not supported. Choose one of the following types: " +
+                                   aFileTypes.join(", "));
+           }
         });
     });
