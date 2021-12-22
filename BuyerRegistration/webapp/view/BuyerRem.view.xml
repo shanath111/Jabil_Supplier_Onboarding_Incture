@@ -10,7 +10,7 @@
 					<Panel width="auto"  visible="{oConfigMdl>/BuyerFollowUpVis}" expandable="false" expanded="true"
 						class="cl_VRPanelClass cl_PanelMargonTop sapUiSmallMarginBottom sapUiTinyMarginBegin sapUiTinyMarginEnd">
 						<content>
-                        <VBox >
+                        <VBox>
 						<Text text="In order to ensure that the onboarding process moves quickly, it is critical that we confirm that the
 Supplier has received the onboarding request email. By checking the box below, you are saying that you
 have called and personally spoken to the Supplier Contact, confirmed that they have received the email,
