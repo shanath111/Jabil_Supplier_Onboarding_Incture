@@ -6533,13 +6533,13 @@ var aError = false;
                             //this.emailValidResult = false;
                         }
                         case 9:
-                            var regex=/^([A-Z0-9]{6})*\.\/?([A-Z0-9]{5})*\.\/?([LE,SL,ME,BR,SP,SF,SD,SS,SB]{2})*\.([0-9]{3})*$/;
+                            var regex=/^([A-NP-Z0-9]{6})*\.\/?([A-NP-Z0-9]{5})*\.\/?([LE,SL,ME,BR,SP,SF,SD,SS,SB]{2})*\.([0-9]{3})*$/;
                             if(!(taxID.length === taxIDMaxLength)) {
                                 oEvent.getSource().setValueState("Error");
                                 oEvent.getSource().setValueStateText("ID must be of " + taxIDMaxLength + " characters in length without any spaces");
                             } else if ( !regex.test(taxID) || taxID.includes("_")){
                                 oEvent.getSource().setValueState("Error");
-                                oEvent.getSource().setValueStateText("ID must be of format " + "e.g(7UIAAA.UI89A.XX.000)");
+                                oEvent.getSource().setValueStateText("ID must be of format " + "e.g(7UIAAA.UI89A.XX.000) and should not contain any 'O letter'");
                             } else {
                                 //this.emailValidResult = false;
                             }
