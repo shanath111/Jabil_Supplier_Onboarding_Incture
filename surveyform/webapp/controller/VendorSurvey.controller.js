@@ -86,7 +86,11 @@ sap.ui.define([
                     }
                     oView.getModel("oEnableMdl").refresh();
 
-                    
+                //set datepicker maxDate in BPInfo to current year
+                var currentYear = new Date().getFullYear();
+                var maxDate = new Date(currentYear, 11, 31);
+                that.getOwnerComponent().getModel("oLookUpModel").getData().startYear.maxYear = maxDate.toLocaleDateString();
+                that.getOwnerComponent().getModel("oLookUpModel").refresh();
             },
 
             
@@ -2542,6 +2546,11 @@ var aError = false;
                         oView.getModel("oErrorModel").getData().isSiteCorporateHeadquatersE = "Error";
                         iError = true;
                     } else if(oView.getModel("oDataModel").getData().bpInfoDto.isSiteCorporateHeadquaters === false){
+                        if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersLegalBusinessName1 || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersLegalBusinessName1)) {
+                            oView.getModel("oErrorModel").getData().corpHeadLegalBusinessNameE = "Error";
+                            oView.getModel("oErrorModel").getData().corpHeadLegalBusinessNameM = oi18n.getText("mandatoryLegalBusinessName");
+                            iError = true;
+                        } 
                         if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country || spaceRegex.test(oView.getModel("oDataModel").getData().bpInfoDto.corpHeaderQuartersAddress[0].postal[0].country)) {
                             oView.getModel("oErrorModel").getData().corpHeadCountryE = "Error";
                             oView.getModel("oErrorModel").getData().corpHeadCountryM = oi18n.getText("mandatoryCountry");
@@ -2641,7 +2650,11 @@ var aError = false;
                             iError = true;
                         
                         } else if(oView.getModel("oDataModel").getData().bpInfoDto.isCorpHeadquartersDunsRegistered ===true) {
-                            if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
+                            if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum) {
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
+                                oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = oi18n.getText("mandatoryDunsRegNum");
+                                iError = true;
+                            } else if (oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum && oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDunsRegNum.length != 9) {
                                 oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumE = "Error";
                                 oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = oi18n.getText("DunsNumberLengthValidation");
                                 iError = true;
@@ -2650,6 +2663,12 @@ var aError = false;
                                 oView.getModel("oErrorModel").getData().corpHeaddunsRegistrationNumM = "";
     
                             }
+                            if (!oView.getModel("oDataModel").getData().bpInfoDto.corpHeadquartersDnbLegalBusinessName) {
+                                oView.getModel("oErrorModel").getData().corpHeadquartersDnbLegalBusinessNameE = "Error";
+                                oView.getModel("oErrorModel").getData().corpHeadquartersDnbLegalBusinessNameM = oi18n.getText("mandatoryDandBLegalName");
+                                iError = true;
+                            } 
+                            
                         }
                         
                     }
