@@ -45,8 +45,7 @@ sap.ui.define([
                 };
                 oJsonFilter.setData(temp);
                 oView.setModel(oJsonFilter, "JMFilter1");
-                // this.fnLoadSiteName();
-                // this.fnLoadSiteName1();
+                
                 this.fnLoadCompanyCode();
                 this.fnLoadCompanyCode1();
                 this.fnLoadDocName();
@@ -55,38 +54,10 @@ sap.ui.define([
 
             },
 
-            // fnLoadSiteName: function() {
-            //     var oModel = new JSONModel();
-            //     var sUrl = "/InboxDetail/plcm_portal_services/ccpo/localDocuments/siteNames";
-            //     oModel.loadData(sUrl, {
-            //         "Content-Type": "application/json"
-            //     });
-            //     oModel.attachRequestCompleted(function (oEvent) {
-            //         if (oEvent.getParameter("success")) {
-            //             oView.getModel("oBPLookUpMdl").setProperty("/SiteName", oEvent.getSource().getData());
-            //             oView.getModel("oBPLookUpMdl").refresh();
-            //         }
-            //     });
-            // },
-
-            // fnLoadSiteName1: function() {
-            //     var oModel = new JSONModel();
-            //     var sUrl = "/InboxDetail/plcm_portal_services/ccpo/localDocuments/siteNames";
-            //     oModel.loadData(sUrl, {
-            //         "Content-Type": "application/json"
-            //     });
-            //     oModel.attachRequestCompleted(function (oEvent) {
-            //         if (oEvent.getParameter("success")) {
-            //             oView.getModel("oBPLookUpMdl").setProperty("/SiteName1", oEvent.getSource().getData());
-            //             oView.getModel("oBPLookUpMdl").refresh();
-            //         }
-            //     });
-            // },
-
-
+            
             fnLoadCompanyCode: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_portal_services/api/v1/reference-data/company-codes";
+                var sUrl = "/InboxDetail/plcm_portal_services/company-codes";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -99,7 +70,7 @@ sap.ui.define([
             },
             fnLoadCompanyCode1: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_reference_data/api/v1/reference-data/company-codes";
+                var sUrl = "/InboxDetail/plcm_reference_data/company-codes";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -150,7 +121,7 @@ sap.ui.define([
             },
             fnLoadPurOrg: function (vCompCode, vDescription) {
                 var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_portal_services/api/v1/reference-data/purchasingOrg/" + vCompCode;
+                var sUrl = "/InboxDetail/plcm_portal_services/purchasingOrg/" + vCompCode;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -182,7 +153,7 @@ sap.ui.define([
             },
             fnLoadPurOrg1: function (vCompCode, vDescription) {
                 var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_reference_data/api/v1/reference-data/purchasingOrg/" + vCompCode;
+                var sUrl = "/InboxDetail/plcm_reference_data/purchasingOrg/" + vCompCode;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -213,82 +184,11 @@ sap.ui.define([
 
             },
 
-            fnLoadDocName: function() {
-                var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_portal_services/ccpo/localDocuments/documentNames";
-                oModel.loadData(sUrl, {
-                    "Content-Type": "application/json"
-                });
-                oModel.attachRequestCompleted(function (oEvent) {
-                    if (oEvent.getParameter("success")) {
-                        oView.getModel("oBPLookUpMdl").setProperty("/DocName", oEvent.getSource().getData());
-                        oView.getModel("oBPLookUpMdl").refresh();
-                    }
-                });
-            },
-            fnLoadDocName1: function() {
-                var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_portal_services/ccpo/localDocuments/documentNames";
-                oModel.loadData(sUrl, {
-                    "Content-Type": "application/json"
-                });
-                oModel.attachRequestCompleted(function (oEvent) {
-                    if (oEvent.getParameter("success")) {
-                        oView.getModel("oBPLookUpMdl").setProperty("/DocName1", oEvent.getSource().getData());
-                        oView.getModel("oBPLookUpMdl").refresh();
-                    }
-                });
-            },
+            
+            
 
-            fnLoadCountry: function () {
-                var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_reference_data/api/v1/reference-data/countries";
-                oModel.loadData(sUrl, {
-                    "Content-Type": "application/json"
-                });
-                oModel.attachRequestCompleted(function (oEvent) {
-                    if (oEvent.getParameter("success")) {
-                        oView.getModel("oBPLookUpMdl").setProperty("/Country", oEvent.getSource().getData());
-                        oView.getModel("oBPLookUpMdl").refresh();
-                    }
-                });
-            },
-            fnLiveChangeCountry() {
-                oView.getModel("JMFilter").getData().taxCategory = "";
-                oView.getModel("JMFilter").refresh();
-                this.fnLoadTaxCategory(oView.getModel("JMFilter").getData().country);
-            },
-            fnLiveChangeCountry1() {
-                oView.getModel("JMFilter1").getData().taxCategory = "";
-                oView.getModel("JMFilter1").refresh();
-                this.fnLoadTaxCategory1(oView.getModel("JMFilter1").getData().country);
-            },
-            fnLoadTaxCategory: function (vCountry) {
-                var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_reference_data/api/v1/reference-data/taxType/" + vCountry;
-                oModel.loadData(sUrl, {
-                    "Content-Type": "application/json"
-                });
-                oModel.attachRequestCompleted(function (oEvent) {
-                    if (oEvent.getParameter("success")) {
-                        oView.getModel("oBPLookUpMdl").setProperty("/taxCategory", oEvent.getSource().getData());
-                        oView.getModel("oBPLookUpMdl").refresh();
-                    }
-                });
-            },
-            fnLoadTaxCategory1: function (vCountry) {
-                var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_reference_data/api/v1/reference-data/taxType/" + vCountry;
-                oModel.loadData(sUrl, {
-                    "Content-Type": "application/json"
-                });
-                oModel.attachRequestCompleted(function (oEvent) {
-                    if (oEvent.getParameter("success")) {
-                        oView.getModel("oBPLookUpMdl").setProperty("/taxCategory1", oEvent.getSource().getData());
-                        oView.getModel("oBPLookUpMdl").refresh();
-                    }
-                });
-            },
+           
+            
             fnSearchSME: function () {
                 var vError = false;
                 // if (oView.getModel("JMFilter").getData().companyCode == "") {
@@ -361,22 +261,20 @@ sap.ui.define([
             fnSubmitSME: function () {
                 var vError = false;
                 
-                if (oView.getModel("JMFilter1").getData().companyCode == "") {
+                if (!oView.getModel("JMFilter1").getData().companyCode || oView.getModel("JMFilter1").getData().companyCode == "") {
                     vError = true
                 }
-                if (oView.getModel("JMFilter1").getData().purchasingOrganisation == "") {
+                if (!oView.getModel("JMFilter1").getData().purchasingOrganisation || oView.getModel("JMFilter1").getData().purchasingOrganisation == "") {
                     vError = true
                 }
-                if (oView.getModel("JMFilter1").getData().createdBy == "") {
+                
+                if (!oView.getModel("JMFilter1").getData().smeEmail || oView.getModel("JMFilter1").getData().smeEmail == "") {
                     vError = true
                 }
-                if (oView.getModel("JMFilter1").getData().smeEmail == "") {
+                if (!oView.getModel("JMFilter1").getData().smeFirstName || oView.getModel("JMFilter1").getData().smeFirstName == "") {
                     vError = true
                 }
-                if (oView.getModel("JMFilter1").getData().smeFirstName == "") {
-                    vError = true
-                }
-                if (oView.getModel("JMFilter1").getData().smeLastName == "") {
+                if (!oView.getModel("JMFilter1").getData().smeLastName || oView.getModel("JMFilter1").getData().smeLastName == "") {
                     vError = true
                 }
                 
@@ -403,7 +301,7 @@ sap.ui.define([
                                 var oPayload = {
                                     "companyCode": oView.getModel("JMFilter1").getData().companyCode,
                                     "purchasingOrganisation": oView.getModel("JMFilter1").getData().purchasingOrganisation,
-                                    "createdBy": oView.getModel("JMFilter1").getData().createdBy,
+                                    "createdBy": vBuyer,
                                     "smeEmail": oView.getModel("JMFilter1").getData().smeEmail,
                                     "smeFirstName": oView.getModel("JMFilter1").getData().smeFirstName,
                                     "smeLastName": oView.getModel("JMFilter1").getData().smeLastName
@@ -417,7 +315,7 @@ sap.ui.define([
                                 oModel.attachRequestCompleted(function onCompleted(oEvent) {
                                     if (oEvent.getParameter("success")) {
                                         var temp = {};
-                                        var vSccuessTxt = oi18n.getProperty("CCCPPLaunchedSuccess");
+                                        var vSccuessTxt = oi18n.getProperty("SMECreatedSuccess");
                                         temp.Message = vSccuessTxt;
                                         var oJosnMessage = new sap.ui.model.json.JSONModel();
                                         oJosnMessage.setData(temp);
@@ -537,29 +435,7 @@ sap.ui.define([
 
                 }
             },
-            onChangeDocName: function(oEvent) {
-                if(oEvent.getSource().getValue().length > 255) {
-                    oView.getModel("JMFilter").getData().docNamee ="Error";
-                    oView.getModel("JMFilter").getData().docNamem =oi18n.getProperty("BPCMaxLengthExceeds");
-                    oView.getModel("JMFilter").refresh();
-                } else{
-                    oView.getModel("JMFilter").getData().docNamee ="None";
-                    oView.getModel("JMFilter").getData().docNamem ="";
-                    oView.getModel("JMFilter").refresh();
-                }
-            },
-            onChangeDocLink: function(oEvent) {
-                var link = oEvent.getSource().getValue();
-                if(link.startsWith('https')){
-                    oView.getModel("JMFilter").getData().docLinke ="None";
-                    oView.getModel("JMFilter").getData().docLinkm ="";
-                    oView.getModel("JMFilter").refresh();
-                } else {
-                    oView.getModel("JMFilter").getData().docLinke ="Error";
-                    oView.getModel("JMFilter").getData().docLinkm =oi18n.getProperty("DocLinkErrorMsg");
-                    oView.getModel("JMFilter").refresh();
-                }
-            },
+            
 
             fnLiveChangePurchOrg: function (oEvent) {
                 var compCode= oView.getModel("JMFilter").getData().companyCode;
@@ -590,6 +466,20 @@ sap.ui.define([
             },
 
             fnChangeSMEEmail: function(oEvent) {
+                var email = oEvent.getSource().getValue();
+                var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
+                if (email) {
+                    if (!email.match(mailregex)) {
+                        oEvent.getSource().setValueState("Error");
+                        oEvent.getSource().setValueStateText(oi18n.getText("BPCInvalidEmail"));
+                    } else {
+                        oEvent.getSource().setValueState("None");
+                        oEvent.getSource().setValueStateText("");
+                    }
+                }
+            },
+
+            fnChangeSMEEmail1: function(oEvent) {
                 var email = oEvent.getSource().getValue();
                 var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
                 if (email) {
