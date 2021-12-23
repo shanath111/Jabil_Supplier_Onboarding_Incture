@@ -1144,8 +1144,13 @@ sap.ui.define([
                                     that._fnLoadManServList(oEvent.getSource().oData);
 
                                     that._fnReadDocumentList(oEvent.getSource().oData.caseId, that);
-
-
+                                    // var oldExceptionDataObj = jQuery.extend(true, {}, this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList,this.getView().getModel("oDataModel").getData().ownerShipInfoDto.this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntityRegInCISNK,
+                                    // this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt,this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily,
+                                    // this.getView().getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmp,this.getView().getModel("oDataModel").getData().comComplianceDto.companyContactWithPreviouseJabilEmp,
+                                    // this.getView().getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || this.getView().getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil ?  "YES" : "NO");
+                                    // var oldExceptionalData = new JSONModel();
+                                    // oldExceptionalData.setData(oldExceptionDataObj);
+                                    // this.getView().setModel("oldExceptionalData", oldExceptionalData);
                                 }
                                 oBusyDialogLoadData.close();
 
@@ -1220,6 +1225,13 @@ sap.ui.define([
                                         that.getOwnerComponent().getModel("oVisibilityModel").getData().buyerSurveyAttach = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.addlSurveyForSupplier;
                                         that.getOwnerComponent().getModel("oVisibilityModel").refresh();
                                         oBusyDialogLoadData.close();
+                                        // var oldExceptionDataObj = jQuery.extend(true, {}, this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList,this.getView().getModel("oDataModel").getData().ownerShipInfoDto.this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntityRegInCISNK,
+                                        // this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt,this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily,
+                                        // this.getView().getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmp,this.getView().getModel("oDataModel").getData().comComplianceDto.companyContactWithPreviouseJabilEmp,
+                                        // this.getView().getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || this.getView().getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil ?  "YES" : "NO");
+                                        // var oldExceptionalData = new JSONModel();
+                                        // oldExceptionalData.setData(oldExceptionDataObj);
+                                        // this.getView().setModel("oldExceptionalData", oldExceptionalData);
                                     }
                                     else {
                                         var sErMsg = oEvent.getParameter("errorobject").responseText;
@@ -8624,6 +8636,45 @@ var that = this;
                         delete row.tooltip;
                         delete row.required;
                     });
+                    if(oPayload.bankDto.isbankdetailsHidden === true){
+                        oPayload.bankDto.bankInfoDto[0].bankName = "";
+                        oPayload.bankDto.bankInfoDto[0].bankAddress = "";
+                        oPayload.bankDto.bankInfoDto[0].bankCity = "";
+                        oPayload.bankDto.bankInfoDto[0].bankState = "";
+                        oPayload.bankDto.bankInfoDto[0].bankCountry = "";
+                        oPayload.bankDto.bankInfoDto[0].bankBranch = "";
+                        oPayload.bankDto.bankInfoDto[0].benefAccHolderName = "";
+                        oPayload.bankDto.bankInfoDto[0].bankAccNum = "";
+                        oPayload.bankDto.bankInfoDto[0].refBankDetails = "";
+                        oPayload.bankDto.bankInfoDto[0].swiftCode = "";
+                        oPayload.bankDto.bankInfoDto[0].bankNumber = "";
+                        oPayload.bankDto.bankInfoDto[0].bankAccNumConfirm = "";
+                        oPayload.bankDto.bankInfoDto[0].ibanNum = "";
+                        oPayload.bankDto.bankInfoDto[0].ibanNumConfirm = "";
+                        oPayload.bankDto.bankInfoDto[0].bankCode = "";
+                        oPayload.bankDto.bankInfoDto[0].partnerBankType = "";
+                        oPayload.bankDto.bankInfoDto[0].bankControlKey = "";
+                        oPayload.bankDto.financeContact1.firstName = "";
+                        oPayload.bankDto.financeContact1.lastName = "";
+                        oPayload.bankDto.financeContact1.jobTitle = "";
+                        oPayload.bankDto.financeContact1.email = "";
+                        oPayload.bankDto.financeContact1.contact = "";
+                        oPayload.bankDto.financeContact1.extension = "";
+                        oPayload.bankDto.financeContact1.mobile = "";
+                        oPayload.bankDto.financeContact1.countryContactCode = "";
+                        oPayload.bankDto.financeContact1.countryMobileCode = "";
+                        oPayload.bankDto.financeContact1.contactInSection = "";
+                        oPayload.bankDto.financeContact2.firstName = "";
+                        oPayload.bankDto.financeContact2.lastName = "";
+                        oPayload.bankDto.financeContact2.jobTitle = "";
+                        oPayload.bankDto.financeContact2.email = "";
+                        oPayload.bankDto.financeContact2.contact = "";
+                        oPayload.bankDto.financeContact2.extension = "";
+                        oPayload.bankDto.financeContact2.mobile = "";
+                        oPayload.bankDto.financeContact2.countryContactCode = "";
+                        oPayload.bankDto.financeContact2.countryMobileCode = "";
+                        oPayload.bankDto.financeContact2.contactInSection = "";
+                    }
                     if (oPayload.bankDto.isBankProvided === false) {
                         oPayload.bankDto.bankInfoDto[0].bankName = "";
                         oPayload.bankDto.bankInfoDto[0].bankAddress = "";
@@ -9219,6 +9270,45 @@ var that = this;
                         delete row.tooltip;
                         delete row.required;
                     });
+                    if(oPayload.bankDto.isbankdetailsHidden === true){
+                        oPayload.bankDto.bankInfoDto[0].bankName = "";
+                        oPayload.bankDto.bankInfoDto[0].bankAddress = "";
+                        oPayload.bankDto.bankInfoDto[0].bankCity = "";
+                        oPayload.bankDto.bankInfoDto[0].bankState = "";
+                        oPayload.bankDto.bankInfoDto[0].bankCountry = "";
+                        oPayload.bankDto.bankInfoDto[0].bankBranch = "";
+                        oPayload.bankDto.bankInfoDto[0].benefAccHolderName = "";
+                        oPayload.bankDto.bankInfoDto[0].bankAccNum = "";
+                        oPayload.bankDto.bankInfoDto[0].refBankDetails = "";
+                        oPayload.bankDto.bankInfoDto[0].swiftCode = "";
+                        oPayload.bankDto.bankInfoDto[0].bankNumber = "";
+                        oPayload.bankDto.bankInfoDto[0].bankAccNumConfirm = "";
+                        oPayload.bankDto.bankInfoDto[0].ibanNum = "";
+                        oPayload.bankDto.bankInfoDto[0].ibanNumConfirm = "";
+                        oPayload.bankDto.bankInfoDto[0].bankCode = "";
+                        oPayload.bankDto.bankInfoDto[0].partnerBankType = "";
+                        oPayload.bankDto.bankInfoDto[0].bankControlKey = "";
+                        oPayload.bankDto.financeContact1.firstName = "";
+                        oPayload.bankDto.financeContact1.lastName = "";
+                        oPayload.bankDto.financeContact1.jobTitle = "";
+                        oPayload.bankDto.financeContact1.email = "";
+                        oPayload.bankDto.financeContact1.contact = "";
+                        oPayload.bankDto.financeContact1.extension = "";
+                        oPayload.bankDto.financeContact1.mobile = "";
+                        oPayload.bankDto.financeContact1.countryContactCode = "";
+                        oPayload.bankDto.financeContact1.countryMobileCode = "";
+                        oPayload.bankDto.financeContact1.contactInSection = "";
+                        oPayload.bankDto.financeContact2.firstName = "";
+                        oPayload.bankDto.financeContact2.lastName = "";
+                        oPayload.bankDto.financeContact2.jobTitle = "";
+                        oPayload.bankDto.financeContact2.email = "";
+                        oPayload.bankDto.financeContact2.contact = "";
+                        oPayload.bankDto.financeContact2.extension = "";
+                        oPayload.bankDto.financeContact2.mobile = "";
+                        oPayload.bankDto.financeContact2.countryContactCode = "";
+                        oPayload.bankDto.financeContact2.countryMobileCode = "";
+                        oPayload.bankDto.financeContact2.contactInSection = "";
+                    }
                     if (oPayload.bankDto.isBankProvided === false) {
                         oPayload.bankDto.bankInfoDto[0].bankName = "";
                         oPayload.bankDto.bankInfoDto[0].bankAddress = "";

@@ -51,6 +51,11 @@ function (Controller,JSONModel,Wizard,formatter,MessageBox)  {
                           that.getView().getModel("oUserModel").setProperty("/isNew", oEvent.getSource().getData().isNew);
                              that.getView().getModel("oUserModel").setProperty("/bpNumber", oEvent.getSource().getData().bpNumber);
                               that.getView().getModel("oUserModel").setProperty("/taskId", taskId);
+                              if(oEvent.getSource().getData().isBuyerReviewRejected){
+                                that.getView().getModel("oUserModel").setProperty("/isBuyerRejectTask", oEvent.getSource().getData().isBuyerReviewRejected);
+                              }else {
+                                that.getView().getModel("oUserModel").setProperty("/isBuyerRejectTask", null);
+                              }
                                that.getView().getModel("oUserModel").refresh();
                               fDeferred.resolve();
                           
