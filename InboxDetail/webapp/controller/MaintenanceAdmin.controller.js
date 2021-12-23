@@ -50,14 +50,11 @@ sap.ui.define([
                 this.fnLoadCompanyCode1();
                 this.fnLoadDocName();
                 this.fnLoadDocName1();
-
-
             },
 
-            
             fnLoadCompanyCode: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_portal_services/company-codes";
+                var sUrl = "/InboxDetail/plcm_portal_services/api/v1/reference-data/company-codes";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -70,7 +67,7 @@ sap.ui.define([
             },
             fnLoadCompanyCode1: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_reference_data/company-codes";
+                var sUrl = "/InboxDetail/plcm_portal_services/api/v1/reference-data/company-codes";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -121,7 +118,7 @@ sap.ui.define([
             },
             fnLoadPurOrg: function (vCompCode, vDescription) {
                 var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_portal_services/purchasingOrg/" + vCompCode;
+                var sUrl = "/InboxDetail/plcm_portal_services/api/v1/reference-data/purchasingOrg/" + vCompCode;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -153,7 +150,7 @@ sap.ui.define([
             },
             fnLoadPurOrg1: function (vCompCode, vDescription) {
                 var oModel = new JSONModel();
-                var sUrl = "/InboxDetail/plcm_reference_data/purchasingOrg/" + vCompCode;
+                var sUrl = "/InboxDetail/plcm_portal_services/api/v1/reference-data/purchasingOrg/" + vCompCode;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
