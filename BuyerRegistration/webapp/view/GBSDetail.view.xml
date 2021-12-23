@@ -9,6 +9,14 @@
 				   toggleHeaderOnTitleClick="false" class="cl_DynamicPage">
 		<f:content>
         <VBox fitContainer="true" id="id_FilterHeight"> 
+           <Panel width="auto" expandable="false"     expand="fnPanelCollapse" expanded="true" class="cl_VRPanelClass cl_PanelMargonTop sapUiTinyMarginBegin sapUiTinyMarginEnd">
+        	<content>
+             <l:Grid  defaultSpan="XL12 L12 M12 S12" class="sapUiSizeCompact cl_ExtendSearchGrid">
+           	<Label text="{i18n>Comments}" class="cl_TIDescTxt  sapUiTinyMarginTop"></Label>
+										 <Label text="{oVendorListModel>/Comments}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop  "></Label>
+</l:Grid >
+            	</content>
+                </Panel>
 	  <Panel width="auto" expandable="true"  id="id_FilterPanel" expand="fnPanelCollapse" expanded="true" class="cl_VRPanelClass cl_PanelMargonTop sapUiTinyMarginBegin sapUiTinyMarginEnd">
 						<headerToolbar >
 							<Toolbar height="2rem" class="cl_VRHeaderBackGrndPnl">
@@ -190,36 +198,125 @@
                rowSelectionChange="fnCaseListPressNav"
                selectionBehavior="RowOnly"
                id="id_SearchResultTb"
-               visibleRowCount="10"
+               visibleRowCount="{oConfigMdl>/visibleRowCnt}"
               
                 class="cl_UITableExtn"
 				ariaLabelledBy="title">
-				<u:extension>
-			
-											<OverflowToolbar class="VRTableTBHeight">
-												<Text text="{oVendorListModel>/headerText}"/>
-												<ToolbarSpacer/>
-                                               
-											
-										        	 <Button text="{i18n>Submit}"  press="fnGBSApprove" enabled="{oConfigMdl>/isClaimed}" class="cl_VRActnBtnApply sapUiSizeCompact"  />
+				    <u:extension>
+                        <OverflowToolbar class="VRTableTBHeight">
+                            <Text text="{oVendorListModel>/headerText}"/>
+                            <ToolbarSpacer/>
+                             	 <Button text="{i18n>Submit}"  press="fnGBSApprove" class="cl_VRActnBtnApply sapUiSizeCompact"  />
 			
               	 <Button icon="sap-icon://action-settings"  press="fnPersonaliseColumns" class="cl_VRActnBtnApply sapUiSizeCompact"  />
-										</OverflowToolbar>
-				</u:extension>
-				<u:columns>
+						</OverflowToolbar>
+				    </u:extension>
+				    <u:columns>
                    
-                <u:Column width="3rem">
-						<CheckBox  id="id_SelectAllCheck" visible="false" class="sapUiSizeCompact cl_ChkBoxHeight"  select="fnSelectAllTable" />
-						<u:template>
-							<CheckBox select="fnHadleTableSelection"  selected="{oVendorListModel>isSelect}" />
-						</u:template>
-					</u:Column>
-					
-                    <u:Column sortProperty="PENDING_CHANGE_REQUEST" filterProperty="PENDING_CHANGE_REQUEST" width="11rem" visible="{path: 'personalizationModel>/columnList/0/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                        <Label text="{i18n>BPEPendingRequest}" class="cl_VRLablCls "/>
-                        <u:template>
-                        <Text text="{oVendorListModel>PENDING_CHANGE_REQUEST}"  class="cl_ListNameClass"/>
-                        </u:template>
+                        <u:Column width="3rem">
+                                <CheckBox  id="id_SelectAllCheck" visible="false" class="sapUiSizeCompact cl_ChkBoxHeight"  select="fnSelectAllTable" />
+                                <u:template>
+                                    <CheckBox select="fnHadleTableSelection"  selected="{oVendorListModel>isSelect}" />
+                                </u:template>
+                            </u:Column>
+					    <u:Column width="16rem" sortProperty="VENDOR_NAME" filterProperty="VENDOR_NAME" visible="{path: 'personalizationModel>/columnList/7/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                            <Label text="{i18n>BPEVendorName}" class="cl_VRLablCls "/>
+                            <u:template>
+                                <HBox>
+                                    <core:Icon
+                                        src="sap-icon://status-error"
+                                        visible="{path: 'oVendorListModel>isError' ,formatter: 'ns.BuyerRegistration.util.formatter.ErrorLine'}"
+                                        tooltip="Error"
+                                        color="#FF0000" >
+            
+                                    </core:Icon>
+                                    <Text text="{oVendorListModel>VENDOR_NAME}" class="cl_ListNameClass sapUiTinyMarginBegin"/> 
+                                </HBox>
+                            </u:template>
+                        </u:Column>
+                        <u:Column width="7rem" sortProperty="VENDOR_NUMBER" filterProperty="VENDOR_NUMBER" visible="{path: 'personalizationModel>/columnList/4/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEVendorNumber}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>VENDOR_NUMBER}" class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="16rem" sortProperty="STREET" filterProperty="STREET" visible="{path: 'personalizationModel>/columnList/8/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEStreet}" class="cl_VRLablCls "/>
+                    <u:template>
+                      <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>STREET' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorMandt'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+           <Text text="{oVendorListModel>STREET}" class="cl_ListNameClass"/>
+        </HBox>
+                  
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="6rem" sortProperty="POSTAL_CODE" filterProperty="POSTAL_CODE" visible="{path: 'personalizationModel>/columnList/12/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEPostalCode}" class="cl_VRLablCls "/>
+                    <u:template>
+                     <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>POSTAL_CODE' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorMandt'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+           <Text text="{oVendorListModel>POSTAL_CODE}" class="cl_ListNameClass"/>
+        </HBox>
+                   
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="CITY" filterProperty="CITY" visible="{path: 'personalizationModel>/columnList/9/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECity}" class="cl_VRLablCls "/>
+                    <u:template>
+                     <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>CITY' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorMandt'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>CITY}" class="cl_ListNameClass"/>
+        </HBox>
+                   
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="9rem" sortProperty="COUNTRY" filterProperty="COUNTRY" visible="{path: 'personalizationModel>/columnList/11/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECountry}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>COUNTRY' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorMandt'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+           <Text text="{ parts: [
+      {path: 'oVendorListModel>COUNTRY'},
+      {path: 'i18n>COUNTRY'}
+    ], formatter: 'ns.BuyerRegistration.util.formatter.fnFetchDescription'}"   class="cl_ListNameClass"/>
+        </HBox>
+                    
+                   
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="8rem" sortProperty="DUNS" filterProperty="DUNS" visible="{path: 'personalizationModel>/columnList/15/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEDUNSNumber}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{oVendorListModel>DUNS}" class="cl_ListNameClass"/>
+                    </u:template>
                     </u:Column>
                     <u:Column width="7rem" sortProperty="COMPANY_CODE" filterProperty="COMPANY_CODE" visible="{path: 'personalizationModel>/columnList/1/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPECompanyCode}" class="cl_VRLablCls "/>
@@ -227,25 +324,10 @@
                     <Text text="{oVendorListModel>COMPANY_CODE}"  class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
-                    <u:Column width="10rem" sortProperty="COMPANY_CODE" filterProperty="COMPANY_CODE" visible="{path: 'personalizationModel>/columnList/2/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECompanyCodeDesc}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{ parts: [
-      {path: 'oVendorListModel>COMPANY_CODE'},
-      {path: 'i18n>COMPANY_CODE'}
-    ], formatter: 'ns.BuyerRegistration.util.formatter.fnFetchDescription'}"   class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
                     <u:Column width="7rem" sortProperty="PURCHASING_ORG" filterProperty="PURCHASING_ORG" visible="{path: 'personalizationModel>/columnList/3/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEPurchasingOrg}" class="cl_VRLablCls "/>
                     <u:template>
                     <Text text="{oVendorListModel>PURCHASING_ORG}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="7rem" sortProperty="VENDOR_NUMBER" filterProperty="VENDOR_NUMBER" visible="{path: 'personalizationModel>/columnList/4/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEVendorNumber}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>VENDOR_NUMBER}" class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
                     <u:Column width="8rem" sortProperty="ACCOUNT_GROUP" filterProperty="ACCOUNT_GROUP" visible="{path: 'personalizationModel>/columnList/5/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
@@ -257,47 +339,194 @@
                     <u:Column width="10rem" sortProperty="RELATIONSHIP_INDICATOR" filterProperty="RELATIONSHIP_INDICATOR" visible="{path: 'personalizationModel>/columnList/6/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPERelationShipInd}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>RELATIONSHIP_INDICATOR}" class="cl_ListNameClass"/>
+                    <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>RELATIONSHIP_INDICATOR' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorRelInd'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>RELATIONSHIP_INDICATOR}" class="cl_ListNameClass"/>
+        </HBox>
                     </u:template>
                     </u:Column>
-                    <u:Column width="16rem" sortProperty="VENDOR_NAME" filterProperty="VENDOR_NAME" visible="{path: 'personalizationModel>/columnList/7/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEVendorName}" class="cl_VRLablCls "/>
+                     <u:Column width="9rem" sortProperty="BLOCK_FUNCTION" filterProperty="BLOCK_FUNCTION" visible="{path: 'personalizationModel>/columnList/20/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEBlockFunction}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>VENDOR_NAME}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="16rem" sortProperty="STREET" filterProperty="STREET" visible="{path: 'personalizationModel>/columnList/8/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEStreet}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>STREET}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="9rem" sortProperty="CITY" filterProperty="CITY" visible="{path: 'personalizationModel>/columnList/9/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECity}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>CITY}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="10rem" sortProperty="REGION_STATE_PROVINCE" filterProperty="REGION_STATE_PROVINCE" visible="{path: 'personalizationModel>/columnList/10/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPERegion/State/Province}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>REGION_STATE_PROVINCE}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="9rem" sortProperty="COUNTRY" filterProperty="COUNTRY" visible="{path: 'personalizationModel>/columnList/11/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECountry}" class="cl_VRLablCls "/>
-                    <u:template>
-                      <Text text="{ parts: [
-      {path: 'oVendorListModel>COUNTRY'},
-      {path: 'i18n>COUNTRY'}
-    ], formatter: 'ns.BuyerRegistration.util.formatter.fnFetchDescription'}"   class="cl_ListNameClass"/>
+                          <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>BLOCK_FUNCTION' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorBlock'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>BLOCK_FUNCTION}" class="cl_ListNameClass"/>
+        </HBox>
                    
                     </u:template>
                     </u:Column>
-                    <u:Column width="6rem" sortProperty="POSTAL_CODE" filterProperty="POSTAL_CODE" visible="{path: 'personalizationModel>/columnList/12/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEPostalCode}" class="cl_VRLablCls "/>
+                    <u:Column width="11rem" sortProperty="CENTRAL_POSTING_BLOCK" filterProperty="CENTRAL_POSTING_BLOCK" visible="{path: 'personalizationModel>/columnList/23/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECentralPostingBlock}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>POSTAL_CODE}" class="cl_ListNameClass"/>
+                     <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>CENTRAL_POSTING_BLOCK' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorBlock'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>CENTRAL_POSTING_BLOCK}" class="cl_ListNameClass"/>
+        </HBox>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="CENTRAL_PURCHASING_BLOCK" filterProperty="CENTRAL_PURCHASING_BLOCK" visible="{path: 'personalizationModel>/columnList/24/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECentralPurchasingBlock}" class="cl_VRLablCls "/>
+                    <u:template>
+                     <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>CENTRAL_PURCHASING_BLOCK' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorBlock'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>CENTRAL_PURCHASING_BLOCK}" class="cl_ListNameClass"/>
+        </HBox>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="COMPANY_CODE_POSTING_BLOCK" filterProperty="COMPANY_CODE_POSTING_BLOCK" visible="{path: 'personalizationModel>/columnList/26/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECompanyCode/PostingBlock}" class="cl_VRLablCls "/>
+                    <u:template>
+                       <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>COMPANY_CODE_POSTING_BLOCK' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorBlock'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>COMPANY_CODE_POSTING_BLOCK}" class="cl_ListNameClass"/>
+        </HBox>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="PURCHASING_ORG_BLOCK" filterProperty="PURCHASING_ORG_BLOCK" visible="{path: 'personalizationModel>/columnList/27/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEPurchasingOrgBlock}" class="cl_VRLablCls "/>
+                    <u:template>
+                     <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>PURCHASING_ORG_BLOCK' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorBlock'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>PURCHASING_ORG_BLOCK}" class="cl_ListNameClass"/>
+        </HBox>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="CENTRAL_DELETION_FLAG" filterProperty="CENTRAL_DELETION_FLAG" visible="{path: 'personalizationModel>/columnList/19/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECentralDeletionFlag}" class="cl_VRLablCls "/>
+                    <u:template>
+                  <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>CENTRAL_DELETION_FLAG' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorBlock'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>CENTRAL_DELETION_FLAG}" class="cl_ListNameClass"/>
+        </HBox>
+                    </u:template>
+                    </u:Column>
+                    <u:Column width="11rem" sortProperty="COMPANY_CODE_DEL_FLAG" filterProperty="COMPANY_CODE_DEL_FLAG" visible="{path: 'personalizationModel>/columnList/21/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECompanyCodeDelFlag}" class="cl_VRLablCls "/>
+                    <u:template>
+                      <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>COMPANY_CODE_DEL_FLAG' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorBlock'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>COMPANY_CODE_DEL_FLAG}" class="cl_ListNameClass"/>
+        </HBox>
+                    </u:template>
+                    </u:Column>
+                     <u:Column width="11rem" sortProperty="PURCHASING_ORG_DEL_FLAG" filterProperty="PURCHASING_ORG_DEL_FLAG" visible="{path: 'personalizationModel>/columnList/22/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPEPurchasingOrgDelFalg}" class="cl_VRLablCls "/>
+                    <u:template>
+                     <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>PURCHASING_ORG_DEL_FLAG' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorBlock'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>PURCHASING_ORG_DEL_FLAG}" class="cl_ListNameClass"/>
+        </HBox>
+                    </u:template>
+                    </u:Column>
+                    
+
+                    <!-- not mentioned in reordering list -->
+
+
+                    <u:Column sortProperty="PENDING_CHANGE_REQUEST" filterProperty="PENDING_CHANGE_REQUEST" width="11rem" visible="{path: 'personalizationModel>/columnList/0/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                        <Label text="{i18n>BPEPendingRequest}" class="cl_VRLablCls "/>
+                        <u:template>
+                          <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>PENDING_CHANGE_REQUEST' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorBlock'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>PENDING_CHANGE_REQUEST}" class="cl_ListNameClass"/>
+        </HBox>
+                        </u:template>
+                    </u:Column>
+                    <u:Column width="10rem" sortProperty="COMPANY_CODE" filterProperty="COMPANY_CODE" visible="{path: 'personalizationModel>/columnList/2/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPECompanyCodeDesc}" class="cl_VRLablCls "/>
+                    <u:template>
+                    <Text text="{ parts: [
+      {path: 'oVendorListModel>COMPANY_CODE'},
+      {path: 'i18n>COMPANY_CODE'}
+    ], formatter: 'ns.BuyerRegistration.util.formatter.fnFetchDescription'}"   class="cl_ListNameClass"/>
+                    </u:template>
+                    </u:Column>
+                    
+                    <u:Column width="10rem" sortProperty="REGION_STATE_PROVINCE" filterProperty="REGION_STATE_PROVINCE" visible="{path: 'personalizationModel>/columnList/10/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPERegion/State/Province}" class="cl_VRLablCls "/>
+                    <u:template>
+                     <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>REGION_STATE_PROVINCE' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorMandt'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>REGION_STATE_PROVINCE}" class="cl_ListNameClass"/>
+        </HBox>
+                    
                     </u:template>
                     </u:Column>
                     <u:Column width="11rem" sortProperty="PRIMARY_PHONE_NUMBER" filterProperty="PRIMARY_PHONE_NUMBER" visible="{path: 'personalizationModel>/columnList/13/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
@@ -310,12 +539,6 @@
                     <Label text="{i18n>BPEEmailAddress}" class="cl_VRLablCls "/>
                     <u:template>
                     <Text text="{oVendorListModel>EMAIL_ADDRESS}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="8rem" sortProperty="DUNS" filterProperty="DUNS" visible="{path: 'personalizationModel>/columnList/15/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEDUNSNumber}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>DUNS}" class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
                     <u:Column width="11rem" sortProperty="VendorCreationDate" filterProperty="VendorCreationDate" visible="{path: 'personalizationModel>/columnList/16/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
@@ -336,88 +559,123 @@
                     <Text text="{oVendorListModel>PU_PAYMENT_TERMS}" class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
-                    <u:Column width="11rem" sortProperty="CENTRAL_DELETION_FLAG" filterProperty="CENTRAL_DELETION_FLAG" visible="{path: 'personalizationModel>/columnList/19/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECentralDeletionFlag}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>CENTRAL_DELETION_FLAG}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="9rem" sortProperty="BLOCK_FUNCTION" filterProperty="BLOCK_FUNCTION" visible="{path: 'personalizationModel>/columnList/20/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEBlockFunction}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>BLOCK_FUNCTION}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="COMPANY_CODE_DEL_FLAG" filterProperty="COMPANY_CODE_DEL_FLAG" visible="{path: 'personalizationModel>/columnList/21/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECompanyCodeDelFlag}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>COMPANY_CODE_DEL_FLAG}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="PURCHASING_ORG_DEL_FLAG" filterProperty="PURCHASING_ORG_DEL_FLAG" visible="{path: 'personalizationModel>/columnList/22/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEPurchasingOrgDelFalg}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>PURCHASING_ORG_DEL_FLAG}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="CENTRAL_POSTING_BLOCK" filterProperty="CENTRAL_POSTING_BLOCK" visible="{path: 'personalizationModel>/columnList/23/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECentralPostingBlock}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>CENTRAL_POSTING_BLOCK}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="CENTRAL_PURCHASING_BLOCK" filterProperty="CENTRAL_PURCHASING_BLOCK" visible="{path: 'personalizationModel>/columnList/24/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECentralPurchasingBlock}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>CENTRAL_PURCHASING_BLOCK}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="CENTRAL_BLOCK_CODE" filterProperty="CENTRAL_BLOCK_CODE" visible="{path: 'personalizationModel>/columnList/25/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                   <u:Column width="11rem" sortProperty="CENTRAL_BLOCK_CODE" filterProperty="CENTRAL_BLOCK_CODE" visible="{path: 'personalizationModel>/columnList/25/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPECentralBlockCode}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>CENTRAL_BLOCK_CODE}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="COMPANY_CODE_POSTING_BLOCK" filterProperty="COMPANY_CODE_POSTING_BLOCK" visible="{path: 'personalizationModel>/columnList/26/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPECompanyCode/PostingBlock}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>COMPANY_CODE_POSTING_BLOCK}" class="cl_ListNameClass"/>
-                    </u:template>
-                    </u:Column>
-                    <u:Column width="11rem" sortProperty="PURCHASING_ORG_BLOCK" filterProperty="PURCHASING_ORG_BLOCK" visible="{path: 'personalizationModel>/columnList/27/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
-                    <Label text="{i18n>BPEPurchasingOrgBlock}" class="cl_VRLablCls "/>
-                    <u:template>
-                    <Text text="{oVendorListModel>PURCHASING_ORG_BLOCK}" class="cl_ListNameClass"/>
+                       <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>CENTRAL_BLOCK_CODE' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorBlock'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>CENTRAL_BLOCK_CODE}" class="cl_ListNameClass"/>
+        </HBox>
                     </u:template>
                     </u:Column>
                     <u:Column width="9rem" sortProperty="PAYMENT_METHOD" filterProperty="PAYMENT_METHOD" visible="{path: 'personalizationModel>/columnList/28/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEPaymentMethod}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>PAYMENT_METHOD}" class="cl_ListNameClass"/>
+                      <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>PAYMENT_METHOD' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorMandt'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>PAYMENT_METHOD}" class="cl_ListNameClass"/>
+        </HBox>
+                   
                     </u:template>
                     </u:Column>
                     <u:Column width="9rem" sortProperty="PAYMENT_TERMS" filterProperty="PAYMENT_TERMS" visible="{path: 'personalizationModel>/columnList/29/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEPaymentTerms}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>PAYMENT_TERMS}" class="cl_ListNameClass"/>
+                      <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>PAYMENT_TERMS' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorMandt'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>PAYMENT_TERMS}" class="cl_ListNameClass"/>
+        </HBox>
+                  
                     </u:template>
                     </u:Column>
                     <u:Column width="9rem" sortProperty="CURRENCY" filterProperty="CURRENCY" visible="{path: 'personalizationModel>/columnList/30/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPECurrency}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>CURRENCY}" class="cl_ListNameClass"/>
+                      <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>CURRENCY' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorMandt'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>CURRENCY}" class="cl_ListNameClass"/>
+        </HBox>
+                   
                     </u:template>
                     </u:Column>
                     <u:Column width="9rem" sortProperty="INCO_TERMS" filterProperty="INCO_TERMS" visible="{path: 'personalizationModel>/columnList/31/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEIncoterms}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>INCO_TERMS}" class="cl_ListNameClass"/>
+                      <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>INCO_TERMS' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorMandt'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>INCO_TERMS}" class="cl_ListNameClass"/>
+        </HBox>
+                   
                     </u:template>
                     </u:Column>
+                     <u:Column width="12rem" sortProperty="INCO_TERMS" filterProperty="INCO_TERMS" visible="{path: 'personalizationModel>/columnList/31/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
+                    <Label text="{i18n>BPCNewIncotermNamedLocation1}" class="cl_VRLablCls "/>
+                    <u:template>
+                      <HBox>
+                
+                    <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>INCOTERMS2' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorMandt'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon>
+          <Text text="{oVendorListModel>INCOTERMS2}" class="cl_ListNameClass"/>
+        </HBox>
+                   
+                    </u:template>
+                    </u:Column>
+                   
                     <u:Column width="9rem" sortProperty="BANK_COUNTRY" filterProperty="BANK_COUNTRY" visible="{path: 'personalizationModel>/columnList/32/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEBankCountry}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>BANK_COUNTRY}" class="cl_ListNameClass"/>
+                     <HBox>
+                
+                    <!-- <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>BANK_COUNTRY' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorMandt'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon> -->
+          <Text text="{oVendorListModel>BANK_COUNTRY}" class="cl_ListNameClass"/>
+        </HBox>
+                 
                     </u:template>
                     </u:Column>
                     <u:Column width="9rem" sortProperty="BANK_KEY" filterProperty="BANK_KEY" visible="{path: 'personalizationModel>/columnList/33/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
@@ -447,13 +705,24 @@
                     <u:Column width="9rem" sortProperty="BankType" filterProperty="BankType" visible="{path: 'personalizationModel>/columnList/37/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEBankType}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>BankType}" class="cl_ListNameClass"/>
+                    <Text text="{oVendorListModel>BANK_TYPE}" class="cl_ListNameClass"/>
                     </u:template>
                     </u:Column>
                     <u:Column width="9rem" sortProperty="IBAN" filterProperty="IBAN" visible="{path: 'personalizationModel>/columnList/38/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
                     <Label text="{i18n>BPEIBAN}" class="cl_VRLablCls "/>
                     <u:template>
-                    <Text text="{oVendorListModel>IBAN}" class="cl_ListNameClass"/>
+                      <HBox>
+                
+                    <!-- <core:Icon
+			src="sap-icon://status-error"
+			visible="{path: 'oVendorListModel>IBAN' ,formatter: 'ns.BuyerRegistration.util.formatter.fnSearchResultErrorMandt'}"
+            tooltip="Error"
+			color="#FF0000" >
+		
+		</core:Icon> -->
+          <Text text="{oVendorListModel>IBAN}" class="cl_ListNameClass"/>
+        </HBox>
+                   
                     </u:template>
                     </u:Column>
                     <u:Column width="11rem" sortProperty="BUSINESS_PARTNER_NUMBER" filterProperty="BUSINESS_PARTNER_NUMBER" visible="{path: 'personalizationModel>/columnList/39/isSelect' ,formatter: 'ns.BuyerRegistration.util.formatter.selectColumn'}">
@@ -466,15 +735,24 @@
                 	<u:layoutData>
 								<FlexItemData styleClass="chngLogGridTblItemClass"/>
 							</u:layoutData>
-                            
-			</u:Table>
-				
+                            	<!-- <u:footer>
 				<Toolbar class="sapUiSizeCompact cl_VRPagntnClr1">
 									<ToolbarSpacer></ToolbarSpacer>
 								<Text text="Showing Page {oVendorListModel>/currentPage}  of {oVendorListModel>/totalPage}" class="cl_VRPageTextClr" ></Text>
 									<Button icon="sap-icon://navigation-left-arrow" press="fnPreviousPage" enabled="{oVendorListModel>/renable}" class="cl_PaginationBtnCls"/>
 									<Button icon="sap-icon://navigation-right-arrow" press="fnNextPage" enabled="{oVendorListModel>/fenable}" class="cl_PaginationBtnCls"/>
 								</Toolbar>			
+				</u:footer> -->
+			</u:Table>
+				
+					
+				
+				<!-- <Toolbar class="sapUiSizeCompact cl_VRPagntnClr1">
+									<ToolbarSpacer></ToolbarSpacer>
+								<Text text="Showing Page {oVendorListModel>/currentPage}  of {oVendorListModel>/totalPage}" class="cl_VRPageTextClr" ></Text>
+									<Button icon="sap-icon://navigation-left-arrow" press="fnPreviousPage" enabled="{oVendorListModel>/renable}" class="cl_PaginationBtnCls"/>
+									<Button icon="sap-icon://navigation-right-arrow" press="fnNextPage" enabled="{oVendorListModel>/fenable}" class="cl_PaginationBtnCls"/>
+								</Toolbar>			 -->
 			
 							
 							</VBox>

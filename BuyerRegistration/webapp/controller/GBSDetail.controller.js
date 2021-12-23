@@ -101,6 +101,8 @@ sap.ui.define([
                 oModel.attachRequestCompleted(function onCompleted(oEvent) {
                     oBusyDilog.close();
                     if (oEvent.getParameter("success")) {
+
+
                         var oJosnMdl = new sap.ui.model.json.JSONModel();
                         oJosnMdl.setData(oEvent.getSource().getData().bpSearchParams);
                         oView.setModel(oJosnMdl, "JMSearchFilter");
@@ -112,7 +114,23 @@ sap.ui.define([
                         var oJosnMdlSel = new sap.ui.model.json.JSONModel();
                         oJosnMdlSel.setData(aBPData);
                         oView.setModel(oJosnMdlSel, "JMSelData");
-                        that.fnLoadPartnerData("Display", aFilter, aBPData);
+                        //  that.fnLoadPartnerData("Display", aFilter, aBPData);
+                        var temp = {
+                            "data": aBPData,
+                            "Comments": oEvent.getSource().getData().duplicatesBuyerComments,
+                            // "totalPage": vTotalPage,
+                            // "fenable": vfenable,
+                            // "renable": vrenable,
+                            // "totalCount": oEvent.getSource().getData().d.__count,
+                            // "currentPage": oView.getModel("oVendorListModel").getData().currentPage,
+                            "headerText": "Partner Data Detail (" + aBPData.length + ")"
+                        }
+
+
+                        var oVendorListJson = new sap.ui.model.json.JSONModel();
+                        oVendorListJson.setData(temp);
+                        that.getView().setModel(oVendorListJson, "oVendorListModel");
+
                         if (that.caseId) {
                             that.fnLoadCaseDetail(that.caseId);
                         }
@@ -519,7 +537,61 @@ sap.ui.define([
                 oView.getModel("JMCaseDetail").getData().bpNumber = temp.BUSINESS_PARTNER_NUMBER;
                 // oView.getModel("JMCaseDetail").getData().bpRequestScope.bpRequestScopeAddlDetails.incotermNameLocation = temp.COMPANY_CODE;
             },
+            fnCloseBankComments: function () {
+                this.oBankComments.close();
+            },
             fnGBSApprove: function () {
+                var vBPNo = [];
+                var aTableData = oView.getModel("oVendorListModel").getData().data;
+                var vCount = 0;
+                var vSelDataTem;
+                for (var i = 0; i < aTableData.length; i++) {
+                    if (aTableData[i].isSelect == true) {
+                        vCount = vCount + 1;
+                        var temp = {
+                            "BUSINESS_PARTNER_NUMBER": aTableData[i].BUSINESS_PARTNER_NUMBER
+                        }
+                        vBPNo.push(temp);
+                        vSelDataTem = aTableData[i];
+                    }
+                }
+
+
+                if (vCount !== 1) {
+                    sap.m.MessageToast.show(oi18n.getProperty("GBSSelectSingleRecord"));
+                } else {
+                    var temp = {};
+                    temp.Action = "RJ";
+                    //temp.Comments ;
+                    temp.Commentse = "None";
+                    temp.Commentsm = "";
+                    temp.commentsTxt = "Comments";
+                    temp.required = true;
+                    var oJosnComments = new sap.ui.model.json.JSONModel();
+                    oJosnComments.setData(temp);
+                    oView.setModel(oJosnComments, "JMAppvrComments");
+                    if (!this.oBankComments) {
+                        this.oBankComments = sap.ui.xmlfragment(
+                            "ns.BuyerRegistration.fragments.ApproverComments", this);
+                        oView.addDependent(this.oBankComments);
+                    }
+
+                    this.oBankComments.open();
+                }
+            },
+            fnLiveChangeCmntTxtArea: function () {
+                oView.getModel("JMAppvrComments").getData().Commentse = "None";
+                oView.getModel("JMAppvrComments").getData().Commentsm = "";
+                oView.getModel("JMAppvrComments").refresh();
+            },
+
+            fnSubmitComments: function () {
+                if (!oView.getModel("JMAppvrComments").getData().Comments) {
+                    oView.getModel("JMAppvrComments").getData().Commentse = "Error";
+                    oView.getModel("JMAppvrComments").getData().Commentsm = oi18n.getProperty("provideComments");
+                    oView.getModel("JMAppvrComments").refresh();
+                    return;
+                }
                 var vBPNo = [];
                 var aTableData = oView.getModel("oVendorListModel").getData().data;
                 var vCount = 0;
@@ -540,16 +612,17 @@ sap.ui.define([
                 if (vCount !== 1) {
                     sap.m.MessageToast.show(oi18n.getProperty("GBSSelectSingleRecord"));
                 } else {
-                    if(vSelDataTem){
-                    if (vSelDataTem.PENDING_CHANGE_REQUEST) {
-                        var sErMsg = oi18n.getProperty("ExtentionNotAllowed");
-                        MessageBox.show(sErMsg, {
-                            icon: MessageBox.Icon.ERROR,
-                            title: "Error"
-                        });
-                        return;
+                    if (vSelDataTem) {
+                        if (vSelDataTem.PENDING_CHANGE_REQUEST) {
+                            var sErMsg = oi18n.getProperty("ExtentionNotAllowed");
+                            MessageBox.show(sErMsg, {
+                                icon: MessageBox.Icon.ERROR,
+                                title: "Error"
+                            });
+                            return;
+                        }
                     }
-                }
+                    this.oBankComments.close();
                     that.fnUpdateLocalModel(vSelDataTem);
                     MessageBox.confirm(oi18n.getProperty("GBSApprover"), {
                         icon: MessageBox.Icon.Confirmation,
@@ -559,32 +632,36 @@ sap.ui.define([
                         onClose: function (oAction) {
                             if (oAction == "YES") {
                                 oBusyDilog.open();
-                                var oModel = new JSONModel();
-                                var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/taskComplete"
-                                var oPayload = {
-                                    "taskId": that.vTaskID,
-                                    "bpNumber": ""
-                                }
-                                oModel.loadData(sUrl, JSON.stringify(
+
+                                var oModelUpdate = new JSONModel();
+                                var sUrl = "/nsBuyerRegistration/plcm_portal_services/case/updateBP"
+
+                                var oPayload = oView.getModel("JMCaseDetail").getData();
+
+                                oModelUpdate.loadData(sUrl, JSON.stringify(
                                     oPayload
-                                ), true, "POST", false, true, {
+                                ), true, "PUT", false, true, {
                                     "Content-Type": "application/json"
                                 });
-                                oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                                oModelUpdate.attachRequestCompleted(function onCompleted(oEvent) {
+
                                     if (oEvent.getParameter("success")) {
-                                        var oModelUpdate = new JSONModel();
-                                        var sUrl = "/nsBuyerRegistration/plcm_portal_services/case/updateBP"
 
-                                        var oPayload = oView.getModel("JMCaseDetail").getData();
-
-                                        oModelUpdate.loadData(sUrl, JSON.stringify(
+                                        var oModel = new JSONModel();
+                                        var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/taskComplete"
+                                        var oPayload = {
+                                            "taskId": that.vTaskID,
+                                            "bpNumber": "",
+                                            "duplicatesSMEComments": oView.getModel("JMAppvrComments").getData().Comments
+                                        }
+                                        oModel.loadData(sUrl, JSON.stringify(
                                             oPayload
-                                        ), true, "PUT", false, true, {
+                                        ), true, "POST", false, true, {
                                             "Content-Type": "application/json"
                                         });
-                                        oModelUpdate.attachRequestCompleted(function onCompleted(oEvent) {
-
+                                        oModel.attachRequestCompleted(function onCompleted(oEvent) {
                                             if (oEvent.getParameter("success")) {
+
                                                 oBusyDilog.close();
                                                 var temp = {
                                                     "Message": ""
@@ -600,28 +677,43 @@ sap.ui.define([
                                                 }
                                                 oBusyDilog.close();
                                                 that.oBPSuccess.open();
+
                                             } else {
                                                 oBusyDilog.close();
-                                                var sErMsg = oEvent.getParameter("errorobject").responseText;
+                                                var sErMsg;
+                                                if (oEvent.getParameter("errorobject").statusCode == 409) {
+                                                    sErMsg = JSON.parse(oEvent.getParameter("errorobject").responseText).errorMessage;
+                                                } else {
+                                                    sErMsg = oEvent.getParameter("errorobject").responseText;
+                                                }
+
+
                                                 MessageBox.show(sErMsg, {
                                                     icon: MessageBox.Icon.ERROR,
                                                     title: "Error"
                                                 });
-                                            }
 
+                                            }
                                         });
 
                                     } else {
                                         oBusyDilog.close();
-                                        var sErMsg = oEvent.getParameter("errorobject").responseText;
+                                        var sErMsg;
+                                        if (oEvent.getParameter("errorobject").statusCode == 409) {
+                                            sErMsg = JSON.parse(oEvent.getParameter("errorobject").responseText).errorMessage;
+                                        } else {
+                                            sErMsg = oEvent.getParameter("errorobject").responseText;
+                                        }
+
+
                                         MessageBox.show(sErMsg, {
                                             icon: MessageBox.Icon.ERROR,
                                             title: "Error"
                                         });
-
-
                                     }
+
                                 });
+
 
 
 
