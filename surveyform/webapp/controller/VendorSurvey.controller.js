@@ -9752,13 +9752,13 @@ var that = this;
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/workflow/taskComplete";
                 if(oView.getModel("oUserModel").getData().isBuyerRejectTask === true){
                     var exceptional_wf_input = {
-                        "GTS_question1": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList ? "YES" : "NO",
-                        "GTS_question2": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityRegInCISNK ? "YES" : "NO",
-                        "Legal_exceptional_question1": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt ? "YES" : "NO",
-                        "Legal_exceptional_question2": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily ? "YES" : "NO",
-                        "Legal_coi_exception_question1": oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmp ? "YES" : "NO",
-                        "Legal_coi_exception_question2": oView.getModel("oDataModel").getData().comComplianceDto.companyContactWithPreviouseJabilEmp ? "YES" : "NO",
-                        "cyberSecurityExceptionalQuestion": oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil ?  "YES" : "NO"
+                        "GTS_question1": "",
+                        "GTS_question2":"",
+                        "Legal_exceptional_question1": "",
+                        "Legal_exceptional_question2":"",
+                        "Legal_coi_exception_question1":"",
+                        "Legal_coi_exception_question2":"",
+                        "cyberSecurityExceptionalQuestion":""
                     }
                 var newExceptionalData = {"isEntitySDNList": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList, "isEntityRegInCISNK" :oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityRegInCISNK,
                 "isEntityManagedByGovt" :oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt,"isEntityManagedByGovtFamily" :oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily,
