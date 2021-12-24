@@ -2409,7 +2409,7 @@ sap.ui.define([
             },
             fnLoadSME:function(){
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_portal_services/sme/smeList";
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/sme/list";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -2422,13 +2422,25 @@ sap.ui.define([
                 });
             },
             fnSendToSME:function(){
-                var aSearchData = oView.getModel("oVendorListModel").getData().data;
-                if (aSearchData.length > 1) {
+                var aSelData = [];
+                for (var i = 0; i < oView.getModel("oVendorListModel").getData().data.length; i++) {
+                    if (oView.getModel("oVendorListModel").getData().data[i].isSelect == true) {
+                        aSelData.push({
+                            "BUSINESS_PARTNER_NUMBER": oView.getModel("oVendorListModel").getData().data[i].BUSINESS_PARTNER_NUMBER,
+                            "ID": oView.getModel("oVendorListModel").getData().data[i].ID
+                        })
+                    }
+                }
+             
+                if (aSelData.length > 0) {
                 this.fnLoadSME();
                 var temp = {
                     "smeEmail":"",
                     "smeEmaile":"None",
-                    "smeEmailm":""
+                    "smeEmailm":"",
+                    "Commentse":"None",
+                    "Commentsm":"",
+                    "Comments":""
                 }
                 var oJsonListSME = new sap.ui.model.json.JSONModel();
                 oJsonListSME.setData(temp);
@@ -2440,7 +2452,7 @@ sap.ui.define([
                 }
                 this.oBPSendToSME.open();
             } else {
-                sap.m.MessageToast.show(oi18n.getProperty("BPEEnterAtLeastOneData"));
+                sap.m.MessageToast.show(oi18n.getProperty("PlSelAtLeastOneRec"));
             }
                
             },
@@ -2449,31 +2461,43 @@ sap.ui.define([
            oView.getModel("JMSMESel").getData().smeEmailm = "";
            oView.getModel("JMSMESel").refresh();
             },
+            fnLiveChangeCmntTxtArea:function(){
+                oView.getModel("JMSMESel").getData().Commentse = "None";
+                oView.getModel("JMSMESel").getData().Commentsm = "";
+                oView.getModel("JMSMESel").refresh();
+                 },
+            
             fnCloseSME:function(){
                 this.oBPSendToSME.close();
             },
+            
             fnSendToGBS: function () {
-                if(!oView.getModel("JMSMESel").getData().smeEmail){
+                if(!oView.getModel("JMSMESel").getData().smeEmail || !oView.getModel("JMSMESel").getData().Comments){
+                    if(!oView.getModel("JMSMESel").getData().smeEmail){
                     oView.getModel("JMSMESel").getData().smeEmaile = "Error";
                     oView.getModel("JMSMESel").getData().smeEmailm = oi18n.getProperty("EnterSMEEmail");
                     oView.getModel("JMSMESel").refresh();
-                }else{
+                    }
+                    if(!oView.getModel("JMSMESel").getData().Comments){
+                        oView.getModel("JMSMESel").getData().Commentse = "Error";
+                        oView.getModel("JMSMESel").getData().Commentsm = oi18n.getProperty("provideComments");
+                        oView.getModel("JMSMESel").refresh();   
+                    }
+                }
+                else{
                 this.oBPSendToSME.close();
               
-                    // MessageBox.confirm(oi18n.getProperty("GBSConfirm"), {
-                    //     icon: MessageBox.Icon.Confirmation,
-                    //     title: "Confirmation",
-                    //     actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-                    //     emphasizedAction: MessageBox.Action.YES,
-                    //     onClose: function (oAction) {
-                    //         if (oAction == "YES") {
+                    MessageBox.confirm(oi18n.getProperty("SMEConfirm") + oView.getModel("JMSMESel").getData().smeEmail, {
+                        icon: MessageBox.Icon.Confirmation,
+                        title: "Confirmation",
+                        actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                        emphasizedAction: MessageBox.Action.YES,
+                        onClose: function (oAction) {
+                            if (oAction == "YES") {
                                 var aSelData = [];
                                 for (var i = 0; i < oView.getModel("oVendorListModel").getData().data.length; i++) {
                                     if (oView.getModel("oVendorListModel").getData().data[i].isSelect == true) {
-                                        aSelData.push({
-                                            "BUSINESS_PARTNER_NUMBER": oView.getModel("oVendorListModel").getData().data[i].BUSINESS_PARTNER_NUMBER,
-                                            "ID": oView.getModel("oVendorListModel").getData().data[i].ID
-                                        })
+                                        aSelData.push(oView.getModel("oVendorListModel").getData().data[i])
                                     }
                                 }
 
@@ -2509,10 +2533,8 @@ sap.ui.define([
                                         var aSelData = [];
                                         for (var i = 0; i < oView.getModel("oVendorListModel").getData().data.length; i++) {
                                             if (oView.getModel("oVendorListModel").getData().data[i].isSelect == true) {
-                                                aSelData.push({
-                                                    "BUSINESS_PARTNER_NUMBER": oView.getModel("oVendorListModel").getData().data[i].BUSINESS_PARTNER_NUMBER,
-                                                    "ID": oView.getModel("oVendorListModel").getData().data[i].ID
-                                                })
+                                                aSelData.push( oView.getModel("oVendorListModel").getData().data[i])
+                                                aSelData[i].isSelect = false;
                                             }
                                         }
                                         var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/trigger";
@@ -2531,6 +2553,7 @@ sap.ui.define([
                                                 "buyerTelephone": "",
                                                 "buyerEmailid": vBuyerEmail,
                                                 "smeEmail":oView.getModel("JMSMESel").getData().smeEmail,
+                                                "duplicatesBuyerComments":oView.getModel("JMSMESel").getData().Comments,
                                                 "bpSearchParams": oView.getModel("JMSearchFilter").getData(),
                                                 "bpSelectedResults": aSelData
                                             },
@@ -2580,9 +2603,9 @@ sap.ui.define([
                                         });
                                     }
                                 });
-                    //         }
-                    //     }
-                    // });
+                            }
+                        }
+                    });
 
              
             }
