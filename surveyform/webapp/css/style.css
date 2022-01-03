@@ -108,7 +108,8 @@ background-color: #062646;
 border: solid .125rem #fff !important;
 }
 .contactStyle {
-    width:76% !important;
+    /* width:76% !important; */
+    width:46% !important;
 margin-right:0.2rem !important;
 }
 .contactStyle>div>div>input {
