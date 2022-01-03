@@ -115,6 +115,85 @@ sap.ui.define([
                         oJosnMdlSel.setData(aBPData);
                         oView.setModel(oJosnMdlSel, "JMSelData");
                         //  that.fnLoadPartnerData("Display", aFilter, aBPData);
+                        var vError = false;
+                        for (var i = 0; i < aBPData.length; i++) {
+                            vError = false;
+
+                            if (!aBPData[i].VENDOR_NAME) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].STREET) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].POSTAL_CODE) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].CITY) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].COUNTRY) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].REGION_STATE_PROVINCE) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].PAYMENT_METHOD) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].PAYMENT_TERMS) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].CURRENCY) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].INCO_TERMS) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].INCOTERMS2) {
+                                vError = true;
+                            }
+                            // if (!aBPData[i].BANK_COUNTRY) {
+                            //     vError = true;
+                            // }
+                            // if (!aBPData[i].IBAN) {
+                            //     vError = true;
+                            // }
+                            if (aBPData[i].BLOCK_FUNCTION) {
+                                vError = true;
+                            }
+                            if (aBPData[i].CENTRAL_POSTING_BLOCK) {
+                                vError = true;
+                            }
+                            if (aBPData[i].CENTRAL_PURCHASING_BLOCK) {
+                                vError = true;
+                            } if (aBPData[i].COMPANY_CODE_POSTING_BLOCK) {
+                                vError = true;
+                            } if (aBPData[i].PURCHASING_ORG_BLOCK) {
+                                vError = true;
+                            } if (aBPData[i].CENTRAL_DELETION_FLAG) {
+                                vError = true;
+                            } if (aBPData[i].COMPANY_CODE_DEL_FLAG) {
+                                vError = true;
+                            }
+                            if (aBPData[i].PURCHASING_ORG_DEL_FLAG) {
+                                vError = true;
+                            }
+
+                            if (aBPData[i].CENTRAL_BLOCK_CODE) {
+                                vError = true;
+                            }
+                            if (aBPData[i].PENDING_CHANGE_REQUEST) {
+                                vError = true;
+                            }
+
+                            if (aBPData[i].RELATIONSHIP_INDICATOR !== "PRIMARY") {
+                                vError = true;
+                            }
+                            aBPData[i].isError = vError;
+                        }
+
+
+
                         var temp = {
                             "data": aBPData,
                             "Comments": oEvent.getSource().getData().duplicatesBuyerComments,
