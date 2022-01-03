@@ -2534,8 +2534,11 @@ sap.ui.define([
                                         for (var i = 0; i < oView.getModel("oVendorListModel").getData().data.length; i++) {
                                             if (oView.getModel("oVendorListModel").getData().data[i].isSelect == true) {
                                                 aSelData.push( oView.getModel("oVendorListModel").getData().data[i])
-                                                aSelData[i].isSelect = false;
+                                              //  aSelData[i].isSelect = false;
                                             }
+                                        }
+                                        for(var i=0;i<aSelData.length;i++){
+                                            aSelData[i].isSelect = false;
                                         }
                                         var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/trigger";
                                         that.caseId = oEvent.getSource().getData().caseId;
