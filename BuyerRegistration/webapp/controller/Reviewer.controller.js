@@ -473,8 +473,12 @@ sap.ui.define([
                             oEvent.getSource().getData().defaultValuesDto.reqCompanyCode = oView.getModel("JMBPCreate").getData().companyCode;
                             if (!oEvent.getSource().getData().defaultValuesDto.searchTerm1) {
                                 oEvent.getSource().getData().defaultValuesDto.searchTerm1 = oView.getModel("JMBPCreate").getData().corporationName.substring(0, 10);
-
-
+                            }
+                            if (!oEvent.getSource().getData().defaultValuesDto.changeType) {
+                                oEvent.getSource().getData().defaultValuesDto.changeType = "NEW";
+                            }
+                            if (!oEvent.getSource().getData().defaultValuesDto.priority) {
+                                oEvent.getSource().getData().defaultValuesDto.priority = "Regular";
                             }
                             oView.getModel("oDataModel").setData(oEvent.getSource().getData());
                             oView.getModel("oDataModel").refresh();

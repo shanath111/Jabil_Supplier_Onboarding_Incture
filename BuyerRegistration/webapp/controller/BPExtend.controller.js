@@ -1775,7 +1775,7 @@ sap.ui.define([
                     // });
                 } else if (vBtnActn == "SU") {
                   //  vConfirmMsg = oi18n.getProperty("BPCConfirmSubmit");
-                    vConfirmMsg = "Please confirm submission request for " + oView.getModel("JMBPCreate").getData().corporationName +" in Company Code " + oView.getModel("JMBPCreate").getData().companyCode + " and Purchasing Org: " + oView.getModel("JMBPCreate").getData().purchasingOrg;
+                    vConfirmMsg = "Please confirm submission request for " + oView.getModel("JMBPCreate").getData().corporationName +" in Company Code: " + oView.getModel("JMBPCreate").getData().companyCode + " and Purchasing Org: " + oView.getModel("JMBPCreate").getData().purchasingOrg;
                     vStatus = "In Progress"
                     MessageBox.confirm(vConfirmMsg, {
                         icon: MessageBox.Icon.Confirmation,
@@ -2421,6 +2421,141 @@ sap.ui.define([
                     }
                 });
             },
+            fnSearchSME: function () {
+                var vError = false;
+                // if (oView.getModel("JMFilter").getData().companyCode == "") {
+                //     vError = true
+                // }
+
+                if (vError == false) {
+                    oBusyDilog.open();
+                    var oModel = new JSONModel();
+                    var sUrl = "/nsBuyerRegistration/plcm_portal_services/sme/search"
+
+                    var oPayload = {
+                        "companyCode": oView.getModel("JMFilter").getData().companyCode,
+                        "purchasingOrganisation": oView.getModel("JMFilter").getData().purchasingOrganisation,
+                        "smeEmail":oView.getModel("JMFilter").getData().smeEmail
+
+                    }
+
+                    oModel.loadData(sUrl, JSON.stringify(
+                        oPayload
+                    ), true, "POST", false, true, {
+                        "Content-Type": "application/json"
+                    });
+                    oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                        if (oEvent.getParameter("success")) {
+
+                            oBusyDilog.close();
+
+                            var oJsonCompSearch = new sap.ui.model.json.JSONModel();
+                            oJsonCompSearch.setData(oEvent.getSource().getData());
+                            oView.setModel(oJsonCompSearch, "JMCompSearchResult");
+                        } else {
+                            oBusyDilog.close();
+                            var oJsonCompSearch = new sap.ui.model.json.JSONModel();
+                            oJsonCompSearch.setData([]);
+                            oView.setModel(oJsonCompSearch, "JMCompSearchResult")
+                            var sErMsg = oEvent.getParameter("errorobject").responseText;
+                            MessageBox.show(sErMsg, {
+                                icon: MessageBox.Icon.ERROR,
+                                title: "Error"
+                            });
+
+
+                        }
+                    });
+
+
+                } else {
+                    sap.m.MessageToast.show(oi18n.getProperty("enterTaxCategory"))
+                }
+
+            },
+            fnLoadPurOrgSME: function (vCompCode, vDescription) {
+                var oModel = new JSONModel();
+                var sUrl = "/InboxDetail/plcm_portal_services/api/v1/reference-data/purchasingOrg/" + vCompCode;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/PurOrg", oEvent.getSource().getData());
+                        if (oEvent.getSource().getData().length == 0) {
+                            if (vDescription.includes("Nypro")) {
+                                var temp = [{
+                                    "code": "0155",
+                                    "description": "Nypro Inc."
+                                }]
+                                oView.getModel("oBPLookUpMdl").setProperty("/PurOrg", temp);
+                            }
+                        }
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    } else {
+                        if (vDescription.includes("Nypro")) {
+                            var temp = [{
+                                "code": "0155",
+                                "description": "Nypro Inc."
+                            }]
+                            oView.getModel("oBPLookUpMdl").setProperty("/PurOrg", temp);
+                        }
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
+
+            },
+            fnCloseSMEList:function(){
+                this.oBPSendToSMEList.close();
+            },
+            fnLiveChangeCompCodeSME: function (oEvent) {
+                var vSelected = oEvent.getParameter("itemPressed");
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+
+                }
+                this.fnLoadPurOrgSME(oView.getModel("JMFilter").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
+                oView.getModel("JMFilter").getData().purchasingOrg = "";
+                oView.getModel("JMFilter").refresh();
+                if (oView.getModel("JMFilter").getData().companyCodee == "Error") {
+                    oView.getModel("JMFilter").getData().companyCodee = "None";
+                    oView.getModel("JMFilter").getData().companyCodem = "";
+                    oView.getModel("JMFilter").refresh();
+                }
+
+            },
+            fnSMETableOpen:function(){
+                var oJsonFilter = new sap.ui.model.json.JSONModel();
+                var temp = {
+                    "companyCode": "",
+                    "purchasingOrganisation": ""
+                };
+                oJsonFilter.setData(temp);
+                oView.setModel(oJsonFilter, "JMFilter");
+                this.fnSearchSME();
+                if (!this.oBPSendToSMEList) {
+                    this.oBPSendToSMEList = sap.ui.xmlfragment(
+                        "ns.BuyerRegistration.fragments.SMETabView", this);
+                    oView.addDependent(this.oBPSendToSMEList);
+                }
+                this.oBPSendToSMEList.open();
+            },
+            fnSelectSMEList:function(oEvent){
+            var oSelected = sap.ui.getCore().byId("id_SMEListContent").getSelectedItem();
+            if(oSelected){
+            var vEmail = oSelected.getBindingContext("JMCompSearchResult").getProperty("smeEmail");
+            
+            oView.getModel("JMSMESel").getData().smeEmail = vEmail;
+            oView.getModel("JMSMESel").refresh();
+            this.oBPSendToSMEList.close();
+            }else{
+                sap.m.MessageToast.show(oi18n.getProperty("PlSelAtLeastOneRec"));
+            }
+            
+            },
             fnSendToSME:function(){
                 var aSelData = [];
                 for (var i = 0; i < oView.getModel("oVendorListModel").getData().data.length; i++) {
@@ -2433,7 +2568,7 @@ sap.ui.define([
                 }
              
                 if (aSelData.length > 0) {
-                this.fnLoadSME();
+               // this.fnLoadSME();
                 var temp = {
                     "smeEmail":"",
                     "smeEmaile":"None",

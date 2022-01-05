@@ -4,11 +4,22 @@
 		<content>
         <VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
             <Label required="true" text="{i18n>SMEList}" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
-          <ComboBox width="95%"  items="{oBPLookUpMdl>/SMEList}" valueState="{JMSMESel>/smeEmaile}" valueStateText="{JMSMESel>/smeEmailm}"
+          <!-- <ComboBox width="95%"  items="{oBPLookUpMdl>/SMEList}" valueState="{JMSMESel>/smeEmaile}" valueStateText="{JMSMESel>/smeEmailm}"
 											filterSecondaryValues="true" change="fnLiveChangeSME" showSecondaryValues="true" selectedKey="{JMSMESel>/smeEmail}"
 											class="cl_VRInputCls sapUiSmallMarginBegin"  >
 											<core:ListItem key="{oBPLookUpMdl>smeEmail}" text="{oBPLookUpMdl>smeEmail}" additionalText="Company Code : {oBPLookUpMdl>companyCode} - P Org. : {oBPLookUpMdl>purchasingOrganisation}" />
-										</ComboBox>
+										</ComboBox> -->
+                                        <Input
+				width="95%"
+				class="cl_VRInputCls sapUiSmallMarginBegin" 
+				value="{JMSMESel>/smeEmail}"
+				
+                change="fnLiveChangeSME"
+                valueState="{JMSMESel>/smeEmaile}" valueStateText="{JMSMESel>/smeEmailm}"
+				showValueHelp="true"
+				valueHelpOnly="true"
+				valueHelpRequest="fnSMETableOpen"/>
+
             </VBox>
             <VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
             <Label required="true" text="Comments" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>

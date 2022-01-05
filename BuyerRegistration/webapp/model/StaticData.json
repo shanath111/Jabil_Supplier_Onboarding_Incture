@@ -15,14 +15,12 @@
     ],
     "ChangeType": [
         "NEW",
-        "REWORK",
         "CHANGE",
-        "MASS CHANGE",
-        "EXTEND",
-        "BANK CHANGE"
+        "EXTEND"
+       
     ],
     "Priority": [
-        "Default",
+        "Regular",
         "Urgent"
     ],
     "InstructionKey": [{
