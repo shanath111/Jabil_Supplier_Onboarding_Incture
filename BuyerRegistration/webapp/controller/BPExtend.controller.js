@@ -73,10 +73,10 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().searchEnable = false;
                     oView.getModel("oConfigMdl").getData().searchEnableGBS = false;
                     oView.getModel("oConfigMdl").getData().createNewBtn = false;
-                    oView.getModel("oConfigMdl").getData().screenEditable = false;
-                    var oFCL = that.getView().byId("flexibleColumnLayout");
-                    oFCL.setLayout(library.LayoutType.MidColumnFullScreen);
-                    this.fnPopulateGBSData(oContext.Id);//Load GBS Data
+                    oView.getModel("oConfigMdl").getData().screenEditable = true;
+                    var oFCL = this.getView().byId("flexibleColumnLayout");
+                    oFCL.setLayout(library.LayoutType.OneColumn);
+                    this.fnSetGBSData(oContext.Id);//Load GBS Data
                     oView.getModel("oConfigMdl").getData().toolBarVisible = false;
                     oView.getModel("oConfigMdl").getData().HeaderLinkTxt = oi18n.getProperty("VRVendorDetails2");
 
@@ -84,6 +84,170 @@ sap.ui.define([
 
                 oView.getModel("oConfigMdl").getData().contextPath = oContext;
                 oView.getModel("oConfigMdl").refresh();
+            },
+            fnLoadCaseDetailSME: function (vCaseID) {
+                var oModelFetch = new JSONModel();
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/case/findById/" + vCaseID
+                oModelFetch.loadData(sUrl);
+                oModelFetch.attachRequestCompleted(function onCompleted(oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        var data = oEvent.getSource().getData();
+                        var oCaseDetail = new sap.ui.model.json.JSONModel();
+                        oCaseDetail.setData(data);
+                        that.getView().setModel(oCaseDetail, "JMCaseDetail");
+
+                        for(var i =0 ;i< oView.getModel("oVendorListModel").getData().data.length;i++){
+                            if(oView.getModel("oVendorListModel").getData().data[i].BUSINESS_PARTNER_NUMBER == JSON.parse(oView.getModel("JMCaseDetail").getData().bpSearch.selectedSupplier).BUSINESS_PARTNER_NUMBER ){
+                                oView.getModel("oVendorListModel").getData().data[i].isSelect = true;
+                                oView.getModel("oVendorListModel").refresh();
+                                break;
+                            }
+                        }
+                    } else {
+                        var sErMsg = oEvent.getParameter("errorobject").responseText;
+                        MessageBox.show(sErMsg, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: "Error"
+                        });
+                    }
+                });
+
+            },
+            fnSetGBSData:function(vTaskID){
+                oBusyDilog.open();
+                var oModel = new JSONModel();
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/taskContext/" + vTaskID
+                oModel.loadData(sUrl);
+                oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                    oBusyDilog.close();
+                    if (oEvent.getParameter("success")) {
+
+
+                        var oJosnMdl = new sap.ui.model.json.JSONModel();
+                        oJosnMdl.setData(oEvent.getSource().getData().bpSearchParams);
+                        oView.setModel(oJosnMdl, "JMSearchFilter");
+                        var aTempData = [];
+                        that.caseId = oEvent.getSource().getData().caseId;
+
+                        var aFilter = oEvent.getSource().getData().bpSearchParams;
+                        var aBPData = oEvent.getSource().getData().bpSelectedResults;
+                        var oJosnMdlSel = new sap.ui.model.json.JSONModel();
+                        oJosnMdlSel.setData(aBPData);
+                        oView.setModel(oJosnMdlSel, "JMSelData");
+                        //  that.fnLoadPartnerData("Display", aFilter, aBPData);
+                        var vError = false;
+                        for (var i = 0; i < aBPData.length; i++) {
+                           
+                            vError = false;
+
+                            if (!aBPData[i].VENDOR_NAME) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].STREET) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].POSTAL_CODE) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].CITY) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].COUNTRY) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].REGION_STATE_PROVINCE) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].PAYMENT_METHOD) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].PAYMENT_TERMS) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].CURRENCY) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].INCO_TERMS) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].INCOTERMS2) {
+                                vError = true;
+                            }
+                            // if (!aBPData[i].BANK_COUNTRY) {
+                            //     vError = true;
+                            // }
+                            // if (!aBPData[i].IBAN) {
+                            //     vError = true;
+                            // }
+                            if (aBPData[i].BLOCK_FUNCTION) {
+                                vError = true;
+                            }
+                            if (aBPData[i].CENTRAL_POSTING_BLOCK) {
+                                vError = true;
+                            }
+                            if (aBPData[i].CENTRAL_PURCHASING_BLOCK) {
+                                vError = true;
+                            } if (aBPData[i].COMPANY_CODE_POSTING_BLOCK) {
+                                vError = true;
+                            } if (aBPData[i].PURCHASING_ORG_BLOCK) {
+                                vError = true;
+                            } if (aBPData[i].CENTRAL_DELETION_FLAG) {
+                                vError = true;
+                            } if (aBPData[i].COMPANY_CODE_DEL_FLAG) {
+                                vError = true;
+                            }
+                            if (aBPData[i].PURCHASING_ORG_DEL_FLAG) {
+                                vError = true;
+                            }
+
+                            if (aBPData[i].CENTRAL_BLOCK_CODE) {
+                                vError = true;
+                            }
+                            if (aBPData[i].PENDING_CHANGE_REQUEST) {
+                                vError = true;
+                            }
+
+                            if (aBPData[i].RELATIONSHIP_INDICATOR !== "PRIMARY") {
+                                vError = true;
+                            }
+                            aBPData[i].isError = vError;
+                        }
+
+
+
+                        var temp = {
+                            "data": aBPData,
+                            "Comments": oEvent.getSource().getData().duplicatesBuyerComments,
+                            // "totalPage": vTotalPage,
+                            // "fenable": vfenable,
+                            // "renable": vrenable,
+                            // "totalCount": oEvent.getSource().getData().d.__count,
+                            // "currentPage": oView.getModel("oVendorListModel").getData().currentPage,
+                            "headerText": "Partner Data Detail (" + aBPData.length + ")"
+                        }
+
+
+                        var oVendorListJson = new sap.ui.model.json.JSONModel();
+                        oVendorListJson.setData(temp);
+                        that.getView().setModel(oVendorListJson, "oVendorListModel");
+
+                        if (that.caseId) {
+                            that.fnLoadCaseDetailSME(that.caseId);
+                        }
+
+                    } else {
+                        var temp = {};
+                        var oBPCreateModel = new sap.ui.model.json.JSONModel();
+                        oBPCreateModel.setData(temp);
+                        oView.setModel(oBPCreateModel, "JMBPCreate");
+                        var sErMsg = oEvent.getParameter("errorobject").responseText;
+                        MessageBox.show(sErMsfnLoadPartnerDatag, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: "Error"
+                        });
+                    }
+                });
+
             },
             fnPopulateGBSData: function (vTaskId) {
                 oBusyDilog.open();
@@ -869,7 +1033,7 @@ sap.ui.define([
             },
             fnCaseListPressNav: function (oEvent) {
 
-                if (oView.getModel("oConfigMdl").getData().contextPath.Id == "New") {
+                if (oView.getModel("oConfigMdl").getData().contextPath.Id == "New" || oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention"                ) {
 
                     var temp = oView.getModel("oVendorListModel").getData().data[oEvent.getSource().getSelectedIndex()];
                     if (temp.isError == true) {
@@ -884,7 +1048,7 @@ sap.ui.define([
                         this.getView().byId("id_FilterPanel").setExpanded(true);
                         var oFCL = this.getView().byId("flexibleColumnLayout");
                         oFCL.setLayout(library.LayoutType.OneColumn);
-                        return;
+                       return;
 
                     } else {
 
@@ -1039,6 +1203,18 @@ sap.ui.define([
                                 "selectedSupplier": JSON.stringify(temp)
                             }
                         };
+ 
+                        if(oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention"){
+                            temp1.caseId =   oView.getModel("JMCaseDetail").getData().caseId;
+                            temp1.status =   oView.getModel("JMCaseDetail").getData().status;
+ 
+                            temp1.userCreated =   oView.getModel("JMCaseDetail").getData().userCreated;
+                            temp1.dateCreated =   oView.getModel("JMCaseDetail").getData().dateCreated;
+                            temp1.userUpdated =   oView.getModel("JMCaseDetail").getData().userUpdated;
+                            temp1.scopeId =   oView.getModel("JMCaseDetail").getData().bpRequestScope.scopeId;
+                            temp1.addlScopeId =  oView.getModel("JMCaseDetail").getData().bpRequestScope.bpRequestScopeAddlDetails.addlScopeId;
+                        }
+                        
 
                         var oBPCreateModel = new sap.ui.model.json.JSONModel();
                         oBPCreateModel.setData(temp1);
@@ -1051,6 +1227,7 @@ sap.ui.define([
 
 
                     }
+                    
 
 
 

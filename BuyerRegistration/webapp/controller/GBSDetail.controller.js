@@ -91,6 +91,9 @@ sap.ui.define([
                     }
                 });
             },
+            fnRefresh:function(){
+                this.fnLoadContextData(that.vTaskID);
+            },
 
 
             fnLoadContextData: function (vTaskID) {
@@ -639,14 +642,14 @@ sap.ui.define([
                 if (vCount !== 1) {
                     sap.m.MessageToast.show(oi18n.getProperty("GBSSelectSingleRecord"));
                 } else {
-                    if (vSelDataTem.isError == true) {
-                        var sErMsg = oi18n.getProperty("ExtentionNotAllowedWithError");
-                        MessageBox.show(sErMsg, {
-                            icon: MessageBox.Icon.ERROR,
-                            title: "Error"
-                        });
-                        return;
-                    }
+                    // if (vSelDataTem.isError == true) {
+                    //     var sErMsg = oi18n.getProperty("ExtentionNotAllowedWithError");
+                    //     MessageBox.show(sErMsg, {
+                    //         icon: MessageBox.Icon.ERROR,
+                    //         title: "Error"
+                    //     });
+                    //     return;
+                    // }
                     var temp = {};
                     temp.Action = "RJ";
                     //temp.Comments ;
@@ -694,23 +697,30 @@ sap.ui.define([
                     }
                 }
                 oView.getModel("JMCaseDetail").getData().bpSearch.selectedSupplier = JSON.stringify(vSelDataTem);
+                var vBuyer = "";
+                if (oView.getModel("oConfigMdl").getData().usrData) {
+                    vBuyer = oView.getModel("oConfigMdl").getData().usrData.givenName;
+                   
+                }
+                oView.getModel("JMCaseDetail").getData().userUpdated = vBuyer;
+                oView.getModel("JMCaseDetail").getData().dateUpdated = new Date();
                 oView.getModel("JMCaseDetail").refresh();
 
                 if (vCount !== 1) {
                     sap.m.MessageToast.show(oi18n.getProperty("GBSSelectSingleRecord"));
                 } else {
-                    if (vSelDataTem) {
-                        if (vSelDataTem.PENDING_CHANGE_REQUEST) {
-                            var sErMsg = oi18n.getProperty("ExtentionNotAllowed");
-                            MessageBox.show(sErMsg, {
-                                icon: MessageBox.Icon.ERROR,
-                                title: "Error"
-                            });
-                            return;
-                        }
-                    }
+                    // if (vSelDataTem) {
+                    //     if (vSelDataTem.PENDING_CHANGE_REQUEST) {
+                    //         var sErMsg = oi18n.getProperty("ExtentionNotAllowed");
+                    //         MessageBox.show(sErMsg, {
+                    //             icon: MessageBox.Icon.ERROR,
+                    //             title: "Error"
+                    //         });
+                    //         return;
+                    //     }
+                    // }
                     this.oBankComments.close();
-                    that.fnUpdateLocalModel(vSelDataTem);
+                 //   that.fnUpdateLocalModel(vSelDataTem);
                     MessageBox.confirm(oi18n.getProperty("GBSApprover"), {
                         icon: MessageBox.Icon.Confirmation,
                         title: "Confirmation",
