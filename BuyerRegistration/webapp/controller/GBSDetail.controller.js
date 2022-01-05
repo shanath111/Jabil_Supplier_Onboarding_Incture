@@ -642,14 +642,14 @@ sap.ui.define([
                 if (vCount !== 1) {
                     sap.m.MessageToast.show(oi18n.getProperty("GBSSelectSingleRecord"));
                 } else {
-                    // if (vSelDataTem.isError == true) {
-                    //     var sErMsg = oi18n.getProperty("ExtentionNotAllowedWithError");
-                    //     MessageBox.show(sErMsg, {
-                    //         icon: MessageBox.Icon.ERROR,
-                    //         title: "Error"
-                    //     });
-                    //     return;
-                    // }
+                    if (vSelDataTem.isError == true) {
+                        var sErMsg = oi18n.getProperty("ExtentionNotAllowedWithError");
+                        MessageBox.show(sErMsg, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: "Error"
+                        });
+                        return;
+                    }
                     var temp = {};
                     temp.Action = "RJ";
                     //temp.Comments ;
