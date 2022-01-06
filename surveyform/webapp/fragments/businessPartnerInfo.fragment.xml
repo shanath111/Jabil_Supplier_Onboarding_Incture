@@ -40,8 +40,8 @@
 				<Label required="true" labelFor="site" class="fontBold sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSizeCompact" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isSiteRegwithDunandBrad}:${oi18n_En>isSiteRegwithDunandBrad} +'&#10;' +${i18n>isSiteRegwithDunandBrad}}"
 					wrapping="true"></Label>
 				<RadioButtonGroup id="site" columns="2" selectedIndex="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === true? 0 :(${oDataModel>/bpInfoDto/siteHaveDunsNumber}=== false ?1: -1)}" class="inputStyle" enabled="{oEnableMdl>/siteHaveDunsNumberEnb}" valueState="{oErrorModel>/siteHaveDunsNumberE}" select="fnClearValueState">
-					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/bpInfoDto/siteHaveDunsNumber}"/>
-					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}"  select="fnSelectionChange"/>
+					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/bpInfoDto/siteHaveDunsNumber}" groupName="site"/>
+					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}"  select="fnSelectionChange" groupName="site"/>
 				</RadioButtonGroup>
 			</HBox>
             <VBox alignContent="Start">
@@ -101,8 +101,8 @@
 				</l:Grid>
                 <Label wrapping= "true" labelFor="corpHead" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>isSiteTheCorpHead}:${oi18n_En>isSiteTheCorpHead} +'&#10;&#10;' +${i18n>isSiteTheCorpHead}}" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin" required="true"></Label>
 				<RadioButtonGroup id="corpHead" enabled="{oEnableMdl>/isSiteCorporateHeadquatersEnb}" columns="2" selectedIndex="{=${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters} === true? 0 :(${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}=== false ?1: -1)}" class="inputStyle" valueState="{oErrorModel>/isSiteCorporateHeadquatersE}" select="fnClearValueState">
-					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" valueState="{oErrorModel>/corpHQE}" selected="{oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}"/>
-					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"/>
+					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" valueState="{oErrorModel>/corpHQE}" selected="{oDataModel>/bpInfoDto/isSiteCorporateHeadquaters}" groupName="corpHead"/>
+					<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange" groupName="corpHead"/>
 				</RadioButtonGroup>
                 	
                 <VBox alignContent="Start" visible="{=${oDataModel>/bpInfoDto/isSiteCorporateHeadquaters} === false}" class="fontStyle sapUiTinyMarginTop">
@@ -177,8 +177,8 @@
                     <VBox class=" fontStyle sapUiSizeCompact sapUiTinyMarginBottom"> 
                         <Label wrapping="true" labelFor="isDunsRegistered" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>IsRegisteredWithDuns}:${oi18n_En>IsRegisteredWithDuns} +'/&#160;' + ${i18n>IsRegisteredWithDuns}}" class="fontStyle sapUiTinyMarginBegin"/>
                         <RadioButtonGroup id="isDunsRegistered" enabled="{oEnableMdl>/isRegWithDunsEnb}" columns="2" selectedIndex="{=${oDataModel>/bpInfoDto/isCorpHeadquartersDunsRegistered} === true? 0 :(${oDataModel>/bpInfoDto/isCorpHeadquartersDunsRegistered}=== false ?1: -1)}" valueState="{oErrorModel>/isCorpHeadquartersDunsRegisteredE}" class="inputStyle" select="fnClearValueState">
-                            <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/bpInfoDto/isCorpHeadquartersDunsRegistered}" />
-                            <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"/>
+                            <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/bpInfoDto/isCorpHeadquartersDunsRegistered}" groupName="isDunsRegistered"/>
+                            <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange" groupName="isDunsRegistered"/>
                         </RadioButtonGroup>       
 					</VBox>
                     <!-- <l:VerticalLayout visible="{=${oDataModel>/bpInfoDto/isCorpHeadquartersDunsRegistered} === false}" width="100%">

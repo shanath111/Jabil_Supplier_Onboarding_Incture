@@ -463,10 +463,10 @@
                              <l:VerticalLayout class="fontStyle sapUiSizeCompact sapUiTinyMarginBottom">
       <Label labelFor="allowFinStat" required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>allowFinStatText}:${oi18n_En>allowFinStatText} +'/&#160;' +${i18n>allowFinStatText}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 		<RadioButtonGroup id="allowFinStat" columns="1" class="inputStyle" selectedIndex="{oDataModel>/financeInfoDto/doesFinancialStatements}"  valueState="{oErrorModel>/doesFinancialStatementsE}" select="fnClearValueState" enabled="{oEnableMdl>/doesFinancialStatementsEnb}">
-			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}"></RadioButton>
-			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>noPC}:${oi18n_En>noPC} +'/&#160;' +${i18n>noPC}}"></RadioButton>
-            <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>noNDC}:${oi18n_En>noNDC} +'/&#160;' +${i18n>noNDC}}"></RadioButton>
-			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>noNA}:${oi18n_En>noNA} +'/&#160;' +${i18n>noNA}}"></RadioButton>
+			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" groupName="allowFinStat"></RadioButton>
+			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>noPC}:${oi18n_En>noPC} +'/&#160;' +${i18n>noPC}}" groupName="allowFinStat"></RadioButton>
+            <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>noNDC}:${oi18n_En>noNDC} +'/&#160;' +${i18n>noNDC}}" groupName="allowFinStat"></RadioButton>
+			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>noNA}:${oi18n_En>noNA} +'/&#160;' +${i18n>noNA}}" groupName="allowFinStat"></RadioButton>
 		</RadioButtonGroup>
         
         <Label labelFor="isFinAudited" required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>doesAuditHapnd}:${oi18n_En>doesAuditHapnd} +'/&#160;' +${i18n>doesAuditHapnd}}" wrapping="true" class="fontStyle  sapUiTinyMarginTop sapUiTinyMarginBegin"/>
