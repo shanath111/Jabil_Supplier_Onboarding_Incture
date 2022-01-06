@@ -210,8 +210,8 @@
 							<Label required="true" labelFor="authority" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>authorityCheck}:${oi18n_En>authorityCheck} +'/&#160;' + ${i18n>authorityCheck}}" class="fontStyle fontStyleBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 							 <Label required="true" wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>transferContact}:${oi18n_En>transferContact} +'/&#160;' + ${i18n>transferContact}}" class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginTop"/>
                             <RadioButtonGroup id="authority" enabled="{oEnableMdl>/isAuthorityEnb}" columns="2" selectedIndex="{=${oDataModel>/surveyInfoDto/isAuthority} === true? 0 :(${oDataModel>/surveyInfoDto/isAuthority}=== false ?1: -1)}" class="inputStyle" valueState="{oErrorModel>/isAuthorityE}" select="fnClearValueState">
-								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/surveyInfoDto/isAuthority}" />
-								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"/>
+								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/surveyInfoDto/isAuthority}" groupName="authority"/>
+								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange" groupName="authority"/>
 							</RadioButtonGroup>
                            
 						</VBox>
@@ -283,8 +283,8 @@
                         <VBox class=" fontStyle sapUiSizeCompact sapUiTinyMarginBottom"> 
                             <Label labelFor="maincontact" required="true" wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>ismainContact}:${oi18n_En>ismainContact} +'/&#160;' + ${i18n>ismainContact}}" class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginTop"/>
 							<RadioButtonGroup id="maincontact" columns="2" selectedIndex="{=${oDataModel>/surveyInfoDto/isJabilMainContact} === true? 0 :(${oDataModel>/surveyInfoDto/isJabilMainContact}=== false ?1: -1)}" class="inputStyle" enabled="{oEnableMdl>/areYouMainContactEnb}" valueState="{oErrorModel>/isJabilMainContactE}" select="fnClearValueState">
-								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/surveyInfoDto/isJabilMainContact}" />
-								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}"  select="fnSelectionChange" />
+								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/surveyInfoDto/isJabilMainContact}" groupName="maincontact"/>
+								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}"  select="fnSelectionChange" groupName="maincontact"/>
 							</RadioButtonGroup>
 						</VBox>
 						<l:VerticalLayout width="100%">
