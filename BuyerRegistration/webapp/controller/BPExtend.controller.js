@@ -2867,6 +2867,11 @@ sap.ui.define([
                                         aSelData.push(oView.getModel("oVendorListModel").getData().data[i])
                                     }
                                 }
+                                var vBuyer = "", vBuyerEmail = "";
+                                if (oView.getModel("oConfigMdl").getData().usrData) {
+                                    vBuyer = oView.getModel("oConfigMdl").getData().usrData.givenName;
+                                    //  vBuyerEmail = oView.getModel("oConfigMdl").getData().usrData.email;
+                                }
 
                                 oBusyDilog.open();
                                 var oPayload = {
@@ -2875,7 +2880,7 @@ sap.ui.define([
                                         },
                                         "isNew": false,
                                         "isDuplicatesFound": true,
-                                        "buyerName": oView.getModel("JMBPCreate").getData().buyerName
+                                        "buyerName": vBuyer
                                         //  "companyCode": "0001",
                                         //  "corporationName": "Jabil Corp",
                                         //  "purchasingOrg": "PUR01"
