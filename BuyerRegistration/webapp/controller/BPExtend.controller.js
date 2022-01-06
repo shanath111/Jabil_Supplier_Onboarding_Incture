@@ -2820,6 +2820,7 @@ sap.ui.define([
                                         },
                                         "isNew": false,
                                         "isDuplicatesFound": true,
+                                        "buyerName": oView.getModel("JMBPCreate").getData().buyerName
                                         //  "companyCode": "0001",
                                         //  "corporationName": "Jabil Corp",
                                         //  "purchasingOrg": "PUR01"
