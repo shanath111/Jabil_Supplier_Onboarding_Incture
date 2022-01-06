@@ -40,6 +40,8 @@ sap.ui.define([
             },
             fnSetConfigModel: function (oContext) {
                 oView.getModel("oConfigMdl").getData().caseDeailVis = true;
+                oView.getModel("oConfigMdl").getData().CompleteTaskVis = false;
+                
                 if (oContext.Name == "Display") {
                     if (oContext.Id == "New") {
                         oView.getModel("oConfigMdl").getData().caseDeailVis = false;
@@ -74,6 +76,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().searchEnableGBS = false;
                     oView.getModel("oConfigMdl").getData().createNewBtn = false;
                     oView.getModel("oConfigMdl").getData().screenEditable = true;
+                    oView.getModel("oConfigMdl").getData().CompleteTaskVis = true;
                     var oFCL = this.getView().byId("flexibleColumnLayout");
                     oFCL.setLayout(library.LayoutType.OneColumn);
                     this.fnSetGBSData(oContext.Id);//Load GBS Data
@@ -1252,6 +1255,54 @@ sap.ui.define([
             fnSaveContinue: function () {
                 this.oBPSuccessDraft.close();
                 that.fnLoadCaseDetail(oView.getModel("JMBPCreate").getData().caseId);//Load Case ID Details
+            },
+            fnCloseTask:function(){
+                oBusyDilog.open();
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/taskComplete"
+                var oPayload = {
+                    "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                    "bpNumber": ""
+                }
+                var oModelWf = new JSONModel();
+
+                oModelWf.loadData(sUrl, JSON.stringify(
+                    oPayload
+                ), true, "POST", false, true, {
+                    "Content-Type": "application/json"
+                });
+                oModelWf.attachRequestCompleted(function (oEvent) {
+                    oBusyDilog.close();
+                    if (oEvent.getParameter("success")) {
+                        var temp = {
+                            "Message": "",
+                            "caseId": that.caseId
+                        }
+                        temp.Message = oi18n.getProperty("Task Canceled Successfully");
+                        var oJosnMessage = new sap.ui.model.json.JSONModel();
+                        oJosnMessage.setData(temp);
+                        oView.setModel(oJosnMessage,
+                            "JMMessageData");
+                        if (!that.oBPSuccess) {
+                            that.oBPSuccess = sap.ui.xmlfragment(
+                                "ns.BuyerRegistration.fragments.CreateSuccess", that);
+                            oView.addDependent(that.oBPSuccess);
+                        }
+                        that.oBPSuccess.open();
+
+                    } else {
+
+                        oBusyDilog.close();
+                        var sErMsg = oEvent.getParameter("errorobject").responseText;
+                        MessageBox.show(sErMsg, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: "Error"
+                        });
+
+                    }
+                });
+
+
+
             },
             fnCancelAction: function () {
                 if (oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention") {
