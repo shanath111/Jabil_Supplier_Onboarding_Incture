@@ -1255,7 +1255,6 @@ sap.ui.define([
             },
             fnCancelAction: function () {
                 window.history.go(-1);
-
             },
             fnCreateBP: function () {
                 this.fnMandatoryFieldClear();
