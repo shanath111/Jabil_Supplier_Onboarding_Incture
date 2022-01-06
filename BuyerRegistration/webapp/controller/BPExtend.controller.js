@@ -1992,10 +1992,49 @@ sap.ui.define([
                                     }
                                 } else {
                                     var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/taskComplete"
+                                   
                                     var oPayload = {
-                                        "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
-                                        "bpNumber": ""
+                                        "context": {
+                                            "bpNumber": "",
+                                            "isNew": vIsNew,
+                                            "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                                            "corporationName": oView.getModel("JMBPCreate").getData().corporationName,
+                                            "isDplicatesFound": false,
+                                            "caseId": oEvent.getSource().getData().caseId,
+                                            "buyerName": vBuyer,
+                                            "buyerTelephone": "",
+                                            "buyerEmailid": vBuyerEmail,
+                                            "division": "",
+                                            "conflictOfInterest": vConflictOfInt,
+                                            "requestorConflictOfInterest": vConflictOfInt1,
+                                            "requestorCOIEmail": oView.getModel("JMBPCreate").getData().requestorCOIEmail,
+                                            "requestorCOIName": oView.getModel("JMBPCreate").getData().requestorCOIName,
+                                            "coiReason": oView.getModel("JMBPCreate").getData().additionalInformation,
+                                            "supplierName": oView.getModel("JMBPCreate").getData().firstName + " " + oView.getModel("JMBPCreate").getData().lastName,
+                                            "supplierAddress": oView.getModel("JMBPCreate").getData().address1,
+                                            "supplierCity": oView.getModel("JMBPCreate").getData().city,
+                                            "supplierCountry": oView.getModel("JMBPCreate").getData().countryd,
+                                            "supplierDistrict": oView.getModel("JMBPCreate").getData().district,
+                                            "supplierPostalCode": oView.getModel("JMBPCreate").getData().postalCode,
+                                            "supplierTelephone": oView.getModel("JMBPCreate").getData().telephone,
+                                            "supplierEmail": oView.getModel("JMBPCreate").getData().email,
+                                            "purchasingGroup": "",
+                                            "workCell": oView.getModel("JMBPCreate").getData().workCelld,
+                                            "plant": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().Plant, oView.getModel("JMBPCreate").getData().plant, "Plant"),
+                                            "companyCode": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
+                                            "purchasingOrg": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurOrg, oView.getModel("JMBPCreate").getData().purchasingOrg, "PurchOrg"),
+                                            "supplierDetails": {
+                                                "firstName": oView.getModel("JMBPCreate").getData().firstName,
+                                                "lastName": oView.getModel("JMBPCreate").getData().lastName,
+                                                "email": oView.getModel("JMBPCreate").getData().email
+                                            }
+                                            // "company_code": oView.getModel("JMBPCreate").getData().companyCode,
+                                            // "purchasing_code": oView.getModel("JMBPCreate").getData().purchasingOrg
+                                        },
+
+                                        "definitionId": "partner_onboarding_main"
                                     }
+
                                 }
 
                                 oModelWf.loadData(sUrl, JSON.stringify(
