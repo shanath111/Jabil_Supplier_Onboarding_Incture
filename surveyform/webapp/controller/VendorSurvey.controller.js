@@ -1148,19 +1148,19 @@ sap.ui.define([
                                     that._fnLoadManServList(oEvent.getSource().oData);
 
                                     that._fnReadDocumentList(oEvent.getSource().oData.caseId, that);
-                                    // var oldExceptionDataObj = jQuery.extend(true, {}, this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList,this.getView().getModel("oDataModel").getData().ownerShipInfoDto.this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntityRegInCISNK,
-                                    // this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt,this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily,
-                                    // this.getView().getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmp,this.getView().getModel("oDataModel").getData().comComplianceDto.companyContactWithPreviouseJabilEmp,
-                                    // this.getView().getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || this.getView().getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil ?  "YES" : "NO");
-                                    // var oldExceptionalData = new JSONModel();
-                                    // oldExceptionalData.setData(oldExceptionDataObj);
-                                    // this.getView().setModel("oldExceptionalData", oldExceptionalData);
+                                    var oldExceptionDataObj = jQuery.extend(true, {}, {"isEntitySDNList": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList, "isEntityRegInCISNK" :oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityRegInCISNK,
+                                    "isEntityManagedByGovt" :oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt,"isEntityManagedByGovtFamily" :oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily,
+                                    "companyRelationWithJabilEmp":oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmp,"companyContactWithPreviouseJabilEmp":oView.getModel("oDataModel").getData().comComplianceDto.companyContactWithPreviouseJabilEmp,
+                                    "cyberException":oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil ?  "YES" : "NO"});
+                                    var oldExceptionalData = new JSONModel();
+                                    oldExceptionalData.setData(oldExceptionDataObj);
+                                    oView.setModel(oldExceptionalData,"oldExceptionalData");
                                 }
                                 oBusyDialogLoadData.close();
 
                             }
 
-                            else if (true || oEvent.getParameter("errorobject").statusCode == 400 || oEvent.getParameter("errorobject").statusCode == 404 || oEvent.getParameter("errorobject").statusCode == 409 || oEvent.getParameter("errorobject").statusCode == 500) {
+                            else if (oEvent.getParameter("errorobject").statusCode == 400 || oEvent.getParameter("errorobject").statusCode == 404 || oEvent.getParameter("errorobject").statusCode == 409 || oEvent.getParameter("errorobject").statusCode == 500) {
 
                                 var sUrl = "/comjabilsurveyform/plcm_portal_services/case/findById/" + oView.getModel("oUserModel").getData().caseId;
                                 var oModel = new JSONModel();
@@ -1229,13 +1229,13 @@ sap.ui.define([
                                         that.getOwnerComponent().getModel("oVisibilityModel").getData().buyerSurveyAttach = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.addlSurveyForSupplier;
                                         that.getOwnerComponent().getModel("oVisibilityModel").refresh();
                                         oBusyDialogLoadData.close();
-                                        // var oldExceptionDataObj = jQuery.extend(true, {}, this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList,this.getView().getModel("oDataModel").getData().ownerShipInfoDto.this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntityRegInCISNK,
-                                        // this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt,this.getView().getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily,
-                                        // this.getView().getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmp,this.getView().getModel("oDataModel").getData().comComplianceDto.companyContactWithPreviouseJabilEmp,
-                                        // this.getView().getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || this.getView().getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil ?  "YES" : "NO");
-                                        // var oldExceptionalData = new JSONModel();
-                                        // oldExceptionalData.setData(oldExceptionDataObj);
-                                        // this.getView().setModel("oldExceptionalData", oldExceptionalData);
+                                        var oldExceptionDataObj = jQuery.extend(true, {}, {"isEntitySDNList": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList, "isEntityRegInCISNK" :oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityRegInCISNK,
+                                        "isEntityManagedByGovt" :oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt,"isEntityManagedByGovtFamily" :oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily,
+                                        "companyRelationWithJabilEmp":oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmp,"companyContactWithPreviouseJabilEmp":oView.getModel("oDataModel").getData().comComplianceDto.companyContactWithPreviouseJabilEmp,
+                                        "cyberException":oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil ?  "YES" : "NO"});                                      
+                                        var oldExceptionalData = new JSONModel();
+                                        oldExceptionalData.setData(oldExceptionDataObj);
+                                        oView.setModel(oldExceptionalData,"oldExceptionalData");
                                     }
                                     else {
                                         var sErMsg = oEvent.getParameter("errorobject").responseText;
@@ -6570,7 +6570,7 @@ var aError = false;
                                 oEvent.getSource().setValueStateText("ID must be of " + taxIDMaxLength + " characters in length without any spaces");
                             } else if ( !regex.test(taxID) || taxID.includes("_")){
                                 oEvent.getSource().setValueState("Error");
-                                oEvent.getSource().setValueStateText("ID must be of format " + "e.g(7UIAAA.UI89A.XX.000) and should not contain any 'O letter'");
+                                oEvent.getSource().setValueStateText("ID must be of format " + "e.g(7UIAAA.UI89A.LE.000) and should not contain any 'O letter'");
                             } else {
                                 //this.emailValidResult = false;
                             }
@@ -9750,6 +9750,83 @@ var that = this;
                 var that = this;
                 var jModel = new JSONModel();
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/workflow/taskComplete";
+                if(oView.getModel("oUserModel").getData().isBuyerRejectTask === true){
+                    var exceptional_wf_input = {
+                        "GTS_question1": "",
+                        "GTS_question2":"",
+                        "Legal_exceptional_question1": "",
+                        "Legal_exceptional_question2":"",
+                        "Legal_coi_exception_question1":"",
+                        "Legal_coi_exception_question2":"",
+                        "cyberSecurityExceptionalQuestion":""
+                    }
+                var newExceptionalData = {"isEntitySDNList": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList, "isEntityRegInCISNK" :oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityRegInCISNK,
+                "isEntityManagedByGovt" :oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt,"isEntityManagedByGovtFamily" :oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily,
+                "companyRelationWithJabilEmp":oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmp,"companyContactWithPreviouseJabilEmp":oView.getModel("oDataModel").getData().comComplianceDto.companyContactWithPreviouseJabilEmp,
+                "cyberException":oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil ?  "YES" : "NO"};
+               
+                var oPropsToCompare = {
+                    "isEntitySDNList": "",
+                    "isEntityRegInCISNK": "",
+                    "isEntityManagedByGovt": "",
+                    "isEntityManagedByGovtFamily": "",
+                    "companyRelationWithJabilEmp": "",
+                    "companyContactWithPreviouseJabilEmp": "",
+                    "cyberException": ""
+                },
+                aComparekeys = Object.keys(oPropsToCompare);
+               
+                    var oCurrData = newExceptionalData,
+                        oPrevData = oView.getModel("oldExceptionalData").getData();
+                    for (var k = 0; k < aComparekeys.length; k++) {
+                        var key = aComparekeys[k];
+                        if (oCurrData[key] !== oPrevData[key]) {
+                           
+                            if(key == "isEntitySDNList"){
+                                exceptional_wf_input.GTS_question1 = oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList ? "YES" : "NO"
+                            }else if(key == "isEntityRegInCISNK"){
+                                exceptional_wf_input.GTS_question2 = oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityRegInCISNK ? "YES" : "NO"
+                            }else if(key == "isEntityManagedByGovt"){
+                                exceptional_wf_input.Legal_exceptional_question1 = oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt ? "YES" : "NO"
+                            }else if(key == "isEntityManagedByGovtFamily"){
+                                exceptional_wf_input.Legal_exceptional_question2 = oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily ? "YES" : "NO"
+                            }else if(key == "companyRelationWithJabilEmp"){
+                                exceptional_wf_input.Legal_coi_exception_question1 = oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmp? "YES" : "NO"
+                            }else if(key == "companyContactWithPreviouseJabilEmp"){
+                                exceptional_wf_input.Legal_coi_exception_question2 = oView.getModel("oDataModel").getData().comComplianceDto.companyContactWithPreviouseJabilEmp ? "YES" : "NO"
+                            }else if(key == "cyberException"){
+                                exceptional_wf_input.cyberSecurityExceptionalQuestion = oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil ?  "YES" : "NO"
+                            }
+                        } else {
+                            if(key == "isEntitySDNList"){
+                                exceptional_wf_input.GTS_question1 = "NO"
+                            }else if(key == "isEntityRegInCISNK"){
+                                exceptional_wf_input.GTS_question2 = "NO"
+                            }else if(key == "isEntityManagedByGovt"){
+                                exceptional_wf_input.Legal_exceptional_question1 = "NO"
+                            }else if(key == "isEntityManagedByGovtFamily"){
+                                exceptional_wf_input.Legal_exceptional_question2 = "NO"
+                            }else if(key == "companyRelationWithJabilEmp"){
+                                exceptional_wf_input.Legal_coi_exception_question1 = "NO"
+                            }else if(key == "companyContactWithPreviouseJabilEmp"){
+                                exceptional_wf_input.Legal_coi_exception_question2 =  "NO"
+                            }else if(key == "cyberException"){
+                                exceptional_wf_input.cyberSecurityExceptionalQuestion = "NO"
+                            }
+                        }
+                    }
+                } else{
+                    var exceptional_wf_input = {
+                        "GTS_question1": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList ? "YES" : "NO",
+                        "GTS_question2": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityRegInCISNK ? "YES" : "NO",
+                        "Legal_exceptional_question1": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt ? "YES" : "NO",
+                        "Legal_exceptional_question2": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily ? "YES" : "NO",
+                        "Legal_coi_exception_question1": oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmp ? "YES" : "NO",
+                        "Legal_coi_exception_question2": oView.getModel("oDataModel").getData().comComplianceDto.companyContactWithPreviouseJabilEmp ? "YES" : "NO",
+                        "cyberSecurityExceptionalQuestion": oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil ?  "YES" : "NO"
+                    }
+                }
+                
                 var wPayload =
                 {
                     "context": {
@@ -9775,15 +9852,7 @@ var that = this;
                             "lastName": oView.getModel("oDataModel").getData().surveyInfoDto.isAuthority ? "" : oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.lastName,
                             "email": oView.getModel("oDataModel").getData().surveyInfoDto.isAuthority ? "" : oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.email
                         },
-                        "exceptional_wf_input": {
-                            "GTS_question1": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList ? "YES" : "NO",
-                            "GTS_question2": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityRegInCISNK ? "YES" : "NO",
-                            "Legal_exceptional_question1": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovt ? "YES" : "NO",
-                            "Legal_exceptional_question2": oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityManagedByGovtFamily ? "YES" : "NO",
-                            "Legal_coi_exception_question1": oView.getModel("oDataModel").getData().comComplianceDto.companyRelationWithJabilEmp ? "YES" : "NO",
-                            "Legal_coi_exception_question2": oView.getModel("oDataModel").getData().comComplianceDto.companyContactWithPreviouseJabilEmp ? "YES" : "NO",
-                            "cyberSecurityExceptionalQuestion": oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil ?  "YES" : "NO"
-                        },
+                        "exceptional_wf_input": exceptional_wf_input,
                         "ndaSupplierDetails": {
                             "email": oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.email,
                             "name": oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.firstName + " " + oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.lastName,

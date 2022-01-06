@@ -453,6 +453,8 @@
 										<Label text="{oDataModel>/bpInfoDto/tax/ifOther}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid> -->
+                                	<Label text="{i18n>Attachments}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_PreviewLablClsValue"/>
+            <Label text="{oi18n_En>Attachments}/&#160;{i18n>Attachments}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_PreviewLablClsValue"/>
                                 	<gl:GridList width="auto"
 		 growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
 			items="{oAttachmentList>/0/bPDArray}">
@@ -1368,6 +1370,8 @@
 									</HBox>
 								</l:Grid> 
                                  <!-- <Label text="{i18n>bankInformation}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label> -->
+                                                               	<Label text="{i18n>Attachments}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_PreviewLablClsValue"/>
+            <Label text="{oi18n_En>Attachments}/&#160;{i18n>Attachments}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_PreviewLablClsValue"/>
                                <gl:GridList width="auto" visible="{oUserModel>/isNew}"
  growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
 			items="{oAttachmentList>/0/bankDArray}">
@@ -1853,6 +1857,8 @@
         
         </gl:GridListItem>
    </gl:GridList>
+                                   	<Label text="{i18n>Attachments}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinyMarginTop cl_PreviewLablClsValue"/>
+            <Label text="{oi18n_En>Attachments}/&#160;{i18n>Attachments}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinyMarginTop cl_PreviewLablClsValue"/>
                               <gl:GridList width="auto"
  growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
 			items="{oAttachmentList>/0/compComplDArray}">

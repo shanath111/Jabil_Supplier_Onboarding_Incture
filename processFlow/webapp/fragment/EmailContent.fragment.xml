@@ -13,9 +13,7 @@
         <Text text="{JMMailContent>/subject}" ></Text>
        </Toolbar>
        <rt:RichTextEditor width="98%" editable="false" showGroupFontStyle="false" showGroupFont="false" showGroupStructure="false" showGroupLink="false" showGroupTextAlign="false" showGroupUndo="false" showGroupClipboard="false" showGroupInsert="false" class="sapUiTinyMarginBegin" height="78%" value="{JMMailContent>/body}"></rt:RichTextEditor>
-								
-	
-   
+
 		</content>
        
          <endButton >

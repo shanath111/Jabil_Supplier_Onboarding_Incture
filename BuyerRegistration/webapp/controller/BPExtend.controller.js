@@ -73,10 +73,10 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().searchEnable = false;
                     oView.getModel("oConfigMdl").getData().searchEnableGBS = false;
                     oView.getModel("oConfigMdl").getData().createNewBtn = false;
-                    oView.getModel("oConfigMdl").getData().screenEditable = false;
-                    var oFCL = that.getView().byId("flexibleColumnLayout");
-                    oFCL.setLayout(library.LayoutType.MidColumnFullScreen);
-                    this.fnPopulateGBSData(oContext.Id);//Load GBS Data
+                    oView.getModel("oConfigMdl").getData().screenEditable = true;
+                    var oFCL = this.getView().byId("flexibleColumnLayout");
+                    oFCL.setLayout(library.LayoutType.OneColumn);
+                    this.fnSetGBSData(oContext.Id);//Load GBS Data
                     oView.getModel("oConfigMdl").getData().toolBarVisible = false;
                     oView.getModel("oConfigMdl").getData().HeaderLinkTxt = oi18n.getProperty("VRVendorDetails2");
 
@@ -84,6 +84,170 @@ sap.ui.define([
 
                 oView.getModel("oConfigMdl").getData().contextPath = oContext;
                 oView.getModel("oConfigMdl").refresh();
+            },
+            fnLoadCaseDetailSME: function (vCaseID) {
+                var oModelFetch = new JSONModel();
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/case/findById/" + vCaseID
+                oModelFetch.loadData(sUrl);
+                oModelFetch.attachRequestCompleted(function onCompleted(oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        var data = oEvent.getSource().getData();
+                        var oCaseDetail = new sap.ui.model.json.JSONModel();
+                        oCaseDetail.setData(data);
+                        that.getView().setModel(oCaseDetail, "JMCaseDetail");
+
+                        for(var i =0 ;i< oView.getModel("oVendorListModel").getData().data.length;i++){
+                            if(oView.getModel("oVendorListModel").getData().data[i].BUSINESS_PARTNER_NUMBER == JSON.parse(oView.getModel("JMCaseDetail").getData().bpSearch.selectedSupplier).BUSINESS_PARTNER_NUMBER ){
+                                oView.getModel("oVendorListModel").getData().data[i].isSelect = true;
+                                oView.getModel("oVendorListModel").refresh();
+                                break;
+                            }
+                        }
+                    } else {
+                        var sErMsg = oEvent.getParameter("errorobject").responseText;
+                        MessageBox.show(sErMsg, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: "Error"
+                        });
+                    }
+                });
+
+            },
+            fnSetGBSData:function(vTaskID){
+                oBusyDilog.open();
+                var oModel = new JSONModel();
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/taskContext/" + vTaskID
+                oModel.loadData(sUrl);
+                oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                    oBusyDilog.close();
+                    if (oEvent.getParameter("success")) {
+
+
+                        var oJosnMdl = new sap.ui.model.json.JSONModel();
+                        oJosnMdl.setData(oEvent.getSource().getData().bpSearchParams);
+                        oView.setModel(oJosnMdl, "JMSearchFilter");
+                        var aTempData = [];
+                        that.caseId = oEvent.getSource().getData().caseId;
+
+                        var aFilter = oEvent.getSource().getData().bpSearchParams;
+                        var aBPData = oEvent.getSource().getData().bpSelectedResults;
+                        var oJosnMdlSel = new sap.ui.model.json.JSONModel();
+                        oJosnMdlSel.setData(aBPData);
+                        oView.setModel(oJosnMdlSel, "JMSelData");
+                        //  that.fnLoadPartnerData("Display", aFilter, aBPData);
+                        var vError = false;
+                        for (var i = 0; i < aBPData.length; i++) {
+                           
+                            vError = false;
+
+                            if (!aBPData[i].VENDOR_NAME) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].STREET) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].POSTAL_CODE) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].CITY) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].COUNTRY) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].REGION_STATE_PROVINCE) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].PAYMENT_METHOD) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].PAYMENT_TERMS) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].CURRENCY) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].INCO_TERMS) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].INCOTERMS2) {
+                                vError = true;
+                            }
+                            // if (!aBPData[i].BANK_COUNTRY) {
+                            //     vError = true;
+                            // }
+                            // if (!aBPData[i].IBAN) {
+                            //     vError = true;
+                            // }
+                            if (aBPData[i].BLOCK_FUNCTION) {
+                                vError = true;
+                            }
+                            if (aBPData[i].CENTRAL_POSTING_BLOCK) {
+                                vError = true;
+                            }
+                            if (aBPData[i].CENTRAL_PURCHASING_BLOCK) {
+                                vError = true;
+                            } if (aBPData[i].COMPANY_CODE_POSTING_BLOCK) {
+                                vError = true;
+                            } if (aBPData[i].PURCHASING_ORG_BLOCK) {
+                                vError = true;
+                            } if (aBPData[i].CENTRAL_DELETION_FLAG) {
+                                vError = true;
+                            } if (aBPData[i].COMPANY_CODE_DEL_FLAG) {
+                                vError = true;
+                            }
+                            if (aBPData[i].PURCHASING_ORG_DEL_FLAG) {
+                                vError = true;
+                            }
+
+                            if (aBPData[i].CENTRAL_BLOCK_CODE) {
+                                vError = true;
+                            }
+                            if (aBPData[i].PENDING_CHANGE_REQUEST) {
+                                vError = true;
+                            }
+
+                            if (aBPData[i].RELATIONSHIP_INDICATOR !== "PRIMARY") {
+                                vError = true;
+                            }
+                            aBPData[i].isError = vError;
+                        }
+
+
+
+                        var temp = {
+                            "data": aBPData,
+                            "Comments": oEvent.getSource().getData().duplicatesBuyerComments,
+                            // "totalPage": vTotalPage,
+                            // "fenable": vfenable,
+                            // "renable": vrenable,
+                            // "totalCount": oEvent.getSource().getData().d.__count,
+                            // "currentPage": oView.getModel("oVendorListModel").getData().currentPage,
+                            "headerText": "Partner Data Detail (" + aBPData.length + ")"
+                        }
+
+
+                        var oVendorListJson = new sap.ui.model.json.JSONModel();
+                        oVendorListJson.setData(temp);
+                        that.getView().setModel(oVendorListJson, "oVendorListModel");
+
+                        if (that.caseId) {
+                            that.fnLoadCaseDetailSME(that.caseId);
+                        }
+
+                    } else {
+                        var temp = {};
+                        var oBPCreateModel = new sap.ui.model.json.JSONModel();
+                        oBPCreateModel.setData(temp);
+                        oView.setModel(oBPCreateModel, "JMBPCreate");
+                        var sErMsg = oEvent.getParameter("errorobject").responseText;
+                        MessageBox.show(sErMsfnLoadPartnerDatag, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: "Error"
+                        });
+                    }
+                });
+
             },
             fnPopulateGBSData: function (vTaskId) {
                 oBusyDilog.open();
@@ -869,7 +1033,7 @@ sap.ui.define([
             },
             fnCaseListPressNav: function (oEvent) {
 
-                if (oView.getModel("oConfigMdl").getData().contextPath.Id == "New") {
+                if (oView.getModel("oConfigMdl").getData().contextPath.Id == "New" || oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention"                ) {
 
                     var temp = oView.getModel("oVendorListModel").getData().data[oEvent.getSource().getSelectedIndex()];
                     if (temp.isError == true) {
@@ -884,7 +1048,7 @@ sap.ui.define([
                         this.getView().byId("id_FilterPanel").setExpanded(true);
                         var oFCL = this.getView().byId("flexibleColumnLayout");
                         oFCL.setLayout(library.LayoutType.OneColumn);
-                        return;
+                       return;
 
                     } else {
 
@@ -1039,6 +1203,18 @@ sap.ui.define([
                                 "selectedSupplier": JSON.stringify(temp)
                             }
                         };
+ 
+                        if(oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention"){
+                            temp1.caseId =   oView.getModel("JMCaseDetail").getData().caseId;
+                            temp1.status =   oView.getModel("JMCaseDetail").getData().status;
+ 
+                            temp1.userCreated =   oView.getModel("JMCaseDetail").getData().userCreated;
+                            temp1.dateCreated =   oView.getModel("JMCaseDetail").getData().dateCreated;
+                            temp1.userUpdated =   oView.getModel("JMCaseDetail").getData().userUpdated;
+                            temp1.scopeId =   oView.getModel("JMCaseDetail").getData().bpRequestScope.scopeId;
+                            temp1.addlScopeId =  oView.getModel("JMCaseDetail").getData().bpRequestScope.bpRequestScopeAddlDetails.addlScopeId;
+                        }
+                        
 
                         var oBPCreateModel = new sap.ui.model.json.JSONModel();
                         oBPCreateModel.setData(temp1);
@@ -1051,6 +1227,7 @@ sap.ui.define([
 
 
                     }
+                    
 
 
 
@@ -1775,7 +1952,7 @@ sap.ui.define([
                     // });
                 } else if (vBtnActn == "SU") {
                   //  vConfirmMsg = oi18n.getProperty("BPCConfirmSubmit");
-                    vConfirmMsg = "Please confirm submission request for " + oView.getModel("JMBPCreate").getData().corporationName +" in Company Code " + oView.getModel("JMBPCreate").getData().companyCode + " and Purchasing Org: " + oView.getModel("JMBPCreate").getData().purchasingOrg;
+                    vConfirmMsg = "Please confirm submission request for " + oView.getModel("JMBPCreate").getData().corporationName +" in Company Code: " + oView.getModel("JMBPCreate").getData().companyCode + " and Purchasing Org: " + oView.getModel("JMBPCreate").getData().purchasingOrg;
                     vStatus = "In Progress"
                     MessageBox.confirm(vConfirmMsg, {
                         icon: MessageBox.Icon.Confirmation,
@@ -2409,7 +2586,7 @@ sap.ui.define([
             },
             fnLoadSME:function(){
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_portal_services/sme/smeList";
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/sme/list";
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -2421,14 +2598,161 @@ sap.ui.define([
                     }
                 });
             },
+            fnSearchSME: function () {
+                var vError = false;
+                // if (oView.getModel("JMFilter").getData().companyCode == "") {
+                //     vError = true
+                // }
+
+                if (vError == false) {
+                    oBusyDilog.open();
+                    var oModel = new JSONModel();
+                    var sUrl = "/nsBuyerRegistration/plcm_portal_services/sme/search"
+
+                    var oPayload = {
+                        "companyCode": oView.getModel("JMFilter").getData().companyCode,
+                        "purchasingOrganisation": oView.getModel("JMFilter").getData().purchasingOrganisation,
+                        "smeEmail":oView.getModel("JMFilter").getData().smeEmail
+
+                    }
+
+                    oModel.loadData(sUrl, JSON.stringify(
+                        oPayload
+                    ), true, "POST", false, true, {
+                        "Content-Type": "application/json"
+                    });
+                    oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                        if (oEvent.getParameter("success")) {
+
+                            oBusyDilog.close();
+
+                            var oJsonCompSearch = new sap.ui.model.json.JSONModel();
+                            oJsonCompSearch.setData(oEvent.getSource().getData());
+                            oView.setModel(oJsonCompSearch, "JMCompSearchResult");
+                        } else {
+                            oBusyDilog.close();
+                            var oJsonCompSearch = new sap.ui.model.json.JSONModel();
+                            oJsonCompSearch.setData([]);
+                            oView.setModel(oJsonCompSearch, "JMCompSearchResult")
+                            var sErMsg = oEvent.getParameter("errorobject").responseText;
+                            MessageBox.show(sErMsg, {
+                                icon: MessageBox.Icon.ERROR,
+                                title: "Error"
+                            });
+
+
+                        }
+                    });
+
+
+                } else {
+                    sap.m.MessageToast.show(oi18n.getProperty("enterTaxCategory"))
+                }
+
+            },
+            fnLoadPurOrgSME: function (vCompCode, vDescription) {
+                var oModel = new JSONModel();
+                var sUrl = "/InboxDetail/plcm_portal_services/api/v1/reference-data/purchasingOrg/" + vCompCode;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/PurOrg", oEvent.getSource().getData());
+                        if (oEvent.getSource().getData().length == 0) {
+                            if (vDescription.includes("Nypro")) {
+                                var temp = [{
+                                    "code": "0155",
+                                    "description": "Nypro Inc."
+                                }]
+                                oView.getModel("oBPLookUpMdl").setProperty("/PurOrg", temp);
+                            }
+                        }
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    } else {
+                        if (vDescription.includes("Nypro")) {
+                            var temp = [{
+                                "code": "0155",
+                                "description": "Nypro Inc."
+                            }]
+                            oView.getModel("oBPLookUpMdl").setProperty("/PurOrg", temp);
+                        }
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
+
+            },
+            fnCloseSMEList:function(){
+                this.oBPSendToSMEList.close();
+            },
+            fnLiveChangeCompCodeSME: function (oEvent) {
+                var vSelected = oEvent.getParameter("itemPressed");
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+
+                }
+                this.fnLoadPurOrgSME(oView.getModel("JMFilter").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
+                oView.getModel("JMFilter").getData().purchasingOrg = "";
+                oView.getModel("JMFilter").refresh();
+                if (oView.getModel("JMFilter").getData().companyCodee == "Error") {
+                    oView.getModel("JMFilter").getData().companyCodee = "None";
+                    oView.getModel("JMFilter").getData().companyCodem = "";
+                    oView.getModel("JMFilter").refresh();
+                }
+
+            },
+            fnSMETableOpen:function(){
+                var oJsonFilter = new sap.ui.model.json.JSONModel();
+                var temp = {
+                    "companyCode": "",
+                    "purchasingOrganisation": ""
+                };
+                oJsonFilter.setData(temp);
+                oView.setModel(oJsonFilter, "JMFilter");
+                this.fnSearchSME();
+                if (!this.oBPSendToSMEList) {
+                    this.oBPSendToSMEList = sap.ui.xmlfragment(
+                        "ns.BuyerRegistration.fragments.SMETabView", this);
+                    oView.addDependent(this.oBPSendToSMEList);
+                }
+                this.oBPSendToSMEList.open();
+            },
+            fnSelectSMEList:function(oEvent){
+            var oSelected = sap.ui.getCore().byId("id_SMEListContent").getSelectedItem();
+            if(oSelected){
+            var vEmail = oSelected.getBindingContext("JMCompSearchResult").getProperty("smeEmail");
+            
+            oView.getModel("JMSMESel").getData().smeEmail = vEmail;
+            oView.getModel("JMSMESel").refresh();
+            this.oBPSendToSMEList.close();
+            }else{
+                sap.m.MessageToast.show(oi18n.getProperty("PlSelAtLeastOneRec"));
+            }
+            
+            },
             fnSendToSME:function(){
-                var aSearchData = oView.getModel("oVendorListModel").getData().data;
-                if (aSearchData.length > 1) {
-                this.fnLoadSME();
+                var aSelData = [];
+                for (var i = 0; i < oView.getModel("oVendorListModel").getData().data.length; i++) {
+                    if (oView.getModel("oVendorListModel").getData().data[i].isSelect == true) {
+                        aSelData.push({
+                            "BUSINESS_PARTNER_NUMBER": oView.getModel("oVendorListModel").getData().data[i].BUSINESS_PARTNER_NUMBER,
+                            "ID": oView.getModel("oVendorListModel").getData().data[i].ID
+                        })
+                    }
+                }
+             
+                if (aSelData.length > 0) {
+               // this.fnLoadSME();
                 var temp = {
                     "smeEmail":"",
                     "smeEmaile":"None",
-                    "smeEmailm":""
+                    "smeEmailm":"",
+                    "Commentse":"None",
+                    "Commentsm":"",
+                    "Comments":""
                 }
                 var oJsonListSME = new sap.ui.model.json.JSONModel();
                 oJsonListSME.setData(temp);
@@ -2440,7 +2764,7 @@ sap.ui.define([
                 }
                 this.oBPSendToSME.open();
             } else {
-                sap.m.MessageToast.show(oi18n.getProperty("BPEEnterAtLeastOneData"));
+                sap.m.MessageToast.show(oi18n.getProperty("PlSelAtLeastOneRec"));
             }
                
             },
@@ -2449,31 +2773,43 @@ sap.ui.define([
            oView.getModel("JMSMESel").getData().smeEmailm = "";
            oView.getModel("JMSMESel").refresh();
             },
+            fnLiveChangeCmntTxtArea:function(){
+                oView.getModel("JMSMESel").getData().Commentse = "None";
+                oView.getModel("JMSMESel").getData().Commentsm = "";
+                oView.getModel("JMSMESel").refresh();
+                 },
+            
             fnCloseSME:function(){
                 this.oBPSendToSME.close();
             },
+            
             fnSendToGBS: function () {
-                if(!oView.getModel("JMSMESel").getData().smeEmail){
+                if(!oView.getModel("JMSMESel").getData().smeEmail || !oView.getModel("JMSMESel").getData().Comments){
+                    if(!oView.getModel("JMSMESel").getData().smeEmail){
                     oView.getModel("JMSMESel").getData().smeEmaile = "Error";
                     oView.getModel("JMSMESel").getData().smeEmailm = oi18n.getProperty("EnterSMEEmail");
                     oView.getModel("JMSMESel").refresh();
-                }else{
+                    }
+                    if(!oView.getModel("JMSMESel").getData().Comments){
+                        oView.getModel("JMSMESel").getData().Commentse = "Error";
+                        oView.getModel("JMSMESel").getData().Commentsm = oi18n.getProperty("provideComments");
+                        oView.getModel("JMSMESel").refresh();   
+                    }
+                }
+                else{
                 this.oBPSendToSME.close();
               
-                    // MessageBox.confirm(oi18n.getProperty("GBSConfirm"), {
-                    //     icon: MessageBox.Icon.Confirmation,
-                    //     title: "Confirmation",
-                    //     actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-                    //     emphasizedAction: MessageBox.Action.YES,
-                    //     onClose: function (oAction) {
-                    //         if (oAction == "YES") {
+                    MessageBox.confirm(oi18n.getProperty("SMEConfirm") + oView.getModel("JMSMESel").getData().smeEmail, {
+                        icon: MessageBox.Icon.Confirmation,
+                        title: "Confirmation",
+                        actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                        emphasizedAction: MessageBox.Action.YES,
+                        onClose: function (oAction) {
+                            if (oAction == "YES") {
                                 var aSelData = [];
                                 for (var i = 0; i < oView.getModel("oVendorListModel").getData().data.length; i++) {
                                     if (oView.getModel("oVendorListModel").getData().data[i].isSelect == true) {
-                                        aSelData.push({
-                                            "BUSINESS_PARTNER_NUMBER": oView.getModel("oVendorListModel").getData().data[i].BUSINESS_PARTNER_NUMBER,
-                                            "ID": oView.getModel("oVendorListModel").getData().data[i].ID
-                                        })
+                                        aSelData.push(oView.getModel("oVendorListModel").getData().data[i])
                                     }
                                 }
 
@@ -2509,11 +2845,12 @@ sap.ui.define([
                                         var aSelData = [];
                                         for (var i = 0; i < oView.getModel("oVendorListModel").getData().data.length; i++) {
                                             if (oView.getModel("oVendorListModel").getData().data[i].isSelect == true) {
-                                                aSelData.push({
-                                                    "BUSINESS_PARTNER_NUMBER": oView.getModel("oVendorListModel").getData().data[i].BUSINESS_PARTNER_NUMBER,
-                                                    "ID": oView.getModel("oVendorListModel").getData().data[i].ID
-                                                })
+                                                aSelData.push( oView.getModel("oVendorListModel").getData().data[i])
+                                              //  aSelData[i].isSelect = false;
                                             }
+                                        }
+                                        for(var i=0;i<aSelData.length;i++){
+                                            aSelData[i].isSelect = false;
                                         }
                                         var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/trigger";
                                         that.caseId = oEvent.getSource().getData().caseId;
@@ -2531,6 +2868,7 @@ sap.ui.define([
                                                 "buyerTelephone": "",
                                                 "buyerEmailid": vBuyerEmail,
                                                 "smeEmail":oView.getModel("JMSMESel").getData().smeEmail,
+                                                "duplicatesBuyerComments":oView.getModel("JMSMESel").getData().Comments,
                                                 "bpSearchParams": oView.getModel("JMSearchFilter").getData(),
                                                 "bpSelectedResults": aSelData
                                             },
@@ -2580,9 +2918,9 @@ sap.ui.define([
                                         });
                                     }
                                 });
-                    //         }
-                    //     }
-                    // });
+                            }
+                        }
+                    });
 
              
             }
