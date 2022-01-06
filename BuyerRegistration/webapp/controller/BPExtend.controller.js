@@ -96,8 +96,8 @@ sap.ui.define([
                         oCaseDetail.setData(data);
                         that.getView().setModel(oCaseDetail, "JMCaseDetail");
 
-                        for(var i =0 ;i< oView.getModel("oVendorListModel").getData().data.length;i++){
-                            if(oView.getModel("oVendorListModel").getData().data[i].BUSINESS_PARTNER_NUMBER == JSON.parse(oView.getModel("JMCaseDetail").getData().bpSearch.selectedSupplier).BUSINESS_PARTNER_NUMBER ){
+                        for (var i = 0; i < oView.getModel("oVendorListModel").getData().data.length; i++) {
+                            if (oView.getModel("oVendorListModel").getData().data[i].BUSINESS_PARTNER_NUMBER == JSON.parse(oView.getModel("JMCaseDetail").getData().bpSearch.selectedSupplier).BUSINESS_PARTNER_NUMBER) {
                                 oView.getModel("oVendorListModel").getData().data[i].isSelect = true;
                                 oView.getModel("oVendorListModel").refresh();
                                 break;
@@ -113,7 +113,7 @@ sap.ui.define([
                 });
 
             },
-            fnSetGBSData:function(vTaskID){
+            fnSetGBSData: function (vTaskID) {
                 oBusyDilog.open();
                 var oModel = new JSONModel();
                 var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/taskContext/" + vTaskID
@@ -137,7 +137,7 @@ sap.ui.define([
                         //  that.fnLoadPartnerData("Display", aFilter, aBPData);
                         var vError = false;
                         for (var i = 0; i < aBPData.length; i++) {
-                           
+
                             vError = false;
 
                             if (!aBPData[i].VENDOR_NAME) {
@@ -1033,7 +1033,7 @@ sap.ui.define([
             },
             fnCaseListPressNav: function (oEvent) {
 
-                if (oView.getModel("oConfigMdl").getData().contextPath.Id == "New" || oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention"                ) {
+                if (oView.getModel("oConfigMdl").getData().contextPath.Id == "New" || oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention") {
 
                     var temp = oView.getModel("oVendorListModel").getData().data[oEvent.getSource().getSelectedIndex()];
                     if (temp.isError == true) {
@@ -1048,7 +1048,7 @@ sap.ui.define([
                         this.getView().byId("id_FilterPanel").setExpanded(true);
                         var oFCL = this.getView().byId("flexibleColumnLayout");
                         oFCL.setLayout(library.LayoutType.OneColumn);
-                       return;
+                        return;
 
                     } else {
 
@@ -1203,18 +1203,18 @@ sap.ui.define([
                                 "selectedSupplier": JSON.stringify(temp)
                             }
                         };
- 
-                        if(oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention"){
-                            temp1.caseId =   oView.getModel("JMCaseDetail").getData().caseId;
-                            temp1.status =   oView.getModel("JMCaseDetail").getData().status;
- 
-                            temp1.userCreated =   oView.getModel("JMCaseDetail").getData().userCreated;
-                            temp1.dateCreated =   oView.getModel("JMCaseDetail").getData().dateCreated;
-                            temp1.userUpdated =   oView.getModel("JMCaseDetail").getData().userUpdated;
-                            temp1.scopeId =   oView.getModel("JMCaseDetail").getData().bpRequestScope.scopeId;
-                            temp1.addlScopeId =  oView.getModel("JMCaseDetail").getData().bpRequestScope.bpRequestScopeAddlDetails.addlScopeId;
+
+                        if (oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention") {
+                            temp1.caseId = oView.getModel("JMCaseDetail").getData().caseId;
+                            temp1.status = oView.getModel("JMCaseDetail").getData().status;
+
+                            temp1.userCreated = oView.getModel("JMCaseDetail").getData().userCreated;
+                            temp1.dateCreated = oView.getModel("JMCaseDetail").getData().dateCreated;
+                            temp1.userUpdated = oView.getModel("JMCaseDetail").getData().userUpdated;
+                            temp1.scopeId = oView.getModel("JMCaseDetail").getData().bpRequestScope.scopeId;
+                            temp1.addlScopeId = oView.getModel("JMCaseDetail").getData().bpRequestScope.bpRequestScopeAddlDetails.addlScopeId;
                         }
-                        
+
 
                         var oBPCreateModel = new sap.ui.model.json.JSONModel();
                         oBPCreateModel.setData(temp1);
@@ -1227,7 +1227,7 @@ sap.ui.define([
 
 
                     }
-                    
+
 
 
 
@@ -1254,7 +1254,63 @@ sap.ui.define([
                 that.fnLoadCaseDetail(oView.getModel("JMBPCreate").getData().caseId);//Load Case ID Details
             },
             fnCancelAction: function () {
-                window.history.go(-1);
+                if (oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention") {
+                    oBusyDilog.open();
+                    var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/taskComplete"
+                    var oPayload = {
+                        "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                        "bpNumber": ""
+                    }
+                    var oModelWf = new JSONModel();
+
+                    oModelWf.loadData(sUrl, JSON.stringify(
+                        oPayload
+                    ), true, "POST", false, true, {
+                        "Content-Type": "application/json"
+                    });
+                    oModelWf.attachRequestCompleted(function (oEvent) {
+                        oBusyDilog.close();
+                        if (oEvent.getParameter("success")) {
+                            var temp = {
+                                "Message": "",
+                                "caseId": that.caseId
+                            }
+                            temp.Message = oi18n.getProperty("Task Canceled Successfully");
+                            var oJosnMessage = new sap.ui.model.json.JSONModel();
+                            oJosnMessage.setData(temp);
+                            oView.setModel(oJosnMessage,
+                                "JMMessageData");
+                            if (!that.oBPSuccess) {
+                                that.oBPSuccess = sap.ui.xmlfragment(
+                                    "ns.BuyerRegistration.fragments.CreateSuccess", that);
+                                oView.addDependent(that.oBPSuccess);
+                            }
+                            that.oBPSuccess.open();
+
+                        } else {
+
+                            oBusyDilog.close();
+                            var sErMsg = oEvent.getParameter("errorobject").responseText;
+                            MessageBox.show(sErMsg, {
+                                icon: MessageBox.Icon.ERROR,
+                                title: "Error"
+                            });
+
+                        }
+                    });
+
+
+
+
+
+
+
+
+
+                } else {
+                    window.history.go(-1);
+                }
+
             },
             fnCreateBP: function () {
                 this.fnMandatoryFieldClear();
@@ -1950,8 +2006,8 @@ sap.ui.define([
                     //     }
                     // });
                 } else if (vBtnActn == "SU") {
-                  //  vConfirmMsg = oi18n.getProperty("BPCConfirmSubmit");
-                    vConfirmMsg = "Please confirm submission request for " + oView.getModel("JMBPCreate").getData().corporationName +" in Company Code: " + oView.getModel("JMBPCreate").getData().companyCode + " and Purchasing Org: " + oView.getModel("JMBPCreate").getData().purchasingOrg;
+                    //  vConfirmMsg = oi18n.getProperty("BPCConfirmSubmit");
+                    vConfirmMsg = "Please confirm submission request for " + oView.getModel("JMBPCreate").getData().corporationName + " in Company Code: " + oView.getModel("JMBPCreate").getData().companyCode + " and Purchasing Org: " + oView.getModel("JMBPCreate").getData().purchasingOrg;
                     vStatus = "In Progress"
                     MessageBox.confirm(vConfirmMsg, {
                         icon: MessageBox.Icon.Confirmation,
@@ -2583,7 +2639,7 @@ sap.ui.define([
 
 
             },
-            fnLoadSME:function(){
+            fnLoadSME: function () {
                 var oModel = new JSONModel();
                 var sUrl = "/nsBuyerRegistration/plcm_portal_services/sme/list";
                 oModel.loadData(sUrl, {
@@ -2611,7 +2667,7 @@ sap.ui.define([
                     var oPayload = {
                         "companyCode": oView.getModel("JMFilter").getData().companyCode,
                         "purchasingOrganisation": oView.getModel("JMFilter").getData().purchasingOrganisation,
-                        "smeEmail":oView.getModel("JMFilter").getData().smeEmail
+                        "smeEmail": oView.getModel("JMFilter").getData().smeEmail
 
                     }
 
@@ -2681,7 +2737,7 @@ sap.ui.define([
                 });
 
             },
-            fnCloseSMEList:function(){
+            fnCloseSMEList: function () {
                 this.oBPSendToSMEList.close();
             },
             fnLiveChangeCompCodeSME: function (oEvent) {
@@ -2703,7 +2759,7 @@ sap.ui.define([
                 }
 
             },
-            fnSMETableOpen:function(){
+            fnSMETableOpen: function () {
                 var oJsonFilter = new sap.ui.model.json.JSONModel();
                 var temp = {
                     "companyCode": "",
@@ -2719,20 +2775,20 @@ sap.ui.define([
                 }
                 this.oBPSendToSMEList.open();
             },
-            fnSelectSMEList:function(oEvent){
-            var oSelected = sap.ui.getCore().byId("id_SMEListContent").getSelectedItem();
-            if(oSelected){
-            var vEmail = oSelected.getBindingContext("JMCompSearchResult").getProperty("smeEmail");
-            
-            oView.getModel("JMSMESel").getData().smeEmail = vEmail;
-            oView.getModel("JMSMESel").refresh();
-            this.oBPSendToSMEList.close();
-            }else{
-                sap.m.MessageToast.show(oi18n.getProperty("PlSelAtLeastOneRec"));
-            }
-            
+            fnSelectSMEList: function (oEvent) {
+                var oSelected = sap.ui.getCore().byId("id_SMEListContent").getSelectedItem();
+                if (oSelected) {
+                    var vEmail = oSelected.getBindingContext("JMCompSearchResult").getProperty("smeEmail");
+
+                    oView.getModel("JMSMESel").getData().smeEmail = vEmail;
+                    oView.getModel("JMSMESel").refresh();
+                    this.oBPSendToSMEList.close();
+                } else {
+                    sap.m.MessageToast.show(oi18n.getProperty("PlSelAtLeastOneRec"));
+                }
+
             },
-            fnSendToSME:function(){
+            fnSendToSME: function () {
                 var aSelData = [];
                 for (var i = 0; i < oView.getModel("oVendorListModel").getData().data.length; i++) {
                     if (oView.getModel("oVendorListModel").getData().data[i].isSelect == true) {
@@ -2742,62 +2798,62 @@ sap.ui.define([
                         })
                     }
                 }
-             
+
                 if (aSelData.length > 0) {
-               // this.fnLoadSME();
-                var temp = {
-                    "smeEmail":"",
-                    "smeEmaile":"None",
-                    "smeEmailm":"",
-                    "Commentse":"None",
-                    "Commentsm":"",
-                    "Comments":""
+                    // this.fnLoadSME();
+                    var temp = {
+                        "smeEmail": "",
+                        "smeEmaile": "None",
+                        "smeEmailm": "",
+                        "Commentse": "None",
+                        "Commentsm": "",
+                        "Comments": ""
+                    }
+                    var oJsonListSME = new sap.ui.model.json.JSONModel();
+                    oJsonListSME.setData(temp);
+                    oView.setModel(oJsonListSME, "JMSMESel")
+                    if (!this.oBPSendToSME) {
+                        this.oBPSendToSME = sap.ui.xmlfragment(
+                            "ns.BuyerRegistration.fragments.SMEList", this);
+                        oView.addDependent(this.oBPSendToSME);
+                    }
+                    this.oBPSendToSME.open();
+                } else {
+                    sap.m.MessageToast.show(oi18n.getProperty("PlSelAtLeastOneRec"));
                 }
-                var oJsonListSME = new sap.ui.model.json.JSONModel();
-                oJsonListSME.setData(temp);
-                oView.setModel(oJsonListSME,"JMSMESel")
-                if (!this.oBPSendToSME) {
-                    this.oBPSendToSME = sap.ui.xmlfragment(
-                        "ns.BuyerRegistration.fragments.SMEList", this);
-                    oView.addDependent(this.oBPSendToSME);
-                }
-                this.oBPSendToSME.open();
-            } else {
-                sap.m.MessageToast.show(oi18n.getProperty("PlSelAtLeastOneRec"));
-            }
-               
+
             },
-            fnLiveChangeSME:function(){
-           oView.getModel("JMSMESel").getData().smeEmaile = "None";
-           oView.getModel("JMSMESel").getData().smeEmailm = "";
-           oView.getModel("JMSMESel").refresh();
+            fnLiveChangeSME: function () {
+                oView.getModel("JMSMESel").getData().smeEmaile = "None";
+                oView.getModel("JMSMESel").getData().smeEmailm = "";
+                oView.getModel("JMSMESel").refresh();
             },
-            fnLiveChangeCmntTxtArea:function(){
+            fnLiveChangeCmntTxtArea: function () {
                 oView.getModel("JMSMESel").getData().Commentse = "None";
                 oView.getModel("JMSMESel").getData().Commentsm = "";
                 oView.getModel("JMSMESel").refresh();
-                 },
-            
-            fnCloseSME:function(){
+            },
+
+            fnCloseSME: function () {
                 this.oBPSendToSME.close();
             },
-            
+
             fnSendToGBS: function () {
-                if(!oView.getModel("JMSMESel").getData().smeEmail || !oView.getModel("JMSMESel").getData().Comments){
-                    if(!oView.getModel("JMSMESel").getData().smeEmail){
-                    oView.getModel("JMSMESel").getData().smeEmaile = "Error";
-                    oView.getModel("JMSMESel").getData().smeEmailm = oi18n.getProperty("EnterSMEEmail");
-                    oView.getModel("JMSMESel").refresh();
+                if (!oView.getModel("JMSMESel").getData().smeEmail || !oView.getModel("JMSMESel").getData().Comments) {
+                    if (!oView.getModel("JMSMESel").getData().smeEmail) {
+                        oView.getModel("JMSMESel").getData().smeEmaile = "Error";
+                        oView.getModel("JMSMESel").getData().smeEmailm = oi18n.getProperty("EnterSMEEmail");
+                        oView.getModel("JMSMESel").refresh();
                     }
-                    if(!oView.getModel("JMSMESel").getData().Comments){
+                    if (!oView.getModel("JMSMESel").getData().Comments) {
                         oView.getModel("JMSMESel").getData().Commentse = "Error";
                         oView.getModel("JMSMESel").getData().Commentsm = oi18n.getProperty("provideComments");
-                        oView.getModel("JMSMESel").refresh();   
+                        oView.getModel("JMSMESel").refresh();
                     }
                 }
-                else{
-                this.oBPSendToSME.close();
-              
+                else {
+                    this.oBPSendToSME.close();
+
                     MessageBox.confirm(oi18n.getProperty("SMEConfirm") + oView.getModel("JMSMESel").getData().smeEmail, {
                         icon: MessageBox.Icon.Confirmation,
                         title: "Confirmation",
@@ -2845,11 +2901,11 @@ sap.ui.define([
                                         var aSelData = [];
                                         for (var i = 0; i < oView.getModel("oVendorListModel").getData().data.length; i++) {
                                             if (oView.getModel("oVendorListModel").getData().data[i].isSelect == true) {
-                                                aSelData.push( oView.getModel("oVendorListModel").getData().data[i])
-                                              //  aSelData[i].isSelect = false;
+                                                aSelData.push(oView.getModel("oVendorListModel").getData().data[i])
+                                                //  aSelData[i].isSelect = false;
                                             }
                                         }
-                                        for(var i=0;i<aSelData.length;i++){
+                                        for (var i = 0; i < aSelData.length; i++) {
                                             aSelData[i].isSelect = false;
                                         }
                                         var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/trigger";
@@ -2867,8 +2923,8 @@ sap.ui.define([
                                                 "buyerName": vBuyer,
                                                 "buyerTelephone": "",
                                                 "buyerEmailid": vBuyerEmail,
-                                                "smeEmail":oView.getModel("JMSMESel").getData().smeEmail,
-                                                "duplicatesBuyerComments":oView.getModel("JMSMESel").getData().Comments,
+                                                "smeEmail": oView.getModel("JMSMESel").getData().smeEmail,
+                                                "duplicatesBuyerComments": oView.getModel("JMSMESel").getData().Comments,
                                                 "bpSearchParams": oView.getModel("JMSearchFilter").getData(),
                                                 "bpSelectedResults": aSelData
                                             },
@@ -2922,8 +2978,8 @@ sap.ui.define([
                         }
                     });
 
-             
-            }
+
+                }
             },
             fnLoadPersonalizationData: function () {
                 var clmnList = [
@@ -3254,7 +3310,7 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").getData().altPhoneNumbere = "Error";
                     oView.getModel("JMBPCreate").getData().altPhoneNumberm = oi18n.getProperty("BPCMaxLengthExceeds");
                     oView.getModel("JMBPCreate").refresh();
-                }  else if (!numRegex.test(oEvent.getSource().getValue())) {
+                } else if (!numRegex.test(oEvent.getSource().getValue())) {
                     var newval = val.substring(0, val.length - 1);
                     oEvent.getSource().setValue(newval);
 
@@ -3360,11 +3416,11 @@ sap.ui.define([
                 else {
                     //    var vResonse = this.fnValidateEmailDomain(email);
                     var domain = email.substring(email.lastIndexOf("@") + 1);
-                    if(domain.toUpperCase() != "JABIL.COM"){
-                     oView.getModel("JMBPCreate").getData().requestorCOIEmaile = "Error";
-                     oView.getModel("JMBPCreate").getData().requestorCOIEmailm = oi18n.getProperty("pleaseEnterJabilEmail");
-                     oView.getModel("JMBPCreate").refresh();
-                     return;
+                    if (domain.toUpperCase() != "JABIL.COM") {
+                        oView.getModel("JMBPCreate").getData().requestorCOIEmaile = "Error";
+                        oView.getModel("JMBPCreate").getData().requestorCOIEmailm = oi18n.getProperty("pleaseEnterJabilEmail");
+                        oView.getModel("JMBPCreate").refresh();
+                        return;
                     }
                     var vResonse = "Valid"
                     if (vResonse == "Invalid") {
@@ -4139,9 +4195,9 @@ sap.ui.define([
                 oView.getModel("JMBPCreate").getData().isExclCiscoGhube = "None";
                 oView.getModel("JMBPCreate").refresh();
             },
-            
+
             onAfterRendering: function () {
-                
+
                 // oView.byId("purchaseOrgId").addEventDelegate({
                 //     ontap: this.fnLiveChangePurchOrg
                 // }, this);
