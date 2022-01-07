@@ -622,6 +622,24 @@ sap.ui.define([
             fnCloseBankComments: function () {
                 this.oBankComments.close();
             },
+            fnFetchDescriptionCommon(aArray, value, vFieldName) {
+                if (aArray) {
+                    if (value) {
+                        var item = aArray.find(item => item.code == value);
+                        if (item) {
+                            return item.description;
+                        } else {
+                            return "";
+                        }
+
+                    } else {
+                        return "";
+                    }
+                } else {
+                    return "";
+                }
+            },
+            
             fnGBSApprove: function () {
                 var vBPNo = [];
                 var aTableData = oView.getModel("oVendorListModel").getData().data;
@@ -650,6 +668,55 @@ sap.ui.define([
                         });
                         return;
                     }
+                    var vBankValid = false;
+                    var vMessage = "";
+                    var requestData = {
+                        "companyCodeCountry": vSelDataTem.COMPANY_CODE,
+                        "purchaseOrderCurrency": vSelDataTem.CURRENCY,
+                        "supplierBankCountry": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().Country, vSelDataTem.COUNTRY, "Country"),
+                    }
+                    var sUrl = "/nsBuyerRegistration/plcm_portal_services/api/v1/bank/matrix";
+                    var bModel = new JSONModel();
+                    $.ajax({
+                        type: "POST",
+                        url: sUrl,
+                        data: JSON.stringify(requestData),
+                        dataType: "json",
+                        async: false,
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            if (data.bankCountry == "Mandatory") {
+                                if (!temp.BANK_COUNTRY) {
+                                    vBankValid = true;
+                                    vMessage = "Bank Country is Required \n"
+                                }
+
+                            }
+                            if (data.iban == "Mandatory") {
+                                if (!temp.IBAN) {
+                                    vBankValid = true;
+                                    vMessage = vMessage + " IBAN is Required"
+                                }
+
+                            }
+
+                        },
+
+                        error: function (data) {
+                            vBankValid = true;
+
+                        }
+                    });
+
+
+                    if (vBankValid == true) {
+                        MessageBox.show(vMessage, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: "Error"
+                        });
+                        return;
+                    }
+
                     var temp = {};
                     temp.Action = "RJ";
                     //temp.Comments ;
