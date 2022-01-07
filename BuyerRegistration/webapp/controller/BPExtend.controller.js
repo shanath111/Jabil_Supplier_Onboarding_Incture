@@ -2031,8 +2031,9 @@ sap.ui.define([
                                             // "company_code": oView.getModel("JMBPCreate").getData().companyCode,
                                             // "purchasing_code": oView.getModel("JMBPCreate").getData().purchasingOrg
                                         },
-
-                                        "definitionId": "partner_onboarding_main"
+                                        "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                                        "bpNumber": ""
+                                        //"definitionId": "partner_onboarding_main"
                                     }
 
                                 }
@@ -2309,7 +2310,8 @@ sap.ui.define([
                                                         // "purchasing_code": oView.getModel("JMBPCreate").getData().purchasingOrg
                                                     },
             
-                                                    "definitionId": "partner_onboarding_main"
+                                                    "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                                                    "bpNumber": ""
                                                 }
             
                                             
