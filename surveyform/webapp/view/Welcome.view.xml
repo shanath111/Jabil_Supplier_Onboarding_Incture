@@ -30,11 +30,11 @@
 
                     <!-- <rt:RichTextEditor width="98%" editable="false" showGroupFontStyle="false" showGroupFont="false" showGroupStructure="false" showGroupLink="false" showGroupTextAlign="false" showGroupUndo="false" showGroupClipboard="false" showGroupInsert="false" class="sapUiTinyMarginBegin" height="78%" value="{oEULAContentModel>/content}"></rt:RichTextEditor> -->
                     
-                    <!-- <PDFViewer source="{EULAModel>/Source}" title="{EULAModel>/Title}" height="{EULAModel>/Height}" showDownloadButton="false" width="90%" class="sapUiMediumMarginBegin sapUiTinyMarginTop">
+                    <PDFViewer source="{EULAModel>/Source}" title="{EULAModel>/Title}" height="{EULAModel>/Height}" showDownloadButton="false" width="90%" class="sapUiMediumMarginBegin sapUiTinyMarginTop">
                         <layoutData>
                             <FlexItemData growFactor="1" />
                         </layoutData>
-                    </PDFViewer> -->
+                    </PDFViewer>
                     <RadioButtonGroup selectedIndex="-1" class="inputStyle sapUiSizeCompact sapUiSmallMarginTop radioResponsive">
                         <RadioButton selected="{oVisibilityModel>/isToSupplierEmail}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>sendEulaToEmail}:${oi18n_En>sendEulaToEmail} +'/&#160;' +${i18n>sendEulaToEmail}}" class="sapUiMediumMarginBegin inputStyle fontStyle sapUiSizeCompact" />
                         <RadioButton selected="{=!${oVisibilityModel>/isToSupplierEmail}}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>sendEulaToDiffEmail}:${oi18n_En>sendEulaToDiffEmail} +'/&#160;' +${i18n>sendEulaToDiffEmail}}" class="sapUiMediumMarginBegin inputStyle fontStyle sapUiSizeCompact"/>
