@@ -16,13 +16,13 @@ sap.ui.define([
                 this._router = this.getOwnerComponent().getRouter();
                this._router.getRoute("Welcome").attachPatternMatched(this._fnHandleRouteMatched, this);
 
-                // var sValidPath = sap.ui.require.toUrl("com/jabil/surveyform/files/Jabil_SupplierPortal_EULA.pdf");
-                // var oEULAModel = new JSONModel({
-                //     Source: sValidPath,
-                //     Title: "EULA.pdf",
-                //     Height: "300px"
-                // });
-                // this.getView().setModel(oEULAModel, "EULAModel");
+                var sValidPath = sap.ui.require.toUrl("com/jabil/surveyform/files/Jabil_SupplierPortal_EULA.pdf");
+                var oEULAModel = new JSONModel({
+                    Source: sValidPath,
+                    Title: "EULA.pdf",
+                    Height: "300px"
+                });
+                this.getView().setModel(oEULAModel, "EULAModel");
             },
             _fnHandleRouteMatched: function (oEvent) {
                 var that= this;
