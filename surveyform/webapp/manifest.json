@@ -171,6 +171,13 @@
                     "target": [
                         "BankInfo"
                     ]
+                },
+                {
+                    "name": "PreviewForm",
+                    "pattern": "PreviewForm/{Name}/{contextPath}",
+                    "target": [
+                        "PreviewForm"
+                    ]
                 }
             ],
             "targets": {
@@ -208,6 +215,12 @@
                     "clearControlAggregation": false,
                     "viewId": "BankInfo",
                     "viewName": "BankInfo"
+                },  "PreviewForm": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "PreviewForm",
+                    "viewName": "PreviewForm"
                 }
             }
         }

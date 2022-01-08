@@ -1665,7 +1665,7 @@ sap.ui.define([
                 }
             },
             fnViewDetails: function () {
-                var vUrl = window.location.origin + "/comjabilsurveyform/index.html#/VendorSurvey/" + "Display:" + oView.getModel("oConfigMdl").getData().contextPath.Name + "/" + oView.getModel("oConfigMdl").getData().contextPath.Id
+                var vUrl = window.location.origin + "/comjabilsurveyform/index.html#/PreviewForm/" + "Display:" + oView.getModel("oConfigMdl").getData().contextPath.Name + "/" + oView.getModel("oConfigMdl").getData().contextPath.Id
                 sap.m.URLHelper.redirect(vUrl);
             },
             fnHandleTypeMissmatch: function(oEvent){
