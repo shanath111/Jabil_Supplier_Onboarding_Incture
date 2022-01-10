@@ -1202,6 +1202,7 @@ sap.ui.define([
                             "CoIFields": false,
                             "buyerAttachmentVis": false,
                             "addlSurveyForSuppliers": 1,
+                           
                             "bpSearch": {
                                 "selectedSupplier": JSON.stringify(temp)
                             }
@@ -1210,7 +1211,8 @@ sap.ui.define([
                         if (oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention") {
                             temp1.caseId = oView.getModel("JMCaseDetail").getData().caseId;
                             temp1.status = oView.getModel("JMCaseDetail").getData().status;
-
+                            temp1.bpSearch = oView.getModel("JMCaseDetail").getData().bpSearch;
+                            temp1.bpSearch.selectedSupplier = JSON.stringify(temp);
                             temp1.userCreated = oView.getModel("JMCaseDetail").getData().userCreated;
                             temp1.dateCreated = oView.getModel("JMCaseDetail").getData().dateCreated;
                             temp1.userUpdated = oView.getModel("JMCaseDetail").getData().userUpdated;
