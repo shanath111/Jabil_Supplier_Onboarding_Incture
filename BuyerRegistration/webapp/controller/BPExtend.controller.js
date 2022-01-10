@@ -41,6 +41,9 @@ sap.ui.define([
             fnSetConfigModel: function (oContext) {
                 oView.getModel("oConfigMdl").getData().caseDeailVis = true;
                 oView.getModel("oConfigMdl").getData().CompleteTaskVis = false;
+                oView.getModel("oConfigMdl").getData().ExtentionTxtVis = true;
+                oView.getModel("oConfigMdl").getData().SMETxtVis = false;
+                
                 
                 if (oContext.Name == "Display") {
                     if (oContext.Id == "New") {
@@ -77,6 +80,8 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().createNewBtn = false;
                     oView.getModel("oConfigMdl").getData().screenEditable = true;
                     oView.getModel("oConfigMdl").getData().CompleteTaskVis = true;
+                    oView.getModel("oConfigMdl").getData().ExtentionTxtVis = false;
+                oView.getModel("oConfigMdl").getData().SMETxtVis = true;
                     var oFCL = this.getView().byId("flexibleColumnLayout");
                     oFCL.setLayout(library.LayoutType.OneColumn);
                     this.fnSetGBSData(oContext.Id);//Load GBS Data
