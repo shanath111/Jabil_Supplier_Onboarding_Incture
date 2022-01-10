@@ -21,7 +21,7 @@ sap.ui.define([
     function (BaseController, JSONModel, MessageBox, formatter, BusyDialog, Fragment) {
 
         "use strict";
-        var oBusyDialog, oBusyDialogFile, oBusyDialogLoadData, oView, oi18n, vAppName, copiedData, listenFirst, emailValidResult;
+        var oBusyDialog, oBusyDialogFile, oBusyDialogLoadData, oView, oi18n, vAppName,vtaskId, copiedData, listenFirst, emailValidResult;
         return BaseController.extend("com.jabil.surveyform.controller.PreviewForm", {
             formatter: formatter,
             onInit: function () {
@@ -60,7 +60,7 @@ sap.ui.define([
                 //set datepicker maxDate in BPInfo to current year
                 var currentYear = new Date().getFullYear();
                 var maxDate = new Date(currentYear, 11, 31);
-                that.getOwnerComponent().getModel("oLookUpModel").getData().startYear.maxYear = maxDate.toLocaleDateString();
+               // that.getOwnerComponent().getModel("oLookUpModel").getData().startYear.maxYear = maxDate.toLocaleDateString();
                 that.getOwnerComponent().getModel("oLookUpModel").refresh();
             },
 
@@ -69,6 +69,7 @@ sap.ui.define([
             _fnHandleRouteMatched: function (oEvent) {
                 var that = this;
                 var taskId = oEvent.getParameter("arguments").contextPath;
+                vtaskId = taskId
                 vAppName = oEvent.getParameter("arguments").Name;
                 if (vAppName == "Supplier") {
                     if (oView.getModel("oUserModel").getData().language == undefined || oView.getModel("oUserModel").getData().language == 'en' || oView.getModel("oUserModel").getData().language == 'en-US' || oView.getModel("oUserModel").getData().language.includes("en")) {
@@ -10688,9 +10689,9 @@ var that = this;
             fnNavBackToHome: function () {
                 var vName = vAppName.split(":")[1];
                 if (vName == "LegalExp" || vName == "GTS" || vName == "GTS1" || vName == "COISupp" || vName == "COIBuyer" || vName == "CyberSec" ||  vName == "CyberSecBuyer" || vName == "GTSBuyerBlockedCountry") {
-                    var vUrl = window.location.origin + "/nsBuyerRegistration/index.html#/ExceptionFlow/" + vName + "/" + oView.getModel("oUserModel").getData().taskId
+                    var vUrl = window.location.origin + "/nsBuyerRegistration/index.html#/ExceptionFlow/" + vName + "/" + vtaskId
                 } else {
-                    var vUrl = window.location.origin + "/nsBuyerRegistration/index.html#/Reviewer/" + vName + "/" + oView.getModel("oUserModel").getData().taskId
+                    var vUrl = window.location.origin + "/nsBuyerRegistration/index.html#/Reviewer/" + vName + "/" + vtaskId
                 }
 
                 sap.m.URLHelper.redirect(vUrl);
