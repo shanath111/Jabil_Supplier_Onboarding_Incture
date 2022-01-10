@@ -2227,6 +2227,7 @@ sap.ui.define([
                     });
                     return;
                 }else{
+                    if (oView.getModel("oDataModel").getData().comInfoDto.isRemitToAddress == true) {
                     if(!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrSortKey  || !that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount){
                         if(!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount){
                             oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccounte = "Error";
@@ -2253,6 +2254,7 @@ sap.ui.define([
                         });
                         return;
                      }
+                    }
                 }
 
 
