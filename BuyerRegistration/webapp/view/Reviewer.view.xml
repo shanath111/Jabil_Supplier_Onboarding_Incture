@@ -635,7 +635,7 @@
 												<Label text="" class="cl_PreviewLablClsValue "></Label>
 											</VBox> -->
                                             <VBox class="VRVboxStyle1">
-													<Label text="{i18n>ReconciliationAccount}:" required="true" class="cl_VRLablCls "></Label>
+													<Label text="{i18n>ReconciliationAccount}:" required="false" class="cl_VRLablCls "></Label>
 													<ComboBox width="95%" items="{oBPLookUpMdl>/ReconAcc}"   valueState="{JMValidateDefault>/invoiceAddrReconciliationAccounte}" valueStateText="{JMValidateDefault>/invoiceAddrReconciliationAccountm}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/defaultEnable}" change="fnLiveChangeReconAcc1" showSecondaryValues="true" selectedKey="{oDataModel>/shippingInfoDto/invoiceAddrReconciliationAccount}"
 											class="cl_VRInputCls"  >
@@ -644,7 +644,7 @@
                                                 	
 												</VBox>
                                                  <VBox class="VRVboxStyle1">
-													<Label text="{i18n>SortKey}:" required="true" class="cl_VRLablCls "></Label>
+													<Label text="{i18n>SortKey}:" required="false" class="cl_VRLablCls "></Label>
 													<ComboBox width="95%" items="{oBPLookUpMdl>/SortKey}"   valueState="{JMValidateDefault>/invoiceAddrSortKeye}" valueStateText="{JMValidateDefault>/invoiceAddrSortKeym}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/defaultEnable}" change="fnLiveChangeSortKey1" showSecondaryValues="true" selectedKey="{oDataModel>/shippingInfoDto/invoiceAddrSortKey}"
 											class="cl_VRInputCls"  >
