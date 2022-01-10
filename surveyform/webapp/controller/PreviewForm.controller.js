@@ -82,7 +82,7 @@ sap.ui.define([
                 }
                 oi18n = this.getOwnerComponent().getModel("i18n").getResourceBundle();
                 var oDeferred = $.Deferred();
-                that.fnSetSupplierFinanceView();
+               // that.fnSetSupplierFinanceView();
                 this.getUser();
                 if (taskId !== "") {
                     this.getTaskDetails(taskId, oDeferred, oi18n);
