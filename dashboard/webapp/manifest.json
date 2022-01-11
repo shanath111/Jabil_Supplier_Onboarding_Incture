@@ -54,6 +54,8 @@
   },
   "sap.ui5": {
     "flexEnabled": true,
+    "fullWidth": true,
+
     "dependencies": {
       "minUI5Version": "1.97.0",
       "libs": {
@@ -137,6 +139,11 @@
             "name": "Home",
             "pattern": "",
             "target":"Home"
+          },
+          {
+            "name": "PreviewForm",
+            "pattern":"PreviewForm/{caseId}",
+            "target":"PreviewForm"
           }
       ],
       "targets": {
@@ -147,6 +154,10 @@
         "Home": {
             "viewType": "XML",
             "viewName": "Home"
+        },
+        "PreviewForm": {
+            "viewType": "XML",
+            "viewName": "PreviewForm"
         }
       }
     },

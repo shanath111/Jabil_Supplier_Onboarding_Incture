@@ -394,21 +394,10 @@ sap.ui.define([
                     }
                 });
             }else{
-                var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
-                var hash = (oCrossAppNavigator && oCrossAppNavigator.hrefForExternal({
-                    target: {
-                        semanticObject: "surveyform",
-                        action: "Display"
-                    },
-                    params: params
-                })) || "";
-
-
-                oCrossAppNavigator.toExternal({
-                    target: {
-                        shellHash: hash
-                    }
-                }); 
+                this.getOwnerComponent().getRouter().navTo("PreviewForm", {
+                    caseId: vCaseId
+                  
+                });
             }
 
             },
@@ -474,8 +463,6 @@ sap.ui.define([
                 var params = {
                     "params": true
                 };
-
-
                 var vCaseId = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("caseId");
                 params.caseId = vCaseId;
                 var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");

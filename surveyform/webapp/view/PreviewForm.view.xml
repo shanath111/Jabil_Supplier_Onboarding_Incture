@@ -2,7 +2,7 @@
 	displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
 	xmlns:u="sap.ui.unified" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f" async="true">
 	<Page id="page" class="surveyPageBackgroundBank" showHeader="false">
-		<Toolbar class="toolbarBackground">
+		<Toolbar id="id_HeaderBtnToolbar" class="toolbarBackground">
      
         <Link text="{i18n>VRHome}" press="fnNavBackToHome"  class="sapUiSmallMarginBegin cl_TIHomeLink"></Link>
 		</Toolbar>
