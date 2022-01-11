@@ -30,7 +30,7 @@
 
                     <!-- <rt:RichTextEditor width="98%" editable="false" showGroupFontStyle="false" showGroupFont="false" showGroupStructure="false" showGroupLink="false" showGroupTextAlign="false" showGroupUndo="false" showGroupClipboard="false" showGroupInsert="false" class="sapUiTinyMarginBegin" height="78%" value="{oEULAContentModel>/content}"></rt:RichTextEditor> -->
                     
-                    <PDFViewer source="{EULAModel>/Source}" title="{EULAModel>/Title}" height="{EULAModel>/Height}" showDownloadButton="false" width="90%" class="sapUiMediumMarginBegin sapUiTinyMarginTop">
+                    <PDFViewer source="{EULAModel>/Source}" title="{EULAModel>/Title}" height="{EULAModel>/Height}" showDownloadButton="false" width="54%" class="sapUiMediumMarginBegin sapUiTinyMarginTop">
                         <layoutData>
                             <FlexItemData growFactor="1" />
                         </layoutData>
