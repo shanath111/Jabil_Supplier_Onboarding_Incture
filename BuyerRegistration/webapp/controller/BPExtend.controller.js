@@ -132,7 +132,7 @@ sap.ui.define([
 
                         var oJsonTaskContext = new sap.ui.model.json.JSONModel();
                         oJsonTaskContext.setData(oEvent.getSource().getData());
-                        oView.setModell(oJsonTaskContext,"JMTaskContext")
+                        oView.setModel(oJsonTaskContext,"JMTaskContext")
 
                         var oJosnMdl = new sap.ui.model.json.JSONModel();
                         oJosnMdl.setData(oEvent.getSource().getData().bpSearchParams);
