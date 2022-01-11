@@ -134,10 +134,10 @@
       "cwd": "${workspaceFolder}/dashboard",
       "env": {
         "PORT": "6004",
-        "MOCK_LOOKUP_DIRS": "[\"dist\"]",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
         "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/dashboard\"}"
       },
-      "envFile": "${workspaceFolder}/dashboard/.env56",
+      "envFile": "${workspaceFolder}/dashboard/.env1",
       "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
     }
   ],

@@ -19,20 +19,7 @@
             "destination": "plcm_reference_data",
             "csrfProtection": false
         },
-        {
-            "source": "^/WorkboxJavaService",
-            "target": "/",
-            "authenticationType": "xsuaa",
-            "destination": "inbox_services",
-            "csrfProtection": false
-        },
-        {
-            "source": "^/plcm_service_object",
-            "target": "/",
-            "authenticationType": "xsuaa",
-            "destination": "plcm_service_object",
-            "csrfProtection": false
-        },
+      
         {
             "source": "^(.*)$",
             "target": "$1",
