@@ -18,9 +18,15 @@
         <Panel width="auto" expandable="false" id="id_FilterPanel0"  expand="fnPanelCollapse" expanded="true" class="cl_VRPanelClass cl_PanelMargonTop sapUiTinyMarginBegin sapUiTinyMarginEnd">
         	<content>
              <l:Grid  defaultSpan="XL12 L12 M12 S12" class="sapUiSizeCompact cl_ExtendSearchGrid">
+             <VBox visible="{oConfigMdl>/ExtentionTxtVis}">
             <Label text="{i18n>BuyerWelcomeTxt}" class="cl_BuyerTitle sapUiTinyMarginTop"  wrapping="true" ></Label>
              <Label text="{i18n>BuyerWelcomeTxt1}" class="cl_VRLablCls" wrapping="true" ></Label>
               <Label text="{i18n>BuyerWelcomeTxt2}" class="cl_VRLablCls" wrapping="true" ></Label>
+              </VBox>
+              <VBox visible="{oConfigMdl>/SMETxtVis}">
+              <Label text="{i18n>SMETxt1}" class="cl_BuyerTitle sapUiTinyMarginTop"  wrapping="true" ></Label>
+             <Label text="{i18n>SMETxt2}" class="cl_VRLablCls" wrapping="true" ></Label>
+              </VBox>
 </l:Grid >
             	</content>
                 </Panel>

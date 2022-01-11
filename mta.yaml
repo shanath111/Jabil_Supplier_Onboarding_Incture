@@ -53,6 +53,10 @@ modules:
       - processflow-content.zip
       name: processFlow
       target-path: resources/
+    - artifacts:
+      - dashboard-content.zip
+      name: dashboard
+      target-path: resources/
 - name: surveyform
   type: html5
   path: surveyform
@@ -96,6 +100,14 @@ modules:
 - name: processFlow
   type: html5
   path: processFlow
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+- name: dashboard
+  type: html5
+  path: dashboard
   build-parameters:
     builder: custom
     commands:

@@ -167,6 +167,7 @@
                     </VBox>
                                             </l:Grid>
                                             	<HBox class="cl_HBoxBlockSep"></HBox>
+                                                <Label text="{i18n>ReconsilationAndPaymentTxt}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
                                         <l:Grid defaultSpan="XL2 L2 M2 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
 											
 											<!-- <VBox class="VRVboxStyle1">
@@ -177,6 +178,24 @@
 												<Label text="{i18n>TIDUNsNumber}" class="cl_PreviewLablCls "></Label>
 												<Label text="" class="cl_PreviewLablClsValue "></Label>
 											</VBox> -->
+                                            <VBox class="VRVboxStyle1">
+													<Label text="{i18n>ReconciliationAccount}:" required="true" class="cl_VRLablCls "></Label>
+													<ComboBox width="95%" items="{oBPLookUpMdl>/ReconAcc}"   valueState="{JMValidateDefault>/reconciliationAccounte}" valueStateText="{JMValidateDefault>/reconciliationAccountm}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/defaultEnable}" change="fnLiveChangeReconAcc" showSecondaryValues="true" selectedKey="{oDataModel>/shippingInfoDto/reconciliationAccount}"
+											class="cl_VRInputCls"  >
+											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</ComboBox>
+                                                	
+												</VBox>
+                                                 <VBox class="VRVboxStyle1">
+													<Label text="{i18n>SortKey}:" required="true" class="cl_VRLablCls "></Label>
+													<ComboBox width="95%" items="{oBPLookUpMdl>/SortKey}"   valueState="{JMValidateDefault>/sortKeye}" valueStateText="{JMValidateDefault>/sortKeym}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/defaultEnable}" change="fnLiveChangeSortKey" showSecondaryValues="true" selectedKey="{oDataModel>/shippingInfoDto/sortKey}"
+											class="cl_VRInputCls"  >
+											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</ComboBox>
+                                                	
+												</VBox>
 											<VBox class="VRVboxStyle1">
 												<Label text="{i18n>BPCIncoterms}" class="cl_PreviewLablCls "></Label>
 												<Label text="{JMBPCreate>/incoTermsd}" class="cl_PreviewLablClsValue "></Label>
@@ -600,9 +619,42 @@
                             	
 			</u:Table>
             </VBox>
+
             <VBox > 
              <CheckBox wrapping="true" text="{i18n>newPartnerCreatioExtTextRemit}" select="fnCompanyRTAClick" selected="{oConfigMdl>/invoicingAddNew}" enabled="{oConfigMdl>/invoicingAddNewEnb}" class="fontBold inputStyle  sapUiTinyMarginTop sapUiTinyMarginBottom" />
 			<Text text="Name:{oConfigMdl>/companyInfoInv/0/name}   /  Address:{oConfigMdl>/companyInfoInv/0/address1}" class="fontBold inputStyle  sapUiTinyMarginTop sapUiTinyMarginBegin" />
+               <Label text="{i18n>ReconsilationAndPaymentTxt}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
+                                        <l:Grid defaultSpan="XL2 L2 M2 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
+											
+											<!-- <VBox class="VRVboxStyle1">
+												<Label text="{i18n>Currency}" class="cl_PreviewLablCls "></Label>
+												<Label text="" class="cl_PreviewLablClsValue "></Label>
+											</VBox>
+											<VBox class="VRVboxStyle1">
+												<Label text="{i18n>TIDUNsNumber}" class="cl_PreviewLablCls "></Label>
+												<Label text="" class="cl_PreviewLablClsValue "></Label>
+											</VBox> -->
+                                            <VBox class="VRVboxStyle1">
+													<Label text="{i18n>ReconciliationAccount}:" required="false" class="cl_VRLablCls "></Label>
+													<ComboBox width="95%" items="{oBPLookUpMdl>/ReconAcc}"   valueState="{JMValidateDefault>/invoiceAddrReconciliationAccounte}" valueStateText="{JMValidateDefault>/invoiceAddrReconciliationAccountm}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/defaultEnable}" change="fnLiveChangeReconAcc1" showSecondaryValues="true" selectedKey="{oDataModel>/shippingInfoDto/invoiceAddrReconciliationAccount}"
+											class="cl_VRInputCls"  >
+											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</ComboBox>
+                                                	
+												</VBox>
+                                                 <VBox class="VRVboxStyle1">
+													<Label text="{i18n>SortKey}:" required="false" class="cl_VRLablCls "></Label>
+													<ComboBox width="95%" items="{oBPLookUpMdl>/SortKey}"   valueState="{JMValidateDefault>/invoiceAddrSortKeye}" valueStateText="{JMValidateDefault>/invoiceAddrSortKeym}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/defaultEnable}" change="fnLiveChangeSortKey1" showSecondaryValues="true" selectedKey="{oDataModel>/shippingInfoDto/invoiceAddrSortKey}"
+											class="cl_VRInputCls"  >
+											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</ComboBox>
+                                                	
+												</VBox>
+											
+                                          
+										</l:Grid>
             	<u:Table
 				rows="{oVendorListModel>/invoiceAddressResults/d/results}"
 				selectionMode="Single"

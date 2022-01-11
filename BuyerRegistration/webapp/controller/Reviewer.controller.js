@@ -75,6 +75,7 @@ sap.ui.define([
                     this.fnLoadCompanyCode();
                     this.fnLoadPurOrg();
                     that.fnLoadCountry();
+                    
 
 
 
@@ -237,6 +238,7 @@ sap.ui.define([
                 oValidationDefult.setData({});
                 oView.setModel(oValidationDefult, "JMValidateDefault")
                 this.fnLoadTaskDetail(oContext.Id);
+                this.fnLoadSortKey();
                 
 
             },
@@ -337,6 +339,32 @@ sap.ui.define([
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
                         oView.getModel("oBPLookUpMdl").setProperty("/Currency", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
+            },
+            fnLoadReconAcc: function (vCompCode) {
+                var oModel = new JSONModel();
+                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/reconciliation-account/"+vCompCode;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/ReconAcc", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
+            },
+            fnLoadSortKey: function (vCompCode) {
+                var oModel = new JSONModel();
+                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/sort-key";
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/SortKey", oEvent.getSource().getData());
                         oView.getModel("oBPLookUpMdl").refresh();
                     }
                 });
@@ -865,6 +893,7 @@ sap.ui.define([
                                     oBPCreateModel.setData(temp);
                                     oView.setModel(oBPCreateModel, "JMBPCreate");
                                     that.fnLoadCompanyCode(true);
+                                    that.fnLoadReconAcc(temp.companyCode);
                                     that.fnLoadPlant(true);
                                     that.fnLoadPurOrg(temp.companyCode, that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, temp.companyCode, "CompanyCode"));
                                     // that.fnLoadPurOrg(true);
@@ -1636,7 +1665,7 @@ sap.ui.define([
                 }
             },
             fnViewDetails: function () {
-                var vUrl = window.location.origin + "/comjabilsurveyform/index.html#/VendorSurvey/" + "Display:" + oView.getModel("oConfigMdl").getData().contextPath.Name + "/" + oView.getModel("oConfigMdl").getData().contextPath.Id
+                var vUrl = window.location.origin + "/comjabilsurveyform/index.html#/PreviewForm/" + "Display:" + oView.getModel("oConfigMdl").getData().contextPath.Name + "/" + oView.getModel("oConfigMdl").getData().contextPath.Id
                 sap.m.URLHelper.redirect(vUrl);
             },
             fnHandleTypeMissmatch: function(oEvent){
@@ -1939,6 +1968,59 @@ sap.ui.define([
                     oView.getModel("JMValidateDefault").refresh();
                 }
             },
+            
+            fnLiveChangeReconAcc: function (oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                if (oView.getModel("JMValidateDefault").getData().reconciliationAccounte == "Error") {
+                    oView.getModel("JMValidateDefault").getData().reconciliationAccounte = "None";
+                    oView.getModel("JMValidateDefault").getData().reconciliationAccountm = "";
+                    oView.getModel("JMValidateDefault").refresh();
+                }
+            },
+            fnLiveChangeSortKey: function (oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                if (oView.getModel("JMValidateDefault").getData().sortKeye == "Error") {
+                    oView.getModel("JMValidateDefault").getData().sortKeye = "None";
+                    oView.getModel("JMValidateDefault").getData().sortKeym = "";
+                    oView.getModel("JMValidateDefault").refresh();
+                }
+            },
+            fnLiveChangeReconAcc1: function (oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                if (oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccounte == "Error") {
+                    oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccounte = "None";
+                    oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccountm = "";
+                    oView.getModel("JMValidateDefault").refresh();
+                }
+            },
+            fnLiveChangeSortKey1: function (oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                if (oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeye == "Error") {
+                    oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeye = "None";
+                    oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeym = "";
+                    oView.getModel("JMValidateDefault").refresh();
+                }
+            },
             fnLiveChangGBSRegion: function (oEvent) {
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
@@ -2022,6 +2104,27 @@ sap.ui.define([
                     });
                     return;
                  }
+                 if(!that.getView().getModel("oDataModel").getData().shippingInfoDto.sortKey  || !that.getView().getModel("oDataModel").getData().shippingInfoDto.reconciliationAccount){
+                    if(!that.getView().getModel("oDataModel").getData().shippingInfoDto.reconciliationAccount){
+                        oView.getModel("JMValidateDefault").getData().reconciliationAccounte = "Error";
+                        oView.getModel("JMValidateDefault").getData().reconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
+                      //  vError = true;
+                    }
+                    if(!that.getView().getModel("oDataModel").getData().shippingInfoDto.sortKey){
+                        oView.getModel("JMValidateDefault").getData().sortKeye = "Error";
+                        oView.getModel("JMValidateDefault").getData().sortKeym = oi18n.getProperty("BPCMandatoryValidation");
+                      //  vError = true;
+                     }
+                     oView.getModel("JMValidateDefault").refresh();
+                    sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
+                    return;
+                 }
+
 
 
                 if (!that.getView().getModel("oDataModel").getData().defaultValuesDto.reqCompanyCode) {
@@ -2123,6 +2226,35 @@ sap.ui.define([
                         title: "Error"
                     });
                     return;
+                }else{
+                    if (oView.getModel("oDataModel").getData().comInfoDto.isRemitToAddress == true) {
+                    if(!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrSortKey  || !that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount){
+                        if(!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount){
+                            oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccounte = "Error";
+                            oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
+                          //  vError = true;
+                        }
+                        if(!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrSortKey){
+                            oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeye = "Error";
+                            oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeym = oi18n.getProperty("BPCMandatoryValidation");
+                          //  vError = true;
+                         }
+                         oView.getModel("JMValidateDefault").refresh();
+                         oView.byId("id_SegmentedBtn").setSelectedKey("partnerFunction");
+                         oView.getModel("oConfigMdl").getData().buyerData = false;
+                         oView.getModel("oConfigMdl").getData().onBoardDet = false;
+                         oView.getModel("oConfigMdl").getData().BankDetails = false;
+                         oView.getModel("oConfigMdl").getData().PartnerFunctionVis = true;
+                         oView.getModel("oConfigMdl").refresh();
+                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                        return;
+                     }
+                    }
                 }
 
 

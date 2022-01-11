@@ -686,14 +686,14 @@ sap.ui.define([
                         contentType: 'application/json; charset=utf-8',
                         success: function (data) {
                             if (data.bankCountry == "Mandatory") {
-                                if (!temp.BANK_COUNTRY) {
+                                if (!vSelDataTem.BANK_COUNTRY) {
                                     vBankValid = true;
                                     vMessage = "Bank Country is Required \n"
                                 }
 
                             }
                             if (data.iban == "Mandatory") {
-                                if (!temp.IBAN) {
+                                if (!vSelDataTem.IBAN) {
                                     vBankValid = true;
                                     vMessage = vMessage + " IBAN is Required"
                                 }

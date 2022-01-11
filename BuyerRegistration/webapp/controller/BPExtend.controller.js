@@ -41,6 +41,9 @@ sap.ui.define([
             fnSetConfigModel: function (oContext) {
                 oView.getModel("oConfigMdl").getData().caseDeailVis = true;
                 oView.getModel("oConfigMdl").getData().CompleteTaskVis = false;
+                oView.getModel("oConfigMdl").getData().ExtentionTxtVis = true;
+                oView.getModel("oConfigMdl").getData().SMETxtVis = false;
+                
                 
                 if (oContext.Name == "Display") {
                     if (oContext.Id == "New") {
@@ -77,6 +80,8 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().createNewBtn = false;
                     oView.getModel("oConfigMdl").getData().screenEditable = true;
                     oView.getModel("oConfigMdl").getData().CompleteTaskVis = true;
+                    oView.getModel("oConfigMdl").getData().ExtentionTxtVis = false;
+                oView.getModel("oConfigMdl").getData().SMETxtVis = true;
                     var oFCL = this.getView().byId("flexibleColumnLayout");
                     oFCL.setLayout(library.LayoutType.OneColumn);
                     this.fnSetGBSData(oContext.Id);//Load GBS Data
@@ -1202,6 +1207,7 @@ sap.ui.define([
                             "CoIFields": false,
                             "buyerAttachmentVis": false,
                             "addlSurveyForSuppliers": 1,
+                           
                             "bpSearch": {
                                 "selectedSupplier": JSON.stringify(temp)
                             }
@@ -1210,7 +1216,8 @@ sap.ui.define([
                         if (oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention") {
                             temp1.caseId = oView.getModel("JMCaseDetail").getData().caseId;
                             temp1.status = oView.getModel("JMCaseDetail").getData().status;
-
+                            temp1.bpSearch = oView.getModel("JMCaseDetail").getData().bpSearch;
+                            temp1.bpSearch.selectedSupplier = JSON.stringify(temp);
                             temp1.userCreated = oView.getModel("JMCaseDetail").getData().userCreated;
                             temp1.dateCreated = oView.getModel("JMCaseDetail").getData().dateCreated;
                             temp1.userUpdated = oView.getModel("JMCaseDetail").getData().userUpdated;
@@ -2031,8 +2038,9 @@ sap.ui.define([
                                             // "company_code": oView.getModel("JMBPCreate").getData().companyCode,
                                             // "purchasing_code": oView.getModel("JMBPCreate").getData().purchasingOrg
                                         },
-
-                                        "definitionId": "partner_onboarding_main"
+                                        "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                                        "bpNumber": ""
+                                        //"definitionId": "partner_onboarding_main"
                                     }
 
                                 }
@@ -2271,9 +2279,50 @@ sap.ui.define([
                                             } else {
                                                 var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/taskComplete"
                                                 var oPayload = {
+                                                    "context": {
+                                                        "bpNumber": "",
+                                                        "isNew": vIsNew,
+                                                        "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                                                        "corporationName": oView.getModel("JMBPCreate").getData().corporationName,
+                                                        "isDplicatesFound": false,
+                                                        "caseId": oEvent.getSource().getData().caseId,
+                                                        "buyerName": vBuyer,
+                                                        "buyerTelephone": "",
+                                                        "buyerEmailid": vBuyerEmail,
+                                                        "division": "",
+                                                        "conflictOfInterest": vConflictOfInt,
+                                                        "requestorConflictOfInterest": vConflictOfInt1,
+                                                        "requestorCOIEmail": oView.getModel("JMBPCreate").getData().requestorCOIEmail,
+                                                        "requestorCOIName": oView.getModel("JMBPCreate").getData().requestorCOIName,
+                                                        "coiReason": oView.getModel("JMBPCreate").getData().additionalInformation,
+                                                        "supplierName": oView.getModel("JMBPCreate").getData().firstName + " " + oView.getModel("JMBPCreate").getData().lastName,
+                                                        "supplierAddress": oView.getModel("JMBPCreate").getData().address1,
+                                                        "supplierCity": oView.getModel("JMBPCreate").getData().city,
+                                                        "supplierCountry": oView.getModel("JMBPCreate").getData().countryd,
+                                                        "supplierDistrict": oView.getModel("JMBPCreate").getData().district,
+                                                        "supplierPostalCode": oView.getModel("JMBPCreate").getData().postalCode,
+                                                        "supplierTelephone": oView.getModel("JMBPCreate").getData().telephone,
+                                                        "supplierEmail": oView.getModel("JMBPCreate").getData().email,
+                                                        "purchasingGroup": "",
+                                                        "workCell": oView.getModel("JMBPCreate").getData().workCelld,
+                                                        "plant": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().Plant, oView.getModel("JMBPCreate").getData().plant, "Plant"),
+                                                        "companyCode": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
+                                                        "purchasingOrg": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurOrg, oView.getModel("JMBPCreate").getData().purchasingOrg, "PurchOrg"),
+                                                        "supplierDetails": {
+                                                            "firstName": oView.getModel("JMBPCreate").getData().firstName,
+                                                            "lastName": oView.getModel("JMBPCreate").getData().lastName,
+                                                            "email": oView.getModel("JMBPCreate").getData().email
+                                                        }
+                                                        // "company_code": oView.getModel("JMBPCreate").getData().companyCode,
+                                                        // "purchasing_code": oView.getModel("JMBPCreate").getData().purchasingOrg
+                                                    },
+            
                                                     "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                                                     "bpNumber": ""
                                                 }
+            
+                                            
+            
                                             }
 
                                             oModelWf.loadData(sUrl, JSON.stringify(

@@ -119,6 +119,26 @@
       },
       "envFile": "${workspaceFolder}/BuyerRegistration/.env56",
       "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
+    },
+    {
+      "name": "Run Partner Lifecycle Supplier Portal-dashboard",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/dashboard/index.html",
+        "--ui5",
+        "{\"version\":\".\"}"
+      ],
+      "cwd": "${workspaceFolder}/dashboard",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"dist\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/dashboard\"}"
+      },
+      "envFile": "${workspaceFolder}/dashboard/.env56",
+      "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
     }
   ],
   "compounds": [],

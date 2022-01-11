@@ -46,6 +46,10 @@
 					"id": "oneapp.incture.processFlow.processFlow-4-1629991070376",
 					"appId": "oneapp.incture.processFlow.processFlow",
 					"vizId": "processFlow-display"
+				}, {
+					"id": "dashboard-5-1641887793085",
+					"appId": "dashboard",
+					"vizId": "buyerDashboard-Display"
 				}]
 			}
 		}],
