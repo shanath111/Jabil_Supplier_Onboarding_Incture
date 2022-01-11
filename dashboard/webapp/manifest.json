@@ -125,5 +125,10 @@
       "async": true,
       "id": "View1"
     }
-  }
+  },
+  "sap.platform.cf": {
+    "oAuthScopes": [
+        "$XSAPPNAME.buyerDashboard"
+    ]
+}
 }

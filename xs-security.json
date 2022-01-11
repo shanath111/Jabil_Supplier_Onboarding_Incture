@@ -26,6 +26,10 @@
          {
             "name": "$XSAPPNAME.processFlow",
               "description": "Display"
+        },
+        {
+            "name": "$XSAPPNAME.buyerDashboard",
+              "description": "Display"
         }
     ],
     "role-templates": [
@@ -69,6 +73,13 @@
             "description": "Display",
             "scope-references": [
                 "$XSAPPNAME.processFlow"
+            ]
+        },
+        {
+            "name": "buyerDashboard",
+            "description": "Display",
+            "scope-references": [
+                "$XSAPPNAME.buyerDashboard"
             ]
         }
     ]
