@@ -24,7 +24,7 @@
               <Label text="{i18n>BuyerWelcomeTxt2}" class="cl_VRLablCls" wrapping="true" ></Label>
               </VBox>
               <VBox visible="{oConfigMdl>/SMETxtVis}">
-              <Label text="{i18n>SMETxt1}" class="cl_BuyerTitle sapUiTinyMarginTop"  wrapping="true" ></Label>
+              <Label text="Please see the selected Vendor record from {JMTaskContext>/smeEmail}, ready to be extended." class="cl_BuyerTitle sapUiTinyMarginTop"  wrapping="true" ></Label>
              <Label text="{i18n>SMETxt2}" class="cl_VRLablCls" wrapping="true" ></Label>
               </VBox>
 </l:Grid >

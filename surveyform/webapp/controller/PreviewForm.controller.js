@@ -71,6 +71,7 @@ sap.ui.define([
                 var taskId = oEvent.getParameter("arguments").contextPath;
                 vtaskId = taskId
                 vAppName = oEvent.getParameter("arguments").Name;
+               
                 if (vAppName == "Supplier") {
                     if (oView.getModel("oUserModel").getData().language == undefined || oView.getModel("oUserModel").getData().language == 'en' || oView.getModel("oUserModel").getData().language == 'en-US' || oView.getModel("oUserModel").getData().language.includes("en")) {
                         that.getView().getModel("oVisibilityModel").getData().isdefaultLan = true;
@@ -84,6 +85,8 @@ sap.ui.define([
                 var oDeferred = $.Deferred();
                // that.fnSetSupplierFinanceView();
                 this.getUser();
+                if(vAppName !== "BuyerDashboard"){
+                   oView.byId("id_HeaderBtnToolbar").setVisible(true);
                 if (taskId !== "") {
                     this.getTaskDetails(taskId, oDeferred, oi18n);
                     var aModel = new JSONModel();
@@ -105,6 +108,14 @@ sap.ui.define([
                         }
                     });
                 }
+            }else{
+                oView.getModel("oUserModel").getData().caseId = vtaskId;
+                oView.byId("id_HeaderBtnToolbar").setVisible(false);
+                oView.getModel("oUserModel").refresh();
+              
+              
+            }
+            
 
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
                 this.getView().setModel(oi18n_En, "oi18n_En");
@@ -116,7 +127,7 @@ sap.ui.define([
                 this._fnLoadEstablishConnList();
                 this._fnLoadBusinessActList();
 
-                oDeferred.done(function () {
+              //  oDeferred.done(function () {
                     oBusyDialogLoadData.open();
                    // that.assignNextStepByStep();
                     if (oView.getModel("oUserModel").getData().caseId !== "") {
@@ -1289,7 +1300,7 @@ sap.ui.define([
                         );
 
                     }
-                });
+              //  });
             },
             _fnGETSupplierAuthority: function () {
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/case/findById/" + oView.getModel("oUserModel").getData().caseId;
@@ -10687,12 +10698,16 @@ var that = this;
                 window.parent.location.reload();
             },
             fnNavBackToHome: function () {
+                if(vAppName == "BuyerDashboard"){
+                    var vUrl = window.location.origin + "/dashboard/index.html"
+                }else{
                 var vName = vAppName.split(":")[1];
                 if (vName == "LegalExp" || vName == "GTS" || vName == "GTS1" || vName == "COISupp" || vName == "COIBuyer" || vName == "CyberSec" ||  vName == "CyberSecBuyer" || vName == "GTSBuyerBlockedCountry") {
                     var vUrl = window.location.origin + "/nsBuyerRegistration/index.html#/ExceptionFlow/" + vName + "/" + vtaskId
                 } else {
                     var vUrl = window.location.origin + "/nsBuyerRegistration/index.html#/Reviewer/" + vName + "/" + vtaskId
                 }
+            }
 
                 sap.m.URLHelper.redirect(vUrl);
             },

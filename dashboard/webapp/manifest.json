@@ -54,6 +54,8 @@
   },
   "sap.ui5": {
     "flexEnabled": true,
+    "fullWidth": true,
+
     "dependencies": {
       "minUI5Version": "1.97.0",
       "libs": {
@@ -71,6 +73,33 @@
           "bundleName": "dashboard.i18n.i18n"
         }
       },
+      "oDataModel": {
+        "type": "sap.ui.model.json.JSONModel"
+    },
+     "oVisibilityModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/visibility.json"
+    },
+    "oBPLookUpMdl": {
+        "type": "sap.ui.model.json.JSONModel"
+    },
+    "oLookUpModel": {
+        "type": "sap.ui.model.json.JSONModel"
+    },
+    "oConfigMdl": {
+        "type": "sap.ui.model.json.JSONModel"
+    },
+    "oStaticData": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/StaticData.json"
+    },
+    "oAttachmentList": {
+        "type": "sap.ui.model.json.JSONModel"
+    },
+    "oAttachmentListBank": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/attachmentData.json"
+    },
       "": {
         "dataSource": "mainService",
         "preload": true,
@@ -102,25 +131,38 @@
       },
       "routes": [
         {
-          "name": "RouteView1",
-          "pattern": "RouteView1",
-          "target": [
-            "TargetView1"
-          ]
-        }
+          "name": "App",
+          "pattern": "App",
+          "target":"App"
+        },
+        {
+            "name": "Home",
+            "pattern": "",
+            "target":"Home"
+          },
+          {
+            "name": "PreviewForm",
+            "pattern":"PreviewForm/{caseId}",
+            "target":"PreviewForm"
+          }
       ],
       "targets": {
-        "TargetView1": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "View1",
-          "viewName": "View1"
+        "App": {
+            "viewType": "XML",
+            "viewName": "App"
+        },
+        "Home": {
+            "viewType": "XML",
+            "viewName": "Home"
+        },
+        "PreviewForm": {
+            "viewType": "XML",
+            "viewName": "PreviewForm"
         }
       }
     },
     "rootView": {
-      "viewName": "dashboard.view.View1",
+      "viewName": "dashboard.view.App",
       "type": "XML",
       "async": true,
       "id": "View1"

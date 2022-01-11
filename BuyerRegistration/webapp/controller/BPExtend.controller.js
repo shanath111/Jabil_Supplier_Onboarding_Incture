@@ -130,6 +130,9 @@ sap.ui.define([
                     oBusyDilog.close();
                     if (oEvent.getParameter("success")) {
 
+                        var oJsonTaskContext = new sap.ui.model.json.JSONModel();
+                        oJsonTaskContext.setData(oEvent.getSource().getData());
+                        oView.setModel(oJsonTaskContext,"JMTaskContext")
 
                         var oJosnMdl = new sap.ui.model.json.JSONModel();
                         oJosnMdl.setData(oEvent.getSource().getData().bpSearchParams);
