@@ -230,7 +230,7 @@ sap.ui.define([
                     "partnerId": oView.getModel("JMSuppReqListHeader").getData().partnerId,
                     "plant": "",
                     "purchasingOrg": oView.getModel("JMSuppReqListHeader").getData().purchasingOrg,
-                    "status": oView.getModel("JMSuppReqListHeader").getData().status,
+                    "portalStatus": oView.getModel("JMSuppReqListHeader").getData().status,
                     "organizationName": oView.getModel("JMSuppReqListHeader").getData().organizationName,
                     "buyerName": oView.getModel("oConfigMdl").getData().usrData.givenName
                 };
