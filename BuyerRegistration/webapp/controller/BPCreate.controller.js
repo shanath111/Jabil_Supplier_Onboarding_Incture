@@ -498,6 +498,7 @@ sap.ui.define([
                                 oView.getModel("oConfigMdl").getData().screenEditable = false;
                                 oView.getModel("oConfigMdl").getData().searchAddress = false;
                             }
+                            debugger;
                             if(that.getOwnerComponent().getComponentData()){
                                 if (that.getOwnerComponent().getComponentData().startupParameters.caseId) {
                                   var vEnb = that.getOwnerComponent().getComponentData().startupParameters.Enb[0];
