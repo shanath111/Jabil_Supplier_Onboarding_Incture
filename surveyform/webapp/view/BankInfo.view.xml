@@ -1,6 +1,7 @@
 <mvc:View controllerName="com.jabil.surveyform.controller.BankInfo" xmlns:mvc="sap.ui.core.mvc" 
 	displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
 	xmlns:u="sap.ui.unified" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f" async="true">
+	<Page id="page" class="surveyPageBackgroundBank" showHeader="false">
 	
 		<Toolbar class="toolbarBackground">
      
