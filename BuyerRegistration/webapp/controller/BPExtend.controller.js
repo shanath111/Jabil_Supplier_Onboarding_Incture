@@ -1280,7 +1280,8 @@ sap.ui.define([
                 var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/taskComplete"
                 var oPayload = {
                     "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
-                    "bpNumber": ""
+                    "bpNumber": "",
+                    "buyerActionOnExtension":"close"
                 }
                 var oModelWf = new JSONModel();
 
