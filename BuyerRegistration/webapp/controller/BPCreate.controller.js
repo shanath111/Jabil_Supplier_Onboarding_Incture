@@ -498,6 +498,15 @@ sap.ui.define([
                                 oView.getModel("oConfigMdl").getData().screenEditable = false;
                                 oView.getModel("oConfigMdl").getData().searchAddress = false;
                             }
+                            if(that.getOwnerComponent().getComponentData()){
+                                if (that.getOwnerComponent().getComponentData().startupParameters.caseId) {
+                                  var vEnb = that.getOwnerComponent().getComponentData().startupParameters.Enb[0];
+                                  if(vEnb == false){
+                                    oView.getModel("oConfigMdl").getData().screenEditable = false;
+                                    oView.getModel("oConfigMdl").getData().searchAddress = false;
+                                  }
+                              }
+                          }
 
                             oView.getModel("oConfigMdl").getData().representAnotherCompany = temp.representAnotherCompany;
                             oView.getModel("oConfigMdl").refresh();

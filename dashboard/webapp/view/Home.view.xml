@@ -128,7 +128,7 @@
 													<Text text="{JMSuppReqList>companyCode}" class="cl_ListNameClass"></Text>
 													<Text text="{JMSuppReqList>purchasingOrg}" class="cl_ListNameClass"></Text>
                                                    
-													<ObjectStatus text="{JMSuppReqList>status}"
+													<ObjectStatus text="{JMSuppReqList>portalStatus}"
 														state="{path: 'JMSuppReqList>status', formatter: 'dashboard.util.formatter.fnStatusColour' }"/>
                                                         	<Text text="{path: 'JMSuppReqList>dateCreated', formatter: 'dashboard.util.formatter.fnFormatDate'}" class="cl_ListNameClass"></Text>
 													<Text text="{JMSuppReqList>sapBPNumber}"  class="cl_ListNameClass"></Text>

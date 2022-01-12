@@ -117,7 +117,12 @@
                     "name": "Reports",
                     "pattern": "Reports",
                     "target": "Reports"
-                }
+                },
+                {
+                    "name": "PreviewForm",
+                    "pattern":"PreviewForm/{caseId}",
+                    "target":"PreviewForm"
+                  }
             ],
             "targets": {
                 "Home": {
@@ -127,6 +132,10 @@
                 "Reports": {
                     "viewType": "XML",
                     "viewName": "Reports"
+                },
+                "PreviewForm": {
+                    "viewType": "XML",
+                    "viewName": "PreviewForm"
                 }
             }
         }

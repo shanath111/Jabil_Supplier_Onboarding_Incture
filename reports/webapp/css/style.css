@@ -3417,7 +3417,7 @@ html.sap-desktop .sapMBtn:focus>.sapMFocusable {
     width: 97.5%;
     border-radius: 4px;
     border: 1px solid rgba(var(--root-color), 0.1) !important;
-    height: -webkit-fill-available !important;
+    height: 97% !important;
 }
 
 .wbTaskDetailHeaderClass {
