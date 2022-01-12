@@ -1281,7 +1281,10 @@ sap.ui.define([
                 var oPayload = {
                     "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                     "bpNumber": "",
-                    "buyerActionOnExtension":"close"
+                    "context": {
+                        "buyerActionOnExtension":"close"
+                    }
+                    
                 }
                 var oModelWf = new JSONModel();
 
