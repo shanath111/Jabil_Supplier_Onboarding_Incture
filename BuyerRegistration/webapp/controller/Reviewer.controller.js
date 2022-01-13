@@ -497,6 +497,7 @@ sap.ui.define([
                 oModel.attachRequestCompleted(function onCompleted(oEvent) {
                     if (oEvent.getParameter("success")) {
                         if (oEvent.getSource().getData().businessPartnerId !== "") {
+                            that.fnLoadPartnerData(vCaseId);
                             oEvent.getSource().getData().defaultValuesDto.reqPurchasingOrg = oView.getModel("JMBPCreate").getData().purchasingOrg;
                             oEvent.getSource().getData().defaultValuesDto.reqCompanyCode = oView.getModel("JMBPCreate").getData().companyCode;
                             if (!oEvent.getSource().getData().defaultValuesDto.searchTerm1) {
@@ -921,7 +922,7 @@ sap.ui.define([
                                         that._fnReadDocumentList1(temp.caseId, that);
                                     }
                                     if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
-                                        that.fnLoadPartnerData(temp.caseId);
+                                       // that.fnLoadPartnerData(temp.caseId);
                                         that.fnLoadValidationDone(temp.caseId);
                                     }
 
@@ -1109,6 +1110,26 @@ sap.ui.define([
                 oView.getModel("JMAppvrComments").refresh();
             },
             fnOpenBankCommentsReject: function () {
+             
+                var temp = {};
+                temp.Action = "MT";
+                //temp.Comments ;
+                temp.Commentse = "None";
+                temp.Commentsm = "";
+                temp.commentsTxt = "Comments";
+                temp.required = true;
+                var oJosnComments = new sap.ui.model.json.JSONModel();
+                oJosnComments.setData(temp);
+                oView.setModel(oJosnComments, "JMAppvrComments");
+                if (!this.oBankComments) {
+                    this.oBankComments = sap.ui.xmlfragment(
+                        "ns.BuyerRegistration.fragments.ApproverComments", this);
+                    oView.addDependent(this.oBankComments);
+                }
+
+                this.oBankComments.open();
+            },
+            fnMitigateReject: function () {
                 if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
                     var oPayloadSupp = that.getView().getModel("oDataModel").getData();
                     if (!oPayloadSupp.shippingInfoDto.paymentTerms) {
@@ -1139,6 +1160,7 @@ sap.ui.define([
 
                 this.oBankComments.open();
             },
+          
             fnMitigate: function () {
                 oView.getModel("oBPLookUpMdl").setProperty("/firstLevelReason", []);
                 oView.getModel("oBPLookUpMdl").setProperty("/SecondLevelReason", []);
