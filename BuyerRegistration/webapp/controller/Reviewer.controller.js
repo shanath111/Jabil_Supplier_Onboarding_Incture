@@ -1110,6 +1110,26 @@ sap.ui.define([
                 oView.getModel("JMAppvrComments").refresh();
             },
             fnOpenBankCommentsReject: function () {
+             
+                var temp = {};
+                temp.Action = "MT";
+                //temp.Comments ;
+                temp.Commentse = "None";
+                temp.Commentsm = "";
+                temp.commentsTxt = "Comments";
+                temp.required = true;
+                var oJosnComments = new sap.ui.model.json.JSONModel();
+                oJosnComments.setData(temp);
+                oView.setModel(oJosnComments, "JMAppvrComments");
+                if (!this.oBankComments) {
+                    this.oBankComments = sap.ui.xmlfragment(
+                        "ns.BuyerRegistration.fragments.ApproverComments", this);
+                    oView.addDependent(this.oBankComments);
+                }
+
+                this.oBankComments.open();
+            },
+            fnMitigateReject: function () {
                 if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
                     var oPayloadSupp = that.getView().getModel("oDataModel").getData();
                     if (!oPayloadSupp.shippingInfoDto.paymentTerms) {
@@ -1140,6 +1160,7 @@ sap.ui.define([
 
                 this.oBankComments.open();
             },
+          
             fnMitigate: function () {
                 oView.getModel("oBPLookUpMdl").setProperty("/firstLevelReason", []);
                 oView.getModel("oBPLookUpMdl").setProperty("/SecondLevelReason", []);
