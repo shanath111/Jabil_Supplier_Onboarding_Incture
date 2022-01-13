@@ -497,6 +497,7 @@ sap.ui.define([
                 oModel.attachRequestCompleted(function onCompleted(oEvent) {
                     if (oEvent.getParameter("success")) {
                         if (oEvent.getSource().getData().businessPartnerId !== "") {
+                            that.fnLoadPartnerData(vCaseId);
                             oEvent.getSource().getData().defaultValuesDto.reqPurchasingOrg = oView.getModel("JMBPCreate").getData().purchasingOrg;
                             oEvent.getSource().getData().defaultValuesDto.reqCompanyCode = oView.getModel("JMBPCreate").getData().companyCode;
                             if (!oEvent.getSource().getData().defaultValuesDto.searchTerm1) {
@@ -921,7 +922,7 @@ sap.ui.define([
                                         that._fnReadDocumentList1(temp.caseId, that);
                                     }
                                     if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
-                                        that.fnLoadPartnerData(temp.caseId);
+                                       // that.fnLoadPartnerData(temp.caseId);
                                         that.fnLoadValidationDone(temp.caseId);
                                     }
 
