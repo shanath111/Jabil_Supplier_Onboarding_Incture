@@ -498,6 +498,16 @@ sap.ui.define([
                                 oView.getModel("oConfigMdl").getData().screenEditable = false;
                                 oView.getModel("oConfigMdl").getData().searchAddress = false;
                             }
+                        
+                            if(that.getOwnerComponent().getComponentData()){
+                                if (that.getOwnerComponent().getComponentData().startupParameters.caseId) {
+                                  var vEnb = that.getOwnerComponent().getComponentData().startupParameters.Enb[0];
+                                  if(vEnb == "false"){
+                                    oView.getModel("oConfigMdl").getData().screenEditable = false;
+                                    oView.getModel("oConfigMdl").getData().searchAddress = false;
+                                  }
+                              }
+                          }
 
                             oView.getModel("oConfigMdl").getData().representAnotherCompany = temp.representAnotherCompany;
                             oView.getModel("oConfigMdl").refresh();
@@ -1388,7 +1398,7 @@ sap.ui.define([
                     //     }
                     // });
                 } else if (vBtnActn == "SU") {
-                    vConfirmMsg = "Please confirm submission request for " + oView.getModel("JMBPCreate").getData().corporationName +" in Company Code " + oView.getModel("JMBPCreate").getData().companyCode + " and Purchasing Org: " + oView.getModel("JMBPCreate").getData().purchasingOrg;
+                    vConfirmMsg = "Please confirm submission request for " + oView.getModel("JMBPCreate").getData().corporationName +" in Company Code: " + oView.getModel("JMBPCreate").getData().companyCode + " and Purchasing Org: " + oView.getModel("JMBPCreate").getData().purchasingOrg;
 
                     // vConfirmMsg = oi18n.getProperty("BPCConfirmSubmit");
                     vStatus = "In Progress"

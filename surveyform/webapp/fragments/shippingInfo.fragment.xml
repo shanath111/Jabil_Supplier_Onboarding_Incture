@@ -62,10 +62,10 @@
                     </l:Grid>
             <VBox class="fontStyle sapUiSizeCompact">
 					<Label required="true" labelFor="shippingRep" text="{i18n>shippingRep}" wrapping="true"  visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact sapUiTinyMarginBegin"></Label>
-                    <Label required="true" labelFor="shippingRep" text="{oi18n_En>shippingRep}&#10;{i18n>shippingRep}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiSizeCompact sapUiTinyMarginBegin"></Label>
+                    <Label required="true" text="{oi18n_En>shippingRep}&#10;{i18n>shippingRep}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiSizeCompact sapUiTinyMarginBegin"></Label>
 					<RadioButtonGroup id="shippingRep" class="inputStyle" columns="2" selectedIndex="{=${oDataModel>/shippingInfoDto/isDeliver} === true? 0 :(${oDataModel>/shippingInfoDto/isDeliver}=== false ?1: -1)}"  valueState="{oErrorModel>/isDeliverE}" select="fnClearValueState" enabled="{oEnableMdl>/isDeliverEnb}">
-						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/shippingInfoDto/isDeliver}"></RadioButton>
-						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>yes}}" select="fnSelectionChange"></RadioButton>
+						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/shippingInfoDto/isDeliver}" groupName="shippingRep"/>
+						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>yes}}" select="fnSelectionChange" groupName="shippingRep"/>
 					</RadioButtonGroup>
 				</VBox>
                  <l:Grid visible="{=${oDataModel>/shippingInfoDto/isDeliver}=== true}" containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="fontStyle gridSpacing sapUiSizeCompact sapUiNoContentPadding ">

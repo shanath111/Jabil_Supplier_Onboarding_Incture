@@ -18,9 +18,15 @@
         <Panel width="auto" expandable="false" id="id_FilterPanel0"  expand="fnPanelCollapse" expanded="true" class="cl_VRPanelClass cl_PanelMargonTop sapUiTinyMarginBegin sapUiTinyMarginEnd">
         	<content>
              <l:Grid  defaultSpan="XL12 L12 M12 S12" class="sapUiSizeCompact cl_ExtendSearchGrid">
+             <VBox visible="{oConfigMdl>/ExtentionTxtVis}">
             <Label text="{i18n>BuyerWelcomeTxt}" class="cl_BuyerTitle sapUiTinyMarginTop"  wrapping="true" ></Label>
              <Label text="{i18n>BuyerWelcomeTxt1}" class="cl_VRLablCls" wrapping="true" ></Label>
               <Label text="{i18n>BuyerWelcomeTxt2}" class="cl_VRLablCls" wrapping="true" ></Label>
+              </VBox>
+              <VBox visible="{oConfigMdl>/SMETxtVis}">
+              <Label text="Please see the selected Vendor record from {JMTaskContext>/smeEmail}, ready to be extended." class="cl_BuyerTitle sapUiTinyMarginTop"  wrapping="true" ></Label>
+             <Label text="{i18n>SMETxt2}" class="cl_VRLablCls" wrapping="true" ></Label>
+              </VBox>
 </l:Grid >
             	</content>
                 </Panel>
@@ -190,6 +196,7 @@
                         <OverflowToolbar class="VRTableTBHeight">
                             <Text text="{oVendorListModel>/headerText}"/>
                             <ToolbarSpacer/>
+                             <Button text="{i18n>Cancel Task}"  visible="{oConfigMdl>/CompleteTaskVis}" press="fnCloseTask" class="cl_VRActnBtnApply sapUiSizeCompact"  tooltip="{i18n>Complete Task}" />
                                 <Button text="{i18n>BPNewBuisnessPartner}" enabled="{=${oConfigMdl>/searchEnable} &amp;&amp;${oConfigMdl>/createNewBtn}}" press="fnNewBuinessPartner" class="cl_VRActnBtnApply sapUiSizeCompact"  tooltip="{i18n>SearchTooltip}" />
 			                    <Button text="{i18n>BPSendToSME}" visible="true"   press="fnSendToSME" enabled="{oConfigMdl>/searchEnableGBS}" class="cl_VRActnBtnApply sapUiTinyarginBegin sapUiSizeCompact" />
               	                <Button icon="sap-icon://action-settings"  press="fnPersonaliseColumns" class="cl_VRActnBtnApply sapUiSizeCompact"  />

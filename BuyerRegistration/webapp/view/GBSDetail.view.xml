@@ -195,7 +195,7 @@
             	<u:Table
 				rows="{oVendorListModel>/data}"
 				selectionMode="Single"
-               rowSelectionChange="fnCaseListPressNav"
+               rowSelectionChange="fnCaseListPressNavSME"
                selectionBehavior="RowOnly"
                id="id_SearchResultTb"
                visibleRowCount="{oConfigMdl>/visibleRowCnt}"
@@ -206,6 +206,7 @@
                         <OverflowToolbar class="VRTableTBHeight">
                             <Text text="{oVendorListModel>/headerText}"/>
                             <ToolbarSpacer/>
+                            	 <Button icon="sap-icon://synchronize"  press="fnRefresh" class="cl_VRActnBtnApply sapUiSizeCompact"  />
                              	 <Button text="{i18n>Submit}"  press="fnGBSApprove" class="cl_VRActnBtnApply sapUiSizeCompact"  />
 			
               	 <Button icon="sap-icon://action-settings"  press="fnPersonaliseColumns" class="cl_VRActnBtnApply sapUiSizeCompact"  />

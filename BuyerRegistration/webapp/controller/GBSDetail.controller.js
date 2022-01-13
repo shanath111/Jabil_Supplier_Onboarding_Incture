@@ -91,6 +91,9 @@ sap.ui.define([
                     }
                 });
             },
+            fnRefresh:function(){
+                this.fnLoadContextData(that.vTaskID);
+            },
 
 
             fnLoadContextData: function (vTaskID) {
@@ -115,6 +118,85 @@ sap.ui.define([
                         oJosnMdlSel.setData(aBPData);
                         oView.setModel(oJosnMdlSel, "JMSelData");
                         //  that.fnLoadPartnerData("Display", aFilter, aBPData);
+                        var vError = false;
+                        for (var i = 0; i < aBPData.length; i++) {
+                            vError = false;
+
+                            if (!aBPData[i].VENDOR_NAME) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].STREET) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].POSTAL_CODE) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].CITY) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].COUNTRY) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].REGION_STATE_PROVINCE) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].PAYMENT_METHOD) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].PAYMENT_TERMS) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].CURRENCY) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].INCO_TERMS) {
+                                vError = true;
+                            }
+                            if (!aBPData[i].INCOTERMS2) {
+                                vError = true;
+                            }
+                            // if (!aBPData[i].BANK_COUNTRY) {
+                            //     vError = true;
+                            // }
+                            // if (!aBPData[i].IBAN) {
+                            //     vError = true;
+                            // }
+                            if (aBPData[i].BLOCK_FUNCTION) {
+                                vError = true;
+                            }
+                            if (aBPData[i].CENTRAL_POSTING_BLOCK) {
+                                vError = true;
+                            }
+                            if (aBPData[i].CENTRAL_PURCHASING_BLOCK) {
+                                vError = true;
+                            } if (aBPData[i].COMPANY_CODE_POSTING_BLOCK) {
+                                vError = true;
+                            } if (aBPData[i].PURCHASING_ORG_BLOCK) {
+                                vError = true;
+                            } if (aBPData[i].CENTRAL_DELETION_FLAG) {
+                                vError = true;
+                            } if (aBPData[i].COMPANY_CODE_DEL_FLAG) {
+                                vError = true;
+                            }
+                            if (aBPData[i].PURCHASING_ORG_DEL_FLAG) {
+                                vError = true;
+                            }
+
+                            if (aBPData[i].CENTRAL_BLOCK_CODE) {
+                                vError = true;
+                            }
+                            if (aBPData[i].PENDING_CHANGE_REQUEST) {
+                                vError = true;
+                            }
+
+                            if (aBPData[i].RELATIONSHIP_INDICATOR !== "PRIMARY") {
+                                vError = true;
+                            }
+                            aBPData[i].isError = vError;
+                        }
+
+
+
                         var temp = {
                             "data": aBPData,
                             "Comments": oEvent.getSource().getData().duplicatesBuyerComments,
@@ -540,6 +622,24 @@ sap.ui.define([
             fnCloseBankComments: function () {
                 this.oBankComments.close();
             },
+            fnFetchDescriptionCommon(aArray, value, vFieldName) {
+                if (aArray) {
+                    if (value) {
+                        var item = aArray.find(item => item.code == value);
+                        if (item) {
+                            return item.description;
+                        } else {
+                            return "";
+                        }
+
+                    } else {
+                        return "";
+                    }
+                } else {
+                    return "";
+                }
+            },
+            
             fnGBSApprove: function () {
                 var vBPNo = [];
                 var aTableData = oView.getModel("oVendorListModel").getData().data;
@@ -560,6 +660,63 @@ sap.ui.define([
                 if (vCount !== 1) {
                     sap.m.MessageToast.show(oi18n.getProperty("GBSSelectSingleRecord"));
                 } else {
+                    if (vSelDataTem.isError == true) {
+                        var sErMsg = oi18n.getProperty("ExtentionNotAllowedWithError");
+                        MessageBox.show(sErMsg, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: "Error"
+                        });
+                        return;
+                    }
+                    var vBankValid = false;
+                    var vMessage = "";
+                    var requestData = {
+                        "companyCodeCountry": vSelDataTem.COMPANY_CODE,
+                        "purchaseOrderCurrency": vSelDataTem.CURRENCY,
+                        "supplierBankCountry": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().Country, vSelDataTem.COUNTRY, "Country"),
+                    }
+                    var sUrl = "/nsBuyerRegistration/plcm_portal_services/api/v1/bank/matrix";
+                    var bModel = new JSONModel();
+                    $.ajax({
+                        type: "POST",
+                        url: sUrl,
+                        data: JSON.stringify(requestData),
+                        dataType: "json",
+                        async: false,
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            if (data.bankCountry == "Mandatory") {
+                                if (!vSelDataTem.BANK_COUNTRY) {
+                                    vBankValid = true;
+                                    vMessage = "Bank Country is Required \n"
+                                }
+
+                            }
+                            if (data.iban == "Mandatory") {
+                                if (!vSelDataTem.IBAN) {
+                                    vBankValid = true;
+                                    vMessage = vMessage + " IBAN is Required"
+                                }
+
+                            }
+
+                        },
+
+                        error: function (data) {
+                            vBankValid = true;
+
+                        }
+                    });
+
+
+                    if (vBankValid == true) {
+                        MessageBox.show(vMessage, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: "Error"
+                        });
+                        return;
+                    }
+
                     var temp = {};
                     temp.Action = "RJ";
                     //temp.Comments ;
@@ -607,23 +764,30 @@ sap.ui.define([
                     }
                 }
                 oView.getModel("JMCaseDetail").getData().bpSearch.selectedSupplier = JSON.stringify(vSelDataTem);
+                var vBuyer = "";
+                if (oView.getModel("oConfigMdl").getData().usrData) {
+                    vBuyer = oView.getModel("oConfigMdl").getData().usrData.givenName;
+                   
+                }
+                oView.getModel("JMCaseDetail").getData().userUpdated = vBuyer;
+                oView.getModel("JMCaseDetail").getData().dateUpdated = new Date();
                 oView.getModel("JMCaseDetail").refresh();
 
                 if (vCount !== 1) {
                     sap.m.MessageToast.show(oi18n.getProperty("GBSSelectSingleRecord"));
                 } else {
-                    if (vSelDataTem) {
-                        if (vSelDataTem.PENDING_CHANGE_REQUEST) {
-                            var sErMsg = oi18n.getProperty("ExtentionNotAllowed");
-                            MessageBox.show(sErMsg, {
-                                icon: MessageBox.Icon.ERROR,
-                                title: "Error"
-                            });
-                            return;
-                        }
-                    }
+                    // if (vSelDataTem) {
+                    //     if (vSelDataTem.PENDING_CHANGE_REQUEST) {
+                    //         var sErMsg = oi18n.getProperty("ExtentionNotAllowed");
+                    //         MessageBox.show(sErMsg, {
+                    //             icon: MessageBox.Icon.ERROR,
+                    //             title: "Error"
+                    //         });
+                    //         return;
+                    //     }
+                    // }
                     this.oBankComments.close();
-                    that.fnUpdateLocalModel(vSelDataTem);
+                 //   that.fnUpdateLocalModel(vSelDataTem);
                     MessageBox.confirm(oi18n.getProperty("GBSApprover"), {
                         icon: MessageBox.Icon.Confirmation,
                         title: "Confirmation",

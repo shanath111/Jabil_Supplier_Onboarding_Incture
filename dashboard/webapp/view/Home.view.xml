@@ -1,0 +1,157 @@
+<mvc:View
+    controllerName="dashboard.controller.Home"
+  
+    xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout" xmlns:c="dashboard.ExtensionControl"
+>
+  
+        <App id="app">
+            <pages>
+               <Page id="id_Container" class="cl_VRPageBackGrnd" enableScrolling="true" showHeader="false">
+				<subHeader>
+					<Toolbar class="cl_VRHeaderBackGrnd sapUiSizeCompact">
+                    <ToolbarSpacer ></ToolbarSpacer>
+						<!-- <Link text="{i18n>GraphicalView}" press="fnNavToGraph" class="sapUiSmallMarginBegin cl_TIHomeLink"></Link> -->
+						
+					</Toolbar>
+				</subHeader>
+				<content>
+                <VBox >
+					<Panel width="auto" id="id_FitlerPanel"  expandable="true" expanded="true" class="cl_VRPanelClass cl_PanelMargonTop  sapUiTinyMarginBegin sapUiTinyMarginEnd">
+						<headerToolbar>
+							<Toolbar class="cl_VRHeaderBackGrndPnl">
+								<Title text="{i18n>VRFilter}"/>
+								<ToolbarSpacer/>
+								<Button text="{i18n>VRClear}" press="fnClearSearch" class="cl_VRActnBtnClear"/>
+								<Button text="{i18n>VRApply}" press="fnLoadSupplierList" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
+							</Toolbar>
+						</headerToolbar>
+						<content>
+							<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact">
+								<VBox class="VRVboxStyle1">
+									<Label text="{i18n>VRRequestID}" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" width="95%" value="{JMSuppReqListHeader>/caseId}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
+								</VBox>
+                                 <VBox class="VRVboxStyle1">
+									<Label text="{i18n>VROrganizationName}" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" width="95%"  value="{JMSuppReqListHeader>/organizationName}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
+							</VBox>
+                              
+                            <VBox class="VRVboxStyle1">
+									<Label text="{i18n>VRCompanyCode}" class="cl_VRLablCls "></Label>
+								<ComboBox width="95%"  items="{oBPLookUpMdl>/CompanyCode}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
+											filterSecondaryValues="true"  change="fnLiveChangeCompCode" showSecondaryValues="true" selectedKey="{JMSuppReqListHeader>/companyCode}"
+											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}" >
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}" />
+										</ComboBox>
+							</VBox>
+                             <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPPurchasingOrg}" class="cl_VRLablCls "></Label>
+										<c:ExtComboBox width="95%"   items="{oBPLookUpMdl>/PurOrg}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
+											filterSecondaryValues="true"   showSecondaryValues="true" selectedKey="{JMSuppReqListHeader>/purchasingOrg}" click="fnLiveChangePurchaseOrg" change="fnLiveChangePurchaseOrg"
+											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}" >
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</c:ExtComboBox>
+							</VBox>
+                              
+                            <VBox class="VRVboxStyle1">
+									<Label text="{i18n>VRStatus}" class="cl_VRLablCls"></Label>
+                                    	<ComboBox width="95%"   items="{oBPLookUpMdl>/StatusLp}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
+											filterSecondaryValues="true"  change="fnLiveChangeStatus" showSecondaryValues="true" selectedKey="{JMSuppReqListHeader>/status}"
+											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}" >
+											<core:ListItem key="{oBPLookUpMdl>}" text="{oBPLookUpMdl>}" additionalText="{oBTLookUpMdl>FIELD_02}"/>
+										</ComboBox>
+
+                                    </VBox>
+								
+                                	  <VBox class="VRVboxStyle1">
+									<Label text="{i18n>VRCreationDate}" class="cl_VRLablCls "></Label>
+									<DatePicker width="95%"  displayFormat="MM/dd/YYYY" valueFormat="YYYY-MM-ddT00:00:0" value="{JMSuppReqListHeader>/dateCreated}"  placeholder="MM/DD/YYY" class="cl_VRInputCls"/>
+							</VBox>
+							</l:Grid>
+						</content>
+					</Panel>
+					<Panel width="auto" class="cl_VRPanelClass sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginEnd">
+						<content>
+			<VBox >
+								<ScrollContainer  vertical="true" focusable="true">
+									<Table class="sapUiSizeCompact cl_BPListTable"  id="id_VendorRequestList" alternateRowColors="true" items="{JMSuppReqList>/data}">
+										<headerToolbar class="sapUiSizeCompact ">
+											<OverflowToolbar class="VRTableTBHeight">
+												<Text text="{JMSuppReqList>/headerText}"/>
+												<ToolbarSpacer/>
+												<SearchField width="20%" class="cl_TableSearch sapUisizeCompact" search="fnSearchSupplList" liveChange="fnSearchSupplList"></SearchField>
+										     
+                                                	<Button
+							tooltip="{i18n>Sort}"
+							icon="sap-icon://sort"
+							press="fnSortDiloag"
+                            class="cl_VRActnBtnApply sapUiTinyMarginBegin"
+							ariaHasPopup="Dialog"/>
+                                            	
+											</OverflowToolbar>
+										</headerToolbar>
+										<columns>
+											<Column >
+												<Label text="{i18n>VRRequestIDTb}" class="cl_VRLablCls "></Label>
+											</Column>
+                                             
+										 <Column width="17rem">
+												<Label text="{i18n>VROrganizationName1}" class="cl_VRLablCls "></Label>
+											</Column>
+											
+											<Column >
+												<Label text="{i18n>VRCompanyCode1}" class="cl_VRLablCls "></Label>
+											</Column>
+                                           <Column >
+												<Label text="{i18n>VRPOOrg}" class="cl_VRLablCls "></Label>
+											</Column>
+                                           
+											<Column >
+												<Label text="{i18n>VRStatusTb}" class="cl_VRLablCls "></Label>
+											</Column>
+                                            	<Column >
+												<Label text="{i18n>VRCreationDateTb}" class="cl_VRLablCls "></Label>
+											</Column>
+                                            <Column >
+												<Label text="{i18n>VRSAPBPNo}" class="cl_VRLablCls "></Label>
+											</Column>
+                                             <Column >
+												<!-- <Label text="{i18n>VRSAPBPNo}" class="cl_VRLablCls "></Label> -->
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem press="fnCaseListPressNav" type="Active" highlight="{path: 'JMSuppReqList>Status', formatter: 'dashboard.util.formatter.fnStatusColour' }" >
+												<cells>
+													<Text text="{JMSuppReqList>caseId}"  class="cl_ListNameClass"></Text>
+												 <Text text="{JMSuppReqList>organizationName}" tooltip="{JMSuppReqList>organizationName}" wrapping="false" class="cl_ListNameClass"></Text>
+													<Text text="{JMSuppReqList>companyCode}" class="cl_ListNameClass"></Text>
+													<Text text="{JMSuppReqList>purchasingOrg}" class="cl_ListNameClass"></Text>
+                                                   
+													<ObjectStatus text="{JMSuppReqList>portalStatus}"
+														state="{path: 'JMSuppReqList>status', formatter: 'dashboard.util.formatter.fnStatusColour' }"/>
+                                                        	<Text text="{path: 'JMSuppReqList>dateCreated', formatter: 'dashboard.util.formatter.fnFormatDate'}" class="cl_ListNameClass"></Text>
+													<Text text="{JMSuppReqList>sapBPNumber}"  class="cl_ListNameClass"></Text>
+                                                    <Link text="{i18n>caseHistory}" press="fnNavToProcessFlow"></Link>
+                                                </cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</ScrollContainer>
+								<Toolbar class="sapUiSizeCompact cl_VRPagntnClr">
+									<ToolbarSpacer></ToolbarSpacer>
+									<Text text="Showing Page {JMSuppReqList>/currentPage}  of {JMSuppReqList>/totalPage}" class="cl_VRPageTextClr" ></Text>
+									<Button icon="sap-icon://navigation-left-arrow" press="fnPreviousPage" enabled="{JMSuppReqList>/renable}" class="cl_PaginationBtnCls"/>
+									<Button icon="sap-icon://navigation-right-arrow" press="fnNextPage" enabled="{JMSuppReqList>/fenable}" class="cl_PaginationBtnCls"/>
+								</Toolbar>
+							</VBox>
+		
+						</content>
+					</Panel>
+                    </VBox>
+				</content>
+			</Page>
+            </pages>
+        </App>
+   
+</mvc:View>

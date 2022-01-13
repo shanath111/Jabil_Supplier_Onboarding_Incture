@@ -1,0 +1,175 @@
+{
+  "_version": "1.32.0",
+  "sap.app": {
+    "id": "dashboard",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "crossNavigation": {
+        "inbounds": {
+            "intent1": {
+                "signature": {
+                    "parameters": {},
+                    "additionalParameters": "allowed"
+                },
+                "semanticObject": "buyerDashboard",
+                "action": "Display",
+                "title": "New Dashboard",
+                "subTitle": "",
+                "icon": "sap-icon://manager-insight"
+            }
+        }
+    },
+    "title": "New Dashboard",
+    "description": "",
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "fullWidth": true,
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.97.0",
+      "libs": {
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "dashboard.i18n.i18n"
+        }
+      },
+      "oDataModel": {
+        "type": "sap.ui.model.json.JSONModel"
+    },
+     "oVisibilityModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/visibility.json"
+    },
+    "oBPLookUpMdl": {
+        "type": "sap.ui.model.json.JSONModel"
+    },
+    "oLookUpModel": {
+        "type": "sap.ui.model.json.JSONModel"
+    },
+    "oConfigMdl": {
+        "type": "sap.ui.model.json.JSONModel"
+    },
+    "oStaticData": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/StaticData.json"
+    },
+    "oAttachmentList": {
+        "type": "sap.ui.model.json.JSONModel"
+    },
+    "oAttachmentListBank": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/attachmentData.json"
+    },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "groupId": "$direct"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "dashboard.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "App",
+          "pattern": "App",
+          "target":"App"
+        },
+        {
+            "name": "Home",
+            "pattern": "",
+            "target":"Home"
+          },
+          {
+            "name": "PreviewForm",
+            "pattern":"PreviewForm/{caseId}",
+            "target":"PreviewForm"
+          }
+      ],
+      "targets": {
+        "App": {
+            "viewType": "XML",
+            "viewName": "App"
+        },
+        "Home": {
+            "viewType": "XML",
+            "viewName": "Home"
+        },
+        "PreviewForm": {
+            "viewType": "XML",
+            "viewName": "PreviewForm"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "dashboard.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "View1"
+    }
+  },
+  "sap.platform.cf": {
+    "oAuthScopes": [
+        "$XSAPPNAME.buyerDashboard"
+    ]
+}
+}
