@@ -75,7 +75,7 @@ sap.ui.define([
                     this.fnLoadCompanyCode();
                     this.fnLoadPurOrg();
                     that.fnLoadCountry();
-                    
+
 
 
 
@@ -239,7 +239,7 @@ sap.ui.define([
                 oView.setModel(oValidationDefult, "JMValidateDefault")
                 this.fnLoadTaskDetail(oContext.Id);
                 this.fnLoadSortKey();
-                
+
 
             },
             _fnLoadBankRegion: function (vCountry) {
@@ -345,7 +345,7 @@ sap.ui.define([
             },
             fnLoadReconAcc: function (vCompCode) {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/reconciliation-account/"+vCompCode;
+                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/reconciliation-account/" + vCompCode;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -386,19 +386,19 @@ sap.ui.define([
                         } else {
                             oView.getModel("oConfigMdl").getData().isClaimed = oEvent.getSource().getData().isClaimed;
                         }
-                        
+
                         oView.getModel("oConfigMdl").getData().isTaskCompleted = oEvent.getSource().getData().isTaskCompleted;
                         if (oView.getModel("oConfigMdl").getData().isClaimed == false) {
                             oView.getModel("oConfigMdl").getData().defaultEnable = false;
                         }
                         // oView.getModel("oConfigMdl").getData().isTaskCompleted = true;
-                      //  oView.getModel("oConfigMdl").getData().isClaimed = true;
-                      oView.getModel("oConfigMdl").getData().documentSection = oEvent.getSource().getData().documentSection;
-                      if(oEvent.getSource().getData().documentSection){
-                        oView.getModel("oConfigMdl").getData().AttachVis = true;
-                      }else{
-                        oView.getModel("oConfigMdl").getData().AttachVis = false;  
-                      }
+                        //  oView.getModel("oConfigMdl").getData().isClaimed = true;
+                        oView.getModel("oConfigMdl").getData().documentSection = oEvent.getSource().getData().documentSection;
+                        if (oEvent.getSource().getData().documentSection) {
+                            oView.getModel("oConfigMdl").getData().AttachVis = true;
+                        } else {
+                            oView.getModel("oConfigMdl").getData().AttachVis = false;
+                        }
                         oView.getModel("oConfigMdl").getData().validationMessage = oEvent.getSource().getData().validationMessage;
                         oView.getModel("oConfigMdl").refresh();
                     }
@@ -593,6 +593,17 @@ sap.ui.define([
                             oView.getModel("oConfigMdl").getData().invoicingAddNewEnb = false;
                         }
 
+                        if (oView.getModel("oDataModel").getData().comInfoDto.isOrderToAddress == false) {
+                            oView.getModel("oConfigMdl").getData().orderingAddNew = false;
+                            oView.getModel("oConfigMdl").getData().orderingAddNewEnb = false;
+                        }
+                        if (oView.getModel("oDataModel").getData().comInfoDto.isRemitToAddress == false) {
+                            oView.getModel("oConfigMdl").getData().invoicingAddNew = false;
+                            oView.getModel("oConfigMdl").getData().invoicingAddNewEnb = false;
+                        }
+
+
+
                         oView.getModel("oConfigMdl").refresh();
 
 
@@ -624,7 +635,7 @@ sap.ui.define([
 
 
             },
-          
+
             fnLoadCurrency: function () {
                 var oModel = new JSONModel();
                 var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/currency-list";
@@ -915,7 +926,7 @@ sap.ui.define([
                                     }
 
                                     that.fnLoadSurveyFormDetail(temp.caseId, that);
-                                    if(oView.getModel("oConfigMdl").getData().documentSection){
+                                    if (oView.getModel("oConfigMdl").getData().documentSection) {
                                         that.fnReadRejectDoc(temp.caseId);
                                     }
                                 }
@@ -1099,17 +1110,17 @@ sap.ui.define([
             },
             fnOpenBankCommentsReject: function () {
                 if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
-                 var oPayloadSupp = that.getView().getModel("oDataModel").getData();
-                        if(!oPayloadSupp.shippingInfoDto.paymentTerms){
-                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("PleaseSelectPaymentTerms")), {
-                                icon: sap.m.MessageBox.Icon.ERROR,
-                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                                contentWidth: "30%",
-                                styleClass: "sapUiSizeCompact"
-                            });
-                            return;
-                        }
+                    var oPayloadSupp = that.getView().getModel("oDataModel").getData();
+                    if (!oPayloadSupp.shippingInfoDto.paymentTerms) {
+                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("PleaseSelectPaymentTerms")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                        return;
                     }
+                }
                 var temp = {};
                 temp.Action = "RJ";
                 //temp.Comments ;
@@ -1191,7 +1202,7 @@ sap.ui.define([
             },
             fnLoadSecondLevelReason: function (vReasonCode) {
                 var oModel = new JSONModel();
-                
+
                 var sUrl = "/nsBuyerRegistration/plcm_portal_services/reason-codes/secondLevel?firstLevelReasonCode=" + vReasonCode;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
@@ -1318,7 +1329,7 @@ sap.ui.define([
                             "action": "reject",
                             "comments": oView.getModel("JMAppvrComments").getData().Comments
                         }
-                       
+
                         var oPayloadSupp = that.getView().getModel("oDataModel").getData();
                         // oPayloadSupp.shippingInfoDto.comCode = oPayloadSupp.defaultValuesDto.reqCompanyCode;
                         // oPayloadSupp.shippingInfoDto.purchasingOrg = oPayloadSupp.defaultValuesDto.reqPurchasingOrg;
@@ -1396,15 +1407,15 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover1Approved": vAprActn,
-                            
+
                             "operational_approver1_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
-                            "operational_approver1_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
+                            "operational_approver1_doc_section": oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "operational_approver1_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver1_comment": oView.getModel("JMAppvrComments").getData().Comments
                         },
                         "status": "",
-                        "firstLevelReasonCode":  oView.getModel("JMAppvrComments").getData().firstLevelReason,
-                        "secondLevelReasonCode":oView.getModel("JMAppvrComments").getData().secondLevelReason,
+                        "firstLevelReasonCode": oView.getModel("JMAppvrComments").getData().firstLevelReason,
+                        "secondLevelReasonCode": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                         "action": vCommentsActn,
                         "comments": oView.getModel("JMAppvrComments").getData().Comments
@@ -1426,7 +1437,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover2Approved": vAprActn,
-                            "operational_approver2_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
+                            "operational_approver2_doc_section": oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "operational_approver2_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "operational_approver2_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver2_comment": oView.getModel("JMAppvrComments").getData().Comments
@@ -1435,8 +1446,8 @@ sap.ui.define([
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                         "action": vCommentsActn,
                         "comments": oView.getModel("JMAppvrComments").getData().Comments,
-                        "firstLevelReasonCode":  oView.getModel("JMAppvrComments").getData().firstLevelReason,
-                        "secondLevelReasonCode":oView.getModel("JMAppvrComments").getData().secondLevelReason,
+                        "firstLevelReasonCode": oView.getModel("JMAppvrComments").getData().firstLevelReason,
+                        "secondLevelReasonCode": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                     }
                 } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Approver3") {
                     var vCommentsActn;
@@ -1455,7 +1466,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover3Approved": vAprActn,
-                            "operational_approver3_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
+                            "operational_approver3_doc_section": oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "operational_approver3_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "operational_approver3_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver3_comment": oView.getModel("JMAppvrComments").getData().Comments
@@ -1464,8 +1475,8 @@ sap.ui.define([
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                         "action": vCommentsActn,
                         "comments": oView.getModel("JMAppvrComments").getData().Comments,
-                        "firstLevelReasonCode":  oView.getModel("JMAppvrComments").getData().firstLevelReason,
-                        "secondLevelReasonCode":oView.getModel("JMAppvrComments").getData().secondLevelReason
+                        "firstLevelReasonCode": oView.getModel("JMAppvrComments").getData().firstLevelReason,
+                        "secondLevelReasonCode": oView.getModel("JMAppvrComments").getData().secondLevelReason
                     }
                 } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Approver4") {
                     var vCommentsActn;
@@ -1484,7 +1495,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover4Approved": vAprActn,
-                            "operational_approver4_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
+                            "operational_approver4_doc_section": oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "operational_approver4_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "operational_approver4_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver4_comment": oView.getModel("JMAppvrComments").getData().Comments
@@ -1493,8 +1504,8 @@ sap.ui.define([
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                         "action": vCommentsActn,
                         "comments": oView.getModel("JMAppvrComments").getData().Comments,
-                        "firstLevelReasonCode":  oView.getModel("JMAppvrComments").getData().firstLevelReason,
-                        "secondLevelReasonCode":oView.getModel("JMAppvrComments").getData().secondLevelReason
+                        "firstLevelReasonCode": oView.getModel("JMAppvrComments").getData().firstLevelReason,
+                        "secondLevelReasonCode": oView.getModel("JMAppvrComments").getData().secondLevelReason
                     }
                 } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Approver5") {
                     var vCommentsActn;
@@ -1513,7 +1524,7 @@ sap.ui.define([
                             "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                             "caseId": oView.getModel("JMEulaComments").getData().caseId,
                             "isApprover5Approved": vAprActn,
-                            "operational_approver5_doc_section":oView.getModel("oConfigMdl").getData().contextPath.Id,
+                            "operational_approver5_doc_section": oView.getModel("oConfigMdl").getData().contextPath.Id,
                             "operational_approver5_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                             "operational_approver5_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
                             "operational_approver5_comment": oView.getModel("JMAppvrComments").getData().Comments
@@ -1522,8 +1533,8 @@ sap.ui.define([
                         "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                         "action": vCommentsActn,
                         "comments": oView.getModel("JMAppvrComments").getData().Comments,
-                        "firstLevelReasonCode":  oView.getModel("JMAppvrComments").getData().firstLevelReason,
-                        "secondLevelReasonCode":oView.getModel("JMAppvrComments").getData().secondLevelReason
+                        "firstLevelReasonCode": oView.getModel("JMAppvrComments").getData().firstLevelReason,
+                        "secondLevelReasonCode": oView.getModel("JMAppvrComments").getData().secondLevelReason
                     }
                 }
                 // var oPayload = {
@@ -1668,17 +1679,17 @@ sap.ui.define([
                 var vUrl = window.location.origin + "/comjabilsurveyform/index.html#/PreviewForm/" + "Display:" + oView.getModel("oConfigMdl").getData().contextPath.Name + "/" + oView.getModel("oConfigMdl").getData().contextPath.Id
                 sap.m.URLHelper.redirect(vUrl);
             },
-            fnHandleTypeMissmatch: function(oEvent){
+            fnHandleTypeMissmatch: function (oEvent) {
                 var aFileTypes = oEvent.getSource().getFileType();
-           aFileTypes.map(function(sType) {
-               return "*." + sType;
-           });
-           sap.m.MessageToast.show("The file type *." + oEvent.getParameter("fileType") +
-                                   " is not supported. Choose one of the following types: " +
-                                   aFileTypes.join(", "));
-           },
+                aFileTypes.map(function (sType) {
+                    return "*." + sType;
+                });
+                sap.m.MessageToast.show("The file type *." + oEvent.getParameter("fileType") +
+                    " is not supported. Choose one of the following types: " +
+                    aFileTypes.join(", "));
+            },
             // @ts-ignore
-            fnOnFileUpload: function (oEvt){ 
+            fnOnFileUpload: function (oEvt) {
                 var oFormData = new FormData(),
                     that = this,
                     fileUpload = this.getView().byId("id_NDADocUpload"),
@@ -1686,24 +1697,24 @@ sap.ui.define([
                     // @ts-ignore
                     file = domRef.files[0];
 
-                    if (file.name.length > 60) {
-                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
-                            icon: sap.m.MessageBox.Icon.ERROR,
-                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                            contentWidth: "30%",
-                            styleClass: "sapUiSizeCompact"
-                        });
-                        return;
-                    }  if (Number((file.size * 0.000001).toFixed(1)) > 8) {
-                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileSizeExtendedMessage")), {
-                            icon: sap.m.MessageBox.Icon.ERROR,
-                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                            contentWidth: "30%",
-                            styleClass: "sapUiSizeCompact"
-                        });
-                        return;
-                    }
-    
+                if (file.name.length > 60) {
+                    sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
+                    return;
+                } if (Number((file.size * 0.000001).toFixed(1)) > 8) {
+                    sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileSizeExtendedMessage")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
+                    return;
+                }
+
 
 
                 // @ts-ignore
@@ -1951,10 +1962,10 @@ sap.ui.define([
             },
 
             fnLiveChangePurchOrg: function (oEvent) {
-                var compCode= oView.getModel("oDataModel").getData().defaultValuesDto.reqCompanyCode;
-                if(compCode === "" || compCode === undefined){
+                var compCode = oView.getModel("oDataModel").getData().defaultValuesDto.reqCompanyCode;
+                if (compCode === "" || compCode === undefined) {
                     sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
-                    
+
                 }
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
@@ -1968,7 +1979,7 @@ sap.ui.define([
                     oView.getModel("JMValidateDefault").refresh();
                 }
             },
-            
+
             fnLiveChangeReconAcc: function (oEvent) {
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
@@ -2095,7 +2106,7 @@ sap.ui.define([
             fnValidateData: function () {
 
                 var vError = false;
-                 if(that.getView().getModel("oDataModel").getData().shippingInfoDto.isPaymentTermsAgreed == false){
+                if (that.getView().getModel("oDataModel").getData().shippingInfoDto.isPaymentTermsAgreed == false) {
                     sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("paymentTermsNotAgreed")), {
                         icon: sap.m.MessageBox.Icon.ERROR,
                         title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
@@ -2103,19 +2114,21 @@ sap.ui.define([
                         styleClass: "sapUiSizeCompact"
                     });
                     return;
-                 }
-                 if(!that.getView().getModel("oDataModel").getData().shippingInfoDto.sortKey  || !that.getView().getModel("oDataModel").getData().shippingInfoDto.reconciliationAccount){
-                    if(!that.getView().getModel("oDataModel").getData().shippingInfoDto.reconciliationAccount){
-                        oView.getModel("JMValidateDefault").getData().reconciliationAccounte = "Error";
-                        oView.getModel("JMValidateDefault").getData().reconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
-                      //  vError = true;
-                    }
-                    if(!that.getView().getModel("oDataModel").getData().shippingInfoDto.sortKey){
-                        oView.getModel("JMValidateDefault").getData().sortKeye = "Error";
-                        oView.getModel("JMValidateDefault").getData().sortKeym = oi18n.getProperty("BPCMandatoryValidation");
-                      //  vError = true;
-                     }
-                     oView.getModel("JMValidateDefault").refresh();
+                }
+                var vReconError = false;
+
+                if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.reconciliationAccount) {
+                    oView.getModel("JMValidateDefault").getData().reconciliationAccounte = "Error";
+                    oView.getModel("JMValidateDefault").getData().reconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
+                    vReconError = true;
+                }
+                if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.sortKey) {
+                    oView.getModel("JMValidateDefault").getData().sortKeye = "Error";
+                    oView.getModel("JMValidateDefault").getData().sortKeym = oi18n.getProperty("BPCMandatoryValidation");
+                    vReconError = true;
+                }
+                oView.getModel("JMValidateDefault").refresh();
+                if (vReconError == true) {
                     sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
                         icon: sap.m.MessageBox.Icon.ERROR,
                         title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
@@ -2123,7 +2136,7 @@ sap.ui.define([
                         styleClass: "sapUiSizeCompact"
                     });
                     return;
-                 }
+                }
 
 
 
@@ -2226,34 +2239,34 @@ sap.ui.define([
                         title: "Error"
                     });
                     return;
-                }else{
+                } else {
                     if (oView.getModel("oDataModel").getData().comInfoDto.isRemitToAddress == true) {
-                    if(!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrSortKey  || !that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount){
-                        if(!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount){
-                            oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccounte = "Error";
-                            oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
-                          //  vError = true;
+                        if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrSortKey || !that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount) {
+                            if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount) {
+                                oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccounte = "Error";
+                                oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
+                                //  vError = true;
+                            }
+                            if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrSortKey) {
+                                oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeye = "Error";
+                                oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeym = oi18n.getProperty("BPCMandatoryValidation");
+                                //  vError = true;
+                            }
+                            oView.getModel("JMValidateDefault").refresh();
+                            oView.byId("id_SegmentedBtn").setSelectedKey("partnerFunction");
+                            oView.getModel("oConfigMdl").getData().buyerData = false;
+                            oView.getModel("oConfigMdl").getData().onBoardDet = false;
+                            oView.getModel("oConfigMdl").getData().BankDetails = false;
+                            oView.getModel("oConfigMdl").getData().PartnerFunctionVis = true;
+                            oView.getModel("oConfigMdl").refresh();
+                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                            return;
                         }
-                        if(!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrSortKey){
-                            oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeye = "Error";
-                            oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeym = oi18n.getProperty("BPCMandatoryValidation");
-                          //  vError = true;
-                         }
-                         oView.getModel("JMValidateDefault").refresh();
-                         oView.byId("id_SegmentedBtn").setSelectedKey("partnerFunction");
-                         oView.getModel("oConfigMdl").getData().buyerData = false;
-                         oView.getModel("oConfigMdl").getData().onBoardDet = false;
-                         oView.getModel("oConfigMdl").getData().BankDetails = false;
-                         oView.getModel("oConfigMdl").getData().PartnerFunctionVis = true;
-                         oView.getModel("oConfigMdl").refresh();
-                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
-                            icon: sap.m.MessageBox.Icon.ERROR,
-                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                            contentWidth: "30%",
-                            styleClass: "sapUiSizeCompact"
-                        });
-                        return;
-                     }
                     }
                 }
 
@@ -2289,7 +2302,7 @@ sap.ui.define([
                                     var i = 0
                                     var vBreak = false;
                                     for (; i < 6; i++) {
-                                       
+
                                         //   setTimeout(function () {
                                         $.ajax({
                                             url: sUrlResp,
@@ -2313,18 +2326,18 @@ sap.ui.define([
 
                                                     var vErrorState = "";
 
-                                                    for(var i=0;i<data.mdgLogDto.length;i++){
+                                                    for (var i = 0; i < data.mdgLogDto.length; i++) {
                                                         if (data.mdgLogDto[i].checkStatusCode == "E") {
                                                             vErrorState = "E";
                                                             break;
-                                                        }else{
-                                                            vErrorState =  data.mdgLogDto[i].checkStatusCode;
+                                                        } else {
+                                                            vErrorState = data.mdgLogDto[i].checkStatusCode;
                                                         }
                                                     }
 
                                                     if (vErrorState !== "E") {
                                                         MessageBox.success(oi18n.getProperty("ValidationSuccessFull"));
-                                                    }  else {
+                                                    } else {
                                                         MessageBox.error(oi18n.getProperty("ValidationSuccessFullError"), {
                                                             actions: ["View Details", MessageBox.Action.CANCEL],
                                                             title: "Validation Unsuccessful",
@@ -2343,19 +2356,19 @@ sap.ui.define([
                                                         });
                                                     }
 
-                                                
 
-                                                }else{
-                                                    if(i == 5){
-                                                    oBusyDilog.close();
-                                                    var sErMsg = "We are unable to validate at this time, please try again later.";
-                                                    MessageBox.show(sErMsg, {
-                                                        icon: MessageBox.Icon.ERROR,
-                                                        title: "Validation Unsuccessful"
-                                                    });  
-                                                   // break;
-                                                   vBreak = true;
-                                                }
+
+                                                } else {
+                                                    if (i == 5) {
+                                                        oBusyDilog.close();
+                                                        var sErMsg = "We are unable to validate at this time, please try again later.";
+                                                        MessageBox.show(sErMsg, {
+                                                            icon: MessageBox.Icon.ERROR,
+                                                            title: "Validation Unsuccessful"
+                                                        });
+                                                        // break;
+                                                        vBreak = true;
+                                                    }
                                                 }
 
                                             },
@@ -2378,11 +2391,11 @@ sap.ui.define([
                                     }
                                     if (!vBreak) {
                                         oBusyDilog.close();
-                                    var sErMsg = "We are unable to validate at this time, please try again later.";
-                                    MessageBox.show(sErMsg, {
-                                        icon: MessageBox.Icon.ERROR,
-                                        title: "Validation Unsuccessful"
-                                    });
+                                        var sErMsg = "We are unable to validate at this time, please try again later.";
+                                        MessageBox.show(sErMsg, {
+                                            icon: MessageBox.Icon.ERROR,
+                                            title: "Validation Unsuccessful"
+                                        });
                                     }
                                 } else {
                                     oBusyDilog.close();
@@ -2431,23 +2444,23 @@ sap.ui.define([
                     // @ts-ignore
                     file = domRef.files[0];
 
-                    if (file.name.length > 60) {
-                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
-                            icon: sap.m.MessageBox.Icon.ERROR,
-                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                            contentWidth: "30%",
-                            styleClass: "sapUiSizeCompact"
-                        });
-                        return;
-                    }  if (Number((file.size * 0.000001).toFixed(1)) > 8) {
-                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileSizeExtendedMessage")), {
-                            icon: sap.m.MessageBox.Icon.ERROR,
-                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                            contentWidth: "30%",
-                            styleClass: "sapUiSizeCompact"
-                        });
-                        return;
-                    }
+                if (file.name.length > 60) {
+                    sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
+                    return;
+                } if (Number((file.size * 0.000001).toFixed(1)) > 8) {
+                    sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileSizeExtendedMessage")), {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        contentWidth: "30%",
+                        styleClass: "sapUiSizeCompact"
+                    });
+                    return;
+                }
                 // @ts-ignore
                 jQuery.sap.domById(fileUpload.getId() + "-fu").setAttribute("type", "file");
                 // @ts-ignore
@@ -2457,7 +2470,7 @@ sap.ui.define([
                 oFormData.append("overwriteFlag", false);
                 oFormData.append("folderName", oView.getModel("JMEulaComments").getData().caseId);
                 oFormData.append("requestId", oView.getModel("JMEulaComments").getData().caseId);
-                oFormData.append("docInSection",  oView.getModel("oConfigMdl").getData().contextPath.Id);
+                oFormData.append("docInSection", oView.getModel("oConfigMdl").getData().contextPath.Id);
                 oFormData.append("fileExt", file.name.split(".")[1]);
                 oFormData.append("type", "application/octet-stream");
 
@@ -2504,14 +2517,15 @@ sap.ui.define([
                                         oFormData.set("overwriteFlag", true);
                                         //  oFormData.append("deletedBy", oView.getModel("oUserModel").getData().user.givenName);
                                         var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).findIndex(function (docId) { return docId.name === file.name });
-                                        if(index !== -1){
-                                        that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).splice(index, 1);}
-                                    //     if(_arrayTitle === "bankINDArray" || _arrayTitle === "bankDArray"){
-                                    //         var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").findIndex(function (docId) { return docId.name == file.name });
-                                    //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").splice(index, 1);
-                                    //     var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").findIndex(function (docId) { return docId.name == file.name });
-                                    //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").splice(index, 1);
-                                    //    }
+                                        if (index !== -1) {
+                                            that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).splice(index, 1);
+                                        }
+                                        //     if(_arrayTitle === "bankINDArray" || _arrayTitle === "bankDArray"){
+                                        //         var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").findIndex(function (docId) { return docId.name == file.name });
+                                        //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").splice(index, 1);
+                                        //     var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").findIndex(function (docId) { return docId.name == file.name });
+                                        //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").splice(index, 1);
+                                        //    }
                                         that.getView().getModel("oAttachmentList").refresh(true);
                                         var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
                                         oBusyDialogFile.open();
@@ -2678,7 +2692,7 @@ sap.ui.define([
                             if (value.docInSection == oView.getModel("oConfigMdl").getData().documentSection) {
                                 that.getView().getModel("oAttachmentList").getData().RejectDoc.push(value);
                             }
-                            
+
                         });
 
                         that.getView().getModel("oAttachmentList").refresh();
@@ -2742,7 +2756,7 @@ sap.ui.define([
                 //     ontap: this.fnLiveChangePurchOrg
                 // }, this);
             }
-          
+
 
         });
     });

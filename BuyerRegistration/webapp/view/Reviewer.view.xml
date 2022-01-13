@@ -623,6 +623,7 @@
             <VBox > 
              <CheckBox wrapping="true" text="{i18n>newPartnerCreatioExtTextRemit}" select="fnCompanyRTAClick" selected="{oConfigMdl>/invoicingAddNew}" enabled="{oConfigMdl>/invoicingAddNewEnb}" class="fontBold inputStyle  sapUiTinyMarginTop sapUiTinyMarginBottom" />
 			<Text text="Name:{oConfigMdl>/companyInfoInv/0/name}   /  Address:{oConfigMdl>/companyInfoInv/0/address1}" class="fontBold inputStyle  sapUiTinyMarginTop sapUiTinyMarginBegin" />
+             <VBox visible="{oDataModel>/comInfoDto/isRemitToAddress}" >
                <Label text="{i18n>ReconsilationAndPaymentTxt}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
                                         <l:Grid defaultSpan="XL2 L2 M2 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
 											
@@ -634,7 +635,8 @@
 												<Label text="{i18n>TIDUNsNumber}" class="cl_PreviewLablCls "></Label>
 												<Label text="" class="cl_PreviewLablClsValue "></Label>
 											</VBox> -->
-                                            <VBox class="VRVboxStyle1">
+                                           
+                                            <VBox class="VRVboxStyle1" >
 													<Label text="{i18n>ReconciliationAccount}:" required="false" class="cl_VRLablCls "></Label>
 													<ComboBox width="95%" items="{oBPLookUpMdl>/ReconAcc}"   valueState="{JMValidateDefault>/invoiceAddrReconciliationAccounte}" valueStateText="{JMValidateDefault>/invoiceAddrReconciliationAccountm}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/defaultEnable}" change="fnLiveChangeReconAcc1" showSecondaryValues="true" selectedKey="{oDataModel>/shippingInfoDto/invoiceAddrReconciliationAccount}"
@@ -652,9 +654,11 @@
 										</ComboBox>
                                                 	
 												</VBox>
+                                               
 											
                                           
 										</l:Grid>
+                                         </VBox>
             	<u:Table
 				rows="{oVendorListModel>/invoiceAddressResults/d/results}"
 				selectionMode="Single"
@@ -937,7 +941,7 @@
                 	<Button text="{i18n>TIValidate}" visible="{oConfigMdl>/ValidateVisible}"  type="Accept" press="fnValidateData" class="cl_BPCDraft2  sapUiSizeCompact" enabled="{oConfigMdl>/isClaimed}" />
 				  <Button text="{oConfigMdl>/ApproveBtnName}" enabled="{=${oConfigMdl>/isClaimed} &amp;&amp;${oConfigMdl>/ApproveButtonVis}}"    type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft  sapUiSizeCompact" />
                 
-                    	<Button text="{i18n>Mitigation}" visible="{oConfigMdl>/MitgationVis}" press="fnMitigate"  type="Accept" class="  cl_BPCDraft sapUiSizeCompact" enabled="{oConfigMdl>/isClaimed}" />
+                    	<Button text="{i18n>Mitigation}" visible="{oConfigMdl>/MitgationVis}" press="fnOpenBankCommentsReject"  type="Accept" class="  cl_BPCDraft sapUiSizeCompact" enabled="{oConfigMdl>/isClaimed}" />
               	<Button text="{oConfigMdl>/RjectBtnName}" visible="{oConfigMdl>/RejectBtnVis}" press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
 			</OverflowToolbar>
 		</footer>
