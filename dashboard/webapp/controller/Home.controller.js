@@ -1,5 +1,4 @@
 sap.ui.define([
-    
     "sap/ui/core/mvc/Controller",
     "dashboard/util/formatter",
     "sap/ui/model/json/JSONModel",
@@ -9,7 +8,6 @@ sap.ui.define([
     "sap/m/BusyDialog",
     "sap/ui/model/Sorter"
 ],
-
     function (Controller, formatter, JSONModel, Filter, FilterOperator, MessageBox, BusyDialog, Sorter) {
         "use strict";
         var that, oView, oView1, oBusyDilog, oi18n;
@@ -377,6 +375,7 @@ sap.ui.define([
                 params.isNew = isNew;
                 var vCaseId = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("caseId");
                 params.caseId = vCaseId;
+                params.Enb = false;
                 if(vStatus == "Draft"){
                 var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
                 var hash = (oCrossAppNavigator && oCrossAppNavigator.hrefForExternal({

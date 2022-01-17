@@ -940,6 +940,15 @@ sap.ui.define([
                                 } else {
                                     oView.getModel("oConfigMdl").getData().screenEditable = true;
                                 }
+                                if(that.getOwnerComponent().getComponentData()){
+                                    if (that.getOwnerComponent().getComponentData().startupParameters.caseId) {
+                                      var vEnb = that.getOwnerComponent().getComponentData().startupParameters.Enb[0];
+                                      if(vEnb == "false"){
+                                        oView.getModel("oConfigMdl").getData().screenEditable = false;
+                                       
+                                      }
+                                  }
+                              }
                                 oView.getModel("oConfigMdl").refresh();
                             }
                         }
@@ -1271,7 +1280,11 @@ sap.ui.define([
                 var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/taskComplete"
                 var oPayload = {
                     "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
-                    "bpNumber": ""
+                    "bpNumber": "",
+                    "context": {
+                        "buyerActionOnExtension":"close"
+                    }
+                    
                 }
                 var oModelWf = new JSONModel();
 
@@ -1908,6 +1921,7 @@ sap.ui.define([
                             "buyerName": oView.getModel("JMBPCreate").getData().buyerName,
                             "buyerEmailId": vBuyerEmail,
                             "companyCode": oView.getModel("JMBPCreate").getData().companyCode,
+                            "companyCodeDesc":that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
                             "conflictOfInterest": vConflictOfInt,
                             "corporationName": oView.getModel("JMBPCreate").getData().corporationName,
                             "incoTerms": oView.getModel("JMBPCreate").getData().incoTerms,
@@ -2187,6 +2201,7 @@ sap.ui.define([
                                         "buyerName": oView.getModel("JMBPCreate").getData().buyerName,
                                         "buyerEmailId": vBuyerEmail,
                                         "companyCode": oView.getModel("JMBPCreate").getData().companyCode,
+                                        "companyCodeDesc":that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
                                         "conflictOfInterest": vConflictOfInt,
                                         "corporationName": oView.getModel("JMBPCreate").getData().corporationName,
                                         "incoTerms": oView.getModel("JMBPCreate").getData().incoTerms,

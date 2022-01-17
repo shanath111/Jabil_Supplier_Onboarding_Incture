@@ -16,13 +16,13 @@
                 },
                 "semanticObject": "buyerDashboard",
                 "action": "Display",
-                "title": "Buyer Dashboard",
+                "title": "New Dashboard",
                 "subTitle": "",
                 "icon": "sap-icon://manager-insight"
             }
         }
     },
-    "title": "Buyer Dashboard",
+    "title": "New Dashboard",
     "description": "",
     "dataSources": {
       "mainService": {
@@ -38,6 +38,7 @@
   },
   "sap.ui": {
     "technology": "UI5",
+    "fullWidth": true,
     "icons": {
       "icon": "",
       "favIcon": "",
@@ -54,8 +55,6 @@
   },
   "sap.ui5": {
     "flexEnabled": true,
-    "fullWidth": true,
-
     "dependencies": {
       "minUI5Version": "1.97.0",
       "libs": {

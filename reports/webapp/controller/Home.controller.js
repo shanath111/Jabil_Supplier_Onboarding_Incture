@@ -194,11 +194,23 @@ sap.ui.define([
             },
 
             fnLoadStatus: function () {
-                var aStatus = ["Draft", "In Progress", "Completed", "Disqualified"
+                var oModel = new JSONModel();
+                var sUrl = "/oneappincturereportreports/plcm_portal_services/case/list/portalStatus";
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/StatusLp", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
 
-                ]
-                oView1.getModel("oBPLookUpMdl").setProperty("/StatusLp", aStatus);
-                oView1.getModel("oBPLookUpMdl").refresh();
+                // var aStatus = ["Draft", "In Progress", "Completed", "Disqualified"
+
+                // ]
+                // oView1.getModel("oBPLookUpMdl").setProperty("/StatusLp", aStatus);
+                // oView1.getModel("oBPLookUpMdl").refresh();
             },
 
             fnLoadSupplierList: function () {
@@ -218,7 +230,7 @@ sap.ui.define([
                     "partnerId": oView.getModel("JMSuppReqListHeader").getData().partnerId,
                     "plant": "",
                     "purchasingOrg": oView.getModel("JMSuppReqListHeader").getData().purchasingOrg,
-                    "status": oView.getModel("JMSuppReqListHeader").getData().status,
+                    "portalStatus": oView.getModel("JMSuppReqListHeader").getData().status,
                     "organizationName": oView.getModel("JMSuppReqListHeader").getData().organizationName,
                     "buyerName": oView.getModel("oConfigMdl").getData().usrData.givenName
                 };
@@ -359,9 +371,13 @@ sap.ui.define([
                 };
 
                 var isNew = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("isNew");
+                var vStatus = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("status");
+
                 params.isNew = isNew;
                 var vCaseId = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("caseId");
                 params.caseId = vCaseId;
+                params.Enb = true;
+                if(vStatus == "Draft"){
                 var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
                 var hash = (oCrossAppNavigator && oCrossAppNavigator.hrefForExternal({
                     target: {
@@ -377,6 +393,13 @@ sap.ui.define([
                         shellHash: hash
                     }
                 });
+            }else{
+                this.getOwnerComponent().getRouter().navTo("PreviewForm", {
+                    caseId: vCaseId
+                  
+                });
+            }
+
 
             },
             fnNextPage: function () {

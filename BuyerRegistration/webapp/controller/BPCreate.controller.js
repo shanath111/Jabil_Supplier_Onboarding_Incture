@@ -498,6 +498,16 @@ sap.ui.define([
                                 oView.getModel("oConfigMdl").getData().screenEditable = false;
                                 oView.getModel("oConfigMdl").getData().searchAddress = false;
                             }
+                        
+                            if(that.getOwnerComponent().getComponentData()){
+                                if (that.getOwnerComponent().getComponentData().startupParameters.caseId) {
+                                  var vEnb = that.getOwnerComponent().getComponentData().startupParameters.Enb[0];
+                                  if(vEnb == "false"){
+                                    oView.getModel("oConfigMdl").getData().screenEditable = false;
+                                    oView.getModel("oConfigMdl").getData().searchAddress = false;
+                                  }
+                              }
+                          }
 
                             oView.getModel("oConfigMdl").getData().representAnotherCompany = temp.representAnotherCompany;
                             oView.getModel("oConfigMdl").refresh();
@@ -1217,6 +1227,7 @@ sap.ui.define([
                             "buyerName": oView.getModel("JMBPCreate").getData().buyerName,
                             "buyerEmailId": vBuyerEmail,
                             "companyCode": oView.getModel("JMBPCreate").getData().companyCode,
+                            "companyCodeDesc":that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
                             "conflictOfInterest": vConflictOfInt,
                             "corporationName": oView.getModel("JMBPCreate").getData().corporationName,
                             "corporationName2": oView.getModel("JMBPCreate").getData().corporationName2,
@@ -1460,6 +1471,7 @@ sap.ui.define([
                                         "buyerName": oView.getModel("JMBPCreate").getData().buyerName,
                                         "buyerEmailId": vBuyerEmail,
                                         "companyCode": oView.getModel("JMBPCreate").getData().companyCode,
+                                        "companyCodeDesc":that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
                                         "conflictOfInterest": vConflictOfInt,
                                         "corporationName": oView.getModel("JMBPCreate").getData().corporationName,
                                         "corporationName2": oView.getModel("JMBPCreate").getData().corporationName2,
