@@ -64,6 +64,7 @@
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
 									</VBox>
+                                   
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
 											<c:ExtComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" editable="{oConfigMdl>/screenEditable}" valueState="{JMBPCreate>/purchasingOrge}" valueStateText="{JMBPCreate>/purchasingOrgm}"
@@ -71,6 +72,14 @@
 											class="cl_VRInputCls"   >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</c:ExtComboBox>
+									</VBox>
+                                       <VBox class="VRVboxStyle1" visible="{JMBPCreate>/materialGroupVis}">
+										<Label text="{i18n>MaterialGroup}" required="true" class="cl_VRLablCls "></Label>
+										<ComboBox width="95%" items="{oBPLookUpMdl>/materialGroup}" valueState="{JMBPCreate>/materialGroupe}" valueStateText="{JMBPCreate>/materialGroupm}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeMaterialGroup" showSecondaryValues="true" selectedKey="{JMBPCreate>/materialGroup}"
+											class="cl_VRInputCls"  >
+											<core:ListItem key="{oBPLookUpMdl>materialGroup}" text="{oBPLookUpMdl>materialGroup}" />
+										</ComboBox>
 									</VBox>
 								</l:Grid>
                                 	<Label text="{i18n>ExtendLabel1}" wrapping="true" class="cl_VRLablCls sapUiSmallMarginBegin sapUiTinyMarginTop"></Label>

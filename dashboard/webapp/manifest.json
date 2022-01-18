@@ -16,13 +16,13 @@
                 },
                 "semanticObject": "buyerDashboard",
                 "action": "Display",
-                "title": "New Dashboard",
+                "title": "Dashboard",
                 "subTitle": "",
                 "icon": "sap-icon://manager-insight"
             }
         }
     },
-    "title": "New Dashboard",
+    "title": "Dashboard",
     "description": "",
     "dataSources": {
       "mainService": {

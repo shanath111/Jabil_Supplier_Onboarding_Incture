@@ -60,6 +60,7 @@ sap.ui.define([
                     "partnerId": "",
                     "purchasingOrg": "",
                     "companyCode": "",
+                    "buyerFilterSel":false,
                     "organizationName": ""
 
                 }
@@ -214,7 +215,10 @@ sap.ui.define([
 
             fnLoadSupplierList: function () {
 
-
+            var vBuyerName = "";
+            if(oView.getModel("JMSuppReqListHeader").getData().buyerFilterSel == true){
+                vBuyerName =  oView.getModel("oConfigMdl").getData().usrData.givenName;
+            }
                 oBusyDilog.open();
                 var oModel = new JSONModel();
                 var sUrl = "/dashboard/plcm_portal_services/case/search";
@@ -231,7 +235,7 @@ sap.ui.define([
                     "purchasingOrg": oView.getModel("JMSuppReqListHeader").getData().purchasingOrg,
                     "portalStatus": oView.getModel("JMSuppReqListHeader").getData().status,
                     "organizationName": oView.getModel("JMSuppReqListHeader").getData().organizationName,
-                   // "buyerName": oView.getModel("oConfigMdl").getData().usrData.givenName
+                    "buyerName":vBuyerName
                 };
                 oModel.loadData(sUrl, JSON.stringify(oPayload), true, "POST", false, true, {
                     "Content-Type": "application/json"
@@ -330,12 +334,18 @@ sap.ui.define([
                 var binding = oView.byId("id_VendorRequestList").getBinding("items");
                 binding.filter(aFilter);
             },
+            fnBuyerFilterSel:function(){
+           // if(oView.getModel("JMSuppReqListHeader").getData().buyerFilterSel == true){
+                this.fnLoadSupplierList();
+          //  }
+            },
             fnClearSearch: function () {
 
 
                 var temp = {
                     "caseId": "",
                     "dateCreated": "",
+                    "buyerFilterSel":false,
                     "status": "",
                     "partnerId": "",
                     "purchasingOrg": "",

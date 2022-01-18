@@ -766,7 +766,7 @@
 			<OverflowToolbar visible="true" class="cl_BPCFooterClr sapUiSizeCompact">
 				<ToolbarSpacer/>
 				<Button text="{i18n>BPCCancel}"  press="fnCancelAction" visible="{oConfigMdl>/screenEditable}" class="cl_BPCDraft sapUiSizeCompact"  />
-				<Button text="{i18n>BPCDraft}" enabled="{oConfigMdl>/ActnBtnEnable}"  visible="{oConfigMdl>/screenEditable}" type="Accept" press="fnCreateBP" class="cl_BPCDraft sapUiSmallMarginBegin sapUiSizeCompact" />
+				<!-- <Button text="{i18n>BPCDraft}" enabled="{oConfigMdl>/ActnBtnEnable}"  visible="{oConfigMdl>/screenEditable}" type="Accept" press="fnCreateBP" class="cl_BPCDraft sapUiSmallMarginBegin sapUiSizeCompact" /> -->
                 	
 					<Button text="{i18n>BPCSubmit}" press="fnCreateBPWF" enabled="{oConfigMdl>/ActnBtnEnable}" visible="{oConfigMdl>/screenEditable}" type="Accept" class="sapUiSmallMarginBegin sapUiSmallMarginEnd cl_BPCDraft sapUiSizeCompact" />
 			</OverflowToolbar>

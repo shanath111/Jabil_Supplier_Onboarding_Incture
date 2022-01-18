@@ -849,7 +849,8 @@ sap.ui.define([
                                     "requestorCOIPhoneNumber": data.bpRequestScope.bpRequestScopeAddlDetails.requestorCOIPhoneNumber,
                                     "requestorCOIReason": data.bpRequestScope.bpRequestScopeAddlDetails.requestorCOIReason,
                                     "addlSurveyForSupplier": data.bpRequestScope.bpRequestScopeAddlDetails.addlSurveyForSupplier,
-                                    "bpSearch": data.bpSearch
+                                    "bpSearch": data.bpSearch,
+                                    "materialGroup": data.bpRequestScope.materialGroup
                                 };
                                 if (temp.conflictOfInterest == true) {
                                     temp.conflictOfInterests = 1;
@@ -929,7 +930,21 @@ sap.ui.define([
                                 that.fnLoadState(temp.country);
                                 that.fnLoadPurOrg(temp.companyCode, that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, temp.companyCode, "CompanyCode"));
                                 that.fnLoadPayemntTerms(true);
-
+                                if (oView.getModel("JMBPCreate").getData().plant == "CN30" || oView.getModel("JMBPCreate").getData().plant == "CN81") {
+                                    oView.getModel("JMBPCreate").getData().materialGroupVis = true;
+                                    var vMTData = oView.getModel("oStaticData").getData().wuxi;
+                                    var aData = [];
+                                    for (var i = 0; i < vMTData.length; i++) {
+                                        if (vMTData[i].plant == oView.getModel("JMBPCreate").getData().plant) {
+                                            aData.push(vMTData[i]);
+                                        }
+                                    }
+                                    oView.getModel("oBPLookUpMdl").setProperty("/materialGroup", aData);
+                                    oView.getModel("oBPLookUpMdl").refresh();
+                                } else {
+                                    oView.getModel("JMBPCreate").getData().materialGroupVis = false;
+                                    oView.getModel("JMBPCreate").refresh();
+                                }
 
                                 if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Display") {
                                     if (temp.status == "Draft") {
@@ -1051,6 +1066,14 @@ sap.ui.define([
                     return "";
                 }
             },
+            
+            fnLiveChangeMaterialGroup: function () {
+                if (oView.getModel("JMBPCreate").getData().materialGroupe == "Error") {
+                    oView.getModel("JMBPCreate").getData().materialGroupe = "None";
+                    oView.getModel("JMBPCreate").getData().materialGroupm = "";
+                    oView.getModel("JMBPCreate").refresh();
+                }
+            },
             fnCaseListPressNav: function (oEvent) {
 
                 if (oView.getModel("oConfigMdl").getData().contextPath.Id == "New" || oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention") {
@@ -1146,13 +1169,18 @@ sap.ui.define([
                             vBuyer = oView.getModel("oConfigMdl").getData().usrData.givenName;
 
                         }
+                        var vMatGrpVis = false;
+                        if(temp.plant == "CN30" || temp.plant  == "CN81"){
+                            vMatGrpVis = true;
+                           
+                        }
                         var temp1 = {
                             "bpNumber": temp.BUSINESS_PARTNER_NUMBER,
                             "supplier": "",
                             "caseId": "",
                             "companyCode": temp.COMPANY_CODE,
                             "purchasingOrg": temp.PURCHASING_ORG,
-                            "plant": "",
+                            "plant": temp.PLANT,
                             "corporationName": temp.VENDOR_NAME,
                             // "workCelld": that.fnFetchDescriptionWorkCell(oView.getModel("oBPLookUpMdl").getData().WorkCell, "", "WorkCell"),
                             "workCell": "",
@@ -1219,6 +1247,8 @@ sap.ui.define([
                             "CoIFields": false,
                             "buyerAttachmentVis": false,
                             "addlSurveyForSuppliers": 1,
+                            "materialGroupVis":vMatGrpVis,
+                            "materialGroup":"",
                            
                             "bpSearch": {
                                 "selectedSupplier": JSON.stringify(temp)
@@ -1667,6 +1697,14 @@ sap.ui.define([
                     //     vError = true;
                     // }
 
+                    if (oView.getModel("JMBPCreate").getData().plant == "CN30" || oView.getModel("JMBPCreate").getData().plant == "CN81") {
+                        if (!oView.getModel("JMBPCreate").getData().materialGroup) {
+                            oView.getModel("JMBPCreate").getData().materialGroupe = "Error";
+                            oView.getModel("JMBPCreate").getData().materialGroupm = oi18n.getProperty("pleaseProvideMaterialGroup");
+                            oView.getModel("JMBPCreate").refresh();
+                            vError = true;
+                        }
+                    }
 
 
                 } else {
@@ -1933,6 +1971,7 @@ sap.ui.define([
                             "scopeId": oView.getModel("JMBPCreate").getData().scopeId,
                             // "supplier": oView.getModel("JMBPCreate").getData().supplier,
                             "workCell": oView.getModel("JMBPCreate").getData().workCell,
+                            "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                             "workflowId": "",
                         },
                         "bpNumber": oView.getModel("JMBPCreate").getData().bpNumber,
@@ -2000,7 +2039,8 @@ sap.ui.define([
                                             "supplierEmail": oView.getModel("JMBPCreate").getData().email,
                                             "purchasingGroup": "",
                                             "workCell": oView.getModel("JMBPCreate").getData().workCelld,
-                                            "plant": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().Plant, oView.getModel("JMBPCreate").getData().plant, "Plant"),
+                                            "plant": oView.getModel("JMBPCreate").getData().plant,
+                                            "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                                             "companyCode": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
                                             "purchasingOrg": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurOrg, oView.getModel("JMBPCreate").getData().purchasingOrg, "PurchOrg"),
                                             "supplierDetails": {
@@ -2044,7 +2084,8 @@ sap.ui.define([
                                             "supplierEmail": oView.getModel("JMBPCreate").getData().email,
                                             "purchasingGroup": "",
                                             "workCell": oView.getModel("JMBPCreate").getData().workCelld,
-                                            "plant": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().Plant, oView.getModel("JMBPCreate").getData().plant, "Plant"),
+                                            "plant":oView.getModel("JMBPCreate").getData().plant,
+                                            "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                                             "companyCode": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
                                             "purchasingOrg": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurOrg, oView.getModel("JMBPCreate").getData().purchasingOrg, "PurchOrg"),
                                             "supplierDetails": {
@@ -2213,6 +2254,7 @@ sap.ui.define([
                                         "scopeId": oView.getModel("JMBPCreate").getData().scopeId,
                                         // "supplier": oView.getModel("JMBPCreate").getData().supplier,
                                         "workCell": oView.getModel("JMBPCreate").getData().workCell,
+                                        "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                                         "workflowId": "",
                                     },
                                     "bpNumber": oView.getModel("JMBPCreate").getData().bpNumber,
@@ -2280,7 +2322,8 @@ sap.ui.define([
                                                         "supplierEmail": oView.getModel("JMBPCreate").getData().email,
                                                         "purchasingGroup": "",
                                                         "workCell": oView.getModel("JMBPCreate").getData().workCelld,
-                                                        "plant": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().Plant, oView.getModel("JMBPCreate").getData().plant, "Plant"),
+                                                        "plant": oView.getModel("JMBPCreate").getData().plant,
+                                                        "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                                                         "companyCode": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
                                                         "purchasingOrg": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurOrg, oView.getModel("JMBPCreate").getData().purchasingOrg, "PurchOrg"),
                                                         "supplierDetails": {
@@ -2323,7 +2366,8 @@ sap.ui.define([
                                                         "supplierEmail": oView.getModel("JMBPCreate").getData().email,
                                                         "purchasingGroup": "",
                                                         "workCell": oView.getModel("JMBPCreate").getData().workCelld,
-                                                        "plant": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().Plant, oView.getModel("JMBPCreate").getData().plant, "Plant"),
+                                                        "plant": oView.getModel("JMBPCreate").getData().plant,
+                                                        "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                                                         "companyCode": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
                                                         "purchasingOrg": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurOrg, oView.getModel("JMBPCreate").getData().purchasingOrg, "PurchOrg"),
                                                         "supplierDetails": {
@@ -2530,6 +2574,22 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").getData().plantm = "";
                     oView.getModel("JMBPCreate").refresh();
                 }
+                oView.getModel("JMBPCreate").getData().materialGroup = "";
+                if (oView.getModel("JMBPCreate").getData().plant == "CN30" || oView.getModel("JMBPCreate").getData().plant == "CN81") {
+                    oView.getModel("JMBPCreate").getData().materialGroupVis = true;
+                    var vMTData = oView.getModel("oStaticData").getData().wuxi;
+                    var aData = [];
+                    for (var i = 0; i < vMTData.length; i++) {
+                        if (vMTData[i].plant == oView.getModel("JMBPCreate").getData().plant) {
+                            aData.push(vMTData[i]);
+                        }
+                    }
+                    oView.getModel("oBPLookUpMdl").setProperty("/materialGroup", aData);
+                    oView.getModel("oBPLookUpMdl").refresh();
+                } else {
+                    oView.getModel("JMBPCreate").getData().materialGroupVis = false;
+                }
+                oView.getModel("JMBPCreate").refresh();
             },
             fnLiveChangePurchOrg: function (oEvent) {
                 //    var vSelected = oEvent.getParameter("itemPressed");
@@ -3786,6 +3846,11 @@ sap.ui.define([
                 if (oView.getModel("JMBPCreate").getData().customerDirectedSupplierContractm == oi18n.getProperty("pleaseEnterCustDirContact")) {
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierContracte = "None";
                     oView.getModel("JMBPCreate").getData().customerDirectedSupplierContractm = "";
+                    oView.getModel("JMBPCreate").refresh();
+                }
+                if (oView.getModel("JMBPCreate").getData().materialGroupm == oi18n.getProperty("pleaseProvideMaterialGroup")) {
+                    oView.getModel("JMBPCreate").getData().materialGroupe = "None";
+                    oView.getModel("JMBPCreate").getData().materialGroupm = "";
                     oView.getModel("JMBPCreate").refresh();
                 }
                 oView.getModel("JMBPCreate").getData().conflicte = "None";

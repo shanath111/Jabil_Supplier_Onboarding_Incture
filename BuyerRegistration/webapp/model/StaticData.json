@@ -41,19 +41,12 @@
     "wuxi": [
         {
             "plant": "CN30",
-            "materialGroup": "Metal"
+            "materialGroup": "MRO"
         },
-        {
-            "plant": "CN30",
-            "materialGroup": "Plastic"
-        },
-        {
-            "plant": "CN30",
-            "materialGroup": "EPZ"
-        },
+       
         {
             "plant": "CN81",
-            "materialGroup": "Stamping"
+            "materialGroup": "MRO"
         }
     ]
 }
