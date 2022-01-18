@@ -109,7 +109,7 @@
             </VBox> -->
             <Label visible="{=!${oUserModel>/isNew}}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>existingBankDetails}:${oi18n_En>existingBankDetails} +'/&#160;' +${i18n>existingBankDetails}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
 			<!-- <CheckBox selected="{oDataModel>/bankDto/isBankProvided}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankInformation2}:${oi18n_En>bankInformation2} +'/&#160;' + ${i18n>bankInformation2}}" class="fontBold inputStyle sapUiTinyMarginBottom"/> -->
-			<l:Grid visible="{=${oDataModel>/bankDto/isBankProvided}=== true || ${oUserModel>/isNew} === false}" containerQuery="true" defaultSpan="XL2 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+			<l:Grid visible="{=${oDataModel>/bankDto/isBankProvided}=== true || ${oUserModel>/isNew} === false}" containerQuery="true" defaultSpan="XL3 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 			<VBox  class="fontStyle">
 					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankCountry}:${oi18n_En>bankCountry}+ '&#10;' +${i18n>bankCountry}}" required="true"></Label>
 					<ComboBox width="100%" enabled="{oVisibilityModel>/_FinanceReviewEdit}"  items="{oLookUpModel>/Country}" showSecondaryValues="true" filterSecondaryValues="true" selectedKey="{oDataModel>/bankDto/bankInfoDto/0/bankCountry}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/bankCountryE}" valueStateText="{oErrorModel>/bankCountryM}"  selectionChange="fnLiveValueBankInput" class="inputStyle">
@@ -276,7 +276,7 @@
 		</layoutData>
 	</Panel>
     <Panel width="100%" visible="{oUserModel>/isNew}" class="sapUiTinyMarginTop panelPadding">
-       <l:VerticalLayout class="fontStyle sapUiSizeCompact" visible="{=${oDataModel>/bankDto/isbankdetailsHidden}=== true? false: true}">
+       <l:VerticalLayout width="100%" class="fontStyle sapUiSizeCompact" visible="{=${oDataModel>/bankDto/isbankdetailsHidden}=== true? false: true}">
        <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepFinancialInfo}:${oi18n_En>wizardStepFinancialInfo} +'/&#160;' + ${i18n>wizardStepFinancialInfo}}" class="fontBold sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
         <!-- <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>financeVerbiage}:${oi18n_En>financeVerbiage} +'/&#160;' + ${i18n>financeVerbiage}}" class="fontBold fontStyleItalic sapUiTinyMarginBegin sapUiTinyMarginBottom"/> -->
         <Label  visible="{=${oDataModel>/bankDto/isBankProvided} === false || ${oDataModel>/bankDto/isBankProvided} === null}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>financeContact1}:${oi18n_En>financeContact1} +'/&#160;' + ${i18n>financeContact1}}"  class="inputStyle sapUiTinyMarginBegin fontStyleItalic sapUiTinyMarginBottom"/>
@@ -457,12 +457,15 @@
                                  <Label text="{i18n>mobPhone}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
                                     <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
 											<Input maxLength="31" value="{oDataModel>/bankDto/financeContact2/mobile}" enabled="{oEnableMdl>/finance2mobPhoneEnb}"  valueState="{oErrorModel>/finance2MobE}" valueStateText="{oErrorModel>/finance2MobM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
-                               
+                                            <layoutData>
+                                                <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+                                            </layoutData>
                             
                                         </VBox> 
 							</l:Grid>
                             </l:VerticalLayout>
-                             <l:VerticalLayout class="fontStyle sapUiSizeCompact sapUiTinyMarginBottom">
+        
+        <l:VerticalLayout width="100%" class="fontStyle sapUiSizeCompact sapUiTinyMarginBottom">
       <Label labelFor="allowFinStat" required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>allowFinStatText}:${oi18n_En>allowFinStatText} +'/&#160;' +${i18n>allowFinStatText}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
 		<RadioButtonGroup id="allowFinStat" columns="1" class="inputStyle" selectedIndex="{oDataModel>/financeInfoDto/doesFinancialStatements}"  valueState="{oErrorModel>/doesFinancialStatementsE}" select="fnClearValueState" enabled="{oEnableMdl>/doesFinancialStatementsEnb}">
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" groupName="allowFinStat"></RadioButton>
@@ -481,7 +484,8 @@
           <Label text="{oi18n_En>auditorName}&#10;{i18n>auditorName}" required="{oDataModel>/financeInfoDto/financeAuditedLast12M}"  wrapping="true"  visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginTop"/>
         <Input maxLength="255" width="50%" valueState="{oErrorModel>/financeUserAuditE}" valueStateText="{oErrorModel>/financeUserAuditM}" value="{oDataModel>/financeInfoDto/userAudited}" liveChange="fnValueChange" enabled="{oEnableMdl>/userAuditedEnb}" class="inputStyle sapUiSizeCompact sapUiTinyMarginBegin"/>
         </VBox>
-        </l:VerticalLayout></Panel>
+        </l:VerticalLayout>
+        </Panel>
 	
 	<VBox visible="true" class="sapUiMediumMarginTop">
 		<Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>Attachments}:${oi18n_En>Attachments}+ '/&#160;'+${i18n>Attachments}}" class="fontBold  sapUiTinyMarginBegin"/>
