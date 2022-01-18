@@ -9595,24 +9595,27 @@ var that = this;
                 var that = this;
                 this._fnValidateBasicInfo();
                 if (oView.byId("basicInfo").getValidated()) {
+                    var oPayload = jQuery.extend(true, {}, this.getView().getModel("oDataModel").getData());
+                    oPayload.caseId = oView.getModel("oUserModel").getData().caseId;
+                    oPayload.userUpdated = oView.getModel("oUserModel").getData().user.givenName;
                     var oModel = new JSONModel();
-                    var payload = {
-                        "surveyInfoDto": oView.getModel("oDataModel").getData().surveyInfoDto,
-                        "userCreated": oView.getModel("oUserModel").getData().user.givenName,
-                        "userUpdated": "",
-                        "dateCreated": null,
-                        "dateUpdated": null,
-                        "businessPartnerId": "",
-                        "caseId": oView.getModel("oUserModel").getData().caseId,
-                    }
-                    payload.surveyInfoDto.isAuthority = true;
-                    payload.surveyInfoDto.authorityContact.firstName = oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.firstName;
-                    payload.surveyInfoDto.authorityContact.lastName = oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.lastName;
-                    payload.surveyInfoDto.authorityContact.email = oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.email;
-                    payload.surveyInfoDto.authorityContact.countryContactCode = oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.countryContactCode;
-                    payload.surveyInfoDto.authorityContact.contact = oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact;
-                    payload.surveyInfoDto.authorityContact.mobile = oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile;
-                    payload.surveyInfoDto.authorityContact.contactName = oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.firstName + " " + oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.lastName;
+                    // var payload = {
+                    //     "surveyInfoDto": oView.getModel("oDataModel").getData().surveyInfoDto,
+                    //     "userCreated": oView.getModel("oUserModel").getData().user.givenName,
+                    //     "userUpdated": "",
+                    //     "dateCreated": null,
+                    //     "dateUpdated": null,
+                    //     "businessPartnerId": "",
+                    //     "caseId": oView.getModel("oUserModel").getData().caseId,
+                    // }
+                    oPayload.surveyInfoDto.isAuthority = true;
+                    oPayload.surveyInfoDto.authorityContact.firstName = oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.firstName;
+                    oPayload.surveyInfoDto.authorityContact.lastName = oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.lastName;
+                    oPayload.surveyInfoDto.authorityContact.email = oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.email;
+                    oPayload.surveyInfoDto.authorityContact.countryContactCode = oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.countryContactCode;
+                    oPayload.surveyInfoDto.authorityContact.contact = oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.contact;
+                    oPayload.surveyInfoDto.authorityContact.mobile = oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.mobile;
+                    oPayload.surveyInfoDto.authorityContact.contactName = oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.firstName + " " + oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.lastName;
                     //             payload.surveyInfoDto.address =[
                     //     {
                     //         "addressId": "",
@@ -9668,9 +9671,9 @@ var that = this;
                     //         ]
                     //     }
                     // ];
-                    var sUrl = "/comjabilsurveyform/plcm_portal_services/supplier/create";
+                    var sUrl = "/comjabilsurveyform/plcm_portal_services/supplier/update";
                     oBusyDialog.open();
-                    oModel.loadData(sUrl, JSON.stringify(payload), true, "POST", false, true, {
+                    oModel.loadData(sUrl, JSON.stringify(oPayload), true, "PUT", false, true, {
                         "Content-Type": "application/json"
                     });
                     oModel.attachRequestCompleted(function (oEvent) {
