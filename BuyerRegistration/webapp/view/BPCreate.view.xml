@@ -27,7 +27,7 @@
 			<OverflowToolbar class="cl_BPCFooterClr">
 				<ToolbarSpacer/>
 				<Button text="{i18n>BPCCancel}" visible="{oConfigMdl>/screenEditable}" press="fnCancelAction" class="cl_BPCCancel"  />
-				<Button text="{i18n>BPCDraft}" visible="{oConfigMdl>/screenEditable}"  type="Accept" press="fnCreateBP" class="cl_BPCDraft sapUiSmallMarginBegin" />
+				<!-- <Button text="{i18n>BPCDraft}" visible="{oConfigMdl>/screenEditable}"  type="Accept" press="fnCreateBP" class="cl_BPCDraft sapUiSmallMarginBegin" /> -->
 					<Button text="{i18n>BPCSubmit}" visible="{oConfigMdl>/screenEditable}" press="fnCreateBPWF" type="Accept" class="sapUiSmallMarginBegin sapUiSmallMarginEnd cl_BPCDraft" />
 			</OverflowToolbar>
 		</footer>

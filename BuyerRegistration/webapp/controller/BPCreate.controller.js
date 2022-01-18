@@ -920,7 +920,7 @@ sap.ui.define([
                             oView.getModel("JMBPCreate").getData().materialGroupe = "Error";
                             oView.getModel("JMBPCreate").getData().materialGroupm = oi18n.getProperty("pleaseProvideMaterialGroup");
                             oView.getModel("JMBPCreate").refresh();
-                            vError = false;
+                            vError = true;
                         }
                     }
 
@@ -1646,14 +1646,14 @@ sap.ui.define([
             },
             
 
-            fnLiveChangeSupplier: function () {
+             fnLiveChangeMaterialGroup: function () {
                 if (oView.getModel("JMBPCreate").getData().materialGroupe == "Error") {
                     oView.getModel("JMBPCreate").getData().materialGroupe = "None";
                     oView.getModel("JMBPCreate").getData().materialGroupm = "";
                     oView.getModel("JMBPCreate").refresh();
                 }
             },
-            fnLiveChangeMaterialGroup: function () {
+            fnLiveChangeSupplier: function () {
                 if (oView.getModel("JMBPCreate").getData().suppliere == "Error") {
                     oView.getModel("JMBPCreate").getData().suppliere = "None";
                     oView.getModel("JMBPCreate").getData().supplierm = "";

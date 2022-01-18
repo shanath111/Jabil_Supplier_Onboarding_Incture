@@ -80,6 +80,7 @@
 											<OverflowToolbar class="VRTableTBHeight">
 												<Text text="{JMSuppReqList>/headerText}"/>
 												<ToolbarSpacer/>
+                                                	<CheckBox text="{i18n>BuyerFilter}" selected="{JMSuppReqListHeader>/buyerFilterSel}" select="fnBuyerFilterSel" />
 												<SearchField width="20%" class="cl_TableSearch sapUisizeCompact" search="fnSearchSupplList" liveChange="fnSearchSupplList"></SearchField>
 										     
                                                 	<Button
