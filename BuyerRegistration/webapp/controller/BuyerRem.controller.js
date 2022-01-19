@@ -32,17 +32,18 @@ sap.ui.define([
                 oView.getModel("oBPLookUpMdl").setSizeLimit(10000);
                 var vContext = {
                     "Id": oEvent.getParameter("arguments").contextPath,
-                    "Name":oEvent.getParameter("arguments").Name
+                    "Name": oEvent.getParameter("arguments").Name
                 };
                 //   that.fnClearData();
                 that.fnSetConfigModel(vContext);
             },
             fnSetConfigModel: function (oContext) {
 
-                if(oContext.Name == "EulaReject"){
+                if (oContext.Name == "EulaReject" || oContext.Name == "EulaRejectFin" || oContext.Name == "EulaRejectFinReview") {
                     oView.getModel("oConfigMdl").getData().BuyerFollowUpVis = false;
                     oView.getModel("oConfigMdl").getData().EulaRejectVis = true;
-                }else{
+                }
+                else {
                     oView.getModel("oConfigMdl").getData().BuyerFollowUpVis = true;
                     oView.getModel("oConfigMdl").getData().EulaRejectVis = false;
                 }
@@ -62,7 +63,7 @@ sap.ui.define([
                         var oBPCreateModelCmnt = new sap.ui.model.json.JSONModel();
                         oBPCreateModelCmnt.setData(oEvent.getSource().getData());
                         oView.setModel(oBPCreateModelCmnt, "JMEulaComments");
-                       
+
                     } else {
                         var temp = {};
                         var oBPCreateModel = new sap.ui.model.json.JSONModel();
@@ -89,10 +90,10 @@ sap.ui.define([
                         if (oEvent.getSource().getData().comments) {
                             oView.getModel("oConfigMdl").getData().CommentsVis = true;
                             oView.getModel("oConfigMdl").getData().comments = oEvent.getSource().getData().comments;
-                        }else{
+                        } else {
                             oView.getModel("oConfigMdl").getData().CommentsVis = false;
                         }
-                       if (oEvent.getSource().getData().isTaskCompleted == true) {
+                        if (oEvent.getSource().getData().isTaskCompleted == true) {
                             oView.getModel("oConfigMdl").getData().isClaimed = false;
                         } else {
                             oView.getModel("oConfigMdl").getData().isClaimed = oEvent.getSource().getData().isClaimed;
@@ -103,7 +104,7 @@ sap.ui.define([
                         if (oView.getModel("oConfigMdl").getData().isClaimed == false) {
                             oView.getModel("oConfigMdl").getData().defaultEnable = false;
                         }
-                     
+
                         oView.getModel("oConfigMdl").getData().isClaimed = true;
                         oView.getModel("oConfigMdl").getData().validationMessage = oEvent.getSource().getData().validationMessage;
                         oView.getModel("oConfigMdl").refresh();
@@ -111,26 +112,26 @@ sap.ui.define([
                 });
             },
             fnApproveSub: function (vBtn) {
-                if(oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaReject"){
-                    if(oView.byId("id_ConfirmFollowUp1").getSelected() == false){
+                if (oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaReject" || oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaRejectFin" || oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaRejectFinReview" ) {
+                    if (oView.byId("id_ConfirmFollowUp1").getSelected() == false) {
                         var sErMsg = oi18n.getProperty("pleaseConfirmCheckBox");
-                                     MessageBox.show(sErMsg, {
-                                         icon: MessageBox.Icon.ERROR,
-                                         title: "Error"
-                                     });
-                                     return;
-                 }
-                }else{
-                    if(oView.byId("id_ConfirmFollowUp").getSelected() == false){
+                        MessageBox.show(sErMsg, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: "Error"
+                        });
+                        return;
+                    }
+                } else {
+                    if (oView.byId("id_ConfirmFollowUp").getSelected() == false) {
                         var sErMsg = oi18n.getProperty("pleaseConfirmCheckBox");
-                                     MessageBox.show(sErMsg, {
-                                         icon: MessageBox.Icon.ERROR,
-                                         title: "Error"
-                                     });
-                                     return;
-                 }
+                        MessageBox.show(sErMsg, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: "Error"
+                        });
+                        return;
+                    }
                 }
-              
+
                 var vConfirmTxt, vAprActn, vSccuessTxt;
                 vBtn = "AP";
                 if (vBtn == "AP") {
@@ -160,19 +161,48 @@ sap.ui.define([
                                 vCommentsActn = "reject";
                                 vContextActn = "rejected";
                             }
-                            var oPayload = {
-                                "context": {
-                                    "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
-                                    "caseId": oView.getModel("JMEulaComments").getData().caseId,
-                                    "isBuyerApprovedonEULA": vContextActn,
-                                   // "gtsAction": vContextActn
-                                },
-                                "status": "",
-                                "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
-                                "action": vCommentsActn,
-                                //"comments": oView.getModel("JMAppvrComments").getData().Comments
+                            if(oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaRejectFin"){
+                                var oPayload = {
+                                    "context": {
+                                        "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
+                                        "caseId": oView.getModel("JMEulaComments").getData().caseId,
+                                        "isBuyerApprovedonFPEula": vContextActn,
+                                        // "gtsAction": vContextActn
+                                    },
+                                    "status": "",
+                                    "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                                    "action": vCommentsActn,
+                                    //"comments": oView.getModel("JMAppvrComments").getData().Comments
+                                } 
+                            }else if(oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaRejectFinReview"){
+                                var oPayload = {
+                                    "context": {
+                                        "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
+                                        "caseId": oView.getModel("JMEulaComments").getData().caseId,
+                                        "isBuyerApprovedonFREula": vContextActn,
+                                        // "gtsAction": vContextActn
+                                    },
+                                    "status": "",
+                                    "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                                    "action": vCommentsActn,
+                                    //"comments": oView.getModel("JMAppvrComments").getData().Comments
+                                }   
+                            }else{
+                                var oPayload = {
+                                    "context": {
+                                        "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
+                                        "caseId": oView.getModel("JMEulaComments").getData().caseId,
+                                        "isBuyerApprovedonEULA": vContextActn,
+                                        // "gtsAction": vContextActn
+                                    },
+                                    "status": "",
+                                    "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                                    "action": vCommentsActn,
+                                    //"comments": oView.getModel("JMAppvrComments").getData().Comments
+                                } 
                             }
                            
+
                             oModel.loadData(sUrl, JSON.stringify(
                                 oPayload
                             ), true, "POST", false, true, {
@@ -206,64 +236,64 @@ sap.ui.define([
                             });
                         }
                     },
-                     
+
 
                 });
 
             },
-             fnDoneSubmit: function () {
+            fnDoneSubmit: function () {
                 window.parent.location.reload();
             },
             fnResendEmail: function () {
-               
-                    var vConfirmTxt = oi18n.getProperty("BPCConfirmSubmit");
-                    MessageBox.confirm(vConfirmTxt, {
-                        icon: MessageBox.Icon.Confirmation,
-                        title: "Confirmation",
-                        actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-                        emphasizedAction: MessageBox.Action.YES,
-                        onClose: function (oAction) {
-                            if (oAction == "YES") {
-                                oBusyDilog.open();
-                                var oModel = new JSONModel();
-                                var sUrl = "/nsBuyerRegistration/plcm_portal_services/email/resendOnboardingMail/"+oView.getModel("JMEulaComments").getData().caseId;
 
-                                oModel.loadData(sUrl, {
-                                    "Content-Type": "application/json"
-                                });
-                                oModel.attachRequestCompleted(function onCompleted(oEvent) {
-                                    if (oEvent.getParameter("success")) {
-                                        var temp = {};
-                                        var vSccuessTxt = oi18n.getProperty("EmailResentSuccess");
-                                        temp.Message = vSccuessTxt;
-                                        var oJosnMessage = new sap.ui.model.json.JSONModel();
-                                        oJosnMessage.setData(temp);
-                                        oView.setModel(oJosnMessage, "JMMessageData");
-                                        if (!that.oBPSuccess) {
-                                            that.oBPSuccess = sap.ui.xmlfragment(
-                                                "ns.BuyerRegistration.fragments.CreateSuccessGBS", that);
-                                            oView.addDependent(that.oBPSuccess);
-                                        }
-                                        oBusyDilog.close();
-                                        that.oBPSuccess.open();
+                var vConfirmTxt = oi18n.getProperty("BPCConfirmSubmit");
+                MessageBox.confirm(vConfirmTxt, {
+                    icon: MessageBox.Icon.Confirmation,
+                    title: "Confirmation",
+                    actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                    emphasizedAction: MessageBox.Action.YES,
+                    onClose: function (oAction) {
+                        if (oAction == "YES") {
+                            oBusyDilog.open();
+                            var oModel = new JSONModel();
+                            var sUrl = "/nsBuyerRegistration/plcm_portal_services/email/resendOnboardingMail/" + oView.getModel("JMEulaComments").getData().caseId;
 
-                                    } else {
-                                        oBusyDilog.close();
-                                        var sErMsg = oEvent.getParameter("errorobject").responseText;
-                                        MessageBox.show(sErMsg, {
-                                            icon: MessageBox.Icon.ERROR,
-                                            title: "Error"
-                                        });
-
-
+                            oModel.loadData(sUrl, {
+                                "Content-Type": "application/json"
+                            });
+                            oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                                if (oEvent.getParameter("success")) {
+                                    var temp = {};
+                                    var vSccuessTxt = oi18n.getProperty("EmailResentSuccess");
+                                    temp.Message = vSccuessTxt;
+                                    var oJosnMessage = new sap.ui.model.json.JSONModel();
+                                    oJosnMessage.setData(temp);
+                                    oView.setModel(oJosnMessage, "JMMessageData");
+                                    if (!that.oBPSuccess) {
+                                        that.oBPSuccess = sap.ui.xmlfragment(
+                                            "ns.BuyerRegistration.fragments.CreateSuccessGBS", that);
+                                        oView.addDependent(that.oBPSuccess);
                                     }
-                                });
+                                    oBusyDilog.close();
+                                    that.oBPSuccess.open();
 
-                            }
+                                } else {
+                                    oBusyDilog.close();
+                                    var sErMsg = oEvent.getParameter("errorobject").responseText;
+                                    MessageBox.show(sErMsg, {
+                                        icon: MessageBox.Icon.ERROR,
+                                        title: "Error"
+                                    });
+
+
+                                }
+                            });
+
                         }
+                    }
 
-                    });
-               
+                });
+
 
             },
 

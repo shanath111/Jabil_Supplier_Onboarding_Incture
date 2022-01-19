@@ -178,6 +178,13 @@
                     "target": [
                         "PreviewForm"
                     ]
+                },
+                {
+                    "name": "SupplierFinanceEula",
+                    "pattern": "SupplierFinanceEula/{Name}/{contextPath}",
+                    "target": [
+                        "SupplierFinanceEula"
+                    ]
                 }
             ],
             "targets": {
@@ -221,6 +228,13 @@
                     "clearControlAggregation": false,
                     "viewId": "PreviewForm",
                     "viewName": "PreviewForm"
+                },
+                "SupplierFinanceEula": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "SupplierFinanceEula",
+                    "viewName": "SupplierFinanceEula"
                 }
             }
         }
