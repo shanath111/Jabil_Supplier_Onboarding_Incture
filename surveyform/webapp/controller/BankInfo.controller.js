@@ -895,7 +895,7 @@ sap.ui.define([
                         "bpNumber": oView.getModel("oUserModel").getData().bpNumber,
                         "caseId": oView.getModel("oUserModel").getData().caseId,
                         "financeContact2Action": vActn,
-                        "financeProviderAction": "EULA_accepted",
+                        "financeReviewerAction": "EULA_accepted",
                         "bank_details_provider_comment": oView.getModel("JMBankComments").getData().Comments,
                         "bnkaPayload": vBnkaPayload,
                         "isIntermediateBankProvided": vInterMedbank,
