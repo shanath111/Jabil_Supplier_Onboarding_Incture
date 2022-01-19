@@ -117,11 +117,24 @@ sap.ui.define([
                     //     });
                     // //  that._router.navTo("VendorSurvey", { contextPath: taskId, Name: "Supplier" });
                     // }
+                    if(vAppName == "SupplierFinance"){
+
+                        if(oEvent.getSource().getData().eulaInSection == "Finance Provider"){
                     that.getView().getModel("oUserModel").setProperty("/language", oEvent.getSource().getData().language);
                     that.getView().getModel("oUserModel").refresh();
                     if (oEvent.getSource().getData().language) {
                         sap.ui.getCore().getConfiguration().setLanguage(oEvent.getSource().getData().language);
                     }
+                }
+                }else if(vAppName == "SupplierFinanceReviewer"){
+                    if(oEvent.getSource().getData().eulaInSection == "Finance Reviewer"){
+                    that.getView().getModel("oUserModel").setProperty("/language", oEvent.getSource().getData().language);
+                    that.getView().getModel("oUserModel").refresh();
+                    if (oEvent.getSource().getData().language) {
+                        sap.ui.getCore().getConfiguration().setLanguage(oEvent.getSource().getData().language);
+                    }
+                }
+                }
 
                 }
                 else if (oEvent.getParameter("errorobject").statusCode == 400 || oEvent.getParameter("errorobject").statusCode == 409 || oEvent.getParameter("errorobject").statusCode == 500 || oEvent.getParameter("errorobject").statusCode == 404) {
