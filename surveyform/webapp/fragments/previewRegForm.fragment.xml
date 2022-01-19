@@ -1372,7 +1372,7 @@
                                  <!-- <Label text="{i18n>bankInformation}" class="cl_PreviewPageHeader sapUiSmallMarginTop sapUiTinyMarginBegin"></Label> -->
                                                                	<Label text="{i18n>Attachments}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_PreviewLablClsValue"/>
             <Label text="{oi18n_En>Attachments}/&#160;{i18n>Attachments}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_PreviewLablClsValue"/>
-                               <gl:GridList width="auto" visible="{oUserModel>/isNew}"
+                               <gl:GridList width="auto" 
  growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin"
 			items="{oAttachmentList>/0/bankDArray}">
           	<gl:customLayout>
