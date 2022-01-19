@@ -13,6 +13,7 @@ sap.ui.define([
             this._router.getRoute("MainView").attachPatternMatched(this._fnHandleRouteMatched, this);
         },
         _fnHandleRouteMatched: function (oEvent) {
+            
             this.getUser();
             var taskId = oEvent.getParameter("arguments").contextPath;
             if (taskId !== "") {
