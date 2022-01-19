@@ -35,10 +35,6 @@
 					"appId": "oneapp.incture.workbox",
 					"vizId": "inbox-Approve"
 				}, {
-					"id": "oneapp.incture.report.reports-2-1626082202996",
-					"appId": "oneapp.incture.report.reports",
-					"vizId": "reports-display"
-				}, {
 					"id": "InboxDetail-3-1629721323711",
 					"appId": "InboxDetail",
 					"vizId": "InboxDetail-Display"
