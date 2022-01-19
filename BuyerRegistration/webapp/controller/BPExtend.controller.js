@@ -2840,7 +2840,12 @@ sap.ui.define([
 
                             }
                         } else {
-                            var sErMsg = oEvent.getParameter("errorobject").responseText;
+                            if(oEvent.getParameter("errorobject").statusCode == 504){
+                                var sErMsg = "Gateway Timeout due to large data set, please try with additional filter";
+                            }else{
+                                var sErMsg = oEvent.getParameter("errorobject").responseText;
+                            }
+                           
                             var oData = oEvent.getSource().getData();
                             var oVendorListJson = new sap.ui.model.json.JSONModel();
                             oVendorListJson.setData([]);

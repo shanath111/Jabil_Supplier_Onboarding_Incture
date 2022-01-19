@@ -27,27 +27,31 @@
 			},
 			"payload": {
 				"viz": [{
-					"id": "ns.BuyerRegistration-0-1622034664713",
+					"id": "com.jabil.surveyform-0-1642591424182",
+					"appId": "com.jabil.surveyform",
+					"vizId": "surveyform-Display"
+				}, {
+					"id": "ns.BuyerRegistration-1-1642591424182",
 					"appId": "ns.BuyerRegistration",
 					"vizId": "buyerRegistration-Display"
 				}, {
-					"id": "oneapp.incture.workbox-2-1622640147226",
-					"appId": "oneapp.incture.workbox",
-					"vizId": "inbox-Approve"
-				}, {
-					"id": "oneapp.incture.report.reports-2-1626082202996",
-					"appId": "oneapp.incture.report.reports",
-					"vizId": "reports-display"
-				}, {
-					"id": "InboxDetail-3-1629721323711",
+					"id": "InboxDetail-2-1642591424182",
 					"appId": "InboxDetail",
 					"vizId": "InboxDetail-Display"
 				}, {
-					"id": "oneapp.incture.processFlow.processFlow-4-1629991070376",
+					"id": "oneapp.incture.workbox-3-1642591424182",
+					"appId": "oneapp.incture.workbox",
+					"vizId": "inbox-Approve"
+				}, {
+					"id": "oneapp.incture.report.reports-4-1642591424182",
+					"appId": "oneapp.incture.report.reports",
+					"vizId": "reports-display"
+				}, {
+					"id": "oneapp.incture.processFlow.processFlow-5-1642591424182",
 					"appId": "oneapp.incture.processFlow.processFlow",
 					"vizId": "processFlow-display"
 				}, {
-					"id": "dashboard-5-1642409656590",
+					"id": "dashboard-6-1642591424182",
 					"appId": "dashboard",
 					"vizId": "buyerDashboard-Display"
 				}]
