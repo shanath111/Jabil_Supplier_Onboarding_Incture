@@ -247,7 +247,7 @@ sap.ui.define([
                             "financeProviderEulaAccepted": false,
                             "financeProviderAction": "EULA_rejected",
                             "supplier_eula_comment": wView.getModel("commentModel").getData()[0].comment,
-                            "supplier_eula_task_instance_Id": wView.getModel("oUserModel").getData().taskId
+                            "fp_eula_task_instance_Id": wView.getModel("oUserModel").getData().taskId
                         },
                         "status": "",
                         "action": "reject",
@@ -264,7 +264,7 @@ sap.ui.define([
                             "financeReviewerEulaAccepted": false,
                             "financeReviewerAction": "EULA_rejected",
                             "supplier_eula_comment": wView.getModel("commentModel").getData()[0].comment,
-                            "supplier_eula_task_instance_Id": wView.getModel("oUserModel").getData().taskId
+                            "fr_eula_task_instance_Id": wView.getModel("oUserModel").getData().taskId
                         },
                         "status": "",
                         "action": "reject",
