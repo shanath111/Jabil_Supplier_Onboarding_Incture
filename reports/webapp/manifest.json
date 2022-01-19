@@ -139,6 +139,10 @@
                 }
             }
         }
+    },
+    "sap.platform.cf": {
+        "oAuthScopes": [
+            "$XSAPPNAME.Reports"
+        ]
     }
-    
 }

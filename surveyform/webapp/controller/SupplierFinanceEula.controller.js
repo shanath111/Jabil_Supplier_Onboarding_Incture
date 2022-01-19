@@ -100,7 +100,7 @@ sap.ui.define([
                     } else {
                         // if (oEvent.getSource().getData().eulaInSection == "Finance Provider") {
                         if (oEvent.getSource().getData().eulaStatus == "Accepted") {
-                            this.getOwnerComponent().getRouter().navTo("BankInfo", {
+                            that.getOwnerComponent().getRouter().navTo("BankInfo", {
                                 contextPath: wView.getModel("oUserModel").getData().taskId,
                                 Name: vAppName
                             });
