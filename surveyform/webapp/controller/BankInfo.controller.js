@@ -269,6 +269,7 @@ sap.ui.define([
                                     "bpNumber": oView.getModel("oUserModel").getData().bpNumber,
                                     "caseId": oView.getModel("oUserModel").getData().caseId,
                                     "financeContact1Action": vActionTxt,
+                                    "financeProviderAction": "EULA_accepted",
                                     // "financeContact1": {
                                     //     "firstName": "",
                                     //     "lastName": "",
@@ -422,6 +423,7 @@ sap.ui.define([
                                 "bpNumber": oView.getModel("oUserModel").getData().bpNumber,
                                 "caseId": oView.getModel("oUserModel").getData().caseId,
                                 "financeContact1Action": "forwarded",
+                                "financeProviderAction": "EULA_accepted",
                                 "financeContact1": {
                                     "firstName": oView.getModel("JMTarnsfer").getData().firstName,
                                     "lastName": oView.getModel("JMTarnsfer").getData().lastName,
@@ -893,6 +895,7 @@ sap.ui.define([
                         "bpNumber": oView.getModel("oUserModel").getData().bpNumber,
                         "caseId": oView.getModel("oUserModel").getData().caseId,
                         "financeContact2Action": vActn,
+                        "financeProviderAction": "EULA_accepted",
                         "bank_details_provider_comment": oView.getModel("JMBankComments").getData().Comments,
                         "bnkaPayload": vBnkaPayload,
                         "isIntermediateBankProvided": vInterMedbank,
