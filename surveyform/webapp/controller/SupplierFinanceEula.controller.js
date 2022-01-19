@@ -84,7 +84,13 @@ sap.ui.define([
         _fnCheckEulaStatus: function (caseId, taskId) {
             var that = this
             var oModel = new JSONModel();
-            var sUrl = "/comjabilsurveyform/plcm_portal_services/eula/findById/" + caseId;
+            var vSuppSection;
+            if (vAppName == "SupplierFinance") {
+                vSuppSection = "Finance Provider";
+            } else {
+                vSuppSection = "Finance Reviewer";
+            }
+            var sUrl = "/comjabilsurveyform/plcm_portal_services/eula/findByIdAndSection/" + caseId + "/" + vSuppSection;
             oModel.loadData(sUrl);
             oModel.attachRequestCompleted(function (oEvent) {
                 if (oEvent.getParameter("success")) {
@@ -92,21 +98,21 @@ sap.ui.define([
 
                         //that._router.navTo("Welcome", { contextPath: taskId });
                     } else {
-                        if (oEvent.getSource().getData().eulaInSection == "Finance Provider") {
-                            if (oEvent.getSource().getData().eulaStatus == "Accepted") {
-                                this.getOwnerComponent().getRouter().navTo("BankInfo", {
-                                    contextPath: wView.getModel("oUserModel").getData().taskId,
-                                    Name: vAppName
-                                });
-                            }
-                        } else if (oEvent.getSource().getData().eulaInSection == "Finance Reviewer") {
-                            if (oEvent.getSource().getData().eulaStatus == "Accepted") {
-                                this.getOwnerComponent().getRouter().navTo("BankInfo", {
-                                    contextPath: wView.getModel("oUserModel").getData().taskId,
-                                    Name: vAppName
-                                });
-                            }
+                        // if (oEvent.getSource().getData().eulaInSection == "Finance Provider") {
+                        if (oEvent.getSource().getData().eulaStatus == "Accepted") {
+                            this.getOwnerComponent().getRouter().navTo("BankInfo", {
+                                contextPath: wView.getModel("oUserModel").getData().taskId,
+                                Name: vAppName
+                            });
                         }
+                        // } else if (oEvent.getSource().getData().eulaInSection == "Finance Reviewer") {
+                        //     if (oEvent.getSource().getData().eulaStatus == "Accepted") {
+                        //         this.getOwnerComponent().getRouter().navTo("BankInfo", {
+                        //             contextPath: wView.getModel("oUserModel").getData().taskId,
+                        //             Name: vAppName
+                        //         });
+                        //     }
+                        // }
                     }
                     // else if (oEvent.getSource().getData().eulaStatus == "Rejected") {
                     //   //  that._router.navTo("Welcome", { contextPath: taskId });
@@ -117,24 +123,24 @@ sap.ui.define([
                     //     });
                     // //  that._router.navTo("VendorSurvey", { contextPath: taskId, Name: "Supplier" });
                     // }
-                    if(vAppName == "SupplierFinance"){
+                    // if(vAppName == "SupplierFinance"){
 
-                        if(oEvent.getSource().getData().eulaInSection == "Finance Provider"){
+                    //     if(oEvent.getSource().getData().eulaInSection == "Finance Provider"){
                     that.getView().getModel("oUserModel").setProperty("/language", oEvent.getSource().getData().language);
                     that.getView().getModel("oUserModel").refresh();
                     if (oEvent.getSource().getData().language) {
                         sap.ui.getCore().getConfiguration().setLanguage(oEvent.getSource().getData().language);
                     }
-                }
-                }else if(vAppName == "SupplierFinanceReviewer"){
-                    if(oEvent.getSource().getData().eulaInSection == "Finance Reviewer"){
-                    that.getView().getModel("oUserModel").setProperty("/language", oEvent.getSource().getData().language);
-                    that.getView().getModel("oUserModel").refresh();
-                    if (oEvent.getSource().getData().language) {
-                        sap.ui.getCore().getConfiguration().setLanguage(oEvent.getSource().getData().language);
-                    }
-                }
-                }
+                    // }
+                    // }else if(vAppName == "SupplierFinanceReviewer"){
+                    //     if(oEvent.getSource().getData().eulaInSection == "Finance Reviewer"){
+                    //     that.getView().getModel("oUserModel").setProperty("/language", oEvent.getSource().getData().language);
+                    //     that.getView().getModel("oUserModel").refresh();
+                    //     if (oEvent.getSource().getData().language) {
+                    //         sap.ui.getCore().getConfiguration().setLanguage(oEvent.getSource().getData().language);
+                    //     }
+                    // }
+                    // }
 
                 }
                 else if (oEvent.getParameter("errorobject").statusCode == 400 || oEvent.getParameter("errorobject").statusCode == 409 || oEvent.getParameter("errorobject").statusCode == 500 || oEvent.getParameter("errorobject").statusCode == 404) {
