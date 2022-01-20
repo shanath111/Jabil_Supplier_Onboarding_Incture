@@ -1156,7 +1156,7 @@ sap.ui.define([
                                     oldExceptionalData.setData(oldExceptionDataObj);
                                     oView.setModel(oldExceptionalData,"oldExceptionalData");
 
-                                    var oldBankDetailsObj = jQuery.extend(true, {},{"bankCountry": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry, "bankName":  oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName,
+                                    var oldBankDetailsObj = jQuery.extend(true, {},{"isBankProvided":oView.getModel("oDataModel").getData().bankDto.isBankProvided,"bankCountry": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry, "bankName":  oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName,
                                                                 "bankAddress": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress, "bankCity": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity,
                                                                 "bankState": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState, "bankBranch": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch,
                                                                 "benefAccHolderName": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName, "bankAccNum": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum,
@@ -9842,10 +9842,17 @@ var that = this;
                         "cyberSecurityExceptionalQuestion": oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil ?  "YES" : "NO"
                     }
                 }
+                var isbankdetailsUpdated="NO";
+                var oPrevData = oView.getModel("oldBankDetails").getData();
+                var isBankProvidedOld = oPrevData.isBankProvided;
+                var isBankProvidedNew = oView.getModel("oDataModel").getData().bankDto.isBankProvided;
+                if(isBankProvidedOld != isBankProvidedNew){
+                    isbankdetailsUpdated= "YES";
+                }
 
                 if(oView.getModel("oUserModel").getData().isBuyerRejectTask === true){
-                    var isbankdetailsUpdated="NO";
-                    var newBankDetails = {"bankCountry": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry, "bankName":  oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName,
+                    
+                    var newBankDetails = {"isBankProvided":oView.getModel("oDataModel").getData().bankDto.isBankProvided, "bankCountry": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry, "bankName":  oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName,
                     "bankAddress": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress, "bankCity": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity,
                     "bankState": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState, "bankBranch": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch,
                     "benefAccHolderName": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName, "bankAccNum": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum,
@@ -9855,6 +9862,7 @@ var that = this;
                     "bankControlKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey, "instructionKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey};
 
                     var oPropsToCompare = {
+                        "isBankProvided": "",
                         "bankCountry": "",
                         "bankName": "",
                         "bankAddress": "",
@@ -9873,17 +9881,19 @@ var that = this;
                         "instructionKey": ""
                     },
                     aComparekeys = Object.keys(oPropsToCompare);
-                    var oCurrData = newBankDetails,
-                        oPrevData = oView.getModel("oldBankDetails").getData();
-                    for (var k = 0; k < aComparekeys.length; k++) {
+                    var oCurrData = newBankDetails;
+                        
+                    for (var k = 1; k < aComparekeys.length; k++) {
                         var key = aComparekeys[k];
                         if (oCurrData[key] !== oPrevData[key]) {
                             isbankdetailsUpdated= "YES";
                             break;
                         }
                     }
+                   
                     
                 }
+                
                 
                 var wPayload =
                 {
