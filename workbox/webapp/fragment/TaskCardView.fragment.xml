@@ -4,7 +4,7 @@
 			<!--selectionChange="onTaskCardSelect"-->
 			<List id="WB_TASK_CARD_ITEM" items="{oTaskInboxModel>/workBoxDtos}" busy="{oTaskInboxModel>/enableBusyIndicators}" busyIndicatorDelay="0"
 				class="sapUiSizeCompact wbInboxCardList wbInboxCardListDisplay" selectionChange="onTaskCheckboxSelect" updateFinished="onListUpdateFinished"
-				mode="MultiSelect">
+				mode="SingleSelectLeft">
 				<CustomListItem class="wbCardViewList" type="{= ${oAppModel>/currentViewPage} === 'Draft' ? 'Inactive' : 'Active'}" press="fetchDetailsFn"
 					visible='{parts:["oTaskInboxModel>taskSla", "oAppModel>/currentViewPage", "oTaskInboxModel>status"], formatter:"oneapp.incture.workbox.util.formatter.wbSetStatusColor"}'>
 					<ExtHbox:ExtHbox renderType="Bare" alignItems="Center" rightPress="openActionFragmentFn">
