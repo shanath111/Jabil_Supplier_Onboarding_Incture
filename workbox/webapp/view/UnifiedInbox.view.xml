@@ -4,8 +4,8 @@
 		<content>
 			<HBox renderType="Bare" alignItems="Center" class="sapUiSizeCompact wbInboxFilterContClass" justifyContent="SpaceBetween">
 				<HBox renderType="Bare" class="sapUiSmallMarginBegin wbInboxFilterClass" alignItems="Center">
-					<CheckBox class="wbInboxCheckBoxAlign" select="onSelectBulkCheckBox" selected="{oTaskInboxModel>/checkBoxState}"
-						visible="{= ${oAppModel>/currentViewPage} === 'CompletedTasks' || ${oAppModel>/currentViewPage} === 'RequestorCompletedTasks' || ${oAppModel>/WB_TASK_BOARD_VIEW} || ${oAppModel>/WB_CALENDAR_VIEW} ? false : true}"/>
+					<!-- <CheckBox class="wbInboxCheckBoxAlign" select="onSelectBulkCheckBox" selected="{oTaskInboxModel>/checkBoxState}"
+						visible="{= ${oAppModel>/currentViewPage} === 'CompletedTasks' || ${oAppModel>/currentViewPage} === 'RequestorCompletedTasks' || ${oAppModel>/WB_TASK_BOARD_VIEW} || ${oAppModel>/WB_CALENDAR_VIEW} ? false : true}"/> -->
 				</HBox>
 				<HBox width="5rem" renderType="Bare" class="wbInboxFilterClass"
 					justifyContent="SpaceBetween">
