@@ -20,7 +20,7 @@
                     },
                     "semanticObject": "reports",
                     "action": "display",
-                    "title": "Dashboard Old",
+                    "title": "Dashboard",
                     "subTitle": "",
                     "icon": "sap-icon://manager-insight"
                 }
