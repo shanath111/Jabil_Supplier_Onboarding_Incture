@@ -387,7 +387,7 @@ sap.ui.define([
                 params.isNew = isNew;
                 var vCaseId = oEvent.getSource().getBindingContext("JMSuppReqList").getProperty("caseId");
                 params.caseId = vCaseId;
-                params.Enb = true;
+                params.Enb = false;
                 if(vStatus == "Draft"){
                 var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
                 var hash = (oCrossAppNavigator && oCrossAppNavigator.hrefForExternal({
