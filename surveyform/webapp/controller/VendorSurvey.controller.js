@@ -9842,16 +9842,12 @@ var that = this;
                         "cyberSecurityExceptionalQuestion": oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil ?  "YES" : "NO"
                     }
                 }
-                var isbankdetailsUpdated="NO";
-                var oPrevData = oView.getModel("oldBankDetails").getData();
-                var isBankProvidedOld = oPrevData.isBankProvided;
-                var isBankProvidedNew = oView.getModel("oDataModel").getData().bankDto.isBankProvided;
-                if(isBankProvidedOld != isBankProvidedNew){
-                    isbankdetailsUpdated= "YES";
-                }
-
+                
+                
+                
+               
                 if(oView.getModel("oUserModel").getData().isBuyerRejectTask === true){
-                    
+                    var isbankdetailsUpdated="NO";
                     var newBankDetails = {"isBankProvided":oView.getModel("oDataModel").getData().bankDto.isBankProvided, "bankCountry": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry, "bankName":  oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName,
                     "bankAddress": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress, "bankCity": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity,
                     "bankState": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState, "bankBranch": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch,
@@ -9882,7 +9878,7 @@ var that = this;
                     },
                     aComparekeys = Object.keys(oPropsToCompare);
                     var oCurrData = newBankDetails;
-                        
+                    var oPrevData = oView.getModel("oldBankDetails").getData();
                     for (var k = 1; k < aComparekeys.length; k++) {
                         var key = aComparekeys[k];
                         if (oCurrData[key] !== oPrevData[key]) {
@@ -9890,6 +9886,11 @@ var that = this;
                             break;
                         }
                     }
+
+                    if(oCurrData.isBankProvided != oPrevData.isBankProvided){
+                        isbankdetailsUpdated= "YES";
+                    }
+    
                    
                     
                 }
