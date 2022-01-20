@@ -43,8 +43,8 @@ sap.ui.define([
                 oView.getModel("oConfigMdl").getData().CompleteTaskVis = false;
                 oView.getModel("oConfigMdl").getData().ExtentionTxtVis = true;
                 oView.getModel("oConfigMdl").getData().SMETxtVis = false;
-                
-                
+
+
                 if (oContext.Name == "Display") {
                     if (oContext.Id == "New") {
                         oView.getModel("oConfigMdl").getData().caseDeailVis = false;
@@ -81,7 +81,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().screenEditable = true;
                     oView.getModel("oConfigMdl").getData().CompleteTaskVis = true;
                     oView.getModel("oConfigMdl").getData().ExtentionTxtVis = false;
-                oView.getModel("oConfigMdl").getData().SMETxtVis = true;
+                    oView.getModel("oConfigMdl").getData().SMETxtVis = true;
                     var oFCL = this.getView().byId("flexibleColumnLayout");
                     oFCL.setLayout(library.LayoutType.OneColumn);
                     this.fnSetGBSData(oContext.Id);//Load GBS Data
@@ -132,7 +132,10 @@ sap.ui.define([
 
                         var oJsonTaskContext = new sap.ui.model.json.JSONModel();
                         oJsonTaskContext.setData(oEvent.getSource().getData());
-                        oView.setModel(oJsonTaskContext,"JMTaskContext")
+                        if (oEvent.getSource().getData().smeEmail) {
+                            oEvent.getSource().getData().smeEmail = oEvent.getSource().getData().smeEmail.split("@")[0].split("_").join(" ");
+                        }
+                        oView.setModel(oJsonTaskContext, "JMTaskContext")
 
                         var oJosnMdl = new sap.ui.model.json.JSONModel();
                         oJosnMdl.setData(oEvent.getSource().getData().bpSearchParams);
@@ -955,15 +958,15 @@ sap.ui.define([
                                 } else {
                                     oView.getModel("oConfigMdl").getData().screenEditable = true;
                                 }
-                                if(that.getOwnerComponent().getComponentData()){
+                                if (that.getOwnerComponent().getComponentData()) {
                                     if (that.getOwnerComponent().getComponentData().startupParameters.caseId) {
-                                      var vEnb = that.getOwnerComponent().getComponentData().startupParameters.Enb[0];
-                                      if(vEnb == "false"){
-                                        oView.getModel("oConfigMdl").getData().screenEditable = false;
-                                       
-                                      }
-                                  }
-                              }
+                                        var vEnb = that.getOwnerComponent().getComponentData().startupParameters.Enb[0];
+                                        if (vEnb == "false") {
+                                            oView.getModel("oConfigMdl").getData().screenEditable = false;
+
+                                        }
+                                    }
+                                }
                                 oView.getModel("oConfigMdl").refresh();
                             }
                         }
@@ -1066,7 +1069,7 @@ sap.ui.define([
                     return "";
                 }
             },
-            
+
             fnLiveChangeMaterialGroup: function () {
                 if (oView.getModel("JMBPCreate").getData().materialGroupe == "Error") {
                     oView.getModel("JMBPCreate").getData().materialGroupe = "None";
@@ -1170,9 +1173,9 @@ sap.ui.define([
 
                         }
                         var vMatGrpVis = false;
-                        if(temp.plant == "CN30" || temp.plant  == "CN81"){
+                        if (temp.plant == "CN30" || temp.plant == "CN81") {
                             vMatGrpVis = true;
-                           
+
                         }
                         var temp1 = {
                             "bpNumber": temp.BUSINESS_PARTNER_NUMBER,
@@ -1247,9 +1250,9 @@ sap.ui.define([
                             "CoIFields": false,
                             "buyerAttachmentVis": false,
                             "addlSurveyForSuppliers": 1,
-                            "materialGroupVis":vMatGrpVis,
-                            "materialGroup":"",
-                           
+                            "materialGroupVis": vMatGrpVis,
+                            "materialGroup": "",
+
                             "bpSearch": {
                                 "selectedSupplier": JSON.stringify(temp)
                             }
@@ -1305,16 +1308,16 @@ sap.ui.define([
                 this.oBPSuccessDraft.close();
                 that.fnLoadCaseDetail(oView.getModel("JMBPCreate").getData().caseId);//Load Case ID Details
             },
-            fnCloseTask:function(){
+            fnCloseTask: function () {
                 oBusyDilog.open();
                 var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/taskComplete"
                 var oPayload = {
                     "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                     "bpNumber": "",
                     "context": {
-                        "buyerActionOnExtension":"close"
+                        "buyerActionOnExtension": "close"
                     }
-                    
+
                 }
                 var oModelWf = new JSONModel();
 
@@ -1959,7 +1962,7 @@ sap.ui.define([
                             "buyerName": oView.getModel("JMBPCreate").getData().buyerName,
                             "buyerEmailId": vBuyerEmail,
                             "companyCode": oView.getModel("JMBPCreate").getData().companyCode,
-                            "companyCodeDesc":that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
+                            "companyCodeDesc": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
                             "conflictOfInterest": vConflictOfInt,
                             "corporationName": oView.getModel("JMBPCreate").getData().corporationName,
                             "incoTerms": oView.getModel("JMBPCreate").getData().incoTerms,
@@ -2056,7 +2059,7 @@ sap.ui.define([
                                     }
                                 } else {
                                     var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/taskComplete"
-                                   
+
                                     var oPayload = {
                                         "context": {
                                             "bpNumber": "",
@@ -2084,7 +2087,7 @@ sap.ui.define([
                                             "supplierEmail": oView.getModel("JMBPCreate").getData().email,
                                             "purchasingGroup": "",
                                             "workCell": oView.getModel("JMBPCreate").getData().workCelld,
-                                            "plant":oView.getModel("JMBPCreate").getData().plant,
+                                            "plant": oView.getModel("JMBPCreate").getData().plant,
                                             "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                                             "companyCode": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
                                             "purchasingOrg": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurOrg, oView.getModel("JMBPCreate").getData().purchasingOrg, "PurchOrg"),
@@ -2242,7 +2245,7 @@ sap.ui.define([
                                         "buyerName": oView.getModel("JMBPCreate").getData().buyerName,
                                         "buyerEmailId": vBuyerEmail,
                                         "companyCode": oView.getModel("JMBPCreate").getData().companyCode,
-                                        "companyCodeDesc":that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
+                                        "companyCodeDesc": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, oView.getModel("JMBPCreate").getData().companyCode, "CompanyCode"),
                                         "conflictOfInterest": vConflictOfInt,
                                         "corporationName": oView.getModel("JMBPCreate").getData().corporationName,
                                         "incoTerms": oView.getModel("JMBPCreate").getData().incoTerms,
@@ -2378,13 +2381,13 @@ sap.ui.define([
                                                         // "company_code": oView.getModel("JMBPCreate").getData().companyCode,
                                                         // "purchasing_code": oView.getModel("JMBPCreate").getData().purchasingOrg
                                                     },
-            
+
                                                     "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                                                     "bpNumber": ""
                                                 }
-            
-                                            
-            
+
+
+
                                             }
 
                                             oModelWf.loadData(sUrl, JSON.stringify(
@@ -2840,12 +2843,12 @@ sap.ui.define([
 
                             }
                         } else {
-                            if(oEvent.getParameter("errorobject").statusCode == 504){
+                            if (oEvent.getParameter("errorobject").statusCode == 504) {
                                 var sErMsg = "Gateway Timeout due to large data set, please try with additional filter";
-                            }else{
+                            } else {
                                 var sErMsg = oEvent.getParameter("errorobject").responseText;
                             }
-                           
+
                             var oData = oEvent.getSource().getData();
                             var oVendorListJson = new sap.ui.model.json.JSONModel();
                             oVendorListJson.setData([]);
