@@ -1163,7 +1163,8 @@ sap.ui.define([
                                                                 "refBankDetails": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].refBankDetails, "swiftCode": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode,
                                                                 "bankNumber": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber, "ibanNum": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum,
                                                                 "bankCode": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode, "partnerBankType": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].partnerBankType,
-                                                                "bankControlKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey, "instructionKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey});
+                                                                "bankControlKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey, "instructionKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey,
+                                                                "isIntermediateBankProvided":oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided});
                                     
                                     var oldBankDetails = new JSONModel();
                                     oldBankDetails.setData(oldBankDetailsObj);
@@ -9855,7 +9856,8 @@ var that = this;
                     "refBankDetails": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].refBankDetails, "swiftCode": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode,
                     "bankNumber": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber, "ibanNum": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum,
                     "bankCode": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode, "partnerBankType": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].partnerBankType,
-                    "bankControlKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey, "instructionKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey};
+                    "bankControlKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey, "instructionKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey,
+                    "isIntermediateBankProvided":oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided};
 
                     var oPropsToCompare = {
                         "isBankProvided": "",
@@ -9874,7 +9876,8 @@ var that = this;
                         "bankCode": "",
                         "partnerBankType": "",
                         "bankControlKey": "",
-                        "instructionKey": ""
+                        "instructionKey": "",
+                        "isIntermediateBankProvided":""
                     },
                     aComparekeys = Object.keys(oPropsToCompare);
                     var oCurrData = newBankDetails;
