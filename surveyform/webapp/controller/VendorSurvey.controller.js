@@ -4903,10 +4903,13 @@ var aError = false;
                         oView.getModel("oErrorModel").getData().certifiedForInfoSecurityE = "Error";
                         iError = true;
                     }
-                    if (oView.getModel("oDataModel").getData().itCyberDto.validateCertificate === null) {
-                        oView.getModel("oErrorModel").getData().validateCertificateE = "Error";
-                        iError = true;
+                    if(oView.getModel("oDataModel").getData().itCyberDto.certifiedForInfoSecurity){
+                        if (oView.getModel("oDataModel").getData().itCyberDto.validateCertificate === null) {
+                            oView.getModel("oErrorModel").getData().validateCertificateE = "Error";
+                            iError = true;
+                        }
                     }
+                    
                     if (oView.getModel("oDataModel").getData().itCyberDto.responsibleForInforSecurity === null) {
                         oView.getModel("oErrorModel").getData().responsibleForInforSecurityE = "Error";
                         iError = true;

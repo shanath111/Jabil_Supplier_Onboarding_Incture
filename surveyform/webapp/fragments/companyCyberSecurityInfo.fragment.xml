@@ -15,7 +15,7 @@
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/itCyberDto/orgConnectToJabilSystem}"></RadioButton>
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 		</RadioButtonGroup>
-         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>securitySysQues}:${oi18n_En>securitySysQues} +'&#10;' +${i18n>securitySysQues}}" visible="{oDataModel>/itCyberDto/orgConnectToJabilSystem}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>securitySysQues}:${oi18n_En>securitySysQues} +'&#10;' +${i18n>securitySysQues}}"  visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem} === true}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
          <g:GridList items="{path:'oLookUpModel>/orgEstablishConnection', sorter:{path:'value'}}" visible="{=${oDataModel>/itCyberDto/orgConnectToJabilSystem} === true}" class="gList sapUiTinyMarginTop sapUiSizeCompact">
      	<g:customLayout>
 			  <!-- <grid:GridBasicLayout gridTemplateColumns="2fr 2fr" gridGap="0.5rem" />  -->
@@ -120,8 +120,8 @@
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/itCyberDto/certifiedForInfoSecurity}"></RadioButton>
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 		</RadioButtonGroup>
-        <Label required="true" labelFor="isValidCert" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>validCertificate}:${oi18n_En>validCertificate} + '/&#160;' +${i18n>validCertificate}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-        <RadioButtonGroup id="isValidCert" columns="2" selectedIndex="{=${oDataModel>/itCyberDto/validateCertificate} === true? 0 :(${oDataModel>/itCyberDto/validateCertificate}=== false ?1: -1)}"  valueState="{oErrorModel>/validateCertificateE}" select="fnClearValueState" class="inputStyle" enabled="{oEnableMdl>/validateCertificateEnb}">
+        <Label required="true" visible="{=${oDataModel>/itCyberDto/certifiedForInfoSecurity} === true}" labelFor="isValidCert" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>validCertificate}:${oi18n_En>validCertificate} + '/&#160;' +${i18n>validCertificate}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+        <RadioButtonGroup id="isValidCert" visible="{=${oDataModel>/itCyberDto/certifiedForInfoSecurity} === true}" columns="2" selectedIndex="{=${oDataModel>/itCyberDto/validateCertificate} === true? 0 :(${oDataModel>/itCyberDto/validateCertificate}=== false ?1: -1)}"  valueState="{oErrorModel>/validateCertificateE}" select="fnClearValueState" class="inputStyle" enabled="{oEnableMdl>/validateCertificateEnb}">
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/itCyberDto/validateCertificate}"></RadioButton>
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 		</RadioButtonGroup>
