@@ -190,6 +190,43 @@ ns.BuyerRegistration.util.formatter = {
         } else {
             return '---';
         }
+    },
+    fnFetchDescMultiplePayment: function(aArray, value){
+        if (aArray) {
+                           if (value) {
+                               var itemDesc ="";
+                               for(var i=0;i<value.length;i++){
+                               var item = aArray.find(item => item.code == value[i]);
+                               if (item) {
+                                itemDesc = itemDesc + item.description + ',';
+                                }
+                             } if(itemDesc){
+                                 return itemDesc.replace(/,([^,]*)$/, '$1')
+                             }
+                              else {
+                                return '---';
+                                }
+                               
+                           } else {
+                              return '---';
+                           }
+                       } else {
+                           return '---';
+                       }
+           },
+           stringToArrays: function(stringValue){
+            if(stringValue){
+                var a= [];
+                var stringlistLen = stringValue.length;
+                if(stringlistLen === 1){
+                    a.push(stringValue);
+                } else if(stringlistLen > 1){
+    for(var i=0; i<stringlistLen;i++){
+        a.push(stringValue[i]);
     }
+                }
+            }
+            return a;
+        },
 
 };

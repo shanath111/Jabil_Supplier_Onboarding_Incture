@@ -815,6 +815,7 @@ sap.ui.define([
                                     "outsideProcessiongSupplierIndicator": data.bpRequestScope.bpRequestScopeAddlDetails.outsideProcessiongSupplierIndicator,
                                     "manualAddressOverrideSupplierIndicator": data.bpRequestScope.bpRequestScopeAddlDetails.manualAddressOverrideSupplierIndicator,
                                     "paymentTerms": data.bpRequestScope.bpRequestScopeAddlDetails.paymentTerms,
+                                    "newPaymentMethod": data.bpRequestScope.bpRequestScopeAddlDetails.newPaymentMethod,
                                     "paymentTermsd": "",
                                     "newPaymentTerms": data.bpRequestScope.bpRequestScopeAddlDetails.newPaymentTerms,
                                     "currency": data.bpRequestScope.bpRequestScopeAddlDetails.currency,
@@ -931,6 +932,7 @@ sap.ui.define([
                                 that.fnLoadIncoterms(true);
                                 that.fnLoadCountry(true);
                                 that.fnLoadState(temp.country);
+                                that.fnLoadPaymentMethod(temp.companyCode);
                                 that.fnLoadPurOrg(temp.companyCode, that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, temp.companyCode, "CompanyCode"));
                                 that.fnLoadPayemntTerms(true);
                                 if (oView.getModel("JMBPCreate").getData().plant == "CN30" || oView.getModel("JMBPCreate").getData().plant == "CN81") {
@@ -1082,6 +1084,10 @@ sap.ui.define([
                 if (oView.getModel("oConfigMdl").getData().contextPath.Id == "New" || oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention") {
 
                     var temp = oView.getModel("oVendorListModel").getData().data[oEvent.getSource().getSelectedIndex()];
+                    if (temp.COMPANY_CODE) {
+                        this.fnLoadPaymentMethod(temp.COMPANY_CODE);
+
+                    }
                     if (temp.isError == true) {
                         var oBPCreateModel = new sap.ui.model.json.JSONModel();
                         oBPCreateModel.setData([]);
@@ -1220,7 +1226,10 @@ sap.ui.define([
                             "newpaymentTerms": "",
                             "currency": temp.CURRENCY,
                             "dunsNumber": temp.DUNS,
+
                             "incotermNameLocation": temp.INCOTERMS2,
+                            "paymentMethod": temp.PAYMENT_METHOD,
+                            "newPaymentMethod": "",
                             "newincotermNameLocation": "",
                             "companyCodee": "None",
                             "companyCodem": "",
@@ -1240,6 +1249,7 @@ sap.ui.define([
                             "altPhoneNumberm": "",
                             "conflictOfInterests": -1,
                             "isExclCiscoGhub": -1,
+
                             "representAnotherCompanys": 1,
                             "oneTimePurchaseSupplierIndicators": 1,
                             "customerDirectedSupplierIndicators": -1,
@@ -1277,6 +1287,7 @@ sap.ui.define([
                         that.fnLoadPurOrg(temp1.companyCode, that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, temp1.companyCode, "CompanyCode"));
 
                         that.fnLoadState(temp1.country);
+
                         that.getView().getModel("oAttachmentList").setProperty("/buyerAttachment", []);
                         that.getView().getModel("oAttachmentList").refresh();
 
@@ -1296,6 +1307,20 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().exitFullScreen = false;
                     oView.getModel("oConfigMdl").refresh();
                 }
+
+            },
+            fnLoadPaymentMethod: function (vCompCode) {
+                var oModel = new JSONModel();
+                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/paymentMethod/" + vCompCode;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/PaymentMethod", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+                });
 
             },
             fnCloseMessage: function () {
@@ -1461,6 +1486,32 @@ sap.ui.define([
                 }
                 oView.getModel("JMBPCreate").refresh();
             },
+            
+            fnLivePaymentMethodChange: function (oEvent){
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                if (oView.getModel("JMBPCreate").getData().newPaymentMethode == "Error") {
+                    oView.getModel("JMBPCreate").getData().newPaymentMethode = "None";
+                    oView.getModel("JMBPCreate").getData().newPaymentMethodm = "";
+                    oView.getModel("JMBPCreate").refresh();
+                }
+            },
+            fnLivePaymentMethodFinish: function (oEvent) {
+                if (oEvent.getSource().getSelectedKeys().length !== 0) {
+                    oView.getModel("JMBPCreate").getData().newPaymentMethod = "";
+                    for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
+                        oView.getModel("JMBPCreate").getData().newPaymentMethod = oView.getModel("JMBPCreate").getData().newPaymentMethod  +  oEvent.getSource().getSelectedKeys()[i];
+                    }
+                } else {
+                     oView.getModel("JMBPCreate").getData().newPaymentMethod = "";
+                }
+                oView.getModel("JMBPCreate").refresh();
+               
+            },
 
             fnSubmitBP: function (vBtnActn) {
                 var vIsNew = false;
@@ -1564,6 +1615,39 @@ sap.ui.define([
                         oView.getModel("JMBPCreate").refresh();
                         vError = true;
                     }
+
+                    if (!oView.getModel("JMBPCreate").getData().newPaymentMethod) {
+                        var aArray = oView.getModel("oBPLookUpMdl").getData().PaymentMethod;
+                        var value = oView.getModel("JMBPCreate").getData().paymentMethod;
+                        if (aArray) {
+                            if (value) {
+                                var vMessage;
+                                for (var i = 0; i < value.length; i++) {
+                                    var item = aArray.find(item => item.code == value[i]);
+                                    if (!item) {
+                                        if (!vMessage) {
+                                            vMessage = "Payment Method " + value[i];
+                                        } else {
+                                            vMessage = vMessage + ', ' + value[i];
+                                        }
+
+                                    }
+                                }
+
+                            }
+                            if (vMessage) {
+                                vMessage = vMessage + " is not found in Company Code " + oView.getModel("JMBPCreate").getData().companyCode + " Please Provide New Payment Method";
+                                oView.getModel("JMBPCreate").getData().newPaymentMethode = "Error";
+                                oView.getModel("JMBPCreate").getData().newPaymentMethodm = vMessage;
+                                oView.getModel("JMBPCreate").refresh();
+                                vError = true;
+                            }
+
+                        }
+                    }
+
+
+
                     // if (!oView.getModel("JMBPCreate").getData().product) {
                     //     oView.getModel("JMBPCreate").getData().producte = "Error";
                     //     oView.getModel("JMBPCreate").getData().productm = oi18n.getProperty("BPCMandatoryValidationProduct");
@@ -1940,6 +2024,7 @@ sap.ui.define([
                                 "altPhoneNumber": oView.getModel("JMBPCreate").getData().altPhoneNumber,
                                 "paymentTerms": oView.getModel("JMBPCreate").getData().paymentTerms,
                                 "newPaymentTerms": oView.getModel("JMBPCreate").getData().newPaymentTerms,
+                                "newPaymentMethod":oView.getModel("JMBPCreate").getData().newPaymentMethod,
                                 "currency": oView.getModel("JMBPCreate").getData().currency,
                                 "dunsNumber": oView.getModel("JMBPCreate").getData().dunsNumber,
                                 "incotermNameLocation": oView.getModel("JMBPCreate").getData().incotermNameLocation,
@@ -2223,6 +2308,7 @@ sap.ui.define([
 
                                             "paymentTerms": oView.getModel("JMBPCreate").getData().paymentTerms,
                                             "newPaymentTerms": oView.getModel("JMBPCreate").getData().newPaymentTerms,
+                                            "newPaymentMethod":oView.getModel("JMBPCreate").getData().newPaymentMethod,
                                             "currency": oView.getModel("JMBPCreate").getData().currency,
                                             "dunsNumber": oView.getModel("JMBPCreate").getData().dunsNumber,
                                             "incotermNameLocation": oView.getModel("JMBPCreate").getData().incotermNameLocation,
@@ -2524,6 +2610,7 @@ sap.ui.define([
                     }
                 }
                 this.fnLoadPurOrg(oView.getModel("JMBPCreate").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
+                this.fnLoadPaymentMethod(oView.getModel("JMBPCreate").getData().companyCode);
                 oView.getModel("JMBPCreate").getData().purchasingOrg = "";
                 oView.getModel("JMBPCreate").refresh();
                 if (oView.getModel("JMBPCreate").getData().companyCodee == "Error") {
