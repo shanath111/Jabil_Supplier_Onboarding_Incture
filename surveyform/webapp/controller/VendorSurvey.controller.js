@@ -9862,7 +9862,7 @@ var that = this;
                     "bankControlKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey, "instructionKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey,
                     "isIntermediateBankProvided":oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided};
 
-                    var oPropsToCompare = {
+                    var oPropsToCompareBank = {
                         "isBankProvided": "",
                         "bankCountry": "",
                         "bankName": "",
@@ -9882,22 +9882,27 @@ var that = this;
                         "instructionKey": "",
                         "isIntermediateBankProvided":""
                     },
-                    aComparekeys = Object.keys(oPropsToCompare);
-                    var oCurrData = newBankDetails;
-                    var oPrevData = oView.getModel("oldBankDetails").getData();
-                    for (var k = 1; k < aComparekeys.length; k++) {
-                        var key = aComparekeys[k];
-                        if (oCurrData[key] !== oPrevData[key]) {
+                    aComparekeys = Object.keys(oPropsToCompareBank);
+                    var oCurrBankData = newBankDetails;
+                    var oPrevBankData = oView.getModel("oldBankDetails").getData();
+                    if(oPrevBankData.isBankProvided){
+                        if(oCurrBankData.isBankProvided != oPrevBankData.isBankProvided){
                             isbankdetailsUpdated= "YES";
-                            break;
+                        }
+                        else if(oCurrBankData.isBankProvided == oPrevBankData.isBankProvided ){
+                            if(oCurrBankData.isBankProvided==true){
+                                for (var k = 1; k < aComparekeys.length; k++) {
+                                    var key = aComparekeys[k];
+                                    if (oCurrData[key] !== oPrevData[key]) {
+                                        isbankdetailsUpdated= "YES";
+                                        break;
+                                    }
+                                }
+                            } else if(oCurrBankData.isBankProvided==false){
+                                isbankdetailsUpdated= "NO";
+                            }  
                         }
                     }
-
-                    if(oCurrData.isBankProvided != oPrevData.isBankProvided){
-                        isbankdetailsUpdated= "YES";
-                    }
-    
-                   
                     
                 }
                 
