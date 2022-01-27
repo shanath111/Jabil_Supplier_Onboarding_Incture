@@ -9885,24 +9885,24 @@ var that = this;
                     aComparekeys = Object.keys(oPropsToCompareBank);
                     var oCurrBankData = newBankDetails;
                     var oPrevBankData = oView.getModel("oldBankDetails").getData();
-                    if(oPrevBankData.isBankProvided){
-                        if(oCurrBankData.isBankProvided != oPrevBankData.isBankProvided){
-                            isbankdetailsUpdated= "YES";
-                        }
-                        else if(oCurrBankData.isBankProvided == oPrevBankData.isBankProvided ){
-                            if(oCurrBankData.isBankProvided==true){
-                                for (var k = 1; k < aComparekeys.length; k++) {
-                                    var key = aComparekeys[k];
-                                    if (oCurrData[key] !== oPrevData[key]) {
-                                        isbankdetailsUpdated= "YES";
-                                        break;
-                                    }
-                                }
-                            } else if(oCurrBankData.isBankProvided==false){
-                                isbankdetailsUpdated= "NO";
-                            }  
-                        }
+                
+                    if(oCurrBankData.isBankProvided != oPrevBankData.isBankProvided){
+                        isbankdetailsUpdated= "YES";
                     }
+                    else if(oCurrBankData.isBankProvided == oPrevBankData.isBankProvided ){
+                        if(oCurrBankData.isBankProvided==true){
+                            for (var k = 1; k < aComparekeys.length; k++) {
+                                var key = aComparekeys[k];
+                                if (oCurrData[key] !== oPrevData[key]) {
+                                    isbankdetailsUpdated= "YES";
+                                    break;
+                                }
+                            }
+                        } else if(oCurrBankData.isBankProvided==false){
+                            isbankdetailsUpdated= "NO";
+                        }  
+                    }
+                    
                     
                 }
                 
