@@ -30,10 +30,10 @@
 												<Label text="{i18n>VendorCodeBPID}" class="cl_VRLablCls "></Label>
 												<Label text="{JMBPCreate>/bpNumber}" class="cl_PreviewLablClsValue "></Label>
 											</VBox>
-                                            <VBox class="VRVboxStyle1">
+                                            <!-- <VBox class="VRVboxStyle1">
 												<Label text="{i18n>LastUpdated}" class="cl_VRLablCls "></Label>
 												<Label text="{path: 'JMBPCreate>/dateUpdated', formatter: 'ns.BuyerRegistration.util.formatter.fnFormatDate'}" class="cl_PreviewLablClsValue "></Label>
-											</VBox>
+											</VBox> -->
                                             <VBox class="VRVboxStyle1">
 												<Label text="{i18n>LastUpdatedBy}" class="cl_VRLablCls "></Label>
 												<Label text="{JMBPCreate>/userUpdated}" class="cl_PreviewLablClsValue "></Label>

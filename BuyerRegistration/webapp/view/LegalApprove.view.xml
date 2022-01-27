@@ -9,7 +9,36 @@
                            <VBox visible="{oConfigMdl>/coiLegalActnTxt}">
                            	 <Label text="{i18n>COILegalText}"  wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
                            </VBox>
+                           
                            <HBox visible="{oConfigMdl>/coiLegalActnTxt}" class="cl_HBoxBlockSep">
+                                </HBox>
+  <VBox>
+                                    <Label  text="Please Review the {oConfigMdl>/taskName} risk and select the appropriate Level 1 and Level 2 responses. Once complete, submit your responses to the Buyer." wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
+                                    </VBox>
+ <l:Grid defaultSpan="XL3 L3 M3 S12" visible="{oConfigMdl>/MitgatnReasonVis}" class="sapUiSizeCompact  sapUiTinyMarginTop"> 
+ 	<VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
+            <Label required="true" text="{i18n>FirstLevelReason}" class="sapUiTinyMarginTop "  wrapping="true"></Label>
+          <ComboBox width="95%"  items="{oBPLookUpMdl>/firstLevelReason}" valueState="{JMAppvrComments>/firstLevelReasone}" valueStateText="{JMAppvrComments>/firstLevelReasonm}"
+											filterSecondaryValues="true" change="fnChangeMitigationReason" showSecondaryValues="false" selectedKey="{JMAppvrComments>/firstLevelReason}"
+											class="cl_VRInputCls "  >
+											<core:ListItem key="{oBPLookUpMdl>}" text="{oBPLookUpMdl>}" />
+										</ComboBox>
+            </VBox>
+            <VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
+            <Label required="true" text="{i18n>SecondLevelReason}" class="sapUiTinyMarginTop "  wrapping="true"></Label>
+          <ComboBox width="95%"  items="{oBPLookUpMdl>/SecondLevelReason}" valueState="{JMAppvrComments>/secondLevelReasone}" valueStateText="{JMAppvrComments>/secondLevelReasonm}"
+											filterSecondaryValues="true"  change="fnChangeSeconLevelReason" showSecondaryValues="false" selectedKey="{JMAppvrComments>/secondLevelReason}"
+											class="cl_VRInputCls "  >
+											<core:ListItem key="{oBPLookUpMdl>}" text="{oBPLookUpMdl>}" />
+										</ComboBox>
+            </VBox>
+             <VBox fitContainer="true"  alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
+            <Label required="true" text="Comments" class="sapUiTinyMarginTop "  wrapping="true"></Label>
+            <TextArea change="fnInputSpaceCheck" value="{JMAppvrComments>/Comments}" liveChange="fnLiveChangeCmntTxtArea" valueState="{JMAppvrComments>/Commentse}" valueStateText="{JMAppvrComments>/Commentsm}" class=" cl_VRInputCls"  required="true"  width="95%" ></TextArea>
+            </VBox>
+        
+     </l:Grid>
+      <HBox class="cl_HBoxBlockSep" visible="{oConfigMdl>/MitgatnReasonVis}">
                                 </HBox>
 								<VBox class="cl_TIVBoxShadow" visible="{JMBPCreate>/BPCreate}">
                             <VBox class="" visible="{oConfigMdl>/CommentsVis}" >
@@ -56,6 +85,7 @@
                                 </HBox>
                                     </VBox>
                                  <VBox>
+                                 
 							<core:Fragment fragmentName="ns.BuyerRegistration.fragments.CreateBuisnessPartner" type="XML"/>              
 						</VBox>
 	</VBox>
@@ -453,7 +483,8 @@
 			<OverflowToolbar class="cl_BPCFooterClr sapUiSizeCompact">
             <Label text="{oConfigMdl>/validationMessage}" visible="{=!${oConfigMdl>/isTaskCompleted} &amp;&amp;!${oConfigMdl>/isClaimed}}"   class="sapUiTinyMarginBegin"/>
 				<ToolbarSpacer/>
-                <Button text="{oConfigMdl>/ButtonNameApprove}" enabled="{oConfigMdl>/isClaimed}"  type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft  sapUiSizeCompact" />
+                <Button text="{oConfigMdl>/ButtonNameApprove}" enabled="{oConfigMdl>/isClaimed}"  visible="{=!${oConfigMdl>/MitgatnReasonVis}}" type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft  sapUiSizeCompact" />
+                   <Button text="{oConfigMdl>/ButtonNameApprove}" enabled="{oConfigMdl>/isClaimed}" visible="{oConfigMdl>/MitgatnReasonVis}" type="Accept" press="fnSubmitMitigation1" class="cl_BPCDraft  sapUiSizeCompact" />
 					<Button text="{oConfigMdl>/ButtonNameReject}" visible="{oConfigMdl>/RejectBtnVis}" press="fnOpenBankCommentsReject" enabled="{oConfigMdl>/isClaimed}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
 				<Button text="{i18n>Mitigation}" visible="{oConfigMdl>/MitgationVis}" press="fnMitigate"  type="Accept" class="  cl_BPCDraft sapUiSizeCompact" enabled="{oConfigMdl>/isClaimed}" />
 				

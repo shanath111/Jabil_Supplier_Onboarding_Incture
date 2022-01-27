@@ -41,15 +41,28 @@ sap.ui.define([
                 this.fnLoadTaskClaimed(oContext.Id);
                 oView.getModel("oConfigMdl").getData().CommentsVis = false;
                 oView.getModel("oConfigMdl").getData().ApproveBtnVis = true;
-                oView.getModel("oConfigMdl").getData().RejectBtnVis = true;
+                oView.getModel("oConfigMdl").getData().RejectBtnVis = false;
                 oView.getModel("oConfigMdl").getData().DisqualifyBtnVis = false;
-              
+                oView.getModel("oConfigMdl").getData().MitgatnReasonVis = true;
+                
+                var temp = {};
+                temp.Action = "AP";
+                //temp.Comments ;
+                temp.Commentse = "None";
+                temp.Commentsm = "";
+                temp.commentsTxt = "Comments";
+                temp.required = true;
+                var oJosnComments = new sap.ui.model.json.JSONModel();
+                oJosnComments.setData(temp);
+                oView.setModel(oJosnComments, "JMAppvrComments");
                 if (oContext.Name == "GTS" ) {
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis = false;
                     oView.getModel("oConfigMdl").getData().GTSVis1 = false;
                     oView.getModel("oConfigMdl").getData().COIVis = false;
+                    oView.getModel("oConfigMdl").getData().RejectBtnVis = true;
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
+                    oView.getModel("oConfigMdl").getData().MitgatnReasonVis = false;
 
                 }   else if ( oContext.Name == "GTSBuyerBlockedCountry") {
                     oView.getModel("oConfigMdl").getData().LegalVis = false;
@@ -113,7 +126,8 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
-                        
+                        // oEvent.getSource().getData().isClaimed = true;
+                        // oEvent.getSource().getData().isTaskCompleted = false;
                         if (oEvent.getSource().getData().comments) {
                             oView.getModel("oConfigMdl").getData().CommentsVis = true;
                             oView.getModel("oConfigMdl").getData().comments = oEvent.getSource().getData().comments;
@@ -469,6 +483,10 @@ sap.ui.define([
                         var oBPCreateModelCmnt = new sap.ui.model.json.JSONModel();
                         oBPCreateModelCmnt.setData(oEvent.getSource().getData());
                         oView.setModel(oBPCreateModelCmnt, "JMEulaComments");
+                        
+                        
+                        
+                        that.fnLoadFirstLevelReason();
                         var oModelLdData = new JSONModel();
                         var sUrl = "/nsBuyerRegistration/plcm_portal_services/case/findById/" + oEvent.getSource().getData().caseId
                         oModelLdData.loadData(sUrl);
@@ -818,7 +836,10 @@ sap.ui.define([
                 this.oBankCommentsMitigate.close();
             },
 
-            fnSubmitMitigation: function () {
+            fnSubmitMitigation1: function () {
+                if(oView.getModel("oConfigMdl").getData().contextPath.Name == "GTS"){
+                    this.fnOpenBankCommentsApp();
+                }else{
                 var vError = false;
                 if (!oView.getModel("JMAppvrComments").getData().firstLevelReason) {
                     oView.getModel("JMAppvrComments").getData().firstLevelReasone = "Error";
@@ -830,18 +851,46 @@ sap.ui.define([
                     oView.getModel("JMAppvrComments").getData().secondLevelReasonm = oi18n.getProperty("EnterSecondLevelReasonCode")
                     vError = true;
                 }
-                if (oView.getModel("JMAppvrComments").getData().secondLevelReason == "Other") {
+              //  if (oView.getModel("JMAppvrComments").getData().secondLevelReason == "Other") {
                     if (!oView.getModel("JMAppvrComments").getData().Comments) {
                         oView.getModel("JMAppvrComments").getData().Commentse = "Error";
                         oView.getModel("JMAppvrComments").getData().Commentsm = oi18n.getProperty("EnterCommentsTxt");
                         vError = true;
-                    }
+                   // }
+                }
+                oView.getModel("JMAppvrComments").refresh();
+                if (vError == false) {
+                    this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
+                   // this.oBankCommentsMitigate.close();
+                }
+            }
+            },
+            fnSubmitMitigation: function () {
+             
+                var vError = false;
+                if (!oView.getModel("JMAppvrComments").getData().firstLevelReason) {
+                    oView.getModel("JMAppvrComments").getData().firstLevelReasone = "Error";
+                    oView.getModel("JMAppvrComments").getData().firstLevelReasonm = oi18n.getProperty("EnterFirstLevelReasonCode")
+                    vError = true;
+                }
+                if (!oView.getModel("JMAppvrComments").getData().secondLevelReason) {
+                    oView.getModel("JMAppvrComments").getData().secondLevelReasone = "Error";
+                    oView.getModel("JMAppvrComments").getData().secondLevelReasonm = oi18n.getProperty("EnterSecondLevelReasonCode")
+                    vError = true;
+                }
+              if (oView.getModel("JMAppvrComments").getData().secondLevelReason == "Other") {
+                    if (!oView.getModel("JMAppvrComments").getData().Comments) {
+                        oView.getModel("JMAppvrComments").getData().Commentse = "Error";
+                        oView.getModel("JMAppvrComments").getData().Commentsm = oi18n.getProperty("EnterCommentsTxt");
+                        vError = true;
+                   }
                 }
                 oView.getModel("JMAppvrComments").refresh();
                 if (vError == false) {
                     this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
                     this.oBankCommentsMitigate.close();
                 }
+            
             },
 
 

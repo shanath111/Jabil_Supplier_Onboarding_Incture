@@ -40,6 +40,7 @@ sap.ui.define([
             },
             fnSetConfigModel: function (oContext) {
                 oView.getModel("oConfigMdl").getData().caseDeailVis = true;
+                oView.getModel("oConfigMdl").getData().HeaderTxtVis = true;
                 oView.getModel("oConfigMdl").getData().CompleteTaskVis = false;
                 oView.getModel("oConfigMdl").getData().ExtentionTxtVis = true;
                 oView.getModel("oConfigMdl").getData().SMETxtVis = false;
