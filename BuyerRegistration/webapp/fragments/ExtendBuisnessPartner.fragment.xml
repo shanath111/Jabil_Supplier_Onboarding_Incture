@@ -290,6 +290,11 @@
 										<Label text="{i18n>BPCPayemntTerms}" class="cl_VRLablCls "></Label>
 										<Label text="{JMBPCreate>/paymentTermsd}" class="cl_VRLablClsValue "></Label>
 									</VBox>
+                                    <VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCPaymentMethord}:" class="cl_VRLablCls "></Label>
+                                        <!-- <Label text="{parts:['oBPLookUpMdl>/PaymentMethod','JMBPCreate>/paymentMethod'], formatter: 'ns.BuyerRegistration.util.formatter.fnFetchDescMultiplePayment'}" wrapping="true" class="cl_PreviewLablClsValue "></Label> -->
+										<Label text="{JMBPCreate>/paymentMethod}" class="cl_VRLablClsValue "></Label>
+									</VBox>
 
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCCurrency}" class="cl_VRLablCls "></Label>
@@ -325,6 +330,13 @@
 										</ComboBox>
                                        
 									</VBox>
+                                    <VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCNewPaymentMethod}:" class="cl_VRLablCls "></Label>
+									  <MultiComboBox  items="{oBPLookUpMdl>/PaymentMethod}" showSecondaryValues="true" selectedKeys="{path:'JMBPCreate>/newPaymentMethod',formatter:'ns.BuyerRegistration.util.formatter.stringToArrays'}"   valueState="{JMBPCreate>/newPaymentMethode}" valueStateText="{JMBPCreate>/newPaymentMethodm}" selectionChange="fnLivePaymentMethodChange" selectionFinish="fnLivePaymentMethodFinish" class="inputStyle">
+                      <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/></MultiComboBox>
+                                       
+									</VBox>
+                                  
 
 									
 									<VBox class="VRVboxStyle1">

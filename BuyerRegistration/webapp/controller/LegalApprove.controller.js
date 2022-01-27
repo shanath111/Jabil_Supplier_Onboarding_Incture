@@ -236,6 +236,7 @@ sap.ui.define([
                                         "product": data.bpRequestScope.bpRequestScopeAddlDetails.product,
                                         "requestorConflictOfInterest": data.bpRequestScope.bpRequestScopeAddlDetails.requestorConflictOfInterest,
                                         "paymentTerms": data.bpRequestScope.bpRequestScopeAddlDetails.paymentTerms,
+                                        "newPaymentMethod":data.bpRequestScope.bpRequestScopeAddlDetails.newPaymentMethod,
                                         "currency": data.bpRequestScope.bpRequestScopeAddlDetails.currency,
                                         "dunsNumber": data.bpRequestScope.bpRequestScopeAddlDetails.dunsNumber,
                                         "incotermNameLocation": data.bpRequestScope.bpRequestScopeAddlDetails.incotermNameLocation,
@@ -363,6 +364,7 @@ sap.ui.define([
                                     // that.fnLoadWorkCell(true);
                                     // that.fnLoadIncoterms(true);
                                     // that.fnLoadCountry(true);
+                                    that.fnLoadPaymentMethod(temp.companyCode);
                                     that.fnLoadState(temp.country);
                                     that.fnLoadPurOrg(temp.companyCode, that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, temp.companyCode, "CompanyCode"));
                                     if(oView.getModel("oConfigMdl").getData().documentSection){
@@ -390,6 +392,20 @@ sap.ui.define([
                             title: "Error"
                         });
 
+                    }
+                });
+
+            },
+            fnLoadPaymentMethod: function (vCompCode) {
+                var oModel = new JSONModel();
+                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/paymentMethod/" + vCompCode;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/PaymentMethod", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
                     }
                 });
 

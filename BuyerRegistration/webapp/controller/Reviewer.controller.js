@@ -512,6 +512,29 @@ sap.ui.define([
                             oView.getModel("oDataModel").setData(oEvent.getSource().getData());
                             oView.getModel("oDataModel").refresh();
                             if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
+
+                                var oldBuyerDetailsObj = jQuery.extend(true, {}, {
+                                    "reconciliationAccount": oView.getModel("oDataModel").getData().shippingInfoDto.reconciliationAccount,
+                                    "sortKey": oView.getModel("oDataModel").getData().shippingInfoDto.sortKey,
+                                    "reqCompanyCode": oView.getModel("oDataModel").getData().defaultValuesDto.reqCompanyCode,
+                                    "reqPurchasingOrg": oView.getModel("oDataModel").getData().defaultValuesDto.reqPurchasingOrg,
+                                    "gbsRegion": oView.getModel("oDataModel").getData().defaultValuesDto.gbsRegion,
+                                    "changeType": oView.getModel("oDataModel").getData().defaultValuesDto.changeType,
+                                    "priority": oView.getModel("oDataModel").getData().defaultValuesDto.priority,
+                                    "creditMemoTeam": oView.getModel("oDataModel").getData().defaultValuesDto.creditMemoTeam,
+                                    "searchTerm1": oView.getModel("oDataModel").getData().defaultValuesDto.searchTerm1,
+                                    "searchTerm2": oView.getModel("oDataModel").getData().defaultValuesDto.searchTerm2,
+                                    "accNumOfAltPayee": oView.getModel("oDataModel").getData().defaultValuesDto.accNumOfAltPayee,
+                                    "memo": oView.getModel("oDataModel").getData().defaultValuesDto.memo,
+                                    "groupForCalSchema": oView.getModel("oDataModel").getData().defaultValuesDto.groupForCalSchema
+                                });
+
+                                var oldBuyerDetails = new JSONModel();
+                                oldBuyerDetails.setData(oldBuyerDetailsObj);
+                                oView.setModel(oldBuyerDetails, "oldBuyerDetails");
+
+
+
                                 if (oEvent.getSource().getData().comInfoDto.isOrderToAddress == true || oEvent.getSource().getData().comInfoDto.isRemitToAddress == true) {
                                     oView.getModel("oConfigMdl").getData().SegmentVisibleP = true;
                                     oView.getModel("oConfigMdl").refresh();
@@ -922,7 +945,7 @@ sap.ui.define([
                                         that._fnReadDocumentList1(temp.caseId, that);
                                     }
                                     if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
-                                       // that.fnLoadPartnerData(temp.caseId);
+                                        // that.fnLoadPartnerData(temp.caseId);
                                         that.fnLoadValidationDone(temp.caseId);
                                     }
 
@@ -1110,7 +1133,7 @@ sap.ui.define([
                 oView.getModel("JMAppvrComments").refresh();
             },
             fnOpenBankCommentsReject: function () {
-             
+
                 var temp = {};
                 temp.Action = "MT";
                 //temp.Comments ;
@@ -1160,7 +1183,7 @@ sap.ui.define([
 
                 this.oBankComments.open();
             },
-          
+
             fnMitigate: function () {
                 oView.getModel("oBPLookUpMdl").setProperty("/firstLevelReason", []);
                 oView.getModel("oBPLookUpMdl").setProperty("/SecondLevelReason", []);
@@ -1303,17 +1326,60 @@ sap.ui.define([
                     vSccuessTxt = oi18n.getProperty("EulaRejSuccess");
                     vAprActn = false;
                 }
-                // MessageBox.confirm(vConfirmTxt, {
-                //     icon: MessageBox.Icon.Confirmation,
-                //     title: "Confirmation",
-                //     actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-                //     emphasizedAction: MessageBox.Action.YES,
-                //     onClose: function (oAction) {
-                //         if (oAction == "YES") {
+
                 oBusyDilog.open();
                 var oModel = new JSONModel();
                 var sUrl = "/nsBuyerRegistration/plcm_portal_services/workflow/taskComplete"
                 if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
+
+
+                    if (oView.getModel("JMEulaComments").getData().isOpsReviewRejected) {
+                        var isBuyerReviewTaskUpdated = "NO";
+                        var newBuyerField = {
+                            "reconciliationAccount": oView.getModel("oDataModel").getData().shippingInfoDto.reconciliationAccount,
+                            "sortKey": oView.getModel("oDataModel").getData().shippingInfoDto.sortKey,
+                            "reqCompanyCode": oView.getModel("oDataModel").getData().defaultValuesDto.reqCompanyCode,
+                            "reqPurchasingOrg": oView.getModel("oDataModel").getData().defaultValuesDto.reqPurchasingOrg,
+                            "gbsRegion": oView.getModel("oDataModel").getData().defaultValuesDto.gbsRegion,
+                            "changeType": oView.getModel("oDataModel").getData().defaultValuesDto.changeType,
+                            "priority": oView.getModel("oDataModel").getData().defaultValuesDto.priority,
+                            "creditMemoTeam": oView.getModel("oDataModel").getData().defaultValuesDto.creditMemoTeam,
+                            "searchTerm1": oView.getModel("oDataModel").getData().defaultValuesDto.searchTerm1,
+                            "searchTerm2": oView.getModel("oDataModel").getData().defaultValuesDto.searchTerm2,
+                            "accNumOfAltPayee": oView.getModel("oDataModel").getData().defaultValuesDto.accNumOfAltPayee,
+                            "memo": oView.getModel("oDataModel").getData().defaultValuesDto.memo,
+                            "groupForCalSchema": oView.getModel("oDataModel").getData().defaultValuesDto.groupForCalSchema
+                        };
+                        var oPropsToCompare = {
+                            "reconciliationAccount": "",
+                            "sortKey": "",
+                            "reqCompanyCode": "",
+                            "reqPurchasingOrg": "",
+                            "gbsRegion": "",
+                            "changeType": "",
+                            "priority": "",
+                            "creditMemoTeam": "",
+                            "searchTerm1": "",
+                            "searchTerm2": "",
+                            "accNumOfAltPayee": "",
+                            "memo": "",
+                            "groupForCalSchema": ""
+                        },
+                            aComparekeys = Object.keys(oPropsToCompare);
+                        var oCurrData = newBuyerField;
+                        var oPrevData = oView.getModel("oldBuyerDetails").getData();
+                        for (var k = 1; k < aComparekeys.length; k++) {
+                            var key = aComparekeys[k];
+                            if (oCurrData[key] !== oPrevData[key]) {
+                                isBuyerReviewTaskUpdated = "YES";
+                                break;
+                            }
+                        }
+
+                    }
+
+
+
 
                     if (vAprActn) {
                         var oPayload = {
@@ -1321,6 +1387,7 @@ sap.ui.define([
                                 "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
                                 "caseId": oView.getModel("JMEulaComments").getData().caseId,
                                 "plant": oView.getModel("JMBPCreate").getData().plant,
+                                "isBuyerReviewTaskUpdated": isBuyerReviewTaskUpdated,
                                 "materialGroup": oView.getModel("JMBPCreate").getData().materialGroup,
                                 "isBuyerReviewApproved": vAprActn,
                                 "orderBpNumber": oView.getModel("JMAppvrComments").getData().orderBpNumber.replace(/^0+/, ''),
