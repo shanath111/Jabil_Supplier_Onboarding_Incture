@@ -9882,7 +9882,7 @@ var that = this;
                         "instructionKey": "",
                         "isIntermediateBankProvided":""
                     },
-                    aComparekeys = Object.keys(oPropsToCompareBank);
+                    aCompareBankkeys = Object.keys(oPropsToCompareBank);
                     var oCurrBankData = newBankDetails;
                     var oPrevBankData = oView.getModel("oldBankDetails").getData();
                 
@@ -9891,9 +9891,9 @@ var that = this;
                     }
                     else if(oCurrBankData.isBankProvided == oPrevBankData.isBankProvided ){
                         if(oCurrBankData.isBankProvided==true){
-                            for (var k = 1; k < aComparekeys.length; k++) {
-                                var key = aComparekeys[k];
-                                if (oCurrData[key] !== oPrevData[key]) {
+                            for (var k = 1; k < aCompareBankkeys.length; k++) {
+                                var key = aCompareBankkeys[k];
+                                if (oCurrBankData[key] !== oCurrBankData[key]) {
                                     isbankdetailsUpdated= "YES";
                                     break;
                                 }
