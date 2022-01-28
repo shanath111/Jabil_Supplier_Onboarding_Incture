@@ -1321,6 +1321,36 @@ sap.ui.define([
                         oView.getModel("oBPLookUpMdl").setProperty("/PaymentMethod", oEvent.getSource().getData());
                         oView.getModel("oBPLookUpMdl").refresh();
                     }
+                    
+                    if (!oView.getModel("JMBPCreate").getData().newPaymentMethod) {
+                        var aArray = oView.getModel("oBPLookUpMdl").getData().PaymentMethod;
+                        var value = oView.getModel("JMBPCreate").getData().paymentMethod;
+                        if (aArray) {
+                            if (value) {
+                                var vMessage;
+                                for (var i = 0; i < value.length; i++) {
+                                    var item = aArray.find(item => item.code == value[i]);
+                                    if (!item) {
+                                        if (!vMessage) {
+                                            vMessage = "Payment Method " + value[i];
+                                        } else {
+                                            vMessage = vMessage + ', ' + value[i];
+                                        }
+
+                                    }
+                                }
+
+                            }
+                            if (vMessage) {
+                                vMessage = vMessage + " is not found in Company Code " + oView.getModel("JMBPCreate").getData().companyCode + " Please Provide New Payment Method";
+                                oView.getModel("JMBPCreate").getData().newPaymentMethode = "Error";
+                                oView.getModel("JMBPCreate").getData().newPaymentMethodm = vMessage;
+                                oView.getModel("JMBPCreate").refresh();
+                               // vError = true;
+                            }
+
+                        }
+                    }
                 });
 
             },
@@ -2613,12 +2643,16 @@ sap.ui.define([
                 this.fnLoadPurOrg(oView.getModel("JMBPCreate").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
                 this.fnLoadPaymentMethod(oView.getModel("JMBPCreate").getData().companyCode);
                 oView.getModel("JMBPCreate").getData().purchasingOrg = "";
+                oView.getModel("JMBPCreate").getData().newPaymentMethod = "";
+                
                 oView.getModel("JMBPCreate").refresh();
                 if (oView.getModel("JMBPCreate").getData().companyCodee == "Error") {
                     oView.getModel("JMBPCreate").getData().companyCodee = "None";
                     oView.getModel("JMBPCreate").getData().companyCodem = "";
                     oView.getModel("JMBPCreate").refresh();
                 }
+
+                
             },
             fnChangeDropDown: function (oEvent) {
                 var vSelected = oEvent.getParameter("itemPressed");

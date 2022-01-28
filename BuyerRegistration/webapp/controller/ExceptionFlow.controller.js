@@ -480,6 +480,11 @@ sap.ui.define([
                 oModel.attachRequestCompleted(function onCompleted(oEvent) {
                     oBusyDilog.close();
                     if (oEvent.getParameter("success")) {
+                        if(oEvent.getSource().getData().subject){
+                            var vSubject = oEvent.getSource().getData().subject.split("Action Required:")[1];
+                            vSubject = vSubject.split("(Case")[0];
+                            oEvent.getSource().getData().subject = vSubject;
+                        }
                         var oBPCreateModelCmnt = new sap.ui.model.json.JSONModel();
                         oBPCreateModelCmnt.setData(oEvent.getSource().getData());
                         oView.setModel(oBPCreateModelCmnt, "JMEulaComments");

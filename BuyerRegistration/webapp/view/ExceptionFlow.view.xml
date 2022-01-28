@@ -15,8 +15,8 @@
 										<Button text="{i18n>TIViewDetails}"  press="fnViewDetails" class="cl_VRActnBtnClear sapUiTinyMarginBottom"/>
                                         
 									</Toolbar>
-                                    <VBox>
-                                    <Label  text="Please Review the {oConfigMdl>/taskName} risk and select the appropriate Level 1 and Level 2 responses. Once complete, submit your responses to the Buyer." wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
+                                    <VBox visible="{oConfigMdl>/MitgatnReasonVis}">
+                                    <Label  text="Please Review the {JMEulaComments>/subject} risk and select the appropriate Level 1 and Level 2 responses. Once complete, submit your responses to the Buyer." wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop  "></Label>
                                     </VBox>
  <l:Grid defaultSpan="XL3 L3 M3 S12" visible="{oConfigMdl>/MitgatnReasonVis}" class="sapUiSizeCompact  sapUiTinyMarginTop"> 
  	<VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   

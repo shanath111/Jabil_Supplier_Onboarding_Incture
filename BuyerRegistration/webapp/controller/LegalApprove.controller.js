@@ -170,6 +170,11 @@ sap.ui.define([
                         var oBPCreateModelCmnt = new sap.ui.model.json.JSONModel();
                         // oEvent.getSource().getData().eulaComments = oEvent.getSource().getData().COIComments;
                         oBPCreateModelCmnt.setData(oEvent.getSource().getData());
+                        if(oEvent.getSource().getData().subject){
+                            var vSubject = oEvent.getSource().getData().subject.split("Action Required:")[1];
+                            vSubject = vSubject.split("(Case")[0];
+                            oEvent.getSource().getData().subject = vSubject;
+                        }
                         oView.setModel(oBPCreateModelCmnt, "JMEulaComments");
                         that.fnLoadFirstLevelReason();
                         var oModelLdData = new JSONModel();
