@@ -482,8 +482,12 @@ sap.ui.define([
                     if (oEvent.getParameter("success")) {
                         if(oEvent.getSource().getData().subject){
                             var vSubject = oEvent.getSource().getData().subject.split("Action Required:")[1];
+                            if(vSubject){
                             vSubject = vSubject.split("(Case")[0];
+                            }
+                            if(vSubject){
                             oEvent.getSource().getData().subject = vSubject;
+                            }
                         }
                         var oBPCreateModelCmnt = new sap.ui.model.json.JSONModel();
                         oBPCreateModelCmnt.setData(oEvent.getSource().getData());

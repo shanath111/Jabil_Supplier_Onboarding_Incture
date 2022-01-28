@@ -172,8 +172,12 @@ sap.ui.define([
                         oBPCreateModelCmnt.setData(oEvent.getSource().getData());
                         if(oEvent.getSource().getData().subject){
                             var vSubject = oEvent.getSource().getData().subject.split("Action Required:")[1];
+                            if(vSubject){
                             vSubject = vSubject.split("(Case")[0];
+                            }
+                            if(vSubject){
                             oEvent.getSource().getData().subject = vSubject;
+                            }
                         }
                         oView.setModel(oBPCreateModelCmnt, "JMEulaComments");
                         that.fnLoadFirstLevelReason();
