@@ -61,7 +61,7 @@
                  </TextArea>
                  <!-- <Text text="{i18n>txtAreaLimit}"/> -->
                  <Label text="{i18n>quesDirectPOC}" wrapping="true" visible= "{oVisibilityModel>/isdefaultLan}"  class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-                   <Label text="{oi18n_En>companyComplianceHeader}/&#160;{i18n>quesDirectPOC}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+                   <Label text="{oi18n_En>quesDirectPOC}/&#160;{i18n>quesDirectPOC}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
                  <l:Grid containerQuery="true" defaultSpan="XL3 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 								<VBox class="fontStyle" >
 									<Label required="true"  text="{i18n>firstNameG}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
@@ -125,23 +125,23 @@
 						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/comComplianceDto/companyRelationWithJabilEmp}"></RadioButton>
 						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 					</RadioButtonGroup>
-                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>quesDirectPOC}:${oi18n_En>quesDirectPOC} +'&#10;' +${i18n>quesDirectPOC}}" wrapping="true" visible="{=${oDataModel>/comComplianceDto/companyRelationWithJabilEmp}=== true}"  class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>provideFamilyDetails}:${oi18n_En>provideFamilyDetails} +'&#10;' +${i18n>provideFamilyDetails}}" wrapping="true" visible="{=${oDataModel>/comComplianceDto/companyRelationWithJabilEmp}=== true}"  class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
                  <l:Grid containerQuery="true" defaultSpan="XL2 L2 M3 S12" visible="{=${oDataModel>/comComplianceDto/companyRelationWithJabilEmp}=== true}" class=" gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 								<VBox class="fontStyle" >
 									<Label text="{i18n>name}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
-                                      <Label text="{oi18n_En>name}&#10;{i18n>name}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+                                      <Label text="{oi18n_En>name}&#10;{i18n>name}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
 									<Input maxLength="41" value="{oDataModel>/comComplianceDto/companyRelationWithJabilEmpContact/firstName}" valueState="{oErrorModel>/relationFNameE}" valueStateText="{oErrorModel>/relationFNameM}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/companyRelationWithJabilEmpContactfirstNameEnb}" class="inputStyle"></Input>
      	
 								</VBox>
 								<VBox class="fontStyle" >
 									<Label text="{i18n>dept}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
-                                      <Label text="{oi18n_En>dept}&#10;{i18n>dept}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+                                      <Label text="{oi18n_En>dept}&#10;{i18n>dept}" required="true"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
 									<Input maxLength="41" value="{oDataModel>/comComplianceDto/companyRelationWithJabilEmpContact/department}" valueState="{oErrorModel>/relationDeptE}" valueStateText="{oErrorModel>/relationDeptM}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/companyRelationWithJabilEmpContactdepartmentEnb}" class="inputStyle"></Input>
 							
                                 </VBox>
 								<VBox class="fontStyle" >
 									<Label text="{i18n>jobTitle}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
-                                      <Label text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+                                      <Label text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
 									<Input value="{oDataModel>/comComplianceDto/companyRelationWithJabilEmpContact/jobTitle}" valueState="{oErrorModel>/relationJobTE}" valueStateText="{oErrorModel>/relationJobTM}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/companyRelationWithJabilEmpContactjobTitleEnb}" class="inputStyle"></Input>
 									
                                 </VBox>
