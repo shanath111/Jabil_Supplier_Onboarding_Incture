@@ -4,7 +4,11 @@
 		<content>
        <Toolbar height="3rem">
        <Text text="{i18n>Recipients} : " wrapping="false" class="cl_HeaderText" ></Text>
-        <Text text="{JMMailContent>/recipients}" wrapping="true"  ></Text>
+        <!-- <Text text="{JMMailContent>/recipients}" wrapping="true"  ></Text> -->
+        
+       <TextArea  class="sapUiTinyMarginTop cl_EmailTextArea"  width="100%" value="{JMMailContent>/recipients}" ></TextArea>
+        <!-- <Text class="sapUiTinyMarginTop" text="" wrapping="true"  ></Text>  -->
+        
        </Toolbar>
     
         <Toolbar >

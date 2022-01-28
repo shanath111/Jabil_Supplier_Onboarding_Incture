@@ -126,8 +126,11 @@ sap.ui.define([
 
                 this._fnLoadEstablishConnList();
                 this._fnLoadBusinessActList();
+                if(vAppName == "BuyerDashboard"){
+                    oDeferred.resolve();
+                }
 
-              //  oDeferred.done(function () {
+                oDeferred.done(function () {
                     oBusyDialogLoadData.open();
                    // that.assignNextStepByStep();
                     if (oView.getModel("oUserModel").getData().caseId !== "") {
@@ -1144,7 +1147,7 @@ sap.ui.define([
                             }
 
                             else if (oEvent.getParameter("errorobject").statusCode == 400 || oEvent.getParameter("errorobject").statusCode == 404 || oEvent.getParameter("errorobject").statusCode == 409 || oEvent.getParameter("errorobject").statusCode == 500) {
-
+                                oBusyDialogLoadData.close();
                                 var sUrl = "/comjabilsurveyform/plcm_portal_services/case/findById/" + oView.getModel("oUserModel").getData().caseId;
                                 var oModel = new JSONModel();
                                 var cDeffered = $.Deferred();
@@ -1300,7 +1303,7 @@ sap.ui.define([
                         );
 
                     }
-              //  });
+                });
             },
             _fnGETSupplierAuthority: function () {
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/case/findById/" + oView.getModel("oUserModel").getData().caseId;

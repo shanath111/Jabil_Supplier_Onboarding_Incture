@@ -82,14 +82,25 @@ sap.ui.define([
                 oView.getModel("oConfigMdl").getData().coiLegalActnTxt = false;
                 oView.getModel("oConfigMdl").getData().ReqCOIVis = oContext.Name;
                 oView.getModel("oConfigMdl").getData().CommentsVis = false;
-                
+                oView.getModel("oConfigMdl").getData().HeaderTxtVis = false;
+                var temp = {};
+                temp.Action = "AP";
+                //temp.Comments ;
+                temp.Commentse = "None";
+                temp.Commentsm = "";
+                temp.commentsTxt = "Comments";
+                temp.required = true;
+                var oJosnComments = new sap.ui.model.json.JSONModel();
+                oJosnComments.setData(temp);
+                oView.setModel(oJosnComments, "JMAppvrComments");
                 if (oContext.Name == "COILegal") {
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = false;
                     oView.getModel("oConfigMdl").getData().ButtonNameReject = "Reject";
-                    oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Accept";
+                    oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Submit";
                     oView.getModel("oConfigMdl").getData().coiLegalActnTxt = true;
-                    oView.getModel("oConfigMdl").getData().RejectBtnVis = true;
+                    oView.getModel("oConfigMdl").getData().RejectBtnVis = false;
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
+                    oView.getModel("oConfigMdl").getData().MitgatnReasonVis = true;
 
                 }else if(oContext.Name == "ReqCOI"){
                   
@@ -100,14 +111,16 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().coiLegalActnTxt = true;
                     oView.getModel("oConfigMdl").getData().RejectBtnVis = false;
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
+                    oView.getModel("oConfigMdl").getData().MitgatnReasonVis = false;
                 }
                 
                 else {
                     oView.getModel("oConfigMdl").getData().EulaCommentsVis = true;
                     oView.getModel("oConfigMdl").getData().ButtonNameReject = "Reject";
-                    oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Accept";
+                    oView.getModel("oConfigMdl").getData().ButtonNameApprove = "Submit";
                     oView.getModel("oConfigMdl").getData().coiLegalActnTxt = false;
                     oView.getModel("oConfigMdl").getData().MitgationVis = false;
+                    oView.getModel("oConfigMdl").getData().MitgatnReasonVis = true;
                 }
                 this.fnLoadTaskDetail(oContext.Id);
              
@@ -157,7 +170,17 @@ sap.ui.define([
                         var oBPCreateModelCmnt = new sap.ui.model.json.JSONModel();
                         // oEvent.getSource().getData().eulaComments = oEvent.getSource().getData().COIComments;
                         oBPCreateModelCmnt.setData(oEvent.getSource().getData());
+                        if(oEvent.getSource().getData().subject){
+                            var vSubject = oEvent.getSource().getData().subject.split("Action Required:")[1];
+                            if(vSubject){
+                            vSubject = vSubject.split("(Case")[0];
+                            }
+                            if(vSubject){
+                            oEvent.getSource().getData().subject = vSubject;
+                            }
+                        }
                         oView.setModel(oBPCreateModelCmnt, "JMEulaComments");
+                        that.fnLoadFirstLevelReason();
                         var oModelLdData = new JSONModel();
                         var sUrl = "/nsBuyerRegistration/plcm_portal_services/case/findById/" + oEvent.getSource().getData().caseId
                         oModelLdData.loadData(sUrl);
@@ -932,6 +955,32 @@ sap.ui.define([
                     this.oBankCommentsMitigate.close();
                 }
             },
+            fnSubmitMitigation1: function () {
+                var vError = false;
+                if (!oView.getModel("JMAppvrComments").getData().firstLevelReason) {
+                    oView.getModel("JMAppvrComments").getData().firstLevelReasone = "Error";
+                    oView.getModel("JMAppvrComments").getData().firstLevelReasonm = oi18n.getProperty("EnterFirstLevelReasonCode")
+                    vError = true;
+                }
+                if (!oView.getModel("JMAppvrComments").getData().secondLevelReason) {
+                    oView.getModel("JMAppvrComments").getData().secondLevelReasone = "Error";
+                    oView.getModel("JMAppvrComments").getData().secondLevelReasonm = oi18n.getProperty("EnterSecondLevelReasonCode")
+                    vError = true;
+                }
+              //  if (oView.getModel("JMAppvrComments").getData().secondLevelReason == "Other") {
+                    if (!oView.getModel("JMAppvrComments").getData().Comments) {
+                        oView.getModel("JMAppvrComments").getData().Commentse = "Error";
+                        oView.getModel("JMAppvrComments").getData().Commentsm = oi18n.getProperty("EnterCommentsTxt");
+                        vError = true;
+                    }
+               // }
+                oView.getModel("JMAppvrComments").refresh();
+                if (vError == false) {
+                    this.fnApproveSub(oView.getModel("JMAppvrComments").getData().Action);
+                   // this.oBankCommentsMitigate.close();
+                }
+            },
+
 
 
             fnCloseBankComments: function () {

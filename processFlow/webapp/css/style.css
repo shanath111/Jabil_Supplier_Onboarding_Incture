@@ -34,7 +34,11 @@
 .wbRightTextAlignClass {
     text-align: right !important;
 }
-
+.cl_EmailTextArea .sapMInputBaseContentWrapper {
+    border: 0.0625rem solid #ffffff !important;
+    background: #fff;
+    border-radius: 0.125rem;
+}
 .wbPrimaryColorIcon {
     color: var(--primary-color) !important;
 }

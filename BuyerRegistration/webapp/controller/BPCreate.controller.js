@@ -75,6 +75,8 @@ sap.ui.define([
 
             fnSetConfigModel: function (oContext) {
                 oView.getModel("oConfigMdl").getData().caseDeailVis = true;
+                oView.getModel("oConfigMdl").getData().HeaderTxtVis = true;
+                
                 if (oContext.Id == "New") {
                     oView.getModel("oConfigMdl").getData().HeaderNavLink = true;
                     oView.getModel("oConfigMdl").getData().caseDeailVis = false;
