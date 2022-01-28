@@ -133,6 +133,7 @@ sap.ui.define([
                             oView.getModel("oConfigMdl").getData().comments = oEvent.getSource().getData().comments;
                         }
                         if (oEvent.getSource().getData().isTaskCompleted == true) {
+                            oView.getModel("oConfigMdl").getData().MitgatnReasonVis = false;
                             oView.getModel("oConfigMdl").getData().isClaimed = false;
                         } else {
                             oView.getModel("oConfigMdl").getData().isClaimed = oEvent.getSource().getData().isClaimed;
