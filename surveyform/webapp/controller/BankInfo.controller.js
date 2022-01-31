@@ -114,7 +114,8 @@ sap.ui.define([
                     "email": "",
                     "contact": "",
                     "extension": "",
-                    "mobile": ""
+                    "mobile": "",
+                    
                 };
                 var oJsonContact = new sap.ui.model.json.JSONModel();
                 oJsonContact.setData(oContactInfo);
@@ -388,6 +389,12 @@ sap.ui.define([
                 if (!oView.getModel("JMTarnsfer").getData().countryContactCode) {
                     oView.getModel("oErrorModel").getData().finance1CountryContCodeE = "Error";
                     oView.getModel("oErrorModel").getData().finance1CountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
+
+                    iError = true;
+                }
+                if (!oView.getModel("JMTarnsfer").getData().mobilecountryContactCode) {
+                    oView.getModel("oErrorModel").getData().finance1mobileCountryContCodeE = "Error";
+                    oView.getModel("oErrorModel").getData().finance1mobileCountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
 
                     iError = true;
                 }
