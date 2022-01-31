@@ -128,7 +128,7 @@
                         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>confirmBankAccNum}:${oi18n_En>bankAccNum}+ '&#10;' +${i18n>bankAccNum}}" wrapping="true" required="{oVisibilityModel>/bankValidation/benificiaryAccountNumber}"></Label>
                        
                     </HBox>
-					<Input maxLength="19" editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankAccNumConfirm}"  valueState="{oErrorModel>/bankAccNumConfirmE}" valueStateText="{oErrorModel>/bankAccNumConfirmM}" change="fnInputConfirmBankAccNumber" required="true" class="inputStyle">
+					<Input maxLength="19" id="bankAccNumConfirmField" editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/bankDto/bankInfoDto/0/bankAccNumConfirm}"  valueState="{oErrorModel>/bankAccNumConfirmE}" valueStateText="{oErrorModel>/bankAccNumConfirmM}" change="fnInputConfirmBankAccNumber" required="true" class="inputStyle">
                     </Input>
 				</VBox>
                  <VBox  class="fontStyle">
@@ -149,7 +149,7 @@
 				</VBox>
                 <VBox class="fontStyle">
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>ibanConfirm}:${oi18n_En>ibanConfirm} + '&#10;' +${i18n>ibanConfirm}}" wrapping="true" required="{oVisibilityModel>/bankValidation/iban}"></Label>
-					<Input maxLength="{oVisibilityModel>/bankValidation/ibanLength}"  value="{oDataModel>/bankDto/bankInfoDto/0/ibanNumConfirm}" editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}"  valueState="{oErrorModel>/ibanConfirmE}" valueStateText="{oErrorModel>/ibanConfirmM}"  change="fnInputConfirmIban" class="inputStyle"></Input>
+					<Input id="ibanConfirmField" maxLength="{oVisibilityModel>/bankValidation/ibanLength}"  value="{oDataModel>/bankDto/bankInfoDto/0/ibanNumConfirm}" editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}"  valueState="{oErrorModel>/ibanConfirmE}" valueStateText="{oErrorModel>/ibanConfirmM}"  change="fnInputConfirmIban" class="inputStyle"></Input>
 				</VBox>
 				 <!-- <VBox  class="fontStyle">
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankKey}:${oi18n_En>bankKey}+ '&#10;' +${i18n>bankKey}}" wrapping="true" required="{oVisibilityModel>/bankValidation/bankKey}"></Label>
