@@ -1347,6 +1347,13 @@ sap.ui.define([
                                 oView.getModel("JMBPCreate").getData().newPaymentMethodm = vMessage;
                                 oView.getModel("JMBPCreate").refresh();
                                // vError = true;
+                               sap.m.MessageBox.alert(vMessage, {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                               
                             }
 
                         }
