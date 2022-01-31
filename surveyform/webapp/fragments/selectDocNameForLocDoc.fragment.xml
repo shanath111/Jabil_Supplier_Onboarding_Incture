@@ -13,7 +13,7 @@
 			<OverflowToolbar class="barClass sapUiTinyMarginTop">
             	<ToolbarSpacer/>
 				<Button class="cl_VRActnBtnClear" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>cancel}:${oi18n_En>cancel} + '/&#160;' +${i18n>cancel}}" press="fnClose" tooltip="{i18n>cancel}"/>
-			<u:FileUploader id="fileUploader_CC" buttonOnly="true" fileType="doc,xls,pdf,jpeg,png,gif,docx,xlsx,jpg" typeMissmatch="fnHandleTypeMissmatch" buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>done}:${oi18n_En>done} + '/&#160;' +${i18n>done}}" multiple="true"
+			<u:FileUploader id="fileUploader_CC" buttonOnly="true" fileType="doc,xls,pdf,jpeg,png,gif,docx,xlsx,jpg" typeMissmatch="fnHandleTypeMissmatch" buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selectFile}:${oi18n_En>selectFile} + '/&#160;' +${i18n>selectFile}}" multiple="true"
 					useMultipart="true" change="fnOnFileUploadBP" sameFilenameAllowed="true" enabled="{oEnableMdl>/companyCmplianceAttachmentEnb}"
 					class="cl_VRActnBtnApply">
                     </u:FileUploader>
