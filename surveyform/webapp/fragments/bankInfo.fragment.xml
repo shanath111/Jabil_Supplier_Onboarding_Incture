@@ -221,7 +221,7 @@
                 <Button visible="false" icon="sap-icon://add" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addMore}:${oi18n_En>addMore}+ '/&#160;' +${i18n>addMore}}" type="Transparent" iconFirst="true" press="" class="addMoreBtn"/>
             </VBox>
 		<VBox>
-            <VBox class="sapUiSizeCompact sapUiTinyMarginBegin" visible="{=${oDataModel>/bankDto/isBankProvided} &amp;&amp; ${oUserModel>/isNew}}">
+            <VBox class="sapUiSizeCompact sapUiTinyMarginBegin" visible="{=${oDataModel>/bankDto/isBankProvided}===true &amp;&amp; ${oUserModel>/isNew}}">
                 <CheckBox enabled="{oVisibilityModel>/_FinanceReviewEdit}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/bankDto/isIntermediateBankProvided}" class=" sapUiTinyMarginTop fontStyle inputStyle" />
                 <HBox>	
                     <u:FileUploader fileType="doc,xls,pdf,jpeg,png,gif,docx,xlsx" typeMissmatch="fnHandleTypeMissmatch"  visible="{=${oDataModel>/bankDto/isIntermediateBankProvided} === true}" id="fileUploader_BIA" buttonOnly="true" iconOnly="true" icon="sap-icon://attachment" multiple="true"
