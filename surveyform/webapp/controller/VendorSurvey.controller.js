@@ -2460,6 +2460,7 @@ sap.ui.define([
                     oView.byId("basicInfo").setValidated(true);
                 }
 var aError = false;
+if(oView.getModel("oUserModel").getData().isNew){
                  if (!iError) {
                         if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode === 'US') {
                             var Address1, Address2, Address3, Address4, Address5, Locality, AdministrativeArea, PostalCode, Country, OutputLanguage, LicenseKey;
@@ -2510,6 +2511,7 @@ var aError = false;
                             oView.byId("basicInfo").setValidated(true);
                         }
                     }
+                }
                
             },
             _fnValidateBusinessPartner: function (oEvent) {

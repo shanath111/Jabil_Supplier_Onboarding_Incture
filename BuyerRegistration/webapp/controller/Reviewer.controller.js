@@ -2206,10 +2206,14 @@ sap.ui.define([
                 }
                 var vReconError = false;
 
-                if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.reconciliationAccount) {
-                    oView.getModel("JMValidateDefault").getData().reconciliationAccounte = "Error";
-                    oView.getModel("JMValidateDefault").getData().reconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
-                    vReconError = true;
+                if (oView.getModel("oBPLookUpMdl").getData().ReconAcc) {
+                    if (oView.getModel("oBPLookUpMdl").getData().ReconAcc.length > 0) {
+                        if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.reconciliationAccount) {
+                            oView.getModel("JMValidateDefault").getData().reconciliationAccounte = "Error";
+                            oView.getModel("JMValidateDefault").getData().reconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
+                            vReconError = true;
+                        }
+                    }
                 }
                 if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.sortKey) {
                     oView.getModel("JMValidateDefault").getData().sortKeye = "Error";
@@ -2329,18 +2333,23 @@ sap.ui.define([
                     });
                     return;
                 } else {
+                    var vReConError = false;
                     if (oView.getModel("oDataModel").getData().comInfoDto.isRemitToAddress == true) {
-                        if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrSortKey || !that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount) {
-                            if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount) {
-                                oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccounte = "Error";
-                                oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
-                                //  vError = true;
+                        if (oView.getModel("oBPLookUpMdl").getData().ReconAcc) {
+                            if (oView.getModel("oBPLookUpMdl").getData().ReconAcc.length > 0) {
+                                if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount) {
+                                    oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccounte = "Error";
+                                    oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
+                                    vReConError = true;
+                                }
                             }
-                            if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrSortKey) {
-                                oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeye = "Error";
-                                oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeym = oi18n.getProperty("BPCMandatoryValidation");
-                                //  vError = true;
-                            }
+                        }
+                        if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrSortKey) {
+                            oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeye = "Error";
+                            oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeym = oi18n.getProperty("BPCMandatoryValidation");
+                            vReConError = true;
+                        }
+                        if (vReConError) {
                             oView.getModel("JMValidateDefault").refresh();
                             oView.byId("id_SegmentedBtn").setSelectedKey("partnerFunction");
                             oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -2356,6 +2365,7 @@ sap.ui.define([
                             });
                             return;
                         }
+
                     }
                 }
 

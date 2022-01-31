@@ -35,6 +35,18 @@ sap.ui.define([
 
 
             },
+            onAfterRendering: function () {
+                var bID = oView.byId('bankAccNumConfirmField').sId;
+                $('#' + bID).bind("cut copy paste", function (e) {
+                    e.preventDefault();
+                    return false;
+                });
+                var cID = oView.byId('ibanConfirmField').sId;
+                $('#' + cID).bind("cut copy paste", function (e) {
+                    e.preventDefault();
+                    return false;
+                });
+            },
             fnRadioButtonChange: function () {
                 var that = this;
                 if (vAppName == "SupplierFinance") {
