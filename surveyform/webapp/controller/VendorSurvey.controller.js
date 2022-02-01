@@ -7401,7 +7401,7 @@ if(oView.getModel("oUserModel").getData().isNew){
                     } else if (!alphaRegex.test(oEvent.getSource().getValue())) {
 
                         // var newval = val.substring(0, val.length - 1);
-                        oEvent.getSource().setValue("");
+                        oEvent.getSource().setValue(oEvent.getSource().getValue().slice(0,-1));
 
                     }
                     else if (oEvent.getSource().getValue()) {
@@ -7419,7 +7419,7 @@ if(oView.getModel("oUserModel").getData().isNew){
                     oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
                 } else if (!numRegex.test(oEvent.getSource().getValue())) {
                     // var newval = val.substring(0, val.length - 1);
-                    oEvent.getSource().setValue("");
+                    oEvent.getSource().setValue(oEvent.getSource().getValue().slice(0,-1));
 
                 }
                 else if (oEvent.getSource().getValue()) {

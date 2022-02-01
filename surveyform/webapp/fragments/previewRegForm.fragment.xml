@@ -915,7 +915,7 @@
 								</l:Grid>
                                 <Label text="{i18n>remittoAddr}" wrapping="true" class="cl_PreviewPageSubHeader  sapUiTinyMarginBegin " visible="{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${remitModel>/isRemitToAddress}}"></Label>
                                   <Label text="{oi18n_En>remittoAddr}/&#160;{i18n>remittoAddr}" wrapping="true" class="cl_PreviewPageSubHeader  sapUiTinyMarginBegin " visible="{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${remitModel>/isRemitToAddress}}"></Label>
-     <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiTinyMarginTop" visible="{companyInfoModel>/isOrderFromAddress}">
+     <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiTinyMarginTop" visible="{remitModel>/isRemitToAddress}">
    <VBox class="VRVboxStyle1">
 										<Label text="{i18n>preferredPaymentTerms}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>preferredPaymentTerms}&#10;{i18n>preferredPaymentTerms}"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="cl_PreviewLablCls "></Label>
@@ -1195,7 +1195,7 @@
 										<Label text="{=${oDataModel>/bankDto/bankInfoDto/0/instructionKey}?${oDataModel>/bankDto/bankInfoDto/0/instructionKey}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>
-                                <VBox class="fontStyle sapUiSizeCompact" visible="{oUserModel>/isNew}">
+                                <VBox class="fontStyle sapUiSizeCompact" visible="{=${oDataModel>/bankDto/isBankProvided} &amp;&amp; ${oUserModel>/isNew}}">
                                     <CheckBox editable="false" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/bankDto/isIntermediateBankProvided}" class="cl_PreviewLablCls" />
                                     <gl:GridList width="auto" items="{oAttachmentList>/0/bankINDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin">
                                         <gl:customLayout>
