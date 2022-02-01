@@ -166,9 +166,9 @@
                                   <l:GridData spanM="6" spanL="6" spanXL="6"></l:GridData></layoutData>
                     </VBox>
                                             </l:Grid>
-                                            	<HBox class="cl_HBoxBlockSep"></HBox>
-                                                <Label text="{i18n>ReconsilationAndPaymentTxt}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
-                                        <l:Grid defaultSpan="XL2 L2 M2 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
+                                            	<HBox class="cl_HBoxBlockSep" visible="{oConfigMdl>/NDAScreenReconVis}"></HBox>
+                                                <Label text="{i18n>ReconsilationAndPaymentTxt}" visible="{oConfigMdl>/NDAScreenReconVis}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
+                                        <l:Grid defaultSpan="XL2 L2 M2 S12" visible="{oConfigMdl>/NDAScreenReconVis}" class="cl_PreviewGrid sapUiTinyMarginTop">
 											
 											<!-- <VBox class="VRVboxStyle1">
 												<Label text="{i18n>Currency}" class="cl_PreviewLablCls "></Label>
@@ -178,7 +178,7 @@
 												<Label text="{i18n>TIDUNsNumber}" class="cl_PreviewLablCls "></Label>
 												<Label text="" class="cl_PreviewLablClsValue "></Label>
 											</VBox> -->
-                                            <VBox class="VRVboxStyle1">
+                                            <VBox  class="VRVboxStyle1">
 													<Label text="{i18n>ReconciliationAccount}:" required="true" class="cl_VRLablCls "></Label>
 													<ComboBox width="95%" items="{oBPLookUpMdl>/ReconAcc}"   valueState="{JMValidateDefault>/reconciliationAccounte}" valueStateText="{JMValidateDefault>/reconciliationAccountm}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/defaultEnable}" change="fnLiveChangeReconAcc" showSecondaryValues="true" selectedKey="{oDataModel>/shippingInfoDto/reconciliationAccount}"
@@ -187,7 +187,7 @@
 										</ComboBox>
                                                 	
 												</VBox>
-                                                 <VBox class="VRVboxStyle1">
+                                                 <VBox visible="{oConfigMdl>/NDAScreenReconVis}" class="VRVboxStyle1">
 													<Label text="{i18n>SortKey}:" required="true" class="cl_VRLablCls "></Label>
 													<ComboBox width="95%" items="{oBPLookUpMdl>/SortKey}"   valueState="{JMValidateDefault>/sortKeye}" valueStateText="{JMValidateDefault>/sortKeym}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/defaultEnable}" change="fnLiveChangeSortKey" showSecondaryValues="true" selectedKey="{oDataModel>/shippingInfoDto/sortKey}"
