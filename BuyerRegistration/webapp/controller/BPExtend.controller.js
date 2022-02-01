@@ -1332,7 +1332,7 @@ sap.ui.define([
                                     var item = aArray.find(item => item.code == value[i]);
                                     if (!item) {
                                         if (!vMessage) {
-                                            vMessage = "Payment Method " + value[i];
+                                            vMessage = "The current Payment Method " + value[i];
                                         } else {
                                             vMessage = vMessage + ', ' + value[i];
                                         }
@@ -1342,7 +1342,7 @@ sap.ui.define([
 
                             }
                             if (vMessage) {
-                                vMessage = vMessage + " is not found in Company Code " + oView.getModel("JMBPCreate").getData().companyCode + " Please Provide New Payment Method";
+                                vMessage = vMessage + " is not available for the new Site. Please select a New Payment Method";
                                 oView.getModel("JMBPCreate").getData().newPaymentMethode = "Error";
                                 oView.getModel("JMBPCreate").getData().newPaymentMethodm = vMessage;
                                 oView.getModel("JMBPCreate").refresh();
@@ -1654,6 +1654,7 @@ sap.ui.define([
                         vError = true;
                     }
 
+                  
                     if (!oView.getModel("JMBPCreate").getData().newPaymentMethod) {
                         var aArray = oView.getModel("oBPLookUpMdl").getData().PaymentMethod;
                         var value = oView.getModel("JMBPCreate").getData().paymentMethod;
@@ -1664,7 +1665,7 @@ sap.ui.define([
                                     var item = aArray.find(item => item.code == value[i]);
                                     if (!item) {
                                         if (!vMessage) {
-                                            vMessage = "Payment Method " + value[i];
+                                            vMessage = "The current Payment Method " + value[i];
                                         } else {
                                             vMessage = vMessage + ', ' + value[i];
                                         }
@@ -1674,7 +1675,7 @@ sap.ui.define([
 
                             }
                             if (vMessage) {
-                                vMessage = vMessage + " is not found in Company Code " + oView.getModel("JMBPCreate").getData().companyCode + " Please Provide New Payment Method";
+                                vMessage = vMessage + " is not available for the new Site. Please select a New Payment Method";
                                 oView.getModel("JMBPCreate").getData().newPaymentMethode = "Error";
                                 oView.getModel("JMBPCreate").getData().newPaymentMethodm = vMessage;
                                 oView.getModel("JMBPCreate").refresh();
