@@ -10,6 +10,7 @@ sap.ui.define([
     "sap/ui/model/Sorter"
 ],
 //Phase N Git Test
+//test again
 	/**
 	 * @param {typeof sap.ui.core.mvc.Controller} Controller
 	 */
@@ -20,6 +21,7 @@ sap.ui.define([
             onInit: function () {
                 oView = this.getView();
                 that = this;
+                var a;
                 oi18n = this.getOwnerComponent().getModel("i18n");
                 oBusyDilog = new BusyDialog({
                     text: oi18n.getProperty("BusyTxt") //initialize Busy Dialog
