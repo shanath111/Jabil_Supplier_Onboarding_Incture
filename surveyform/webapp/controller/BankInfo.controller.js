@@ -87,7 +87,7 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
-                       // oEvent.getSource().getData().isTaskCompleted = false;
+                     //  oEvent.getSource().getData().isTaskCompleted = false;
                         if (oEvent.getSource().getData().isTaskCompleted == true) {
                             that.getOwnerComponent().getModel("oVisibilityModel").getData()._FinanceReviewEdit = false
                             that.getOwnerComponent().getModel("oVisibilityModel").getData()._CompletedTask = false
@@ -1209,8 +1209,8 @@ sap.ui.define([
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
                 }
-
-                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed")) {
+              
+                    if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");

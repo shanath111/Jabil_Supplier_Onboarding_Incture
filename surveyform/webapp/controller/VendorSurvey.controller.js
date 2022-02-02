@@ -2417,14 +2417,15 @@ sap.ui.define([
                         case 7:
                             if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
                                 oView.getModel("oErrorModel").getData().poE = "Error";
-                                oView.getModel("oErrorModel").getData().poM = "Code must be of exactly " + postalCodeLength + "characters in length";
+                              
+                                oView.getModel("oErrorModel").getData().poM = "Postal Code must be " + postalCodeLength + " numeric values";
                                 iError = true;
                             }
                             break;
                         case 8:
                             if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
                                 oView.getModel("oErrorModel").getData().poE = "Error";
-                                oView.getModel("oErrorModel").getData().poM = "Code must be of exactly " + postalCodeLength + "digits in length";
+                                oView.getModel("oErrorModel").getData().poM = "Code must be of exactly " + postalCodeLength + " digits in length";
                                 iError = true;
                             }
                     }
@@ -6661,14 +6662,15 @@ if(oView.getModel("oUserModel").getData().isNew){
                     case 7:
                         if (!(postalCode.length === postalCodeLength) || (postalCode.includes("_"))) {
                             oEvent.getSource().setValueState("Error");
-                            oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "characters in length");
+                            oEvent.getSource().setValueStateText("Postal Code must be " + postalCodeLength + " numeric values");
                             
                         }
                         break;
                     case 8:
                         if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || !(postalCode.length === postalCodeLength))) {
                             oEvent.getSource().setValueState("Error");
-                            oEvent.getSource().setValueStateText("ID must be of exactly " + postalCodeLength + "digits in length");
+                          
+                            oEvent.getSource().setValueStateText("Postal Code must be " + postalCodeLength + " numeric values");
                             
                         }
                 }

@@ -48,7 +48,7 @@ sap.ui.define([
                 this.fnLoadTaskClaimed(oContext.Id);
                 oView.getModel("oConfigMdl").getData().CommentsVis = false;
                 oView.getModel("oConfigMdl").getData().bankNotFoundTitle = false;
-
+                oView.getModel("oConfigMdl").getData().NDAScreenReconVis = true;
                 if (oContext.Name == "Buyer") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = true;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;
@@ -95,6 +95,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmentVisibleP = false;
                     oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
                     oView.getModel("oConfigMdl").getData().defaultEnable = true;
+                    oView.getModel("oConfigMdl").getData().NDAScreenReconVis = false;
                 } else if (oContext.Name == "GBSBank") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = false;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;
