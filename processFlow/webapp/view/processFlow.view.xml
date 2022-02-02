@@ -1,0 +1,38 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="oneapp.incture.processFlow.processFlow.controller.processFlow"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+    <App id="app">
+	<Page showHeader="false">
+		<content>
+			<VBox height="100%" >
+            
+                <!-- <Label text="Enter the case ID :"/> -->
+                 <HBox width="100%" class="wbCaseIdHbox sapUiSmallMarginTopBottom sapUiSmallMarginBeginEnd">
+                    <VBox>
+                    <HBox>
+                 
+                    <Label text="Case ID:"/>
+                       </HBox>
+                    <Input value="{oProcessFlowModel>/caseIdInput}" id="id_CaseId" maxLength="7" class="sapUiSizeCompact"/>
+                    <HBox>
+				    <Button  text="View Flow" id="id_ViewProcessBtn" press="onClickViewFLowBtn" class="sapUiSizeCompact"/>
+                      <Button text="View Mail Notification" id="id_ViewEmail" press="fnOpenEmail" class="sapUiSizeCompact sapUiTinyMarginBegin"/>
+            </HBox>
+             </VBox>
+                    
+			    </HBox>
+                <!-- <VBox class="VRVboxStyle1">
+					<Label text="{i18n>VRRequestID}" class="cl_VRLablCls "></Label>
+					<Input placeholder="{i18n>VRSearch}" value="{oProcessFlowModel>/caseIdInput}" class="cl_VRInputCls"></Input>
+				</VBox> -->
+				<!-- <HBox class="wbProcessFlowHeaderBar" alignItems="Center" justifyContent="SpaceBetween"> -->
+					<!--text="{i18n>PROCESS_FLOW_TEXT} - {oProcessFlowModel>/taskDetails/process/requestId}"-->
+                    <!-- <Label text="{i18n>PROCESS_FLOW_TEXT}" tooltip="{i18n>PROCESS_FLOW_TEXT}"
+						class="wbTextBoldClass"/>
+					<core:Icon src="sap-icon://decline" class="wbProcessFlowCloseIconDetail" press="closeProcessFlow"></core:Icon> -->
+				<!-- </HBox> -->
+				<core:Fragment  fragmentName="oneapp.incture.processFlow.processFlow.fragment.ProcessStory" type="XML"></core:Fragment>
+			</VBox>
+		</content>
+	</Page>
+    </App>
+</mvc:View>

@@ -1,0 +1,147 @@
+<mvc:View controllerName="InboxDetail.controller.MaintenanceAdmin" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout" xmlns:c="InboxDetail.ExtensionControl">
+			<Page id="id_Container" class="cl_VRPageBackGrnd" enableScrolling="true" showHeader="false">
+				<subHeader>
+					<Toolbar class="cl_VRHeaderBackGrnd sapUiSizeCompact">
+						<Link text="{i18n>Home}" press="fnNavToHome" class="sapUiSmallMarginBegin cl_TIHomeLink"></Link>
+						 <ToolbarSpacer ></ToolbarSpacer>
+                          <Title text="{i18n>MaintenanceAdmin}" ></Title>
+                           <ToolbarSpacer ></ToolbarSpacer>
+					</Toolbar>
+				</subHeader>
+				<content>
+                <Panel width="auto"   expandable="false" expanded="false" class="cl_VRPanelClass cl_PanelMargonTop  sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd">
+ 	<headerToolbar>
+							<Toolbar class="cl_VRHeaderBackGrndPnl">
+								<Title text="{i18n>CreateNewRecord}"/>
+                                <ToolbarSpacer ></ToolbarSpacer>
+									<Button text="{i18n>Submit}" press="fnSubmitSME" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
+							</Toolbar>
+						</headerToolbar>
+ 	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
+							
+                             <VBox class="VRVboxStyle1">
+								<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls "></Label>
+										<ComboBox width="95%" items="{oBPLookUpMdl>/CompanyCode1}"  autocomplete="false" valueState="{JMFilter>/companyCodee}" valueStateText="{JMFilter>/companyCodem}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeCompCode1" showSecondaryValues="true" selectedKey="{JMFilter1>/companyCode}"
+											class="cl_VRInputCls">
+											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</ComboBox>
+							</VBox>
+                             <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
+										<c:ExtComboBox width="95%" items="{oBPLookUpMdl>/PurOrg1}" valueState="{JMFilter>/purchasingOrganisatione}" valueStateText="{JMFilter>/purchasingOrganisationm}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg1" click="fnLiveChangePurchOrg1" showSecondaryValues="true" selectedKey="{JMFilter1>/purchasingOrganisation}"
+											class="cl_VRInputCls" >
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</c:ExtComboBox>
+							</VBox>
+                           
+                            <VBox class="VRVboxStyle1">	
+								<Label text="{i18n>SmeEmail}" required="true" class="cl_VRLablCls "></Label>
+                                <Input value="{JMFilter1>/smeEmail}" valueState="{JMFilter>/smeEmaile}" valueStateText="{JMFilter>/smeEmailm}" change="fnChangeSMEEmail1" editable="{oConfigMdl>/screenEditable}" class="cl_VRInputCls"></Input>
+							</VBox>	
+                            <VBox class="VRVboxStyle1">	
+								<Label text="{i18n>SmeFName}" required="true" class="cl_VRLablCls "></Label>
+                                <Input value="{JMFilter1>/smeFirstName}" editable="{oConfigMdl>/screenEditable}" class="cl_VRInputCls"></Input>
+							</VBox>
+                            <VBox class="VRVboxStyle1">	
+								<Label text="{i18n>SmeLName}" required="true" class="cl_VRLablCls "></Label>
+                                <Input value="{JMFilter1>/smeLastName}" editable="{oConfigMdl>/screenEditable}" class="cl_VRInputCls"></Input>
+							</VBox>	  
+							</l:Grid>
+                            
+						
+</Panel>
+ <Panel width="auto"   expandable="false" expanded="false" class="cl_VRPanelClass cl_PanelMargonTop  sapUiTinyMarginBegin  sapUiTinyMarginEnd">
+ 	<headerToolbar>
+							<Toolbar class="cl_VRHeaderBackGrndPnl">
+								<Title text="{i18n>Search}"/>
+								<ToolbarSpacer/>
+								
+								<Button text="{i18n>Search}" press="fnSearchSME" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
+							</Toolbar>
+						</headerToolbar>
+ 	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
+							
+                            <VBox class="VRVboxStyle1">
+								
+								<Label text="{i18n>BPCCompanyCode}" required="false" class="cl_VRLablCls "></Label>
+										<ComboBox width="95%" items="{oBPLookUpMdl>/CompanyCode}"  autocomplete="false" valueState="{JMFilter>/companyCodee}" valueStateText="{JMFilter>/companyCodem}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeCompCode" showSecondaryValues="true" selectedKey="{JMFilter>/companyCode}"
+											class="cl_VRInputCls"  >
+											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</ComboBox>
+							</VBox>
+                             <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPPurchasingOrg}" required="false" class="cl_VRLablCls "></Label>
+										<c:ExtComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMFilter>/purchasingOrge}" valueStateText="{JMFilter>/purchasingOrgm}"
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" click="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMFilter>/purchasingOrg}"
+											class="cl_VRInputCls"  >
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</c:ExtComboBox>
+							</VBox>
+                            <VBox class="VRVboxStyle1">	
+								<Label text="{i18n>SmeEmail}" required="false" class="cl_VRLablCls "></Label>
+                                <Input value="{JMFilter>/smeEmail}" valueState="{JMFilter>/smeEmaile}" valueStateText="{JMFilter>/smeEmailm}" change="fnChangeSMEEmail" class="cl_VRInputCls"></Input>
+							</VBox>	
+                              
+                          
+							</l:Grid>
+                            <Table class="sapUiSizeCompact cl_BPListTable"   alternateRowColors="true" items="{JMCompSearchResult>/}">
+										
+										<columns>
+                                           
+											<Column >
+												<Label text="{i18n>BPECompanyCode}" class="cl_VRLablCls "></Label>
+											</Column>
+                                            
+                                            <Column>
+												<Label text="{i18n>BPEPurchasingOrg}" class="cl_VRLablCls "></Label>
+											</Column>
+                                            
+                                            <Column>
+												<Label text="{i18n>SmeEmail}" class="cl_VRLablCls "></Label>
+											</Column>
+                                            <Column>
+												<Label text="{i18n>SmeFName}" class="cl_VRLablCls "></Label>
+											</Column>
+                                            <Column>
+												<Label text="{i18n>SmeLName}" class="cl_VRLablCls "></Label>
+											</Column>
+                                               <Column width="6rem">
+											
+											</Column>
+                                               <Column width="6rem" >
+												
+											</Column>
+											
+										
+										</columns>
+										<items>
+											<ColumnListItem press="fnCaseListPressNav"  type="Active"  >
+												<cells>
+                                                    
+													<Text text="{JMCompSearchResult>companyCode}" class="cl_ListNameClass"></Text>
+                                                    <Text text="{JMCompSearchResult>purchasingOrganisation}"  wrapping="false" class="cl_ListNameClass"></Text>
+												    
+                                                    <Text text="{JMCompSearchResult>smeEmail}" class="cl_ListNameClass"></Text>
+                                                    <Text text="{JMCompSearchResult>smeFirstName}" class="cl_ListNameClass"></Text>
+                                                    <Text text="{JMCompSearchResult>smeLastName}" class="cl_ListNameClass"></Text>
+                                                    
+														
+                                                    <Button text="{i18n>Delete}" press="fnDeleteSME" type="Reject" class="sapUiSmallMarginBegin  cl_BPCDraft1 sapUiSizeCompact" />
+			
+                                                </cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+						
+</Panel>
+
+
+
+
+                            	</content>
+			</Page>
+</mvc:View>

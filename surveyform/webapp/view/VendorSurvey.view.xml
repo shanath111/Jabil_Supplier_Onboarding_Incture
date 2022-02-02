@@ -1,0 +1,521 @@
+<mvc:View height="100%" controllerName="com.jabil.surveyform.controller.VendorSurvey" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml">
+	<!-- <NavContainer id="wizardNavContainer">
+		<pages> -->
+			<Page showHeader="false" class="surveyPageBackground" enableScrolling="false">
+            <Toolbar class="toolbarBackground">
+            <Link text="{i18n>VRHome}" press="fnNavBackToHome" visible="{oVisibilityModel>/_HomeBtnVis}" class="sapUiSmallMarginBegin cl_TIHomeLink"></Link>
+            <Title text="{i18n>businessPartnerReg}" visible="{oVisibilityModel>/isdefaultLan}" class="toolbarfont sapUiSizeCompact sapUiMediumMarginBegin"/>
+              <Title text="{oi18n_En>businessPartnerReg}/&#160;{i18n>businessPartnerReg}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="toolbarfont sapUiSizeCompact sapUiMediumMarginBegin"/>
+            </Toolbar>
+            
+				<Wizard id="surveyWizard" finishButtonText="Finish" enableBranching="true" class="sapUiResponsivePadding--header sapUiResponsivePadding--content wizNavbackground" showNextButton="false">
+					<WizardStep id="basicInfo"  nextStep="businessPartnerInfo" activate="onActivateBasicInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBasicInfo}:${oi18n_En>wizardStepBasicInfo} +'/&#160;' +${i18n>wizardStepBasicInfo}}" class="titleDisplay sapUiSizeCompact stepBackground sapUiContentPadding" >
+				<Panel width="100%" class="sapUiTinyMarginTop panelPadding">	<l:VerticalLayout width="100%" >
+                    	
+                        <!-- <VBox class="sapUiSizeCompact fontBold sapUiTinyMarginBegin" width="50%">
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>SupplierName}:${oi18n_En>SupplierName} +'/&#160;' + ${i18n>SupplierName}}" class="fontStyle" required="true"></Label>
+									<Input maxLength="61" enabled="{oEnableMdl>/contactNameEnb}" value="{oDataModel>/surveyInfoDto/authorityContact/contactName}" valueState="{oErrorModel>/supplierNameE}" valueStateText="{oErrorModel>/supplierNameM}" liveChange="fnLiveInputAlphaSpaceValueChange" class="inputStyle"></Input>
+     	
+						</VBox>
+                         -->
+                        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressLabel}:${oi18n_En>addressLabel} +'/&#160;' + ${i18n>addressLabel}}" class="fontBold sapUiSizeCompact sapUiTinyMarginBegin"/>
+                        
+                        	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
+							<VBox >
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey} +'&#10;' + ${i18n>countrykey}}" wrapping="true"  required="true" class="fontStyle "></Label>
+                                    	<ComboBox id="hello" width="100%" items="{oLookUpModel>/SupplierCountry}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/countryEnb}"  valueState="{oErrorModel>/countryE}" valueStateText="{oErrorModel>/countryM}" filterSecondaryValues="true" selectionChange="fnChangeSupplierCountry"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" value="{oDataModel>/surveyInfoDto/address/0/postal/0/country}" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/countryCode}">
+<core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+			</ComboBox>
+                                    <!-- <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/country}" class="inputStyle" /> -->
+                                </VBox>
+                                <VBox class="fontStyle">
+         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>address}:${oi18n_En>address} + '&#xA;' +${i18n>address}}" class="fontStyle" wrapping="true"></Label>
+                                 	<html:input placeholder=" Search here for Address" width="50%" type="text" id="iAddress" class="cl_HTMLInput" />
+                                <!-- <layoutData>
+                        <FlexItemData growFactor="1"/>
+                     </layoutData> -->
+                       <layoutData>
+                <l:GridData spanM="6" spanL="6" spanS="6" spanXL="6" visibleM= "{=${oDataModel>/surveyInfoDto/address/0/postal/0/countryCode} === 'US'  &amp;&amp; ${oUserModel>/isNew} &amp;&amp; ${oEnableMdl>/address1Enb}}" visibleS="{=${oDataModel>/surveyInfoDto/address/0/postal/0/countryCode} === 'US' &amp;&amp; ${oUserModel>/isNew} &amp;&amp; ${oEnableMdl>/address1Enb} }" visibleL="{=${oDataModel>/surveyInfoDto/address/0/postal/0/countryCode} === 'US' &amp;&amp; ${oUserModel>/isNew} &amp;&amp; ${oEnableMdl>/address1Enb}}" visibleXL="{=${oDataModel>/surveyInfoDto/address/0/postal/0/countryCode} === 'US' &amp;&amp; ${oUserModel>/isNew} &amp;&amp; ${oEnableMdl>/address1Enb}}"/>
+                </layoutData>
+
+        </VBox>
+                            	<VBox>
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1} +'&#10;' + ${i18n>addressL1}}" wrapping="true" required="true" class="fontStyle "></Label>
+<Input enabled="{oEnableMdl>/address1Enb}" value="{oDataModel>/surveyInfoDto/address/0/postal/0/address1}"  editable="{oUserModel>/isNew}"  valueState="{oErrorModel>/address1E}" valueStateText="{oErrorModel>/address1M}" liveChange="fnLiveInputValueChange" class="inputStyle" maxLength="61" />
+							 <layoutData>
+                <l:GridData  linebreak= "{=(${oDataModel>/surveyInfoDto/address/0/postal/0/countryCode} === 'US'  &amp;&amp; ${oUserModel>/isNew}) ? (${oEnableMdl>/address1Enb} !== false ? true : false): false}"/>
+                </layoutData>
+                            	</VBox>
+								<VBox >
+								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2} +'&#10;' + ${i18n>addressL2}}" wrapping="true" class="fontStyle"></Label>
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address2}" editable="{oUserModel>/isNew}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
+                                </VBox>
+                                <VBox >
+								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL3}:${oi18n_En>addressL3} +'&#10;' + ${i18n>addressL3}}" wrapping="true" class="fontStyle"></Label>
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address3}" editable="{oUserModel>/isNew}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
+                                </VBox>
+                                <VBox >
+								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL4}:${oi18n_En>addressL4} +'&#10;' + ${i18n>addressL4}}" wrapping="true" class="fontStyle "></Label>
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address4}" editable="{oUserModel>/isNew}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41" />
+                                </VBox>
+                                <VBox >
+								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL5}:${oi18n_En>addressL5} +'&#10;' + ${i18n>addressL5}}" wrapping="true" class="fontStyle "></Label>
+                                <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/address5}" editable="{oUserModel>/isNew}" class="inputStyle" enabled ="{oEnableMdl>/address2Enb}" liveChange="fnLiveInputValueChange" maxLength="41"/>
+                                </VBox>				
+								<VBox >
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>region}:${oi18n_En>region} +'&#10;' + ${i18n>region}}" wrapping="true"   required="true" class="fontStyle "></Label>
+                                    <ComboBox width="100%" items="{oLookUpModel>/SupplierRegion}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/regionEnb}"  valueState="{oErrorModel>/stateE}" valueStateText="{oErrorModel>/stateM}"  filterSecondaryValues="true" showSecondaryValues="true" selectionChange="fnChangeSupplierRegion"  placeholder="{i18n>select}" class="inputStyle" value="{oDataModel>/surveyInfoDto/address/0/postal/0/region}" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/regionCode}">
+<core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+			</ComboBox>
+              <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selectNAText}:${oi18n_En>selectNAText}+ '&#10;' +${i18n>selectNAText}}" textAlign="End" class="disabledFontClr"/>
+                                    <!-- <Input value="{oDataModel>/surveyInfoDto/address/0/postal/0/region}" class="inputStyle" /> -->
+                                </VBox>
+							
+                                <VBox>
+                               	<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dist}:${oi18n_En>dist} +'&#10;' + ${i18n>dist}}" wrapping="true" required="false" class="fontStyle "></Label>
+                                   <Input maxLength="41" value="{oDataModel>/surveyInfoDto/address/0/postal/0/district}"  editable="{oUserModel>/isNew}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/districtEnb}" class="inputStyle" />
+                                        </VBox> 
+                                                 <VBox >
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>city}:${oi18n_En>city} +'&#10;' + ${i18n>city}}" wrapping="true"  required="true" class="fontStyle "></Label>
+                                     <Input maxLength="41" value="{oDataModel>/surveyInfoDto/address/0/postal/0/city}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/cityEnb}" valueState="{oErrorModel>/cityE}" valueStateText="{oErrorModel>/cityM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+                               <layoutData>
+                               <l:GridData linebreak = "true"></l:GridData></layoutData>
+                                </VBox>
+							
+                                <VBox>
+                               	<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>PostalCode}:${oi18n_En>PostalCode} +'&#10;' + ${i18n>PostalCode}}" wrapping="true"  required="true" class="fontStyle "></Label>
+                                     <Input maxLength="{oLookUpModel>/PostalCodeValidation/postalCodeLength}" value="{oDataModel>/surveyInfoDto/address/0/postal/0/postalCode}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/postalCodeEnb}" valueState="{oErrorModel>/poE}" valueStateText="{oErrorModel>/poM}" change="fnVerifyPostalCode" class="inputStyle" />
+                                  
+                                        </VBox>       
+                                            <VBox>
+                              
+                                   <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>POBox}:${oi18n_En>POBox} +'&#10;' + ${i18n>POBox}}" wrapping="true" required="false" class="fontStyle "></Label>
+                                     <Input maxLength="11" value="{oDataModel>/surveyInfoDto/address/0/postal/0/poBoxPostalCode}" liveChange="fnLiveInputValueChange" class="inputStyle" enabled="{oEnableMdl>/poBoxPostalCodeEnb}"/>
+                                        </VBox>    
+                                           <VBox>
+                              
+                                   <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>faxNum}:${oi18n_En>faxNum} +'&#10;' + ${i18n>faxNum}}" wrapping="true" required="false" class="fontStyle "></Label>
+                                     <Input maxLength="31" value="{oDataModel>/surveyInfoDto/address/0/postal/0/fax/0/faxNum}" liveChange="fnLiveInputValueChange" editable="{oUserModel>/isNew}"  class="inputStyle" enabled="{oEnableMdl>/faxNumEnb}"/>
+                                        </VBox>    
+                                             <VBox>
+                              
+                                 	<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>SupUrl}:${oi18n_En>SupUrl} +'&#10;' + ${i18n>SupUrl}}" wrapping="true" required="false" class="fontStyle "></Label>
+                                       <Input maxLength="2048" value="{oDataModel>/surveyInfoDto/address/0/postal/0/url/0/websiteUrl}" liveChange="fnValueChange" editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/websiteUrlEnb}" class="inputStyle" />
+                                        </VBox>
+									
+								
+						
+							</l:Grid> 
+                            </l:VerticalLayout>     
+                           </Panel>
+                          
+                    	 <!-- <CheckBox selected="{oDataModel>/surveyInfoDto/isAuthority}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>authorityCheck}:${oi18n_En>authorityCheck} +'/&#160;' +${i18n>authorityCheck}}" class="fontStyle inputStyle" wrapping="true"/> -->
+						<Panel width="100%" class="sapUiTinyMarginTop panelPadding">
+                    	<l:VerticalLayout width="100%">
+							<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>companyContact}:${oi18n_En>companyContact} +'/&#160;' + ${i18n>companyContact}}" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+                            <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
+								<VBox>
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;'+${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/authorityContact/firstName}" enabled="{oEnableMdl>/firstNameEnb}" valueState="{oErrorModel>/authorityFNameE}" valueStateText="{oErrorModel>/authorityFNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
+     	
+								</VBox>
+								<VBox >
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>lastName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>lastName}&#10;{i18n>lastName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/authorityContact/lastName}" enabled="{oEnableMdl>/lastNameEnb}" valueState="{oErrorModel>/authorityLNameE}" valueStateText="{oErrorModel>/authorityLNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+							
+                                </VBox>
+								<VBox >
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>jobTitle}:${oi18n_En>jobTitle} +'&#10;' + ${i18n>jobTitle}}" class="fontStyle"></Label> -->
+                                    <Label text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" ></Label>
+                                    <Label text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+									<Input value="{oDataModel>/surveyInfoDto/authorityContact/jobTitle}" enabled="{oEnableMdl>/jobTitleEnb}" valueState="{oErrorModel>/authorityJobTitleE}" valueStateText="{oErrorModel>/authorityJobTitleM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+									
+                                </VBox>
+
+								<VBox >
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input maxLength="242" value="{oDataModel>/surveyInfoDto/authorityContact/email}" enabled="{oEnableMdl>/emailEnb}" valueState="{oErrorModel>/authorityEmailE}" valueStateText="{oErrorModel>/authorityEmailM}" liveChange="fnRemoveSpace" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
+										
+                                </VBox>
+                                <!-- <HBox> -->
+                                <VBox>
+									<Label text="{i18n>countryCode}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
+									<VBox>
+										<ComboBox width="100%" editable="{oUserModel>/isNew}" showSecondaryValues="true" filterSecondaryValues="false" value="{oVisibilityModel>/authorityContactContactCode}" items="{oLookUpModel>/countryContactCode}" selectedKey="{oDataModel>/surveyInfoDto/authorityContact/countryContactCode}" enabled="{oEnableMdl>/countryContactCodeEnb}" class="inputStyle" valueState="{oErrorModel>/authorityCountryContactCodeE}" valueStateText="{oErrorModel>/authorityCountryContactCodeM}" change="fnLiveValueCountryCodeChange">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                        </ComboBox>	
+                                    </VBox>
+                                  <layoutData>
+                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                </VBox>
+								<VBox>
+                                <!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" required="true" wrapping="true" class="fontStyle"></Label> -->
+                                <Label text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+											<Input maxLength="31" editable="{oUserModel>/isNew}" value="{oDataModel>/surveyInfoDto/authorityContact/contact}" enabled="{oEnableMdl>/contactEnb}" valueState="{oErrorModel>/authorityContE}" valueStateText="{oErrorModel>/authorityContM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
+                                <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
+                                <layoutData>
+                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
+                                        </VBox>
+                                <!-- </HBox> -->
+                                <!-- <VBox>
+                                <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'/&#160;' + ${i18n>phoneNum}}" class="fontStyle" required="true"></Label>
+											<Input maxLength="31" value="{oDataModel>/surveyInfoDto/authorityContact/contact}" enabled="{oEnableMdl>/contactEnb}" valueState="{oErrorModel>/authorityContE}" valueStateText="{oErrorModel>/authorityContM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
+                                
+                            
+                                        </VBox>  -->
+                                                       
+									
+								
+						 <VBox >
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>extension}:${oi18n_En>extension} +'&#10;' + ${i18n>extension}}" class="fontStyle"></Label> -->
+                                    <Label text="{i18n>extension}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" ></Label>
+                                    <Label text="{oi18n_En>extension}&#10;{i18n>extension}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+									<Input maxLength="11" value="{oDataModel>/surveyInfoDto/authorityContact/extension}" enabled="{oEnableMdl>/extensionEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+                                  
+								</VBox>
+                                <VBox>
+									<Label text="{i18n>countryCode}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
+									<VBox>
+										<ComboBox width="100%" editable="{oUserModel>/isNew}" showSecondaryValues="true" filterSecondaryValues="false" items="{oLookUpModel>/countryContactCode}" value="{oVisibilityModel>/authorityContactMobileCode}" selectedKey="{oDataModel>/surveyInfoDto/authorityContact/countryMobileCode}" enabled="{oEnableMdl>/countryContactCodeEnb}" class="inputStyle" valueState="{oErrorModel>/authorityCountryContactCodeMobE}" valueStateText="{oErrorModel>/authorityCountryContactCodeMobM}" change="fnLiveValueCountryCodeChange">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                        </ComboBox>	
+                                    </VBox>
+                                  <layoutData>
+                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                </VBox>
+								
+                                  <VBox>
+                                <!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>mobPhone}:${oi18n_En>mobPhone} +'&#10;' + ${i18n>mobPhone}}" class="fontStyle" required="true"></Label> -->
+                                <Label text="{i18n>mobPhone}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+											<Input maxLength="31" value="{oDataModel>/surveyInfoDto/authorityContact/mobile}" enabled="{oEnableMdl>/mobileEnb}" valueState="{oErrorModel>/authorityMobE}" valueStateText="{oErrorModel>/authorityMobM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
+                                        <layoutData>
+                                        <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
+                            
+                                        </VBox> 
+							</l:Grid>
+                             <!-- <CheckBox selected="{oDataModel>/surveyInfoDto/isAuthority}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>authorityCheck}:${oi18n_En>authorityCheck} +'/&#160;' +${i18n>authorityCheck}}" class="fontStyle inputStyle" wrapping="true"/>  -->
+						</l:VerticalLayout>
+                      
+                           
+						<VBox class=" fontStyle sapUiSizeCompact sapUiTinyMarginBottom"> 
+							<Label required="true" labelFor="authority" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>authorityCheck}:${oi18n_En>authorityCheck} +'/&#160;' + ${i18n>authorityCheck}}" class="fontStyle fontStyleBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+							 <Label required="true" wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>transferContact}:${oi18n_En>transferContact} +'/&#160;' + ${i18n>transferContact}}" class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginTop"/>
+                            <RadioButtonGroup id="authority" enabled="{oEnableMdl>/isAuthorityEnb}" columns="2" selectedIndex="{=${oDataModel>/surveyInfoDto/isAuthority} === true? 0 :(${oDataModel>/surveyInfoDto/isAuthority}=== false ?1: -1)}" class="inputStyle" valueState="{oErrorModel>/isAuthorityE}" select="fnClearValueState">
+								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/surveyInfoDto/isAuthority}" groupName="authority"/>
+								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange" groupName="authority"/>
+							</RadioButtonGroup>
+                           
+						</VBox>
+						<l:VerticalLayout visible="{=${oDataModel>/surveyInfoDto/isAuthority} === false}" width="100%">
+							<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+								<VBox>
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} + '&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/ackContact/firstName}" class="inputStyle"  valueState="{oErrorModel>/ackNameE}" valueStateText="{oErrorModel>/ackNameM}" liveChange="fnLiveInputValueChange"></Input>
+								</VBox>
+                                <VBox>
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>lastName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>lastName}&#10;{i18n>lastName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/ackContact/lastName}" class="inputStyle"  valueState="{oErrorModel>/ackLNameE}" valueStateText="{oErrorModel>/ackLNameM}" liveChange="fnLiveInputValueChange"></Input>
+								</VBox>
+                                	<!-- <VBox>
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>jobTitle}:${oi18n_En>jobTitle} +'/&#160;' + ${i18n>jobTitle}}" class="fontStyle" required="true"></Label>
+									<Input maxLength="35" value="{oDataModel>/surveyInfoDto/ackContact/jobTitle}" class="inputStyle"  valueState="{oErrorModel>/ackJBE}" valueStateText="{oErrorModel>/ackJBM}" liveChange="fnLiveInputValueChange"></Input>
+								</VBox> -->
+								<VBox>
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input maxLength="242"  value="{oDataModel>/surveyInfoDto/ackContact/email}" class="inputStyle"  valueState="{oErrorModel>/ackEmailE}" valueStateText="{oErrorModel>/ackEmailM}" liveChange="fnRemoveSpace" change="fnLiveEmailNotJValid"></Input>
+								</VBox>
+                                <VBox>
+									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
+									<VBox>
+                                        <ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="false" items="{oLookUpModel>/countryContactCode}" value="{oVisibilityModel>/ackContactContactCode}"  selectedKey="{oDataModel>/surveyInfoDto/ackContact/countryContactCode}" class="inputStyle" valueState="{oErrorModel>/ackCountryContactCodeE}" valueStateText="{oErrorModel>/ackCountryContactCodeM}" change="fnLiveValueCountryCodeChange">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                        </ComboBox>
+                                    </VBox>
+                                    <layoutData>
+                                    <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                </VBox>
+								<VBox>
+                                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" wrapping="true" class="fontStyle" required="true"></Label>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/ackContact/contact}" class="inputStyle"  valueState="{oErrorModel>/ackContactE}" valueStateText="{oErrorModel>/ackContactM}" liveChange="fnLiveInputNumericValueChange"></Input>
+                                    <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
+                                    <layoutData>
+                                        <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+                                    </layoutData>
+                                </VBox>
+                                <VBox>
+									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
+									<VBox>
+                                        <ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="false" items="{oLookUpModel>/countryContactCode}"  value="{oVisibilityModel>/ackContactMobileCode}"  selectedKey="{oDataModel>/surveyInfoDto/ackContact/countryMobileCode}" class="inputStyle" valueState="{oErrorModel>/ackCountryContactCodeMobE}" valueStateText="{oErrorModel>/ackCountryContactCodeMobM}" change="fnLiveValueCountryCodeChange">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                        </ComboBox>
+                                    </VBox>
+                                    <layoutData>
+                                    <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                </VBox>
+								<VBox>
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>mobPhone}:${oi18n_En>mobPhone} +'&#10;' + ${i18n>mobPhone}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>mobPhone}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/ackContact/mobile}" class="inputStyle"  valueState="{oErrorModel>/ackPhoneE}" valueStateText="{oErrorModel>/ackPhoneM}" liveChange="fnLiveInputNumericValueChange"></Input>
+                                    <layoutData>
+                                        <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+                                    </layoutData>
+								</VBox>
+                                </l:Grid>
+                                </l:VerticalLayout>
+                        <VBox class=" fontStyle sapUiSizeCompact sapUiTinyMarginBottom"> 
+                            <Label labelFor="maincontact" required="true" wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>ismainContact}:${oi18n_En>ismainContact} +'/&#160;' + ${i18n>ismainContact}}" class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginTop"/>
+							<RadioButtonGroup id="maincontact" columns="2" selectedIndex="{=${oDataModel>/surveyInfoDto/isJabilMainContact} === true? 0 :(${oDataModel>/surveyInfoDto/isJabilMainContact}=== false ?1: -1)}" class="inputStyle" enabled="{oEnableMdl>/areYouMainContactEnb}" valueState="{oErrorModel>/isJabilMainContactE}" select="fnClearValueState">
+								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/surveyInfoDto/isJabilMainContact}" groupName="maincontact"/>
+								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}"  select="fnSelectionChange" groupName="maincontact"/>
+							</RadioButtonGroup>
+						</VBox>
+						<l:VerticalLayout width="100%">
+							<l:Grid visible="{=${oDataModel>/surveyInfoDto/isJabilMainContact} === false}" containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+								<VBox>
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/mainContact/firstName}" enabled="{oEnableMdl>/mainContactfirstNameEnb}"  class="inputStyle"  valueState="{oErrorModel>/mcFNameE}" valueStateText="{oErrorModel>/mcFNameM}" liveChange="fnLiveInputValueChange"></Input>
+								</VBox>
+								<VBox>
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>lastName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>lastName}&#10;{i18n>lastName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/mainContact/lastName}" enabled="{oEnableMdl>/mainContactlastNameEnb}" class="inputStyle"  valueState="{oErrorModel>/mcLNameE}" valueStateText="{oErrorModel>/mcLNameM}" liveChange="fnLiveInputValueChange"></Input>
+								</VBox>
+								<VBox>
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>jobTitle}:${oi18n_En>jobTitle} +'&#10;' + ${i18n>jobTitle}}" class="fontStyle"></Label> -->
+                                    <Label text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+									<Input value="{oDataModel>/surveyInfoDto/mainContact/jobTitle}" enabled="{oEnableMdl>/mainContactjobTitleEnb}" class="inputStyle"  valueState="{oErrorModel>/mcJobTitleE}" valueStateText="{oErrorModel>/mcJobTitleM}" liveChange="fnLiveInputValueChange"></Input>
+								</VBox>
+								<VBox>
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input maxLength="242" value="{oDataModel>/surveyInfoDto/mainContact/email}" enabled="{oEnableMdl>/mainContactemailEnb}" class="inputStyle"  valueState="{oErrorModel>/mcEmailE}" valueStateText="{oErrorModel>/mcEmailM}" liveChange="fnRemoveSpace" change="fnLiveEmailNotJValid"></Input>
+								</VBox>
+    
+                                <VBox>
+									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
+									<VBox>
+                                        <ComboBox width="100%" items="{oLookUpModel>/countryContactCode}" showSecondaryValues="true" filterSecondaryValues="false" value="{oVisibilityModel>/mainContactContactCode}" selectedKey="{oDataModel>/surveyInfoDto/mainContact/countryContactCode}" enabled="{oEnableMdl>/mainContactcountryContactCodeEnb}" class="inputStyle" valueState="{oErrorModel>/mcCountryContactCodeE}" valueStateText="{oErrorModel>/mcCountryContactCodeM}" change="fnLiveValueCountryCodeChange">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                        </ComboBox>
+                                    </VBox>
+                                    <layoutData>
+                                    <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                </VBox>
+								<VBox>
+                                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" wrapping="true" class="fontStyle" required="true"></Label>
+									<Input maxLength="31" class="inputStyle" value="{oDataModel>/surveyInfoDto/mainContact/contact}" enabled="{oEnableMdl>/mainContactcontactEnb}" valueState="{oErrorModel>/mcContE}" valueStateText="{oErrorModel>/mcContM}" liveChange="fnLiveInputNumericValueChange"></Input>
+                                    <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
+                                    <layoutData>
+                                        <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+                                    </layoutData>
+                                </VBox>
+                                <VBox>
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>extension}:${oi18n_En>extension} +'&#10;' + ${i18n>extension}}" class="fontStyle"></Label> -->
+                                    <Label text="{i18n>extension}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" ></Label>
+                                    <Label text="{oi18n_En>extension}&#10;{i18n>extension}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+									<Input maxLength="11" value="{oDataModel>/surveyInfoDto/mainContact/extension}" enabled="{oEnableMdl>/mainContactextensionEnb}" class="inputStyle" liveChange="fnLiveInputValueChange"></Input>
+                                  
+								</VBox>
+                                <VBox>
+									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
+									<VBox>
+                                        <ComboBox width="100%" items="{oLookUpModel>/countryContactCode}" showSecondaryValues="true" filterSecondaryValues="false"  value="{oVisibilityModel>/mainContactMobileCode}" selectedKey="{oDataModel>/surveyInfoDto/mainContact/countryMobileCode}" enabled="{oEnableMdl>/mainContactcountryContactCodeEnb}" class="inputStyle" valueState="{oErrorModel>/mcCountryContactCodeMobE}" valueStateText="{oErrorModel>/mcCountryContactCodeMobM}" change="fnLiveValueCountryCodeChange">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                        </ComboBox>
+                                    </VBox>
+                                    <layoutData>
+                                    <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                </VBox>
+								<VBox>
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>mobPhone}:${oi18n_En>mobPhone} +'&#10;' + ${i18n>mobPhone}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>mobPhone}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/mainContact/mobile}" enabled="{oEnableMdl>/mainContactmobileEnb}" class="inputStyle"  valueState="{oErrorModel>/mcPhoneE}" valueStateText="{oErrorModel>/mcPhoneM}" liveChange="fnLiveInputNumericValueChange"></Input>
+                                     <layoutData>
+                                        <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+                                    </layoutData>
+								</VBox>
+								
+							</l:Grid>
+						</l:VerticalLayout>
+                        </Panel>
+                        <l:VerticalLayout width="100%">
+							<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>altCompanyContact}:${oi18n_En>altCompanyContact} +'/&#160;' + ${i18n>altCompanyContact}}" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+                            <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
+								<VBox>
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>firstName}&#10;{i18n>firstName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/altContact/firstName}" enabled="{oEnableMdl>/altContactfirstNameEnb}" valueState="{oErrorModel>/altNameE}" valueStateText="{oErrorModel>/altNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input>
+     	
+								</VBox>
+								<VBox >
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'&#10;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>lastName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>lastName}&#10;{i18n>lastName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input maxLength="31" value="{oDataModel>/surveyInfoDto/altContact/lastName}"  enabled="{oEnableMdl>/altContactlastNameEnb}" valueState="{oErrorModel>/altLNameE}" valueStateText="{oErrorModel>/altLNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+							
+                                </VBox>
+								<VBox >
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>jobTitle}:${oi18n_En>jobTitle} +'&#10;' + ${i18n>jobTitle}}" class="fontStyle"></Label> -->
+                                    <Label text="{i18n>jobTitle}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>jobTitle}&#10;{i18n>jobTitle}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+									<Input value="{oDataModel>/surveyInfoDto/altContact/jobTitle}" enabled="{oEnableMdl>/altContactjobTitleEnb}" liveChange="fnValueChange"  valueState="None" class="inputStyle"></Input>
+									
+                                </VBox>
+								<VBox >
+									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'&#10;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label> -->
+                                    <Label text="{i18n>eMail}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
+                                    <Label text="{oi18n_En>eMail}&#10;{i18n>eMail}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+									<Input maxLength="241" value="{oDataModel>/surveyInfoDto/altContact/email}" enabled="{oEnableMdl>/altContactemailEnb}"  valueState="{oErrorModel>/altEmailE}" valueStateText="{oErrorModel>/altEmailM}" liveChange="fnRemoveSpace" change="fnLiveEmailNotJValid" class="inputStyle"></Input>
+										
+                                </VBox>
+                                <VBox>
+									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
+									 <VBox>
+                                        <ComboBox width="100%" items="{oLookUpModel>/countryContactCode}" showSecondaryValues="true" filterSecondaryValues="false" value="{oVisibilityModel>/altContactContactCode}" selectedKey="{oDataModel>/surveyInfoDto/altContact/countryContactCode}" enabled="{oEnableMdl>/altContactCountryContactCodeEnb}" class="inputStyle" valueState="{oErrorModel>/altCountryContactCodeE}" valueStateText="{oErrorModel>/altCountryContactCodeM}" change="fnLiveValueCountryCodeChange">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                        </ComboBox>
+                                    </VBox>
+                                  <layoutData>
+                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                       </VBox>
+								<VBox>
+                                <Label text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true"></Label>
+                                <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+								<Input maxLength="31" value="{oDataModel>/surveyInfoDto/altContact/contact}" enabled="{oEnableMdl>/altContactcontactEnb}" valueState="{oErrorModel>/altContactE}" valueStateText="{oErrorModel>/altContactM}" liveChange="fnLiveInputNumericValueChange"  class="inputStyle"></Input>
+                                <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
+                                <layoutData>
+                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
+                                        </VBox> 
+                               
+                                <!-- <VBox>
+                                
+                                <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'/&#160;' + ${i18n>phoneNum}}" class="fontStyle" required="true"></Label>
+											<Input maxLength="31" value="{oDataModel>/surveyInfoDto/altContact/contact}" enabled="{oEnableMdl>/altContactcontactEnb}" valueState="{oErrorModel>/altContactE}" valueStateText="{oErrorModel>/altContactM}" liveChange="fnLiveInputValueChange"  class="inputStyle"></Input>
+                                
+                            
+                                        </VBox> -->
+                                        <!-- <VBox>
+                                <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>companyWeb}:${oi18n_En>companyWeb} +'/&#160;' + ${i18n>companyWeb}}" class="fontStyle"></Label>
+											<Input  class="inputStyle" enabled="{oEnableMdl>/altContactcompanyWebEnb}"></Input>
+                                
+                            
+                                        </VBox>  -->
+                                                       
+							</l:Grid>
+                            
+						</l:VerticalLayout>
+                      
+                 
+					</WizardStep>
+					<WizardStep id="businessPartnerInfo"  title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBusPart}:${oi18n_En>wizardStepBusPart} +'/&#160;' +${i18n>wizardStepBusPart}}"
+						activate="onActivateBPInfo" nextStep="contactInfo" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
+					<core:Fragment fragmentName="com.jabil.surveyform.fragments.businessPartnerInfo" type="XML"/>
+					</WizardStep>
+                    <WizardStep id="contactInfo" nextStep="ownerShipInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcontactInfo}:${oi18n_En>wizardStepcontactInfo} +'/&#160;' +${i18n>wizardStepcontactInfo}}"
+						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" >
+						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyContactInfo" type="XML"/>
+					</WizardStep>
+					<WizardStep id="ownerShipInfo" nextStep="companyInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepOwnInfo}:${oi18n_En>wizardStepOwnInfo} +'/&#160;' +${i18n>wizardStepOwnInfo}}" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop"
+						>
+						<core:Fragment fragmentName="com.jabil.surveyform.fragments.ownershipInfo" type="XML"/>
+					</WizardStep>
+					<WizardStep id="companyInfo" nextStep="bankInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepCompanyInfo}:${oi18n_En>wizardStepCompanyInfo} +'/&#160;' +${i18n>wizardStepCompanyInfo}}"
+						 activate="onActivateCompanyInfo" complete="onCompleteCompanyInfo" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" >
+						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyInfo" type="XML"/>
+					</WizardStep>
+					<WizardStep id="bankInfo" nextStep="shippingInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBankInfo}:${oi18n_En>wizardStepBankInfo} +'/&#160;' +${i18n>wizardStepBankInfo}}"
+                     class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" activate="fnActivateBankScreen"
+						>
+						<core:Fragment fragmentName="com.jabil.surveyform.fragments.bankInfo" type="XML"/>
+					</WizardStep>
+                    <WizardStep id="shippingInfo" nextStep="prodAndServInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepShippingInfo}:${oi18n_En>wizardStepShippingInfo} +'/&#160;' +${i18n>wizardStepShippingInfo}}" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop"
+						activate="onActivateShippingInfo">
+						<core:Fragment fragmentName="com.jabil.surveyform.fragments.shippingInfo" type="XML"/>
+					</WizardStep>
+					<WizardStep id="prodAndServInfo" nextStep="cComplianceInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepProductsAndServices}:${oi18n_En>wizardStepProductsAndServices} +'/&#160;' +${i18n>wizardStepProductsAndServices}}"
+						activate="onActivateOperAndManuServ" class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
+						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyProductsAndServices" type="XML"/>
+					</WizardStep>
+					
+					<!-- <WizardStep id="financialInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepFinancialInfo}:${oi18n_En>wizardStepFinancialInfo} +'/&#160;' +${i18n>wizardStepFinancialInfo}}"
+						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
+						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyFinInfo" type="XML"/>
+					</WizardStep> -->
+					<WizardStep id="cComplianceInfo" nextStep="cyberSecInfo" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcompanyCompliance}:${oi18n_En>wizardStepcompanyCompliance} +'/&#160;' +${i18n>wizardStepcompanyCompliance}}"
+						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
+						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyCompliance" type="XML"/>
+					</WizardStep>
+					<WizardStep id="cyberSecInfo" nextStep="previewRegForm" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepcyberSecurityInfo}:${oi18n_En>wizardStepcyberSecurityInfo} +'/&#160;' +${i18n>wizardStepcyberSecurityInfo}}"
+						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop">
+						<core:Fragment fragmentName="com.jabil.surveyform.fragments.companyCyberSecurityInfo" type="XML"/>
+					</WizardStep>
+                    
+                    	<WizardStep id="previewRegForm" title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>PreviewRegForm}:${oi18n_En>PreviewRegForm} +'/&#160;' +${i18n>PreviewRegForm}}"
+						class="titleDisplay stepBackground sapUiContentPadding sapuiMediumMarginTop" activate="onActivatePreview" complete="onCompletePreview">
+						<core:Fragment fragmentName="com.jabil.surveyform.fragments.previewRegForm" type="XML"/>
+					</WizardStep>
+                    
+				</Wizard>
+				<footer>
+					<Bar class="barStyle">
+                    <contentLeft>
+<HBox class="sapUiSmallMarginBegin" visible="{oVisibilityModel>/_finalStepAccept}">
+                                      	<CheckBox id="formAcceptanceId" selected="{oDataModel>/isFormAccepted}" visible="{oVisibilityModel>/_finalStepAccept}" enabled="{oEnableMdl>/isFormAcceptedEnb}" class="sapUiSizeCompact sapUiTinyMarginTop inputStyle checkBoxStyle" />
+										<Label visible="{oVisibilityModel>/_finalStepAccept}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>iAcknowledgeComplete}:${oi18n_En>iAcknowledgeComplete} + '/&#160;' + ${i18n>iAcknowledgeComplete}}" wrapping="true" class="sapUiSmallMarginTop"></Label>
+                                  <layoutData>
+						<FlexItemData growFactor="1" /> 
+					</layoutData>
+                                        </HBox>
+                    </contentLeft>
+						<contentRight>
+                        <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>back}:${oi18n_En>back} + '/&#160;' + ${i18n>back}}"  enabled="{=${oVisibilityModel>/claimedTask} &amp;&amp; ${oEnableMdl>/BackBtnEnb} || ${oVisibilityModel>/isTaskCompleted} &amp;&amp; ${oEnableMdl>/BackBtnEnb}}"  visible="{=${oVisibilityModel>/_BackButton} &amp;&amp; ${oEnableMdl>/BackBtnEnb}}"  class="backButton sapUiSizeCompact sapUiTinyMarginEnd" press="previousStep"></Button>
+							<Button id="saveS" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>save}:${oi18n_En>save} + '/&#160;' + ${i18n>save}}" visible="{oVisibilityModel>/_SaveAsDraftButton}" enabled="{=${oDataModel>/surveyInfoDto/isAuthority} === true &amp;&amp; ${oVisibilityModel>/claimedTask}}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="onSaveAsDraft"></Button>
+                           <!-- <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>save}:${oi18n_En>save} + '/&#160;' + ${i18n>save}}" visible="true" enabled="false" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="onSaveAsDraft"></Button> -->
+                            <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>forward}:${oi18n_En>forward} + '/&#160;' + ${i18n>forward}}" enabled="{oVisibilityModel>/claimedTask}" visible="{=${oDataModel>/surveyInfoDto/isAuthority} === false}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="fnSupplierForward"></Button>
+                            <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>next}:${oi18n_En>next} + '/&#160;' + ${i18n>next}}"  visible="{=!${oVisibilityModel>/_finalStep}}" enabled="{=${oDataModel>/surveyInfoDto/isAuthority} &amp;&amp; ${oVisibilityModel>/claimedTask} || ${oVisibilityModel>/isTaskCompleted}}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="nextStep"></Button>
+                            
+							<!-- <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>next}:${oi18n_En>next} + '/&#160;' + ${i18n>next}}" visible="{=!${oVisibilityModel>/_finalStep} &amp;&amp; ${oDataModel>/surveyInfoDto/isJabilMainContact}}" enabled="{oDataModel>/surveyInfoDto/isAuthority}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="nextStep"></Button> -->
+							<Button id="submitS" enabled="{=${oVisibilityModel>/claimedTask} &amp;&amp; ${oEnableMdl>/submitBtnEnb}}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>submit}:${oi18n_En>submit} + '/&#160;' + ${i18n>submit}}" visible="{oVisibilityModel>/_finalStepSave}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="onSaveAsDraft"></Button>
+                           	<Button text="{i18n>Reject}" enabled="{oVisibilityModel>/claimedTask}" press="fnOpenBankCommentsReject" visible="{oVisibilityModel>/_FinanceReview}" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />
+				
+                <Button text="{i18n>Approve}" enabled="{{oVisibilityModel>/claimedTask}" visible="{oVisibilityModel>/_FinanceReview}"  type="Accept" press="fnOpenBankCommentsApp" class="cl_BPCDraft sapUiSmallMarginEnd sapUiSizeCompact" />
+                            <!-- <Button text="{oi18n_En>back}/&#160;{i18n>back}" class="sapUiSizeCompact sapUiTinyMarginEnd" press="previousStep"></Button>
+							<Button text="{oi18n_En>save}/&#160;{i18n>save}"  enabled="{oDataModel>/form/authority}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd"></Button>
+							<Button text="{oi18n_En>next}/&#160;{i18n>next}" enabled="{oDataModel>/form/authority}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" press="nextStep"></Button> -->
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		<!-- </pages>
+	</NavContainer> -->
+</mvc:View>

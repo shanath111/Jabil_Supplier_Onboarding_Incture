@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:g="sap.f" xmlns:grid="sap.ui.layout.cssgrid" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified">
+     <l:VerticalLayout width="100%" class="sapUiSizeCompact">
+<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>companyInfoVerbiage}:${oi18n_En>companyInfoVerbiage} + '/ ' +${i18n>companyInfoVerbiage}}" class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginTop" wrapping="true"/>
+     <Label text="{= ${oVisibilityModel>/isdefaultLan}?'- ' + ${oi18n_En>companyInfoVerbiageText1}:'- ' + ${oi18n_En>companyInfoVerbiageText1} + '/ ' +${i18n>companyInfoVerbiageText1}}" class="fontStyle sapUiLargeMarginBegin sapUiMediumMarginTop" wrapping="true"/>
+     <Label text="{= ${oVisibilityModel>/isdefaultLan}?'- ' + ${oi18n_En>companyInfoVerbiageText2}:'- ' + ${oi18n_En>companyInfoVerbiageText2} + '/ ' +${i18n>companyInfoVerbiageText2}}" class="fontStyle sapUiLargeMarginBegin sapUiTinyMarginTop sapUiSmallMarginBottom" wrapping="true"/>
+     </l:VerticalLayout>
+   <l:VerticalLayout width="100%" class="sapUiSizeCompact" enabled="{=${oEnableMdl>/orderfromAddrEnb} &amp;&amp; ${companyInfoModel>/isOrderFromAddress}}">
+    <CheckBox id="orderfromAddrCheckBoxId" wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>orderfromAddr}:${oi18n_En>orderfromAddr}+ '/ ' +${i18n>orderfromAddr}}" selected="{companyInfoModel>/isOrderFromAddress}"  class="fontBold inputStyle sapUiTinyMarginTop sapUiTinyMarginBottom" />
+<!--      
+       <VBox fitContainer="true" width="49%"  visible="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} &amp;&amp; ${oEnableMdl>/orderFromAddrSearchVsb}}" class="fontStyle sapUiTinyMarginBegin">
+         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>address}:${oi18n_En>address} + '&#xA;' +${i18n>address}}" class="fontStyle sapUiTinyMarginTop" wrapping="true"></Label>
+                                 	<html:input placeholder="Search here for Address" width="50%" type="text" id="iOAddress" class="cl_HTMLInput" />
+                                <layoutData>
+                        <FlexItemData growFactor="1"/>
+                     </layoutData>
+
+        </VBox> -->
+          <l:Grid containerQuery="true" visible="{companyInfoModel>/isOrderFromAddress}" defaultSpan="XL12 L12 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+          <VBox>
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>preferredPaymentTermsQ}:${oi18n_En>preferredPaymentTermsQ}+ '&#xA;' +${i18n>preferredPaymentTermsQ}}" wrapping="true" class="fontStyleBold"/>
+            </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>preferredPaymentTerms}:${oi18n_En>preferredPaymentTerms}+ '&#xA;' +${i18n>preferredPaymentTerms}}" wrapping="true" required="true" />
+          <ComboBox  width="100%" items="{oLookUpModel>/PaymentTerm}" showSecondaryValues="true" filterSecondaryValues="true"  selectedKey="{companyInfoModel>/paymentTerms}" enabled="true" valueState="{oErrorModel>/paymentTermOFAE}" valueStateText="{oErrorModel>/paymentTermOFAM}" selectionChange="fnLiveValueChange" placeholder="{i18n>select}" class="inputStyle">
+                     <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+                       <layoutData>
+                                  <l:GridData spanM="3" spanL="3" spanXL="3"></l:GridData></layoutData>
+         </VBox>
+         </l:Grid>
+      <l:Grid containerQuery="true" visible="{companyInfoModel>/isOrderFromAddress}" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey}+ '&#xA;' +${i18n>countrykey}}" wrapping="true" required="true" />
+           <ComboBox width="100%" items="{oLookUpModel>/Country}" showSecondaryValues="true" filterSecondaryValues="true"  placeholder="{i18n>select}" value="{companyInfoModel>/oCountry}" selectedKey="{companyInfoModel>/oCountryC}" valueState="{oErrorModel>/oFACounE}" valueStateText="{oErrorModel>/oFACounM}" selectionChange="fnLoadStateOFA" change="fnLiveValueChange" class="inputStyle">
+                                    <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                    </ComboBox> 
+            <!-- <html:input type="text" id="iCountry" class="cl_HTMLInput" /> -->
+         </VBox>
+         
+       <VBox visible="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} &amp;&amp; ${oEnableMdl>/orderFromAddrSearchVsb}}" class="fontStyle">
+         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>address}:${oi18n_En>address} + '&#xA;' +${i18n>address}}" class="fontStyle" wrapping="true"></Label>
+                                 	<html:input placeholder=" Search here for Address" width="50%" type="text" id="iOAddress" class="cl_HTMLInput" />
+                                <!-- <layoutData>
+                        <FlexItemData growFactor="1"/>
+                     </layoutData> -->
+
+                        <layoutData>
+                <l:GridData spanM="6" spanL="6" spanS="6" spanXL="6" visibleM= "{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} &amp;&amp; ${oEnableMdl>/orderFromAddrSearchVsb}}" visibleS="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} &amp;&amp; ${oEnableMdl>/orderFromAddrSearchVsb}}" 
+                visibleL="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} &amp;&amp; ${oEnableMdl>/orderFromAddrSearchVsb}}" visibleXL="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} &amp;&amp; ${oEnableMdl>/orderFromAddrSearchVsb}}"/>
+                </layoutData>
+
+        </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>name}:${oi18n_En>name}+ '&#xA;' +${i18n>name}}" wrapping="true" required="true" />
+            <Input maxLength="36" value="{companyInfoModel>/oName}" valueState="{oErrorModel>/oFANameE}" valueStateText="{oErrorModel>/oFANameM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+          <layoutData>
+                <l:GridData  linebreak= "{=(${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress}) ? (${oEnableMdl>/orderFromAddrSearchVsb}!== false ? true : false): false}"/>
+                </layoutData>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1}+ '&#xA;' +${i18n>addressL1}}" wrapping="true" required="true" />
+         <Input value="{companyInfoModel>/oAddress1}" valueState="{oErrorModel>/oFAAddr1E}" valueStateText="{oErrorModel>/oFAAddr1M}" liveChange="fnLiveInputValueChange" class="inputStyle" maxLength="61"></Input>
+            <!-- <html:input type="text" id="iAddress1" class="cl_HTMLInput" /> -->
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2}+ '&#xA;' +${i18n>addressL2}}" wrapping="true" />
+            <Input value="{companyInfoModel>/oAddress2}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input>
+            <!-- <html:input type="text" id="iAddress2" class="cl_HTMLInput" /> -->
+         </VBox>
+          <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL3}:${oi18n_En>addressL3}+ '&#xA;' +${i18n>addressL3}}" wrapping="true" />
+            <Input value="{companyInfoModel>/oAddress3}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input>
+            
+            
+         </VBox>
+           <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL4}:${oi18n_En>addressL4}+ '&#xA;' +${i18n>addressL4}}" wrapping="true" />
+       <Input value="{companyInfoModel>/oAddress4}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input>
+         </VBox>
+           <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL5}:${oi18n_En>addressL5}+ '&#xA;' +${i18n>addressL5}}" wrapping="true" />
+  
+               <Input value="{companyInfoModel>/oAddress5}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dist}:${oi18n_En>dist}+ '&#xA;' +${i18n>dist}}" wrapping="true" required="false" />
+            <Input maxLength="41" value="{companyInfoModel>/oDist}" class="inputStyle" liveChange="fnLiveInputValueChange"/>
+           
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postalCode}:${oi18n_En>postalCode}+ '&#xA;' +${i18n>postalCode}}" wrapping="true" required="true" />
+              <Input maxLength="{oLookUpModel>/PostalCodeValidationOFA/postalCodeLength}" value="{companyInfoModel>/oPostalCode}" valueState="{oErrorModel>/oFAPostCdE}" valueStateText="{oErrorModel>/oFAPostCdM}" liveChange="fnValueChange" change="fnVerifyPostalCodeOFA" class="inputStyle"></Input>
+            <!-- <html:input type="text" id="iPostal" class="cl_HTMLInput" /> -->
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>city}:${oi18n_En>city}+ '&#xA;' +${i18n>city}}" wrapping="true" required="true" />
+           <Input maxLength="41" value="{companyInfoModel>/oCity}" valueState="{oErrorModel>/oFACityE}" valueStateText="{oErrorModel>/oFACityM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+            <!-- <html:input type="text" id="iCity" class="cl_HTMLInput" /> -->
+             <!-- <layoutData>
+                                                <l:GridData linebreak="true"></l:GridData>
+                                            </layoutData> -->
+         </VBox>
+        
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>region}:${oi18n_En>region}+ '&#xA;' +${i18n>region}}" wrapping="true" required="false" />
+             <ComboBox width="100%" value="{companyInfoModel>/oRegion}" selectedKey="{companyInfoModel>/oRegionC}" items="{oLookUpModel>/StateOFA}" showSecondaryValues="true" filterSecondaryValues="true" change="fnLiveValueChange" placeholder="{i18n>select}" class="inputStyle">
+									 <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+            <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selectNAText}:${oi18n_En>selectNAText}+ '&#10;' +${i18n>selectNAText}}" textAlign="End" class="disabledFontClr"/>
+            <!-- <html:input type="text" id="iState" class="cl_HTMLInput" /> -->
+         </VBox>
+         <VBox class="fontStyle">
+									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
+									 <VBox>
+										<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="false" items="{oLookUpModel>/countryContactCode}" value="{oVisibilityModel>/OFAContactCode}" selectedKey="{companyInfoModel>/oTeleNumCode}" class="inputStyle" valueState="{oErrorModel>/oFATeleNumCodeE}" valueStateText="{oErrorModel>/oFATeleNumCodeM}" change="fnLiveValueCountryCodeChange">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                        </ComboBox>
+                                    </VBox>
+                                  <layoutData>
+                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                       </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>teleNum}:${oi18n_En>teleNum}+ '&#xA;' +${i18n>teleNum}}" wrapping="true" required="true" />
+            <Input maxLength="31" value="{companyInfoModel>/oTeleNum}" valueState="{oErrorModel>/oFATeleNumE}" valueStateText="{oErrorModel>/oFATeleNumM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle" />
+           <layoutData>
+                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>faxNum}:${oi18n_En>faxNum}+ '&#xA;'+${i18n>faxNum}}" wrapping="true" />
+            <Input maxLength="31" value="{companyInfoModel>/oFaxNum}" class="inputStyle" liveChange="fnLiveInputValueChange" />
+             <layoutData>
+                               <l:GridData linebreak = "true"></l:GridData></layoutData>
+         </VBox>
+         <!-- <VBox class="fontStyle">
+								<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postOfcBox}:${oi18n_En>postOfcBox}+ '&#10;' +${i18n>postOfcBox}}" wrapping="true"></Label>
+									<Input value="{companyInfoModel>/oPostOffBox}" class="inputStyle"></Input>  -->
+         <!-- <html:input type="text" id="iPostOfBx"   class="cl_HTMLInput" ></html:input>  -->
+         <!-- </VBox>
+                                 <VBox class="fontStyle">
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postOfcBoxZipCode}:${oi18n_En>postOfcBoxZipCode}+ '&#10;' +${i18n>postOfcBoxZipCode}}" wrapping="true"></Label>
+									<Input value="{companyInfoModel>/oPostOffZipCode}" class="inputStyle"></Input> -->
+         <!-- <html:input type="text" id="iPostOfZip"   class="cl_HTMLInput" ></html:input>  -->
+         <!-- </VBox> -->
+      </l:Grid>
+   </l:VerticalLayout>
+ 
+   <l:VerticalLayout width="100%" class="sapUiSizeCompact" enabled="{=${oEnableMdl>/remitToAddrEnb} &amp;&amp; ${remitModel>/isRemitToAddress}}">
+        <CheckBox wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>remittoAddr}:${oi18n_En>remittoAddr}+ '/ ' +${i18n>remittoAddr}}" selected="{remitModel>/isRemitToAddress}" class="fontBold inputStyle sapUiTinyMarginTop sapUiTinyMarginBottom" />
+      
+      <l:Grid containerQuery="true" visible="{remitModel>/isRemitToAddress}" defaultSpan="XL12 L12 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+         <VBox>
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>preferredPaymentTermsQ}:${oi18n_En>preferredPaymentTermsQ}+ '&#xA;' +${i18n>preferredPaymentTermsQ}}" wrapping="true" class="fontStyleBold" />
+            </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>preferredPaymentTerms}:${oi18n_En>preferredPaymentTerms}+ '&#xA;' +${i18n>preferredPaymentTerms}}" wrapping="true" required="true" />
+          <ComboBox  width="100%" items="{oLookUpModel>/PaymentTerm}" showSecondaryValues="true" filterSecondaryValues="true"  selectedKey="{remitModel>/paymentTerms}" enabled="true" valueState="{oErrorModel>/paymentTermRTAE}" valueStateText="{oErrorModel>/paymentTermRTAM}" selectionChange="fnLiveValueChange" placeholder="{i18n>select}" class="inputStyle">
+                     <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+                       <layoutData>
+                                  <l:GridData spanM="3" spanL="3" spanXL="3"></l:GridData></layoutData>
+         </VBox>
+         </l:Grid>
+                                 
+      <l:Grid visible="{remitModel>/isRemitToAddress}" containerQuery="true"  defaultSpan="XL3 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+        <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey}+ '&#xA;' +${i18n>countrykey}}" wrapping="true" required="true" />
+            <ComboBox width="100%" value="{remitModel>/rCountry}" selectedKey="{remitModel>/rCountryC}" items="{oLookUpModel>/Country}" filterSecondaryValues="true" showSecondaryValues="true" valueState="{oErrorModel>/rTACounE}" valueStateText="{oErrorModel>/rTACounM}" selectionChange="fnLoadStateRTA" change="fnLiveValueChange" placeholder="{i18n>select}" class="inputStyle">
+                                    <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                                    </ComboBox>
+            <!-- <html:input type="text" id="iCountryR" class="cl_HTMLInput"/> -->
+         </VBox>
+          <VBox class="fontStyle">
+        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>address}:${oi18n_En>address} + '&#xA;' +${i18n>address}}" class="fontStyle" wrapping="true"></Label>
+                                 <html:input placeholder=" Search here for Address" type="text" id="iRAddress" class="cl_HTMLInput" />
+                               <!-- <layoutData>
+                        <FlexItemData growFactor="1" />
+                     </layoutData> -->
+                       <layoutData>
+                <l:GridData spanM="6" spanL="6" spanS="6" spanXL="6" visibleM= "{=${remitModel>/rCountry} === 'USA' &amp;&amp; ${remitModel>/isRemitToAddress} &amp;&amp;  ${oEnableMdl>/remitToAddrSearchVsb}}" visibleS="{=${remitModel>/rCountry} === 'USA' &amp;&amp; ${remitModel>/isRemitToAddress} &amp;&amp;  ${oEnableMdl>/remitToAddrSearchVsb}}" 
+                visibleL="{=${remitModel>/rCountry} === 'USA' &amp;&amp; ${remitModel>/isRemitToAddress} &amp;&amp;  ${oEnableMdl>/remitToAddrSearchVsb}}" visibleXL="{=${remitModel>/rCountry} === 'USA' &amp;&amp; ${remitModel>/isRemitToAddress} &amp;&amp;  ${oEnableMdl>/remitToAddrSearchVsb}}"/>
+                </layoutData>
+                                 </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>name}:${oi18n_En>name} + '&#xA;' +${i18n>name}}" wrapping="true" required="true" />
+            <Input maxLength="36" value="{remitModel>/rName}" valueState="{oErrorModel>/rTANameE}" valueStateText="{oErrorModel>/rTANameM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+         <layoutData>
+                <l:GridData  linebreak= "{=(${remitModel>/rCountry} === 'USA' &amp;&amp; ${remitModel>/isRemitToAddress}) ? (${oEnableMdl>/remitToAddrSearchVsb} !== false ? true : false): false}"/>
+                </layoutData>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL1}:${oi18n_En>addressL1}+ '&#xA;' +${i18n>addressL1}}" wrapping="true" required="true" />
+          <Input value="{remitModel>/rAddress1}" valueState="{oErrorModel>/rTAAddr1E}" valueStateText="{oErrorModel>/rTAAddr1M}" liveChange="fnLiveInputValueChange" class="inputStyle" maxLength="61"></Input>
+            <!-- <html:input type="text" id="iAddress1R" class="cl_HTMLInput" /> -->
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL2}:${oi18n_En>addressL2}+ '&#xA;' +${i18n>addressL2}}" wrapping="true" />
+            <Input value="{remitModel>/rAddress2}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input> 
+            <!-- <html:input type="text" id="iAddress2R" class="cl_HTMLInput" /> -->
+         </VBox>
+          <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL3}:${oi18n_En>addressL3}+ '&#xA;' +${i18n>addressL3}}" wrapping="true" />
+            <!-- <html:input type="text" id="iAddress3R" class="cl_HTMLInput" maxLength="35"/> -->
+            <Input value="{remitModel>/rAddress3}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input>
+         </VBox>
+           <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL4}:${oi18n_En>addressL4}+ '&#xA;' +${i18n>addressL4}}" wrapping="true" />
+            <Input value="{remitModel>/rAddress4}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input>
+         </VBox>
+           <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressL5}:${oi18n_En>addressL5}+ '&#xA;' +${i18n>addressL5}}" wrapping="true" />
+            <Input value="{remitModel>/rAddress5}" class="inputStyle" maxLength="41" liveChange="fnLiveInputValueChange"></Input>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dist}:${oi18n_En>dist}+'&#xA;'+${i18n>dist}}" wrapping="true" required="false" />
+            <Input maxLength="41" value="{remitModel>/rDist}" enabled="{oEnableMdl>/rNameEnb}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+            <!-- <ComboBox width="100%" value="{oDataModel>/comInfoDto/address/1/postal/0/district}" placeholder="{i18n>select}" class="inputStyle"></ComboBox> -->
+            <!-- <html:input type="text" id="iDistR"   class="cl_HTMLInput" ></html:input>  -->
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postalCode}:${oi18n_En>postalCode}+'&#xA;'+${i18n>postalCode}}" wrapping="true" required="true" />
+            <Input maxLength="{oLookUpModel>/PostalCodeValidationRTA/postalCodeLength}" value="{remitModel>/rPostalCode}" valueState="{oErrorModel>/rTAPostCdE}" valueStateText="{oErrorModel>/rTAPostCdM}" liveChange="fnValueChange" change="fnVerifyPostalCodeRTA" class="inputStyle"></Input>
+            <!-- <html:input type="text" id="iPostalR" class="cl_HTMLInput" /> -->
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>city}:${oi18n_En>city}+'&#xA;'+${i18n>city}}" wrapping="true" required="true" />
+            <Input maxLength="41" value="{remitModel>/rCity}" valueState="{oErrorModel>/rTACityE}" valueStateText="{oErrorModel>/rTACityM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+            <!-- <html:input type="text" id="iCityR" class="cl_HTMLInput" /> -->
+              <!-- <layoutData>
+                                                <l:GridData linebreak="true"></l:GridData>
+                                            </layoutData> -->
+         </VBox>
+        
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>region}:${oi18n_En>region}+'&#xA;'+${i18n>region}}" wrapping="true" required="false" />
+            <ComboBox width="100%" value="{remitModel>/rRegion}" selectedKey="{remitModel>/rRegionC}" items="{oLookUpModel>/StateRTA}" showSecondaryValues="true" filterSecondaryValues="true" change="fnLiveValueChange" placeholder="{i18n>select}" class="inputStyle">
+									 <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+            <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selectNAText}:${oi18n_En>selectNAText}+ '&#10;' +${i18n>selectNAText}}" textAlign="End" class="disabledFontClr"/>
+            <!-- <html:input type="text" id="iStateR" value="" class="textInput cl_HTMLInput" /> -->
+         </VBox>
+          <VBox class="fontStyle">
+									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
+                                    <Label text="{oi18n_En>countryCode}&#10;{i18n>countryCode}" required="true" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle"></Label>
+									 <VBox>
+										<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="false" items="{oLookUpModel>/countryContactCode}" value="{oVisibilityModel>/RTAContactCode}" selectedKey="{remitModel>/rTeleNumCode}" enabled="{oEnableMdl>/rTeleNumEnb}"  class="inputStyle" valueState="{oErrorModel>/rTATeleNumCodeE}" valueStateText="{oErrorModel>/rTATeleNumCodeM}" change="fnLiveValueCountryCodeChange">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}" />
+                                        </ComboBox>
+                                    </VBox>
+                                  <layoutData>
+                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                       </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>teleNum}:${oi18n_En>teleNum}+'&#xA;'+${i18n>teleNum}}" wrapping="true" required="true" />
+            <Input maxLength="31" value="{remitModel>/rTeleNum}" enabled="{oEnableMdl>/rTeleNumEnb}" valueState="{oErrorModel>/rTATeleNumE}" valueStateText="{oErrorModel>/rTATeleNumM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle" />
+            <!-- <html:input type="text" id="iTeleNumR"   class="cl_HTMLInput" ></html:input>  -->
+            <layoutData>
+                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>faxNum}:${oi18n_En>faxNum}+'&#xA;'+${i18n>faxNum}}" wrapping="true" />
+            <Input maxLength="31" value="{remitModel>/rFaxNum}" enabled="{oEnableMdl>/rFaxNumEnb}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+            <!-- <html:input type="text" id="iFaxNumR"   class="cl_HTMLInput" ></html:input>  -->
+             <layoutData>
+                               <l:GridData linebreak = "true"></l:GridData></layoutData>
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postOfcBox}:${oi18n_En>postOfcBox}+'&#xA;'+${i18n>postOfcBox}}" wrapping="true" />
+            <Input maxLength="41" value="{remitModel>/rPostOffBox}" enabled="{oEnableMdl>/rPostOffBoxEnb}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+           
+         </VBox>
+         <VBox class="fontStyle">
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postOfcBoxZipCode}:${oi18n_En>postOfcBoxZipCode}+'&#xA;'+${i18n>postOfcBoxZipCode}}" wrapping="true" />
+            <Input maxLength="11" value="{remitModel>/rPostOffZipCode}" enabled="{oEnableMdl>/rPostOffZipCodeEnb}" liveChange="fnLiveInputValueChange" class="inputStyle" />
+            <!-- <html:input type="text" id="iPostOfZipR"   class="cl_HTMLInput" ></html:input>  -->
+         </VBox>
+      </l:Grid>
+   </l:VerticalLayout>
+   <!-- <VBox visible="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} ? true: false}" class="fontStyle sapUiSizeCompact">
+      <Label required="true" labelFor="divCert" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>divCertText}:${oi18n_En>divCertText}+'/ '+${i18n>divCertText}}" wrapping="true" class="sapUiTinyMarginTop sapUiTinyMarginBegin" />
+      <RadioButtonGroup id="divCert" columns="2" class="inputStyle" selectedIndex="{=${companyInfoModel>/haveDiversityCertifications} === true? 0 :(${companyInfoModel>/haveDiversityCertifications}=== false ?1: -1)}" enabled="{oEnableMdl>/haveDiversityCertificationsEnb}"  valueState="{oErrorModel>/haveDiversityCertificationsE}" select="fnClearValueStateDiv">
+         <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes}+'/ '+${i18n>yes}}" selected="{companyInfoModel>/haveDiversityCertifications}" />
+         <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no}+'/ '+${i18n>no}}" select="fnSelectionChangeDiversity"/>
+      </RadioButtonGroup>
+      <g:GridList items="{oLookUpModel>/enterprise}" visible="{=${companyInfoModel>/haveDiversityCertifications}=== true}" class="gList sapUiTinyMarginTop sapUiSizeCompact">
+         <g:customLayout>
+            <grid:GridBasicLayout gridTemplateColumns="1fr" gridGap="0.5rem" />
+         </g:customLayout>
+         <g:GridListItem>
+            <VBox>
+               <HBox>
+                  <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/enterpriseisSelectedEnb}" />
+                  <Text text="{oLookUpModel>value}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiLargeMarginEnd" visible="{=${oLookUpModel>firstItem} ? true: false}" />
+                  <Text text="{oLookUpModel>value}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiLargeMarginEnd" visible="{=!${oLookUpModel>firstItem} ? true: false}" />
+                  <Label visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business'? true: false}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>smallBusWeb}:${oi18n_En>smallBusWeb}+'&#xA;'+${i18n>smallBusWeb}}" wrapping="true" required="true" class="fontStyle sapUiTinyMarginTop" />
+                  <Link visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business'? true: false}" text="https://www.sba.gov/" target="_blank" href="https://www.sba.gov/" wrapping="true" class="sapUiTinyMarginTop" />
+                  <VBox>
+                     <TextArea value="{oLookUpModel>otherValue}" enabled="{oEnableMdl>/enterpriseotherValueEnb}" visible="{=${oLookUpModel>value} === 'Other'? true: false}" maxLength="255" class="inputStyle inputStyleTA sapUiSizeCompact" />
+                     <layoutData>
+                        <FlexItemData growFactor="1" />
+                     </layoutData>
+                  </VBox>
+               </HBox>
+               <g:GridList items="{oLookUpModel>/smallDisadvantagedBusiness}" visible="{=${oLookUpModel>value} === 'Small Disadvantaged Business' &amp;&amp; ${oLookUpModel>isSelected}}" class="gList sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSizeCompact">
+                  <g:customLayout>
+                     <grid:GridBasicLayout gridTemplateColumns="1fr 1fr" gridGap="0.5rem" />
+                  </g:customLayout>
+                  <g:GridListItem>
+                     <CheckBox selected="{oLookUpModel>isSelected}" class="inputStyle" enabled="{oEnableMdl>/smallDisadvantagedBusinessisSelectedEnb}" />
+                     <Text text="{oLookUpModel>value}" class="fontStyle sapUiTinyMarginTop" />
+                  </g:GridListItem>
+                  <g:layoutData>
+                     <FlexItemData growFactor="1" />
+                  </g:layoutData>
+               </g:GridList>
+            </VBox>
+         </g:GridListItem>      
+      </g:GridList>
+   </VBox> -->
+  
+       <!-- <VBox>
+         <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>Attachments}:${oi18n_En>Attachments}+'/&#160;'+${i18n>Attachments}}" class="sapUiTinyMarginBegin sapUiSmallMarginTop fontBold"/>
+			<Label visible="{oVisibilityModel>/buyerSurveyAttach}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>compInfoVerbiage}:${oi18n_En>compInfoVerbiage}+ '/&#160;'+${i18n>compInfoVerbiage}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+            <HBox wrap="Wrap">
+				<u:FileUploader id="fileUploader_CO" buttonOnly="true" buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"
+					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{oEnableMdl>/companyInfoAttachmentEnb}"
+					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"></u:FileUploader>
+				<g:GridList width="auto" items="{oAttachmentList>/0/compDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">
+					<g:customLayout>
+						<grid:GridResponsiveLayout>
+							<grid:layoutS>
+								<grid:GridSettings gridTemplateColumns="1fr" gridGap="1rem"/>
+							</grid:layoutS>
+							<grid:layoutM>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr" gridGap="1rem"/>
+							</grid:layoutM>
+							<grid:layoutL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutL>
+							<grid:layoutXL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutXL>
+						</grid:GridResponsiveLayout>
+					</g:customLayout>
+					<g:GridListItem>
+						<HBox>
+							<HBox width="90%" class="sapUiTinyMarginBegin sapUiSizeCompact">
+								<core:Icon src="{path:'oAttachmentList>fileExt',formatter:'com.jabil.surveyform.formatter.formatter.mediaTypeformatter'}"
+									class="attachmentIcon sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom" size="2.5rem" color="#48639d"/>
+							<VBox>	<Text text="{oAttachmentList>name}" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+						<Text text="{oAttachmentList>fileSize}" class="sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+                      </VBox>  	</HBox>
+							<VBox alignItems="Center" class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">
+								<core:Icon src="sap-icon://decline" class="docIconStyle" press="fnOnCancelAttachment"/>
+								<core:Icon src="sap-icon://download" class="docIconStyle" press="fnOnDownlAttachment"/>
+							</VBox>
+						</HBox>
+					</g:GridListItem>
+				</g:GridList>
+			</HBox> 
+         <layoutData>
+            <FlexItemData growFactor="1" />
+         </layoutData>
+      </VBox> -->
+
+</core:FragmentDefinition>
