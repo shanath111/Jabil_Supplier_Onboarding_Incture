@@ -2417,7 +2417,7 @@ sap.ui.define([
                         case 7:
                             if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
                                 oView.getModel("oErrorModel").getData().poE = "Error";
-                                oEvent.getSource().setValueStateText("Postal Code must be " + postalCodeLength + " numeric values");
+                              
                                 oView.getModel("oErrorModel").getData().poM = "Postal Code must be " + postalCodeLength + " numeric values";
                                 iError = true;
                             }
