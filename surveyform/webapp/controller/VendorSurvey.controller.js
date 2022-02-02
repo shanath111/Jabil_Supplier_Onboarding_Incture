@@ -10338,7 +10338,7 @@ var that = this;
                                         {
                                             "telephoneId": "",
                                             "telephoneNum": oView.getModel("remitModel").getData().rTeleNum,
-                                            "telephoneCountryCode":oView.getModel("companyInfoModel").getData().rTeleNumCode
+                                            "telephoneCountryCode":oView.getModel("remitModel").getData().rTeleNumCode
                                         }
                                     ]
                                 }
