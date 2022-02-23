@@ -11271,6 +11271,19 @@ var that = this;
                 if (spaceRegex.test(oEvent.getSource().getValue())) {
                     oEvent.getSource().setValue("");
                 }
+            },
+            fnClearBankSearch: function() {
+                var clearData = {
+                    "bankBranch":"",
+                    "bankCity": "",
+                    "bankCode": "",
+                    "bankCountry": "",
+                    "bankName": ""
+                };
+                oView.getModel("bankSearchModel").getData().banksearchParam = clearData;
+                oView.getModel("bankSearchModel").refresh();
+                oView.getModel("bankDataModel").setData({});
+                View.getModel("bankDataModel").refresh();
             }
         });
     });

@@ -108,6 +108,7 @@
             <Toolbar class="cl_VRHeaderBackGrndPnl">
                     <Text text="{i18n>SearchBank}" class="fontBold sapUiTinyMarginBegin"/>
                     <ToolbarSpacer/>
+                    <Button text="{i18n>BSAClear}" press="fnClearBankSearch" class="cl_VRActnBtnClear"/>
                     <Button text="{i18n>Search}" press="fnSearchAccuityBank" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
                 </Toolbar>
             </headerToolbar> 
