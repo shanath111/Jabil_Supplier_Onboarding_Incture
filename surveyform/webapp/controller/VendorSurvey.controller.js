@@ -1333,71 +1333,75 @@ sap.ui.define([
                     }
                 });
                 var bankSearchData = {
+                    "selectedBankItem": "",
+                    "banksearchParam": {
                         "bankBranch": "",
                         "bankCity": "",
                         "bankCode": "",
                         "bankCountry": "",
                         "bankName": ""
+                    }
+                        
                 };
                 var obankSearchModel = new sap.ui.model.json.JSONModel();
                 obankSearchModel.setData(bankSearchData);
                 oView.setModel(obankSearchModel, "bankSearchModel");
                 
-                var bankDataModel = new sap.ui.model.json.JSONModel();
+                // var bankDataModel = new sap.ui.model.json.JSONModel();
                 
-                var accuitybankInfo = {
-                    "selectedBankItem": "",
-                    "bankSearchData":  [
-                        {
-                            "country": "US",
-                            "name": "Bank of America, NA",
-                            "branch": "Needham",
-                            "address": "355 Chestnut St",
-                            "city": "NEEDHAM",
-                            "stateName":"Massachusetts",
-                            "stateCode": "MA",
-                            "code": "011000138",
-                            "swift": "BOFAUS1NXXX",
-                            "localName": "",
-                            "localBranch": "",
-                            "localAddress": "",
-                            "localCity": ""
-                        },
-                        {
-                            "country": "US",
-                            "name": "Bank of America, NA",
-                            "branch": "Cleeveland Circle",
-                            "address": "350 Chestnut Field Ave",
-                            "city": "BRIGHTON",
-                            "stateName":"Massachusetts",
-                            "stateCode": "MA",
-                            "code": "011000138",
-                            "swift": "BOFAUS1NXXX",
-                            "localName": "",
-                            "localBranch": "",
-                            "localAddress": "",
-                            "localCity": ""
-                        },
-                        {
-                            "country": "US",
-                            "name": "Bank of America, NA",
-                            "branch": "Westborough shop & shop",
-                            "address": "355 Chestnut St",
-                            "city": "WESTBOROUGH",
-                            "stateName":"Massachusetts",
-                            "stateCode": "MA",
-                            "code": "011000138",
-                            "swift": "BOFAUS1NXXX",
-                            "localName": "",
-                            "localBranch": "",
-                            "localAddress": "",
-                            "localCity": ""
-                        }
-                    ]
-                }
+                // var accuitybankInfo = {
+                //     "selectedBankItem": "",
+                //     "bankSearchData":  [
+                //         {
+                //             "country": "US",
+                //             "name": "Bank of America, NA",
+                //             "branch": "Needham",
+                //             "address": "355 Chestnut St",
+                //             "city": "NEEDHAM",
+                //             "stateName":"Massachusetts",
+                //             "stateCode": "MA",
+                //             "code": "011000138",
+                //             "swift": "BOFAUS1NXXX",
+                //             "localName": "",
+                //             "localBranch": "",
+                //             "localAddress": "",
+                //             "localCity": ""
+                //         },
+                //         {
+                //             "country": "US",
+                //             "name": "Bank of America, NA",
+                //             "branch": "Cleeveland Circle",
+                //             "address": "350 Chestnut Field Ave",
+                //             "city": "BRIGHTON",
+                //             "stateName":"Massachusetts",
+                //             "stateCode": "MA",
+                //             "code": "011000138",
+                //             "swift": "BOFAUS1NXXX",
+                //             "localName": "",
+                //             "localBranch": "",
+                //             "localAddress": "",
+                //             "localCity": ""
+                //         },
+                //         {
+                //             "country": "US",
+                //             "name": "Bank of America, NA",
+                //             "branch": "Westborough shop & shop",
+                //             "address": "355 Chestnut St",
+                //             "city": "WESTBOROUGH",
+                //             "stateName":"Massachusetts",
+                //             "stateCode": "MA",
+                //             "code": "011000138",
+                //             "swift": "BOFAUS1NXXX",
+                //             "localName": "",
+                //             "localBranch": "",
+                //             "localAddress": "",
+                //             "localCity": ""
+                //         }
+                //     ]
+                // }
                    
-                bankDataModel.setData(accuitybankInfo);
-                oView.setModel(bankDataModel,"bankDataModel");
+                // bankDataModel.setData(accuitybankInfo);
+                // oView.setModel(bankDataModel,"bankDataModel");
                 // oView.getModel("bankDataModel").setProperty("/bankSearchData, accuitybankInfo") ;
             },
             _fnGETSupplierAuthority: function () {
@@ -11191,25 +11195,28 @@ var that = this;
 									aFileTypes.join(", "));
             },
             fnSelectBankInfo: function(oEvent){
-                var oSelectedItem = oEvent.getParameter("listItem").getBindingContextPath();
-                 oView.getModel("bankDataModel").getData().selectedBankItem = oView.getModel("bankDataModel").getProperty(oSelectedItem);
-                 oView.getModel("bankDataModel").refresh();
+                var oSelectedItem = oEvent.getParameter("rowContext").sPath;
+                 oView.getModel("bankSearchModel").getData().selectedBankItem = oView.getModel("bankDataModel").getProperty(oSelectedItem);
+                 oView.getModel("bankSearchModel").refresh();
+
+                var oAccuityBankTable = this.getView().byId("accuityBankTable"),
+                iSelectedIndex = oEvent.getSource().getSelectedIndex();
+                oAccuityBankTable.setSelectedIndex(iSelectedIndex);
             },
             fnConfirmBankInfo: function(oEvent){
-                var selectedBankInfo =  oView.getModel("bankDataModel").getData().selectedBankItem;
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry = selectedBankInfo.country;
+                var selectedBankInfo =  oView.getModel("bankSearchModel").getData().selectedBankItem;
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry = selectedBankInfo.bankCountry;
                 this.fnActivateBankScreen();
                 // this._fnLoadBankRegion(selectedBankInfo.country); 
 
                 
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName = selectedBankInfo.name;
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress = selectedBankInfo.address;
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity = selectedBankInfo.city;
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState = selectedBankInfo.state;
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch = selectedBankInfo.branch;
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState = selectedBankInfo.stateCode;
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode = selectedBankInfo.swift;
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber = selectedBankInfo.swift;
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName = selectedBankInfo.bankName;
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress = selectedBankInfo.bankStreet;
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity = selectedBankInfo.bankCity;
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState = selectedBankInfo.bankState;
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch = selectedBankInfo.bankBranch;
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode = selectedBankInfo.swiftCode;
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber = selectedBankInfo.bankNumber;
                 
                 oView.getModel("oDataModel").refresh();
             },
@@ -11224,11 +11231,11 @@ var that = this;
                     var oModel = new JSONModel();
                     var sUrl = "/comjabilsurveyform/plcm_portal_services/acuity/getBankData";
                     var oPayload = {
-                        "bankBranch": oView.getModel("bankSearchModel").getData().bankBranch,
-                        "bankCity": oView.getModel("bankSearchModel").getData().bankCity,
-                        "bankCode": oView.getModel("bankSearchModel").getData().bankCode,
-                        "bankCountry": oView.getModel("bankSearchModel").getData().bankCountry,
-                        "bankName": oView.getModel("bankSearchModel").getData().bankName
+                        "bankBranch": oView.getModel("bankSearchModel").getData().banksearchParam.bankBranch,
+                        "bankCity": oView.getModel("bankSearchModel").getData().banksearchParam.bankCity,
+                        "bankCode": oView.getModel("bankSearchModel").getData().banksearchParam.bankCode,
+                        "bankCountry": oView.getModel("bankSearchModel").getData().banksearchParam.bankCountry,
+                        "bankName": oView.getModel("bankSearchModel").getData().banksearchParam.bankName
                     }
                     oModel.loadData(sUrl, JSON.stringify(oPayload), true, "POST", false, true, {
                         "Content-Type": "application/json"
@@ -11239,7 +11246,7 @@ var that = this;
                             oBusyDialog.close(); 
                             var oJsonBankSearch = new sap.ui.model.json.JSONModel();
                             oJsonBankSearch.setData(oEvent.getSource().getData());
-                            oView.setModel(oJsonBankSearch, "bankSearchModel");
+                            oView.setModel(oJsonBankSearch, "bankDataModel");
                         } else {
                             oBusyDialog.close();
                             // var oJsonBankSearch = new sap.ui.model.json.JSONModel();
