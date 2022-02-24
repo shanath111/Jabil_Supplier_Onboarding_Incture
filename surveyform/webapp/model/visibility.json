@@ -31,6 +31,8 @@
     "_CompletedTask": false,
     "enableNPI":false,
     "manualBankInfoEdit": false,
+    "bankNameSearchMandate": true,
+    "bankAccuityPanel": true,
     "bankValidation": {
         "bankMatrixId": "",
         "companyCodeCountry": "",

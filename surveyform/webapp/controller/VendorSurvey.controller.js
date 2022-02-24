@@ -11195,16 +11195,29 @@ var that = this;
 									aFileTypes.join(", "));
             },
             fnSelectBankInfo: function(oEvent){
-                var oSelectedItem = oEvent.getParameter("rowContext").sPath;
-                 oView.getModel("bankSearchModel").getData().selectedBankItem = oView.getModel("bankDataModel").getProperty(oSelectedItem);
-                 oView.getModel("bankSearchModel").refresh();
-
-                var oAccuityBankTable = this.getView().byId("accuityBankTable"),
-                iSelectedIndex = oEvent.getSource().getSelectedIndex();
-                oAccuityBankTable.setSelectedIndex(iSelectedIndex);
+                if(oEvent.getSource().getSelectedIndices().length == 0){
+                    oView.getModel("bankSearchModel").getData().selectedBankItem = "";
+                    oView.getModel("bankSearchModel").refresh();
+                } else {
+                    var oSelectedItem = oEvent.getParameter("rowContext").sPath;
+                    oView.getModel("bankSearchModel").getData().selectedBankItem = oView.getModel("bankDataModel").getProperty(oSelectedItem);
+                    oView.getModel("bankSearchModel").refresh();
+                    var oAccuityBankTable = this.getView().byId("accuityBankTable"),
+                    iSelectedIndex = oEvent.getSource().getSelectedIndex();
+                    oAccuityBankTable.setSelectedIndex(iSelectedIndex);
+                }
+               
+                
             },
             fnConfirmBankInfo: function(oEvent){
                 var selectedBankInfo =  oView.getModel("bankSearchModel").getData().selectedBankItem;
+                if(!selectedBankInfo || selectedBankInfo==""){
+                    var sErMsg = oi18n.getText("selectBankItemError");
+                    MessageBox.show(sErMsg, {
+                        icon: MessageBox.Icon.ERROR,
+                        title: oi18n.getText("error")
+                    });
+                }
                 oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry = selectedBankInfo.bankCountry;
                 this.fnActivateBankScreen();
                 // this._fnLoadBankRegion(selectedBankInfo.country); 
@@ -11222,10 +11235,25 @@ var that = this;
             },
             fnManualBankInfoEntry: function(oEvent) {
                 oView.getModel("oVisibilityModel").getData().manualBankInfoEdit = true;
+                oView.getModel("oVisibilityModel").getData().bankAccuityPanel = false;
+                
                 oView.getModel("oVisibilityModel").refresh();
             },
             fnSearchAccuityBank: function(oEvent) {
                 var vError = false;
+                if (!oView.getModel("bankSearchModel").getData().banksearchParam.bankCountry) {
+                    oView.getModel("oErrorModel").getData().bankSearchCountryE = "Error";
+                    oView.getModel("oErrorModel").getData().bankSearchCountryM = oi18n.getText("mandatoryCountry");
+                    
+                    vError = true;
+                }
+                if(!oView.getModel("bankSearchModel").getData().banksearchParam.bankName && oView.getModel("oVisibilityModel").getData().bankNameSearchMandate) {
+                    oView.getModel("oErrorModel").getData().bankSearchNameE = "Error";
+                    oView.getModel("oErrorModel").getData().bankSearchNameM = oi18n.getText("mandatoryBName");
+
+                    vError = true;
+                }
+                oView.getModel("oErrorModel").refresh();
                 if(vError == false){
                     oBusyDialog.open();
                     var oModel = new JSONModel();
@@ -11242,23 +11270,41 @@ var that = this;
                     });
                     oModel.attachRequestCompleted(function onCompleted(oEvent) {
                         if (oEvent.getParameter("success")) {
-
                             oBusyDialog.close(); 
                             var oJsonBankSearch = new sap.ui.model.json.JSONModel();
                             oJsonBankSearch.setData(oEvent.getSource().getData());
                             oView.setModel(oJsonBankSearch, "bankDataModel");
+                            if(oJsonBankSearch.getData().exceptions[0].code == "100"){
+                                if(oJsonBankSearch.getData().exceptions[1].code == "101") {
+                                    var sErMsg = oi18n.getText("InvalidBankSearchError");
+                                    MessageBox.show(sErMsg, {
+                                        icon: MessageBox.Icon.ERROR,
+                                        title: oi18n.getText("error")
+                                    });
+                                } else {
+                                    var sErMsg = oJsonBankSearch.getData().exceptions[1].description;
+                                    MessageBox.show(sErMsg, {
+                                        icon: MessageBox.Icon.ERROR,
+                                        title: oi18n.getText("error")
+                                    });
+                                }
+                                
+                            } else if(oJsonBankSearch.getData().exceptions[0].code == "000" && oJsonBankSearch.getData().exceptions[1].code == "102"){
+                                var sErMsg =  oi18n.getText("BankSearchTooManyMatches");
+                                MessageBox.show(sErMsg, {
+                                    icon: MessageBox.Icon.ERROR,
+                                    title: oi18n.getText("error")
+                                });
+                            } else if(oJsonBankSearch.getData().exceptions[0].code == "000" && oJsonBankSearch.getData().exceptions.length>=2){
+                                var sErMsg =  oJsonBankSearch.getData().exceptions[1].description;
+                                MessageBox.show(sErMsg, {
+                                    icon: MessageBox.Icon.ERROR,
+                                    title: oi18n.getText("error")
+                                });
+                            }
                         } else {
                             oBusyDialog.close();
-                            // var oJsonBankSearch = new sap.ui.model.json.JSONModel();
-                            // oJsonBankSearch.setData([]);
-                            // oView.setModel(oJsonBankSearch, "bankSearchModel")
-                            // var sErMsg = oEvent.getParameter("errorobject").responseText;
-                            // MessageBox.show(sErMsg, {
-                            //     icon: MessageBox.Icon.ERROR,
-                            //     title: "Error"
-                            // });
-
-
+                            
                         }
                     });
                 } else {
@@ -11284,6 +11330,40 @@ var that = this;
                 oView.getModel("bankSearchModel").refresh();
                 oView.getModel("bankDataModel").setData({});
                 View.getModel("bankDataModel").refresh();
+            },
+            fnChangeBankCode: function(oEvent){
+                var spaceRegex = /^\s+$/;
+                   if(spaceRegex.test(oEvent.getSource().getValue())){
+                       oEvent.getSource().setValue(""); 
+                   }
+                if (oEvent.getSource().getValue()) {
+                        oEvent.getSource().setValueState("None");
+                        oEvent.getSource().setValueStateText("");
+                        oView.getModel("oErrorModel").getData().bankSearchNameE = "None";
+                        oView.getModel("oErrorModel").getData().bankSearchNameM = "";
+                        oView.getModel("oErrorModel").refresh();
+                        oView.getModel("oVisibilityModel").getData().bankNameSearchMandate = false;
+                        oView.getModel("oVisibilityModel").refresh();
+                } else {
+                    oView.getModel("oVisibilityModel").getData().bankNameSearchMandate = true;
+                    oView.getModel("oVisibilityModel").refresh();
+                }
+
+            },
+            fnChangeBankSearchCountry: function(oEvent){
+                if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey());
+                    oView.getModel("oDataModel").refresh();
+                }
+
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
             }
         });
     });
