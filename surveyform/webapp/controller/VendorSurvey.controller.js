@@ -1334,6 +1334,7 @@ sap.ui.define([
                 });
                 var bankSearchData = {
                     "selectedBankItem": "",
+                    "isManualEntry": false,
                     "banksearchParam": {
                         "bankBranch": "",
                         "bankCity": "",
@@ -11201,6 +11202,7 @@ var that = this;
                 } else {
                     var oSelectedItem = oEvent.getParameter("rowContext").sPath;
                     oView.getModel("bankSearchModel").getData().selectedBankItem = oView.getModel("bankDataModel").getProperty(oSelectedItem);
+                    oView.getModel("bankSearchModel").getData().isManualEntry = false;
                     oView.getModel("bankSearchModel").refresh();
                     var oAccuityBankTable = this.getView().byId("accuityBankTable"),
                     iSelectedIndex = oEvent.getSource().getSelectedIndex();
@@ -11211,33 +11213,61 @@ var that = this;
             },
             fnConfirmBankInfo: function(oEvent){
                 var selectedBankInfo =  oView.getModel("bankSearchModel").getData().selectedBankItem;
-                if(!selectedBankInfo || selectedBankInfo==""){
+                if((!selectedBankInfo || selectedBankInfo=="") && !oView.getModel("bankSearchModel").getData().isManualEntry){
                     var sErMsg = oi18n.getText("selectBankItemError");
                     MessageBox.show(sErMsg, {
                         icon: MessageBox.Icon.ERROR,
                         title: oi18n.getText("error")
                     });
-                }
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry = selectedBankInfo.bankCountry;
-                this.fnActivateBankScreen();
-                // this._fnLoadBankRegion(selectedBankInfo.country); 
+                } else if(oView.getModel("bankSearchModel").getData().isManualEntry){
+                    this.fnManualBankInfoEntry();
+                } else{
 
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry = selectedBankInfo.bankCountry;
+                    this.fnActivateBankScreen();
+                    // this._fnLoadBankRegion(selectedBankInfo.country); 
+
+                    
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName = selectedBankInfo.bankName;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress = selectedBankInfo.bankStreet;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity = selectedBankInfo.bankCity;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState = selectedBankInfo.bankState;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch = selectedBankInfo.bankBranch;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode = selectedBankInfo.swiftCode;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber = selectedBankInfo.bankNumber;
+                    
+                    oView.getModel("oDataModel").refresh();
+                    oView.getModel("oVisibilityModel").getData().manualBankInfoEdit = false;
+                    oView.getModel("oVisibilityModel").refresh();
+                }
                 
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName = selectedBankInfo.bankName;
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress = selectedBankInfo.bankStreet;
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity = selectedBankInfo.bankCity;
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState = selectedBankInfo.bankState;
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch = selectedBankInfo.bankBranch;
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode = selectedBankInfo.swiftCode;
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber = selectedBankInfo.bankNumber;
-                
-                oView.getModel("oDataModel").refresh();
             },
-            fnManualBankInfoEntry: function(oEvent) {
+            fnManualBankInfoEntry: function() {
                 oView.getModel("oVisibilityModel").getData().manualBankInfoEdit = true;
                 oView.getModel("oVisibilityModel").getData().bankAccuityPanel = false;
-                
                 oView.getModel("oVisibilityModel").refresh();
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber ="";
+                
+                oView.getModel("oDataModel").refresh();
+
+            },
+            fnSelectManualBankEntry: function(oEvent){
+                if(oEvent.getParameters('selected').selected){
+                    oView.getModel("bankSearchModel").getData().isManualEntry = true;
+                    var oAccuityBankTable = this.getView().byId("accuityBankTable");
+                    oAccuityBankTable.setSelectedIndex(-1);
+                } else{
+                    oView.getModel("bankSearchModel").getData().isManualEntry = false;
+
+                }
+                oView.getModel("bankSearchModel").refresh();
             },
             fnSearchAccuityBank: function(oEvent) {
                 var vError = false;

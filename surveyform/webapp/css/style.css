@@ -626,6 +626,7 @@ width:0
 .panelBorderPreview .sapMPanelContent:not(.sapMPanelBGTransparent) {
     border-bottom: 0px solid #ccc !important;
 }
+
 .cl_HBoxBlockSep{
     border-top: 1px solid #70707061 !important;
 }
@@ -908,6 +909,10 @@ outline: none !important;
 
 .blueIcon {
     color: #427cac;
+}
+.bankAccuityInfoBar.sapMTB-Info-CTX.sapMTB {
+    background: #ebf1f5;
+    color: #000;
 }
 /* .boxStyle.sapMCb {
     height: 2rem;

@@ -94,7 +94,7 @@
 			<FlexItemData minWidth="100%"/>
 		</layoutData>
 	</Panel>
-	<Panel width="100%"  visible="{=${oDataModel>/bankDto/isbankdetailsHidden}=== true? false: true}" class="sapUiTinyMarginTop panelPadding">
+	<Panel width="100%"  visible="{=${oDataModel>/bankDto/isbankdetailsHidden}=== true? false: true}" class="sapUiTinyMarginTop panelPadding panelBorderPreview">
 		<content>
         <VBox visible="{oUserModel>/isNew}" class="fontStyle sapUiSizeCompact">
          <Label required="true" visible="{oUserModel>/isNew}" labelFor="isSCFC1" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankInformation2}:${oi18n_En>bankInformation2} +'/&#160;' +${i18n>bankInformation2}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
@@ -146,6 +146,15 @@
                             <ToolbarSpacer/>
                             
                         </OverflowToolbar>
+                        <OverflowToolbar design="Info" height="1.5rem" class="bankAccuityInfoBar">
+                            <Text  text="{i18n>selectandconfirmBank}"/>
+                        </OverflowToolbar>
+                        <!-- <MessageStrip
+                            text="Filtered By:"
+                            type="Information"
+                            showCloseButton="true"
+                            showIcon="false">
+                        </MessageStrip> -->
                     </t:extension>
                     <t:columns>
                         <t:Column >
@@ -223,18 +232,18 @@
                     </t:columns>
                     
                 </t:Table>
+               
                 <Toolbar class="sapUiSizeCompact">
-                        <Text text="{i18n>selectandconfirmBank}" class="sapUiTinyMarginBegin fontStyleBlue"/>
+                        <!-- <Text text="{i18n>selectandconfirmBank}" class="sapUiTinyMarginBegin fontStyleBlue"/> -->
+                         <CheckBox text="{i18n>bankNotDisplayed}" wrapping="true" class="sapUiTinyMarginTop fontStyle inputStyle"  select="fnSelectManualBankEntry" selected="{bankSearchModel>/isManualEntry}"/>
                         <ToolbarSpacer></ToolbarSpacer>
                         
                         <Button text="{i18n>Confirm}" press="fnConfirmBankInfo" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
-                        <!-- <Button text="{i18n>ManualEntry}" press="fnSearchCompanyCode" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
-                        <Label text="{i18n>bankNotDisplayed}" wrapping="true" class="fontStyle fontStyleItalic sapUiTinyMarginBegin sapUiTinyMarginTop" />     -->
 				</Toolbar>
-                <VBox class="sapUiTinyMarginTop">
+                <!-- <VBox class="sapUiTinyMarginTop">
                     <Label text="{i18n>bankNotDisplayed}" wrapping="true" class="fontStyle fontStyleItalic " /> 
                     <Button text="{i18n>ManualEntry}" press="fnManualBankInfoEntry" class="cl_VRActnBtnApply"/>   
-                </VBox>
+                </VBox> -->
         </Panel>
           
           <!-- <VBox>
