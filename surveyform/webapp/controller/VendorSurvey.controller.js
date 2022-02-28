@@ -1332,6 +1332,78 @@ sap.ui.define([
 
                     }
                 });
+                var bankSearchData = {
+                    "selectedBankItem": "",
+                    "isManualEntry": false,
+                    "banksearchParam": {
+                        "bankBranch": "",
+                        "bankCity": "",
+                        "bankCode": "",
+                        "bankCountry": "",
+                        "bankName": ""
+                    }
+                        
+                };
+                var obankSearchModel = new sap.ui.model.json.JSONModel();
+                obankSearchModel.setData(bankSearchData);
+                oView.setModel(obankSearchModel, "bankSearchModel");
+                
+                // var bankDataModel = new sap.ui.model.json.JSONModel();
+                
+                // var accuitybankInfo = {
+                //     "selectedBankItem": "",
+                //     "bankSearchData":  [
+                //         {
+                //             "country": "US",
+                //             "name": "Bank of America, NA",
+                //             "branch": "Needham",
+                //             "address": "355 Chestnut St",
+                //             "city": "NEEDHAM",
+                //             "stateName":"Massachusetts",
+                //             "stateCode": "MA",
+                //             "code": "011000138",
+                //             "swift": "BOFAUS1NXXX",
+                //             "localName": "",
+                //             "localBranch": "",
+                //             "localAddress": "",
+                //             "localCity": ""
+                //         },
+                //         {
+                //             "country": "US",
+                //             "name": "Bank of America, NA",
+                //             "branch": "Cleeveland Circle",
+                //             "address": "350 Chestnut Field Ave",
+                //             "city": "BRIGHTON",
+                //             "stateName":"Massachusetts",
+                //             "stateCode": "MA",
+                //             "code": "011000138",
+                //             "swift": "BOFAUS1NXXX",
+                //             "localName": "",
+                //             "localBranch": "",
+                //             "localAddress": "",
+                //             "localCity": ""
+                //         },
+                //         {
+                //             "country": "US",
+                //             "name": "Bank of America, NA",
+                //             "branch": "Westborough shop & shop",
+                //             "address": "355 Chestnut St",
+                //             "city": "WESTBOROUGH",
+                //             "stateName":"Massachusetts",
+                //             "stateCode": "MA",
+                //             "code": "011000138",
+                //             "swift": "BOFAUS1NXXX",
+                //             "localName": "",
+                //             "localBranch": "",
+                //             "localAddress": "",
+                //             "localCity": ""
+                //         }
+                //     ]
+                // }
+                   
+                // bankDataModel.setData(accuitybankInfo);
+                // oView.setModel(bankDataModel,"bankDataModel");
+                // oView.getModel("bankDataModel").setProperty("/bankSearchData, accuitybankInfo") ;
             },
             _fnGETSupplierAuthority: function () {
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/case/findById/" + oView.getModel("oUserModel").getData().caseId;
@@ -11122,6 +11194,206 @@ var that = this;
 			sap.m.MessageToast.show("The file type *." + oEvent.getParameter("fileType") +
 									" is not supported. Choose one of the following types: " +
 									aFileTypes.join(", "));
+            },
+            fnSelectBankInfo: function(oEvent){
+                if(oEvent.getSource().getSelectedIndices().length == 0){
+                    oView.getModel("bankSearchModel").getData().selectedBankItem = "";
+                    oView.getModel("bankSearchModel").refresh();
+                } else {
+                    var oSelectedItem = oEvent.getParameter("rowContext").sPath;
+                    oView.getModel("bankSearchModel").getData().selectedBankItem = oView.getModel("bankDataModel").getProperty(oSelectedItem);
+                    oView.getModel("bankSearchModel").getData().isManualEntry = false;
+                    oView.getModel("bankSearchModel").refresh();
+                    var oAccuityBankTable = this.getView().byId("accuityBankTable"),
+                    iSelectedIndex = oEvent.getSource().getSelectedIndex();
+                    oAccuityBankTable.setSelectedIndex(iSelectedIndex);
+                }
+               
+                
+            },
+            fnConfirmBankInfo: function(oEvent){
+                var selectedBankInfo =  oView.getModel("bankSearchModel").getData().selectedBankItem;
+                if((!selectedBankInfo || selectedBankInfo=="") && !oView.getModel("bankSearchModel").getData().isManualEntry){
+                    var sErMsg = oi18n.getText("selectBankItemError");
+                    MessageBox.show(sErMsg, {
+                        icon: MessageBox.Icon.ERROR,
+                        title: oi18n.getText("error")
+                    });
+                } else if(oView.getModel("bankSearchModel").getData().isManualEntry){
+                    this.fnManualBankInfoEntry();
+                } else{
+
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry = selectedBankInfo.bankCountry;
+                    this.fnActivateBankScreen();
+                    // this._fnLoadBankRegion(selectedBankInfo.country); 
+
+                    
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName = selectedBankInfo.bankName;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress = selectedBankInfo.bankStreet;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity = selectedBankInfo.bankCity;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState = selectedBankInfo.bankState;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch = selectedBankInfo.bankBranch;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode = selectedBankInfo.swiftCode;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber = selectedBankInfo.bankNumber;
+                    
+                    oView.getModel("oDataModel").refresh();
+                    oView.getModel("oVisibilityModel").getData().manualBankInfoEdit = false;
+                    oView.getModel("oVisibilityModel").refresh();
+                }
+                
+            },
+            fnManualBankInfoEntry: function() {
+                oView.getModel("oVisibilityModel").getData().manualBankInfoEdit = true;
+                oView.getModel("oVisibilityModel").getData().bankAccuityPanel = false;
+                oView.getModel("oVisibilityModel").refresh();
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber ="";
+                
+                oView.getModel("oDataModel").refresh();
+
+            },
+            fnSelectManualBankEntry: function(oEvent){
+                if(oEvent.getParameters('selected').selected){
+                    oView.getModel("bankSearchModel").getData().isManualEntry = true;
+                    var oAccuityBankTable = this.getView().byId("accuityBankTable");
+                    oAccuityBankTable.setSelectedIndex(-1);
+                } else{
+                    oView.getModel("bankSearchModel").getData().isManualEntry = false;
+
+                }
+                oView.getModel("bankSearchModel").refresh();
+            },
+            fnSearchAccuityBank: function(oEvent) {
+                var vError = false;
+                if (!oView.getModel("bankSearchModel").getData().banksearchParam.bankCountry) {
+                    oView.getModel("oErrorModel").getData().bankSearchCountryE = "Error";
+                    oView.getModel("oErrorModel").getData().bankSearchCountryM = oi18n.getText("mandatoryCountry");
+                    
+                    vError = true;
+                }
+                if(!oView.getModel("bankSearchModel").getData().banksearchParam.bankName && oView.getModel("oVisibilityModel").getData().bankNameSearchMandate) {
+                    oView.getModel("oErrorModel").getData().bankSearchNameE = "Error";
+                    oView.getModel("oErrorModel").getData().bankSearchNameM = oi18n.getText("mandatoryBName");
+
+                    vError = true;
+                }
+                oView.getModel("oErrorModel").refresh();
+                if(vError == false){
+                    oBusyDialog.open();
+                    var oModel = new JSONModel();
+                    var sUrl = "/comjabilsurveyform/plcm_portal_services/acuity/getBankData";
+                    var oPayload = {
+                        "bankBranch": oView.getModel("bankSearchModel").getData().banksearchParam.bankBranch,
+                        "bankCity": oView.getModel("bankSearchModel").getData().banksearchParam.bankCity,
+                        "bankCode": oView.getModel("bankSearchModel").getData().banksearchParam.bankCode,
+                        "bankCountry": oView.getModel("bankSearchModel").getData().banksearchParam.bankCountry,
+                        "bankName": oView.getModel("bankSearchModel").getData().banksearchParam.bankName
+                    }
+                    oModel.loadData(sUrl, JSON.stringify(oPayload), true, "POST", false, true, {
+                        "Content-Type": "application/json"
+                    });
+                    oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                        if (oEvent.getParameter("success")) {
+                            oBusyDialog.close(); 
+                            var oJsonBankSearch = new sap.ui.model.json.JSONModel();
+                            oJsonBankSearch.setData(oEvent.getSource().getData());
+                            oView.setModel(oJsonBankSearch, "bankDataModel");
+                            if(oJsonBankSearch.getData().exceptions[0].code == "100"){
+                                if(oJsonBankSearch.getData().exceptions[1].code == "101") {
+                                    var sErMsg = oi18n.getText("InvalidBankSearchError");
+                                    MessageBox.show(sErMsg, {
+                                        icon: MessageBox.Icon.ERROR,
+                                        title: oi18n.getText("error")
+                                    });
+                                } else {
+                                    var sErMsg = oJsonBankSearch.getData().exceptions[1].description;
+                                    MessageBox.show(sErMsg, {
+                                        icon: MessageBox.Icon.ERROR,
+                                        title: oi18n.getText("error")
+                                    });
+                                }
+                                
+                            } else if(oJsonBankSearch.getData().exceptions[0].code == "000" && oJsonBankSearch.getData().exceptions[1].code == "102"){
+                                var sErMsg =  oi18n.getText("BankSearchTooManyMatches");
+                                MessageBox.show(sErMsg, {
+                                    icon: MessageBox.Icon.ERROR,
+                                    title: oi18n.getText("error")
+                                });
+                            } else if(oJsonBankSearch.getData().exceptions[0].code == "000" && oJsonBankSearch.getData().exceptions.length>=2){
+                                var sErMsg =  oJsonBankSearch.getData().exceptions[1].description;
+                                MessageBox.show(sErMsg, {
+                                    icon: MessageBox.Icon.ERROR,
+                                    title: oi18n.getText("error")
+                                });
+                            }
+                        } else {
+                            oBusyDialog.close();
+                            
+                        }
+                    });
+                } else {
+                    // sap.m.MessageToast.show(oi18n.getProperty("enterTaxCategory"))
+                }
+
+            },
+            fnInputSpaceCheck: function (oEvent) {
+                var spaceRegex = /^\s+$/;
+                if (spaceRegex.test(oEvent.getSource().getValue())) {
+                    oEvent.getSource().setValue("");
+                }
+            },
+            fnClearBankSearch: function() {
+                var clearData = {
+                    "bankBranch":"",
+                    "bankCity": "",
+                    "bankCode": "",
+                    "bankCountry": "",
+                    "bankName": ""
+                };
+                oView.getModel("bankSearchModel").getData().banksearchParam = clearData;
+                oView.getModel("bankSearchModel").refresh();
+                oView.getModel("bankDataModel").setData({});
+                View.getModel("bankDataModel").refresh();
+            },
+            fnChangeBankCode: function(oEvent){
+                var spaceRegex = /^\s+$/;
+                   if(spaceRegex.test(oEvent.getSource().getValue())){
+                       oEvent.getSource().setValue(""); 
+                   }
+                if (oEvent.getSource().getValue()) {
+                        oEvent.getSource().setValueState("None");
+                        oEvent.getSource().setValueStateText("");
+                        oView.getModel("oErrorModel").getData().bankSearchNameE = "None";
+                        oView.getModel("oErrorModel").getData().bankSearchNameM = "";
+                        oView.getModel("oErrorModel").refresh();
+                        oView.getModel("oVisibilityModel").getData().bankNameSearchMandate = false;
+                        oView.getModel("oVisibilityModel").refresh();
+                } else {
+                    oView.getModel("oVisibilityModel").getData().bankNameSearchMandate = true;
+                    oView.getModel("oVisibilityModel").refresh();
+                }
+
+            },
+            fnChangeBankSearchCountry: function(oEvent){
+                if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey());
+                    oView.getModel("oDataModel").refresh();
+                }
+
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
             }
         });
     });
