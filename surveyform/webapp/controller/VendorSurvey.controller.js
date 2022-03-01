@@ -11201,12 +11201,32 @@ var that = this;
                     oView.getModel("bankSearchModel").refresh();
                 } else {
                     var oSelectedItem = oEvent.getParameter("rowContext").sPath;
-                    oView.getModel("bankSearchModel").getData().selectedBankItem = oView.getModel("bankDataModel").getProperty(oSelectedItem);
-                    oView.getModel("bankSearchModel").getData().isManualEntry = false;
-                    oView.getModel("bankSearchModel").refresh();
-                    var oAccuityBankTable = this.getView().byId("accuityBankTable"),
-                    iSelectedIndex = oEvent.getSource().getSelectedIndex();
-                    oAccuityBankTable.setSelectedIndex(iSelectedIndex);
+                    if(oView.getModel("bankDataModel").getProperty(oSelectedItem).bankSanctioned){
+                        var sErMsg = oi18n.getText("bankSanctionMsg");
+                        MessageBox.show(sErMsg, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: oi18n.getText("error")
+                        });
+                        oView.getModel("bankSearchModel").getData().selectedBankItem = "";
+                        oView.getModel("bankSearchModel").getData().isManualEntry = false;
+                        oView.getModel("bankSearchModel").refresh();
+                        var oAccuityBankTable = this.getView().byId("accuityBankTable");
+                        oAccuityBankTable.setSelectedIndex(-1);
+                       
+                    } else{
+                        oView.getModel("bankSearchModel").getData().selectedBankItem = oView.getModel("bankDataModel").getProperty(oSelectedItem);
+                        oView.getModel("bankSearchModel").getData().isManualEntry = false;
+                        oView.getModel("bankSearchModel").refresh();
+                        var oAccuityBankTable = this.getView().byId("accuityBankTable"),
+                        iSelectedIndex = oEvent.getSource().getSelectedIndex();
+                        oAccuityBankTable.setSelectedIndex(iSelectedIndex);
+                    }
+                   
+                    
+                    
+                    
+                
+                    
                 }
                
                 
@@ -11227,8 +11247,7 @@ var that = this;
                     this.fnActivateBankScreen();
                     // this._fnLoadBankRegion(selectedBankInfo.country); 
 
-                    
-                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName = selectedBankInfo.bankName;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName= selectedBankInfo.bankName;
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress = selectedBankInfo.bankStreet;
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity = selectedBankInfo.bankCity;
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState = selectedBankInfo.bankState;
