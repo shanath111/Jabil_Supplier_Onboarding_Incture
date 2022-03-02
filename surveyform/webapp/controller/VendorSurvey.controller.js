@@ -11254,7 +11254,7 @@ var that = this;
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch = selectedBankInfo.bankBranch;
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode = selectedBankInfo.swiftCode;
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber = selectedBankInfo.bankNumber;
-                    
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].validationIndicator = "1";
                     oView.getModel("oDataModel").refresh();
                     oView.getModel("oVisibilityModel").getData().manualBankInfoEdit = false;
                     oView.getModel("oVisibilityModel").refresh();
@@ -11273,6 +11273,7 @@ var that = this;
                 oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch ="";
                 oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode ="";
                 oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].validationIndicator="0";
                 
                 oView.getModel("oDataModel").refresh();
 

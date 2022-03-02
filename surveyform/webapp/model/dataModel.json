@@ -25,7 +25,12 @@
                 "ibanNumConfirm": "",
                 "instructionKey": "",
                 "swiftCode": "",
-                "accountGroup": ""
+                "accountGroup": "",
+                "localName": "",
+                "localBranch": "",
+                "localAddress": "",
+                "localCity": "",
+                "validationIndicator": "0"
             }
         ],
         "financeContact1": {

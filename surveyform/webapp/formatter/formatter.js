@@ -289,5 +289,12 @@ for(var i=0; i<stringlistLen;i++){
                        } else {
                            return '---';
                        }
-           }
+    },
+    fnBankInfoValidated: function(sValue){
+        if(!sValue || sValue=="0"){
+            return false;
+        } else if(sValue =="1") {
+            return true;
+        }
+    }
 };
