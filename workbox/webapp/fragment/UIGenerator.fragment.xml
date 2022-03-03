@@ -1,0 +1,85 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout">
+	<VBox renderType="Bare" class="sapUiSizeCompact" width="100%">
+		<HBox renderType="Bare" alignItems="Center" width="100%" justifyContent="SpaceBetween" class="wbTaskDetailPaddingClass">
+			<HBox renderType="Bare" alignItems="Center">
+				<Text text="{i18n>PROCESS_TEXT} : " class="sapUiTinyMarginBegin"></Text>
+				<ComboBox class="wbDefaultCustomInputWrapper sapUiTinyMarginBegin" selectedKey="{otaskCreationModel>/uiGeneration/processName}"
+					change="onFilter">
+					<core:Item text="{i18n>PO_APPROVAL_TEXT}" key="purchaseorderapproval"/>
+					<core:Item text="{i18n>PR_PROCESS_TEXT}" key="purchaserequisitionprocess"/>
+					<core:Item text="{i18n>GL_POSTING_TEXT}" key="gl_posting_process"/>
+				</ComboBox>
+				<Text text="{i18n>CATALOGUE_TEXT} : " class="sapUiSmallMarginBegin"></Text>
+				<ComboBox class="wbDefaultCustomInputWrapper sapUiTinyMarginBegin" items="{filterModelAdmin>/}"
+					selectedKey="{otaskCreationModel>/uiGeneration/catalogueName}">
+					<core:Item text="{filterModelAdmin>Name}" key="{filterModelAdmin>Value}"/>
+				</ComboBox>
+			</HBox>
+			<HBox renderType="Bare" alignItems="Center" justifyContent="End" width="48%" class="sapUiTinyMarginBegin">
+				<Button text="{i18n>LOAD_TEMPLATE_TEXT}" press="getUIGenerationPageAdmin" type="Emphasized" class="wbEmphasizedButtonStyleClass"></Button>
+			</HBox>
+		</HBox>
+		<HBox width="100%" renderType="Bare" alignItems="Center" class="wbTaskDetailPaddingClass">
+			<Table class="wbCustomTableClass" noDataText="{i18n>noDataText}" width="100%">
+				<columns>
+					<Column width="25%">
+						<Text text="{i18n>FIELD_NAME_TEXT}"/>
+					</Column>
+					<Column width="20%">
+						<Text text="{i18n>DATA_TYPE_TEXT}"/>
+					</Column>
+					<Column width="25%">
+						<Text text="{i18n>SERVICE_URL_TEXT}"/>
+					</Column>
+					<Column width="10%">
+						<Text text="{i18n>MANDATORY_TEXT}"/>
+					</Column>
+					<Column width="10%">
+						<Text text="{i18n>EDITABLE_TEXT}"/>
+					</Column>
+					<Column width="10%">
+						<Text text="{i18n>VISIBILITY_TEXT}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem visible="false"></ColumnListItem>
+				</items>
+			</Table>
+		</HBox>
+		<layout:Grid defaultSpan="L12 M12 S12" content='{oUIGenerationPageModelAdmin>/groupList}' width="100%" class="sapUiTinyMarginBegin">
+			<VBox renderType="Bare">
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMarginBottom">
+					<Label text="{oUIGenerationPageModelAdmin>title}"/>
+				</HBox>
+				<VBox renderType="Bare" alignItems="Center">
+					<Table class="wbCustomTableClass" width="100%" items="{oUIGenerationPageModelAdmin>poFieldDetails}" noDataText="{i18n>noDataText}">
+						<columns>
+							<Column width="25%"></Column>
+							<Column width="20%"></Column>
+							<Column width="25%"></Column>
+							<Column width="10%"></Column>
+							<Column width="10%"></Column>
+							<Column width="10%"></Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Input value="{oUIGenerationPageModelAdmin>label}" class="wbDefaultCustomInputWrapper" editable="true"/>
+									<ComboBox class="wbDefaultCustomInputWrapper" selectedKey="{oUIGenerationPageModelAdmin>dataType}">
+										<core:Item text="{i18n>INPUT_TEXT}" key="INPUT"/>
+										<core:Item text="{i18n>DROPDOWN_TEXT}" key="SELECT"/>
+										<core:Item text="{i18n>DATE_TEXT}" key="DATE"/>
+									</ComboBox>
+									<Input value="{oUIGenerationPageModelAdmin>serviceUrl}" enabled="true" class="wbDefaultCustomInputWrapper"/>
+									<CheckBox selected="{oUIGenerationPageModelAdmin>isMandatory}"/>
+									<CheckBox selected="{oUIGenerationPageModelAdmin>editability}"/>
+									<CheckBox selected="{oUIGenerationPageModelAdmin>visibility}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</VBox>
+			</VBox>
+		</layout:Grid>
+	</VBox>
+</core:FragmentDefinition>

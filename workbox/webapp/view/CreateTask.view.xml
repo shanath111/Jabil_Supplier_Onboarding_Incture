@@ -1,0 +1,10 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="oneapp.incture.workbox.controller.CreateTask"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page showHeader="false">
+		<content>
+			<VBox height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.CreateNewTask" type="XML"></core:Fragment>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

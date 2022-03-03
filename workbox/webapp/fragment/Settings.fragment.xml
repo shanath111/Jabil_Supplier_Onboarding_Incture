@@ -1,0 +1,124 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:grid="sap.ui.layout.cssgrid">
+	<Dialog draggable="false" class="wbDialog" contentWidth="79%" contentHeight="78%" escapeHandler="closeSettings">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Title class="wbDialogTitle " text="{i18n>SETTINGS_TEXT}"/>
+				</contentLeft>
+				<contentRight>
+					<core:Icon src="sap-icon://decline" class="wbDialogCloseIcon" tooltip="{i18n>CLOSE_TEXT}" press="closeSettings"></core:Icon>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<HBox renderType="Bare" height="100%" class="wbCustomDialogBackground wbOverflowHidden">
+				<VBox class="wbSettingsSideNav" width="18%" items="{path:'oUserSettingsModel>/settings/settingsNavigationList', templateShareable:true}">
+					<VBox>
+						<CustomListItem selected="{= ${oUserSettingsModel>key}=== ${oUserSettingsModel>/settings/selectedSetting}}"
+							type="{oUserSettingsModel>isActive}" press="selectSetttings" class="sapUiSizeCompact wbSideNavSelectList"
+							visible="{oUserSettingsModel>visible}">
+							<HBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween">
+								<HBox renderType="Bare" alignItems="Center" justifyContent="Start" width="80%">
+									<core:Icon src="{oUserSettingsModel>icon}" class="wbSettingsNavListText sapUiTinyMarginEnd"/>
+									<Text text="{oUserSettingsModel>text}" class="wbSettingsNavListText wbTextBoldClass"/>
+								</HBox>
+							</HBox>
+						</CustomListItem>
+						<VBox class=" sapUiSizeCompact" items="{path:'oUserSettingsModel>list', templateShareable:true}">
+							<CustomListItem type="Active" selected="{= ${oUserSettingsModel>key}=== ${oUserSettingsModel>/settings/selectedSetting}}"
+								press="selectSetttings" class="sapUiSizeCompact wbSideNavSelectList" visible="{oUserSettingsModel>visible}">
+								<HBox renderType="Bare" alignItems="Center" justifyContent="Start">
+									<Text text="{oUserSettingsModel>text}" class="wbSettingsNavListText wbSettingsSubMenuPadding wbTextBoldClass"/>
+								</HBox>
+							</CustomListItem>
+						</VBox>
+					</VBox>
+				</VBox>
+				<VBox width="82%">
+					<!--________________________________________ Theme Settings_____________________________________________-->
+					<VBox class="wbSettingsGeneralVBox" visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_GENERAL'}" alignItems="End">
+						<VBox justifyContent="SpaceBetween" busyIndicatorDelay="0" busy="{oUserSettingsModel>/settings/busy}"
+							class="wbSettingsMainContent wbCustomContentWrapperStyle">
+							<VBox justifyContent="Start">
+								<Label text="{i18n>THEME_TEXT}" class="wbSettingsLabel wbTextBoldClass"/>
+								<grid:CSSGrid items="{oUserSettingsModel>/settings/themeSettings/themes}" gridTemplateColumns="repeat(5,18%)" gridTemplateRows="auto"
+									gridGap="0.75rem">
+									<CustomListItem type="Active" press="selectTheme" class="wbSettingsThemeTray"
+										visible="{parts: ['oUserSettingsModel>/settings/themeSettings/selectedTheme/label','oUserSettingsModel>label'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetSelectedThemeBorder'}">
+										<Image src="{oUserSettingsModel>imgSrc}" height="5rem" width="9rem"/>
+										<HBox width="100%" justifyContent="Center">
+											<core:Icon src="sap-icon://overlay" class="wbSettingsThemeRadioIcon"
+												visible="{= ${oUserSettingsModel>/settings/themeSettings/selectedTheme/label}=== ${oUserSettingsModel>label}}"/>
+											<Text text="{oUserSettingsModel>label}" class="wbSettingsThemeLabel"/>
+										</HBox>
+									</CustomListItem>
+								</grid:CSSGrid>
+								<Label text="{i18n>LANGUAGE_TEXT}" class="wbSettingsLabel wbTextBoldClass sapUiTinyMarginTop"/>
+								<ComboBox width="30%" class="wbSettingsDropdown wbDefaultCustomInputWrapper" selectedKey="{oAppModel>/selectedLangKey}"
+									change="onChangeLanguage" value="{oAppModel>/selectedLangKey}">
+									<core:Item key="i18n_ENGLISH" text="English"/>
+									<core:Item key="i18n_INDONESIAN" text="Bahasa Indonesia"/>
+									<core:Item key="i18n_ARABIC" text="عربى"/>
+									<core:Item key="i18n_CHINESE" text="中文"/>
+								</ComboBox>
+								<Text text="{i18n>LANG_MSG_TOAST_TEXT}"/>
+							</VBox>
+							<HBox alignItems="End" justifyContent="End" renderType="Bare">
+								<Button text="{i18n>SAVE_TEXT}" class=" sapUiTinyMarginBottom sapUiSizeCompact wbDefaultButtonClass" press="saveGeneralSettings"/>
+							</HBox>
+						</VBox>
+					</VBox>
+					<!--________________________________________Privacy Substitution Settings _____________________________________________-->
+					<VBox class="wbSettingsGeneralVBox" visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_PRIVACY'}" alignItems="End">
+						<VBox class="wbSettingsNotifMainContent wbCustomContentWrapperStyle sapUiSizeCompact" busyIndicatorDelay="0"
+							busy="{oUserSettingsModel>/settings/busy}"></VBox>
+					</VBox>
+					<!--________________________________________ Substitution Settings _____________________________________________-->
+					<VBox class="wbSettingsGeneralVBox"
+						visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_SUBSTITUTION' || ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_MYSUBS'}"
+						alignItems="End">
+						<VBox class="wbSettingsNotifMainContent wbCustomContentWrapperStyle sapUiSizeCompact" busyIndicatorDelay="0"
+							busy="{oUserSettingsModel>/settings/busy}">
+							<!--________________________________________ My substitution _____________________________________________-->
+							<core:Fragment fragmentName="oneapp.incture.workbox.fragment.UserSubstitutions" type="XML"/>
+						</VBox>
+					</VBox>
+					<!--________________________________________Manage Substitution Settings _____________________________________________-->
+					<VBox class="wbSettingsGeneralVBox" visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_MANAGESUBS'}" alignItems="End">
+						<VBox class="wbSettingsNotifMainContent wbCustomContentWrapperStyle sapUiSizeCompact ">
+							<core:Fragment fragmentName="oneapp.incture.workbox.fragment.ManageSubstitutions" type="XML"/>
+						</VBox>
+					</VBox>
+					<!--________________________________________Notifications Settings _____________________________________________-->
+					<VBox class="wbSettingsGeneralVBox"
+						visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_NOTIFICATIONS' || ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS'}"
+						alignItems="End">
+						<VBox class="wbSettingsNotifMainContent wbOverflowVertical wbHideScroll wbCustomContentWrapperStyle sapUiSizeCompact "
+							busyIndicatorDelay="0" busy="{oUserSettingsModel>/settings/busy}" renderType="Bare">
+							<core:Fragment fragmentName="oneapp.incture.workbox.fragment.ManageNotificationSettings" type="XML"/>
+						</VBox>
+					</VBox>
+					<!--________________________________________Version Control Settings _____________________________________________-->
+					<VBox class="wbSettingsGeneralVBox" visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_VERSIONCONTROL'}"
+						alignItems="End">
+						<VBox class="wbCustomContentWrapperStyle sapUiSizeCompact " width="100%" height="100%">
+							<HBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween" class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd"
+								visible="{= ${oUserSettingsModel>/settings/allVersions}.length>0 ? true: false}">
+								<Label text="{i18n>ACTIVE_VERSION_TEXT}: {oUserSettingsModel>/settings/allVersions/0/versionNumber}"/>
+								<HBox renderType="Bare" alignItems="Center" justifyContent="End">
+									<Label text="{i18n>VERSION_TEXT}"/>
+									<Select enabled="true" forceSelection="true" items="{oUserSettingsModel>/settings/allVersions}"
+										change="loadVersions('='+ ${oUserSettingsModel>/settings/selectedVersion})" selectedKey="{oUserSettingsModel>/settings/selectedVersion}"
+										class="wbTextBoldClass sapUiTinyMarginBegin wbDefaultCustomSelectWrapper ">
+										<core:Item key="{oUserSettingsModel>versionNumber}" text="{oUserSettingsModel>versionNumber}"/>
+									</Select>
+								</HBox>
+							</HBox>
+							<core:Fragment fragmentName="oneapp.incture.workbox.fragment.VersionDetails" type="XML"/>
+						</VBox>
+					</VBox>
+				</VBox>
+			</HBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

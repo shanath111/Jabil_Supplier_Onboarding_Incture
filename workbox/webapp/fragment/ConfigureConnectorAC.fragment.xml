@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified">
+	<Dialog class="sapUiSizeCompact" contentWidth="25%">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Title text="{i18n>CONFIGURE_CONNECTOR_TEXT}"/>
+				</contentLeft>
+				<contentRight>
+					<core:Icon src="sap-icon://decline" press="closeConfigConnectorFragment" class="wbDialogCloseIcon" tooltip="{i18n>CLOSE_TEXT}"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<VBox class="wbInboxTableClass sapUiSizeCompact" width="100%" renderType="Bare">
+			<VBox renderType="Bare" width="100%" class="sapUiTinyMarginBottom sapUiTinyMarginTop">
+				<Label text="{i18n>SOURCE_SYSTEM_TEXT}" class="wbTransformToUpperCase" required="true"/>
+				<Input maxLength="100" class="wbDefaultCustomInputWrapper"/>
+			</VBox>
+			<VBox renderType="Bare" width="100%" class="sapUiTinyMarginBottom">
+				<Label text="{i18n>TECHNICAL_NAME_TEXT}" class="wbTransformToUpperCase" required="true"/>
+				<Input maxLength="100" class="wbDefaultCustomInputWrapper"/>
+			</VBox>
+			<VBox renderType="Bare" width="100%" class="sapUiTinyMarginBottom">
+				<Label text="{i18n>ACTIVE_TEXT}" class="wbTransformToUpperCase" required="true"/>
+				<Switch class="wbCustomSwitch" state="true"/>
+			</VBox>
+		</VBox>
+		<HBox renderType="Bare" alignItems="Center" justifyContent="End" class="wbDialogActionFooterClass">
+			<Button text="{i18n>SUBMIT_TEXT}" class="wbDefaultButtonClass sapUiTinyMarginEnd" press="closeConfigConnectorFragment"/>
+			<Button type="Reject" text="{i18n>DISCARD_TEXT}" class="wbAdminMGroupsRemoveBulkBtn" press="closeConfigConnectorFragment"/>
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

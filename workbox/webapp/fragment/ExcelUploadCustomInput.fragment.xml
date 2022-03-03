@@ -1,0 +1,95 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Dialog class="sapUiSizeCompact" contentWidth="30%">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Title text="{i18n>REVIEW_SELECTION}"/>
+				</contentLeft>
+				<contentRight>
+					<core:Icon src="sap-icon://decline" press="onCloseReviewSelectionFragment" class="wbDialogCloseIcon" tooltip="{i18n>CLOSE_TEXT}"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<VBox renderType="Bare" class="sapUiSmallMargin">
+			<VBox renderType="Bare">
+				<Label text="{i18n>SELECT_A_SHEET}" class="sapUiTinyMarginBegin"/>
+				<Select id="ID_WORKSHEET" width="100%" class="wbDefaultCustomInputWrapper" forceSelection="false" selectedKey="{oCustomTaskModel>/selectedWorkSheet}"
+					items="{oCustomTaskModel>/excelData/Workbook/Sheets}" change="uploadExcelWorksheetChange">
+					<core:Item text="{oCustomTaskModel>name}" key="{oCustomTaskModel>name}"/>
+				</Select>
+			</VBox>
+			<VBox renderType="Bare" class="sapUiTinyMarginTop">
+				<RadioButtonGroup columns="2" selectedIndex="{oCustomTaskModel>/excelUploadSelectedIndex}" select="onSelectExcelRange">
+					<RadioButton text="{i18n>SELECT_ROW_RANGE}"/>
+					<RadioButton text="{i18n>SELECT_COLUMN}"/>
+				</RadioButtonGroup>
+			</VBox>
+			<!--<HBox  renderType="Bare" class="sapUiTinyMarginTop sapUiTinyMarginBegin"  visible="{= ${oCustomTaskModel>/excelUploadSelectedIndex}? false:true}">-->
+			<!--	<VBox renderType="Bare" class="sapUiTinyMarginTop">-->
+			<!--		<Label text="{i18n>SELECT_HEADER_ROW}"/>-->
+			<!--		<Input class="wbDefaultCustomInputWrapper"/>-->
+			<!--	</VBox>-->
+			<!--	<VBox renderType="Bare" class="sapUiTinyMarginTop sapUiMediumMarginBegin">-->
+			<!--		<Label text="{i18n>SET_RANGE_TEXT} (rows)"/>-->
+			<!--		<HBox renderType="Bare" >-->
+			<!--			<StepInput class="wbExcelReview wbDefaultCustomInputWrapper" value="{oCustomTaskModel>/excelData/startRow}" min="1" max="{max}"-->
+			<!--				width="40%" change="onChange"/>-->
+			<!--			<Text class="sapUiSmallMarginBeginEnd sapUiTinyMarginTop" text="-"/>-->
+			<!--			<StepInput class="wbExcelReview wbDefaultCustomInputWrapper" value="{oCustomTaskModel>/excelData/endRow}" min="2" max="{max}" width="35%"-->
+			<!--				change="onChange"/>-->
+			<!--		</HBox>-->
+			<!--	</VBox>-->
+			<!--</HBox>-->
+			<HBox renderType="Bare" class="sapUiTinyMarginTop sapUiTinyMarginBegin"
+				visible="{= ${oCustomTaskModel>/excelUploadSelectedIndex}? false:true}">
+				<VBox renderType="Bare" class="sapUiTinyMarginTop">
+					<Label text="{i18n>SELECT_HEADER_ROW}"/>
+					<StepInput class="wbExcelReview wbDefaultCustomInputWrapper" value="{oCustomTaskModel>/excelData/header}" min="1" enabled="{= ${oCustomTaskModel>/selectedWorkSheet} ? true : false}"/>
+				</VBox>
+				<VBox renderType="Bare" class="sapUiTinyMarginTop sapUiMediumMarginBegin">
+					<Label text="{i18n>SET_RANGE_TEXT} (rows)"/>
+					<HBox renderType="Bare">
+						<!--<Input class="wbDefaultCustomInputWrapper" value="{oCustomTaskModel>/excelData/startRow}" width="40%"/>-->
+						<StepInput class="wbExcelReview wbDefaultCustomInputWrapper" value="{oCustomTaskModel>/excelData/startRange}" change="changeInRange" min="2" max="{max}" width="40%"
+							 enabled="{= ${oCustomTaskModel>/selectedWorkSheet} ? true : false}"/>
+						<Text class="sapUiSmallMarginBeginEnd sapUiTinyMarginTop" text="-"/>
+						<!--<Input class="wbDefaultCustomInputWrapper" value="{oCustomTaskModel>/excelData/endRow}" width="40%"/>-->
+						<StepInput class="wbExcelReview wbDefaultCustomInputWrapper" value="{oCustomTaskModel>/excelData/endRange}" min="2" max="{max}" width="40%"
+							 enabled="{= ${oCustomTaskModel>/selectedWorkSheet} &amp;&amp; (${oCustomTaskModel>/multipleInstance}===true) ? true : false}"/>
+					</HBox>
+				</VBox>
+			</HBox>
+			<HBox renderType="Bare" class="sapUiTinyMarginTop sapUiTinyMarginBegin"
+				visible="{= ${oCustomTaskModel>/excelUploadSelectedIndex}? !false:!true}">
+				<VBox renderType="Bare" class="sapUiTinyMarginTop">
+					<Label text="{i18n>SELECT_HEADER_COL}"/>
+				<MaskInput mask="CCCCCCCC" placeholderSymbol=" " class="wbDefaultCustomInputWrapper" value="{oCustomTaskModel>/excelData/header}" enabled="{= ${oCustomTaskModel>/selectedWorkSheet} ? true : false}">
+					<rules>
+						<MaskInputRule maskFormatSymbol="C" regex="[A-Z]"/>
+					</rules>
+				</MaskInput>
+				</VBox>
+				<VBox renderType="Bare" class="sapUiTinyMarginTop sapUiSmallMarginBegin">
+				<Label text="{i18n>SET_RANGE_TEXT} {i18n>COLUMN_TEXT}"/>
+					<HBox renderType="Bare">
+						<MaskInput mask="CCCCCCCC" placeholderSymbol=" " class="wbDefaultCustomInputWrapper" value="{oCustomTaskModel>/excelData/startRange}" change="changeInRange" enabled="{= ${oCustomTaskModel>/selectedWorkSheet} ? true : false}">
+					<rules>
+						<MaskInputRule maskFormatSymbol="C" regex="[A-Z]"/>
+					</rules>
+				</MaskInput>
+						<Text class="sapUiSmallMarginBeginEnd sapUiTinyMarginTop" text="-"/>
+					<MaskInput mask="CCCCCCCC" placeholderSymbol=" " class="wbDefaultCustomInputWrapper" value="{oCustomTaskModel>/excelData/endRange}" enabled="{= ${oCustomTaskModel>/selectedWorkSheet} &amp;&amp; (${oCustomTaskModel>/multipleInstance}===true) ? true : false}">
+					<rules>
+						<MaskInputRule maskFormatSymbol="C" regex="[A-Z]"/>
+					</rules>
+				</MaskInput>
+					</HBox>
+				</VBox>
+			</HBox>
+		</VBox>
+				
+		<HBox justifyContent="End" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" renderType="Bare">
+			<Button text="{i18n>IMPORT_TEXT}" class="sapUiSizeCompact wbDefaultButtonClass" press="onImportSelectedRow" enabled="{= ${oCustomTaskModel>/selectedWorkSheet}  ? true : false}"/>
+		</HBox>
+	</Dialog>
+</core:FragmentDefinition>

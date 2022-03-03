@@ -1,0 +1,23 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:viz="sap.viz.ui5.controls" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.f" xmlns:viz.data="sap.viz.ui5.data" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:grid="sap.ui.layout.cssgrid"
+	controllerName="oneapp.incture.workbox.controller.Dashboard" xmlns:ExtVbox="oneapp.incture.workbox.controlExtension">
+	<Page showHeader="false" class="wbWorkloadBackground">
+		<content>
+			<VBox renderType="Bare" alignItems="Center" class="sapUiSmallMargin sapUiSizeCompact">
+				<grid:CSSGrid gridTemplateRows="repeat(auto-fill, 58px)" class="wbDashboardTileContainerClass"
+					gridTemplateColumns="{path : 'oGraphDataModel>/graphTiles' ,formatter: 'oneapp.incture.workbox.util.formatter.wbDashboardTileGrid'}"
+					gridGap="2.88rem 0.4rem" items="{oGraphDataModel>/graphTiles}" busy="{oGraphDataModel>/enableBusyIndicators/count}">
+					<ExtVbox:ExtVbox renderType="Bare" width="auto" click="fetchGraphDetailFn" class="wbDashboardTileClass" alignItems="Start"
+						justifyContent="SpaceBetween" tooltip="{oGraphDataModel>description}">
+						<HBox renderType="Bare" alignItems="Center" justifyContent="Start" height="80%" width="100%">
+							<Text text="{oGraphDataModel>value}" class="wbDashboardTileCountClass"/>
+						</HBox>
+						<Text text="{oGraphDataModel>label}" class="wbDashboardTileHeaderClass" textAlign="Right"/>
+					</ExtVbox:ExtVbox>
+				</grid:CSSGrid>
+				<grid:CSSGrid id="ID_CSS_GRID" gridTemplateColumns="repeat(2, 1fr)" gridTemplateRows="repeat(0, 1fr)" gridGap="1rem 1rem"
+					class="wbCSSGridStyle"></grid:CSSGrid>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

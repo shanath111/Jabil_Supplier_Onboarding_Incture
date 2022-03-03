@@ -1,0 +1,669 @@
+{
+    "bankDto": {
+        "isBankProvided": null,
+        "isIntermediateBankProvided": null,
+        "isbankdetailsHidden": false,
+        "bankInfoDto": [
+            {
+                "mdgbankdetailsid": "",
+                "bankAccNum": "",
+                "bankAccNumConfirm": "",
+                "bankAddress": "",
+                "bankBranch": "",
+                "bankCity": "",
+                "bankCode": "",
+                "bankNumber": "",
+                "partnerBankType": "",
+                "refBankDetails": "",
+                "bankControlKey": "",
+                "bankCountry": "",
+                "bankDetailsId": "",
+                "bankName": "",
+                "bankState": "",
+                "benefAccHolderName": "",
+                "ibanNum": "",
+                "ibanNumConfirm": "",
+                "instructionKey": "",
+                "swiftCode": "",
+                "accountGroup": ""
+            }
+        ],
+        "financeContact1": {
+            "contact": "",
+            "countryContactCode": "",
+            "contactId": "",
+            "contactInSection": "",
+            "contactName": "",
+            "contactType": "",
+            "dateCreated": null,
+            "dateUpdated": null,
+            "department": "",
+            "email": "",
+            "entityName": "",
+            "extension": "",
+            "firstName": "",
+            "jobTitle": "",
+            "lastName": "",
+            "userCreated": "",
+            "userUpdated": "",
+            "countryMobileCode": "",
+            "mobile": ""
+        },
+        "financeContact2": {
+            "contact": "",
+            "countryContactCode": "",
+            "contactId": "",
+            "contactInSection": "",
+            "contactName": "",
+            "contactType": "",
+            "dateCreated": null,
+            "dateUpdated": null,
+            "department": "",
+            "email": "",
+            "entityName": "",
+            "extension": "",
+            "firstName": "",
+            "jobTitle": "",
+            "lastName": "",
+            "userCreated": "",
+            "userUpdated": "",
+            "countryMobileCode": "",
+            "mobile": ""
+        }
+    },
+    "bpCentral": [
+        {
+            "centralId": null,
+            "formOfAddressKey": "",
+            "naturalPersonalIndicator": false,
+            "organisationName1": "",
+            "organisationName2": "",
+            "organisationName3": "",
+            "organisationName4": "",
+            "personAcademicTitleCode": "",
+            "personFamilyName": "",
+            "personGivenName": "",
+            "salutationText": "",
+            "deletedInd": "",
+            "releasedInd": "",
+            "blockedInd": ""
+        }
+    ],
+    "bpInfoDto": {
+        "cfrComplaint": null,
+        "dnbLegalBusinessName": "",
+        "dunsNumber": "",
+        "dunsRegistrationNum": "",
+        "encourgeDunsNumberReg": null,
+        "isDunsCorrect": true,
+        "isLegalCorrect": true,
+        "isSiteCorporateHeadquaters": null,
+        "itarCertifiedIndicator": null,
+        "legalName": "",
+        "noOfEmployees": "",
+        "siteHaveDunsNumber": null,
+        "deletedInd": "",
+        "purchasingBlockInd": "",
+        "postBlockedInd": "",
+        "altPayeePartyAllowedInd": "",
+        "valueAddedTaxRelInd": "",
+        "taxAuthorityPartyId":"",
+        "corporateGroupName":"",
+        "procurementTransactionBlockingCode":"",
+        "receiverRespTaxOfficePartyInternalId":"",
+        "tax": [
+            {
+                "country": "",
+                "ifOther": "",
+                "taxId": "",
+                "taxNum": "",
+                "type": ""
+            }
+        ],
+        "year": "",
+        "pointOfContact": {
+            "contact": "",
+            "countryContactCode": "",
+            "contactId": "",
+            "contactInSection": "",
+            "contactName": "",
+            "contactType": "",
+            "dateCreated": null,
+            "dateUpdated": null,
+            "department": "",
+            "email": "",
+            "entityName": "",
+            "extension": "",
+            "firstName": "",
+            "jobTitle": "",
+            "lastName": "",
+            "userCreated": "",
+            "userUpdated": "",
+            "countryMobileCode": "",
+            "mobile": ""
+        },
+        "corpHeaderQuartersAddress": [
+                {        
+                    "addressId": "",
+                    "addressInSection": "Corporate_Headquarters",
+                    "postal": [
+                        {
+                            "address1": "",
+                            "address2": "",
+                            "address3": "",
+                            "address4": "",
+                            "address5": "",
+                            "city": "",
+                            "country": "",
+                            "countryCode": "",
+                            "district": "",
+                            "email": [
+                                {
+                                    "email": "",
+                                    "emailId":""
+                                }
+                            ],
+                            "fax": [
+                                {
+                                    "faxId": "",
+                                    "faxNum": ""
+                                }
+                            ],
+                            "name": "",
+                            "postOfficeBox": "",
+                            "postOfficeBoxZipCode": "",
+                            "postalCode": "",
+                            "postalId": "",
+                            "poBoxPostalCode": "",
+                            "region": "",
+                            "regionCode": "",
+                            "telephone": [
+                                {
+                                    "isMobileNumber": false,
+                                    "telephoneId": "",
+                                    "telephoneNum": "",
+                                    "telephoneCountryCode":"",
+                                    "extension": ""
+                                }
+                            ],
+                            "url": [
+                                {
+                                    "webId": "",
+                                    "websiteUrl": ""
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+        "corpHeadquartersLegalBusinessName1":"",
+        "corpHeadquartersLegalBusinessName2":"",
+        "isCorpHeadquartersDunsRegistered":null,
+        "corpHeadquartersDunsRegNum":"",
+        "corpHeadquartersDnbLegalBusinessName":""
+    },
+    "businessPartnerId": "",
+    "caseId": "",
+    "comComplianceDto": {
+        "canDisasterRecoveryPlan": null,
+        "isSrmReceived": null,
+        "supplierReqManualExplanation": "",
+        "commitedToExpectations": null,
+        "commitedToExpectationsContact": {
+            "contact": "",
+            "countryContactCode": "",
+            "contactId": "",
+            "contactInSection": "",
+            "contactName": "",
+            "contactType": "",
+            "dateCreated": null,
+            "dateUpdated": null,
+            "department": "",
+            "email": "",
+            "entityName": "",
+            "extension": "",
+            "firstName": "",
+            "jobTitle": "",
+            "lastName": "",
+            "userCreated": "",
+            "userUpdated": ""
+        },
+        "companyContactWithPreviouseJabilEmp": null,
+        "companyRelationWithJabilEmp": null,
+        "companyRelationWithJabilEmpContact": {
+            "contact": "",
+            "contactId": "",
+            "contactInSection": "",
+            "contactName": "",
+            "contactType": "",
+            "dateCreated": null,
+            "dateUpdated": null,
+            "department": "",
+            "email": "",
+            "entityName": "",
+            "extension": "",
+            "firstName": "",
+            "jobTitle": "",
+            "lastName": "",
+            "userCreated": "",
+            "userUpdated": ""
+        },
+        "employeeName": "",
+        "endDate": null,
+        "isDisasterRecoveryPlan": null,
+        "jobTitle": "",
+        "notCommitedExplanation": "",
+        "region": "",
+        "startDate": null,
+        "ndaSignedBefore": -1
+    },
+    "comContactDto": [
+        {
+            "contact": "",
+            "countryContactCode": "",
+            "contactId": "",
+            "contactInSection": "",
+            "contactType": "",
+            "dateCreated": null,
+            "dateUpdated": null,
+            "email": "",
+            "extension": "",
+            "firstName": "",
+            "jobTitle": "",
+            "lastName": "",
+            "userCreated": "",
+            "userUpdated": ""
+        }
+    ],
+    "comProductsUiDto": {
+        "manufacturingProcessSupplies": [],
+        "operationServices": [],
+        "isManufacturingProcessSupplies": false,
+        "isOperationServices": false
+    },
+    "comInfoDto": {
+        "address": [
+            {
+                "addressId": "",
+                "addressInSection": "",
+                "postal": [
+                    {
+                        "postalId": "",
+                        "address1": "",
+                        "address2": "",
+                        "address3": "",
+                        "address4": "",
+                        "address5": "",
+                        "city": "",
+                        "country": "",
+                        "countryCode": "",
+                        "district": "",
+                        "fax": [
+                            {
+                                "faxNum": "",
+                                "faxId": ""
+                            }
+                        ],
+                        "name": "",
+                        "postOfficeBox": "",
+                        "postOfficeBoxZipCode": "",
+                        "postalCode": "",
+                        "region": "",
+                        "regionCode": "",
+                        "telephone": [
+                            {
+                                "telephoneId": "",
+                                "telephoneNum": "",
+                                "extension": ""
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "addressId": "",
+                "addressInSection": "",
+                "postal": [
+                    {
+                        "postalId": "",
+                        "address1": "",
+                        "address2": "",
+                        "address3": "",
+                        "address4": "",
+                        "address5": "",
+                        "city": "",
+                        "country": "",
+                        "countryCode": "",
+                        "district": "",
+                        "fax": [
+                            {
+                                "faxNum": "",
+                                "faxId": ""
+                            }
+                        ],
+                        "name": "",
+                        "postOfficeBox": "",
+                        "postOfficeBoxZipCode": "",
+                        "postalCode": "",
+                        "region": "",
+                        "regionCode": "",
+                        "telephone": [
+                            {
+                                "telephoneId": "",
+                                "telephoneNum": "",
+                                "extension": ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "companyWebsite": "",
+        "isRemitToAddress": false,
+        "isOrderToAddress": true,
+        "enterprise": [],
+        "haveDiversityCertifications": null,
+        "smallDisadvantagedBusiness": []
+    },
+    "financeInfoDto": {
+        "anyIssueInAudit": null,
+        "doesFinancialStatements": -1,
+        "financeAuditedLast12M": null,
+        "userAudited": ""
+    },
+    "itCyberDto": {
+        "certifiedForInfoSecurity": null,
+        "itcyberSecurityContact": {
+            "contact": "",
+            "countryContactCode": "",
+            "contactId": "",
+            "contactInSection": "",
+            "contactName": "",
+            "contactType": "",
+            "dateCreated": null,
+            "dateUpdated": null,
+            "department": "",
+            "email": "",
+            "entityName": "",
+            "extension": "",
+            "firstName": "",
+            "jobTitle": "",
+            "lastName": "",
+            "userCreated": "",
+            "userUpdated": ""
+        },
+        "orgBusinessActivities": [],
+        "orgConnectToJabilSystem": null,
+        "orgEstablishConnection": [],
+        "orgMaintainProcessDataFromJabil": null,
+        "responsibleForInforSecurity": null,
+        "validateCertificate": null
+    },
+    "ownerShipInfoDto": {
+        "companyName": "",
+        "doesOtherEntityOwnSite": null,
+        "isEntityManagedByGovt": null,
+        "isEntityManagedByGovtFamily": null,
+        "isEntityRegInCISNK": null,
+        "isEntitySDNList": null,
+        "isEntityTradedCompany": null,
+        "managedByGovtContact": {
+            "contact": "",
+            "countryContactCode": "",
+            "contactId": "",
+            "contactInSection": "",
+            "contactName": "",
+            "contactType": "",
+            "dateCreated": null,
+            "dateUpdated": null,
+            "department": "",
+            "email": "",
+            "entityName": "",
+            "extension": "",
+            "firstName": "",
+            "jobTitle": "",
+            "lastName": "",
+            "userCreated": "",
+            "userUpdated": ""
+        },
+        "managedByGovtFamilyContact": {
+            "contact": "",
+            "countryContactCode": "",
+            "contactId": "",
+            "contactInSection": "",
+            "contactName": "",
+            "contactType": "",
+            "dateCreated": null,
+            "dateUpdated": null,
+            "department": "",
+            "email": "",
+            "entityName": "",
+            "extension": "",
+            "firstName": "",
+            "jobTitle": "",
+            "lastName": "",
+            "userCreated": "",
+            "userUpdated": ""
+        },
+        "ownershipType": "",
+        "ownershipTypeOtherValue": null,
+        "regInCISNKContact": [
+            {
+                "contact": "",
+                "contactId": "",
+                "contactInSection": "",
+                "contactName": "",
+                "contactType": "",
+                "dateCreated": null,
+                "dateUpdated": null,
+                "department": "",
+                "email": "",
+                "entityName": "",
+                "extension": "",
+                "firstName": "",
+                "jobTitle": "",
+                "lastName": "",
+                "userCreated": "",
+                "userUpdated": ""
+            }
+        ],
+        "sdnlistContact": [
+            {
+                "contact": "",
+                "contactId": "",
+                "contactInSection": "",
+                "contactName": "",
+                "contactType": "",
+                "dateCreated": null,
+                "dateUpdated": null,
+                "department": "",
+                "email": "",
+                "entityName": "",
+                "extension": "",
+                "firstName": "",
+                "jobTitle": "",
+                "lastName": "",
+                "userCreated": "",
+                "userUpdated": ""
+            }
+        ]
+    },
+    "shippingInfoDto": {
+        "deliverRepAddress": "",
+        "deliverRepContact": "",
+        "deliverRepCountryContactCode": "",
+        "deliverRepEmail": "",
+        "deliverRepFax": "",
+        "deliverRepName": "",
+        "deliveryLocation": "",
+        "incoterm": "",
+        "incotermNamedPlace": "",
+        "isDeliver": null,
+        "paymentCurrency": "",
+        "paymentMethod": "",
+        "paymentTerms": "",
+        "supplierContactInLogistics": "",
+        "vendor": "",
+        "purchasingOrgId": "",
+        "comCodeId": "",
+        "purchasingOrg": "",
+        "comCode": "",
+        "plant": "",
+        "newpaymentCurrency": "",
+        "newpaymentTerms": "",
+        "newincoterm": "",
+        "newincotermNamedPlace": "",
+        "isPaymentTermsAgreed":null,
+        "paymentTermsComments":""
+    },
+    "surveyInfoDto": {
+        "altContact": {
+            "contact": "",
+            "countryContactCode": "",
+            "contactId": "",
+            "contactInSection": "",
+            "contactName": "",
+            "contactType": "",
+            "dateCreated": null,
+            "dateUpdated": null,
+            "department": "",
+            "email": "",
+            "entityName": "",
+            "extension": "",
+            "firstName": "",
+            "jobTitle": "",
+            "lastName": "",
+            "userCreated": "",
+            "userUpdated": "",
+            "mobile": ""
+        },
+        "ackContact": {
+            "contact": "",
+            "countryContactCode": "",
+            "contactId": "",
+            "contactInSection": "",
+            "contactName": "",
+            "contactType": "",
+            "dateCreated": null,
+            "dateUpdated": null,
+            "department": "",
+            "email": "",
+            "entityName": "",
+            "extension": "",
+            "firstName": "",
+            "jobTitle": "",
+            "lastName": "",
+            "userCreated": "",
+            "userUpdated": "",
+            "countryMobileCode": "",
+            "mobile": ""
+        },
+        "authorityContact": {
+            "contact": "",
+            "countryContactCode": "",
+            "contactId": "",
+            "contactInSection": "",
+            "contactName": "",
+            "contactType": "",
+            "dateCreated": null,
+            "dateUpdated": null,
+            "department": "",
+            "email": "",
+            "entityName": "",
+            "extension": "",
+            "firstName": "",
+            "jobTitle": "",
+            "lastName": "",
+            "userCreated": "",
+            "userUpdated": "",
+            "countryMobileCode": "",
+            "mobile": ""
+        },
+        "address": [
+            {
+                "addressId": "",
+                "addressInSection": "Authority",
+                "postal": [
+                    {
+                        "address1": "",
+                        "address2": "",
+                        "city": "",
+                        "country": "",
+                        "countryCode": "",
+                        "district": "",
+                        "email": [
+                            {
+                                "email": ""
+                            }
+                        ],
+                        "fax": [
+                            {
+                                "faxId": "",
+                                "faxNum": ""
+                            }
+                        ],
+                        "name": "",
+                        "postOfficeBox": "",
+                        "postOfficeBoxZipCode": "",
+                        "postalCode": "",
+                        "postalId": "",
+                        "poBoxPostalCode": "",
+                        "region": "",
+                        "regionCode": "",
+                        "telephone": [
+                            {
+                                "isMobileNumber": false,
+                                "telephoneId": "",
+                                "telephoneNum": "",
+                                "extension": ""
+                            },
+                            {
+                                "isMobileNumber": false,
+                                "telephoneId": "",
+                                "telephoneNum": "",
+                                "extension": ""
+                            }
+                        ],
+                        "url": [
+                            {
+                                "webId": "",
+                                "websiteUrl": ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "isAuthority": null,
+        "isJabilMainContact": null,
+        "mainContact": {
+            "contact": "",
+            "countryContactCode": "",
+            "contactId": "",
+            "contactInSection": "",
+            "contactName": "",
+            "contactType": "",
+            "dateCreated": null,
+            "dateUpdated": null,
+            "department": "",
+            "email": "",
+            "entityName": "",
+            "extension": "",
+            "firstName": "",
+            "jobTitle": "",
+            "lastName": "",
+            "countryMobileCode": "",
+            "mobile": "",
+            "userCreated": "",
+            "userUpdated": ""
+        },
+        "supplierAddlDataId": "",
+        "supplierId": "",
+        "centralId": ""
+    },
+    "userCreated": "",
+    "userUpdated": "",
+    "dateCreated": null,
+    "dateUpdated": null,
+    "isFormAccepted": false
+}

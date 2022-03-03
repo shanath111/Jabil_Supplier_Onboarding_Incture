@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dateInfo}:${oi18n_En>dateInfo} + '/&#160;' +${i18n>dateInfo}}" contentWidth="40%"  class="sapUiSizeCompact">
+		<content>
+        <HBox alignContent="Center" alignItems="Center" >
+        <VBox class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
+        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>ExpiryDate}:${oi18n_En>ExpiryDate} + '/&#160;' +${i18n>ExpiryDate}}" required="true"/>
+        <DatePicker valueFormat="yyyy-MM-dd"></DatePicker></VBox>
+        <VBox class="sapUiTinyMarginTop sapUiSmallMarginEnd">
+        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>ReminderDate}:${oi18n_En>ReminderDate} + '/&#160;' +${i18n>ReminderDate}}" required="true"/>    
+  <Input type="Number"></Input></VBox>
+            </HBox>
+			<OverflowToolbar class="barClass sapUiTinyMarginTop">
+            	<ToolbarSpacer/>
+				<Button class="cl_VRActnBtnClear" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>cancel}:${oi18n_En>cancel} + '/&#160;' +${i18n>cancel}}" press="fnClose" tooltip="{i18n>cancel}"/>
+				<Button  class="cl_VRActnBtnApply" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>done}:${oi18n_En>done} + '/&#160;' +${i18n>done}}" press="fnClose" tooltip="{i18n>done}"/>
+			</OverflowToolbar>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

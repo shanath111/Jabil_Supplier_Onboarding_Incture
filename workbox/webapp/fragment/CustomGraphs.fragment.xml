@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:f="sap.f"
+	xmlns:grid="sap.ui.layout.cssgrid" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+	<VBox id="ID_CUSTOM_GRAPH_CONTAINER" renderType="Bare" alignItems="Center" width="100%" class="wbDashboardChartClass" visible="{oGraphDataModel>/graphUserWorkItemText}">
+		<layoutData>
+			<grid:GridItemLayoutData gridColumn="span 1"/>
+		</layoutData>
+		<HBox renderType="Bare" alignItems="Center" width="100%" justifyContent="SpaceBetween" class="wbDashboardHeaderComboClass">
+			<Text text="{oGraphDataModel>/customGraphData/graphConfigurationDo/graphName}" class="wbDashboardTitleTextClass"/>
+		</HBox>
+	<!--	<viz:VizFrame busy="{oGraphDataModel>/enableBusyIndicators/userGraph}" busyIndicatorDelay="0" xmlns="sap.viz"
+			id="WB_CUSTOM_GRAPH" uiConfig="{applicationSet:'fiori'}" selectData="fetchGraphDetailFn" vizType="column" legendVisible="false"
+			class="wbDashboardScrollClass wbDashboardScrollHeightClass" width="100%"
+			height="{path : '/' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGraphHeight'}"/>-->
+	</VBox>
+</core:FragmentDefinition>

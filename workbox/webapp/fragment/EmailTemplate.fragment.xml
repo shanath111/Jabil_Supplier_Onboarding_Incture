@@ -1,0 +1,126 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout">
+	<HBox visible="{oAppModel>/emailTemplatelistVisible}" renderType="Bare"
+		class="sapUiSmallMarginBegin sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginEnd">
+		<VBox renderType="Bare">
+			<HBox renderType="Bare">
+				<Button text="{i18n>ADD_TEMPLATE_TEXT}" type="Emphasized" width="12%" class="wbEmphasizedButtonStyleClass sapUiTinyMarginBegin"
+					press="addEmailTemplateFn"/>
+			</HBox>
+			<Table class="wbCustomTableClass sapUiTinyMarginTop sapUiTinyMarginBeginEnd" items="{oDefaultDataModel>/emailListDetails/emailTemplateDtos}"
+				width="100%" mode="SingleSelectMaster" selectionChange="onEmailTaskChange">
+				<columns>
+					<Column width="26%">
+						<Text text="{i18n>TEMPLATE_NAME_TEXT}" class="wbTransformToUpperCase"/>
+					</Column>
+					<Column width="25%">
+						<Text text="{i18n>PROCESS_NAME_TEXT}" class="wbTransformToUpperCase"/>
+					</Column>
+					<Column width="16%">
+						<Text text="{i18n>TASK_LEVEL_TEXT}" class="wbTransformToUpperCase"/>
+					</Column>
+					<Column width="10%">
+						<Text text="{i18n>STATUS_TEXT}" class="wbTransformToUpperCase"/>
+					</Column>
+					<Column width="15%">
+						<Text text="{i18n>ACTIVE_VERSION_TEXT}" class="wbTransformToUpperCase"/>
+					</Column>
+					<Column width="6%"></Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{oDefaultDataModel>templateName}"/>
+							<Text text="{oDefaultDataModel>processName}"/>
+							<Text text="{oDefaultDataModel>taskName}"/>
+							<Text text="{oDefaultDataModel>status}"/>
+							<ComboBox class="wbDefaultCustomInputWrapper" value="{oDefaultDataModel>latestVersion}" selectedKey="{oDefaultDataModel>status}"
+								items="{oDefaultDataModel>versions}" change="onEmailTemplateVersionChange" width="88%">
+								<core:Item text="{oDefaultDataModel>version}" key="{oDefaultDataModel>status}"/>
+							</ComboBox>
+							<Button text="{i18n>REMOVE_TEXT}" type="Reject" class="wbAdminMGroupsRemoveBtn" press="deleteTemplateFn"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</VBox>
+	</HBox>
+	<VBox renderType="Bare" visible="{oAppModel>/emailTemplateVisible}" class="sapUiSizeCompact" width="100%">
+		<HBox renderType="Bare" alignItems="Center" class="wbTaskDetailCreatedInfoClass">
+			<VBox renderType="Bare" class="sapUiSmallMarginBegin">
+				<Text text="{i18n>TEMPLATE_NAME_TEXT}" class="sapUiTinyMarginTop sapUiTinyMarginBottom wbEmailTemplateText"></Text>
+				<Input class="sapUiTinyMarginBottom wbDefaultCustomInputWrapper"
+					value="{oDefaultDataModel>/emailTemplateDetails/emailTemplate/templateName}"></Input>
+			</VBox>
+			<VBox renderType="Bare" class="sapUiMediumMarginBegin">
+				<Text text="{i18n>PROCESS_NAME_TEXT}" class="sapUiTinyMarginTop sapUiTinyMarginBottom wbEmailTemplateText"></Text>
+				<ComboBox items="{oDefaultDataModel>/emailProcessDetails/processDetails}"
+					selectedKey="{oDefaultDataModel>/emailTemplateDetails/emailTemplate/processName}" change="onEmailProcessChange"
+					class="sapUiTinyMarginBottom wbDefaultCustomInputWrapper"
+					editable="{= ${oDefaultDataModel>/emailTemplateDetails/emailTemplate/templateId} ? false : true}">
+					<core:Item text="{oDefaultDataModel>processDisplayName}" key="{oDefaultDataModel>processName}"/>
+				</ComboBox>
+			</VBox>
+			<VBox renderType="Bare" class="sapUiMediumMarginBegin">
+				<Text text="{i18n>TASK_LEVEL_TEXT}" class="sapUiTinyMarginTop sapUiTinyMarginBottom wbEmailTemplateText"></Text>
+				<ComboBox items="{oDefaultDataModel>/emailTaskDetails/taskDetails}"
+					selectedKey="{oDefaultDataModel>/emailTemplateDetails/emailTemplate/taskName}" change="onEmailTaskChange"
+					class="sapUiTinyMarginBottom wbDefaultCustomInputWrapper"
+					editable="{= ${oDefaultDataModel>/emailTemplateDetails/emailTemplate/templateId} ? false : true}">
+					<core:Item text="{oDefaultDataModel>taskDisplayName}" key="{oDefaultDataModel>taskName}"/>
+				</ComboBox>
+			</VBox>
+		</HBox>
+		<HBox renderType="Bare" class="wbTaskDetailContentClass">
+			<VBox renderType="Bare" width="100%">
+				<HBox renderType="Bare" class="wbEmailTemplateMultiInputHbox">
+					<Label text="{i18n>TO_TEXT} " class="sapUiTinyMarginTop wbEmailTemplateText" width="7%"></Label>
+					<Input class="wbDefaultCustomInputWrapper" suggestionItems="{oDefaultDataModel>/emailAttributesDetails/runTimeAttributes}"
+						showSuggestion="true" value="{ path: 'oDefaultDataModel>/emailTemplateDetails/emailContent/to'}" liveChange="onTagging"
+						suggestionItemSelected="onSelectingSuggestionItem"
+						editable="{= ${oDefaultDataModel>/emailTemplateDetails/emailTemplate/status} === 'Deactivated' ? false : true}">
+						<suggestionItems>
+							<core:Item text="{oDefaultDataModel>label}"/>
+						</suggestionItems>
+					</Input>
+				</HBox>
+				<HBox renderType="Bare" class="wbEmailTemplateMultiInputHbox">
+					<Label text="{i18n>CC_TEXT}" class="sapUiTinyMarginTop wbEmailTemplateText" width="7%"></Label>
+					<Input class="wbDefaultCustomInputWrapper" suggestionItems="{oDefaultDataModel>/emailAttributesDetails/runTimeAttributes}"
+						showSuggestion="true" value="{ path: 'oDefaultDataModel>/emailTemplateDetails/emailContent/cc'}" liveChange="onTagging"
+						suggestionItemSelected="onSelectingSuggestionItem"
+						editable="{= ${oDefaultDataModel>/emailTemplateDetails/emailTemplate/status} === 'Deactivated' ? false : true}">
+						<suggestionItems>
+							<core:Item text="{oDefaultDataModel>label}"
+								enabled="{= ${oDefaultDataModel>key} === 'taskOwner' || ${oDefaultDataModel>key} === 'creator' ? true : false}"/>
+						</suggestionItems>
+					</Input>
+				</HBox>
+				<HBox renderType="Bare" class="wbEmailTemplateMultiInputHbox">
+					<Label text="{i18n>BCC_TEXT}" class="sapUiTinyMarginTop wbEmailTemplateText" width="7%"></Label>
+					<Input class="wbDefaultCustomInputWrapper" suggestionItems="{oDefaultDataModel>/emailAttributesDetails/runTimeAttributes}"
+						showSuggestion="true" value="{ path: 'oDefaultDataModel>/emailTemplateDetails/emailContent/bcc'}" liveChange="onTagging"
+						suggestionItemSelected="onSelectingSuggestionItem"
+						editable="{= ${oDefaultDataModel>/emailTemplateDetails/emailTemplate/status} === 'Deactivated' ? false : true}">
+						<suggestionItems>
+							<core:Item text="{oDefaultDataModel>label}"
+								enabled="{= ${oDefaultDataModel>key} === 'taskOwner' || ${oDefaultDataModel>key} === 'creator' ? true : false}"/>
+						</suggestionItems>
+					</Input>
+				</HBox>
+				<HBox renderType="Bare" class="wbEmailTemplateMultiInputHbox">
+					<Label text="{i18n>SUBJECT_TEXT}" class="sapUiTinyMarginTop wbEmailTemplateText" width="7%"></Label>
+					<Input id="idInput" placeholder="{i18n>SUBJECT_PLACEHOLDER_TEXT}" class="wbDefaultCustomInputWrapper"
+						suggestionItems="{oDefaultDataModel>/emailAttributesDetails/customAttibutes}" showSuggestion="true"
+						value="{ path: 'oDefaultDataModel>/emailTemplateDetails/emailContent/subject'}" liveChange="onTagging"
+						suggestionItemSelected="onSelectingSuggestionItem"
+						editable="{= ${oDefaultDataModel>/emailTemplateDetails/emailTemplate/status} === 'Deactivated' ? false : true}">
+						<suggestionItems>
+							<core:Item text="{oDefaultDataModel>label}"/>
+						</suggestionItems>
+					</Input>
+				</HBox>
+			</VBox>
+		</HBox>
+		<layout:VerticalLayout id="idVerticalLayout" class="wbEmailTemplateVerticalLayout" width="97.25%"></layout:VerticalLayout>
+	</VBox>
+</core:FragmentDefinition>

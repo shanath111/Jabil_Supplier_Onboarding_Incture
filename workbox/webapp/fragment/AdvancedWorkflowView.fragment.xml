@@ -1,0 +1,524 @@
+<core:FragmentDefinition xmlns:custom="oneapp.incture.workbox.controlExtension" xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:NG="sap.suite.ui.commons.networkgraph" xmlns:layout="sap.suite.ui.commons.networkgraph.layout"
+	xmlns:dnd="sap.ui.core.dnd" xmlns:l="sap.ui.layout">
+	<HBox renderType="Bare" alignItems="Center" width="100%" height="100%" class="sapUiSizeCompact">
+		<VBox renderType="Bare" alignItems="Center" width="5%" height="100%" class="wbAdminWfLeftPaneContainer">
+			<custom:ExtHbox justifyContent="Center" renderType="Bare" alignItems="Center"
+				class="sapUiSmallMarginTopBottom wbAdminTaskConfigPaddingClass">
+				<custom:dragDropConfig>
+					<dnd:DragInfo/>
+				</custom:dragDropConfig>
+				<core:Icon size="150%" src="sap-icon://person-placeholder" class="wbTaskDetailHeaderIconClass" tooltip="{i18n>USER_BASED_TEXT}"/>
+			</custom:ExtHbox>
+			<custom:ExtHbox justifyContent="Center" renderType="Bare" alignItems="Center" class="sapUiSmallMarginTopBottom wbTaskDetailHeaderIconClass">
+				<custom:dragDropConfig>
+					<dnd:DragInfo/>
+				</custom:dragDropConfig>
+				<core:Icon size="150%" src="sap-icon://accept" class="wbTaskDetailHeaderIconClass" tooltip="{i18n>RULE_BASED_TEXT}"/>
+			</custom:ExtHbox>
+		</VBox>
+		<l:ResponsiveSplitter width="95%">
+			<l:PaneContainer orientation="Horizontal">
+				<l:SplitPane>
+					<VBox renderType="Bare" width="100%" height="100%">
+						<ScrollContainer horizontal="false" vertical="true"
+							height="{path: '/' ,formatter: 'oneapp.incture.workbox.util.formatter.wbAdminWfGraphScroll'}">
+							<custom:ExtVbox renderType="Bare" class="wbAdminWfGraphContainer">
+								<custom:dragDropConfig>
+									<dnd:DropInfo drop="addTaskLevelFn"/>
+								</custom:dragDropConfig>
+								<NG:Graph graphReady="refreshGraphFn" enableWheelZoom="false" enableZoom="false" orientation="TopBottom"
+									nodes="{oDefaultDataModel>/advancedWfData/teamDetailDto}" lines="{oDefaultDataModel>/advancedWfData/mappingLines}" renderType="Svg">
+									<NG:layoutData>
+										<FlexItemData growFactor="1" shrinkFactor="1" baseSize="0%" minWidth="auto"/>
+									</NG:layoutData>
+									<NG:layoutAlgorithm>
+										<layout:LayeredLayout mergeEdges="false" nodePlacement="Simple" nodeSpacing="55"/>
+									</NG:layoutAlgorithm>
+									<NG:nodes>
+										<NG:Node showDetailButton="false" showActionLinksButton="false" descriptionLineSize="0" key="{oDefaultDataModel>templateId}"
+											title="{oDefaultDataModel>eventName}"
+											shape="{= ${oDefaultDataModel>templateId} === 'startTask' || ${oDefaultDataModel>templateId} === 'endTask' ? 'Circle' : 'Box'}"
+											status="Success" press="setWfNodeSelectedData">
+											<NG:attributes>
+												<NG:ElementAttribute label="{oDefaultDataModel>description}"/>
+											</NG:attributes>
+											<NG:actionButtons>
+												<NG:ActionButton enabled="{path : 'oDefaultDataModel>shape' ,formatter: 'oneapp.incture.workbox.util.formatter.wbAdminWfDeleteButton'}"
+													icon="sap-icon://delete" title="{i18n>DELETE_TASK_TEXT}" press="deleteTaskLevelFn"/>
+											</NG:actionButtons>
+										</NG:Node>
+										<!--<custom:NetworkGraphCustomNode  showActionLinksButton="false" key="{oDefaultDataModel>templateId}" title="{oDefaultDataModel>eventName}" shape="{oDefaultDataModel>shape}"  -->
+										<!--	width="168" titleLineSize="2" status="Success"  press="setWfNodeSelectedData"></custom:NetworkGraphCustomNode>-->
+									</NG:nodes>
+									<NG:lines>
+										<NG:Line arrowPosition="End" arrowOrientation="ParentOf" from="{oDefaultDataModel>from}" to="{oDefaultDataModel>to}" stretchToCenter="true"
+											press="linePress"></NG:Line>
+									</NG:lines>
+								</NG:Graph>
+							</custom:ExtVbox>
+						</ScrollContainer>
+					</VBox>
+				</l:SplitPane>
+				<l:PaneContainer orientation="Horizontal">
+					<l:SplitPane>
+						<VBox renderType="Bare" width="100%" height="100%">
+							<IconTabBar id="WB_ADVANCED_WF_ID" class="wbAdminIconTabBackground wbAdminWfRightPaneClass" expandable="false" stretchContentHeight="true">
+								<items>
+									<IconTabFilter text="{i18n>PROCESS_TEMPLATE_TEXT}" key="processDetails">
+										<IconTabBar class="wbAdminIconTaskTabBackground wbAdminWfRightPaneClass" expandable="false" stretchContentHeight="true">
+											<items>
+												<IconTabFilter text="{i18n>PROCESS_DETAILS_TEXT}" key="processDetails">
+													<VBox renderType="Bare">
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label text="{i18n>ADMIN_FILTER_NAME}" width="30%" class="sapUiSmallMarginBegin" required="true"/>
+															<Input value="{oDefaultDataModel>/createWorkFlowData/processDetail/processDisplayName}" width="50%" type="Text"
+																class="wbDefaultCustomInputWrapper" placeholder="{i18n>PLACEHOLDER_TYPE_TEXT}" maxLength="250"
+																change="changeProperty($event,'specialCharacter')" enabled="{oDefaultDataModel>/setEnabled}"></Input>
+														</HBox>
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label text="{i18n>DESCRIPTION_TEXT}" width="30%" class="sapUiSmallMarginBegin" required="true"/>
+															<Input value="{oDefaultDataModel>/createWorkFlowData/processDetail/description}" width="50%" class="wbDefaultCustomInputWrapper"
+																placeholder="{i18n>PLACEHOLDER_TYPE_TEXT}" maxLength="300" change="changeProperty($event,'specialCharacter')"
+																enabled="{oDefaultDataModel>/setEnabled}"></Input>
+														</HBox>
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label width="30%" text="{i18n>CREATION_TYPE_TEXT}" class="sapUiSmallMarginBegin" required="true"/>
+															<RadioButtonGroup columns="2" buttons="{oDefaultDataModel>/processType/dto}" enabled="{oDefaultDataModel>/setEnabled}"
+																selectedIndex="{= ${oDefaultDataModel>/createWorkFlowData/processDetail/processType} === 'Single Instance' ? 0 : 1}"
+																select="onSelectInstance">
+																<RadioButton text="{oDefaultDataModel>value}"/>
+															</RadioButtonGroup>
+														</HBox>
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label width="30%" text="{i18n>SLA_TEXT}" class="sapUiSmallMarginBegin" required="true"/>
+															<HBox renderType="Bare" alignItems="Center" width="60%" justifyContent="SpaceBetween">
+																<StepInput width="5rem" class="wbDefaultCustomInputWrapper" min="0" max="20" step="1"
+																	value="{oDefaultDataModel>/createWorkFlowData/processDetail/slaDays}" change="changeProperty($event,'numericOnly')"/>
+																<Text text="{i18n>PLACEHOLDER_SLADAYS_TEXT}"/>
+																<StepInput width="5rem" class="wbDefaultCustomInputWrapper" min="0" max="23" step="1"
+																	value="{oDefaultDataModel>/createWorkFlowData/processDetail/slaHours}" change="changeProperty($event,'numericOnly')"/>
+																<Text text="{i18n>PLACEHOLDER_SLAHOURS_TEXT}"/>
+															</HBox>
+														</HBox>
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label width="30%" text="{i18n>CRITICAL_TEXT}" class="sapUiSmallMarginBegin" required="true"/>
+															<HBox renderType="Bare" alignItems="Center" width="60%" justifyContent="SpaceBetween">
+																<StepInput width="5rem" class="wbDefaultCustomInputWrapper" step="1"
+																	value="{oDefaultDataModel>/createWorkFlowData/processDetail/criticalDateDays}" max="20" min="0"
+																	change="changeProperty($event,'numericOnly')"/>
+																<Text text="{i18n>PLACEHOLDER_SLADAYS_TEXT}"/>
+																<StepInput width="5rem" class="wbDefaultCustomInputWrapper" step="1"
+																	value="{oDefaultDataModel>/createWorkFlowData/processDetail/criticalDateHours}" min="0" max="23"
+																	change="changeProperty($event,'numericOnly')"/>
+																<Text text="{i18n>PLACEHOLDER_SLAHOURS_TEXT}"/>
+															</HBox>
+														</HBox>
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label width="30%" text="{i18n>DETAIL_URL_TEXT}" class="sapUiSmallMarginBegin" required="true"/>
+															<Input width="65.5%" class="wbDefaultCustomInputWrapper" value="{oDefaultDataModel>/createWorkFlowData/processDetail/url}"/>
+														</HBox>
+													</VBox>
+												</IconTabFilter>
+												<IconTabFilter text="{i18n>ATTRIBUTES_TEXT}" key="processAttributes">
+													<ScrollContainer horizontal="false" height="100%" vertical="true">
+														<VBox renderType="Bare">
+															<HBox width="96.5%" renderType="Bare" alignItems="Center" justifyContent="End" class="sapUiTinyMarginTop sapUiSmallMargiBegin">
+																<Button icon="sap-icon://add" text="{i18n>ADD_TEXT}" class="wbDefaultButtonClass" press="addCustomAttributeFn"/>
+															</HBox>
+															<VBox renderType="Bare" width="98%" items="{oDefaultDataModel>/createWorkFlowData/customAttribute}"
+																class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+																<VBox renderType="Bare" width="100%">
+																	<Panel expandable="true" width="96.5%" class="wbAdminWfPanelBorderClass wbAdminWfPanelClass">
+																		<headerToolbar>
+																			<Toolbar>
+																				<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+																					<Label width="30%" text="{i18n>LABEL_TEXT}" class="wbAdminCustLabel" required="true"/>
+																					<Input width="60%" change="fetchExistingAttribute" value="{oDefaultDataModel>label}" class="wbDefaultCustomInputWrapper" maxLength="100"></Input>
+																				</HBox>
+																				<HBox renderType="Bare" alignItems="Center" justifyContent="End">
+																					<Button icon="sap-icon://delete" type="Reject" class="wbAdminMGroupsRemoveBtn" press="deleteCustomAttributeFn"/>
+																				</HBox>
+																			</Toolbar>
+																		</headerToolbar>
+																		<content>
+																			<VBox renderType="Bare" alignItems="Center" class="sapUiSmallMarginBegin">
+																				<HBox class="sapUiTinyMarginTopBottom" width="100%" renderType="Bare" alignItems="Center">
+																					<Label width="27.25%" text="{i18n>ATTRIBUTE_DESC_TEXT}" class="wbAdminWfTaskAttMargin wbAdminCustLabel" required="true"/>
+																					<Input width="55.25%" value="{oDefaultDataModel>description}" maxLength="200" class="wbDefaultCustomInputWrapper"></Input>
+																				</HBox>
+																				<HBox class="sapUiTinyMarginTopBottom" width="100%" renderType="Bare" alignItems="Center">
+																					<Label width="27.25%" text="{i18n>DATA_TYPE_TEXT}" class="wbAdminWfTaskAttMargin wbAdminCustLabel" required="true"/>
+																					<Select width="55.25%" change="dataTypeChangeFn" class="wbDefaultCustomSelectWrapper sapUiSmallMarginEnd"
+																						selectedKey="{oDefaultDataModel>dataType}" items="{oDefaultDataModel>/dataType/dto}">
+																						<core:Item key="{oDefaultDataModel>value}" text="{oDefaultDataModel>value}"/>
+																					</Select>
+																				</HBox>
+																				<HBox renderType="Bare" alignItems="Center" width="100%">
+																					<HBox class="sapUiTinyMarginTopBottom" width="47.5%" renderType="Bare" alignItems="Center">
+																						<Label width="55.25%" text="{i18n>VISIBILITY_TEXT}" class="wbAdminWfTaskAttMargin wbAdminCustLabel" required="true"/>
+																						<Switch change="changeSwtichProperty" class="wbCustomSwitch" state="{oDefaultDataModel>isVisible}"/>
+																					</HBox>
+																					<HBox class="sapUiTinyMarginTopBottom" width="48.5%" renderType="Bare" alignItems="Center">
+																						<Label width="55.25%" text="{i18n>EDITABLE_TEXT}" class="wbAdminWfTaskAttMargin wbAdminCustLabel" required="true"/>
+																						<Switch change="changeSwtichProperty" class="wbCustomSwitch" state="{oDefaultDataModel>isEditable}"/>
+																					</HBox>
+																				</HBox>
+																				<HBox renderType="Bare" alignItems="Center" width="100%">
+																					<HBox class="sapUiTinyMarginTopBottom" width="47.5%" renderType="Bare" alignItems="Center">
+																						<Label width="55.25%" text="{i18n>MANDATORY_TEXT}" class="wbAdminWfTaskAttMargin wbAdminCustLabel" required="true"/>
+																						<Switch change="changeSwtichProperty" class="wbCustomSwitch" state="{oDefaultDataModel>isMandatory}"
+																							enabled="{= ${oDefaultDataModel>isRunTime} === true ? false : true}"/>
+																					</HBox>
+																					<HBox class="sapUiTinyMarginTopBottom" width="48.5%" renderType="Bare" alignItems="Center">
+																						<Label width="55.25%" text="{i18n>RUN_TIME_TEXT} {i18n>USER_TEXT}" class="wbAdminWfTaskAttMargin wbAdminCustLabel" required="true"/>
+																						<Switch change="changeRunTimeProperty" class="wbCustomSwitch" state="{oDefaultDataModel>isRunTime}"/>
+																					</HBox>
+																				</HBox>
+																				<HBox class="sapUiTinyMarginTopBottom" visible="{oDefaultDataModel>isRunTime}" width="100%" renderType="Bare" alignItems="Center">
+																					<Label width="27.25%" text="{i18n>RUN_TIME_TEXT} {i18n>USER_TEXT} {i18n>TYPE_TEXT}" class="wbAdminWfTaskAttMargin wbAdminCustLabel"
+																						required="true"/>
+																					<RadioButtonGroup columns="2" select="onSelectRunTimeType" selectedIndex="{= ${oDefaultDataModel>runTimeType} === 'group' ? 1 : 0}">
+																						<RadioButton text="{i18n>INDIVIDUAL_TEXT}"/>
+																						<RadioButton text="{i18n>GROUPS_TEXT}"/>
+																					</RadioButtonGroup>
+																				</HBox>
+																			</VBox>
+																			<Label visible="{= ${oDefaultDataModel>dataType} === 'DROPDOWN' &amp;&amp; ${oDefaultDataModel>isRunTime} === false}"
+																				text="{i18n>DROPDOWN_CONFIG_TEXT}" class="wbAdminWfAttConfigText wbAdminCustLabelProcess sapUiTinyMarginTopBottom"/>
+																			<VBox width="93.75%" visible="{= ${oDefaultDataModel>dataType} === 'DROPDOWN' &amp;&amp; ${oDefaultDataModel>isRunTime} === false}"
+																				renderType="Bare" class="wbTaskTemplateContentClass wbAdminWfPanelContentBorder">
+																				<HBox renderType="Bare" width="100%" alignItems="Center" class="wbAdminPanelContentHeaderClass" justifyContent="Start">
+																					<Label width="92%" text="{i18n>LABEL_TEXT}" class="wbAdminCustLabel wbTransformToUpperCase" required="true"/>
+																					<HBox renderType="Bare" width="8%" justifyContent="End">
+																						<Button icon="sap-icon://add" text="{i18n>ADD_TEXT}" class="sapUiTinyMarginBegin wbCustomButtonClass" press="addDropdownValues"/>
+																					</HBox>
+																				</HBox>
+																				<VBox items="{oDefaultDataModel>dropDownValues}" renderType="Bare" width="100%">
+																					<HBox renderType="Bare" alignItems="Center" width="97%" justifyContent="SpaceBetween">
+																						<HBox renderType="Bare" alignItems="Center" width="85%" class="wbAdminWfPanelInputMarginClass">
+																							<Input width="85%" value="{oDefaultDataModel>valueName}" maxLength="100" class="wbTaskDetailInputWrapper sapUiTinyMarginEnd"/>
+																						</HBox>
+																						<HBox renderType="Bare" width="8%" justifyContent="End">
+																							<Button icon="sap-icon://delete" type="Reject" class="wbAdminMGroupsRemoveBtn" press="deleteDropdownValues"/>
+																						</HBox>
+																					</HBox>
+																				</VBox>
+																			</VBox>
+																			<Label visible="{= ${oDefaultDataModel>dataType} === 'TABLE'}" text="{i18n>TABLE_CONFIG_TEXT}"
+																				class="wbAdminWfAttConfigText wbAdminCustLabelProcess sapUiTinyMarginTopBottom"/>
+																			<VBox visible="{= ${oDefaultDataModel>dataType} === 'TABLE'}" renderType="Bare" alignItems="Center" width="93.75%"
+																				class="wbTaskTemplateContentClass wbAdminWfPanelContentBorder ">
+																				<HBox renderType="Bare" width="100%" alignItems="Center" class="wbAdminPanelContentHeaderClass" justifyContent="Start">
+																					<Label width="46%" text="{i18n>COLUMN_NAME_TEXT}" class="wbAdminCustLabel" required="true"/>
+																					<Label width="46%" text="{i18n>DATA_TYPE_TEXT}" class="wbAdminCustLabel wbTransformToUpperCase" required="true"/>
+																					<HBox renderType="Bare" width="8%" justifyContent="End">
+																						<Button icon="sap-icon://add" text="{i18n>ADD_TEXT}" class="sapUiTinyMarginBegin wbCustomButtonClass" press="addTableColumnValues"/>
+																					</HBox>
+																				</HBox>
+																				<VBox items="{oDefaultDataModel>tableAttributes}" renderType="Bare" alignItems="Center" width="100%">
+																					<HBox renderType="Bare" alignItems="Center" width="97%" justifyContent="SpaceBetween">
+																						<HBox renderType="Bare" alignItems="Center" width="85%">
+																							<Input width="52%" maxLength="100" value="{oDefaultDataModel>label}" class="wbTaskDetailInputWrapper sapUiTinyMarginEnd"
+																								change="changeURLProperty"/>
+																							<ComboBox width="46%" selectedKey="{oDefaultDataModel>dataType}" items="{oDefaultDataModel>/dataType/dto}" class="wbTaskDetailInputWrapper">
+																								<core:Item key="{oDefaultDataModel>value}" text="{oDefaultDataModel>value}"
+																									enabled="{= ${oDefaultDataModel>value} === 'TABLE' || ${oDefaultDataModel>value} === 'ATTACHMENT' || ${oDefaultDataModel>value} === 'DROPDOWN' ? false : true}"/>
+																							</ComboBox>
+																						</HBox>
+																						<HBox renderType="Bare" width="8%" justifyContent="End">
+																							<Button icon="sap-icon://delete" type="Reject" class="wbAdminMGroupsRemoveBtn" press="deleteTableColumnValues"/>
+																						</HBox>
+																					</HBox>
+																				</VBox>
+																			</VBox>
+																		</content>
+																	</Panel>
+																</VBox>
+															</VBox>
+														</VBox>
+													</ScrollContainer>
+												</IconTabFilter>
+											</items>
+										</IconTabBar>
+									</IconTabFilter>
+									<IconTabFilter text="{i18n>TASK_TEMPLATE_TEXT}" key="taskDetails">
+										<IconTabBar id="WB_ADVANCED_WF_TASK_ID" select="onTaskDetailsTabChange" class="wbAdminIconTaskTabBackground wbAdminWfRightPaneClass"
+											expandable="false" stretchContentHeight="true">
+											<items>
+												<IconTabFilter text="{i18n>TASK_DETAILS_TEXT}" key="commonTaskDetails">
+													<VBox renderType="Bare">
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label width="30%" text="{i18n>TASK_NAME_TEXT}" class="sapUiSmallMarginBegin" required="true"/>
+															<Input width="50%" value="{oDefaultDataModel>/advancedWfActiveTask/eventName}" maxLength="100" class="wbDefaultCustomInputWrapper"
+																change="changeTaskNameProperty"></Input>
+														</HBox>
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label width="30%" text="{i18n>SUBJECT_TEXT}" class="sapUiSmallMarginBegin"/>
+															<Input width="50%" value="{oDefaultDataModel>/advancedWfActiveTask/subject}" suggestionItems="{oDefaultDataModel>/processLevelAttributes}"
+																showSuggestion="true" maxLength="200" class="wbDefaultCustomInputWrapper" change="changeURLProperty" liveChange="onTagging"
+																suggestionItemSelected="onSelectingSuggestionItem">
+																<suggestionItems>
+																	<core:Item text="{oDefaultDataModel>label}"/>
+																</suggestionItems>
+															</Input>
+														</HBox>
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label width="30%" text="{i18n>DESCRIPTION_TEXT}" class="sapUiSmallMarginBegin"/>
+															<Input width="50%" value="{oDefaultDataModel>/advancedWfActiveTask/description}"
+																suggestionItems="{oDefaultDataModel>/processLevelAttributes}" showSuggestion="true" maxLength="200" class="wbDefaultCustomInputWrapper"
+																change="changeURLProperty" liveChange="onTagging" suggestionItemSelected="onSelectingSuggestionItem">
+																<suggestionItems>
+																	<core:Item text="{oDefaultDataModel>label}"/>
+																</suggestionItems>
+															</Input>
+														</HBox>
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label width="30%" text="{i18n>TASK_TYPE_TEXT}" class="sapUiSmallMarginBegin" required="true"/>
+															<ComboBox width="50%" selectionChange="changeActionTypeProperty" class="wbDefaultCustomInputWrapper"
+																items="{oDefaultDataModel>/taskType/dto}" selectedKey="{oDefaultDataModel>/advancedWfActiveTask/taskNature}">
+																<!--"{oDefaultDataModel>taskNature}"-->
+																<core:Item key="{oDefaultDataModel>key}" text="{oDefaultDataModel>text}"/>
+															</ComboBox>
+														</HBox>
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label width="30%" text="{i18n>ACTION_TYPE_TEXT}" class="sapUiSmallMarginBegin" required="true"/>
+															<ComboBox width="50%" selectionChange="changeActionTypeProperty" class="wbDefaultCustomInputWrapper"
+																items="{oDefaultDataModel>/actionType/dto}" selectedKey="{oDefaultDataModel>/advancedWfActiveTask/taskType}">
+																<core:Item key="{oDefaultDataModel>value}" text="{oDefaultDataModel>value}"/>
+															</ComboBox>
+														</HBox>
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<!--selectedKeys='{parts:["oDefaultDataModel>/advancedWfSourceItems", "oDefaultDataModel>/advancedWfActiveTask/sourceId"], formatter:"oneapp.incture.workbox.util.formatter.wbWfTaskSourceDestKeys"}'>-->
+															<Label width="30%" text="{i18n>SOURCE_TEXT}" class="sapUiSmallMarginBegin" required="{oDefaultDataModel>/mandatorySource}"/>
+															<MultiComboBox width="50%" selectionChange="changeSourceTaskFn" class="wbDefaultCustomInputWrapper"
+																items="{oDefaultDataModel>/advancedWfSourceItems}" selectedKeys="{oDefaultDataModel>/advancedWfActiveTask/sourceId}">
+																<core:Item text=" {oDefaultDataModel>text}" key="{oDefaultDataModel>key}"
+																	enabled="{= ${oDefaultDataModel>key}!== ${oDefaultDataModel>/advancedWfActiveTask/templateId} &amp;&amp; ${oDefaultDataModel>key} !== 'endTask' ? true : false}"/>
+															</MultiComboBox>
+														</HBox>
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label width="30%" text="{i18n>DESTINATION_TEXT}" class="sapUiSmallMarginBegin" required="{oDefaultDataModel>/mandatorySource}"/>
+															<MultiComboBox width="50%" selectionChange="changeActionTypeProperty" class="wbDefaultCustomInputWrapper"
+																selectedKeys="{oDefaultDataModel>/advancedWfActiveTask/targetId}" items="{oDefaultDataModel>/advancedWfSourceItems}">
+																<core:Item text="{oDefaultDataModel>text}" key="{oDefaultDataModel>key}"
+																	enabled="{= ${oDefaultDataModel>key}!== ${oDefaultDataModel>/advancedWfActiveTask/templateId} ? true : false}"/>
+															</MultiComboBox>
+														</HBox>
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label width="30%" text="{i18n>CUSTOM_STATUS_TEXT}" class="sapUiSmallMarginBegin"/>
+															<core:Icon src="sap-icon://message-information" press="customiseStatusFn" tooltip="{i18n>CUSTOM_STATUS_TEXT}"
+																class="wbTaskDetailHeaderIconClass"/>
+														</HBox>
+													</VBox>
+												</IconTabFilter>
+												<IconTabFilter text="{i18n>ATTRIBUTES_TEXT}" key="attributeDetails">
+													<ScrollContainer horizontal="false" height="100%" vertical="true">
+														<HBox width="95%" renderType="Bare" alignItems="Center" justifyContent="End" class="sapUiSmallMarginTop sapUiSmallMarginBegin">
+															<Button icon="sap-icon://add" text="{i18n>ADD_EXISTING_ATTRIBUTES_TEXT}" class="wbDefaultButtonClass sapUiSmallMarginEnd"
+																press="openShowAttributesFn"/>
+															<Button icon="sap-icon://add" text="{i18n>ADD_TEXT}" class="wbDefaultButtonClass" press="addTaskCustomAttributesFn"/>
+														</HBox>
+														<VBox renderType="Bare" width="98%" items="{oDefaultDataModel>/advancedWfActiveTask/customAttributes}"
+															class="sapUiSmallMarginBegin sapUiTinyMarginTop">
+															<VBox renderType="Bare" width="100%">
+																<Panel expandable="true" width="96.5%" class="wbAdminWfPanelBorderClass wbAdminWfPanelClass">
+																	<headerToolbar>
+																		<Toolbar>
+																			<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+																				<Label width="30%" text="{i18n>LABEL_TEXT}" class="wbAdminCustLabel" required="true"/>
+																				<Input width="60%" value="{oDefaultDataModel>label}" class="wbDefaultCustomInputWrapper" maxLength="100"></Input>
+																			</HBox>
+																			<HBox renderType="Bare" alignItems="Center">
+																				<Button icon="sap-icon://delete" type="Reject" class="wbAdminMGroupsRemoveBtn" press="deleteTaskCustomAttributeFn"/>
+																			</HBox>
+																		</Toolbar>
+																	</headerToolbar>
+																	<content>
+																		<VBox renderType="Bare" alignItems="Center" class="sapUiSmallMarginBegin">
+																			<HBox class="sapUiTinyMarginTopBottom" width="100%" renderType="Bare" alignItems="Center">
+																				<Label width="27.25%" text="{i18n>ATTRIBUTE_DESC_TEXT}" class="wbAdminWfTaskAttMargin wbAdminCustLabel" required="true"/>
+																				<Input width="55.25%" value="{oDefaultDataModel>description}" maxLength="200" class="wbDefaultCustomInputWrapper"
+																					change="changeProperty($event,'specialCharacter')"></Input>
+																			</HBox>
+																			<HBox class="sapUiTinyMarginTopBottom" width="100%" renderType="Bare" alignItems="Center">
+																				<Label width="27.25%" text="{i18n>DATA_TYPE_TEXT}" class="wbAdminWfTaskAttMargin wbAdminCustLabel" required="true"/>
+																				<Select width="55.25%" change="dataTypeChangeFn" class="wbDefaultCustomSelectWrapper sapUiSmallMarginEnd"
+																					selectedKey="{oDefaultDataModel>dataType}" items="{oDefaultDataModel>/dataType/dto}">
+																					<core:Item key="{oDefaultDataModel>value}" text="{oDefaultDataModel>value}"/>
+																				</Select>
+																			</HBox>
+																			<HBox renderType="Bare" alignItems="Center" width="100%">
+																				<HBox class="sapUiTinyMarginTopBottom" width="47.5%" renderType="Bare" alignItems="Center">
+																					<Label width="55.25%" text="{i18n>VISIBILITY_TEXT}" class="wbAdminWfTaskAttMargin wbAdminCustLabel" required="true"/>
+																					<Switch change="changeSwtichProperty" class="wbCustomSwitch" state="{oDefaultDataModel>isVisible}"/>
+																				</HBox>
+																				<HBox class="sapUiTinyMarginTopBottom" width="48.5%" renderType="Bare" alignItems="Center">
+																					<Label width="55.25%" text="{i18n>EDITABLE_TEXT}" class="wbAdminWfTaskAttMargin wbAdminCustLabel" required="true"/>
+																					<Switch change="changeSwtichProperty" class="wbCustomSwitch" state="{oDefaultDataModel>isEditable}"/>
+																				</HBox>
+																			</HBox>
+																			<HBox renderType="Bare" alignItems="Center" width="100%">
+																				<HBox class="sapUiTinyMarginTopBottom" width="47.5%" renderType="Bare" alignItems="Center">
+																					<Label width="55.25%" text="{i18n>MANDATORY_TEXT}" class="wbAdminWfTaskAttMargin wbAdminCustLabel" required="true"/>
+																					<Switch change="changeSwtichProperty" class="wbCustomSwitch" state="{oDefaultDataModel>isMandatory}"
+																						enabled="{= ${oDefaultDataModel>isRunTime} === true ? false : true}"/>
+																				</HBox>
+																				<HBox class="sapUiTinyMarginTopBottom" width="48.5%" renderType="Bare" alignItems="Center">
+																					<Label width="55.25%" text="{i18n>RUN_TIME_TEXT} {i18n>USER_TEXT}" class="wbAdminWfTaskAttMargin wbAdminCustLabel" required="true"/>
+																					<Switch change="changeRunTimeProperty" class="wbCustomSwitch" state="{oDefaultDataModel>isRunTime}"/>
+																				</HBox>
+																			</HBox>
+																			<HBox class="sapUiTinyMarginTopBottom" visible="{oDefaultDataModel>isRunTime}" width="100%" renderType="Bare" alignItems="Center">
+																				<Label width="27.25%" text="{i18n>RUN_TIME_TEXT} {i18n>USER_TEXT} {i18n>TYPE_TEXT}" class="wbAdminWfTaskAttMargin wbAdminCustLabel"
+																					required="true"/>
+																				<RadioButtonGroup columns="2" select="onSelectRunTimeType" selectedIndex="{= ${oDefaultDataModel>runTimeType} === 'group' ? 1 : 0}">
+																					<RadioButton text="{i18n>INDIVIDUAL_TEXT}"/>
+																					<RadioButton text="{i18n>GROUPS_TEXT}"/>
+																				</RadioButtonGroup>
+																			</HBox>
+																		</VBox>
+																		<Label visible="{= ${oDefaultDataModel>dataType} === 'DROPDOWN' &amp;&amp; ${oDefaultDataModel>isRunTime} === false}"
+																			text="{i18n>DROPDOWN_CONFIG_TEXT}" class="wbAdminWfAttConfigText wbAdminCustLabelProcess sapUiTinyMarginTopBottom"/>
+																		<VBox visible="{= ${oDefaultDataModel>dataType} === 'DROPDOWN' &amp;&amp; ${oDefaultDataModel>isRunTime} === false}" renderType="Bare"
+																			class="wbTaskTemplateContentClass wbAdminWfPanelContentBorder" width="93.75%">
+																			<HBox renderType="Bare" width="100%" alignItems="Center" class="wbAdminPanelContentHeaderClass" justifyContent="Start">
+																				<Label width="92%" text="{i18n>LABEL_TEXT}" class="wbAdminCustLabel wbTransformToUpperCase" required="true"/>
+																				<HBox renderType="Bare" width="8%" justifyContent="End">
+																					<Button icon="sap-icon://add" text="{i18n>ADD_TEXT}" class="sapUiTinyMarginBegin wbCustomButtonClass" press="addDropdownValues"/>
+																				</HBox>
+																			</HBox>
+																			<VBox items="{oDefaultDataModel>dropDownValues}" renderType="Bare" width="100%">
+																				<HBox renderType="Bare" alignItems="Center" width="97%" justifyContent="SpaceBetween">
+																					<HBox renderType="Bare" alignItems="Center" width="85%" class="wbAdminWfPanelInputMarginClass">
+																						<Input width="85%" value="{oDefaultDataModel>valueName}" maxLength="100" class="wbTaskDetailInputWrapper sapUiTinyMarginEnd"/>
+																					</HBox>
+																					<HBox renderType="Bare" width="8%" justifyContent="End">
+																						<Button icon="sap-icon://delete" type="Reject" class="wbAdminMGroupsRemoveBtn" press="deleteDropdownValues"/>
+																					</HBox>
+																				</HBox>
+																			</VBox>
+																		</VBox>
+																		<Label visible="{= ${oDefaultDataModel>dataType} === 'TABLE'}" text="{i18n>TABLE_CONFIG_TEXT}"
+																			class="wbAdminWfAttConfigText wbAdminCustLabelProcess sapUiTinyMarginTopBottom"/>
+																		<VBox visible="{= ${oDefaultDataModel>dataType} === 'TABLE'}" renderType="Bare" alignItems="Center" width="93.75%"
+																			class="wbTaskTemplateContentClass wbAdminWfPanelContentBorder ">
+																			<HBox renderType="Bare" width="100%" alignItems="Center" class="wbAdminPanelContentHeaderClass" justifyContent="Start">
+																				<Label width="46%" text="{i18n>COLUMN_NAME_TEXT}" class="wbAdminCustLabel" required="true"/>
+																				<Label width="46%" text="{i18n>DATA_TYPE_TEXT}" class="wbAdminCustLabel wbTransformToUpperCase" required="true"/>
+																				<HBox renderType="Bare" width="8%" justifyContent="End">
+																					<Button icon="sap-icon://add" text="{i18n>ADD_TEXT}" class="sapUiTinyMarginBegin wbCustomButtonClass" press="addTableColumnValues"/>
+																				</HBox>
+																			</HBox>
+																			<VBox items="{oDefaultDataModel>tableAttributes}" renderType="Bare" alignItems="Center" width="100%">
+																				<HBox renderType="Bare" alignItems="Center" width="97%" justifyContent="SpaceBetween">
+																					<HBox renderType="Bare" alignItems="Center" width="85%">
+																						<Input width="52%" maxLength="100" value="{oDefaultDataModel>label}" class="wbTaskDetailInputWrapper sapUiTinyMarginEnd"
+																							change="changeURLProperty"/>
+																						<ComboBox width="46%" selectedKey="{oDefaultDataModel>dataType}" items="{oDefaultDataModel>/dataType/dto}" class="wbTaskDetailInputWrapper">
+																							<core:Item key="{oDefaultDataModel>value}" text="{oDefaultDataModel>value}"
+																								enabled="{= ${oDefaultDataModel>value} === 'TABLE' || ${oDefaultDataModel>value} === 'ATTACHMENT' || ${oDefaultDataModel>value} === 'DROPDOWN' ? false : true}"/>
+																						</ComboBox>
+																					</HBox>
+																					<HBox renderType="Bare" width="8%" justifyContent="End">
+																						<Button icon="sap-icon://delete" type="Reject" class="wbAdminMGroupsRemoveBtn" press="deleteTableColumnValues"/>
+																					</HBox>
+																				</HBox>
+																			</VBox>
+																		</VBox>
+																	</content>
+																</Panel>
+															</VBox>
+														</VBox>
+													</ScrollContainer>
+												</IconTabFilter>
+												<IconTabFilter text="{i18n>OWNER_DETAILS_TEXT}" key="taskOwnerDetails">
+													<VBox renderType="Bare" width="100%" visible="{= ${oDefaultDataModel>/advancedWfActiveTask/taskNature} !== 'Rule Based'}">
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label width="30%" text="{i18n>INDIVIDUAL_TEXT}" class="sapUiSmallMarginBegin" required="true"/>
+															<MultiComboBox selectedKeys="{oDefaultDataModel>/advancedWfActiveTask/individual}" width="50%" class="wbDefaultCustomInputWrapper"
+																items="{oConstantsModel>/allUsers}">
+																<core:Item text="{oConstantsModel>userFirstName} {oConstantsModel>userLastName}" key="{oConstantsModel>userId}"/>
+															</MultiComboBox>
+														</HBox>
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label width="30%" text="{i18n>GROUPS_TEXT}" class="sapUiSmallMarginBegin" required="true"/>
+															<MultiComboBox selectedKeys="{oDefaultDataModel>/advancedWfActiveTask/group}" width="50%" class="wbDefaultCustomInputWrapper"
+																items="{oDefaultDataModel>/allGroups/dto}">
+																<core:Item text="{oDefaultDataModel>groupName}" key="{oDefaultDataModel>groupId}"/>
+															</MultiComboBox>
+														</HBox>
+														<HBox class="sapUiTinyMarginTopBottom" width="98%" renderType="Bare" alignItems="Center">
+															<Label width="30%" text="{i18n>RUN_TIME_TEXT} {i18n>USER_TEXT}" class="sapUiSmallMarginBegin" required="true"/>
+															<Switch class="wbCustomSwitch" change="openTaskOwnerPopUpfn"
+																state="{= ${oDefaultDataModel>/advancedWfActiveTask/runTimeUser} === 1 ? true : false}"/>
+														</HBox>
+													</VBox>
+													<HBox renderType="Bare" width="98%" justifyContent="End"
+														visible="{= ${oDefaultDataModel>/advancedWfActiveTask/taskNature} === 'Rule Based'}">
+														<Button icon="sap-icon://add" press="addRuleAdvancedWfFn" text="{i18n>ADD_RULE_TEXT}" class="wbDefaultButtonClass sapUiTinyMarginTopBottom"/>
+													</HBox>
+													<VBox renderType="Bare" width="100%" alignItems="Center"
+														visible="{= ${oDefaultDataModel>/advancedWfActiveTask/taskNature} === 'Rule Based'}">
+														<VBox class="sapUiSizeCompact" width="98%" renderType="Bare" alignItems="Center">
+															<HBox class="wbCustomHeaderClass" alignItems="Center" renderType="Bare" justifyContent="Start" width="98%">
+																<!--<Text text="{i18n>OPERATOR_TEXT}" width="24%" class="wbTransformToUpperCase"/>-->
+																<Text text="{i18n>ATTRIBUTE_TEXT}" class="wbTransformToUpperCase" width="18%"/>
+																<Text text="{i18n>CONDITION_TEXT}" class="wbTransformToUpperCase" width="20%"/>
+																<Text text="{i18n>VALUE_TEXT}" class="wbTransformToUpperCase" width="19.75%"/>
+																<Text text="{i18n>RULE_TEXT}" class="wbTransformToUpperCase" width="19.25%"/>
+																<Text text="{i18n>DESTINATION_TEXT}" class="wbTransformToUpperCase" width="20%"/>
+															</HBox>
+															<VBox renderType="Bare" alignItems="Center" width="98%" items="{oDefaultDataModel>/advancedWfActiveTask/rules}">
+																<HBox width="100%" renderType="Bare" alignItems="Center" justifyContent="SpaceBetween">
+																	<!--<ComboBox width="23%" class="wbDefaultCustomInputWrapper" items="{oDefaultDataModel>/conditionDropdown}"
+							selectedKey="{oDefaultDataModel>condition}" enabled="false">
+							<core:Item text="{oDefaultDataModel>text}" key="{oDefaultDataModel>key}"/>
+						</ComboBox>-->
+																	<ComboBox width="18%" class="wbDefaultCustomInputWrapper" items="{oDefaultDataModel>/ruleBasedCustomAttributes}"
+																		selectedKey="{oDefaultDataModel>custom_key}" selectionChange="setAttributeNameRuleFn">
+																		<core:Item text="{oDefaultDataModel>label} {oDefaultDataModel>taskName}" key="{oDefaultDataModel>key}"/>
+																	</ComboBox>
+																	<ComboBox width="18%" class="wbDefaultCustomInputWrapper" items="{oDefaultDataModel>/logicalOperator}"
+																		selectedKey="{oDefaultDataModel>logic}">
+																		<core:Item text="{oDefaultDataModel>text}" key="{oDefaultDataModel>key}"/>
+																	</ComboBox>
+																	<Input width="18%" class="wbDefaultCustomInputWrapper" value="{oDefaultDataModel>value}"
+																		visible="{= ${oDefaultDataModel>dataType} === 'DATETYPE' ? false : true}"/>
+																	<DatePicker width="18%" change="changeDateFormatFn" displayFormat="dd MMM yyyy" valueFormat="yyyy-MM-dd" class="wbDefaultCustomInputWrapper"
+																		visible="{= ${oDefaultDataModel>dataType} === 'DATETYPE' ? true : false}"/>
+																	<Input width="18%" value="{oDefaultDataModel>attributeName} {oDefaultDataModel>logic} {oDefaultDataModel>value}"
+																		class="wbDefaultCustomInputWrapper"/>
+																	<!--<MultiComboBox items="{oDefaultDataModel>/setRulesContentDto/destinationDropDown}" width="18.75%"
+							selectedKeys="{oDefaultDataModel>destination}" class="wbDefaultCustomInputWrapper">
+							<core:Item text="{oDefaultDataModel>text}" key="{oDefaultDataModel>key}"/>
+						</MultiComboBox>-->
+																	<ComboBox items="{oDefaultDataModel>/advancedWfSourceItems}" width="18%" class="wbDefaultCustomInputWrapper"
+																		selectedKey="{oDefaultDataModel>destination}">
+																		<core:Item text="{oDefaultDataModel>text}" key="{oDefaultDataModel>key}"
+																			enabled="{= ${oDefaultDataModel>key}!== ${oDefaultDataModel>/advancedWfActiveTask/templateId}}"/>
+																	</ComboBox>
+																	<HBox renderType="Bare" justifyContent="End" alignItems="Center" width="5%">
+																		<Button icon="sap-icon://delete" type="Reject" class="wbAdminMGroupsRemoveBtn" press="deleteRuleAdvancedWfFn"/>
+																	</HBox>
+																</HBox>
+															</VBox>
+														</VBox>
+													</VBox>
+												</IconTabFilter>
+											</items>
+										</IconTabBar>
+										<HBox renderType="Bare" width="99%" alignItems="Center" justifyContent="End" class="sapUiTinyMarginTop">
+											<Button icon="sap-icon://customfont/SaveIcon" text="{i18n>SAVE_TEXT}" type="Emphasized" class="wbCustomButtonClass"
+												tooltip="{i18n>SAVE_TEXT}" press="saveActiveTaskFn"/>
+										</HBox>
+									</IconTabFilter>
+								</items>
+							</IconTabBar>
+						</VBox>
+					</l:SplitPane>
+				</l:PaneContainer>
+			</l:PaneContainer>
+		</l:ResponsiveSplitter>
+	</HBox>
+</core:FragmentDefinition>

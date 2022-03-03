@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout">
+	<!--	<HBox justifyContent="SpaceBetween" renderType="Bare" alignItems="Center">
+		<ComboBox class="sapUiSizeCompact wbDefaultCustomInputWrapper sapUiSmallMarginBegin"
+			selectedKey="{otaskCreationModel>/uiGeneration/processName}" change="getUIGenerationPage">
+			<core:Item text="Purchase Order Creation" key="purchaseorderapproval"/>
+			<core:Item text="Purchase Requisition Process" key="purchaserequisitionprocess"/>
+		</ComboBox>
+		<Button text="Create Purchase Order" press="poCreatedSuccess" class="sapUiSizeCompact wbEmphasizedButtonStyleClass sapUiSmallMarginEnd "
+			type="Emphasized"/>
+	</HBox>-->
+	<HBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween" class="wbTaskDetailPaddingClass sapUiSizeCompact">
+		<HBox renderType="Bare" alignItems="Center">
+			<Text text="{i18n>PROCESS_TEXT} : " class="sapUiTinyMarginBegin"></Text>
+			<ComboBox class="wbDefaultCustomInputWrapper sapUiTinyMarginBegin" selectedKey="{otaskCreationModel>/uiGeneration/processName}"
+				change="onFilter">
+				<core:Item text="{i18n>PO_APPROVAL_TEXT}" key="purchaseorderapproval"/>
+				<core:Item text="{i18n>PR_PROCESS_TEXT}" key="purchaserequisitionprocess"/>
+				<core:Item text="{i18n>GL_POSTING_TEXT}" key="gl_posting_process"/>
+			</ComboBox>
+			<Text text="{i18n>CATALOGUE_TEXT} : " class="sapUiSmallMarginBegin"></Text>
+			<ComboBox class="wbDefaultCustomInputWrapper sapUiTinyMarginBegin" items="{filterModelAdmin>/}"
+				selectedKey="{otaskCreationModel>/uiGeneration/catalogueName}" change="getUIGenerationPage">
+				<core:Item text="{filterModelAdmin>Name}" key="{filterModelAdmin>Value}"/>
+			</ComboBox>
+		</HBox>
+		<!--	{i18n>CREATE_PURCHASE_ORDER_TEXT}-->
+		<HBox>
+			<Button text="{i18n>CREATE_TEXT}" press="poCreatedSuccess" class="wbEmphasizedButtonStyleClass" type="Emphasized"/>
+		</HBox>
+	</HBox>
+	<VBox id="idUIGenerationBox" renderType="Bare"/>
+	<HBox id="addHBox" alignContent="Center" renderType="Bare"></HBox>
+	<HBox id="addHBoxItem" alignContent="Center" justifyContent="SpaceBetween" renderType="Bare"></HBox>
+</core:FragmentDefinition>
+<!--wbmargintaskCreationUiSelect	wbButtonOnCreate-->

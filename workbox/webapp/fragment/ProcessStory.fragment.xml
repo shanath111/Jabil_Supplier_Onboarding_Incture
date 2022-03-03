@@ -1,0 +1,158 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:grid="sap.ui.layout.cssgrid" xmlns:l="sap.ui.layout"
+	xmlns:ExtVbox="oneapp.incture.workbox.controlExtension">
+	<VBox visible="{path: 'oProcessFlowModel>/showDetails' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetProcessFlowContentStyle'}">
+		<VBox class="wbProcessFlowHeader" height="12%" visible="{= ${oProcessFlowModel>/showDetails}===false}">
+			<HBox justifyContent="SpaceBetween">
+				<Label text="{i18n>REQUEST_ID_TEXT} - {oProcessFlowModel>/taskDetails/process/requestId}"
+					tooltip="{oProcessFlowModel>/taskDetails/process/requestId}" class="wbProcessFlowHeaderText"/>
+				<core:Icon src="sap-icon://decline" class="wbProcessFlowCloseIcon" press="closeProcessFlow"></core:Icon>
+			</HBox>
+			<Text text="{i18n>CREATED_BY_TEXT} {oProcessFlowModel>/taskDetails/process/startedByDisplayName}" class="wbProcessFlowParticipantsText"/>
+		</VBox>
+		<VBox renderType="Bare" height="{= ${oProcessFlowModel>/showDetails} ? '100%':'88%'}" width="100%">
+			<HBox renderType="Bare" height="{= ${oProcessFlowModel>/showDetails} ? '100%':'93%'}">
+				<VBox id="WB_PROCESSFLOW_CONTAINER" class="wbProcessFlowContents wbOverflowVertical" renderType="Bare" busyIndicatorDelay="0"
+					busy="{oProcessFlowModel>/taskDetailsBusy}" width="{= ${oProcessFlowModel>/showDetails} === true ? '38%': '100%'}"></VBox>
+				<!--_________________________________________SHOW MORE DETAILS_________________________________________-->
+				<VBox visible="{oProcessFlowModel>/showDetails}" width="{= ${oProcessFlowModel>/showDetails} === true ? '61%': '0'}"
+					class="wbProcessFlowInformationVBox">
+					<HBox width="100%" renderType="Bare" justifyContent="Start">
+						<Label text="{oProcessFlowModel>/selTaskSubject}" tooltip="{oProcessFlowModel>/selTaskSubject}" class="wbProcessFlowInformationSubjectLabel"/>
+					</HBox>
+					<HBox width="100%" height="98%" renderType="Bare" busy="{oProcessFlowModel>/busy}" busyIndicatorDelay="0">
+						<!--_________________________________________CUSTOM ATTRIBUTE AND CHAT_________________________________________-->
+						<VBox width="50%" height="100%" renderType="Bare" class="sapUiTinyMarginEnd">
+							<grid:CSSGrid gridTemplateRows="auto" gridTemplateColumns="auto" gridGap="0.2rem" items="{oProcessFlowModel>/customAttributesDto}"
+								class=" wbProcessFlowTaskDynamicDto" visible="{= ${oProcessFlowModel>/customAttributesDto}.length !== 0 ? true : false}">
+								<HBox width="100%" justifyContent="SpaceBetween" renderType="Bare" alignItems="Start"
+									visible="{parts: ['oProcessFlowModel>/taskDetails/process/name','oProcessFlowModel>/costCenterValue','oProcessFlowModel>label'],formatter: 'oneapp.incture.workbox.util.formatter.wbShowCostCenter'}">
+									<Text text="{oProcessFlowModel>label}: " class=" wbProcessFlowTaskCA wbProcessFlowTaskCAKey sapUiTinyMarginEnd"/>
+									<Text text="{oProcessFlowModel>value}" textAlign="Right" class="wbProcessFlowTaskCA wbTextBoldClass"/>
+								</HBox>
+							</grid:CSSGrid>
+							<VBox class="wbProcessFlowChatHeight wbProcessFlowTaskDynamicDto sapUiTinyMarginBottom"
+								visible="{= ${oProcessFlowModel>/conversationDto}.length !== 0 ? true : false}">
+								<Text text="{i18n>RECENT_CONVERSATION_TEXT}" class="wbProcessFlowTaskCA wbTextBoldClass"/>
+								<HBox justifyContent="End" visible="{oProcessFlowModel>/growingBusy}">
+									<BusyIndicator class="WbChatBusyIndicator" visible="{oProcessFlowModel>/growingBusy}" busyIndicatorDelay="0"/>
+								</HBox>
+								<VBox id="ID_PROCESS_FLOW_CONV_SCROLL" fitContainer="true" items="{oProcessFlowModel>/conversationDto}" renderType="Bare"
+									class="wbOverflowVertical wbProcessFlowTaskDynamicDtoInner">
+									<VBox renderType="Bare">
+										<VBox class="wbProcessFlowMsgBox" visible="{= (${oProcessFlowModel>comment} === '' || ${oProcessFlowModel>comment} === null) ? false :true}">
+											<HBox width="100%" justifyContent="Start" renderType="Bare" alignItems="Center">
+												<Label text="{oProcessFlowModel>sendersName}" class="wbProcessFlowMsgSentByName sapUiSmallMarginEnd"/>
+												<Label text="{path: 'oProcessFlowModel>sentAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetDateTime'}"
+													class="wbProcessFlowCreatedAtTime"/>
+											</HBox>
+											<Text text="{oProcessFlowModel>comment}" class="wbTLChatRecdMsg wbProcessFlowChatMsg"/>
+										</VBox>
+										<VBox class="wbProcessFlowMsgBox"
+											visible="{path: 'oProcessFlowModel>attachmentDetails' ,formatter: 'oneapp.incture.workbox.util.formatter.wbTLChatIsAttachmentVisible'}">
+											<HBox renderType="Bare" alignItems="Center" justifyContent="Start" class="sapUiTinyMarginBottom"
+												visible="{= (${oProcessFlowModel>comment} === '' || ${oProcessFlowModel>comment} === null) ? true :false}">
+												<Label text="{oProcessFlowModel>sendersName}" class="wbProcessFlowMsgSentByName sapUiSmallMarginEnd"/>
+												<Label text="{path: 'oProcessFlowModel>sentAt' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGetDateTime'}"
+													class="wbProcessFlowCreatedAtTime"/>
+											</HBox>
+											<l:Grid containerQuery="true" content="{oProcessFlowModel>attachmentDetails}" defaultSpan="XL3 L3 M6 S6" class="wbChatAttachmentGridList">
+												<CustomListItem type="Active"
+													press="downloadAttachment(${oProcessFlowModel>documentID},${oProcessFlowModel>fileType},${oProcessFlowModel>fileName})"
+													class="sapUiSizeCompact wbProcessFlowAttachmentCLI">
+													<VBox justifyContent="Center" alignItems="Center" height="5.5rem"
+														visible="{path: 'oProcessFlowModel>fileType',formatter: 'oneapp.incture.workbox.util.formatter.wbChatCheckImage'}">
+														<Image
+															src="{parts: ['oProcessFlowModel>compressed','oProcessFlowModel>fileType'],formatter: 'oneapp.incture.workbox.util.formatter.wbParseAttachmentType'}"
+															tooltip="{oProcessFlowModel>fileName}" class="wbChatImage"/>
+													</VBox>
+													<HBox height="3rem" width="100%" justifyContent="Start" alignItems="Center" class="wbChatAttachmentTile"
+														visible="{path: 'oProcessFlowModel>fileType',formatter: 'oneapp.incture.workbox.util.formatter.wbChatCheckNotImage'}">
+														<Image
+															src="{parts: ['oProcessFlowModel>compressed','oProcessFlowModel>fileType'],formatter: 'oneapp.incture.workbox.util.formatter.wbParseAttachmentType'}"
+															height="2.1rem" width="2.1rem" tooltip="{oProcessFlowModel>fileName}"/>
+														<VBox justifyContent="Start" alignItems="Start">
+															<Text class="wbChatAttachmentName wbTextBoldClass"
+																text="{parts: ['oProcessFlowModel>fileName','oProcessFlowModel>fileType'],formatter: 'oneapp.incture.workbox.util.formatter.wbChatAttachmentName'}"/>
+														</VBox>
+													</HBox>
+												</CustomListItem>
+											</l:Grid>
+										</VBox>
+									</VBox>
+								</VBox>
+								<HBox justifyContent="End" renderType="Bare" alignItems="Center" height="5%" class=" sapUiSizeCompact sapUiTinyMarginTop"
+									visible="{= ${oProcessFlowModel>/totalChatCount} > ${oProcessFlowModel>/iChatLength}}">
+									<Button text="{i18n>SHOW_MORE_TEXT}" class="sapUiSizeCompact wbCustomButtonClass wbProcessStoryChatSM wbTextBoldClass" press="showMoreChat"
+										enabled="{oProcessFlowModel>/showMoreChat}"/>
+								</HBox>
+							</VBox>
+							<VBox class="wbProcessFlowChatHeight wbProcessFlowTaskDynamicDto sapUiTinyMarginBottom"
+								visible="{= ${oProcessFlowModel>/bIsHistoryPresent}===false}" alignContent="Center" renderType="Bare">
+								<Text class="wbProcessFlowTaskCA" text="{i18n>NO_HISTORY_TEXT}" textAlign="Center"/>
+								<Image src="images/NoRecord.gif" height="91%" width="100%"/>
+							</VBox>
+						</VBox>
+						<!--_________________________________________ACTIVITY LOG AND ATTACHMENTS_________________________________________-->
+						<VBox width="50%" height="100%" renderType="Bare" class="sapUiTinyMarginBegin">
+							<VBox height="23.75%" visible="{= ${oProcessFlowModel>/attachmentDto}.length !== 0 ? true : false}"
+								class="wbProcessFlowTaskDynamicDto sapUiTinyMarginBottom">
+								<Text text="{i18n>ATTACHMENTS_TEXT}" class="wbProcessFlowTaskCA wbTextBoldClass"/>
+								<VBox class="wbOverflowVertical">
+									<l:Grid containerQuery="true" content="{oProcessFlowModel>/attachmentDto}" defaultSpan="XL3 L3 M6 S6"
+										class="wbProcessFlowTaskDynamicDtoInner wbChatAttachmentGridList sapUiTinyMarginEnd">
+										<CustomListItem type="Active"
+											press="downloadAttachment(${oProcessFlowModel>attachmentId},${oProcessFlowModel>attachmentType},${oProcessFlowModel>attachmentName},${oProcessFlowModel>value},${oProcessFlowModel>attachmentSize})"
+											class="sapUiSizeCompact wbProcessFlowAttachmentCLI"
+											visible="{= ${oProcessFlowModel>attachmentId} !==null &amp;&amp; ${oProcessFlowModel>attachmentType} !==null}">
+											<HBox height="3rem" width="100%" justifyContent="Start" alignItems="Start" visible="true" class="wbChatAttachmentTile">
+												<Image
+													src="{parts: ['oProcessFlowModel>value','oProcessFlowModel>attachmentType'],formatter: 'oneapp.incture.workbox.util.formatter.wbParseAttachmentType'}"
+													height="2.1rem" width="2.1rem" tooltip="{oProcessFlowModel>attachmentName}"/>
+												<VBox justifyContent="Start" alignItems="Start">
+													<Text class="wbChatAttachmentName wbTextBoldClass"
+														text="{parts: ['oProcessFlowModel>attachmentName','oProcessFlowModel>attachmentType'],formatter: 'oneapp.incture.workbox.util.formatter.wbChatAttachmentName'}"/>
+													<Text text="{path: 'oProcessFlowModel>attachmentSize',formatter: 'oneapp.incture.workbox.util.formatter.wbAttachmentSizeParser'}"
+														class="wbChatAttachmentName"/>
+												</VBox>
+											</HBox>
+										</CustomListItem>
+									</l:Grid>
+								</VBox>
+							</VBox>
+							<VBox class="wbProcessFlowAuditHeight wbProcessFlowTaskDynamicDto sapUiTinyMarginBottom"
+								visible="{= ${oProcessFlowModel>/activityDto}.length !== 0 ? true : false}">
+								<Text text="{i18n>ACTIVITY_LOG_TEXT}" class="wbProcessFlowTaskCA wbTextBoldClass"/>
+								<VBox height="93%" class="wbOverflowVertical sapUiTinyMarginTopBottom" items="{oProcessFlowModel>/activityDto}">
+									<HBox >
+										<VBox width="6%" renderType="Bare" alignItems="Center" justifyContent="Start">
+											<core:Icon src="sap-icon://circle-task-2" class="wbProcessFlowBarAuditIcon"></core:Icon>
+											<VBox class="wbProcessFlowBarAudit"
+												visible="{parts: ['oProcessFlowModel>auditId ','oProcessFlowModel>/lastActivityId'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetProcessFlowAuditConnectingBar'}"></VBox>
+										</VBox>
+										<VBox class="sapUiSmallMarginBottom" width="92%">
+											<Text text="{path:'oProcessFlowModel>updatedAtString', formatter:'oneapp.incture.workbox.util.formatter.wbDateFormatter'} {path:'oProcessFlowModel>updatedAtString', formatter:'oneapp.incture.workbox.util.formatter.wbTimeFormatter'}" class="wbProcessFlowAuditTime"/>
+											<Text
+												text="{parts: ['oProcessFlowModel>action','oProcessFlowModel>userName','oProcessFlowModel>sendToUserName'],formatter: 'oneapp.incture.workbox.util.formatter.wbProcessFlowAuditMsg'}"
+												class="wbProcessStoryAuditValue" maxLines="3"/>
+											<Text
+												text="{parts: ['oProcessFlowModel>action','oProcessFlowModel>comment'],formatter: 'oneapp.incture.workbox.util.formatter.wbProcessFlowAuditComment'}"
+												maxLines="3" tooltip="{oProcessFlowModel>comment}" visible="{= ${oProcessFlowModel>comment} !== null  &amp;&amp; ${oProcessFlowModel>comment} !== 'undefined'}" class="wbProcessStoryAuditValue"/>
+										</VBox>
+									</HBox>
+								</VBox>
+							</VBox>
+						</VBox>
+					</HBox>
+				</VBox>
+			</HBox>
+			<VBox height="6%" visible="{= ${oProcessFlowModel>/showDetails}===false}">
+				<CustomListItem type="Active" press="showMoreProcessFlow" class="wbProcessFlowFooterHbox" tooltip="{i18n>SHOW_MORE_TEXT}">
+					<HBox justifyContent="SpaceAround" renderType="Bare" alignItems="Center">
+						<Text text="{i18n>SHOW_MORE_TEXT}" class="wbProcessFlowShowMoreText wbTextBoldClass"/>
+						<!--<core:Icon src="sap-icon://customfont/MoreIcon" color="red"/>-->
+					</HBox>
+				</CustomListItem>
+			</VBox>
+		</VBox >
+	</VBox>
+</core:FragmentDefinition>

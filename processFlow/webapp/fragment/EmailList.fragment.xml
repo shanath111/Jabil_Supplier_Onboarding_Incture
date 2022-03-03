@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>EmailList}" contentWidth="75%" contentHeight="60%"  class="sapUiSizeCompact APW_DilogClass">
+		<content>
+       
+									<Table class="sapUiSizeCompact cl_BPListTable"   alternateRowColors="true" items="{JMEmailList>/}">
+										
+										<columns>
+											<Column width="13rem">
+												<Label text="{i18n>SentDate}" class="cl_VRLablCls "></Label>
+											</Column>
+                                             
+										 <Column   >
+												<Label text="{i18n>Subject}" class="cl_VRLablCls "></Label>
+											</Column>
+											
+											<Column >
+												<!-- <Label text="{i18n>BPCNote}" class="cl_VRLablCls "></Label> -->
+											</Column>
+                                          
+										</columns>
+										<items>
+											<ColumnListItem type="Active" highlight="{path: 'JMValidateResult>severityCode', formatter: 'ns.BuyerRegistration.util.formatter.fnSetColorValidate' }" >
+												<cells>
+													<Text text="{JMEmailList>notifiedDate}"  class="cl_ListNameClass"></Text>
+												 <Text text="{JMEmailList>subject}"   class="cl_ListNameClass"></Text>
+													  <Link text="{i18n>ViewEmailCOntent}" press="fnViewMailContent"></Link>
+													
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								
+		
+		</content>
+       
+         <endButton >
+         	<Button class="cl_VRActnBtnClear" text="{i18n>Close}"  press="fnCloseEmail" tooltip="{i18n>BPCCancel}"/>
+    </endButton>
+	</Dialog>
+</core:FragmentDefinition>

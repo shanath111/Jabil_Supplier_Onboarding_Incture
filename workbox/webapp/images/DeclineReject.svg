@@ -1,0 +1,12 @@
+<svg class="wbIcons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="12" viewBox="0 0 12 12">
+  <defs>
+    <clipPath id="clip-path" class="wbIcons">
+      <rect class="wbIcons" id="Rectangle_125" data-name="Rectangle 125" width="12" height="12" transform="translate(594.746 253.746)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g class="wbIcons" id="Mask_Group_64" data-name="Mask Group 64" transform="translate(-594.746 -253.746)" clip-path="url(#clip-path)">
+    <g class="wbIcons" id="decline" transform="translate(594.937 253.953)">
+      <path class="wbIcons" id="Path_109" data-name="Path 109" d="M.148,5.081l.728-.762a.541.541,0,0,1,.4-.166.506.506,0,0,1,.364.166l4.1,4.138L9.88,4.319a.5.5,0,0,1,.364-.166.541.541,0,0,1,.4.166l.728.762a.464.464,0,0,1,0,.761l-4.1,4.1,4.1,4.138a.455.455,0,0,1,0,.728l-.728.761a.88.88,0,0,1-.4.166.911.911,0,0,1-.364-.166L5.742,11.436l-4.1,4.138a.507.507,0,0,1-.364.166.88.88,0,0,1-.4-.166l-.728-.762a.455.455,0,0,1,0-.728l4.1-4.138-4.1-4.1a.464.464,0,0,1,0-.762Z" transform="translate(0.051 -4.154)"/>
+    </g>
+  </g>
+</svg>

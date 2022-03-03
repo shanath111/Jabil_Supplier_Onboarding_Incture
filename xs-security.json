@@ -1,0 +1,86 @@
+{
+    "xsappname": "supplierOnboarding",
+    "tenant-mode": "dedicated",
+    "description": "Security profile of called application",
+    "scopes": [
+        {
+            "name": "uaa.user",
+            "description": "UAA"
+        },
+        {
+            "name": "$XSAPPNAME.BuyerRegistration",
+            "description": "Approve"
+        },
+        {
+            "name": "$XSAPPNAME.Inbox",
+            "description": "Approve"
+        },
+        {
+            "name": "$XSAPPNAME.Reports",
+              "description": "Approve"
+        },
+        {
+            "name": "$XSAPPNAME.CRResubmit",
+              "description": "Submit"
+        },
+         {
+            "name": "$XSAPPNAME.processFlow",
+              "description": "Display"
+        },
+        {
+            "name": "$XSAPPNAME.buyerDashboard",
+              "description": "Display"
+        }
+    ],
+    "role-templates": [
+        {
+            "name": "Token_Exchange",
+            "description": "UAA",
+            "scope-references": [
+                "uaa.user"
+            ]
+        },
+        {
+            "name": "BuyerRegistration",
+            "description": "Buyer Registration",
+            "scope-references": [
+                "$XSAPPNAME.BuyerRegistration"
+            ]
+        },
+        {
+            "name": "Inbox",
+            "description": "Inbox",
+            "scope-references": [
+                "$XSAPPNAME.Inbox"
+            ]
+        },
+        {
+            "name": "Reports",
+            "description": "Reports",
+            "scope-references": [
+                "$XSAPPNAME.Reports"
+            ]
+        },
+        {
+            "name": "CRResubmit",
+            "description": "CRResubmit",
+            "scope-references": [
+                "$XSAPPNAME.CRResubmit"
+            ]
+        },
+         {
+            "name": "processFlow",
+            "description": "Display",
+            "scope-references": [
+                "$XSAPPNAME.processFlow"
+            ]
+        },
+        {
+            "name": "buyerDashboard",
+            "description": "Display",
+            "scope-references": [
+                "$XSAPPNAME.buyerDashboard"
+            ]
+        }
+    ]
+}

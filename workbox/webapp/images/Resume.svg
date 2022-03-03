@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+  <g id="player-play-circle" transform="translate(-1 -1)">
+    <path id="Path_464" data-name="Path 464" d="M12,23A11,11,0,1,1,23,12,11,11,0,0,1,12,23Zm0-2a9,9,0,1,0-9-9A9,9,0,0,0,12,21ZM8,17V7a1,1,0,0,1,1.53-.848l8,5a1,1,0,0,1,0,1.7l-8,5A1,1,0,0,1,8,17Zm7.113-5L10,8.8V15.2Z" fill-rule="evenodd"/>
+  </g>
+</svg>

@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Dialog class="sapUiSizeCompact" contentWidth="32%">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Title text="{i18n>ADD_USERS} {oDefaultDataModel>/selectedGroupName}"
+						visible="{= ${oDefaultDataModel>/createGroupVisibility} === false ? true : false}"/>
+					<Title text="{i18n>SELECT_RESOURCES_TEXT}" visible="{= ${oDefaultDataModel>/createGroupVisibility}}"/>
+				</contentLeft>
+				<contentRight>
+					<core:Icon src="sap-icon://decline" press="onCloseResourceFragment" class="wbDialogCloseIcon" tooltip="{i18n>CLOSE_TEXT}"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<VBox class="wbAdminCustDialogBackground sapUiSizeCompact" width="100%" renderType="Bare" alignItems="Center">
+			<SearchField class="wbAdminMGroupsSearch sapUiSmallMarginTop" liveChange=".searchIndividualNameFn" width="95%"/>
+			<VBox class="wbCustomContentWrapperStyle sapUiTinyMarginTop" renderType="Bare" alignItems="Center" width="95%">
+				<HBox class="wbCustomHeaderClass" width="98%" renderType="Bare" alignItems="Center">
+					<Text text="{i18n>USERNAME_TEXT}" width="50%" class="sapUiMediumMarginBegin wbTransformToUpperCase"/>
+					<Text text="{i18n>ID_TEXT}" width="50%" class="wbTransformToUpperCase"/>
+				</HBox>
+				<ScrollContainer width="100%"
+					height="{path : 'oConstantsModel>/allUsers' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetCustomGroupMembersHeight'}"
+					horizontal="false" vertical="true" focusable="true">
+					<List width="98%" class="sapUiSizeCompact wbInboxCardList" id="WB_RESOURCES_LIST" items="{path: 'oConstantsModel>/allUsers'}"
+						includeItemInSelection="true" selectionChange="onListItemSelect"
+						mode="{= ${oDefaultDataModel>/groupType} !== 'idpGroups'? 'MultiSelect': 'None'}" busy="{oConstantsModel>/enableBusyIndicators}"
+						busyIndicatorDelay="0">
+						<CustomListItem>
+							<HBox class="wbAdminMGroupsListItemHeight" renderType="Bare" alignItems="Center">
+								<Text width="50%" text="{oConstantsModel>userFirstName} {oConstantsModel>userLastName}"/>
+								<Text width="50%" text="{oConstantsModel>userId}"/>
+							</HBox>
+						</CustomListItem>
+					</List>
+				</ScrollContainer>
+			</VBox>
+			<HBox renderType="Bare" alignItems="Center" justifyContent="End" width="95%" class="sapUiTinyMarginTop sapUiTinyMarginBottom">
+				<Button text="{i18n>ADD_TO_GROUP_TEXT}" press="addResourceFn" class="wbDefaultButtonClass"
+					visible="{= ${oDefaultDataModel>/createGroupVisibility} === false ? true : false}"/>
+				<Button text="{i18n>CREATE_TEXT}" press="submitGroupFn" visible="{= ${oDefaultDataModel>/createGroupVisibility}}"
+					class="wbDefaultButtonClass"/>
+			</HBox>
+		</VBox>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
+	<Dialog draggable="false" class="wbDialog">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Title class="wbDialogTitle" text="{oActionHeader>/selectedActionText}"/>
+				</contentLeft>
+				<contentRight>
+					<core:Icon src="sap-icon://decline" class="wbDialogCloseIcon" tooltip="{i18n>CLOSE_TEXT}" press="closeComments"></core:Icon>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<VBox items="{ path: 'oAppModel>/commentsDescData', sorter: { path: 'actionType', group: false, ascending: false } }"
+				class="wbOverflowVertical sapUiSizeCompact">
+				<VBox>
+					<Text text="{oAppModel>actionType}" class="sapUiTinyMarginBegin sapUiSmallMarginTop wbTextBoldClass"
+						visible="{parts: ['oAppModel>actionType','oAppModel>/commentsDescData'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbCommentsFragSort'}"/>
+					<HBox>
+						<Text text="{oAppModel>description}" class="sapUiSmallMarginBegin" tooltip="{oAppModel>description}"/>
+					</HBox>
+				</VBox>
+			</VBox>
+			<VBox renderType="Bare" class="sapUiSizeCompact">
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMarginTop"
+					visible="{= ${oActionHeader>/taskProcessName} === 'WorkNet Project'? true : false}">
+					<Label text="{i18n>ASSIGNEE_TEXT}" width="20%" class="sapUiTinyMarginBegin"/>
+					<ComboBox width="76%" class="wbDefaultCustomInputWrapper" selectedKey="{oActionHeader>/selectedAssignee}"
+						items="{oConstantsModel>/allUsers}">
+						<core:Item text="{oConstantsModel>userFirstName} {oConstantsModel>userLastName}" key="{oConstantsModel>userId}"/>
+					</ComboBox>
+				</HBox>
+				<HBox renderType="Bare" alignItems="Center" visible="{= ${oActionHeader>/taskProcessName} === 'WorkNet Project'? true : false}">
+					<Label text="{i18n>STATUS_TEXT}" width="20%" class="sapUiTinyMarginBegin"/>
+					<ComboBox width="76%" class="wbDefaultCustomInputWrapper" selectedKey="{oActionHeader>/selectedStatus}"
+						items="{oActionHeader>/JiraStatusDropdown}">
+						<core:Item text="{oActionHeader>processName} {oActionHeader>statusName}" key="{oActionHeader>statusId}"/>
+					</ComboBox>
+				</HBox>
+				<TextArea cols="50" rows="2" class="sapUiSmallMarginTop sapUiTinyMarginBeginEnd" placeholder="{i18n>COMMENT_PLACEHOLDER}"
+					change="onCommentEnter" value="{oActionHeader>/actionComments}"/>
+				<HBox justifyContent="End" class="sapUiTinyMarginEnd" renderType="Bare">
+					<Button text="{i18n>OK_TEXT}" class="sapUiSizeCompact wbDefaultButtonClass" press="onCommentsDone" enabled="{oActionHeader>/doneEnabled}"/>
+				</HBox>
+			</VBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

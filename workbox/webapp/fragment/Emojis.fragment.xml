@@ -1,0 +1,114 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:layout="sap.ui.layout">
+	<ResponsivePopover showHeader="false" placement="Top" showArrow="false">
+		<content>
+			<ScrollContainer width="100%" height="{oAppModel>/emojiScrollLength}" horizontal="false" vertical="true" focusable="true">
+				<VBox>
+					<HBox>
+						<Button text="&#128512;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128513;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128514;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128515;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128516;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129325;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+					</HBox>
+					<HBox>
+						<Button text="&#128517;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128518;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128519;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128520;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128521;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129326;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+					</HBox>
+					<HBox>
+						<Button text="&#128522;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128523;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128524;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128525;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128526;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129322;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+					</HBox>
+					<HBox>
+						<Button text="&#128527;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128528;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128529;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128530;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128531;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129323;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+					</HBox>
+					<HBox>
+						<Button text="&#128532;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128533;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128534;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128535;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128536;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129324;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+					</HBox>
+					<HBox>
+						<Button text="&#128537;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128538;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128539;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128540;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128541;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129317;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+					</HBox>
+					<HBox>
+						<Button text="&#128542;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128543;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128544;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128545;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128546;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129318;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+					</HBox>
+					<HBox>
+						<Button text="&#128547;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128548;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128549;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128550;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128551;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129319;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+					</HBox>
+					<HBox>
+						<Button text="&#128552;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128553;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128554;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128555;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128556;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129321;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+					</HBox>
+					<HBox>
+						<Button text="&#128557;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128558;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128559;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128560;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128561;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129320;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+					</HBox>
+					<HBox>
+						<Button text="&#128562;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128563;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128564;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128565;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128566;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129313;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+					</HBox>
+					<HBox>
+						<Button text="&#128567;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128577;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128578;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128579;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#128580;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129314;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+					</HBox>
+					<HBox>
+						<Button text="&#129296;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129297;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129298;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129300;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129301;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+						<Button text="&#129315;" press="addEmoji" class="wbCustomButtonClass wbChatEmojiSize"/>
+					</HBox>
+				</VBox>
+			</ScrollContainer>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

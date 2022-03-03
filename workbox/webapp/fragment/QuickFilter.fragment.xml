@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:u="sap.ui.unified">
+	<u:Menu items="{oFilterListModel>/FilterList}" itemSelect="onFilterListItemPress" class="wbFilterListMenu wbFilterListMenuIcon">
+		<u:MenuItem text="{oFilterListModel>label}"
+			icon="{= ${oFilterListModel>key}=== ${oAppModel>/selectedFreeFilter} ? 'sap-icon://accept' : ''}"
+			visible="{parts: ['oFilterListModel>key','oAppModel>/inboxType'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbShowSubMenuQuickFilter'}">
+			<u:Menu items="{oFilterListModel>list}" class="wbFilterListMenu wbFilterListMenuIcon">
+				<u:MenuItem text="{oFilterListModel>label}"
+					icon="{= ${oFilterListModel>key}=== ${oAppModel>/selectedFreeFilter} ? 'sap-icon://accept' : ''}"/>
+			</u:Menu>
+		</u:MenuItem>
+	</u:Menu>
+</core:FragmentDefinition>

@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<ResponsivePopover showHeader="true" contentWidth="15%" class="sapUiSizeCompact"
+		placement="{= ${oAppModel>/currentViewPage} === 'workFlow' || ${oAppModel>/currentViewPage} === 'createWorkFlow' ? 'Auto' : 'Left'}">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Title class="wbDialogTitle sapUiTinyMarginTop" text="{i18n>ORDER_TASK_OWNER}"/>
+				</contentLeft>
+				<contentRight>
+					<core:Icon src="sap-icon://decline" class="wbDialogCloseIcon sapUiTinyMarginTopEnd" press="onCloseTaskOnwerOrderByFragment"
+						tooltip="{i18n>CLOSE_TEXT}"></core:Icon>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<VBox renderType="Bare" height="auto" class="sapUiSmallMargin">
+				<!--<Label text="{i18n>ORDER_TASK_OWNER}" class="wbTransformToUpperCase"/>-->
+				<Select change="changeTaskOwnerOrderBy" class="wbDefaultCustomSelectWrapper" selectedKey="{oDefaultDataModel>/taskOnwerOrderBy}"
+					items="{oDefaultDataModel>/taskOnwerOrderByList}">
+					<core:Item key="{oDefaultDataModel>key}" text="{oDefaultDataModel>value}"/>
+				</Select>
+			</VBox>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Workbox</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.3/xlsx.full.min.js"></script>
+		<script id="sap-ui-bootstrap" src="https://sapui5.hana.ondemand.com/1.79.0/resources/sap-ui-core.js" data-sap-ui-theme="sap_fiori_3" data-sap-ui-resourceroots="{&quot;oneapp.incture.workbox&quot;: &quot;./&quot;}" data-sap-ui-compatversion="edge" data-sap-ui-oninit="module:sap/ui/core/ComponentSupport" data-sap-ui-async="true" data-sap-ui-frameoptions="allow">
+		</script>
+		<style>
+		    body {
+		      overflow: hidden
+		    };
+		    #splash-screen {
+		      position: absolute;
+		      top: 0;
+		      left: 0;
+		      right: 0;
+		      bottom: 0;
+		      overflow: hidden;
+		      background-color: #e7e7e7 !important;
+		      background-size: 100% !important;
+		      background-position: center !important;
+		      background-repeat: no-repeat !important;
+		    }
+		    #splash-screen > * {
+		      /* center child divs  */
+		      position: absolute;
+		      top: 50%;
+		      left: 50%;
+		      /* x-border-box */
+		      box-sizing: border-box;
+		      -moz-box-sizing: border-box;
+		      -ms-box-sizing: border-box;
+		      -webkit-box-sizing: border-box;
+		      /* x-unselectable */
+		      user-select: none;
+		      -o-user-select: none;
+		      -ms-user-select: none;
+		      -moz-user-select: -moz-none;
+		      -webkit-user-select: none;
+		      cursor: default;
+		    }
+		    .splash-screen-circle-inner {
+		      z-index: 20001;
+		      width: 80px;
+		      height: 80px;
+		      border-radius: 80px;
+		      margin-top: -40px;
+		      margin-left: -40px;
+		      background-color: rgba(0, 0, 0, 0);
+		      border: 5px solid #f7c435;
+		      opacity: .9;
+		      border-left: 5px solid rgba(0, 0, 0, 0);
+		      border-right: 5px solid rgba(0, 0, 0, 0);
+		      box-shadow: 0 0 15px #aab048;
+		      -moz-animation: spinoffPulse 1s infinite linear;
+		      -webkit-animation: spinoffPulse 1s infinite linear;
+		    }
+		    .splash-screen-circle-outer {
+		      z-index: 20000;
+		      width: 100px;
+		      height: 100px;
+		      border-radius: 100px;
+		      margin-top: -50px;
+		      margin-left: -50px;
+		      border: 5px solid #489CE4;
+		      opacity: .9;
+		      border-right: 5px solid rgba(0, 0, 0, 0);
+		      border-left: 5px solid rgba(0, 0, 0, 0);
+		      box-shadow: 0 0 35px #577191;
+		      -moz-animation: spinPulse 1s infinite ease-in-out;
+		      -webkit-animation: spinPulse 1s infinite linear;
+		    }
+		    .splash-screen-text {
+		      z-index: 20002;
+		      width: 100px;
+		      height: 100px;
+		      line-height: 100px;
+		      margin-top: -50px;
+		      margin-left: -50px;
+		      font-family: Verdana, Geneva, sans-serif;
+		      font-size: 13px;
+		      text-align: center;
+		      text-shadow: 1px 1px #cccccc;
+		      vertical-align: middle;
+		      color: #489CE4;   
+		    }
+		    .splash-screen-img {
+		        width: 4.4rem;
+    			margin-top: -35px;
+    			margin-left: -35px;
+			}
+		    @-moz-keyframes spinPulse {
+		      0% {
+		        -moz-transform: rotate(160deg);
+		        opacity: 0;
+		        box-shadow: 0 0 1px #577191;
+		      }
+		      50% {
+		        -moz-transform: rotate(145deg);
+		        opacity: 1;
+		      }
+		      100% {
+		        -moz-transform: rotate(-320deg);
+		        opacity: 0;
+		      }
+		    }
+		    @-moz-keyframes spinoffPulse {
+		      0% {
+		        -moz-transform: rotate(0deg);
+		      }
+		      100% {
+		        -moz-transform: rotate(360deg);
+		      }
+		    }
+		    @-webkit-keyframes spinPulse {
+		      0% {
+		        -webkit-transform: rotate(160deg);
+		        opacity: 0;
+		        /*box-shadow: 0 0 1px #577191;*/
+		      }
+		      50% {
+		        -webkit-transform: rotate(145deg);
+		        opacity: 1;
+		      }
+		      100% {
+		        -webkit-transform: rotate(-320deg);
+		        opacity: 0;
+		      }
+		    }
+		    @-webkit-keyframes spinoffPulse {
+		      0% {
+		        -webkit-transform: rotate(0deg);
+		      }
+		      100% {
+		        -webkit-transform: rotate(360deg);
+		      }
+		    }
+  </style>
+	<style>.facadebtn{display:inline-block;width:60px;height:60px;background-color:#009de0;border-radius:50px;text-align:center;box-shadow: 2px 2px 3px #999;opacity:.3;}
+.facadebtn .sapUiIcon{color:#FFF;font-size:1.5rem;cursor:pointer;line-height:60px;width:60px;}
+.facadebtn:hover{opacity:1;}
+#interactive.viewport video{width:320px;height:240px;}
+.facade .sapMSLITitleOnly, .facade .sapMILILabel {font-size: 1rem;}
+#interactive.viewport .drawingBuffer{width:320px;height:240px;position:absolute;}
+</style>
+<script type="text/javascript">
+
+window._facadeSettings = {"cordova-plugin-device-orientation":false,"accelerometer":{},"compass":{}};
+	window.sIdeOrigin = "https://webidecp-kbniwmq1aj.dispatcher.hana.ondemand.com";
+	window.sap_webide_FacadePreview = true;
+	window.sFacadePath = "https://webidecp-kbniwmq1aj.dispatcher.hana.ondemand.com/hatdi_acf0c8a6f/hybrid/cordovafacade/cordova.js";
+	window.sFacadeCfgViewPath = "https://webidecp-kbniwmq1aj.dispatcher.hana.ondemand.com/hatdi_acf0c8a6f/hybrid/view/";
+	window.bridgeHtml = "https://webidecp-kbniwmq1aj.dispatcher.hana.ondemand.com/hatdi_acf0c8a6f/hybrid/cordovafacade/MessageBridge.html";
+	window.msgDefPath = "https://webidecp-kbniwmq1aj.dispatcher.hana.ondemand.com/hatdi_acf0c8a6f/hybrid/mobileextend/MessageDef.js";
+	window.msgBridgePath = "https://webidecp-kbniwmq1aj.dispatcher.hana.ondemand.com/hatdi_acf0c8a6f/hybrid/mobileextend/MessageBridge.js";
+	window.meCssPath = "https://webidecp-kbniwmq1aj.dispatcher.hana.ondemand.com/hatdi_acf0c8a6f/hybrid/css/mobileExtend.css";
+</script>
+<script src="https://webidecp-kbniwmq1aj.dispatcher.hana.ondemand.com/hatdi_acf0c8a6f/hybrid/cordovafacade/floatingButton.js" type="text/javascript"></script>
+</head>
+	<body class="sapUiBody">
+		<div data-sap-ui-component="" data-name="oneapp.incture.workbox" data-id="container" data-settings="{&quot;id&quot; : &quot;workbox&quot;}">
+		</div>
+		<div id="content">
+			<div id="splash-screen">
+    			<img src="images/workbox.png" alt="Loading" class="splash-screen-img">
+    			<div class="splash-screen-circle-outer"></div>
+    			<div class="splash-screen-circle-inner"></div>
+			</div>
+		</div>
+	
+	</body>
+</html>
