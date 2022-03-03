@@ -1,0 +1,52 @@
+{
+    "AccGrpLp": [
+        "ZVEN",
+        "Z004",
+        "Z006"
+    ],
+    "FlagLp": [
+        "",
+        "X"
+    ],
+    "GBSRegion": [
+        "AME",
+        "ASI",
+        "EUR"
+    ],
+    "ChangeType": [
+        "NEW",
+        "CHANGE",
+        "EXTEND"
+       
+    ],
+    "Priority": [
+        "Regular",
+        "Urgent"
+    ],
+    "InstructionKey": [{
+        "code":"13",
+        "description":"Charges borne by Supplier"
+    },{
+        "code":"14",
+        "description":"Charges shared between Jabil and Supplier"
+    },{
+        "code":"15",
+        "description":"Charges borne by Jabil"
+    },{
+        "code":"NA",
+        "description":"Not Applicable"
+    }
+ 
+    ],
+    "wuxi": [
+        {
+            "plant": "CN30",
+            "materialGroup": "MRO"
+        },
+       
+        {
+            "plant": "CN81",
+            "materialGroup": "MRO"
+        }
+    ]
+}

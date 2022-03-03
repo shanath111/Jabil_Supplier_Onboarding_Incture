@@ -1,0 +1,344 @@
+<core:FragmentDefinition
+  xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true"
+	xmlns="sap.m"  xmlns:l="sap.ui.layout">	
+    <l:Grid defaultSpan="XL12 L12 M12 S12" class="sapUiSizeCompact ">
+        <VBox class="cl_BPExctendBlock  " >
+       <Toolbar class="cl_ToolbarBorder" visible="{oConfigMdl>/closeFullScreenButton}">
+       <ToolbarSpacer ></ToolbarSpacer>
+       	<Button type="Transparent" visible="{oConfigMdl>/enterFullScreen}" icon="sap-icon://full-screen"  press="fnPressFullScreen" class="sapUiSizeCompact" tooltip="{i18n>BPCEnterFullScreen}" />
+		  	<Button type="Transparent" visible="{oConfigMdl>/exitFullScreen}" icon="sap-icon://exit-full-screen"  press="fnExitFullScreen" class="sapUiSizeCompact" tooltip="{i18n>BPCExitFullScreen}" />		
+                    		<Button type="Transparent" visible="{oConfigMdl>/closeFullScreenButton}" icon="sap-icon://decline" class="sapUiSizeCompact" press="fnCloseFullScreen"/>
+       </Toolbar>
+                        		<Label class="  cl_BPCrSectHeaderExtend sapUiSmallMarginBegin sapUiSmallMarginTop" wrapping="true" text="{i18n>EnterBPDetails}"></Label>
+								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls "></Label>
+										<ComboBox width="95%" items="{oBPLookUpMdl>/CompanyCode}"  autocomplete="false" valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
+											filterSecondaryValues="true"  change="fnLiveChangeCompCode" showSecondaryValues="true" selectedKey="{JMBPCreate>/companyCode}"
+											class="cl_VRInputCls"   editable="{oBTHeaderMdl>/EDITABLE}" >
+											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
+										</ComboBox>
+									</VBox>
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCPlant}" required="true" class="cl_VRLablCls "></Label>
+										<ComboBox width="95%" items="{oBPLookUpMdl>/Plant}" valueState="{JMBPCreate>/plante}" valueStateText="{JMBPCreate>/plantm}"
+											filterSecondaryValues="true" change="fnLiveChangePlant" showSecondaryValues="true" selectedKey="{JMBPCreate>/plant}"
+											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
+										</ComboBox>
+									</VBox>
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
+											<ComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMBPCreate>/purchasingOrge}" valueStateText="{JMBPCreate>/purchasingOrgm}"
+											filterSecondaryValues="true" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMBPCreate>/purchasingOrg}"
+											class="cl_VRInputCls"   editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
+										</ComboBox>
+									</VBox>
+								</l:Grid>
+                                
+                                	<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCCorporationName}" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/corporationName}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCBuyerName}" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/buyerName}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCWorkcell}" required="true" class="cl_VRLablCls "></Label>
+										<!-- <Label text="{JMBPCreate>/workCelld}" class="cl_VRLablClsValue "></Label> -->
+								<ComboBox width="95%" items="{oBPLookUpMdl>/WorkCell}"   valueState="{JMBPCreate>/workCelle}" valueStateText="{JMBPCreate>/workCellm}"
+											filterSecondaryValues="true"  change="fnLiveChangeWorkCell" showSecondaryValues="true" selectedKey="{JMBPCreate>/workCell}"
+											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oBPLookUpMdl>id}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
+										</ComboBox>
+                                	</VBox>
+								
+                                    
+								</l:Grid>
+                                    <HBox class="cl_HBoxBlockSep">
+                                </HBox>
+                                	<Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>Address}"></Label>
+								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCAddressLine1}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/address1}" tooltip="{JMBPCreate>/address1}" wrapping="true" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCCity}" required="false" class="cl_VRLablCls "></Label>
+									<Label text="{JMBPCreate>/city}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCStateProvince}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/stated}" class="cl_VRLablClsValue "></Label>
+									
+									</VBox>
+								
+                                    <VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCDistrict}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/district}" class="cl_VRLablClsValue "></Label>
+									
+									</VBox>
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCCountry}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/countryd}" class="cl_VRLablClsValue "></Label>								
+									</VBox>
+                                    	
+                                    	<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCPostalCode}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/postalCode}" class="cl_VRLablClsValue "></Label>								
+									</VBox>
+<!-- <VBox class="VRVboxStyle1">
+	<Label text="{i18n>BPCPOBox}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/poBoxPostalCode}" class="cl_VRLablClsValue "></Label>								
+							
+									</VBox> -->
+                               
+								
+									
+                                   
+									<VBox class="VRVboxStyle1">
+                                    	<Label text="{i18n>BPCFaxNumber}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/fax}" class="cl_VRLablClsValue "></Label>
+						
+									</VBox>
+                                    <VBox class="VRVboxStyle1">
+                                    	<Label text="{i18n>BPCSupUrl}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/supplierUrlCompanyWebsite}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                         <VBox class="VRVboxStyle1" visible="{= ${JMBPCreate>/country} === 'MX' ? true : false}">
+                                    	<Label text="{i18n>BPCRFC}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/rfc}" class="cl_VRLablClsValue "></Label>								
+									
+									</VBox>
+								</l:Grid>
+                                
+                                  <HBox class="cl_HBoxBlockSep">
+                                </HBox>
+                              
+                	<Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>BPCContact}"></Label>
+								<l:Grid defaultSpan="XL3 L3 M3 S12"  class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCFirstName}" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/firstName}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    	<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCLastName}" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/lastName}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									
+									
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCEmail}" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/email}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox class="VRVboxStyle1">
+                                    	<Label text="{i18n>BPCTelephoneNumber}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/telephone}" class="cl_VRLablClsValue "></Label>	
+									</VBox>
+								
+								</l:Grid>
+                              <HBox class="cl_HBoxBlockSep">
+                                </HBox>
+                                  <Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>BPCAltrnateContaact}"></Label>
+								<l:Grid defaultSpan="XL3 L3 M3 S12"  class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+									
+                            
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCFirstName}" required="true" class="cl_VRLablCls "></Label>
+										<Input width="95%" value="{JMBPCreate>/altContactFirstName}" liveChange="fnChangeFirstName1" valueState="{JMBPCreate>/altContactFirstNamee}" valueStateText="{JMBPCreate>/altContactFirstNamem}" class="cl_VRInputCls"></Input>
+									</VBox>
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCLastName}" required="true" class="cl_VRLablCls "></Label>
+										<Input width="95%" value="{JMBPCreate>/altContactLastName}" liveChange="fnChangeLastName1" valueState="{JMBPCreate>/altContactLastNamee}" valueStateText="{JMBPCreate>/altContactLastNamem}" class="cl_VRInputCls"></Input>
+									</VBox> 
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCJobTitle}" required="false" class="cl_VRLablCls "></Label>
+										<Input width="95%" value="{JMBPCreate>/altContactJobTitle}" liveChange="fnChangeJobTitle1" valueState="{JMBPCreate>/altContactJobTitlee}" valueStateText="{JMBPCreate>/altContactJobTitlem}" class="cl_VRInputCls"></Input>
+									</VBox>
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCEmail}" required="true" class="cl_VRLablCls "></Label>
+										<Input width="95%" change="fnChangeEmailID1" value="{JMBPCreate>/altEmail}" valueState="{JMBPCreate>/altEmaile}" valueStateText="{JMBPCreate>/altEmailm}"  class="cl_VRInputCls"></Input>
+									</VBox>
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCContact1}" required="true" class="cl_VRLablCls "></Label>
+										<Input width="95%"   value="{JMBPCreate>/altPhoneNumber}" liveChange="fnChangeContactNumber1" valueState="{JMBPCreate>/altPhoneNumbere}" valueStateText="{JMBPCreate>/altPhoneNumberm}" type="Number"  class="cl_VRInputCls "></Input>
+									</VBox>
+								</l:Grid>
+                                 
+                              
+    
+				
+                                   <HBox class="cl_HBoxBlockSep">
+                                </HBox>
+                                	<Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>BPCPayment}"></Label>
+								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCPayemntTerms}" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/paymentTermsd}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCCurrency}" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/currency}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCDUNSNumnber}" class="cl_VRLablCls "></Label>
+									<Label text="{JMBPCreate>/dunsNumber}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+                                    <VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCIncoterms}" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/incoTermsd}" class="cl_VRLablClsValue "></Label>
+									</VBox>
+									
+	
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCIncotermNameLocation}" class="cl_VRLablCls "></Label>
+										<Label text="{JMBPCreate>/incotermNameLocation}"  class="cl_VRLablClsValue "></Label>
+									</VBox>
+									
+								</l:Grid>
+                                 <HBox class="cl_HBoxBlockSep">
+                                </HBox>
+                                    <Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_BPCrSectHeaderExtend" required="false" wrapping="true"  text="{i18n>BPCProduct}"></Label>
+								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiSmallMarginBegin cl_extendBuyerRegGrid sapUiTinyMarginTop">
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCProductOrServiceTxt}" required="true" class="cl_VRLablCls "></Label>
+                                        <Input width="95%" value="{JMBPCreate>/product}" liveChange="fnLiveChangeProduct" valueState="{JMBPCreate>/producte}" valueStateText="{JMBPCreate>/productm}" class="cl_VRInputCls"></Input>
+									</VBox>
+									
+								</l:Grid>
+                                				
+                                <l:Grid  class="sapUiSizeCompact sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+                                <VBox >
+								<Label text="{i18n>ConflitOfIntrest}" required="true" class="cl_ConflictQtnCls "></Label>
+									<RadioButtonGroup id="id_conflictIntrest" select="fnConflictOfIntChnage" valueState="{JMBPCreate>/conflicte}" selectedIndex="-1"  columns="2">
+									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>Yes}"/>
+									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
+                                    		</RadioButtonGroup>
+								
+                                 <layoutData>
+              <l:GridData
+                span="XL3 L3 M3 S3" />
+            </layoutData>
+                                </VBox>
+                                 <VBox >
+								<Label text="{i18n>RequesterConflictofInterest}?" required="false" class="cl_ConflictQtnCls "></Label>
+									<RadioButtonGroup id="id_conflictIntrest1"  selectedIndex="-1"  columns="2">
+									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>Yes}"/>
+									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
+                                    		</RadioButtonGroup>
+                                 <layoutData>
+              <l:GridData
+                span="XL3 L3 M3 S3" />
+            </layoutData>
+                                </VBox>
+                                 <VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCAdditionalInfo}" required="false" class="cl_VRLablCls "></Label>
+										<Input width="98%" value="{JMBPCreate>/additionalInformation}" liveChange="fnLiveChangeAdditionalInfo" valueState="{JMBPCreate>/additionalInformatione}" valueStateText="{JMBPCreate>/additionalInformationm}"  class="cl_VRInputCls" ></Input>
+                                           <layoutData>
+              <l:GridData
+                span="XL6 L6 M6 S6" />
+            </layoutData>
+									</VBox> 
+								</l:Grid>
+                              
+                                  <!-- <VBox>
+                                	<Label text="{i18n>BPCDoYouRepresentAnotherCountry}" class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderCompExtend"></Label>
+<Label text="{path: 'JMBPCreate>/representAnotherCompany', formatter: 'ns.BuyerRegistration.util.formatter.fnFormatRadioBtnTxt'}" class="cl_VRLablClsValueExtend sapUiSmallMarginBegin"></Label>	
+</VBox> -->
+	                            	   <HBox class="cl_HBoxBlockSep">
+                                </HBox>		
+
+                                <Label class="sapUiTinyMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderCompExtend sapUiSmallMarginBegin" wrapping="true" text="{i18n>BPCPaymentNew}"></Label>
+								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCNewPaymentTerms}" class="cl_VRLablCls "></Label>
+										<ComboBox width="95%" items="{oBPLookUpMdl>/PaymentTerms}"   valueState="{JMBPCreate>/paymentTermse}" valueStateText="{JMBPCreate>/paymentTermsm}"
+											filterSecondaryValues="true" selectedKey="{JMBPCreate>/newPaymentTerms}" change="fnChangeDropDown" showSecondaryValues="true" 
+											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}" />
+										</ComboBox>
+                                       
+									</VBox>
+
+									
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCNewIncoterm}" class="cl_VRLablCls "></Label>
+                                        <ComboBox width="95%" items="{oBPLookUpMdl>/Incoterms}" valueState="{JMBPCreate>/incoTermse}" valueStateText="{JMBPCreate>/incoTermsm}"
+											filterSecondaryValues="true"  change="fnChangeDropDown" showSecondaryValues="true" selectedKey="{JMBPCreate>/newIncoTerms}"
+											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}" />
+										</ComboBox>
+									</VBox> 
+                                    <VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCNewIncotermNamedLocation}" class="cl_VRLablCls "></Label>
+									<Input width="95%" value="{JMBPCreate>/newIncoTermsNameLocation}"  liveChange="fnLiveChangeIncotermLoc"   valueState="{JMBPCreate>/incotermNameLocatione}" valueStateText="{JMBPCreate>/incotermNameLocationm}" class="cl_VRInputCls"></Input>
+									</VBox>        
+								</l:Grid>
+                                   <HBox class="cl_HBoxBlockSep">
+                                </HBox>
+
+                                	<l:Grid defaultSpan="XL3 L3 M4 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCSupplierTypeCl1}" class="cl_VRLablCls "></Label>
+									
+                                         <Input width="95%" value="{JMBPCreate>/supplierTypeClassificationL1}" liveChange="fnLiveChangeSuppClass" valueState="{JMBPCreate>/supplierTypeClassificationL1e}" valueStateText="{JMBPCreate>/supplierTypeClassificationL1m}" class="cl_VRInputCls"></Input>
+									</VBox>
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCSupplierTypeCl2}" required="false" class="cl_VRLablCls "></Label>
+										
+                                        
+                                        	 <Input width="95%" value="{JMBPCreate>/supplierCommodityClassificationL2}" liveChange="fnLiveChangeSupplierCommodityCL2" valueState="{JMBPCreate>/supplierCommodityClassificationL2e}" valueStateText="{JMBPCreate>/supplierCommodityClassificationL2m}" class="cl_VRInputCls"></Input>
+									</VBox>
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCCustDirCustName}" required="false" class="cl_VRLablCls "></Label>
+									<Input width="95%" liveChange="fnLiveChangeCustomerDirectSupplierCustNmbr" value="{JMBPCreate>/customerDirectedSupplierCustName}" valueState="{JMBPCreate>/customerDirectedSupplierCustNamee}" valueStateText="{JMBPCreate>/customerDirectedSupplierCustNamem}" class="cl_VRInputCls"></Input>
+									</VBox>
+                                    <VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCCustDirContact}" required="false" class="cl_VRLablCls "></Label>
+									<Input width="95%" liveChange="fnLiveChangeCustomerDirectContact" value="{JMBPCreate>/customerDirectedSupplierContract}" valueState="{JMBPCreate>/customerDirectedSupplierContracte}" valueStateText="{JMBPCreate>/customerDirectedSupplierContractm}" class="cl_VRInputCls"></Input>
+									</VBox>
+                                    <VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCOneTimePOIndicator}" class="cl_VRLablCls sapUiTinyMarginBegin"></Label>
+						
+                            <RadioButtonGroup columns="2" id="id_oneTimeInd">
+									<RadioButton  class=" cl_BPCRadioBtnTxt" text="{i18n>Yes}"/>
+									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
+                                    		</RadioButtonGroup>
+								
+									</VBox>
+									<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCCustDirectedSupInd}" required="false" class="cl_VRLablCls sapUiTinyMarginBegin"></Label>
+										<RadioButtonGroup columns="2" id="id_CustDirInd" >
+									<RadioButton  class=" cl_BPCRadioBtnTxt" text="{i18n>Yes}"/>
+									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
+                                    		</RadioButtonGroup>
+									</VBox>
+									
+                                    <VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCOutsideProcessInd}" required="false" class="cl_VRLablCls sapUiTinyMarginBegin"></Label>
+										<RadioButtonGroup columns="2" id="id_OutsideProcessInd" >
+									<RadioButton  class=" cl_BPCRadioBtnTxt" text="{i18n>Yes}"/>
+									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
+                                    		</RadioButtonGroup>
+									</VBox>
+                                    <VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCManualAddressOver-rideIndicator}" required="false" class="cl_VRLablCls sapUiTinyMarginBegin"></Label>
+										<RadioButtonGroup columns="2" id="id_ManualAddressInd" >
+									<RadioButton  class=" cl_BPCRadioBtnTxt" text="{i18n>Yes}"/>
+									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
+                                    		</RadioButtonGroup>
+									</VBox>
+								       
+								</l:Grid>
+                                	
+          </VBox>
+          
+        
+         	
+    </l:Grid>
+</core:FragmentDefinition>

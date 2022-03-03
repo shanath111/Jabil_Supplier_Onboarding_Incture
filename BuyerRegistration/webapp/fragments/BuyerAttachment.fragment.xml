@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified"  xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>BPCAttachFile}" class="sapUiSizeCompact" contentWidth="35%">
+		<content>
+        <VBox width="90%" fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
+            <Label required="true" text="{i18n>BPCDesc}" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
+           <Input  class=" sapUiSmallMarginBegin"  valueState="{JMBPCreate>/attachmentDesce}" value="{JMBPCreate>/attachmentDesc}" liveChange="fnLiveChangeDesc" valueStateText="{JMBPCreate>/attachmentDescm}"></Input>
+           <Label required="true" text="{i18n>File}"  class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
+<u:FileUploader valueState="{JMBPCreate>/attachmentFilee}" value="{JMBPCreate>/attachmentFile}" valueStateText="{JMBPCreate>/attachmentFilem}" id="id_BuyerAttachment" buttonOnly="false" buttonText="{i18n>chooseFile}" iconFirst="true" multiple="true"
+					useMultipart="true" width="100%"  change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete"
+					class="sapUiSizeCompact   sapUiSmallMarginBegin"></u:FileUploader>
+            </VBox>
+			<OverflowToolbar class="barClass sapUiTinyMarginTop">
+            	<ToolbarSpacer/>
+				<Button class="cl_VRActnBtnClear" text="{i18n>close}" visible="true" press="fnCloseBuyerAttchment" tooltip="{i18n>close}"/>
+				<Button  class="cl_VRActnBtnApply" text="{i18n>BPCUpload}" press="fnSubmitUpload" tooltip="{i18n>submit}"/>
+			</OverflowToolbar>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

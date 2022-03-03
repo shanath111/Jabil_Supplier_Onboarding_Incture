@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>BPCValidationResult}"    class="sapUiSizeCompact APW_DilogClass">
+		<content>
+        <SegmentedButton  id="id_SegmentValidate" selectionChange="fnValidateSegm" class="sapUiTinyMargin cl_TISegmentBtn">
+											<items>
+												<SegmentedButtonItem text="{i18n>CentralData}" key="CentralData"/>
+												<SegmentedButtonItem text="{i18n>OrderingAddress}"  key="OrderAddress"/>
+                                                <SegmentedButtonItem text="{i18n>InvoiceingAddress}"  key="InvoicingAddress"/>
+											</items>
+										</SegmentedButton>
+								
+									<Table class="sapUiSizeCompact cl_BPListTable"   alternateRowColors="true" items="{JMValidateResult>/item}">
+										
+										<columns>
+											<Column width="7rem">
+												<Label text="{i18n>BPCTypeCode}" class="cl_VRLablCls "></Label>
+											</Column>
+                                             
+										 <Column  width="7rem" >
+												<Label text="{i18n>BPCSeviarityCode}" class="cl_VRLablCls "></Label>
+											</Column>
+											
+											<Column >
+												<Label text="{i18n>BPCNote}" class="cl_VRLablCls "></Label>
+											</Column>
+                                          
+										</columns>
+										<items>
+											<ColumnListItem type="Active" highlight="{path: 'JMValidateResult>severityCode', formatter: 'ns.BuyerRegistration.util.formatter.fnSetColorValidate' }" >
+												<cells>
+													<Text text="{JMValidateResult>typeId}"  class="cl_ListNameClass"></Text>
+												 <Text text="{JMValidateResult>severityCode}"   class="cl_ListNameClass"></Text>
+													<Text text="{JMValidateResult>note}" class="cl_ListNameClass"></Text>
+													
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								
+		
+   
+		</content>
+       
+         <endButton >
+         	<Button class="cl_VRActnBtnClear" text="{i18n>Close}"  press="fnCloseValidation" tooltip="{i18n>BPCCancel}"/>
+    </endButton>
+	</Dialog>
+</core:FragmentDefinition>

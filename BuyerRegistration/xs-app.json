@@ -1,0 +1,43 @@
+{
+    "welcomeFile": "/index.html",
+    "authenticationMethod": "route",
+    "logout": {
+        "logoutEndpoint": "/do/logout"
+    },
+    "routes": [
+        {
+            "source": "^/plcm_portal_services/(.*)$",
+            "target": "$1",
+            "authenticationType": "xsuaa",
+            "destination": "plcm_portal_services",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/plcm_reference_data/(.*)$",
+            "target": "$1",
+            "authenticationType": "xsuaa",
+            "destination": "plcm_reference_data",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/WorkboxJavaService",
+            "target": "/",
+            "authenticationType": "xsuaa",
+            "destination": "inbox_services",
+            "csrfProtection": false
+        },
+        {
+            "source": "^/plcm_service_object",
+            "target": "/",
+            "authenticationType": "xsuaa",
+            "destination": "plcm_service_object",
+            "csrfProtection": false
+        },
+        {
+            "source": "^(.*)$",
+            "target": "$1",
+            "service": "html5-apps-repo-rt",
+            "authenticationType": "xsuaa"
+        }
+    ]
+}
