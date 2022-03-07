@@ -1,53 +1,153 @@
 {
-  "configurations": [
-    {
-      "name": "Run Partner Lifecycle Supplier Portal-reports",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
-      "args": [
-        "--standalone",
-        "/oneappincturereportreports/index.html",
-        "--ui5",
-        "{\"version\":\".\"}"
-      ],
-      "cwd": "${workspaceFolder}/reports",
-      "env": {
-        "PORT": "6004",
-        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
-        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/reports\"}"
+    "configurations": [
+      {
+        "name": "Run Partner Lifecycle Supplier Portal-workbox",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+        "args": [
+          "--standalone",
+          "/oneappinctureworkbox/index.html",
+          "--ui5",
+          "{\"version\":\".\"}"
+        ],
+        "cwd": "${workspaceFolder}/workbox",
+        "env": {
+          "PORT": "6004",
+          "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+          "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/workbox\"}"
+        },
+        "envFile": "${workspaceFolder}/workbox/.env6",
+        "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
       },
-      "envFile": "${workspaceFolder}/reports/.env9",
-      "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
-    },
-    {
-      "name": "Run Partner Lifecycle Supplier Portal-InboxDetail",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
-      "args": [
-        "--standalone",
-        "/InboxDetail/index.html",
-        "--ui5",
-        "{\"version\":\".\"}"
-      ],
-      "cwd": "${workspaceFolder}/InboxDetail",
-      "env": {
-        "PORT": "6004",
-        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
-        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/InboxDetail\"}"
+      {
+        "name": "Run Partner Lifecycle Supplier Portal-surveyform",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+        "args": [
+          "--standalone",
+          "/comjabilsurveyform/index.html",
+          "--ui5",
+          "{\"version\":\".\"}"
+        ],
+        "cwd": "${workspaceFolder}/surveyform",
+        "env": {
+          "PORT": "6004",
+          "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+          "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/surveyform\"}"
+        },
+        "envFile": "${workspaceFolder}/surveyform/.env2",
+        "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
       },
-      "envFile": "${workspaceFolder}/InboxDetail/.env9",
-      "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
-    }
-  ],
-  "compounds": [],
-  "inputs": [
-    {
-      "id": "UI5Version",
-      "type": "command",
-      "command": "sap.ux.appGenerator.ui5Version"
-    }
-  ],
-  "version": "0.2.0"
-}
+      {
+        "name": "Run Partner Lifecycle Supplier Portal-reports",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+        "args": [
+          "--standalone",
+          "/oneappincturereportreports/index.html",
+          "--ui5",
+          "{\"version\":\".\"}"
+        ],
+        "cwd": "${workspaceFolder}/reports",
+        "env": {
+          "PORT": "6004",
+          "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+          "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/reports\"}"
+        },
+        "envFile": "${workspaceFolder}/reports/.env7",
+        "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
+      },
+      {
+        "name": "Run Partner Lifecycle Supplier Portal-InboxDetail",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+        "args": [
+          "--standalone",
+          "/InboxDetail/index.html",
+          "--ui5",
+          "{\"version\":\".\"}"
+        ],
+        "cwd": "${workspaceFolder}/InboxDetail",
+        "env": {
+          "PORT": "6004",
+          "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+          "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/InboxDetail\"}"
+        },
+        "envFile": "${workspaceFolder}/InboxDetail/.env7",
+        "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
+      },
+      {
+        "name": "Run Partner Lifecycle Supplier Portal-processFlow",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+        "args": [
+          "--standalone",
+          "/oneappinctureprocessFlowprocessFlow/index.html",
+          "--ui5",
+          "{\"version\":\".\"}"
+        ],
+        "cwd": "${workspaceFolder}/processFlow",
+        "env": {
+          "PORT": "6004",
+          "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+          "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/processFlow\"}"
+        },
+        "envFile": "${workspaceFolder}/processFlow/.env4",
+        "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
+      },
+      {
+        "name": "Run Partner Lifecycle Supplier Portal-dashboard",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+        "args": [
+          "--standalone",
+          "/dashboard/index.html",
+          "--ui5",
+          "{\"version\":\".\"}"
+        ],
+        "cwd": "${workspaceFolder}/dashboard",
+        "env": {
+          "PORT": "6004",
+          "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+          "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/dashboard\"}"
+        },
+        "envFile": "${workspaceFolder}/dashboard/.env1",
+        "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
+      },
+      {
+        "name": "Run Partner Lifecycle Supplier Portal-BuyerRegistration",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+        "args": [
+          "--standalone",
+          "/nsBuyerRegistration/index.html",
+          "--ui5",
+          "{\"version\":\".\"}"
+        ],
+        "cwd": "${workspaceFolder}/BuyerRegistration",
+        "env": {
+          "PORT": "6004",
+          "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+          "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/BuyerRegistration\"}"
+        },
+        "envFile": "${workspaceFolder}/BuyerRegistration/.env59",
+        "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
+      }
+    ],
+    "compounds": [],
+    "inputs": [
+      {
+        "id": "UI5Version",
+        "type": "command",
+        "command": "sap.ux.appGenerator.ui5Version"
+      }
+    ],
+    "version": "0.2.0"
+  }
