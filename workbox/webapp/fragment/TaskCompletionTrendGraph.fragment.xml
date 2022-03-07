@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:f="sap.f">
+	<VBox renderType="Bare" alignItems="Center" width="100%" class="wbDashboardChartClass" visible="{oGraphDataModel>/graphTaskCompletionTrend}">
+		<layoutData>
+			<grid:GridItemLayoutData gridColumn="span 1"/>
+		</layoutData>
+		<HBox renderType="Bare" alignItems="Center" width="100%" justifyContent="SpaceBetween" class="wbDashboardHeaderComboClass">
+			<Text text="{i18n>TASK_COMPLETION_TREND_TEXT}" class="wbDashboardTitleTextClass"/>
+			<ComboBox class="sapUiTinyMarginEnd wbUserWorkloadComboboxStyle" items="{oGraphDataModel>/durationListData}"
+				selectedKey="{oGraphDataModel>/selectedDuration}" selectionChange="fnGetTaskCompletionGraphData">
+				<core:Item key="{oGraphDataModel>key}" text="{oGraphDataModel>text}"/>
+			</ComboBox>
+		</HBox>
+	
+		<viz:VizFrame busy="{oGraphDataModel>/enableBusyIndicators/trendGraph}" busyIndicatorDelay="0" xmlns="sap.viz" id="WB_COLUMN_GRAPH"
+			selectData="fetchGraphDetailFn" vizType="line" legendVisible="false" width="100%"
+			height="{path : '/' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGraphHeight'}"/>
+	</VBox>
+</core:FragmentDefinition>

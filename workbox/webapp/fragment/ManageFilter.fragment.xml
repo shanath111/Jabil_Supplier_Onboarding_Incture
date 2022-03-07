@@ -1,0 +1,204 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:f="sap.f" xmlns:dnd="sap.ui.core.dnd"
+	xmlns:dnd-grid="sap.f.dnd">
+	<IconTabBar class="wbAdminMGroupsIconTabBackground sapUiSizeCompact" expandable="false">
+		<items>
+			<IconTabFilter text="{i18n>VIEWS_TEXT}" key="Views">
+				<VBox renderType="Bare" justifyContent="Start" class="wbAdminMGropusPaddingClass wbDefaultPageBackground sapUiSizeCompact" height="100%">
+					<!--MANAGE FILTER-->
+					<VBox class="wbCustomContentWrapperStyle" renderType="Bare"
+						visible="{= ${oAppModel>/currentView} !== 'dashBoard' &amp;&amp; ${oAppModel>/currentViewPage} !== 'manageDashboardTiles' ? true:false}">
+						<!--Headers-->
+						<HBox class="wbCustomHeaderClass" renderType="Bare" justifyContent="SpaceBetween">
+							<Text text="{i18n>FILTER_NAME_TEXT}" width="60%" class="wbCustomHeaderLabel sapUiLargeMarginEnd sapUiTinyMarginBegin wbTransformToUpperCase"/>
+							<HBox renderType="Bare" justifyContent="SpaceBetween" width="40%">
+								<Text text="{i18n>TYPE_TEXT}" class="wbCustomHeaderLabel wbTransformToUpperCase"/>
+								<Text text="{i18n>TRAY_TEXT}" class="wbCustomHeaderLabel wbTransformToUpperCase"/>
+								<Text text="{i18n>TILE_TEXT}" class="wbCustomHeaderLabel wbTransformToUpperCase"/>
+							</HBox>
+							<ToolbarSpacer width="20%"></ToolbarSpacer>
+						</HBox>
+						<ScrollContainer busy="{oAdvanceFilterModel>/manageFilterBusy}" busyIndicatorDelay="0" width="100%" height="55vh" horizontal="false"
+							vertical="true" focusable="true">
+							<VBox items="{path : 'oAdvanceFilterModel>/savedFilters'}">
+								<HBox class="sapUiSizeCompact wbSeparatorLine" height="2.5rem" renderType="Bare" alignItems="Center" justifyContent="SpaceBetween">
+									<!--Filter Name-->
+									<HBox width="{= ${oAdvanceFilterModel>/manageFilterMode}==='Edit' ? '52.2%':'52.2%'}" class="sapUiTinyMarginBegin" renderType="Bare">
+										<Text maxLines="1" text="{oAdvanceFilterModel>filterName}" width="110%" class=" wbManageFilterFN sapUiTinyMarginBegin wbTextBoldClass"
+											tooltip="{oAdvanceFilterModel>filterName}" visible="{= ${oAdvanceFilterModel>/manageFilterMode}==='View'}"/>
+										<Input value="{oAdvanceFilterModel>filterName}" liveChange="validateFilterName" class="wbDefaultCustomInputWrapper wbManageFilterInput"
+											width="75%" tooltip="{oAdvanceFilterModel>filterName}" visible="{= ${oAdvanceFilterModel>/manageFilterMode}==='Edit'}"/>
+									</HBox>
+									<!--Filter Type-->
+									<HBox renderType="Bare" justifyContent="SpaceBetween" alignItems="Center" width="{= ${oAdvanceFilterModel>/manageFilterMode}==='Edit' ? '49%':'47%'}">
+										<HBox renderType="Bare" justifyContent="Start" alignItems="Center">
+											<Label text="{= ${oAdvanceFilterModel>isView}===false ? ${i18n>FILTER_TEXT}: ${i18n>VIEW_TEXT}}"
+												class="sapUiTinyMarginBegin wbTextBoldClass" visible="{= ${oAdvanceFilterModel>/manageFilterMode}==='View'}"/>
+											<CheckBox text="{i18n>VIEW_TEXT}" selected="{oAdvanceFilterModel>isView}" class=" sapUiTinyMarginBegin wbManageFilterRB"
+												visible="{= ${oAdvanceFilterModel>/manageFilterMode}==='Edit'}"/>
+										</HBox>
+										<CheckBox selected="{oAdvanceFilterModel>tray}" class=" sapUiTinyMarginBegin wbManageFilterRB"
+											editable="{= ${oAdvanceFilterModel>/manageFilterMode}==='Edit'}"/>
+										<CheckBox selected="{oAdvanceFilterModel>isTile}" class=" sapUiTinyMarginBegin wbManageFilterRB"
+											editable="{= ${oAdvanceFilterModel>/manageFilterMode}==='Edit'}"/>
+										<!--Action Button-->
+										<HBox width="17%" renderType="Bare" alignItems="Center" justifyContent="End" class="sapUiSizeCompact">
+											<Button text="✔" tooltip="{i18n>SAVE_TEXT}" visible="{= ${oAdvanceFilterModel>/manageFilterMode}==='Edit'}"
+												press="applySaveFilter('UpdateFilter',$event)" type="Transparent" class=" wbTransparentButtonStyleClass sapUiTinyMarginEnd"
+												enabled="{= ${oAdvanceFilterModel>filterName} !== ''}"/>
+											<Button tooltip="{i18n>DELETE_TEXT}" icon="sap-icon://delete" press="applySaveFilter('DeleteFilter',$event)" type="Reject"
+												class="wbInboxRemoveBtnClass" visible="{= ${oAdvanceFilterModel>/manageFilterMode}==='Edit'}"/>
+											<Button text="{i18n>APPLY_TEXT}" type="Transparent" press="onSelectSavedFilter" class="wbTransparentButtonStyleClass"
+												visible="{= ${oAdvanceFilterModel>/manageFilterMode}==='View'         &amp;&amp; ${oAppModel>/WB_TASK_BOARD_VIEW}===false }"/>
+										</HBox>
+									</HBox>
+								</HBox>
+							</VBox>
+						</ScrollContainer>
+						<Text textAlign="Center" text="{i18n>NO_DATA_SAVED_FILTER}" visible="{= ${oAdvanceFilterModel>/savedFilters}.length === 0 ? true : false}"
+							class="wbManageFilterNoDataText"/>
+					</VBox>
+					<!--MANAGE TILES-->
+					<VBox class="wbCustomContentWrapperStyle"
+						visible="{= ${oAppModel>/currentView} === 'dashBoard' || ${oAppModel>/currentViewPage} === 'manageDashboardTiles' ? true:false}">
+						<!--Headers-->
+						<HBox class="wbCustomHeaderClass" renderType="Bare" justifyContent="Start">
+							<Text text="{i18n>FILTER_NAME_TEXT}" width="{= ${oAppModel>/currentViewPage} === 'manageDashboardTiles' ? '63%' : '54.5%'}"
+								class="wbCustomHeaderLabel sapUiLargeMarginEnd sapUiTinyMarginBegin wbTransformToUpperCase"/>
+							<Text text="{i18n>ACTIVE_TEXT}" class="wbCustomHeaderLabel wbTransformToUpperCase"/>
+						</HBox>
+						<ScrollContainer width="100%" height="64vh" horizontal="false" vertical="true" focusable="true">
+							<VBox renderType="Bare" class=" sapUiTinyMarginEnd">
+								<!--______________________________ADMIN CONFIGURED TILES_______________________________________-->
+								<HBox renderType="Bare" width="auto" class="sapUiTinyMarginBeginEnd" justifyContent="SpaceBetween" alignItems="Center">
+									<Text textAlign="Left" text="{i18n>ADMIN_CONFIGURED_FILTER_TEXT}" class="wbManageFilterNoDataText"/>
+								</HBox>
+								<Text textAlign="Center" text="{i18n>NO_DATA_SAVED_FILTER}" class="wbManageFilterNoDataText"
+									visible="{= ${oAdvanceFilterModel>/adminTiles}.length === 0 &amp;&amp; ${oAdvanceFilterModel>/manageFilterBusy}=== false ? true : false}"/>
+								<VBox renderType="Bare" items="{path : 'oAdvanceFilterModel>/adminTiles'}" busy="{oAdvanceFilterModel>/manageFilterBusyAdmin}"
+									busyIndicatorDelay="0">
+									<CustomListItem type="Inactive" class="sapUiSizeCompact " tooltip="{oAdvanceFilterModel>description}">
+										<HBox class="sapUiSizeCompact sapUiTinyMarginBegin" height="2.5rem" renderType="Bare" alignItems="Center" justifyContent="Start">
+											<!--Tile Name-->
+											<HBox renderType="Bare" width="{= ${oAppModel>/currentViewPage} === 'manageDashboardTiles' ? '70%' : '65%'}"
+												class="sapUiTinyMarginBegin sapUiLargeMarginEnd" visible="true">
+												<Input value="{oAdvanceFilterModel>filterName}" change="applySaveFilter('UpdateTileName',$event)"
+													class="sapUiTinyMarginBegin wbTextBoldClass wbDefaultCustomInputWrapper wbManageFilterInput" tooltip="{oAdvanceFilterModel>filterName}"
+													editable="{= ${oAppModel>/currentViewPage} === 'manageDashboardTiles'}"
+													width="{= ${oAppModel>/currentViewPage} === 'manageDashboardTiles' ? '70%' : '100%'}"/>
+											</HBox>
+											<!--Action Button-->
+											<HBox width="{= ${oAppModel>/currentViewPage} === 'manageDashboardTiles' ? '35%' : '40%'}" renderType="Bare" alignItems="Center"
+												justifyContent="{= ${oAppModel>/currentViewPage} === 'manageDashboardTiles' ? 'SpaceBetween' : 'End'}" class="sapUiSizeCompact">
+												<Switch class="wbCustomSwitch sapUiLargeMarginEnd" state="{= ${oAdvanceFilterModel>isActive}===false ? false : true}"
+													change="applySaveFilter('UpdateTileActivate',$event)" visible="{= ${oAppModel>/currentViewPage} === 'manageDashboardTiles'}"/>
+												<HBox renderType="Bare" alignItems="End" justifyContent="End">
+													<Button tooltip="{i18n>CLONE_TILE_TEXT}" press="cloneTileFilter" icon="sap-icon://copy" type="Transparent"
+														class=" wbTransparentButtonStyleClass sapUiTinyMarginEnd" visible="{= ${oAppModel>/currentViewPage} !== 'manageDashboardTiles'}"/>
+													<Button tooltip="{i18n>EDIT_TEXT}" press="editTileFilter" icon="sap-icon://edit" type="Transparent"
+														class=" wbTransparentButtonStyleClass sapUiTinyMarginEnd" visible="{= ${oAppModel>/currentViewPage} === 'manageDashboardTiles'}"/>
+													<Button tooltip="{i18n>DELETE_TEXT}" icon="sap-icon://delete" press="applySaveFilter('DeleteTile',$event)" type="Reject"
+														class="wbInboxRemoveBtnClass" visible="{= ${oAppModel>/currentViewPage} === 'manageDashboardTiles'}"/>
+												</HBox>
+											</HBox>
+										</HBox>
+									</CustomListItem>
+								</VBox>
+							</VBox>
+							<!--______________________________USER SPECIFIC TILES_______________________________________-->
+							<VBox renderType="Bare" visible="{= ${oAppModel>/currentView} === 'dashBoard'}">
+								<HBox renderType="Bare" width="auto" class="sapUiTinyMarginBegin" justifyContent="SpaceBetween" alignItems="Center">
+									<Text textAlign="Left" text="{i18n>USER_SPECIFIC_FILTER}" class="wbManageFilterNoDataText sapUiTinyMarginTop"/>
+									<Button text="{i18n>ADD_FILTER_TEXT}" class="wbCustomButtonClass wbTextBoldClass" press="addDashboardTile"/>
+								</HBox>
+								<!--<Text textAlign="Center" text="{i18n>NO_DATA_SAVED_FILTER}" class="wbManageFilterNoDataText sapUiTinyMarginTop"-->
+								<!--	visible="{= ${oAdvanceFilterModel>/userTiles}.length === 0 &amp;&amp; ${oAdvanceFilterModel>/manageFilterBusy}=== false  ? true : false}"/>-->
+								<VBox renderType="Bare" busy="{oAdvanceFilterModel>/manageFilterBusy}" busyIndicatorDelay="0">
+									<f:GridList class="wbManageFilterGridList" gridTemplateColumns="1fr" gridGap="0rem" items="{path : 'oAdvanceFilterModel>/userTiles'}"
+										noDataText="{i18n>NO_DATA_SAVED_FILTER}">
+										<f:dragDropConfig>
+											<dnd:DragInfo sourceAggregation="items"/>
+											<dnd-grid:GridDropInfo targetAggregation="items" dropPosition="Between" dropLayout="Horizontal" drop="onDropSavedTile($event,'/userTiles')"/>
+										</f:dragDropConfig>
+										<f:GridListItem class="wbManageFilterGridList">
+											<HBox class="sapUiSizeCompact sapUiTinyMarginBeginEnd " height="2.5rem" renderType="Bare" alignItems="Center" justifyContent="Start">
+												<Image src="images/DragIcon.png"/>
+												<!--Tile Name enabled="{= ${oAdvanceFilterModel>filterType}==='CUSTOM'}"-->
+												<HBox renderType="Bare" width="58%" class="sapUiLargeMarginEnd" visible="true">
+													<Input value="{oAdvanceFilterModel>filterName}" change="applySaveFilter('UpdateTileName',$event)"
+														class="sapUiTinyMarginBegin wbTextBoldClass wbDefaultCustomInputWrapper wbManageFilterInput" tooltip="{oAdvanceFilterModel>filterName}"
+														width="100%"/>
+												</HBox>
+												<!--Action Button-->
+												<HBox width="35%" renderType="Bare" alignItems="Center" justifyContent="SpaceBetween" class="sapUiSizeCompact">
+													<Switch class="wbCustomSwitch sapUiLargeMarginEnd" state="{= ${oAdvanceFilterModel>isActive}===false? false : true}"
+														change="applySaveFilter('UpdateTileActivate',$event)"/>
+													<HBox renderType="Bare" alignItems="End">
+														<Button tooltip="{i18n>EDIT_TEXT}" press="editTileFilter" icon="sap-icon://edit" type="Transparent"
+															class=" wbTransparentButtonStyleClass sapUiTinyMarginEnd" enabled="{= ${oAdvanceFilterModel>filterType}==='CUSTOM'}"/>
+														<Button tooltip="{i18n>DELETE_TEXT}" icon="sap-icon://delete" press="applySaveFilter('DeleteTile',$event)" type="Reject"
+															class="wbInboxRemoveBtnClass"/>
+													</HBox>
+												</HBox>
+											</HBox>
+										</f:GridListItem>
+									</f:GridList>
+								</VBox>
+							</VBox>
+						</ScrollContainer>
+					</VBox>
+					<!--EDIT/DISCRAD Button-->
+					<HBox justifyContent="End" alignItems="End" renderType="Bare" class="sapUiTinyMarginTop">
+						<Button text="{i18n>EDIT_TEXT}"
+							visible="{= ${oAppModel>/currentView} !== 'dashBoard' &amp;&amp; ${oAppModel>/currentViewPage} !== 'manageDashboardTiles' &amp;&amp; ${oAdvanceFilterModel>/manageFilterMode}==='View' &amp;&amp; ${oAdvanceFilterModel>/savedFilters}.length > 0}"
+							class=" wbDefaultButtonClass " press="toggleEditSavedFilters"/>
+						<Button text="{i18n>DISCARD_TEXT}" class="wbCustomButtonClass wbTextBoldClass"
+							visible="{= ${oAppModel>/currentView} !== 'dashBoard' &amp;&amp; ${oAppModel>/currentViewPage} !== 'manageDashboardTiles' &amp;&amp; ${oAdvanceFilterModel>/manageFilterMode}==='Edit' &amp;&amp; ${oAdvanceFilterModel>/savedFilters}.length > 0}"
+							press="discardSavedFilters"/>
+					</HBox>
+				</VBox>
+			</IconTabFilter>
+			<IconTabFilter text="{i18n>REPORT_TEXT}" key="Reports"
+				visible="{= (${oAppModel>/currentView} === 'dashBoard' || ${oAppModel>/currentViewPage} === 'manageDashboardTiles') ? true:false}">
+				<VBox renderType="Bare" class="wbAdminMGropusPaddingClass wbDefaultPageBackground">
+					<HBox renderType="Bare" alignItems="Center" class="wbCustomHeaderClass" justifyContent="Start">
+						<Text text="{i18n>GRAPH_TEXT}" class="sapUiSmallMarginBegin" width="45%"/>
+						<Text text="{i18n>WIDTH_TEXT}" width="39%"/>
+						<Text text="{i18n>ACTIVE_TEXT}"/>
+					</HBox>
+					<ScrollContainer horizontal="false" vertical="true" class="sapUiTinyMarginBegin">
+						<f:GridList class="wbGraphGridClass" items="{oGraphDataModel>/graphData}">
+							<f:dragDropConfig>
+								<dnd:DragInfo sourceAggregation="items"/>
+								<dnd-grid:GridDropInfo targetAggregation="items" dropPosition="Between" dropLayout="Horizontal" drop="onGraphSettingsDrop"/>
+							</f:dragDropConfig>
+							<f:GridListItem class="wbGraphGridClass">
+								<HBox renderType="Bare" alignItems="Center" justifyContent="Start">
+									<HBox width="45%">
+										<Image src="images/DragIcon.png" class="sapUiTinyMarginBegin"/>
+										<Text text="{oGraphDataModel>graph}" class="sapUiTinyMarginBegin"/>
+									</HBox>
+									<HBox width="40%">
+										<Select class="sapUiTinyMarginBegin" width="50%" selectedKey="{oGraphDataModel>width}" change="onGraphWidthChange">
+											<customData>
+												<core:CustomData key="{oGraphDataModel>key}" value="{oGraphDataModel>key}"/>
+											</customData>
+											<core:Item key="50" text="50%"/>
+											<core:Item key="100" text="100%"/>
+										</Select>
+									</HBox>
+									<HBox width="15%" renderType="Bare" alignItems="Center">
+										<Switch class="wbCustomSwitch" change="onGraphActivate" state="{oGraphDataModel>isActive}">
+											<customData>
+												<core:CustomData key="{oGraphDataModel>key}" value="{oGraphDataModel>key}"/>
+											</customData>
+										</Switch>
+									</HBox>
+								</HBox>
+							</f:GridListItem>
+						</f:GridList>
+					</ScrollContainer>
+				</VBox>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+</core:FragmentDefinition>

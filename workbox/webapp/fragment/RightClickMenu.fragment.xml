@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Popover showHeader="false" showArrow="true" class="wbRightClickPopoverStyle" beforeClose="closeRightClickMenu"
+		placement="VerticalPreferredBottom">
+		<List class="wbRightClickMenuStyle">
+			<StandardListItem icon="sap-icon://customfont/LineItemEyeIcon" info="View" title="{i18n>VIEW_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact" press="menuItemPress" visible="{= ${oAppModel>/inboxType} !== 'Draft'}"/>
+			<StandardListItem icon="sap-icon://customfont/PinIcon" info="Pin" title="{i18n>PIN_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact" press="menuItemPress"
+				visible="{= ${oAppModel>/currentViewPage} === 'CreatedTasks' || ${oAppModel>/currentViewPage} === 'CompletedTasks' || ${oAppModel>/currentViewPage} === 'Draft' || ${oTaskInboxModel>/lineItemTaskDetails/pinned} === true ? false : true}"/>
+			<StandardListItem icon="sap-icon://customfont/unpinIcon" info="UnPin" title="{i18n>UNPIN_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact" press="menuItemPress"
+				visible="{= ${oAppModel>/currentViewPage} === 'CreatedTasks' || ${oAppModel>/currentViewPage} === 'CompletedTasks' || ${oAppModel>/currentViewPage} === 'Draft' || ${oTaskInboxModel>/lineItemTaskDetails/pinned} === false ? false : true}"/>
+			<StandardListItem icon="sap-icon://customfont/Claim" info="Claim" title="{i18n>CLAIM_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact"
+				visible="{= ${oTaskInboxModel>/lineItemStatus} === 'READY' &amp;&amp; ${oAppModel>/inboxType} !== 'CompletedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'CreatedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'Draft'}"
+				press="menuItemPress"/>
+			<StandardListItem icon="sap-icon://customfont/Release" info="Release" title="{i18n>RELEASE_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact sapUiSizeCompactsapUiSizeCompact"
+				visible="{= ${oTaskInboxModel>/lineItemStatus} === 'RESERVED' &amp;&amp; ${oAppModel>/inboxType} !== 'CompletedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'CreatedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'Draft'}"
+				press="menuItemPress"/>
+			<StandardListItem icon="sap-icon://customfont/Forward" info="forward" title="{i18n>FORWARD_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact sapUiSizeCompactsapUiSizeCompact"
+				visible="{= (${oTaskInboxModel>/lineItemStatus} === 'RESERVED' || ${oTaskInboxModel>/lineItemStatus} === 'READY') &amp;&amp; ${oAppModel>/inboxType} !== 'CompletedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'CreatedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'Draft'}"
+				press="menuItemPress"/>
+			<StandardListItem icon="sap-icon://customfont/chatbubblesIcon" info="chat" title="{i18n>CHAT_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact sapUiSizeCompact" press="menuItemPress" visible="{= ${oAppModel>/inboxType} !== 'Draft'}"/>
+			<StandardListItem icon="sap-icon://customfont/ApproveAccept" info="Approve" title="{i18n>APPROVE_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact sapUiSizeCompact" press="menuItemPress"
+				visible="{= (${oTaskInboxModel>/lineItemTaskType} === 'Approve/Reject' || ${oTaskInboxModel>/lineItemTaskType} === 'Complete/Approval') &amp;&amp; ${oAppModel>/inboxType} !== 'CreatedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'CompletedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'Draft' || ${oTaskInboxModel>/lineItemTaskType} === null &amp;&amp; ${oAppModel>/inboxType} !== 'CreatedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'CompletedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'Draft'}"/>
+			<StandardListItem icon="sap-icon://customfont/DeclineReject" info="Reject" title="{i18n>REJECT_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact sapUiSizeCompact" press="menuItemPress"
+				visible="{= (${oTaskInboxModel>/lineItemTaskType} === 'Approve/Reject' || ${oTaskInboxModel>/lineItemTaskType} === 'Complete/Approval') &amp;&amp; ${oAppModel>/inboxType} !== 'CreatedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'CompletedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'Draft' || ${oTaskInboxModel>/lineItemTaskType} === null &amp;&amp; ${oAppModel>/inboxType} !== 'CreatedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'CompletedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'Draft'}"/>
+			<StandardListItem icon="sap-icon://customfont/Complete" info="Resolved" title="{i18n>RESOLVE_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact sapUiSizeCompact" press="menuItemPress"
+				visible="{= ${oTaskInboxModel>/lineItemTaskType} === 'Complete/Resolve' &amp;&amp; (${oAppModel>/inboxType} !== 'CreatedTasks' || ${oAppModel>/inboxType} !== 'CompletedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'Draft' || ${oAppModel>/inboxType} !== 'AdminInbox') &amp;&amp; (${oTaskInboxModel>/lineItemStatus} === 'READY' || ${oTaskInboxModel>/lineItemStatus} === 'RESERVED')}"/>
+			<StandardListItem icon="sap-icon://customfont/Complete" info="Done" title="{i18n>DONE_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact sapUiSizeCompact" press="menuItemPress"
+				visible="{= ${oTaskInboxModel>/lineItemTaskType} === 'Done' &amp;&amp; ${oAppModel>/inboxType} !== 'CreatedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'CompletedTasks' &amp;&amp; ${oAppModel>/inboxType} !== 'Draft'}"/>
+			<StandardListItem icon="sap-icon://customfont/Complete" info="Complete" title="{i18n>COMPLETE_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact sapUiSizeCompact" press="menuItemPress"
+				visible="{= ${oTaskInboxModel>/lineItemTaskType} === 'Complete/Resolve' &amp;&amp; ${oAppModel>/inboxType} === 'CreatedTasks' &amp;&amp; ${oTaskInboxModel>/lineItemStatus} === 'RESOLVED'}"/>
+			<StandardListItem info="CreateSubTask" icon="sap-icon://customfont/CreateSubtask" title="{i18n>CREATE_SUB_TASK}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact sapUiSizeCompact" press="menuItemPress" visible="{= ${oAppModel>/inboxType} !== 'Draft'}"/>
+			<StandardListItem icon="sap-icon://delete" info="delete" title="{i18n>DELETE_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact sapUiSizeCompact" press="menuItemPress" visible="{= ${oAppModel>/inboxType} === 'Draft'}"/>
+			<StandardListItem icon="sap-icon://customfont/ApproveAccept" info="accept" title="{i18n>ACCEPT_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact sapUiSizeCompact" visible="false" press="menuItemPress"/>
+			<StandardListItem icon="sap-icon://customfont/DeclineReject" info="decline" title="{i18n>DECLINE_TEXT}" type="Active"
+				class="wbRightClickIconStyle sapUiSizeCompact sapUiSizeCompact" visible="false" press="menuItemPress"/>
+		</List>
+	</Popover>
+</core:FragmentDefinition>

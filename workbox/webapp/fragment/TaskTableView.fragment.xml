@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:table="sap.ui.table" xmlns="sap.m"
+	xmlns:Table="oneapp.incture.workbox.controlExtension">
+	<VBox class="wbOverflowVertical wbTableViewPaddingClass" height="100%" width="100%">
+		<!--rowSelectionChange="onTableTaskSelect"-->
+		<table:Table id="ID_TASK_TABLE" selectionMode="{oAppModel>/tableSelection}" rowSelectionChange="wbTableSelect" enableCellFilter="true"
+			class="sapUiSizeCompact wbUiTableStyles" cellClick="fetchDetailsFn" showNoData="true" enableSelectAll="false"
+			busy="{oTaskInboxModel>/enableBusyIndicators}" busyIndicatorDelay="0" beforeOpenContextMenu="openActionFragmentFn"/>
+	</VBox>
+</core:FragmentDefinition>

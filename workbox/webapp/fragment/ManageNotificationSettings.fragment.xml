@@ -1,0 +1,366 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns="sap.m"
+	xmlns:custom="oneapp.incture.workbox.controlExtension">
+	<IconTabBar class="wbNotificationIconTabBar" select="selectNotifSettings" expandable="false" expand="true"
+		selectedKey="{oUserSettingsModel>/settings/notifSelectedTab}">
+		<items>
+			<IconTabFilter text="{i18n>GENERAL_TEXT}" key="GENERAL"></IconTabFilter>
+			<IconTabFilter text="{i18n>PROFILES_TEXT}" key="PROFILE"></IconTabFilter>
+			<IconTabFilter text="{i18n>ADDTIONAL_SETTINGS_TEXT}" key="ADDITIONAL"></IconTabFilter>
+			<IconTabFilter text="{i18n>APPLICATION_SETTINGS_TEXT}" key="APPLICATION" visible="false"></IconTabFilter>
+			<!--{= ${oUserSettingsModel>/settings/selectedSetting} ==='SETTINGS_ADMIN_NOTIFICATIONS'}-->
+		</items>
+	</IconTabBar>
+	<VBox renderType="Bare" width="100%" class="wbOverflowVertical wbPrimaryBackgroundColor">
+		<VBox renderType="Bare" visible="{= ${oUserSettingsModel>/settings/settingView} ==='GENERAL'}" alignItems="Start">
+			<!--_______________________________________________GENERAL SETTINGS MAIN PAGE_______________________________________-->
+			<!--_______________________________________________WHAT _ EVENT ORIGINS_______________________________________________-->
+			<CustomListItem type="Active" press="goBackNotificationGroup($event,'GROUP')"
+				class="sapUiSizeCompact wbNotificationGroupingCLI wbNotificationGroupHeaderBorder"
+				visible="{= ${oUserSettingsModel>/settings/notifSelectedTab}==='APPLICATION'}">
+				<HBox renderType="Bare" height="2.5rem" justifyContent="Start" alignItems="Center"
+					class="sapUiTinyMarginBegin wbNotificationGroupHeaderBorder">
+					<core:Icon src="sap-icon://nav-back" class="wbPrimaryColorIcon"/>
+					<Text text="{oUserSettingsModel>/settings/selectedNotification/header}" class="sapUiTinyMarginBegin wbSettingsNotifLabel"/>
+				</HBox>
+			</CustomListItem>
+			<Text text="{i18n>FOR_WHAT_NOTIF_TEXT}" class="wbNotificationDisclaimerText sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiTinyMarginTop"/>
+			<VBox renderType="Bare"
+				items="{ path: 'oUserSettingsModel>/settings/notification/generalSettings', filters: [{path: 'viewType', operator: 'EQ', value1: 'What'}]}"
+				width="100%">
+				<CustomListItem type="Active" press="selectNotificationGroup($event,'GROUP')"
+					class="sapUiSizeCompact wbNotificationGroupingCLI wbNotificationEachGrp"
+					visible="{parts : ['oUserSettingsModel>/settings/selectedSetting','oUserSettingsModel>isEnable'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbShowNotificationBlock'}">
+					<HBox width="auto" renderType="Bare" alignItems="Center" class="sapUiTinyMarginBeginEnd">
+						<Switch class="wbSmallerCustomSwitch" state="{= ${oUserSettingsModel>isEnable}=== true ? true: false}"
+							change="updateGeneralSettings($event,'UPDATE')"
+							visible="{parts : ['oUserSettingsModel>/settings/selectedSetting','oUserSettingsModel>isEnable'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbShowNotificationSwitchGeneral'}"/>
+						<VBox renderType="Bare" width="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS'? '90%' :'93%'}">
+							<HBox renderType="Bare" alignItems="Center">
+								<core:Icon src="{oUserSettingsModel>viewIcon}" class="sapUiTinyMarginBegin sapUiTinyMarginTop wbSettingsNotifLabel"/>
+								<Text text="{oUserSettingsModel>viewName}" class="sapUiTinyMarginBegin sapUiTinyMarginTop wbSettingsNotifLabel wbTextBoldClass"/>
+							</HBox>
+							<Text maxLines="1" text="{= ${oUserSettingsModel>events}==='' ? ${i18n>NO_EVENTS_CREATED_TEXT}: ${oUserSettingsModel>events}}"
+								class="sapUiTinyMarginBegin sapUiTinyMarginTopBottom wbSettingsNotifLabel wbFont13"/>
+						</VBox>
+						<HBox renderType="Bare" alignItems="Center" justifyContent="End" height="100%" width="7%">
+							<!--{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS' &amp;&amp; ${oUserSettingsModel>userId} ==='Admin' }-->
+							<core:Icon src="sap-icon://delete" class="wbRejectColorIcon sapUiSmallMarginEnd sapUiTinyMarginTop wbNotificationDelConfig"
+								visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS' }"
+								press="deleteNotificationConfig($event,'GROUP')"/>
+							<core:Icon src="sap-icon://navigation-right-arrow" class="sapUiTinyMarginTop wbPrimaryColorIcon"/>
+						</HBox>
+					</HBox>
+				</CustomListItem>
+			</VBox>
+			<Button text="{i18n>ADD_EVENT_GROUP_TEXT}" class="wbCustomButtonClass wbTextBoldClass sapUiTinyMarginTop" icon="sap-icon://add"
+				visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS'}"
+				press="openAddNotifSettings($event,'ADDGROUP')"/>
+			<!--_______________________________________________WHERE _ NOTIFICATION CHANNELS__________________________________________-->
+			<Text text="{i18n>WHERE_NOTIF_TEXT}" class="wbNotificationDisclaimerText sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiSmallMarginTop"/>
+			<VBox renderType="Bare"
+				items="{ path: 'oUserSettingsModel>/settings/notification/generalSettings', filters: [{path: 'viewType', operator: 'EQ', value1: 'Where'}]}"
+				width="100%">
+				<CustomListItem type="Active" press="selectNotificationGroup($event,'CHANNEL')"
+					class="sapUiSizeCompact wbNotificationGroupingCLI wbNotificationEachGrp"
+					visible="{parts : ['oUserSettingsModel>/settings/selectedSetting','oUserSettingsModel>isEnable'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbShowNotificationBlock'}">
+					<HBox width="auto" renderType="Bare" alignItems="Center" class="sapUiTinyMarginBeginEnd">
+						<Switch class="wbSmallerCustomSwitch" state="{= ${oUserSettingsModel>isEnable}=== true ? true: false}"
+							change="updateGeneralSettings($event,'UPDATE')"
+							visible="{parts : ['oUserSettingsModel>/settings/selectedSetting','oUserSettingsModel>isEnable'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbShowNotificationSwitchGeneral'}"/>
+						<VBox renderType="Bare" width="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS'? '90%' :'93%'}">
+							<HBox renderType="Bare" alignItems="Center">
+								<core:Icon src="{oUserSettingsModel>viewIcon}" class="sapUiTinyMarginBegin sapUiTinyMarginTop wbSettingsNotifLabel"/>
+								<Text text="{oUserSettingsModel>viewName}" class="sapUiTinyMarginBegin sapUiTinyMarginTop wbSettingsNotifLabel wbTextBoldClass"/>
+							</HBox>
+							<Text maxLines="1" text="{= ${oUserSettingsModel>events}==='' ? ${i18n>NO_EVENTS_CREATED_TEXT}: ${oUserSettingsModel>events}}"
+								class="sapUiTinyMarginBegin sapUiTinyMarginTopBottom wbSettingsNotifLabel wbFont13"/>
+						</VBox>
+						<HBox renderType="Bare" alignItems="Center" justifyContent="End" height="100%" width="7%">
+							<!--{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS' &amp;&amp; ${oUserSettingsModel>userId} ==='Admin' }-->
+							<core:Icon src="sap-icon://delete" class="wbRejectColorIcon sapUiSmallMarginEnd sapUiTinyMarginTop wbNotificationDelConfig"
+								press="deleteNotificationConfig($event,'CHANNEL')"
+								visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS' }"/>
+							<core:Icon src="sap-icon://navigation-right-arrow" class="sapUiTinyMarginTop wbPrimaryColorIcon"/>
+						</HBox>
+					</HBox>
+				</CustomListItem>
+			</VBox>
+			<Button text="{i18n>ADD_CHANNEL_TEXT}" class="wbCustomButtonClass sapUiTinyMarginTop wbTextBoldClass" icon="sap-icon://add"
+				visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS'}"
+				press="openAddNotifSettings($event,'ADDCHANNEL')"/>
+		</VBox>
+		<VBox renderType="Bare"
+			visible="{= ${oUserSettingsModel>/settings/settingView} ==='GROUP' || ${oUserSettingsModel>/settings/settingView} ==='CHANNEL'}">
+			<!--_______________________________________________WHEN (WHAT) EVENT ORIGIN IS CLICKED_______________________________________________-->
+			<CustomListItem type="Active" press="goBackNotificationGroup($event,'GROUP')"
+				class="sapUiSizeCompact wbNotificationGroupingCLI wbNotificationGroupHeaderBorder">
+				<HBox renderType="Bare" height="2.5rem" justifyContent="SpaceBetween" alignItems="Center" width="98%"
+					class="sapUiTinyMarginBegin wbNotificationGroupHeaderBorder">
+					<HBox renderType="Bare" justifyContent="Start" alignItems="Center">
+						<core:Icon src="sap-icon://nav-back" class="wbPrimaryColorIcon"/>
+						<Text text="{oUserSettingsModel>/settings/selectedNotification/header}" class="sapUiTinyMarginBegin wbSettingsNotifLabel"/>
+					</HBox>
+					<HBox renderType="Bare" justifyContent="End" alignItems="Center">
+						<Button icon="sap-icon://add" text="{i18n>ADD_EVENT_TEXT}" class="wbCustomButtonClass wbTextBoldClass"
+							visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS' &amp;&amp; ${oUserSettingsModel>/settings/settingView}!=='CHANNEL'}"
+							press="addEvent"/>
+						<Button text=" {i18n>DISCARD_TEXT}" icon="sap-icon://delete" class="wbCustomButtonClass wbTextBoldClass sapUiTinyMarginBegin "
+							press="discardNotificationSettings" visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS' }"
+							enabled="{= ${oUserSettingsModel>/settings/notification/notificationEventChanged} || ${oUserSettingsModel>/settings/notification/notificationSettingsChanged} || ${oUserSettingsModel>/settings/notification/newEventAdded} || ${oUserSettingsModel>/settings/notification/eventsDeleted}}"/>
+						<Button text=" {i18n>SAVE_TEXT}" class="sapUiTinyMarginTop sapUiTinyMarginBottom sapUiTinyMarginBegin sapUiSizeCompact wbDefaultButtonClass"
+							press="saveNotificationSettings"
+							enabled="{= ${oUserSettingsModel>/settings/notification/notificationEventChanged} || ${oUserSettingsModel>/settings/notification/notificationSettingsChanged} || ${oUserSettingsModel>/settings/notification/newEventAdded} || ${oUserSettingsModel>/settings/notification/eventsDeleted}}"/>
+					</HBox>
+				</HBox>
+			</CustomListItem>
+			<!--_______________________________________________SHOWING EVENTS UNDER THE CHANNEL_______________________________________________-->
+			<CustomListItem type="Active" press="selectNotificationGroup($event,'EVENTLIST')" class="sapUiSizeCompact wbNotificationGroupingCLI"
+				visible="{= ${oUserSettingsModel>/settings/settingView}==='CHANNEL'? true : false}">
+				<HBox width="auto" renderType="Bare" alignItems="Center" class="sapUiTinyMarginBeginEnd">
+					<VBox renderType="Bare" width="98%">
+						<Text text="{i18n>EVENTS_TEXT}" class="sapUiTinyMarginBegin sapUiTinyMarginTop wbSettingsNotifLabel"/>
+						<Text maxLines="1"
+							text="{= ${oUserSettingsModel>/settings/selectedNotification/sEventsList}===undefined ? ${i18n>NO_EVENTS_CREATED_TEXT}: ${oUserSettingsModel>/settings/selectedNotification/sEventsList}}"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTopBottom wbSettingsNotifLabel wbFont13 wbNotifMaxWidth"/>
+					</VBox>
+					<core:Icon src="sap-icon://navigation-right-arrow" class="sapUiTinyMarginTop wbPrimaryColorIcon"/>
+				</HBox>
+			</CustomListItem>
+			<!--actionTypes-->
+			<!--_________________________EVENTS UNDER THE SELECTED EVENT ORIGIN (WHAT)_____________________-->
+			<Table class="wbNotifCustomTableClass" items="{ path: 'oUserSettingsModel>/settings/selectedNotification/viewDetails'}"
+				visible="{parts : ['oUserSettingsModel>/settings/selectedNotification/header','oUserSettingsModel>/settings/settingView'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbNotificationGroupTable'}"
+				busy="{oUserSettingsModel>/settings/selectedNotification/viewDetailBusy}" busyIndicatorDelay="0" noDataText="{i18n>NO_EVENTS_CREATED_TEXT}">
+				<columns>
+					<Column width="27%"/>
+					<Column width="46%"/>
+					<Column width="26%"/>
+				</columns>
+				<items>
+					<ColumnListItem
+						visible="{parts : ['oUserSettingsModel>/settings/selectedSetting','oUserSettingsModel>isEnable'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbShowNotificationBlock'}">
+						<cells>
+							<HBox renderType="Bare" justifyContent='Start' alignItems="Center" class="sapUiSizeCompact">
+								<Switch class="wbSmallerCustomSwitch" state="{= ${oUserSettingsModel>isEnable}=== true ? true: false}"
+									change="updateEventSettings($event,'ENABLEEVENT')"
+									visible="{parts : ['oUserSettingsModel>/settings/selectedSetting','oUserSettingsModel>isEnable'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbShowNotificationSwitchGeneral'}"/>
+								<Text text="{oUserSettingsModel>eventName}" class="wbSettingsNotifLabel"
+									visible="{= ${oUserSettingsModel>newEventAdded} !== true ? true:false }"/>
+								<!--(${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS'} &amp;&amp;-->
+								<Input value="{oUserSettingsModel>eventName}" class="wbDefaultCustomInputWrapper wbSettingsSubsName"
+									visible="{= ${oUserSettingsModel>newEventAdded} === true ? true:false}" placeholder="{i18n>FILL_EVENT_NAME_PLACEHOLDER}"/>
+							</HBox>
+							<HBox renderType="Bare" justifyContent='Start' alignItems="Center" visible="true" class="sapUiSizeCompact">
+								<MultiComboBox class="sapUiSizeCompact wbDefaultCustomInputWrapper wbNotifCustomTokenClass wbTextBoldClass" width="90%"
+									selectionChange="updateEventSettings($event,'CHANNEL')" selectedKeys="{oUserSettingsModel>channelList}" showButton="true"
+									enabled="{= ${oUserSettingsModel>/settings/selectedSetting}!=='SETTINGS_ADMIN_NOTIFICATIONS'}"
+									items="{ path: 'oConstantsModel>/notificationChannels', templateShareable:true}">
+									<core:Item key="{oConstantsModel>valueName}" text="{oConstantsModel>valueName}"/>
+								</MultiComboBox>
+							</HBox>
+							<HBox renderType="Bare" justifyContent='End' alignItems="Center" visible="true" class="sapUiSizeCompact">
+								<Text text="{i18n>PRIORITY_TEXT}" class="wbNotificationDisclaimerText "/>
+								<Select enabled="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS'}" forceSelection="true"
+									change="updateEventSettings($event,'GROUP')" selectedKey="{oUserSettingsModel>priority}"
+									class="wbTextBoldClass wbDefaultCustomSelectWrapper sapUiSizeCompact sapUiSmallMarginBegin">
+									<core:Item key="High" text="{i18n>WORKLOAD_HIGH_TEXT}"/>
+									<core:Item key="Medium" text="{i18n>MEDIUM_TEXT}"/>
+									<core:Item key="Low" text="{i18n>WORKLOAD_LOW_TEXT}"/>
+								</Select>
+								<core:Icon src="sap-icon://delete" class="wbRejectColorIcon sapUiSmallMarginBegin"
+									visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS' }"
+									press="deleteNotificationConfig($event,'EVENTLIST')"/></HBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<!--</VBox>-->
+			<!--<VBox renderType="Bare"-->
+			<!--	visible="{= ${oUserSettingsModel>/settings/settingView} ==='GROUP' || ${oUserSettingsModel>/settings/settingView} ==='CHANNEL' || ${oUserSettingsModel>/settings/settingView} ==='ADDITIONAL'}">-->
+			<Text text="{i18n>ADDTIONAL_SETTINGS_TEXT}" class="wbNotificationDisclaimerText sapUiTinyMarginBegin sapUiSmallMarginTop"
+				visible="{= ${oUserSettingsModel>/settings/selectedNotification/viewSettings}.length>0 ? true: false}"/>
+		</VBox>
+		<CustomListItem type="Inactive" class="sapUiSizeCompact wbNotificationGroupingCLI wbNotificationGroupHeaderBorder"
+			visible="{= ${oUserSettingsModel>/settings/settingView} ==='ADDITIONAL'}">
+			<HBox renderType="Bare" height="2.5rem" justifyContent="End" alignItems="Center" width="98%"
+				class="sapUiTinyMarginBegin wbNotificationGroupHeaderBorder">
+				<Button text="{i18n>SAVE_TEXT}" class="sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSizeCompact wbDefaultButtonClass"
+					press="saveNotificationSettings"
+					enabled="{= ${oUserSettingsModel>/settings/notification/notificationEventChanged} || ${oUserSettingsModel>/settings/notification/notificationSettingsChanged}}"/>
+			</HBox>
+		</CustomListItem>
+		<VBox renderType="Bare"
+			visible="{= ${oUserSettingsModel>/settings/settingView} ==='GROUP' || ${oUserSettingsModel>/settings/settingView} ==='CHANNEL' || ${oUserSettingsModel>/settings/settingView} ==='ADDITIONAL'}">
+			<!--_______________________________________________ADDITIONAL SETTINGS LIKE FREQ, SOUND ETC_______________________________________________-->
+			<Table id="ID_NOTIF_SETTINGS_TABLE" class="wbNotifCustomTableClass sapUiSizeCompact"
+				alternateRowColors="{parts : ['oUserSettingsModel>/settings/selectedSetting','oUserSettingsModel>/settings/notifSelectedTab'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbBlurLabel'}"
+				busy="{oUserSettingsModel>/settings/selectedNotification/viewSettingsBusy}" busyIndicatorDelay="0"
+				visible="{= ${oUserSettingsModel>/settings/selectedNotification/viewSettings}.length>0}">
+				<columns>
+					<Column width="27%"/>
+					<Column width="72%"/>
+					<!--<Column width="35%"/>-->
+				</columns>
+			</Table>
+			<Text textAlign="Center" text="{i18n>NO_SETTINGS_CONFIGURED_TEXT}"
+				visible="{parts : ['oUserSettingsModel>/settings/selectedNotification/viewSettings' ,'oUserSettingsModel>/settings/selectedSetting'],formatter: 'oneapp.incture.workbox.util.formatter.wbShowNoSettingText'}"
+				class="wbSettingsSubsNoDataText"/>
+		</VBox>
+		<!--____________________________WHEN EVENT IN CHANNEL IS CLICKED____________________________________-->
+		<VBox renderType="Bare" visible="{= ${oUserSettingsModel>/settings/settingView} ==='EVENTLIST'}">
+			<!--_________________________EVENTS AND BACK BUTTON_______________________________________-->
+			<CustomListItem type="Active" press="goBackNotificationGroup($event,'EVENTLIST')"
+				class="sapUiSizeCompact wbNotificationGroupingCLI wbNotificationGroupHeaderBorder">
+				<HBox renderType="Bare" height="2.5rem" justifyContent="SpaceBetween" alignItems="Center" width="98%"
+					class="sapUiTinyMarginBegin wbNotificationGroupHeaderBorder">
+					<HBox renderType="Bare" justifyContent="Start" alignItems="Center">
+						<core:Icon src="sap-icon://nav-back" class="wbPrimaryColorIcon"/>
+						<Text text="{oUserSettingsModel>/settings/selectedNotification/header}" class="sapUiTinyMarginBegin wbSettingsNotifLabel"/>
+					</HBox>
+					<HBox renderType="Bare" alignItems="Center">
+						<Button text=" {i18n>DISCARD_TEXT}" icon="sap-icon://delete" class="wbCustomButtonClass wbTextBoldClass sapUiTinyMarginBegin "
+							press="discardNotificationSettings" visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS' }"
+							enabled="{= ${oUserSettingsModel>/settings/notification/notificationEventChanged} || ${oUserSettingsModel>/settings/notification/notificationSettingsChanged} || ${oUserSettingsModel>/settings/notification/newEventAdded} || ${oUserSettingsModel>/settings/notification/eventsDeleted}}"/>
+						<Button text="{i18n>SAVE_TEXT}" press="saveNotificationSettings"
+							class="sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSizeCompact wbDefaultButtonClass"
+							enabled="{oUserSettingsModel>/settings/notification/notificationEventChanged}"/>
+					</HBox>
+				</HBox>
+			</CustomListItem>
+			<!--_____________________________LIST OF EVENTS UNDER THE CHANNEL___________________________________-->
+			<VBox visible="{= ${oUserSettingsModel>/settings/notifSelectedTab} !=='PROFILE'}"
+				items="{ path: 'oUserSettingsModel>/settings/notification/notificationEvents', sorter: { path: 'eventGroup', group: false, ascending: false } }"
+				renderType="Bare">
+				<VBox renderType="Bare">
+					<Text text="{oUserSettingsModel>eventGroup}" class="sapUiTinyMarginBegin sapUiTinyMarginTop wbNotificationEventHeader"
+						visible="{path : 'oUserSettingsModel>eventGroup' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSortNotifByEventOrigin'}"/>
+					<!--<VBox renderType="Bare">-->
+					<HBox class="sapUiSizeCompact sapUiSmallMarginBegin wbNotificationEventGrid" height="2rem" renderType="Bare" alignItems="Center"
+						justifyContent="Start">
+						<Text text="{oUserSettingsModel>eventName}" class="sapUiTinyMargin sapUiTinyMarginTopBottom wbSettingsNotifLabel wbFont13" width="30%"/>
+						<Switch class="wbSmallerCustomSwitch" change="updateEventSettings($event , 'EVENTLIST')"
+							state="{parts : ['oUserSettingsModel>/settings/selectedNotification/aEventsList','oUserSettingsModel>eventId'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbNotificationEnableEventListSwitch'}"/>
+					</HBox>
+				</VBox>
+			</VBox>
+			<VBox visible="{= ${oUserSettingsModel>/settings/notifSelectedTab} ==='PROFILE'}"
+				items="{ path: 'oUserSettingsModel>/settings/selectedNotification/viewDetails', sorter: { path: 'eventGroup', group: false, ascending: false } }"
+				renderType="Bare">
+				<VBox renderType="Bare">
+					<Text text="{oUserSettingsModel>eventGroup}" class="sapUiTinyMarginBegin sapUiTinyMarginTop wbNotificationEventHeader"
+						visible="{path : 'oUserSettingsModel>eventGroup' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSortNotifByEventOrigin'}"/>
+					<!--<VBox renderType="Bare">-->
+					<HBox class="sapUiSizeCompact sapUiSmallMarginBegin wbNotificationEventGrid" width="97%" height="2rem" renderType="Bare" alignItems="Center"
+						justifyContent="Start">
+						<Text text="{oUserSettingsModel>eventName}" class="sapUiTinyMargin sapUiTinyMarginTopBottom wbSettingsNotifLabel wbFont13" width="30%"/>
+						<HBox width="68%" renderType="Bare" alignItems="Center" justifyContent="SpaceBetween">
+							<MultiComboBox class="sapUiSizeCompact wbDefaultCustomInputWrapper wbNotifCustomTokenClass wbTextBoldClass" width="52%"
+								selectionChange="updateEventSettings($event,'CHANNEL')" selectedKeys="{oUserSettingsModel>channelList}" showButton="true" editable="true"
+								enabled="true" items="{ path: 'oConstantsModel>/notificationChannels', templateShareable:true}">
+								<core:Item key="{oConstantsModel>valueName}" text="{oConstantsModel>valueName}"/>
+								<!--{parts : ['oUserSettingsModel>/settings/selectedNotification','oUserSettingsModel>/settings/notifSelectedTab','oUserSettingsModel>eventName'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbNotificationEnableEventListMC'}-->
+							</MultiComboBox>
+							<HBox renderType="Bare" class="sapUiSmallMarginBegin sapUiSizeCompact" alignItems="Center" visible="true">
+								<Text text="{i18n>PRIORITY_TEXT}" class="wbNotificationDisclaimerText "/>
+								<Select enabled="false" forceSelection="true" selectedKey="{oUserSettingsModel>priority}"
+									class="wbTextBoldClass sapUiSmallMarginBegin sapUiSizeCompact wbDefaultCustomSelectWrapper">
+									<core:Item key="High" text="{i18n>WORKLOAD_HIGH_TEXT}"/>
+									<core:Item key="Medium" text="{i18n>MEDIUM_TEXT}"/>
+									<core:Item key="Low" text="{i18n>WORKLOAD_LOW_TEXT}"/>
+								</Select>
+							</HBox>
+						</HBox>
+					</HBox>
+				</VBox>
+			</VBox>
+		</VBox>
+		<!--PROFILES-->
+		<VBox renderType="Bare" visible="{= ${oUserSettingsModel>/settings/settingView} ==='PROFILE'}" alignItems="Start" width="100%">
+			<VBox renderType="Bare" class="wbNotificationProfileHeader" width="100%"
+				visible="{= ${oUserSettingsModel>/settings/selectedSetting}!=='SETTINGS_ADMIN_NOTIFICATIONS'}">
+				<HBox renderType="Bare" alignItems="Center">
+					<Text text="{i18n>SELECT_PROFILE_MODE_TEXT}" class="wbSettingsNotifLabel wbFont13" width="30%"/>
+					<Select enabled="true" width="25%" forceSelection="true" items="{oUserSettingsModel>/settings/notification/profileSettings}"
+						selectedKey="{oUserSettingsModel>/settings/notification/selectedProfile/profileId}" change="updateProfile($event,'UPDATE')"
+						class="wbTextBoldClass wbNotifDefaultCustomInputWrapper sapUiTinyMarginEnd">
+						<core:Item key="{oUserSettingsModel>profileId}" text="{oUserSettingsModel>profileName}"/>
+					</Select>
+				</HBox>
+				<HBox renderType="Bare" alignItems="Center">
+					<Text text="{i18n>NOTIFICATION_PROFILE_TEXT}" class="wbSettingsNotifLabel wbFont13" width="30%"/>
+					<Switch class="wbSmallerCustomSwitch" change="updateProfile($event,'UPDATE')"
+						state="{oUserSettingsModel>/settings/notification/selectedProfile/isActive}"/>
+				</HBox>
+				<HBox renderType="Bare" alignItems="Center" justifyContent="Start">
+					<HBox width="30%">
+						<Text text="{i18n>SCHEDULE_PROFILE_SETTINGS_TEXT}" class="wbSettingsNotifLabel wbFont13"/>
+					</HBox>
+					<HBox width="50%" renderType="Bare" alignItems="Center" justifyContent="Start">
+						<DateTimePicker width="52%" value="{oUserSettingsModel>/settings/notification/selectedProfile/scheduledFrom}"
+							valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="dd MMM yyyy hh:mm a" minutesStep="30" change="updateProfile($event,'UPDATE')"
+							class="sapUiSizeCompact wbNotifDefaultCustomInputWrapper sapUiTinyMarginEnd wbCustomTimePicker"
+							maxDate="{path : 'oUserSettingsModel>/settings/notification/selectedProfile/scheduledTo', formatter: 'oneapp.incture.workbox.util.formatter.wbReturnDatePickerDateObj'}"
+							visible="{path : 'oUserSettingsModel>/settings/notification/selectedProfile/scheduledFrom', formatter: 'oneapp.incture.workbox.util.formatter.wbBlurInput'}"/>
+						<DateTimePicker width="50%" value="{oUserSettingsModel>/settings/notification/selectedProfile/scheduledTo}"
+							valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="dd MMM yyyy hh:mm a" minutesStep="30" change="updateProfile($event,'UPDATE')"
+							minDate="{path : 'oUserSettingsModel>/settings/notification/selectedProfile/scheduledFrom', formatter: 'oneapp.incture.workbox.util.formatter.wbReturnDatePickerDateObj'}"
+							class=" wbCustomTimePicker sapUiSizeCompact wbNotifDefaultCustomInputWrapper"
+							visible="{path : 'oUserSettingsModel>/settings/notification/selectedProfile/scheduledFrom', formatter: 'oneapp.incture.workbox.util.formatter.wbBlurInput'}"/>
+					</HBox>
+					<HBox renderType="Bare" alignItems="Center" justifyContent="End" width="20%">
+						<Button text="{i18n>SAVE_TEXT}"
+							enabled="{= ${oUserSettingsModel>/settings/notification/selectedProfileChange} &amp;&amp; ${oUserSettingsModel>/settings/notification/selectedProfile/scheduledTo}!== null &amp;&amp; ${oUserSettingsModel>/settings/notification/selectedProfile/scheduledFrom}!== null &amp;&amp; ${oUserSettingsModel>/settings/notification/selectedProfile/profileName}!== ''}"
+							type="Transparent" class="wbTransparentButtonStyleClass sapUiTinyMarginEnd" press="updateProfile($event,'SAVE')"></Button>
+					</HBox>
+				</HBox>
+			</VBox>
+			<Text width="100%"
+				text="{= ${oUserSettingsModel>/settings/selectedSetting}!=='SETTINGS_ADMIN_NOTIFICATIONS' ? ${i18n>ADDTIONAL_SETTINGS_TEXT} : ${i18n>MANAGE_PROFILES_TEXT}}"
+				class="wbNotificationDisclaimerText sapUiTinyMarginBegin sapUiTinyMarginTop"/>
+			<VBox width="100%" renderType="Bare"
+				items="{path:'oUserSettingsModel>/settings/notification/profileSettings', sorter: { path: 'userId', group: false, ascending: false}}">
+				<CustomListItem type="Active" press="selectNotificationGroup($event,'PROFILE')" class="sapUiSizeCompact wbNotificationGroupingCLI"
+					visible="{parts : ['oUserSettingsModel>/settings/selectedSetting','oUserSettingsModel>isEnable', 'oUserSettingsModel>userId'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbShowProfileNotifSettings'}">
+					<!--{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS' &amp;&amp; ${oUserSettingsModel>userId} !=='Admin'? true : true}-->
+					<HBox width="auto" height="2.5rem" renderType="Bare" alignItems="Center" class="sapUiTinyMarginBeginEnd">
+						<Switch class="wbSmallerCustomSwitch" state="{= ${oUserSettingsModel>isEnable}=== true ? true: false}" change="updateProfile($event,'SAVE')"
+							visible="{= ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS' &amp;&amp; ${oUserSettingsModel>userId} ==='Admin' }"/>
+						<Text text="{oUserSettingsModel>profileName}" class="sapUiTinyMarginBegin wbSettingsNotifLabel" width="100%"/>
+						<core:Icon src="sap-icon://delete" class="wbRejectColorIcon sapUiSmallMarginEnd"
+							visible="{= (${oUserSettingsModel>userId} !=='Admin' &amp;&amp; ${oUserSettingsModel>/settings/selectedSetting}!=='SETTINGS_ADMIN_NOTIFICATIONS') ||( ${oUserSettingsModel>/settings/selectedSetting}==='SETTINGS_ADMIN_NOTIFICATIONS' &amp;&amp; ${oUserSettingsModel>userId} ==='Admin') }"
+							press="updateProfile($event,'DELETE')"/>
+						<core:Icon src="sap-icon://navigation-right-arrow" class="wbPrimaryColorIcon"/>
+					</HBox>
+				</CustomListItem>
+			</VBox>
+			<Button text="{i18n>ADD_PROFILE_TEXT}" class="wbCustomButtonClass wbTextBoldClass sapUiTinyMarginTop" icon="sap-icon://add"
+				press="openAddNotifSettings($event,'ADDPROFILE')"/>
+		</VBox>
+		<VBox renderType="Bare" visible="{= ${oUserSettingsModel>/settings/settingView} ==='APPLICATION'}">
+			<Text text="{i18n>MANAGE_APPLICATIONS_TEXT}" class="wbNotificationDisclaimerText sapUiTinyMarginBegin sapUiSmallMarginTop"/>
+			<VBox renderType="Bare" items="{oUserSettingsModel>/settings/notification/applicationDtos}">
+				<CustomListItem type="Active" press="selectNotificationGroup($event,'APPLICATION')" class="sapUiSizeCompact wbNotificationGroupingCLI">
+					<HBox width="auto" height="2.5rem" renderType="Bare" alignItems="Center" justifyContent="Start" class="sapUiTinyMarginBeginEnd">
+						<Switch class="wbSmallerCustomSwitch" state="{= ${oUserSettingsModel>isActive}=== true ? true: false}"/>
+						<Text text="{oUserSettingsModel>value}" class="sapUiTinyMarginBegin wbSettingsNotifLabel" width="100%"/>
+						<!--<core:Icon src="sap-icon://delete" class="wbRejectColorIcon sapUiSmallMarginEnd"-->
+						<!--	visible="{= ${oUserSettingsModel>profileType} !=='STANDARD'}"/>-->
+						<core:Icon src="sap-icon://navigation-right-arrow" class="wbPrimaryColorIcon"/>
+					</HBox>
+				</CustomListItem>
+			</VBox>
+			<Text text="{i18n>MANAGE_ROLES_TEXT}" class="wbNotificationDisclaimerText sapUiTinyMarginBegin sapUiSmallMarginTop"/>
+			<VBox renderType="Bare" items="{oUserSettingsModel>/settings/notification/rolesDtos}">
+				<CustomListItem type="Active" press="selectNotificationGroup($event,'ROLES')" class="sapUiSizeCompact wbNotificationGroupingCLI">
+					<HBox width="auto" height="2.5rem" renderType="Bare" alignItems="Center" justifyContent="Start" class="sapUiTinyMarginBeginEnd">
+						<Switch class="wbSmallerCustomSwitch" state="{= ${oUserSettingsModel>isActive}=== true ? true: false}"/>
+						<Text text="{oUserSettingsModel>value}" class="sapUiTinyMarginBegin wbSettingsNotifLabel" width="100%"/>
+						<!--<core:Icon src="sap-icon://delete" class="wbRejectColorIcon sapUiSmallMarginEnd"-->
+						<!--	visible="{= ${oUserSettingsModel>profileType} !=='STANDARD'}"/>-->
+						<core:Icon src="sap-icon://navigation-right-arrow" class="wbPrimaryColorIcon"/>
+					</HBox>
+				</CustomListItem>
+			</VBox>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

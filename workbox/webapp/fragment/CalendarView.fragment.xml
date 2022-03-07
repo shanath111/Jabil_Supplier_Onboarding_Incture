@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:unified="sap.ui.unified"
+	xmlns:ExtHbox="oneapp.incture.workbox.controlExtension">
+	<ExtHbox:ExtHbox rightPress="openActionFragmentFn">
+		<PlanningCalendar class="wbPlanningCalendarStyle sapUiTinyMarginBeginEnd" showRowHeaders="false" appointmentsVisualization="Filled"
+			appointmentSelect="fetchDetailsFn" showEmptyIntervalHeaders="false" stickyHeader="true">
+			<toolbarContent></toolbarContent>
+			<rows>
+				<PlanningCalendarRow appointments="{path :'oTaskInboxModel>/workBoxDtos'}">
+					<appointments>
+						<unified:CalendarAppointment tooltip ="{oTaskInboxModel>startedByDisp} ({oTaskInboxModel>businessStatus}){i18n>SUBJECT_IN_NEW_LINE_TEXT}{oTaskInboxModel>subject}"
+							startDate="{path :'oTaskInboxModel>createdAt',formatter:'oneapp.incture.workbox.util.formatter.wbgetTeamCalendarDate'}"
+							endDate="{path :'oTaskInboxModel>slaDueDate',formatter:'oneapp.incture.workbox.util.formatter.wbgetTeamCalendarDate'}"
+							title="{path :'oTaskInboxModel>startedByDisp',formatter:'oneapp.incture.workbox.util.formatter.wbformatTitle'}"
+							text="{oTaskInboxModel>subject}" type="{path :'oTaskInboxModel>taskSla',formatter:'oneapp.incture.workbox.util.formatter.wbgetSlaType'}"
+							tentative="{oTaskInboxModel>critical}" >
+						</unified:CalendarAppointment>
+					</appointments>
+				</PlanningCalendarRow>
+			</rows>
+			<views></views>
+		</PlanningCalendar>
+	</ExtHbox:ExtHbox>
+</core:FragmentDefinition>

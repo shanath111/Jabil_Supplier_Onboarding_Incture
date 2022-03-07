@@ -1,0 +1,70 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="oneapp.incture.workbox.controller.AdminConsole"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:f="sap.f" xmlns:dnd="sap.ui.core.dnd" xmlns:dnd-grid="sap.f.dnd">
+	<Page showHeader="false">
+		<content>
+			<VBox visible="{= ${oAppModel>/currentViewPage} === 'tableConfiguration' ? true : false}" height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.CustomAttributeView" type="XML"></core:Fragment>
+			</VBox>
+			<VBox visible="{= ${oAppModel>/currentViewPage} === 'graphConfiguration' ? true : false}" height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.GraphConfigurationView" type="XML"></core:Fragment>
+			</VBox>
+			<VBox visible="{= ${oAppModel>/currentViewPage} === 'manageDashboardTiles' ? true : false}" height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.ManageFilter" type="XML"></core:Fragment>
+			</VBox>
+			<VBox visible="{= ${oAppModel>/currentViewPage} === 'workLoad' ? true : false}" height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.WorkLoadView" type="XML"></core:Fragment>
+			</VBox>
+			<VBox visible="{= ${oAppModel>/currentViewPage} === 'cfaApproverMatrix' ? true : false}" height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.CFAApproverMatrix" type="XML"></core:Fragment>
+			</VBox>
+			<HBox visible="{= ${oAppModel>/currentViewPage} === 'versionControl' ? true : false}" height="100%" renderType="Bare">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.ManageVersionControl" type="XML"></core:Fragment>
+			</HBox>
+			<VBox visible="{= ${oAppModel>/currentViewPage} === 'manageNotifiifcationSetting' ? true : false}"
+				busy="{= ${oUserSettingsModel>/settings/notification/isFragOpenInAD}===true}" busyIndicatorDelay="0" height="100%" renderType="Bare" class="wbPrimaryBackgroundColor">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.ManageNotificationSettings" type="XML"></core:Fragment>
+			</VBox>
+			<VBox
+				visible="{= ${oAppModel>/currentViewPage} === 'workFlow' &amp;&amp; ${oDefaultDataModel>/openPreviewWorkFlow} === false || ${oAppModel>/currentViewPage} === 'createWorkFlow' &amp;&amp; ${oDefaultDataModel>/openPreviewWorkFlow} === false ? true : false}"
+				height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.WorkFlowView" type="XML"></core:Fragment>
+			</VBox>
+			<VBox visible="{oDefaultDataModel>/openPreviewWorkFlow}" height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.WorkFlowPreview" type="XML"></core:Fragment>
+			</VBox>
+			<VBox visible="{= ${oAppModel>/currentViewPage} === 'manageWorkFlow' ? true : false}" height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.ManageWorkFlowView" type="XML"></core:Fragment>
+			</VBox>
+			<VBox visible="{= ${oAppModel>/currentViewPage} === 'manageIndividualBudget' ? true : false}" height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.ManageIndividualBudget" type="XML"></core:Fragment>
+			</VBox>
+			<VBox visible="{= ${oAppModel>/currentViewPage} === 'manageGroups' ? true : false}" height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.ManageGroupsView" type="XML"></core:Fragment>
+			</VBox>
+			<VBox visible="{= ${oAppModel>/currentViewPage} === 'taskuiGenerator' || ${oAppModel>/currentViewPage} === 'uiGenerator' ? true : false}"
+				height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.UIGenerator" type="XML"></core:Fragment>
+			</VBox>
+			<VBox height="100%" visible="{= ${oAppModel>/currentViewPage} === 'taskDetailConfiguration' ? true : false}">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.TaskDetailConfiguration" type="XML"></core:Fragment>
+			</VBox>
+			<VBox visible="{= ${oAppModel>/currentViewPage} === 'taskCreation' ? true : false}" height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.TaskCreationDynamic" type="XML"></core:Fragment>
+			</VBox>
+			<VBox visible="{= ${oAppModel>/currentViewPage} === 'auditLogs' ? true : false}" height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.AuditLogsViewAC" type="XML"></core:Fragment>
+			</VBox>
+			<VBox visible="{= ${oAppModel>/currentViewPage} === 'emailTemplate' ? true : false}" height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.EmailTemplate" type="XML"></core:Fragment>
+			</VBox>
+			<VBox visible="{= ${oAppModel>/currentViewPage} === 'manageSubstitution' ? true : false}" height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.ManageSubstitutionsAdminConsole" type="XML"></core:Fragment>
+			</VBox>
+			<VBox
+				visible="{= ${oAppModel>/currentViewPage} === 'advancedWorkFlow' || ${oAppModel>/currentViewPage} === 'createAdvancedWorkFlow' ? true : false}"
+				height="100%">
+				<core:Fragment fragmentName="oneapp.incture.workbox.fragment.AdvancedWorkflowView" type="XML"></core:Fragment>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

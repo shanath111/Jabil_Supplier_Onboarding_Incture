@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns="sap.m"
+	xmlns:custom="oneapp.incture.workbox.controlExtension">
+	<Dialog class="wbDialog" contentWidth="40rem">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Title text="Substitution" class="wbDialogTitle"/>
+				</contentMiddle>
+				<contentRight>
+					<core:Icon src="sap-icon://decline" press="onCloseSubstitution" class="wbDialogCloseIcon"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<VBox justifyContent="SpaceBetween" class="wbSettingsMainContent">
+			<IconTabBar class="wbNotificationIconTabBar sapUiTinyMarginBottom" select="substitutionITBSelect">
+				<items>
+					<IconTabFilter text="{i18n>MY_SUBSTITUTES_TEXT}" key="MySubstitutes">
+						<VBox renderType="Bare" visible="{oUserSubstitutionModel>/backToSubScreen}">
+							<core:Fragment fragmentName="oneapp.incture.workbox.fragment.MySubstitutes" type="XML"/>
+						</VBox>
+						<VBox renderType="Bare" visible="{oUserSubstitutionModel>/addNewSub}">
+							<core:Fragment fragmentName="oneapp.incture.workbox.fragment.AddSubstitute" type="XML"/>
+						</VBox>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>I_AM_SUBSTITUTING_TEXT}" key="ImSubstituting">
+						<core:Fragment fragmentName="oneapp.incture.workbox.fragment.MySubstitutes" type="XML"/>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</VBox>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>BPCVendorRegistration}" contentWidth="30%"  class="sapUiSizeCompact APW_DilogClass">
+		<content>
+        <VBox alignContent="Center" alignItems="Center" >
+        	<core:Icon
+			src="sap-icon://message-success"
+			class="cl_SuccuessImageCl"
+			color="#031E48" >
+			<core:layoutData>
+				<FlexItemData growFactor="1" />
+			</core:layoutData>
+		</core:Icon>
+		    <!-- <Image src="" class="sapUiSmallMarginTop cl_SuccuessImageCl"></Image> -->
+            <Label text="{i18n>VRRequestIDTb} : {JMMessageData>/caseId}" class="sapUiTinyMarginTop cl_SuccessMessageTxt" ></Label>
+            <Label text="{JMMessageData>/Message}" class="sapUiTinyMarginTop cl_SuccessMessageTxt" ></Label>
+            </VBox>
+			<OverflowToolbar class="barClass sapUiTinyMarginTop">
+            	<ToolbarSpacer/>
+			
+            <Button  class="cl_VRActnBtnApply" text="{i18n>SaveContinue}" press="fnSaveContinue" tooltip="{i18n>SaveContinue}"/>
+				<Button  class="cl_VRActnBtnApply" text="{i18n>SaveClose}" press="fnDoneSubmit" tooltip="{i18n>SaveClose}"/>
+			</OverflowToolbar>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

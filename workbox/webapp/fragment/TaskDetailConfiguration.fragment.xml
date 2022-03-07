@@ -1,0 +1,103 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<IconTabBar class="wbAdminMGroupsIconTabBackground sapUiSizeCompact" selectedKey="{oDefaultDataModel>/configSelectedTab}">
+		<items>
+			<IconTabFilter key="connectorConfiguration" text="{i18n>CONNECTOR_CONFIGURATION_TEXT}">
+				<VBox class="sapUiSmallMargin" renderType="Bare" width="97.5%">
+					<HBox renderType="Bare" alignItems="Center">
+						<Button text="{i18n>CONFIGURE_CONNECTOR_TEXT}" type="Emphasized" press="configureConnectorFn"
+							class="wbEmphasizedButtonStyleClass sapUiSizeCompact"/>
+					</HBox>
+					<VBox class="sapUiSizeCompact" width="100%" renderType="Bare" alignItems="Center">
+						<Table class="wbCustomTableClass sapUiTinyMarginTop" items="{oDefaultDataModel>/configureConnectorList}">
+							<columns>
+								<Column>
+									<Label text="{i18n>SOURCE_SYSTEM_TEXT}" class="wbTransformToUpperCase"/>
+								</Column>
+								<Column>
+									<Label text="{i18n>TECHNICAL_NAME_TEXT}" class="wbTransformToUpperCase"/>
+								</Column>
+								<Column>
+									<Label text="{i18n>ACTIVE_TEXT}" class="wbTransformToUpperCase"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{oDefaultDataModel>technicalName}"/>
+										<Text text="{oDefaultDataModel>sourceSystem}"/>
+										<Switch class="wbCustomSwitch" state="{oDefaultDataModel>isActive}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</VBox>
+				</VBox>
+			</IconTabFilter>
+			<IconTabFilter key="processConfiguration" text="{i18n>PROCESS_CONFIG_TEXT}">
+				<VBox class="sapUiSmallMargin" renderType="Bare" width="97.5%">
+					<HBox renderType="Bare" alignItems="Center">
+						<Button text="{i18n>CONFIGURE_PROCESS_TEXT}" type="Emphasized" press="configureProcessFn"
+							class="wbEmphasizedButtonStyleClass sapUiSizeCompact"/>
+					</HBox>
+					<Text text="{i18n>NOTE_TASKCONFIG_TEXT}" class="sapUiSmallMarginBottom wbAdminNoteTextClass"/>
+					<VBox class="wbCustomContentWrapperStyle sapUiSizeCompact" width="100%" renderType="Bare" alignItems="Center">
+						<HBox renderType="Bare" alignItems="Center" width="99%" class="wbCustomHeaderClass" justifyContent="Start">
+							<Label text="{i18n>ADMIN_FILTER_NAME}" width="30%"/>
+							<Label text="{i18n>PROCESS_TYPE_TEXT}" width="15%"/>
+							<Label text="{i18n>SLA_TEXT}" width="15%"/>
+							<Label text="{i18n>CRITICAL_TEXT}" width="15%"/>
+							<Label text="{i18n>PROCESS_TECHNICAL_NAME_TEXT}" width="25%"/>
+						</HBox>
+						<ScrollContainer class="wbAdminMGroupsScroll" width="100%"
+							height="{path : 'oConstantsModel>/processNamesList' ,formatter: 'oneapp.incture.workbox.util.formatter.wbTaskConfigProcessListHeight'}"
+							horizontal="false" vertical="true" focusable="true">
+							<List width="99.5%" class="sapUiTinyMarginBegin sapUiSizeCompact wbInboxCardList" items="{oDefaultDataModel>/systemProcessList}"
+								includeItemInSelection="true" selectionChange="getProcessConfigDetails" mode="SingleSelectMaster"
+								busy="{oDefaultDataModel>/busyIndicators/systemList}" busyIndicatorDelay="0">
+								<CustomListItem>
+									<HBox class="wbAdminMGroupsListItemHeight" renderType="Bare" alignItems="Center" justifyContent="Start">
+										<Text width="29.25%" text="{oDefaultDataModel>processDisplayName}" class="sapUiTinyMarginBegin"/>
+										<Text width="15%" text="{oDefaultDataModel>origin}"/>
+										<Text width="15%" text="{oDefaultDataModel>sla} hrs"/>
+										<Text width="14.5%" text="{oDefaultDataModel>criticalDateHours} hrs"/>
+										<Text width="25%" text="{oDefaultDataModel>processName}"/>
+									</HBox>
+								</CustomListItem>
+							</List>
+						</ScrollContainer>
+					</VBox>
+				</VBox>
+			</IconTabFilter>
+			<IconTabFilter key="taskConfiguration" text="{i18n>TASKDETAIL_CONFIG_TEXT}">
+				<VBox class="sapUiSmallMargin sapUiSizeCompact" renderType="Bare" width="97.5%">
+					<HBox renderType="Bare" alignItems="Center" class="sapUiSmallMarginBottom" justifyContent="SpaceBetween">
+						<ComboBox selectedKey="{oDefaultDataModel>/configSelectedProcess}" width="25%" items="{oDefaultDataModel>/systemProcessList}"
+							class="wbDefaultCustomInputWrapper sapUiTinyMarginEnd" selectionChange="getTemplatesFn">
+							<core:Item text="{oDefaultDataModel>processDisplayName}" key="{oDefaultDataModel>processName}"/>
+						</ComboBox>
+					</HBox>
+					<IconTabBar select="getTasktemplateData" id="WB_TASK_CONFIG_TAB_ID" class="wbAdminIconTabBackground"
+						items="{oDefaultDataModel>/configuredProcessDetails/tasks}"
+						visible="{= ${oDefaultDataModel>/configSelectedProcess} &amp;&amp; ${oDefaultDataModel>/configuredProcessDetails/tasks}.length > 0 ? true : false}">
+						<items>
+							<IconTabFilter text="{oDefaultDataModel>taskName}" key="{oDefaultDataModel>taskName}">
+								<VBox renderType="Bare" class="wbAdminTaskConfigPaddingClass">
+									<HBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween">
+										<HBox renderType="Bare" alignItems="Center">
+											<Button text="{i18n>ADD_TEXT} {i18n>LAYOUT_TEXT}" type="Emphasized" class="wbEmphasizedButtonStyleClass sapUiTinyMarginEnd"
+												press="createLayoutFn"/>
+											<Button text="{i18n>COPY_TEXT} {i18n>LAYOUT_TEXT}" type="Emphasized" class="wbEmphasizedButtonStyleClass" press="openCopyLayoutFragFn"/>
+										</HBox>
+										<Button text="{i18n>UPDATE_TEMPLATE_TEXT}" type="Emphasized" press="updateTaskConfigFn" class="wbEmphasizedButtonStyleClass"/>
+									</HBox>
+									<VBox renderType="Bare" alignItems="Center" width="100%" id="ID_CREATE_TASK_DETAIL_LAYOUT"
+										busy="{oDefaultDataModel>/busyIndicators/templateCreation}" busyIndicatorDelay="0"/>
+								</VBox>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</VBox>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+</core:FragmentDefinition>

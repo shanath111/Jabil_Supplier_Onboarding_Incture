@@ -1,0 +1,65 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Dialog class="sapUiSizeCompact" contentWidth="60%">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Title text="{i18n>ADD_RULE_TEXT}"/>
+				</contentLeft>
+				<contentRight>
+					<core:Icon src="sap-icon://decline" press="onCloseAddRuleFragment" class="wbDialogCloseIcon" tooltip="{i18n>CLOSE_TEXT}"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<VBox alignItems="Center" renderType="Bare" width="100%" class="sapUiSmallMarginTop sapUiSizeCompact">
+			<VBox class="wbCustomContentWrapperStyle sapUiSizeCompact" width="98%" renderType="Bare" alignItems="Center">
+				<HBox class="wbCustomHeaderClass" alignItems="Center" renderType="Bare" justifyContent="SpaceBetween" width="98%">
+					<!--<Text text="{i18n>OPERATOR_TEXT}" width="24%" class="wbTransformToUpperCase"/>-->
+					<Text text="{i18n>ATTRIBUTE_TEXT}" class="wbTransformToUpperCase" width="18.75%"/>
+					<Text text="{i18n>CONDITION_TEXT}" class="wbTransformToUpperCase" width="18.75%"/>
+					<Text text="{i18n>VALUE_TEXT}" class="wbTransformToUpperCase" width="18.75%"/>
+					<Text text="{i18n>RULE_TEXT}" class="wbTransformToUpperCase" width="18.75%"/>
+					<Text text="{i18n>DESTINATION_TEXT}" class="wbTransformToUpperCase" width="18%"/>
+					<HBox renderType="Bare" justifyContent="End" alignItems="Center" width="5%">
+						<Button icon="sap-icon://add" class="wbDefaultButtonClass" press="addRuleRowsFn"/>
+					</HBox>
+				</HBox>
+				<VBox renderType="Bare" alignItems="Center" width="98%" items="{oDefaultDataModel>/setRulesContentDto/ruleDto}">
+					<HBox width="100%" renderType="Bare" alignItems="Center" justifyContent="SpaceBetween">
+						<!--<ComboBox width="23%" class="wbDefaultCustomInputWrapper" items="{oDefaultDataModel>/conditionDropdown}"
+							selectedKey="{oDefaultDataModel>condition}" enabled="false">
+							<core:Item text="{oDefaultDataModel>text}" key="{oDefaultDataModel>key}"/>
+						</ComboBox>-->
+						<ComboBox width="18.75%" class="wbDefaultCustomInputWrapper" items="{oDefaultDataModel>/ruleBasedCustomAttributes}"
+							selectedKey="{oDefaultDataModel>custom_key}" selectionChange="setAttributeNameRuleFn">
+							<core:Item text="{oDefaultDataModel>label}" key="{oDefaultDataModel>key}"/>
+						</ComboBox>
+						<ComboBox width="18.75%" class="wbDefaultCustomInputWrapper" items="{oDefaultDataModel>/logicalOperator}"
+							selectedKey="{oDefaultDataModel>logic}">
+							<core:Item text="{oDefaultDataModel>text}" key="{oDefaultDataModel>key}"/>
+						</ComboBox>
+						<Input width="18.75%" class="wbDefaultCustomInputWrapper" value="{oDefaultDataModel>value}"
+							visible="{= ${oDefaultDataModel>dataType} === 'DATETYPE' ? false : true}"/>
+						<DatePicker width="18.75%" change="changeDateFormatFn" displayFormat="dd MMM yyyy" valueFormat="yyyy-MM-dd"
+							class="wbDefaultCustomInputWrapper" visible="{= ${oDefaultDataModel>dataType} === 'DATETYPE' ? true : false}"/>
+						<Input width="18.75%" value="{oDefaultDataModel>attributeName} {oDefaultDataModel>logic} {oDefaultDataModel>value}"
+							class="wbDefaultCustomInputWrapper"/>
+						<!--<MultiComboBox items="{oDefaultDataModel>/setRulesContentDto/destinationDropDown}" width="18.75%"
+							selectedKeys="{oDefaultDataModel>destination}" class="wbDefaultCustomInputWrapper">
+							<core:Item text="{oDefaultDataModel>text}" key="{oDefaultDataModel>key}"/>
+						</MultiComboBox>-->
+						<ComboBox width="18.75%" class="wbDefaultCustomInputWrapper" items="{oDefaultDataModel>/setRulesContentDto/destinationDropDown}"
+							selectedKey="{oDefaultDataModel>destination}">
+							<core:Item text="{oDefaultDataModel>text}" key="{oDefaultDataModel>key}"/>
+						</ComboBox>
+						<HBox renderType="Bare" justifyContent="End" alignItems="Center" width="5%">
+							<Button icon="sap-icon://delete" type="Reject" class="wbAdminMGroupsRemoveBtn" press="deleteRuleRowsFn"/>
+						</HBox>
+					</HBox>
+				</VBox>
+			</VBox>
+			<HBox renderType="Bare" alignItems="Center" justifyContent="End" width="98%" class="sapUiTinyMarginTop sapUiTinyMarginBottom">
+				<Button text="{i18n>SUBMIT_TEXT}" press="addRuleToTaskFn" class="wbDefaultButtonClass"/>
+			</HBox>
+		</VBox>
+	</Dialog>
+</core:FragmentDefinition>

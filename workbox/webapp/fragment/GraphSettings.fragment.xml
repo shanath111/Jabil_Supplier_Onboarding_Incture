@@ -1,0 +1,85 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:f="sap.f" xmlns:dnd="sap.ui.core.dnd"
+	xmlns:dnd-grid="sap.f.dnd">
+	<Dialog draggable="false" class="wbDialog sapUiSizeCompact" contentWidth="50%">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Title class="wbDialogTitle" text="Graph Settings"/>
+				</contentMiddle>
+				<contentRight>
+					<core:Icon src="sap-icon://decline" class="wbDialogCloseIcon" tooltip="{i18n>CLOSE_TEXT}" press="onGraphSettingsClose"></core:Icon>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<!--<Table items="{oGraphDataModel>/graphData}">
+				<columns>
+					<Column>
+						<Label text="Graph" design="Bold"/>
+					</Column>
+					<Column>
+						<Label text="Width" design="Bold"/>
+					</Column>
+					<Column>
+						<Label text="Active" design="Bold"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{oGraphDataModel>graph}"/>
+						</cells>
+						<cells>
+							<Select class="sapUiTinyMarginBegin" width="50%" selectedKey="50" change="onGraphWidthChange">
+								<core:Item key="50" text="50%"/>
+								<core:Item key="100" text="100%"/>
+							</Select>
+						</cells>
+						<cells>
+							<Switch class="wbCustomSwitch" change="onGraphActivate" state="true"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>-->
+			<VBox renderType="Bare" class="sapUiTinyMarginTop">
+				<HBox renderType="Bare" alignItems="Center" class="wbCustomHeaderClass" justifyContent="Start">
+					<Text text="Graph" class="sapUiSmallMarginBegin" width="40%"/>
+					<Text text="Width" width="40%"/>
+					<Text text="Active"/>
+				</HBox>
+				<ScrollContainer horizontal="false" vertical="true">
+					<f:GridList class="wbAdminGridClass sapUiSmallMarginBegin" gridTemplateColumns="1fr" gridGap="0.25rem" items="{oGraphDataModel>/graphData}">
+						<f:dragDropConfig>
+							<dnd:DragInfo sourceAggregation="items"/>
+							<dnd-grid:GridDropInfo targetAggregation="items" dropPosition="Between" dropLayout="Horizontal" drop="onGraphSettingsDrop"/>
+						</f:dragDropConfig>
+						<f:GridListItem class="wbAdminGridClass">
+							<HBox renderType="Bare" alignItems="Center" justifyContent="Start">
+								<HBox width="45%">
+									<Image src="images/DragIcon.png"/>
+									<Text text="{oGraphDataModel>graph}" class="sapUiTinyMarginBegin"/>
+								</HBox>
+								<HBox width="70%">
+									<Select class="sapUiTinyMarginBegin" width="50%" selectedKey="50" change="onGraphWidthChange">
+										<customData>
+											<core:CustomData key="{oGraphDataModel>key}" value="{oGraphDataModel>key}"/>
+										</customData>
+										<core:Item key="50" text="50%"/>
+										<core:Item key="100" text="100%"/>
+									</Select>
+								</HBox>
+								<HBox width="30%" renderType="Bare">
+									<Switch class="wbCustomSwitch" change="onGraphActivate" state="true">
+										<customData>
+											<core:CustomData key="{oGraphDataModel>key}" value="{oGraphDataModel>key}"/>
+										</customData>
+									</Switch>
+								</HBox>
+							</HBox>
+						</f:GridListItem>
+					</f:GridList>
+				</ScrollContainer>
+			</VBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

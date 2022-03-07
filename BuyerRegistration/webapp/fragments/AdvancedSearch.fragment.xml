@@ -1,0 +1,119 @@
+<core:FragmentDefinition
+  xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true"
+	xmlns="sap.m"  xmlns:l="sap.ui.layout"
+>
+<Dialog title="{i18n>BPCAdvancedSearch}" 
+  class="sapUiSizeCompact APW_DilogClass cl_AdvSrchBackGrnd">
+		<content>
+        <Panel width="auto" expandable="true" expanded="true" class="cl_VRPanelClass sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
+						<headerToolbar>
+							<Toolbar class="cl_VRHeaderBackGrndPnl">
+								<Title text="{i18n>VRFilter}"/>
+								<ToolbarSpacer/>
+								<Button text="{i18n>VRClear}" press="fnClearSearch" class="cl_VRActnBtnClear"/>
+								<Button text="{i18n>VRApply}" press="fnLoadSupplierList" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
+							</Toolbar>
+						</headerToolbar>
+						<content>
+							<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact">
+								<VBox class="VRVboxStyle1">
+									<Label text="{i18n>CompanyName1}" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" value="{JMSuppReqListHeader>/caseId}" class="cl_VRInputCls"></Input>
+								</VBox>
+                              
+                            <VBox class="VRVboxStyle1">
+									<Label text="{i18n>DUNSNumber1}" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" value="{JMSuppReqListHeader>/bpRequestScope}" class="cl_VRInputCls"></Input>
+							</VBox>
+                              <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BusinessPartnerId1}" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" value="{JMSuppReqListHeader>/bpRequestScope}" class="cl_VRInputCls"></Input>
+							</VBox>
+                            <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPCStreet}" class="cl_VRLablCls"></Label>
+									<Input placeholder="{i18n>VRSearch}" value="{JMSuppReqListHeader>/status}" class="cl_VRInputCls"></Input>
+                                    </VBox>
+								<VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPCCity}" class="cl_VRLablCls "></Label>
+									<ComboBox width="100%" items="{oBTLookUpMdl>/Customer}" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}"
+											filterSecondaryValues="true" change="fnLiveChangeCity" showSecondaryValues="true" selectedKey="{oBTHeaderMdl>/SOLD_TO_ID}"
+											class="cl_VRInputCls" value="{JMBPCreate>/city}" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oBTLookUpMdl>FIELD_01}" text="{oBTLookUpMdl>FIELD_01}" additionalText="{oBTLookUpMdl>FIELD_02}"/>
+										</ComboBox>
+								</VBox>
+                                <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPCCountry}" class="cl_VRLablCls "></Label>
+										<ComboBox width="100%" items="{oBTLookUpMdl>/Customer}" valueState="{JMBPCreate>/citye}" valueStateText="{JMBPCreate>/citym}"
+											filterSecondaryValues="true" change="fnLiveChangeCity" showSecondaryValues="true" selectedKey="{oBTHeaderMdl>/SOLD_TO_ID}"
+											class="cl_VRInputCls" value="{JMBPCreate>/city}" editable="{oBTHeaderMdl>/EDITABLE}">
+											<core:ListItem key="{oBTLookUpMdl>FIELD_01}" text="{oBTLookUpMdl>FIELD_01}" additionalText="{oBTLookUpMdl>FIELD_02}"/>
+										</ComboBox>
+							</VBox>
+                            <VBox class="VRVboxStyle1">
+									<Label text="{i18n>BPCPostalCode}" class="cl_VRLablCls "></Label>
+									<Input placeholder="{i18n>VRSearch}" value="{JMSuppReqListHeader>/bpRequestScope}" class="cl_VRInputCls"></Input>
+							</VBox>
+                            
+								
+                                	
+							</l:Grid>
+						</content>
+					</Panel>
+					<Panel width="auto" class="cl_VRPanelClass sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
+						<content>
+			<VBox >
+								
+									<Table class="sapUiSizeCompact cl_BPListTable" mode="SingleSelectLeft"  alternateRowColors="false" items="{oVendorListModel>/}">
+										<headerToolbar class="sapUiSizeCompact ">
+											<OverflowToolbar class="VRTableTBHeight">
+												<Text text="Advanced Search Result List (3)"/>
+												<ToolbarSpacer/>
+												<SearchField width="20%" class="cl_TableSearch sapUisizeCompact" search="fnSearchSupplList" liveChange="fnSearchSupplList"></SearchField>
+										        	<Button
+							tooltip="{i18n>Sort}"
+							icon="sap-icon://sort"
+							press="fnSortDiloag"
+                            class="cl_VRActnBtnApply sapUiTinyMarginBegin"
+							ariaHasPopup="Dialog"/>
+                                            
+											</OverflowToolbar>
+										</headerToolbar>
+										<columns>
+											<Column >
+												<Label text="{i18n>CompanyName}" class="cl_VRLablCls "></Label>
+											</Column>
+											
+											<Column >
+												<Label text="{i18n>DUNSNumber}" class="cl_VRLablCls "></Label>
+											</Column>
+                                            <Column >
+												<Label text="{i18n>BPCAccountGroup}" class="cl_VRLablCls "></Label>
+											</Column>
+                                              <Column >
+												<Label text="{i18n>BPCRelIndicator}" class="cl_VRLablCls "></Label>
+											</Column>
+											
+										</columns>
+										<items>
+											<ColumnListItem press="fnCaseListPressNav" type="Active"  >
+												<cells>
+													<Text text="{oVendorListModel>VendorName}"  class="cl_ListNameClass"></Text>
+													<Text text="{oVendorListModel>DUNSNumber}"  class="cl_ListNameClass"></Text>
+                                                    <Text text="{oVendorListModel>AccountGroup}"  class="cl_ListNameClass"></Text>
+													  <Text text="{oVendorListModel>RelShipInd}"  class="cl_ListNameClass"></Text>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+							
+							</VBox>
+		
+						</content>
+					</Panel>
+		<OverflowToolbar class="barClass sapUiTinyMarginTop">
+            	<ToolbarSpacer/>
+				<Button  class="cl_VRActnBtnApply" text="{i18n>BPCDone}" press="fnCloseAdvancedSearch" tooltip="{i18n>BPCDone}"/>
+			</OverflowToolbar>
+        </content>
+	</Dialog>
+</core:FragmentDefinition>

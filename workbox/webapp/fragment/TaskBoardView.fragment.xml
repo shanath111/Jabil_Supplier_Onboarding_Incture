@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:ExtHbox="oneapp.incture.workbox.controlExtension"
+	xmlns:ExtVbox="oneapp.incture.workbox.controlExtension">
+	<VBox height="100%" width="100%" class="wbTaskBoardClass sapUiSizeCompact" renderType="Bare"
+		busy="{oTaskInboxModel>/taskBoardBusyIndicator}" busyIndicatorDelay="0">
+		<Button icon="sap-icon://add" text="{i18n>ADD_NEW_TRAY_TEXT}" type="Emphasized" class="wbEmphasizedButtonStyleClass" width="13%"
+			press="openFilterTrayFn"/>
+		<Text text="{i18n>NO_TRAY_ADDED}" class="wbNotificationDisclaimerText sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiTinyMarginTop"
+			visible="{= ${oTaskInboxModel>/taskBoardDto}.length===0 ? true: false}"/>
+		<Carousel height="auto" class="wbTaskBoardCarousal wbTaskBoardCarousalColor" pages="{oTaskInboxModel>/taskBoardDto}"
+			showPageIndicator="false">
+			<customLayout>
+				<CarouselLayout visiblePagesCount="4"/>
+			</customLayout>
+			<VBox class="wbTaskBoardTray" renderType="Bare">
+				<HBox justifyContent="SpaceBetween" renderType="Bare" alignItems="Center">
+					<Text class="wbTaskBoardTrayLabel" text="{oTaskInboxModel>trayName} ({= ${oTaskInboxModel>workBoxDtos}.length})"></Text>
+					<core:Icon src="sap-icon://overflow" visible="false"></core:Icon>
+				</HBox>
+				<HBox renderType="Bare" alignItems="Center" class="sapUiSmallMarginTop"
+					visible="{= ${oTaskInboxModel>workBoxDtos}.length > 0 ? false : true}">
+					<Text text="{i18n>noDataText}" class="sapUiTinyMarginBegin"/>
+				</HBox>
+				<ScrollContainer height="{parts: ['oTaskInboxModel>workBoxDtos'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetTaskBoardHeight'}"
+					horizontal="false" vertical="true">
+					<VBox items="{oTaskInboxModel>workBoxDtos}">
+						<ExtHbox:ExtHbox renderType="Bare" rightPress="openActionFragmentFn" class="wbTaskBoardTrayMainContent">
+							<VBox renderType="Bare"
+								visible="{parts: ['oTaskInboxModel>taskSla', 'oTaskInboxModel>slaDueDate', 'oTaskInboxModel>createdAt'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbTaskBoardTrayStatus'}"></VBox>
+							<ExtVbox:ExtVbox click="fetchDetailsFn" class="wbTaskBoardTrayTaskChildContent" renderType="Bare">
+								<VBox renderType="Bare" class="sapUiTinyMargin">
+									<HBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween">
+										<Text class="wbTaskBoardTrayTaskLabel" text="{oTaskInboxModel>requestId}"/>
+										<Text class="wbTaskBoardTrayTaskStatusLabel" width="45%" textAlign="Right" text="{oTaskInboxModel>businessStatus}"/>
+									</HBox>
+									<Text class="wbTaskBoardTaskText" text="{oTaskInboxModel>taskDescription}" maxLines="3"></Text>
+								</VBox>
+								<HBox justifyContent="SpaceBetween" renderType="Bare" class="wbTaskTrayFooterClass" alignItems="Center">
+									<Text class="wbTaskBoardTrayTaskLabel" text="{oTaskInboxModel>startedByDisp}"/>
+									<Text class="wbInboxTextCreatedAtClass"
+										text="{path:'oTaskInboxModel>updatedAt', formatter:'oneapp.incture.workbox.util.formatter.wbDateFormatter'}"/>
+								</HBox>
+							</ExtVbox:ExtVbox>
+						</ExtHbox:ExtHbox>
+					</VBox>
+					<HBox renderType="Bare" alignItems="Center" justifyContent="Center">
+						<Button text="{i18n>SHOW_MORE_TEXT}" type="Transparent" class="wbCustomButtonClass"
+							visible="{= ${oTaskInboxModel>workBoxDtos}.length ? true : false}" press="loadTrayTasksFn"
+							enabled="{= ${oTaskInboxModel>workBoxDtos}.length === ${oTaskInboxModel>trayCount} ? false : true}"/>
+					</HBox>
+				</ScrollContainer>
+			</VBox>
+		</Carousel>
+	</VBox>
+</core:FragmentDefinition>

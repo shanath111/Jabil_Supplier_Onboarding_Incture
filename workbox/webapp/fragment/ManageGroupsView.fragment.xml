@@ -1,0 +1,93 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<IconTabBar class="wbAdminMGroupsIconTabBackground" select="onManageGroupViewSelect">
+		<items>
+			<IconTabFilter key="customGroups" text="{i18n>CUSTOM_GROUPS_TEXT}">
+				<HBox renderType="Bare" alignItems="Center" class="wbAdminMGropusPaddingClass sapUiSizeCompact">
+					<VBox renderType="Bare" alignItems="Center" class="wbCustomContentWrapperStyle">
+						<SearchField class="wbAdminMGroupsSearch sapUiTinyMarginTop" width="95%" liveChange=".searchCustomGroupFn"/>
+						<HBox renderType="Bare" width="95%" justifyContent="Start" visible="{= ${oDefaultDataModel>/createGroupVisibility}}" alignItems="Center">
+							<Input width="90%" class="wbDefaultCustomInputWrapper sapUiTinyMarginEnd" value="{oDefaultDataModel>/cGroupNameValue}"/>
+							<core:Icon class="sapUiSmallMarginEnd wbTaskDetailHeaderIconClass" src="sap-icon://write-new" press="openAddResourceFragmentFn"/>
+							<core:Icon class="sapUiTinyMarginEnd wbTaskDetailHeaderIconClass" src="sap-icon://decline" tooltip="{i18n>DISCARD_TEXT}"
+								press="resetCreateGroupFn"/>
+						</HBox>
+						<ScrollContainer class="wbAdminMGroupsScroll sapUiSmallMarginBottom" width="100%"
+							visible="{path : 'oDefaultDataModel>/allGroups/groupList' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetCustomScrollHeight'}"
+							horizontal="false" vertical="true" height="{oDefaultDataModel>/scrollHeightCustomGroup}">
+							<SelectList id="WB_CUSTOM_GROUPS_LIST" class="wbAdminSelectListClass" selectionChange="getCustomGroupMembersFn"
+								selectedKey="{oDefaultDataModel>/selectedGroupID}" items="{oDefaultDataModel>/allGroups/dto}">
+								<core:Item key="{oDefaultDataModel>groupId}" text="{oDefaultDataModel>groupName}"/>
+							</SelectList>
+						</ScrollContainer>
+						<Button text="{i18n>CREATE_GROUP_TEXT}" width="85%" type="Emphasized" press="createGroupFn"
+							class="wbEmphasizedButtonStyleClass wbAdminMGroupsCreateButton sapUiSmallMarginBottom"/>
+					</VBox>
+					<VBox renderType="Bare" alignItems="Center" width="45%" class="sapUiSmallMarginBegin wbCustomContentWrapperStyle" justifyContent="Start">
+						<HBox class="wbCustomHeaderClass" width="98%" renderType="Bare" alignItems="Center">
+							<Text text="{i18n>USERNAME_TEXT}" width="50%" class="sapUiMediumMarginBegin wbTransformToUpperCase"/>
+							<Text text="{i18n>ID_TEXT}" width="50%" class="wbTransformToUpperCase"/>
+						</HBox>
+						<ScrollContainer class="wbAdminMGroupsScroll" width="100%"
+							height="{path : 'oDefaultDataModel>/groupMembers/userDetail' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetCustomGroupMembersHeight'}"
+							horizontal="false" vertical="true" focusable="true">
+							<List busy="{oDefaultDataModel>/enableBusyIndicators}" busyIndicatorDelay="0" width="98%" id="WB_GROUP_MEMBERS_LIST"
+								items="{oDefaultDataModel>/groupMembers/userDetail}" mode="MultiSelect" includeItemInSelection="true"
+								class="sapUiSizeCompact wbInboxCardList" selectionChange="onListItemSelect">
+								<CustomListItem>
+									<HBox class="wbAdminMGroupsListItemHeight" renderType="Bare" alignItems="Center">
+										<Text text="{oDefaultDataModel>userName}" width="50%"/>
+										<Text text="{oDefaultDataModel>userId}" width="35%"/>
+										<Button text="{i18n>REMOVE_TEXT}" type="Reject" class="sapUiTinyMarginEnd wbAdminMGroupsRemoveBtn" press="removeIndividualResourceFn"/>
+									</HBox>
+								</CustomListItem>
+							</List>
+						</ScrollContainer>
+						<HBox renderType="Bare" alignItems="Center" class="wbAdminActionSecGroupsClass" width="100%" justifyContent="End">
+							<Button text="{i18n>ADD_RESOURCE_TEXT}" icon="sap-icon://add" class="wbDefaultButtonClass sapUiTinyMarginEnd"
+								press="openAddResourceFragmentFn"/>
+							<Button text="{i18n>REMOVE_TEXT}" icon="sap-icon://decline" class="wbAdminMGroupsRemoveBulkBtn sapUiTinyMarginEnd" type="Reject"
+								press="removeResourceFn"/>
+						</HBox>
+					</VBox>
+				</HBox>
+			</IconTabFilter>
+			<IconTabFilter key="idpGropus" text="{i18n>IDP_GROUPS_TEXT}">
+				<HBox renderType="Bare" alignItems="Center" class="sapUiSizeCompact wbAdminMGropusPaddingClass">
+					<VBox renderType="Bare" alignItems="Center" class="wbCustomContentWrapperStyle">
+						<SearchField class="wbAdminMGroupsSearch sapUiTinyMarginTop" width="95%" liveChange=".searchIDPGroupFn"/>
+						<ScrollContainer class="wbAdminMGroupsScroll" width="100%"
+							height="{path : 'oDefaultDataModel>/idpGroups/groupList' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetIDPScrollHeight'}"
+							horizontal="false" vertical="true">
+							<SelectList id="WB_IDP_GROUPS_LIST" class="wbAdminSelectListClass" selectionChange="getIDPGroupMembersFn"
+								selectedKey="{oDefaultDataModel>/selectedidpGroupID}" items="{oDefaultDataModel>/idpGroups/dto}">
+								<core:Item key="{oDefaultDataModel>groupId}" text="{oDefaultDataModel>groupName}"/>
+							</SelectList>
+						</ScrollContainer>
+					</VBox>
+					<VBox renderType="Bare" alignItems="Center" width="45%" class="sapUiSmallMarginBegin wbCustomContentWrapperStyle" justifyContent="Start">
+						<HBox class="wbCustomHeaderClass" width="98%" renderType="Bare" alignItems="Center">
+							<Text text="{i18n>USERNAME_TEXT}" width="50%" class="sapUiMediumMarginBegin wbTransformToUpperCase"/>
+							<Text text="{i18n>ID_TEXT}" width="50%" class="wbTransformToUpperCase"/>
+						</HBox>
+						<ScrollContainer class="wbAdminMGroupsScroll" width="100%"
+							height="{path : 'oDefaultDataModel>/groupMembers/userDetail' ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetCustomGroupMembersHeight'}"
+							horizontal="false" vertical="true" focusable="true">
+							<List width="98%" busy="{oDefaultDataModel>/enableBusyIndicators}" busyIndicatorDelay="0"
+								items="{oDefaultDataModel>/groupMembers/userDetail}" includeItemInSelection="true">
+								<CustomListItem>
+									<HBox class="wbAdminMGroupsListItemHeight" renderType="Bare" alignItems="Center">
+										<Text text="{oDefaultDataModel>userName}" width="50%" class="sapUiLargeMarginBegin"/>
+										<Text text="{oDefaultDataModel>userId}" width="50%"/>
+									</HBox>
+								</CustomListItem>
+							</List>
+						</ScrollContainer>
+						<HBox renderType="Bare" alignItems="Center" class="wbAdminActionSecGroupsClass" width="100%" justifyContent="End">
+							<Button text="{i18n>CREATE_GROUP_REF_TEXT}" class="wbDefaultButtonClass sapUiTinyMarginEnd" enabled="false"/>
+						</HBox>
+					</VBox>
+				</HBox>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+</core:FragmentDefinition>

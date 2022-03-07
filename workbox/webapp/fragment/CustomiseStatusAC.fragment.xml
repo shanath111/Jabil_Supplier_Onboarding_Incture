@@ -1,0 +1,110 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:m="sap.suite.ui.commons">
+	<ResponsivePopover placement="Top"
+		contentWidth="{= ${oDefaultDataModel>/customStatusObject/taskType} === 'Complete/Resolve' ? '40%' : '35%'}" showHeader="true"
+		afterClose="onCloseCustomiseStatusFn">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Title class="wbDialogTitle sapUiTinyMarginTop" text="{i18n>CUSTOM_STATUS_TEXT}"/>
+				</contentLeft>
+				<contentRight>
+					<core:Icon src="sap-icon://decline" class="wbDialogCloseIcon sapUiTinyMarginTopEnd" press="onCloseCustomiseStatusFn"
+						tooltip="{i18n>CLOSE_TEXT}"></core:Icon>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<VBox renderType="Bare" alignItems="Center" width="100%">
+				<VBox renderType="Bare" alignItems="Center" width="100%" class="sapUiSmallMargin">
+					<HBox renderType="Bare" alignItems="Center"
+						visible="{= ${oDefaultDataModel>/customStatusObject/taskType} === 'Approve/Reject' ? true: false}">
+						<m:MicroProcessFlow width="100%">
+							<m:content>
+								<m:MicroProcessFlowItem icon="sap-icon://customfont/Release" title="{i18n>READY_TEXT}" showIntermediary="true" stepWidth="100%"
+									class="wbPreviewTaskFlowArrow">
+									<m:intermediary>
+										<core:Icon src="sap-icon://navigation-right-arrow" class="wbTaskDetailHeaderIconClass"/>
+									</m:intermediary>
+								</m:MicroProcessFlowItem>
+								<m:MicroProcessFlowItem icon="sap-icon://customfont/Claim" title="{i18n>RESERVED_TEXT}" showIntermediary="true" stepWidth="100%"
+									class="wbPreviewTaskFlowArrow">
+									<m:intermediary>
+										<core:Icon src="sap-icon://navigation-right-arrow" class="wbTaskDetailHeaderIconClass"/>
+									</m:intermediary>
+								</m:MicroProcessFlowItem>
+								<m:MicroProcessFlowItem icon="sap-icon://customfont/Complete" title="{i18n>APPROVE_TEXT}/{i18n>REJECT_TEXT}" showIntermediary="false"
+									stepWidth="0%" class="wbPreviewTaskFlowArrow"/>
+							</m:content>
+						</m:MicroProcessFlow>
+					</HBox>
+					<HBox renderType="Bare" alignItems="Center" visible="{= ${oDefaultDataModel>/customStatusObject/taskType} === 'Done' ? true: false}">
+						<m:MicroProcessFlow width="100%">
+							<m:content>
+								<m:MicroProcessFlowItem icon="sap-icon://customfont/Release" title="{i18n>READY_TEXT}" showIntermediary="true" stepWidth="100%"
+									class="wbPreviewTaskFlowArrow">
+									<m:intermediary>
+										<core:Icon src="sap-icon://navigation-right-arrow" class="wbTaskDetailHeaderIconClass"/>
+									</m:intermediary>
+								</m:MicroProcessFlowItem>
+								<m:MicroProcessFlowItem icon="sap-icon://customfont/Claim" title="{i18n>RESERVED_TEXT}" showIntermediary="true" stepWidth="100%"
+									class="wbPreviewTaskFlowArrow">
+									<m:intermediary>
+										<core:Icon src="sap-icon://navigation-right-arrow" class="wbTaskDetailHeaderIconClass"/>
+									</m:intermediary>
+								</m:MicroProcessFlowItem>
+								<m:MicroProcessFlowItem icon="sap-icon://customfont/Complete" title="{i18n>DONE_TEXT}" showIntermediary="false" stepWidth="0%"
+									class="wbPreviewTaskFlowArrow"/>
+							</m:content>
+						</m:MicroProcessFlow>
+					</HBox>
+					<HBox renderType="Bare" alignItems="Center"
+						visible="{= ${oDefaultDataModel>/customStatusObject/taskType} === 'Complete/Resolve' ? true: false}">
+						<m:MicroProcessFlow width="100%">
+							<m:content>
+								<m:MicroProcessFlowItem icon="sap-icon://customfont/Release" title="{i18n>READY_TEXT}" showIntermediary="true" stepWidth="100%"
+									class="wbPreviewTaskFlowArrow">
+									<m:intermediary>
+										<core:Icon src="sap-icon://navigation-right-arrow" class="wbTaskDetailHeaderIconClass"/>
+									</m:intermediary>
+								</m:MicroProcessFlowItem>
+								<m:MicroProcessFlowItem icon="sap-icon://customfont/Claim" title="{i18n>RESERVED_TEXT}" showIntermediary="true" stepWidth="100%"
+									class="wbPreviewTaskFlowArrow">
+									<m:intermediary>
+										<core:Icon src="sap-icon://navigation-right-arrow" class="wbTaskDetailHeaderIconClass"/>
+									</m:intermediary>
+								</m:MicroProcessFlowItem>
+								<m:MicroProcessFlowItem icon="sap-icon://customfont/ApproveAccept" title="{i18n>RESOLVED_TEXT}" showIntermediary="true" stepWidth="100%"
+									class="wbPreviewTaskFlowArrow">
+									<m:intermediary>
+										<core:Icon src="sap-icon://navigation-right-arrow" class="wbTaskDetailHeaderIconClass"/>
+									</m:intermediary>
+								</m:MicroProcessFlowItem>
+								<m:MicroProcessFlowItem icon="sap-icon://customfont/Complete" title="{i18n>COMPLETED_TEXT}" showIntermediary="false" stepWidth="100%"
+									class="wbPreviewTaskFlowArrow"/>
+							</m:content>
+						</m:MicroProcessFlow>
+					</HBox>
+					<HBox width="{= ${oDefaultDataModel>/customStatusObject/taskType} === 'Complete/Resolve' ? '90%' : '85%'}" renderType="Bare"
+						alignItems="Center" justifyContent="SpaceBetween">
+						<Input value="{oDefaultDataModel>/customStatusObject/statusDto/ready}"
+							width="{= ${oDefaultDataModel>/customStatusObject/taskType} === 'Complete/Resolve' ? '24%' : '30%'}" maxLength="50"
+							class="wbDefaultCustomInputWrapper"/>
+						<Input value="{oDefaultDataModel>/customStatusObject/statusDto/reserved}"
+							width="{= ${oDefaultDataModel>/customStatusObject/taskType} === 'Complete/Resolve' ? '24%' : '30%'}" maxLength="50"
+							class="wbDefaultCustomInputWrapper"/>
+						<VBox renderType="Bare" width="30%" visible="{= ${oDefaultDataModel>/customStatusObject/taskType} === 'Approve/Reject' ? true: false}">
+							<Input width="100%" value="{oDefaultDataModel>/customStatusObject/statusDto/approve}" maxLength="50" class="wbDefaultCustomInputWrapper"/>
+							<Input width="100%" value="{oDefaultDataModel>/customStatusObject/statusDto/reject}" maxLength="50" class="wbDefaultCustomInputWrapper"/>
+						</VBox>
+						<Input visible="{= ${oDefaultDataModel>/customStatusObject/taskType} === 'Done' ? true: false}"
+							value="{oDefaultDataModel>/customStatusObject/statusDto/done}" width="30%" maxLength="50" class="wbDefaultCustomInputWrapper"/>
+						<Input visible="{= ${oDefaultDataModel>/customStatusObject/taskType} === 'Complete/Resolve' ? true: false}"
+							value="{oDefaultDataModel>/customStatusObject/statusDto/resolved}" width="24%" maxLength="50" class="wbDefaultCustomInputWrapper"/>
+						<Input visible="{= ${oDefaultDataModel>/customStatusObject/taskType} === 'Complete/Resolve' ? true: false}"
+							value="{oDefaultDataModel>/customStatusObject/statusDto/completed}" width="24%" maxLength="50" class="wbDefaultCustomInputWrapper"/>
+					</HBox>
+				</VBox>
+			</VBox>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

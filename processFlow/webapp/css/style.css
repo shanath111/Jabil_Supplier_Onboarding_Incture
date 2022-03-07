@@ -1,0 +1,6337 @@
+/************************ Start - Variable Declaration ************************/
+
+:root {
+    --root-color: 47, 44, 133;
+    /*Set from user theme settings */
+    --primary-color: rgba(var(--root-color), 1);
+    --primary-Text-Color: #ffffff;
+    --secondary-Text-Color: #000000;
+    --page-background-color: #ffffff;
+    --secondary-background-color: #F3F2F1;
+    --hover-background-color: rgba(var(--root-color), 0.1);
+    --transparent-button-background: rgba(var(--root-color), 0.12);
+    --font: "Roboto";
+    /*Segoe UI*/
+}
+
+
+/************************ End - Variable Declaration ************************/
+
+
+/************************ Start - Common ***********************************/
+.wbWidthWebkitAvailable {
+    width: -webkit-fill-available;
+}
+
+.wbTextBoldClass {
+    font-weight: bold !important;
+}
+
+.wbDefaultCursor {
+    cursor: default !important;
+}
+
+.wbRightTextAlignClass {
+    text-align: right !important;
+}
+.cl_EmailTextArea .sapMInputBaseContentWrapper {
+    border: 0.0625rem solid #ffffff !important;
+    background: #fff;
+    border-radius: 0.125rem;
+}
+.wbPrimaryColorIcon {
+    color: var(--primary-color) !important;
+}
+
+.wbPrimaryBackgroundColor {
+    background: var(--page-background-color);
+}
+
+.wbRejectColorIcon {
+    color: #FF6060 !important;
+}
+
+.wbTransformToUpperCase {
+    text-transform: uppercase;
+}
+
+.wbTransformCapitalise {
+    text-transform: capitalize;
+}
+
+.wbOverVerticalOverFlwBox {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.wbOverflowHidden {
+    overflow: hidden !important;
+}
+
+.wbOverflowVertical {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.wbOverflowHorizontal {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.cl_HeaderText{
+    color: #000000 !important;
+    font-weight: bold !important;
+}
+
+.wbOverflow {
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.wbCustomHeaderClass {
+    background: rgba(var(--root-color), 0.06);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    margin: 0.25rem !important;
+}
+
+.wbSeparatorLine {
+    margin: 0 0.5rem 0 0.4rem;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.wbCustomDialogBackground {
+    background: var(--secondary-background-color);
+}
+
+.wbDefaultPageBackground {
+    background: #FAF9F8;
+}
+
+.wbCustomContentWrapperStyle {
+    background: var(--primary-Text-Color);
+    border: 1px solid rgba(var(--root-color), 0.2);
+    border-radius: 0.25rem;
+}
+
+.wbCustomHeaderLabel {
+    color: #555555 !important;
+    font-weight: bold;
+}
+
+.wbCommonLinkClass.sapMLnk {
+    color: var(--primary-color) !important;
+    text-align: right;
+}
+
+/*************** Header cointainer ****************/
+.wbCustomHeaderCointainer>.sapMHdrCntrRight .sapMBtn .sapMBtnInner,
+.wbCustomHeaderCointainer>.sapMHdrCntrLeft .sapMBtn .sapMBtnInner {
+    background: var(--page-background-color) !important;
+
+}
+
+.wbCustomHeaderCointainer>.sapMHdrCntrRight .sapMBtnIcon,
+.wbCustomHeaderCointainer>.sapMHdrCntrLeft .sapMBtnIcon {
+    color: var(--primary-color) !important;
+}
+
+/*********** input wrapper ***********/
+
+.wbDefaultCustomInputWrapper .sapMInputBaseContentWrapper,
+.wbDefaultCustomInputWrapper.sapMSlt>.sapMSltLabel {
+    border: transparent !important;
+    background: var(--secondary-background-color);
+    border-radius: 2px;
+}
+
+.wbDefaultCustomInputWrapper .sapMInputBaseIconContainer .sapMInputBaseIcon,
+.wbDefaultCustomInputWrapper .sapMSltArrow::before {
+    color: var(--primary-color) !important;
+}
+
+.wbDefaultCustomInputWrapper .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover,
+.wbDefaultCustomInputWrapper .sapMSltArrow {
+    background: var(--secondary-background-color) !important;
+    border-color: transparent !important;
+}
+
+.wbDefaultCustomInputWrapper .sapMInputBaseInner:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):focus {
+    box-shadow: 0px 1px 0px rgba(var(--root-color), 0.65) !important;
+    border-bottom: 1px solid black !important;
+}
+
+.wbDefaultCustomSelectWrapper.sapMSlt {
+    background: var(--secondary-background-color) !important;
+    border-color: transparent !important;
+}
+
+.wbDefaultCustomInputWrapper .sapMInputBaseContentWrapperError .sapMInputBaseInner {
+    border-color: #e52929 !important;
+    border: 0.4000000059604645px solid rgba(var(--root-color), 0.2);
+}
+
+
+/*********************** table - class ***************/
+
+.wbCustomTableClass {
+    background: var(--page-background-color);
+    padding: 0.25rem;
+    border-radius: 4px;
+    border: 1px solid rgba(var(--root-color), 0.2);
+}
+
+.wbCustomTableClass .sapMListTblHeader>.sapMTableTH {
+    background: rgba(var(--root-color), 0.06) !important;
+    border: none !important;
+}
+
+.wbCustomTableClass .sapMListTblRow {
+    min-height: 2.25rem !important;
+}
+
+
+/*************** scroll class ********************/
+
+.wbHideScroll::-webkit-scrollbar {
+    width: 0px !important;
+    border-radius: 9px;
+    background-color: rgba(var(--root-color), 0.1) !important;
+}
+
+
+
+/********** switch class *************/
+
+.wbCustomSwitch.sapMSwtCont .sapMSwt,
+.wbCustomSwitch .sapMSwtCont .sapMSwt {
+    width: 34px !important;
+    height: 16px !important;
+}
+
+.wbCustomSwitch .sapMSwtCont,
+.wbCustomSwitch.sapMSwtCont {
+    width: 2.75rem !important;
+}
+
+.wbCustomSwitch .sapMSwtLabel,
+.wbSmallerCustomSwitch .sapMSwtLabel {
+    display: none !important;
+}
+
+.wbCustomSwitch .sapMSwtOff:not(.sapMSwtAcceptReject),
+.wbCustomSwitch .sapMSwt.sapMSwtOff:not(.sapMSwtAcceptReject).sapMSwtHoverable:not(.sapMSwtAcceptReject):hover,
+.wbSmallerCustomSwitch .sapMSwtOff:not(.sapMSwtAcceptReject),
+.wbSmallerCustomSwitch .sapMSwt.sapMSwtOff:not(.sapMSwtAcceptReject).sapMSwtHoverable:not(.sapMSwtAcceptReject):hover {
+    background: transparent;
+    border: 2px solid;
+    border-color: #8D8D8D;
+}
+
+.wbCustomSwitch .sapMSwtOn:not(.sapMSwtAcceptReject),
+.wbCustomSwitch .sapMSwt.sapMSwtOn:not(.sapMSwtAcceptReject).sapMSwtHoverable:not(.sapMSwtAcceptReject):hover,
+.wbSmallerCustomSwitch .sapMSwtOn:not(.sapMSwtAcceptReject),
+.wbSmallerCustomSwitch .sapMSwt.sapMSwtOn:not(.sapMSwtAcceptReject).sapMSwtHoverable:not(.sapMSwtAcceptReject):hover {
+    background: transparent;
+    border: 2px solid;
+    border-color: green;
+}
+
+.wbCustomSwitch .sapMSwtOff .sapMSwtText,
+.wbCustomSwitch .sapMSwtOn .sapMSwtText,
+.wbSmallerCustomSwitch .sapMSwtOff .sapMSwtText,
+.wbSmallerCustomSwitch .sapMSwtOn .sapMSwtText {
+    color: var(--primary-Text-Color);
+}
+
+.wbCustomSwitch .sapMSwtOff:not(.sapMSwtAcceptReject) .sapMSwtHandle {
+    box-sizing: border-box;
+    background: #8D8D8D;
+    border: none;
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+.wbCustomSwitch .sapMSwtOn:not(.sapMSwtAcceptReject) .sapMSwtHandle {
+    box-sizing: border-box;
+    background: green;
+    border: none;
+    width: 1.4rem;
+    height: 1.4rem;
+    left: 1rem !important;
+    right: 0.88rem;
+}
+
+.wbCustomSwitch .sapMSwt.sapMSwtOff:not(.sapMSwtAcceptReject).sapMSwtHoverable:not(.sapMSwtAcceptReject):hover .sapMSwtHandle,
+.wbSmallerCustomSwitch .sapMSwt.sapMSwtOff:not(.sapMSwtAcceptReject).sapMSwtHoverable:not(.sapMSwtAcceptReject):hover .sapMSwtHandle {
+    background: #8D8D8D;
+    border-color: #8D8D8D;
+}
+
+.wbCustomSwitch .sapMSwt.sapMSwtOn:not(.sapMSwtAcceptReject).sapMSwtHoverable:not(.sapMSwtAcceptReject):hover .sapMSwtHandle,
+.wbSmallerCustomSwitch .sapMSwt.sapMSwtOn:not(.sapMSwtAcceptReject).sapMSwtHoverable:not(.sapMSwtAcceptReject):hover .sapMSwtHandle {
+    background: green;
+    border-color: green;
+}
+
+.wbSmallerCustomSwitch.sapMSwtCont .sapMSwt {
+    width: 26px !important;
+    height: 9px !important;
+}
+
+.wbSmallerCustomSwitch .sapMSwtOn:not(.sapMSwtAcceptReject) .sapMSwtHandle {
+    box-sizing: border-box;
+    background: green;
+    border: none;
+    width: 15px;
+    height: 15px;
+    left: 50% !important;
+    right: 50%;
+}
+
+.wbSmallerCustomSwitch .sapMSwtOff:not(.sapMSwtAcceptReject) .sapMSwtHandle {
+    box-sizing: border-box;
+    background: #8D8D8D;
+    border: none;
+    width: 15px;
+    height: 15px;
+}
+
+.wbSmallerCustomSwitch.sapMSwtCont {
+    width: 2.75rem !important;
+}
+
+
+/*************** segmented button ****************/
+
+.wbCustomSegmentedButtonClass .sapMSegBBtn.sapMSegBBtnSel .sapMSegBBtnInner {
+    background: var(--primary-color) !important;
+    color: var(--primary-Text-Color);
+    border: none !important;
+}
+
+.wbCustomSegmentedButtonClass .sapMSegBBtn.sapMSegBBtnSel .sapMSegBBtnInner .sapUiIcon {
+    color: var(--primary-Text-Color) !important;
+}
+
+.wbCustomSegmentedButtonClass.sapMSegB .sapMSegBBtn .sapMSegBBtnInner {
+    color: var(--primary-color) !important;
+    border: none !important;
+    background-color: var(--transparent-button-background) !important;
+}
+
+.wbCustomSegmentedButtonClass .sapMSegBBtn.sapMSegBBtnSel .sapMSegBBtnInner {
+    background: var(--primary-color) !important;
+}
+
+.wbCustomSegmentedButtonClass .sapMSegBBtn .sapUiIcon {
+    color: var(--primary-color) !important;
+}
+
+
+/**************button class****************/
+
+.wbEmphasizedButtonStyleClass .sapMBtnInner,
+.wbEmphasizedButtonStyleClass .sapMBtnInner:hover {
+    background: var(--primary-color) !important;
+    color: var(--primary-Text-Color) !important;
+    border-color: transparent !important;
+    border-radius: 3px;
+}
+
+.wbEmphasizedButtonStyleClass .sapMBtnIcon {
+    color: var(--primary-Text-Color) !important;
+}
+
+.wbEmphasizedButtonStyleClass.sapMBtn:hover>.sapMBtnHoverable {
+    background: var(--primary-color) !important;
+    border-color: transparent !important;
+    color: var(--primary-Text-Color) !important;
+}
+
+.wbEmphasizedButtonStyleClass .sapMBtn:hover>.sapMBtnEmphasized.sapMBtnHoverable:not(.sapMBtnActive):not(.sapMToggleBtnPressed) {
+    color: var(--primary-Text-Color) !important;
+}
+
+.wbTransparentButtonStyleClass .sapMBtnInner,
+.wbTransparentButtonStyleClass .sapMBtnInner:hover {
+    background: var(--transparent-button-background) !important;
+    color: var(--primary-color) !important;
+    border-color: transparent !important;
+    border: none !important;
+    font-weight: 600;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+.wbTransparentButtonStyleClass.sapMBtn:hover>.sapMBtnHoverable {
+    background-color: var(--transparent-button-background);
+    border-color: transparent !important;
+    border: none !important;
+}
+
+.wbTransparentButtonStyleClass .sapMBtnInner .sapMBtnIcon.sapMImg {
+    height: 1rem;
+    width: 1rem;
+    margin-top: 0.15rem;
+}
+
+.wbTransparentButtonStyleClass .sapMBtnIcon {
+    color: var(--primary-color) !important;
+}
+
+.sapTntToolHeader .wbCustomButtonClass.sapMBtn .sapMBtnTransparent {
+    color: var(--primary-color) !important;
+    font-weight: 600;
+}
+
+.wbCustomButtonClass .sapMBtnInner {
+    background: transparent !important;
+    color: var(--primary-color) !important;
+    border-color: transparent !important;
+    border: transparent !important;
+    font-weight: 600 !important;
+}
+
+.wbCustomButtonClass .sapMBtnInner.sapMBtnText>.sapMImg.sapMBtnIconLeft+.sapMBtnContent {
+    padding-left: 0rem;
+}
+
+.wbCustomButtonClass .sapMBtnInner .sapMBtnIcon.sapMImg {
+    height: 0.875rem;
+    width: 0.875rem;
+    margin-top: 0.3rem;
+}
+
+.wbCustomButtonClass .sapMBtnInner.sapMBtnText .sapMBtnIcon.sapMImg {
+    color: var(--primary-color) !important;
+    height: 0.875rem;
+    width: 0.875rem;
+    margin-top: 0.3rem;
+    font-weight: 600;
+}
+
+.wbCustomButtonClass .sapMBtnIcon {
+    color: var(--primary-color) !important;
+}
+
+.wbCustomButtonMoreClass .sapMBtnInner.sapMBtnText .sapMBtnIcon.sapMImg {
+    color: var(--primary-color) !important;
+    height: 0.875rem;
+    width: 0.875rem;
+    font-weight: 600;
+    margin-top: 0.65rem !important;
+}
+
+.wbDefaultButtonClass .sapMBtnInner,
+.wbDefaultButtonClass.sapMBtn:hover>.sapMBtnHoverable {
+    background: rgba(var(--root-color), 0.05) !important;
+    border: 0.5px solid var(--primary-color) !important;
+    border-radius: 4px;
+    color: var(--primary-color) !important;
+}
+
+.wbDefaultButtonClass .sapMBtnIcon {
+    color: var(--primary-color) !important;
+}
+
+.wbCustomCloseButtonClass .sapMBtnInner.sapMBtnText .sapMBtnIcon {
+    padding-right: 0.2rem !important;
+}
+
+/*********** dialog class*****************/
+
+.wbDialog.sapMDialog.sapMPopup-CTX>header .sapMHeader-CTX,
+.sapMDialog.sapMPopup-CTX>header .sapMSubHeader-CTX {
+    background-color: rgba(var(--root-color), 0.8);
+}
+
+.wbDialog {
+    border-radius: 5px;
+    box-shadow: 4px 4px 8px 4px rgba(0, 0.2, 0, 0.2), 0 5px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.wbDialogTitle {
+    color: var(--primary-Text-Color) !important;
+    font-size: 0.95rem
+}
+
+.wbDialogCloseIcon {
+    color: var(--primary-Text-Color);
+    font-size: large;
+    cursor: pointer;
+}
+
+.wbFilterIcon {
+    color: var(--primary-Text-Color);
+    font-size: large;
+    cursor: pointer;
+    margin-right: 2px;
+}
+
+
+/*********** token - class **********/
+
+.sapMTokenIcon,
+.sapMTokenizer.sapMTokenizerReadonly .sapMTokenizerIndicator,
+.sapMTokenSelected .sapMTokenIcon,
+.sapMTokenSelected .sapMTokenText {
+    color: var(--primary-color) !important;
+}
+
+.sapMToken,
+.sapMToken:hover,
+html.sap-desktop .sapMToken:hover {
+    border: .0625rem solid rgba(var(--root-color), 0.2) !important;
+    background: var(--page-background-color);
+    color: var(--primary-color) !important;
+}
+
+.wbCustomTokenClass.sapMToken,
+.wbCustomTokenClass.sapMToken:hover {
+    border: .0625rem solid rgba(var(--root-color), 0.2) !important;
+    background: rgba(var(--root-color), 0.15) !important;
+    font-size: .875rem;
+    border-radius: 0.25rem;
+    padding-left: 0.3125rem;
+    color: var(--primary-color) !important;
+    margin-top: 0.3125rem !important;
+    margin-bottom: 0.3125rem !important;
+}
+
+.wbCustomTokenClass .sapUiSizeCompact .sapMTokenIcon {
+    color: var(--primary-color) !important;
+    line-height: 1.1rem !important;
+}
+
+.wbFilterPopOverClass.sapMPopover {
+    min-height: auto !important;
+}
+
+
+/************************ End - Common ***********************************/
+
+
+/************************ Start - Standard SAP Class override ************************/
+
+html.sap-desktop .sapMIBar.sapMFooter-CTX {
+    background-color: #fff;
+    box-shadow: 0px -1px 2px #00000029 !important;
+}
+
+.sapMSuggestionsPopover .sapMListUl>.sapMLIB,
+.sapMSelectListItem {
+    height: 2rem;
+    line-height: 2rem;
+}
+
+.sapMCbBg {
+    background: var(--page-background-color);
+    border: 1.25px solid var(--secondary-Text-Color) !important;
+}
+
+.sapMSltHoverable:not(.sapMSltPressed):hover>.sapMSltArrow {
+    background: rgba(var(--root-color), 0.2);
+}
+
+.sapMSlt {
+    border: none;
+    outline: none !important;
+}
+
+.sapTntNavLI .sapTntNavLIGroup.sapTntNavLIItem:not(.sapTntNavLIItemDisabled):active,
+.sapTntNavLI .sapTntNavLIGroupItem.sapTntNavLIItem:not(.sapTntNavLIItemDisabled):active {
+    background-color: transparent !important;
+    color: var(--primary-color) !important;
+}
+
+.sapTntNavLI .sapTntNavLIGroup.sapTntNavLIItem:not(.sapTntNavLIItemDisabled):active>.sapMText,
+.sapTntNavLI .sapTntNavLIGroupItem.sapTntNavLIItem:not(.sapTntNavLIItemDisabled):active>.sapMText {
+    color: var(--primary-color) !important;
+}
+
+.sapTntNavLI .sapTntNavLIGroup.sapTntNavLIItem:not(.sapTntNavLIItemDisabled):active>.sapUiIcon,
+.sapTntNavLI .sapTntNavLIGroupItem.sapTntNavLIItem:not(.sapTntNavLIItemDisabled):active>.sapUiIcon {
+    color: var(--primary-color) !important;
+}
+
+.sapMLIB.sapMLIBSelected,
+.sapMSelectListItemBaseSelected {
+    background: rgba(var(--root-color), 0.18);
+    /*border: none;*/
+}
+
+
+.sapMLIBActive {
+    background: rgba(var(--root-color), 0.2) !important;
+    color: var(--primary-color) !important;
+}
+
+.sapMLIBHoverable:hover,
+.sapMLIBHoverable.sapMLIBSelected:hover,
+.sapMSelectListItemBaseSelected.sapMSelectListItemBaseHoverable:hover,
+.sapMInputBaseIconContainer .sapMInputBaseIcon:hover {
+    background: var(--hover-background-color);
+}
+
+.sapMListShowSeparatorsNone .sapMLIBShowSeparator,
+.sapMSelectListItemBaseSelected {
+    border-bottom: 1px solid transparent;
+    color: var(--secondary-Text-Color);
+}
+
+.sapMSLITitleOnly {
+    font-size: 1rem;
+    color: var(--secondary-Text-Color) !important;
+}
+
+div.sapMSuggestionsPopover,
+.sapMPopover,
+.sapMDialog,
+.sapUiMnu {
+    border: none;
+    box-shadow: 1px -1px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+.sapUiCalItem.sapUiCalItemSel:not(.sapUiCalItemSelBetween),
+.sapUiCalItemSel {
+    background-color: rgba(var(--root-color), 0.6) !important;
+}
+
+.sapUiCalItem.sapUiCalItemSel.sapUiCalItemSelBetween:not(.sapUiCalItemNow)>.sapUiCalItemText {
+    border: .0625rem solid transparent !important;
+    color: var(--primary-Text-Color);
+}
+
+.sapUiCalItemDsbl,
+.sapUiCalItemDsbl:hover {
+    background-color: rgba(var(--root-color), 0.15) !important;
+}
+
+html.sap-desktop .sapUiCalItemSelBetween:hover {
+    background-color: rgba(var(--root-color), 0.1) !important;
+}
+
+.sapUiCalItemSelBetween .sapUiCalItemText,
+.sapUiCalItemSelBetween.sapUiCalItemOtherMonth .sapUiCalItemText {
+    line-height: 2.75rem;
+    border: .0625rem solid transparent !important;
+    background: rgba(var(--root-color), 0.1) !important;
+}
+
+.wbCustomTimePicker .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTimePickerItem:hover {
+    background: var(--primary-color);
+}
+
+.wbCustomTimePicker .sapMTimePickerContainer .sapMTPColumn .sapMTimePickerSlider .sapMTimePickerItem {
+    background: var(--primary-color);
+    border: 1px solid #fff;
+}
+
+.sapMTimePickerContainer {
+    width: 100%;
+    height: 100%;
+    min-width: auto;
+    box-sizing: border-box;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.wbCustomTimePicker .sapMBtnInner .sapMBtnEmphasized {
+    background-image: none;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--primary-Text-Color);
+    text-shadow: 0 0 0.125rem transparent;
+}
+
+.wbCustomTimePicker .sapMBtnInner .sapMBtnDefault {
+    background-image: none;
+    background-color: var(--primary-Text-Color);
+    border-color: var(--primary-Text-Color);
+    color: var(--primary-color);
+    text-shadow: 0 0 0.125rem transparent;
+}
+
+html.sap-desktop .sapUiCalHead>button:hover,
+html.sap-desktop .sapUiCalCancel:hover,
+html.sap-desktop .sapUiCalHead>button {
+    background-color: var(--page-background-color) !important;
+    color: var(--primary-color) !important;
+}
+
+.sapMInputBaseIconPressed .sapMInputBaseIcon,
+.sapMInputBaseIconPressed .sapMInputBaseIcon:hover,
+.sapMInputBaseIconContainer .sapMInputBaseIcon:active {
+    background: var(--primary-color);
+    color: var(--primary-Text-Color) !important;
+}
+
+.sapMSltPressed>.sapMSltArrow::before {
+    color: var(--primary-Text-Color);
+}
+
+.sapMSltPressed>.sapMSltArrow {
+    background: var(--primary-color);
+}
+
+.sapUiMnuItm.sapUiMnuItmSubMnuOpen.sapUiMnuItmHov:hover {
+    background-color: rgba(var(--root-color), 0.2) !important;
+}
+
+.sapUiMnu .sapUiMnuLst .sapUiMnuItm,
+.sapUiMnu .sapUiMnuLst .sapUiMnuItm.sapUiMnuItmSubMnuOpen.sapUiMnuItmHov {
+    border-bottom: 1px solid transparent !important;
+    background: var(--page-background-color) !important;
+}
+
+:focus {
+    outline: none !important;
+}
+
+.sapMFlexBoxScroll {
+    width: 100%;
+}
+
+.sapMDialogScroll {
+    height: 100%;
+}
+
+.sapMCbBg.sapMCbMarkChecked:before {
+    color: var(--primary-color) !important;
+    font-weight: bold !important;
+}
+
+.sapUiTableSelectAllCheckBox::after,
+.sapUiTableRowSelectionCell::after {
+    color: var(--primary-color) !important;
+    font-weight: bold !important;
+}
+
+.sapUiUfdShellBrand {
+    background-color: var(--primary-color);
+}
+
+.sapMSFB,
+.sapMSFB:hover {
+    color: var(--primary-color) !important;
+    background: transparent;
+}
+
+.sapMSFF>.sapMSFB:not(.sapMSFBF):active,
+.sapMSFF>.sapMSFB.sapMSFBA {
+    background-color: rgba(var(--root-color), 0.6) !important;
+    color: #fff !important;
+}
+
+.sapMPage,
+.sapUiGlobalBackgroundColor {
+    background: #FAF9F8 !important;
+}
+
+.sapUiLocalBusyIndicatorAnimation>div::before {
+    background: rgba(var(--root-color), 0.8);
+    animation-duration: 0ms;
+}
+
+.sapMRbBLabel {
+    font-weight: normal !important;
+    font-size: 0.9rem;
+}
+
+.sapTntToolPageHeader {
+    height: 3.125rem !important;
+}
+
+.sapTntToolHeader.sapMTB {
+    border-right: 0.75px solid #7070703d !important;
+}
+
+.sapMIBar.sapMTB .sapMBarChild.sapMBarFirstVisibleChild {
+    margin: 0 0.25rem 0 0;
+    color: var(--primary-Text-Color);
+    font-size: large;
+}
+
+.sapMIBar.sapMHeader-CTX {
+    background: var(--primary-color) !important;
+    height: 3.125rem !important;
+    line-height: 3rem !important;
+}
+
+.sapTntToolHeader.sapMTB {
+    background-color: var(--secondary-background-color) !important;
+    box-shadow: none !important;
+    height: 3.125rem !important;
+    margin-top: 0.4rem;
+    border-bottom: 1px solid #80808033 !important;
+}
+
+.sapTntToolHeader .sapMText,
+.sapTntToolHeader .sapMTitle,
+.sapTntToolHeader .sapMLabel {
+    color: var(--secondary-Text-Color) !important;
+    font-size: large;
+}
+
+.sapMRbSel .sapMRbBInn {
+    fill: var(--primary-color) !important;
+}
+
+.sapMRbB .sapMRbBOut {
+    stroke: var(--hover-background-color) !important;
+}
+
+.sapMBtn:hover>.sapMBtnHoverable.sapMBtnReject:not(.sapMBtnActive):not(.sapMToggleBtnPressed) bdi {
+    color: #ff6060 !important;
+}
+
+.sapMBtn:hover>.sapMBtnTransparent.sapMBtnHoverable:not(.sapMBtnActive):not(.sapMToggleBtnPressed) bdi,
+.sapMIBar-CTX .sapMBtn:hover>.sapMBtnTransparent.sapMBtnHoverable:not(.sapMBtnActive):not(.sapMToggleBtnPressed) bdi {
+    color: var(--primary-color) !important;
+}
+
+.sapUiRespGrid.sapUiRespGridHSpace1 {
+    padding: 0.5rem 0.15rem;
+}
+
+.sapFGridList .sapMLIB:not(.sapMGHLI) {
+    border-radius: none;
+    border: none;
+    box-shadow: none !important;
+    max-height: 1.85rem;
+    margin-right: 0.5rem;
+}
+
+.sapFGridListDefault {
+    display: grid;
+    grid-auto-columns: repeat(auto-fit, minmax(32.65rem, 1fr));
+    grid-gap: 0rem;
+}
+
+.sapUiRespGrid.sapUiRespGridVSpace1>div {
+    margin: 0px;
+}
+
+.sapUiRespGrid.sapUiRespGridHSpace1>div {
+    margin: 0px;
+}
+
+.sapMText {
+    color: var(--secondary-Text-Color);
+}
+
+.sapMLabel {
+    color: var(--secondary-Text-Color);
+}
+
+.sapMITH {
+    z-index: 0 !important;
+}
+
+.sapMDialog>header.sapMDialogTitle .sapMDialogIcon.sapUiIcon {
+    font-size: 1rem;
+    color: var(--primary-Text-Color);
+}
+
+.sapMDialog>header.sapMDialogTitle .sapMTitle {
+    color: var(--primary-Text-Color);
+    font-size: 1rem;
+}
+
+.sapMDialog>header:last-of-type .sapMIBar.sapMIBar {
+    box-shadow: inset 0 -0.0625rem #e9730c00, 0 0 0.25rem 0 rgba(0, 0, 0, 0.15), inset 0 -0.0625rem 0 0 #d9d9d9;
+    background: #198Ff4;
+}
+
+.sapMDialog header .sapMBarRight,
+.sapMDialog header .sapMBarPH,
+.sapMDialog header .sapMBarLeft {
+    padding-top: 0.4rem;
+    padding-right: 1rem;
+}
+
+.sapMDialog>.sapMDialogSection {
+    padding-top: 6px;
+}
+
+.sapMITBContent {
+    border-bottom: none;
+}
+
+.sapUiBody,
+.sapMInputBaseInner,
+.sapMText,
+.sapMLabel,
+.sapMBtnInner,
+.sapMSegBBtnInner,
+.sapMObjStatusText,
+.sapMTitle {
+    font-family: var(--font) !important;
+    outline: none !important;
+}
+
+.sapMIBar-CTX.sapMFooter-CTX {
+    border-top: none;
+}
+
+html.sap-desktop .sapMIBar.sapMFooter-CTX {
+    border-top: none;
+}
+
+html.sap-desktop .sapMSegBBtnFocusable:hover .sapMSegBBtnInner {
+    background: var(--transparent-button-background);
+}
+
+html.sap-desktop .sapMScrollContVH::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb {
+    background-color: rgba(var(--root-color), 0.5) !important;
+    align-content: 3px;
+    border-radius: 9px;
+    opacity: 0.5;
+}
+
+html.sap-desktop .sapMScrollContVH::-webkit-scrollbar,
+html.sap-desktop::-webkit-scrollbar,
+::-webkit-scrollbar {
+    width: 7px !important;
+    border-radius: 9px;
+    background-color: rgba(var(--root-color), 0.1) !important;
+}
+
+.wbHideScroll::-webkit-scrollbar {
+    width: 0px !important;
+    border-radius: 9px;
+    background-color: rgba(var(--root-color), 0.1) !important;
+}
+
+
+/* Removing focus outlines */
+
+html.sap-desktop .sapMSegBBtnFocusable.sapMSegBBtnSel:focus {
+    outline: none;
+}
+
+html.sap-desktop .sapMBtn:focus>.sapMFocusable {
+    outline: none;
+}
+
+.sapUiIcon:focus,
+.sapMInputBaseContentWrapper,
+.sapMSelectListItemBaseSelected,
+.sapMListBGTranslucent .sapMListTblHeader,
+.sapMSwtCont .sapMSwt,
+.sapMListTblRow,
+.sapMSLI,
+.sapMCrsl,
+.sapMCrslInner,
+.sapMComboBoxBasePicker-CTX .sapMComboBoxList.sapMListFocus .sapMLIBSelected,
+.sapMComboBoxBasePicker-CTX .sapMComboBoxList.sapMListFocus .sapMLIBSelected {
+    outline: none !important;
+    outline-offset: 0 !important;
+}
+
+.sapSuiteUiCommonsNetworkGraphContentWrapper {
+    margin-left: 0.5rem;
+}
+
+.sapUiLoSplitter.sapUiLoSplitterH>.sapUiLoSplitterBar .sapUiLoSplitterBarDecorationBefore,
+.sapUiLoSplitter.sapUiLoSplitterH>.sapUiLoSplitterOverlay .sapUiLoSplitterOverlayBar .sapUiLoSplitterBarDecorationBefore {
+    width: 1rem;
+    height: 4rem;
+    background-image: linear-gradient(to top, rgba(var(--root-color)), rgba(8, 84, 160, 0)) !important;
+    background-size: 0.0625rem 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.sapUiLoSplitter>.sapUiLoSplitterBar,
+.sapUiLoSplitterOverlay>.sapUiLoSplitterOverlayBar {
+    color: rgba(var(--root-color)) !important;
+}
+
+.sapUiLoSplitter.sapUiLoSplitterH>.sapUiLoSplitterBar .sapUiLoSplitterBarDecorationAfter,
+.sapUiLoSplitter.sapUiLoSplitterH>.sapUiLoSplitterOverlay .sapUiLoSplitterOverlayBar .sapUiLoSplitterBarDecorationAfter {
+    width: 1rem;
+    height: 4rem;
+    background-image: linear-gradient(to bottom, rgba(var(--root-color)), rgba(8, 84, 160, 0)) !important;
+    background-size: 0.0625rem 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.sapUiLoSplitter.sapUiLoSplitterH>.sapUiLoSplitterBar,
+.sapUiLoSplitter.sapUiLoSplitterH>.sapUiLoSplitterOverlay .sapUiLoSplitterOverlayBar {
+    width: 0.75rem;
+    background: rgba(var(--root-color), 0.1) !important;
+}
+
+
+/************************ End - Standard SAP Class override ************************/
+
+
+/********************** App View - related classes ***********************/
+/*start advance filter css updated*/
+.sapMPageHeader .sapMBarPH {
+    width: 0rem !important;
+}
+
+.wbFilterHeaderClass {
+    border: none;
+    background: var(--page-background-color);
+    border-radius: 0rem !important;
+}
+
+.wbHeaderFilterCarousel.sapMCrsl,
+.wbFilterMoreBackground,
+.wbHeaderFilterCarousel.sapMScrollCont {
+    background-color: rgba(var(--root-color), 0.09);
+}
+
+.wbFilterMoreBackground {
+    padding: 0 0.5rem;
+}
+
+.wbHeaderFilterCarousel.sapMCrsl.sapMCrslFluid>.sapMCrslInner>* {
+    width: fit-content !important;
+    margin-right: 0.5rem;
+}
+
+.wbHeaderSearchClass .sapMInputBaseInner:hover,
+.wbFilterScrollContainer.sapMScrollCont {
+    background-color: rgba(var(--root-color), 0.09) !important;
+    /*background-color: white !important;*/
+    /*padding: 0 0.5rem;*/
+
+}
+
+.wbFilterHeaderClass:hover .wbFilterCarouselBtn {
+    visibility: visible;
+}
+
+.wbFilterCarouselBtn {
+    color: rgba(var(--root-color), 1);
+    visibility: hidden;
+    padding: 3px;
+    /*height: 1;*/
+    line-height: 16px;
+    border-radius: 50%;
+    position: absolute;
+    background: var(--page-background-color);
+    margin: 7px 0;
+    z-index: 10;
+}
+
+.wbHideScrollY::-webkit-scrollbar {
+    height: 0px !important;
+
+}
+
+.wbFilterCarouselBtnL {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    left: 0px;
+}
+
+.wbFilterCarouselBtnR {
+    right: 0px;
+}
+
+.wbFilterScrollContainer {
+    display: flex;
+    flex-wrap: no-wrap;
+    overflow-x: auto;
+    cursor: grab;
+}
+
+.wbFilterScrollContainer.active {
+    cursor: grabbing;
+}
+
+.wbFilterScrollContainer[data-dragging="true"] a {
+    pointer-events: none;
+}
+
+/*end advance filter css updated*/
+.wbAppPage .sapMBarLeft {
+    /*padding-left: 0.5rem;*/
+    width: 62% !important;
+}
+
+.wbHeaderSearchClass .sapMInputBaseContentWrapper {
+    border: none;
+    background: #ffffff98;
+    border-radius: 0rem !important;
+}
+
+.wbHeaderAppTitleText {
+    min-width: 8rem;
+}
+
+.wbHeaderAppTitleText.sapMText {
+    color: var(--primary-Text-Color);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    font-size: medium;
+}
+
+.wbHeaderAvatar {
+    height: 25px;
+    width: 25px;
+    font-size: 11px;
+    background: var(--page-background-color);
+}
+
+.wbHeaderAvatar .sapFAvatarInitialsHolder {
+    margin-top: 1px;
+    color: var(--primary-color) !important;
+}
+
+.wbHeaderSettingsIconClass.sapUiIcon {
+    font-size: 22px !important;
+    color: var(--primary-Text-Color);
+}
+
+.wbUploadButtonPosition {
+    margin-top: 0.25rem;
+}
+
+.wbMainContentClass .sapTntToolPageMain {
+    padding-left: 13rem !important;
+}
+
+.wbMainCollapsedContentClass .sapTntToolPageMain {
+    padding-left: 3rem !important;
+}
+
+.wbSideNavListClass .sapTntSideNavigation {
+    border-right: 0.75px solid #7070703d !important;
+    padding: 0.25rem;
+    width: 13rem !important;
+}
+
+.wbSideNavListClass .sapTntSideNavigation.sapTntSideNavigationNotExpandedWidth {
+    width: 3rem !important;
+}
+
+.wbSideNavListClass .sapTntSideNavigation,
+.wbSideNavListClass .sapTntNavLIItem {
+    background: var(--secondary-background-color);
+    height: 2rem;
+    border: none;
+    width: 100%;
+}
+
+.wbSideNavListClass .sapTntSideNavigation .sapTntNavLIGroupItem.sapTntNavLIItemSelected:not(.sapTntNavLIItemDisabled),
+.wbSideNavListClass .sapTntSideNavigation .sapTntNavLIGroupItem.sapTntNavLIItemSelected:not(.sapTntNavLIItemDisabled):last-child,
+.wbSideNavListClass .sapTntSideNavigation .sapTntNavLIItemSelected:not(.sapTntNavLIItemDisabled) .sapTntNavLIGroup {
+    background: rgba(var(--root-color), 0.21);
+    border-bottom: none;
+    -webkit-text-fill-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+.wbSideNavListClass .sapTntNavLI:not(.sapTntNavLIPopup) .sapTntNavLIGroupItem.sapTntNavLIItem:last-child {
+    border-bottom: none !important;
+}
+
+.wbSideNavListClass .sapTntNavLIGroupItem.sapTntNavLIItem:last-child,
+.wbSideNavListClass .sapTntSideNavigation .sapTntNavLIGroupItem.sapTntNavLIItemSelected:not(.sapTntNavLIItemDisabled),
+.wbSideNavListClass .sapTntSideNavigation .sapTntNavLIGroupItem.sapTntNavLIItemSelected:not(.sapTntNavLIItemDisabled):last-child,
+.wbSideNavListClass .sapTntSideNavigation .sapTntNavLIItemSelected:not(.sapTntNavLIItemDisabled) .sapTntNavLIGroup {
+    border-bottom: none;
+    cursor: pointer !important;
+}
+
+.wbSideNavListClass .sapTntNavLIItemSelected.sapTntNavLIItem,
+.wbSideNavListClass .sapTntNavLIItemSelected .sapTntNavLIGroup,
+.wbSideNavListClass .sapTntNavLIItemSelected.sapTntNavLIGroupItem.sapTntNavLIGroupItem {
+    background-color: rgba(var(--root-color), 0.21) !important;
+}
+
+.wbSideNavListClass .sapTntNavLIGroup {
+    font-weight: 600 !important;
+    margin-left: -8% !important;
+    padding-left: 0rem !important;
+}
+
+.wbSideNavListClass .sapTntNavLIItem>.sapUiIcon {
+    color: var(--secondary-Text-Color);
+    min-width: 2rem !important;
+    margin-left: 0.75rem;
+}
+
+.wbSideNavListClass .sapTntNavLIItem>.sapMText {
+    color: var(--secondary-Text-Color);
+    padding-left: 0rem !important;
+    cursor: pointer !important;
+}
+
+.wbSideNavListClass .sapTntNavLI .sapTntNavLIExpandIcon {
+    margin-left: -116% !important;
+}
+
+.wbSideNavListClass .sapTntNavLIItemSelected:not(.sapTntNavLIItemDisabled) {
+    border-bottom: none !important;
+    -webkit-text-fill-color: var(--primary-color);
+    width: revert;
+}
+
+.wbSideNavListFooterClass {
+    border-top: 1px solid #80808033;
+    padding-top: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.wbFooterNavIconClass.sapMImg {
+    padding: 0.3rem;
+}
+
+.wbFooterNavIconBackgroundClass.sapMImg {
+    background: rgba(var(--root-color), 0.4);
+    border-radius: 50% !important;
+}
+
+
+/*****************************End app - view related classes******************************/
+
+
+/*******************************START - Search Filter related classes*************************/
+
+.userProfileSectionStyleClass {
+    padding: 1rem;
+}
+
+.userNameLogoutStyle.sapFAvatarInitials {
+    background-color: var(--primary-color) !important;
+}
+
+.userNameLogoutStyle.sapFAvatarInitials .sapFAvatarInitialsHolder {
+    color: #ffffff !important;
+}
+
+.userProfileNameSectionStyleClass {
+    padding: 0.3rem 0rem 0rem 0.5rem;
+}
+
+.loggedInUserNameStyleClass {
+    font-size: 1rem;
+}
+
+.loggedInUserEmailStyleClass {
+    font-size: 0.85rem;
+    padding-top: 0.3rem;
+}
+
+.logoutLineStyle {
+    border: 0.3px solid var(--primary-color);
+    margin: 0.3rem 0rem;
+}
+
+.logoutBoxStyleClass {
+    margin-bottom: -0.5rem;
+}
+
+.wbAdvSearchFilterCheckBox {
+    margin-right: 5%;
+}
+
+.wbAdvSaveTrayMargin {
+    margin-right: 0.175rem;
+}
+
+.wbAdvSearchFilterCheckBox .sapMLabel {
+    font-weight: bold;
+}
+
+.wbAdvSearchFilterCheckBox .sapMCbBg {
+    left: 0;
+}
+
+.wbHeaderSeachField {
+    margin-top: 0.5%;
+}
+
+.wbAdvSearchFieldStyle .sapMSFF {
+    border-radius: 1rem;
+    border: 1px solid #d9d9d9;
+}
+
+.wbAdvSearchFieldStyle.sapMSF {
+    padding-top: 0.6rem;
+}
+
+.wbAdvSearchFragmentPadding {
+    padding: 0 1rem;
+}
+
+.wbAdvSearchMainFragmentPadding {
+    padding: 4px 0;
+}
+
+.wbAdvFilterScrollCont {
+    max-height: 68vh;
+    padding: 0 1rem;
+}
+
+.wbAdvSearchFragmentLabels {
+    padding-top: 9px;
+}
+
+.wbAdvSearchFragmentInput .sapMInputBaseContentWrapper,
+.wbAdvSearchFragmentSelect {
+    border-bottom: .0625rem solid #8D8D8D !important;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-radius: 0rem !important;
+}
+
+.wbAdvSearchFragmentSelect {
+    min-width: auto;
+}
+
+.wbAdvSearchFragmentInput .sapMInputBaseIcon {
+    color: var(--primary-color) !important;
+}
+
+.wbAdvSearchFragmentComboBox .sapMLIB>.sapMLIBSelectM:first-child {
+    margin-left: -2.5rem;
+    visibility: hidden;
+}
+
+.wbAdvSearchFragmentCheckBoxLabel .sapMLabelTextWrapper {
+    font-weight: bold;
+}
+
+.wbAdvSearchFragmentFooterVBox {
+    padding: 1rem 1rem 0.3rem 0.5rem;
+}
+
+.wbAdvSearchFragmentHboxPadding {
+    margin-bottom: 0.15rem;
+}
+
+.wbAdvSearchInboxTypeComboBox .sapMInputBaseContentWrapper {
+    border: none;
+    border-radius: 0px;
+    background: var(--page-background-color);
+}
+
+.wbAdvSearchInboxTypeComboBox .sapMInputBaseIconContainer .sapMInputBaseIcon {
+    color: var(--primary-color);
+}
+
+.wbAdvSearchComboboxActive .sapMInputBaseContentWrapper {
+    border-right: 1px solid #71717133;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 4px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom: 1px solid #71717133;
+}
+
+.wbAdvSearchComboboxInactive .sapMInputBaseContentWrapper {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 4px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 4px;
+}
+
+.wbAdvSearchDropdownIconInactive {
+    color: var(--primary-color) !important;
+    background: var(--page-background-color);
+    opacity: 0.6;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    height: 2.25rem;
+}
+
+.wbAdvSearchDropdownIconNotActive:hover,
+.wbAdvSearchDropdownIconActive:hover {
+    background: var(--page-background-color) !important;
+}
+
+.wbAdvSearchDropdownIconActive {
+    color: var(--primary-color) !important;
+    border-bottom-right-radius: 0px;
+    background: var(--page-background-color) !important;
+    border-top-right-radius: 4px;
+    border-bottom: 1px solid #71717133;
+    height: 2.25rem;
+}
+
+.wbAdvSearchInputFieldActive {
+    background: var(--page-background-color) !important;
+    border-bottom: 1px solid #71717133;
+}
+
+.wbAdvSearchFilterPopover.sapMPopover {
+    border: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    box-shadow: 1px 4px 5px rgba(255, 255, 255, 0.32);
+    /*transition: all .5s ease-in-out;*/
+}
+
+.wbAdvSearchFilterSearchIcon {
+    padding: 8px 14px 12.5px 14px;
+    height: 1rem;
+}
+
+.wbAdvSearchFilterDropdownIcon {
+    /*padding: 1px 14px 12.5px 14px;*/
+    height: 2.25rem;
+    /*width: 17%;*/
+    width: 2.4rem;
+}
+
+.wbAdvSearchFragmentAdvancedFilterLabels {
+    color: #8D8D8D;
+}
+
+.wbAdvSearchFragmentDiscardFilterIcon {
+    /*color: var(--primary-color);*/
+    margin-top: 15%;
+}
+
+.wbAdvSearchFragmentAddRowButton {
+    padding-top: 2% !important;
+    margin-bottom: 13px;
+    margin-left: 6px;
+    width: 15%;
+}
+
+.wbManageFilterLabel {
+    color: #555555 !important;
+    font-weight: bold;
+}
+
+.wbManageFilterNoDataText {
+    width: 100%;
+    padding: 0.5rem;
+    font-weight: bold;
+}
+
+.wbManageFilterCLI {}
+
+
+/*Save Filter Fragment*/
+
+.wbSveFilterContentPadding {
+    padding: 5% 5% 4% 5%;
+}
+
+.wbSaveFilterInputWrapper .sapMInputBaseContentWrapper {
+    background: var(--page-background-color) !important;
+}
+
+.wbSaveFilterInputWrapper .sapMInputBaseContentWrapper {
+    border: transparent !important;
+    background: var(--page-background-color);
+    border-radius: 2px;
+}
+
+.wbSaveFilterInputWrapper .sapMInputBaseIconContainer .sapMInputBaseIcon {
+    color: var(--primary-color);
+}
+
+.wbSaveFilterInputWrapper .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover {
+    background: var(--page-background-color) !important;
+    border-color: transparent !important;
+}
+
+.wbSaveFilterInputWrapper .sapMInputBaseInner:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):focus {
+    box-shadow: 0px 1px 0px rgba(var(--root-color), 0.65) !important;
+    border-bottom: 1px solid black !important;
+}
+
+
+/*Manage Filter Fragment*/
+
+.wbManageFilterInput .sapMInputBaseInner,
+.wbManageFilterRB .sapMLabel {
+    font-weight: 600;
+}
+
+.wbManageFilterFN {
+    max-width: 12rem;
+}
+
+.wbManageFilterGridList {
+    /*max-height: 2.5rem !important;*/
+    /*border-bottom: 1px solid #f5f5f5 !important;*/
+}
+
+.wbManageFilterGridList .sapMLIB:not(.sapMGHLI) {
+    height: 2.5rem !important;
+    max-height: 2.5rem !important;
+    border-bottom: 1px solid #f5f5f5 !important;
+}
+
+.wbManageFilterGridList .sapFGridListDefault {
+    display: grid;
+    grid-gap: 0rem;
+    grid-template-columns: repeat(auto-fit, minmax(32.5rem, 1fr)) !important;
+}
+
+
+/****************Start - Settings Fragment related classes***********************/
+
+.wbSettingsLabel {
+    color: #555555 !important;
+}
+
+.wbSettingsSideNav {
+    padding: 2% 0 2% 1%;
+}
+
+.wbSideNavSelectList {
+    height: 2rem;
+    background: transparent;
+    border-bottom: none !important;
+    border-radius: 3px;
+    padding: 0 4%;
+}
+
+.wbSideNavSelectList:hover {
+    background-color: rgba(var(--root-color), 0.2);
+}
+
+.wbSideNavSelectListSelected {
+    background-color: rgba(var(--root-color), 0.4);
+}
+
+.wbSettingsSubMenuPadding {
+    margin-left: 13%;
+}
+
+.wbSettingsNavListText {
+    color: #555555 !important;
+}
+
+.wbSettingsMainContent {
+    padding: 2% 2% 0% 1.5%;
+    height: 100%;
+    width: 100%;
+}
+
+.wbSettingsMainContentNotification {
+    padding: 2% 0% 0% 1.5%;
+    height: 100%;
+    width: 100%;
+}
+
+.wbSettingsGeneralVBox {
+    padding: 1.5%;
+    height: 100%;
+}
+
+.wbSettingsDropdown .sapMInputBaseInner {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.wbSettingsSubsName .sapMInputBaseInner {
+    font-weight: bold;
+}
+
+.wbSettingsThemeHBox {
+    margin: 1.2% 0 2% 0;
+}
+
+.wbSettingsSubsNoDataText {
+    width: 100%;
+    padding: 2%;
+    color: rgba(85, 85, 85, 0.35);
+}
+
+.wbSettingsThemeTray {
+    border: 1px solid transparent;
+    padding: 5%;
+    background: transparent !important;
+    border-radius: 4px;
+}
+
+.wbSettingsThemeTray .sapMLIB {
+    border: none;
+}
+
+.wbSettingsThemeLabel {
+    font-size: 13px;
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbSettingsThemeSelectedTray {
+    min-width: 10rem;
+    padding: 5%;
+    border: 1px solid var(--primary-color);
+}
+
+.wbSettingsThemeRadioIcon {
+    color: var(--primary-color);
+    font-size: 12px;
+    margin-right: 7px;
+}
+
+.wbSettingsSubsLabel {
+    margin: 0 0.8% 0 1%;
+}
+
+.wbSettingsSubsMargin {
+    margin: 0 0.5% 0% 1%
+}
+
+.wbSettingsSubsAvatar {
+    width: 1.3rem;
+    height: 1.3rem;
+    font-size: 10px;
+    margin: 0 1.2% 0 1%;
+    background: var(--primary-color);
+}
+
+.wbSettingsSubsTokenizer .sapMTokenizerScrollContainer {
+    max-width: 200px;
+    /*106px earlier */
+}
+
+
+/* NOTIFICATION*/
+
+.wbNotificationListVBox {
+    /*max-width: 61vh;*/
+    padding: 0rem 0.7rem 0.4rem 0.7rem;
+}
+
+.wbNotificationHeader {
+    margin-left: 44%;
+}
+
+.wbNotificationDisclaimerText {
+    color: #6b6a6a;
+    /* font-style: italic; */
+    font-size: 14px;
+}
+
+.wbNLI {
+    padding: 0.7rem 3px 0.7rem 0.6rem;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0px 3px 6px #0000001c;
+    margin-bottom: 4px;
+}
+
+.wbNLI:hover {
+    background: rgba(var(--root-color), 0.09)
+}
+
+.wbNLI .sapMNLITitleText {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000b8;
+}
+
+.wbNLI .sapMNLIDescription {
+    font-size: 13px !important;
+    margin-top: 0rem !important;
+}
+
+.wbNLI .sapMLnk {
+    color: var(--primary-color) !important;
+}
+
+.wbNLI .sapMNLIFooter {
+    padding-top: 0;
+}
+
+.wbNLI .sapMNLIFooterItem {
+    font-size: 12px !important;
+}
+
+.wbNLI .sapMNLIContent {
+    padding: 0;
+}
+
+.wbNLI:hover .sapMNLICloseBtn {
+    visibility: visible;
+}
+
+.wbNLI .sapMNLICloseBtn {
+    margin-left: 0rem;
+    visibility: hidden;
+}
+
+.wbNLI .sapMNLIItemAC {
+    width: fit-content;
+}
+
+.wbNLI .sapFAvatarXS {
+    height: 1.5rem;
+    width: 1.5rem;
+    font-size: 12px;
+    background: var(--primary-color);
+}
+
+.wbNLI .sapMNLIImage {
+    margin-right: 0.5rem;
+}
+
+.wbNotificationNoData {
+    margin-bottom: 0.75rem;
+    font-size: 13px;
+    color: #656464;
+}
+
+.wbNotificationCount {
+    margin: 0px 0 18px 0 !important;
+    background: var(--page-background-color);
+    padding: 2px 3px;
+    border-radius: 50%;
+    color: var(--primary-color);
+    font-size: 11px;
+}
+
+.wbNotificationDot {
+    margin: 0px 0 18px 0 !important;
+    padding: 2px -6px;
+    color: var(--page-background-color);
+    font-size: 6px;
+}
+
+.wbFilterCount {
+    margin: 0px 0 18px 0 !important;
+    background: var(--page-background-color);
+    padding: 2px 3px;
+    border-radius: 50%;
+    color: var(--primary-color);
+    font-size: 11px;
+}
+
+.wbNotificationIcon {
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+
+
+}
+
+.wbSettingsNotifMainContent {
+    padding: 0% 0.5% 0% 0.5%;
+    height: 100%;
+    width: 100%;
+}
+
+.wbNotificationIconTabBar .sapMITBContent {
+    padding: 0.3rem;
+    position: relative;
+    background: var(--page-background-color) !important;
+}
+
+.wbNotificationIconTabBar .sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected .sapMITBText {
+    color: var(--secondary-Text-Color);
+    font-weight: 600;
+}
+
+.wbNotificationIconTabBar .sapMITBInLine.sapMITBTextOnly .sapMITBVertical.sapMITBFilter .sapMITBContentArrow {
+    height: .65rem;
+}
+
+.wbNotificationIconTabBar .sapMITBItem {
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbNotificationIconTabBar .sapMITBSelected .sapMITBContentArrow::after {
+    background: var(--primary-color);
+}
+
+.wbNotificationIconTabBar .sapMITH {
+    height: 2.5625rem !important;
+    padding: 0 0.5rem;
+}
+
+.wbNotificationIconTabBar .sapMITBInLine.sapMITBTextOnly .sapMITBVertical.sapMITBFilter .sapMITBContentArrow {
+    height: .65rem;
+}
+
+.wbNotificationIconTabBar .sapMITBItem {
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbNotificationIconTabBar .sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected>.sapMITBText {
+    color: var(--secondary-Text-Color) !important;
+    font-weight: 600;
+}
+
+.wbNotificationIconTabBar .sapMITBSelected>.sapMITBContentArrow::after {
+    background: var(--primary-color);
+}
+
+.wbNotificationGroupingCLI {
+    background: transparent !important;
+    cursor: pointer;
+}
+
+.wbNotificationEachGrp:hover .wbNotificationDelConfig {
+    display: block;
+}
+
+.wbNotificationDelConfig {
+    display: none;
+}
+
+
+.wbFont13 {
+    font-size: 13px !important;
+}
+
+.wbSettingsNotifLabel {
+    color: var(--secondary-Text-Color) !important
+}
+
+.wbNotifCustomTableClass {
+    background: var(--page-background-color);
+    padding: 0.25rem;
+}
+
+.wbNotifCustomTableClass .sapMListTblRow {
+    min-height: 2.25rem !important;
+}
+
+.wbNotifCustomTableClass .sapMLIBShowSeparator>td,
+.wbNotificationEventGrid {
+    border-top: none;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.wbNotifCustomTableClass .sapMListShowSeparatorsAll .sapMLIBShowSeparator:last-child>td {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.wbNotifDayPicker {
+    background: #f3f2f1;
+    border-radius: 50%;
+}
+
+.wbNotificationObjStatus {
+    font-size: 11px !important;
+    border: 0.5px solid rgba(var(--root-color), 0.3);
+    border-radius: 3px;
+    padding: 0 4px;
+    height: fit-content;
+}
+
+.wbNotificationObjStatus .sapMObjStatusIcon>.sapUiIcon {
+    font-size: 8px !important;
+    margin: 2px 0px;
+    padding: 0px 4.5px;
+    color: rgba(var(--root-color), 0.3);
+    border: 0.5px solid rgba(var(--root-color), 0.3);
+    border-radius: 50%;
+}
+
+.wbNotificatinMaskInp .sapMInputBaseInner {
+    font-weight: bold;
+}
+
+.wbNotifCustomTokenClass .sapMToken {
+    border: .0625rem solid rgba(var(--root-color), 0.2) !important;
+    background: var(--page-background-color) !important;
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbNotifCustomTokenClass .sapMTokenIcon {
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbNotificationGroupHeaderBorder {
+    height: 2.5rem;
+    width: 100%;
+}
+
+.wbNotificationEventHeader {
+    color: #8d8d8dba;
+    font-size: 12.2px;
+}
+
+.wbNotificationProfileHeader {
+    background: rgba(var(--root-color), 0.09);
+    padding: 1.5% 1%;
+}
+
+.wbNotifDefaultCustomInputWrapper.sapMSlt>.sapMSltLabel {
+    border: transparent !important;
+    background: var(--page-background-color);
+    border-radius: 2px;
+}
+
+.wbNotifDefaultCustomInputWrapper .sapMSltArrow::before {
+    color: var(--primary-color) !important;
+}
+
+.wbNotifDefaultCustomInputWrapper .sapMSltArrow {
+    background: var(--page-background-color) !important;
+    border-color: transparent !important;
+}
+
+.wbNotifDefaultCustomInputWrapper .sapMInputBaseContentWrapper,
+.wbNotifDefaultCustomInputWrapper.sapMSlt>.sapMSltLabel {
+    border: transparent !important;
+    background: var(--page-background-color);
+    border-radius: 2px;
+}
+
+.wbNotifDefaultCustomInputWrapper .sapMInputBaseIconContainer .sapMInputBaseIcon,
+.wbNotifDefaultCustomInputWrapper .sapMSltArrow::before {
+    color: var(--primary-color) !important;
+    background: var(--page-background-color);
+}
+
+.wbNotifDefaultCustomInputWrapper .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover,
+.wbNotifDefaultCustomInputWrapper .sapMSltArrow {
+    background: var(--page-background-color) !important;
+    border-color: transparent !important;
+}
+
+.wbNotifDefaultCustomInputWrapper .sapMInputBaseInner:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):focus {
+    box-shadow: 0px 1px 0px rgba(var(--root-color), 0.65) !important;
+    border-bottom: 1px solid black !important;
+}
+
+.wbNotifDefaultCustomInputWrapper .sapMInputBaseContentWrapperError .sapMInputBaseInner {
+    border-color: #e52929 !important;
+    border: 0.4000000059604645px solid rgba(var(--root-color), 0.2);
+}
+
+.wbNotifMaxWidth {
+    max-width: 93%;
+}
+
+/*notification banner*/
+.wbNotificationBannerPosition {
+    z-index: 2;
+    bottom: 0px;
+    right: 0px;
+    /* height: 20rem; */
+    position: fixed;
+}
+
+.wbNotificationBannerVBox {
+    margin: 0 0.5rem 0.5rem 0rem;
+    padding: 1rem;
+    background: rgba(var(--root-color), 0.05);
+    border-radius: 4px;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+    /*height: 29vh;*/
+    width: 46vh;
+
+}
+
+.wbNotificationBanner {
+    /*padding: 0.5rem;*/
+    transition: all 2s ease;
+    background: var(--page-background-color);
+}
+
+.wbNotificationBannerAvatar {
+    height: 1.5rem;
+    width: 1.5rem;
+    font-size: 9px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.wbNotificationBannerInnerVb {
+    padding-left: 0.75rem;
+    width: 91%;
+}
+
+.wbNotificationBannerDesc {
+    font-size: 14px;
+}
+
+.wbNotificationBannerTitle {
+    font-size: 12px;
+    margin: 7px 0px;
+}
+
+.wbNotificationBannerEN {
+    /*text-align: left;*/
+    color: #585858;
+    font-size: 13px;
+    margin-right: 5px;
+
+}
+
+.wbNotificationBannerTime {
+    color: #007d27;
+    font-size: 13px;
+    font-style: italic;
+}
+
+/*VERSION CONTROL*/
+.wbNotificationVersionHeader {
+    background: rgba(var(--root-color), 0.09);
+    padding: 0 1.5% 1%;
+    border-radius: 2px;
+}
+
+.wbVersionControlAlignTop {
+    margin-top: 5px;
+}
+
+.wbSettingsVersionControlMainContent {
+    padding: 1% 2% 0% 1.5%;
+    height: 100%;
+    width: 100%;
+}
+
+.wbVersionControlSelectList {
+    height: 2rem;
+    background: transparent;
+    border-bottom: 1px solid #e5e5e5 !important;
+    padding: 0 4%;
+}
+
+.wbIconSpinner .sapUiIcon {
+    animation: spin-animation 2.5s infinite;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+@keyframes spin-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(359deg);
+    }
+}
+
+/****************End -Settings Fragment related classes***********************/
+
+
+/************************ START - Classes related to Right Pane - Process Flow Module  ************************/
+
+.wbProcessFlowHeaderBar {
+    height: 7.5%;
+    padding: 0 2%;
+    background: var(--page-background-color);
+}
+
+.wbProcessFlow .sapMDialogSection {
+    overflow: hidden !important;
+}
+
+.wbProcessFlowMainContent {
+    width: 100%;
+    border-left: 1px solid #71717133;
+    margin-top: 7px;
+    margin-left: 1.5%;
+    background: #F3F2F1;
+    height: 99%;
+}
+
+.wbProcessFlowMainContentOpened {
+    background: #FAF9F8;
+    height: 92%;
+}
+
+.wbProcessFlowHeader {
+    background: rgba(var(--root-color), 1);
+    padding: 9px;
+}
+
+.wbProcessFlowHeaderMargin {
+    margin-top: -6px;
+}
+
+.wbProcessFlowHeaderText {
+    font-size: 0.95rem;
+    color: var(--primary-Text-Color) !important;
+    font-weight: bold;
+    max-width: 13rem;
+}
+
+.wbProcessFlowParticipantsText {
+    font-size: 12px;
+    color: var(--primary-Text-Color) !important;
+}
+
+.wbProcessFlowCloseIcon {
+    color: var(--primary-Text-Color);
+}
+
+.wbProcessFlowCloseIconDetail {
+    color: var(--primary-color);
+}
+
+.wbProcessFlowContents {
+    padding: 1.7% 0 1.5% 1%;
+}
+
+.wbProcessFlowContentsMCLI {
+    background: transparent !important;
+    border: none;
+    width: 100%;
+}
+
+.wbProcessFlowStartState {
+    background: #34A8531A 0% 0% no-repeat padding-box;
+    border: 1px solid #34A853;
+    width: 100%;
+    margin-right: 2%;
+}
+
+.wbProcessFlowTaskBackground {
+    border-radius: 4px;
+    width: -webkit-fill-available;
+}
+
+.wbProcessFlowTaskBackgroundSel {
+    box-shadow: 0px 0px 6px #00000040;
+}
+
+.wbProcessFlowTaskBackgroundReadyState {
+    background: #FBBC051A 0% 0% no-repeat padding-box;
+    border: 1px solid #FBBC05;
+}
+
+.wbProcessFlowTaskBackgroundNS {
+    background: #BCBCBC1A 0% 0% no-repeat padding-box;
+    border: 1px solid #BCBCBC;
+}
+
+.wbProcessFlowTaskBackgroundRejectedState {
+    background: #FF60601A 0% 0% no-repeat padding-box;
+    border: 1px solid #FF6060;
+}
+
+.wbProcessFlowTaskBackgroundCompletedState {
+    background: #34A8531A 0% 0% no-repeat padding-box;
+    border: 1px solid #34A853;
+}
+
+.wbProcessFlowTaskBackgroundReadyStateSel {
+    background: #FBBC051A 0% 0% no-repeat padding-box;
+    border: 2px solid #FBBC05;
+}
+
+.wbProcessFlowTaskBackgroundRejectedStateSel {
+    background: #FF60601A 0% 0% no-repeat padding-box;
+    border: 2px solid #FF6060;
+}
+
+.wbProcessFlowTaskBackgroundCompletedStateSel {
+    background: #34A8531A 0% 0% no-repeat padding-box;
+    border: 2px solid #34A853;
+}
+
+.wbProcessFlowTaskBackgroundNSSel {
+    background: #BCBCBC1A 0% 0% no-repeat padding-box;
+    border: 2px solid #BCBCBC;
+}
+
+.wbProcessFlowTaskHBoxULReadyState {
+    border-bottom: 0.5px solid #FBBC05;
+}
+
+.wbProcessFlowTaskHBoxULRejectedState {
+    border-bottom: 0.5px solid #FF6060;
+}
+
+.wbProcessFlowTaskHBoxULCompletedState {
+    border-bottom: 0.5px solid #34A853;
+}
+
+.wbProcessFlowTaskHBoxULNS {
+    border-bottom: 0.5px solid #BCBCBC;
+}
+
+.wbProcessFlowTaskHBoxPadding {
+    padding: 1% 3%;
+}
+
+.wbProcessFlowLabel {
+    color: var(--secondary-Text-Color) !important;
+    font-weight: 800;
+    font-size: 12px
+}
+
+.wbProcessFlowSubjectLabelHeader {
+    max-width: 81%;
+}
+
+.wbProcessFlowSubjectLabel {
+    color: var(--secondary-Text-Color) !important;
+    font-size: 12px;
+    flex-wrap: wrap;
+}
+
+.wbProcessFlowDescText {
+    font-size: 11.4px;
+    font-style: italic;
+    color: #4c4c4c !important;
+}
+
+.wbProcessFlowTaskCompletionTimeRejectedState {
+    color: #FF6060 !important;
+    font-size: 11px;
+}
+
+.wbProcessFlowTaskCompletionTimeReadyState {
+    color: #34A853 !important;
+    font-size: 11px;
+    margin-right: 0.25rem;
+}
+
+.wbProcessFlowTaskCompletionTimeResolvedState {
+    color: #e2b100 !important;
+    font-size: 11px;
+}
+
+.wbProcessFlowCreatedAtTime {
+    font-size: 11px;
+    color: #4c4c4c !important;
+    max-width: 37%;
+}
+
+.wbProcessFlowIcon {
+    border-radius: 52%;
+    color: var(--primary-Text-Color) !important;
+}
+
+.wbProcessFlowIconReadyState {
+    background: #FBBC05;
+    padding: 14% 15%;
+    font-size: 15px;
+}
+
+.wbProcessFlowIconRejectedState {
+    background: #FF6060;
+    padding: 13% 16.8%;
+}
+
+.wbProcessFlowIconCompletedState {
+    background: #34A853;
+    padding: 13% 16.8%
+}
+
+.wbProcessFlowIconNSState {
+    background: #BCBCBC;
+    padding: 16.5% 24%;
+    font-size: 13px;
+}
+
+.wbProcessFlowBar {
+    height: 100%;
+    margin-left: 35%;
+}
+
+.wbProcessFlowIconBarVbox {
+    width: 2rem;
+}
+
+.wbProcessFlowSubTaskVbox {
+    width: calc(100% + 17px);
+    margin-left: -18px;
+}
+
+.wbProcessFlowBarAudit {
+    height: 100%;
+    border-left: 2px dotted var(--primary-color);
+    margin-top: 3px;
+}
+
+.wbProcessFlowBarAuditIcon {
+    color: var(--primary-color);
+    font-size: 10px;
+    margin-top: 7px;
+}
+
+.wbProcessFlowAuditTime {
+    color: var(--primary-color);
+    text-align: left;
+    font-size: 12px;
+    margin-bottom: 2%;
+}
+
+.wbProcessStoryAuditValue {
+    background: #f3f3f3;
+    padding: 1.1%;
+    font-size: 12px;
+    margin-top: 1%;
+    border-left: 3px solid #cac7c7;
+    box-shadow: 2px 1px 1px 1px #0000001c;
+}
+
+.wbProcessFlowBarReadyState {
+    border-left: 2px dashed #FBBC05;
+}
+
+.wbProcessFlowBarCompletedState {
+    border-left: 2px solid #34A853;
+}
+
+.wbProcessFlowBarNSState {
+    border-left: 2px dashed #BCBCBC;
+}
+
+.wbProcessFlowBarRejectedState {
+    border-left: 2px dotted #FF6060;
+}
+
+.wbProcessFlowBarSTReadyState {
+    margin-top: 100%;
+    border-top: 2px dashed #FBBC05;
+}
+
+.wbProcessFlowBarSTCompletedState {
+    margin-top: 100%;
+    border-top: 2px solid #34A853;
+}
+
+.wbProcessFlowBarSTNSState {
+    margin-top: 100%;
+    border-top: 2px dashed #BCBCBC;
+}
+
+.wbProcessFlowBarSTRejectedState {
+    margin-top: 100%;
+    border-top: 2px dotted #FF6060;
+}
+
+.wbProcessFlowSubTask {
+    margin-left: 5%;
+}
+
+.wbProcessFlowFooterHbox {
+    padding: 3%;
+    border-top: 1px solid var(--secondary-background-color);
+    box-shadow: 0px -1px 1px #00000029;
+    background-color: var(--secondary-background-color) !important;
+    outline: none !important;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+
+.wbProcessFlowFooterInputHBox {
+    width: 86%;
+    background: var(--primary-Text-Color);
+    height: 78%;
+    margin-left: 3%;
+    margin-top: 1.6%;
+    border-radius: 2px;
+}
+
+.wbProcessFlowShowMoreText {
+    color: var(--primary-color) !important;
+    font-size: 12px;
+}
+
+.wbProcessFlowInformationVBox {
+    border-left: 0.5px solid #dcdcdc91;
+    /* border-radius: 3px; */
+    margin: 0 1.5% 0% 0.5%;
+    padding: 1% 0% 1.7% 1.2%;
+}
+
+.wbProcessFlowInformationSubjectLabel {
+    color: var(--secondary-Text-Color) !important;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.wbProcessFlowTaskCAKey {
+    color: #555555;
+}
+
+.wbProcessFlowTaskCA {
+    font-size: 12px;
+}
+
+.wbProcessFlowTaskDynamicDto {
+    padding: 1% 2% 2% 2%;
+    background: var(--page-background-color);
+    border-radius: 4px;
+    margin-top: 3%;
+}
+
+.wbProcessFlowTaskDynamicDtoInner {
+    margin: 5px 0px 0px 3px;
+    padding-right: 13px;
+}
+
+.wbProcessFlowAttachment {
+    height: 128%;
+    max-height: 50px;
+}
+
+.wbProcessFlowMsgBox {
+    border-bottom: 0.5px solid #d4d4d45e;
+    margin: 0 0 3% 0;
+    padding-bottom: 1%;
+}
+
+.wbProcessFlowMsgSentByName {
+    font-size: 11px;
+    color: #404040 !important;
+    max-width: 37%;
+}
+
+.wbProcessStoryChatSM .sapMBtnInner {
+    font-size: 11px;
+}
+
+.wbProcessFlowSelTaskArrow {
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+}
+
+.wbProcessFlowSelTaskArrowReady {
+    border-left: 12px solid #FBBC05;
+}
+
+.wbProcessFlowSelTaskArrowRejected {
+    border-left: 12px solid #FF6060;
+}
+
+.wbProcessFlowSelTaskArrowCompleted {
+    border-left: 12px solid #34A853;
+}
+
+.wbProcessFlowSelTaskArrowNS {
+    border-left: 12px solid #BCBCBC;
+}
+
+.wbProcessFlowAuditHeight {
+    max-height: 69%;
+}
+
+.wbProcessFlowChatHeight {
+    max-height: 82%;
+}
+
+.wbProcessFlowChatMsg {
+    font-size: 13px;
+}
+
+
+/************************ END - Classes related to Right Pane - Process Flow Module   ************************/
+
+
+/************************ START - Classes related to IMAGE PREVIEW   ************************/
+
+.wbImagePreviewImageCont {
+    max-height: 76vh;
+}
+
+.wbImagePreviewImage {
+    min-width: -webkit-fill-available;
+    max-block-size: -webkit-fill-available;
+}
+
+.wbImagePreviewBI {
+    width: 100%;
+}
+
+
+/************************ END - Classes related to IMAGE PREVIEW   ************************/
+
+
+/************************ START - Classes related to Right Pane -Task Level Chat Module   ************************/
+
+.wbRightPaneFrag {
+    max-width: 17rem;
+}
+
+.wbInboxCardList .sapMLIB.sapMLIBSelected {
+    background: rgba(var(--root-color), 0.2);
+    border-bottom: 0.5px solid var(--primary-color) !important;
+    /*border-left: 4px solid rgb(255, 96, 96, 0.8);*/
+}
+
+.wbInboxCardSelected {
+    background: rgba(var(--root-color), 0.35) !important;
+    border-bottom: 0.5px solid var(--primary-color) !important;
+}
+
+.wbTLChatMainContent {
+    width: 100%;
+    border-left: 1px solid #71717133;
+    margin-top: 9px;
+    background: #F3F2F1;
+    margin-left: 1.5%;
+}
+
+.wbTLChatHeader {
+    height: 15%;
+    background: rgba(var(--root-color), 1);
+    padding: 3%;
+}
+
+.wbTLChatHeaderText {
+    font-size: 0.95rem;
+    color: var(--primary-Text-Color) !important;
+    font-weight: bold;
+}
+
+.wbTLChatParticipantsText {
+    font-size: 12px;
+    color: var(--primary-Text-Color) !important;
+}
+
+.wbTLChatCloseIcon {
+    color: var(--primary-Text-Color);
+}
+
+.wbTLChatFooterHbox {
+    padding: 0% 3% 0% 3%;
+    position: relative;
+    bottom: 0;
+}
+
+.wbTLChatFooterInputHBox {
+    width: 86%;
+    background: var(--primary-Text-Color);
+    /*height: 78%;*/
+    margin-left: 3%;
+    padding-right: 2%;
+    border-radius: 2px;
+}
+
+.wbTLChatTypeMessageInput .sapMInputBaseContentWrapper {
+    border: none;
+}
+
+.wbTLChatTypeMessageInput .sapMInputBaseHeightMargin {
+    margin: 0;
+}
+
+.wbTLChatTypeMessageInput {
+    height: 75%;
+    width: 109%;
+    padding: 0px;
+}
+
+.wbTLChatSwitchBtn {
+    margin: 0 5.1%;
+    position: fixed;
+    align-content: center;
+    z-index: 10;
+}
+
+.wbTLChatAvatar {
+    margin-top: 34%;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 9px;
+    background: var(--primary-color);
+}
+
+.wbTLChatMsgVBox {
+    width: auto;
+    min-width: 3rem;
+    margin-left: 3%;
+    padding: 1% 2% 2% 2%;
+    border-radius: 4px;
+    box-shadow: 0px 0px 2px 0px #e6e6e6;
+    margin-top: 2.8%;
+    max-width: 80%;
+}
+
+.wbTLChatSentByName .sapMLabel .sapMLabelTextWrapper {
+    max-width: 100% !important;
+    min-width: 90% !important;
+}
+
+.wbTLCFileUploader {
+    margin-top: 4px;
+}
+
+.wbTLChatCarousel .sapMCrsl .sapMCrslHud a:hover,
+.sapMCrsl .sapMCrslHud a:focus {
+    box-shadow: 0 0 0 0.0625rem rgba(0, 0, 0, 0.42), 0 0.125rem 0.5rem 0 rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(var(--root-color), 1);
+    background: var(--page-background-color);
+}
+
+.wbTLChatCarousel {
+    background: transparent !important;
+    border: 1px solid transparent;
+}
+
+.wbTLChatCarousel .sapMCrslHud .sapMCrslPrev,
+.sapMCrslControls .sapMCrslNext,
+.sapMCrslHud .sapMCrslNext {
+    background: var(--primary-Text-Color);
+    border: 1px solid rgba(var(--root-color), 1);
+    color: rgba(var(--root-color), 1);
+    height: 25px;
+    width: 25px;
+    margin-top: 1% !important;
+}
+
+.wbTLChatCarousel .sapMCrslHud .sapMCrslPrev,
+.sapMCrslControls .sapMCrslPrev,
+.sapMCrslHud .sapMCrslPrev {
+    background: var(--primary-Text-Color);
+    border: 1px solid rgba(var(--root-color), 1);
+    color: rgba(var(--root-color), 1);
+    height: 25px;
+    width: 25px;
+    margin-top: 1% !important;
+}
+
+.wbTLChatCarousel .sapMCrslItem {
+    margin-right: 0.5rem;
+    /* width: 100%; */
+    width: 17.5% !important;
+}
+
+.wbTLChatTypeMessageInput .sapMToken {
+    border: 1px solid transparent !important;
+    background: #fafafa !important;
+    font-size: .875rem;
+    border-radius: 0.25rem;
+    padding-left: 0.3125rem;
+    color: rgba(var(--root-color), 1);
+}
+
+.wbChatEmojiSize .sapMBtnContent {
+    font-size: 18.2px;
+}
+
+.wbChatRecdMsg {
+    font-size: 13px;
+}
+
+.wbChatAttachedImg {
+    box-shadow: 1px 1px 3px #c6ccc6;
+    border-radius: 4px;
+}
+
+.wbChatAttachmentGrid {
+    margin-top: 3px;
+}
+
+.wbChatRecdMsgVbox {
+    background: var(--page-background-color);
+}
+
+.wbChatSentMsgVbox {
+    background: rgba(var(--root-color), 0.1);
+}
+
+.wbChatMsgHeader {
+    min-width: 75%;
+}
+
+.wbTLChatSentByName {
+    color: #555555 !important;
+    text-align: left;
+    font-size: 10px;
+}
+
+.wbChatImage {
+    width: fit-content;
+    height: fit-content;
+    max-width: 100%;
+    border-radius: 4px;
+    max-height: 5rem;
+}
+
+.wbChatAttachmentGridList {
+    padding-bottom: 7px !important;
+    margin: 0px;
+}
+
+.wbChatAttachmentTile {
+    padding: 0 4px;
+}
+
+.wbChatAttachmentName {
+    font-size: 11.5px;
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbProcessFlowAttachmentCLI {
+    border: none;
+    padding: 5px;
+    margin: 3px 4px 3px 0px;
+    /* width: calc(100% + 1rem); */
+    background: var(--page-background-color) !important;
+    border-radius: 4px;
+    box-shadow: 0px 3px 6px #0000001c;
+}
+
+.wbTLChatAttachmentCLI {
+    border: none;
+    margin: 3px 0px;
+    /*width: calc(100% + 1rem);*/
+    background: var(--page-background-color) !important;
+    border-radius: 4px;
+    box-shadow: 0px 3px 6px #0000001c;
+}
+
+.wbChatFGrid {
+    display: -webkit-box !important;
+}
+
+.wbChatScrollContent {
+    padding: 0 7px;
+}
+
+.wbChatAvatar {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 9px;
+    background: var(--primary-color);
+}
+
+.wbChatDeleteAttachmentIcon {
+    font-size: 11px;
+    color: rgba(var(--root-color), 1);
+}
+
+
+/************************ END - Classes related to Right Pane - Task Level Chat Module   ************************/
+
+
+/************************ START - Classes related to Chat Bot Module   ************************/
+
+.wbChatBotMainContent {
+    height: 100%;
+}
+
+.wbChatBotMsgAvatar {
+    margin: 1% 0;
+}
+
+.wbTLChatBotHeader {
+    height: 7.8%;
+    background: rgba(var(--root-color), 1);
+    padding: 3%;
+}
+
+.wbChatBotMsgVBox {
+    width: auto;
+    margin: 0 1% 7px 1%;
+    padding: 2px 6px 5px 6px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 2px 0px #e6e6e6;
+    max-width: 80%;
+}
+
+.wbChatBotQRButtons {
+    margin: 0% 1%;
+}
+
+.wbTypingBlock {
+    align-items: center;
+    display: flex;
+    height: 17px;
+}
+
+.wbTypingContainer .wbTypingDot {
+    background-color: #90949cab;
+}
+
+.wbTypingDot {
+    -webkit-animation: mercuryTypingAnimation 1.5s infinite ease-in-out;
+    border-radius: 50%;
+    display: inline-block;
+    height: 5px;
+    margin-right: 3px;
+    width: 5px;
+}
+
+@-webkit-keyframes mercuryTypingAnimation {
+    0% {
+        -webkit-transform: translateY(0px)
+    }
+
+    28% {
+        -webkit-transform: translateY(-5px)
+    }
+
+    44% {
+        -webkit-transform: translateY(0px)
+    }
+}
+
+.wbTypingDot:nth-child(1) {
+    -webkit-animation-delay: 200ms;
+}
+
+.wbTypingDot:nth-child(2) {
+    -webkit-animation-delay: 300ms;
+}
+
+.wbTypingDot:nth-child(3) {
+    -webkit-animation-delay: 400ms;
+}
+
+
+/************************ END - Classes related to Right Pane -Task level Chat Bot Module   ************************/
+
+.wbCreateTaskTable .sapMListTbl {
+    width: 100%;
+}
+
+.wbCreateTaskStretchControl {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.wbCreateTaskTableToEnd {
+    grid-row-end: var(--tablePosition);
+}
+
+.wbCreateTaskDescriptionWrap {
+    grid-row-start: 1;
+}
+
+.wbSubTaskVBoxHeight {
+    max-height: 75vh;
+}
+
+.wbCreateTaskHeaderLabelClass.sapMLabel {
+    color: var(--secondary-Text-color);
+    opacity: 0.75;
+    letter-spacing: 0.25px;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.wbCreateTaskTitleClass.sapMText {
+    font-size: 17px;
+}
+
+.wbCreateTaskTable .sapMListTblHeader {
+    background: rgba(var(--root-color), 0.06);
+    border-radius: 5px;
+}
+
+.wbCreateTaskTable .sapMTableTH {
+    background: rgba(var(--root-color), 0.06);
+    border: none !important;
+    vertical-align: middle;
+}
+
+.wbCreateTaskFragmentIcon {
+    color: var(--primary-color);
+    margin-top: 13px;
+}
+
+.wbCreateMulPanelClass .sapMPanelContent {
+    margin: 0rem !important;
+    padding: 0rem 0rem 0.5rem 2.5rem !important;
+}
+
+.wbCreateTaskFragmentAttachmentImage {
+    width: 42px;
+    height: 42px;
+    border-radius: 3px;
+    margin: 6px 2px 6px 0;
+    box-shadow: 0 0 0 0.0625rem #d9d9d94a, 0 0.1rem 0.5rem 0 #d9d9d966;
+}
+
+.wbCreateTaskFragmentAttachmentDeleteIcon {
+    color: red;
+    margin-top: 6px;
+    font-size: 12px;
+    padding-left: 2px;
+}
+
+.wbCreateTaskFragmentUploadExcel {
+    margin-top: 4px;
+}
+
+.wbCreateTaskAttachmentButtonClass {
+    margin-top: 0.2rem;
+}
+
+.wbCreateTaskAttachmentClass {
+    width: fit-content;
+    padding: 0rem 0.5rem;
+    border-radius: 4px;
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+.wbCreateTaskAttachmentSizeText.sapMText {
+    font-size: 12px;
+}
+
+.wbCreateTaskInputWrapper .sapMInputBaseContentWrapper {
+    height: 36px;
+}
+
+.wbCreateTaskTextAreaWrapper .sapMInputBaseContentWrapper {
+    height: 72px;
+}
+
+.wbCreateTaskInputWrapper .sapMInputBaseIcon {
+    line-height: 2.15rem !important;
+}
+
+
+/************************ END - Classes related to Right Pane - Create Button  ************************/
+
+
+/**********Start - Right click menu classes***************/
+
+.wbRightClickMenuStyle .sapMSLI {
+    height: 1.8rem;
+
+}
+
+.wbRightClickMenuStyle .sapMSLIInfo {
+    display: none !important;
+}
+
+.wbRightClickPopoverStyle.sapMPopover {
+    max-height: auto !important;
+    border-radius: none !important;
+    border: none !important;
+    /* box-shadow: 0 0 0 0.0625rem #d9d9d9, 0 0.625rem 1.875rem 0 #d9d9d9  !important; */
+}
+
+.wbRightClickPopoverStyle.sapMPopover .sapMPopoverCont {
+    overflow: hidden !important;
+    background-color: #fff;
+    margin: 10;
+}
+
+.sapMPopoverArr:after {
+    box-shadow: none;
+}
+
+.wbRightClickIconStyle.sapMLIB {
+    padding: 0 1rem 0 1rem;
+}
+
+.wbRightClickActionStyle.sapMLIB {
+    padding: 0 1rem 0 2rem;
+}
+
+.wbRightClickIconStyle .sapMSLIImgIcon {
+    font-size: 0.9rem;
+}
+
+.wbCreateTaskButton .sapMBtnInner {
+    background: var(--page-background-color) !important;
+    color: var(--primary-Color) !important;
+    border-color: var(--page-background-color) !important;
+}
+
+.wbCreateTaskFileUploader .sapMBtnInner {
+    background: var(--page-background-color) !important;
+    color: var(--primary-Color) !important;
+    border-color: var(--page-background-color) !important;
+}
+
+.wbCreateTaskFileUploader .sapMBtnIcon {
+    color: var(--primary-color) !important;
+}
+
+.wbCreateTaskAddIcon {
+    margin-left: 22%;
+}
+
+
+/**********End - Right click menu classes***************/
+
+
+/************************ End - Common ************************/
+
+/**********Start - Filter popover related classes***********/
+
+.wbFilterPopoverStyle.sapMPopover {
+    border-radius: 0px !important;
+    box-shadow: 0px 2px 5px 1px rgba(220, 220, 220, 0.47);
+}
+
+.wbFilterClearTextStyle {
+    color: #6a6d70;
+}
+
+/**********End - Filter popover related classes***********/
+
+/************************ Start - Inbox related Classes ************************/
+
+/***************** Inbox - view classes*********************/
+
+.wbInboxPage .sapMPageEnableScrolling {
+    height: 100% !important;
+}
+
+.wbInboxIconTabBackground .sapMITBContent {
+    padding: 0rem !important;
+    position: relative;
+    box-shadow: none !important;
+    z-index: 0;
+}
+
+.wbInboxIconTabBackground .sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected .sapMITBText {
+    color: var(--secondary-Text-Color);
+    font-weight: 600;
+}
+
+.wbInboxIconTabBackground .sapMITH.sapMITBInLine .sapMITBHead {
+    margin-top: 0;
+    margin-left: 2rem !important;
+    margin-right: 0;
+}
+
+.wbInboxIconTabBackground .sapMITBInLine.sapMITBTextOnly .sapMITBVertical.sapMITBFilter .sapMITBContentArrow {
+    height: .65rem;
+}
+
+.wbInboxIconTabBackground .sapMITBItem {
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbInboxIconTabBackground .sapMITBSelected .sapMITBContentArrow::after {
+    background: var(--primary-color);
+}
+
+.wbInboxIconTabBackground .sapMITH {
+    box-shadow: none !important;
+    height: 2.5625rem !important;
+    z-index: 0 !important;
+    margin-top: -1.25rem;
+}
+
+.wbInboxIconTabBackground .sapMITH .sapMITBHead.sapMITBInLine {
+    margin-left: 2rem !important;
+    margin-top: 0;
+}
+
+.wbInboxIconTabBackground .sapMITH.sapMITBInLine .sapMITBHead {
+    margin-top: 0;
+    margin-left: 2rem !important;
+}
+
+.wbInboxIconTabBackground .sapMITBInLine.sapMITBTextOnly .sapMITBVertical.sapMITBFilter .sapMITBContentArrow {
+    height: .65rem;
+}
+
+.wbInboxIconTabBackground .sapMITBItem {
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbInboxIconTabBackground .sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected>.sapMITBText {
+    color: var(--secondary-Text-Color) !important;
+    font-weight: 600;
+}
+
+.wbInboxIconTabBackground .sapMITBSelected>.sapMITBContentArrow::after {
+    background: var(--primary-color);
+}
+
+.wbInboxPaginationClass {
+    background: var(--transparent-button-background);
+    border-radius: 3px;
+    height: 1.5rem;
+}
+
+.wbInboxPaginationLinkClass .sapMBtnInner {
+    border: none;
+}
+
+.wbInboxPaginationLinkClass .sapMBtnIcon {
+    color: var(--primary-color);
+}
+
+.sapMIBar-CTX .wbInboxPaginationLinkClass.sapMBtn:hover>.sapMBtnHoverable:not(.sapMBtnActive) {
+    background-color: transparent !important;
+    color: var(--primary-color);
+}
+
+.wbInboxPaginationLinkColor.sapMLnk {
+    color: var(--primary-color) !important;
+    width: 2rem;
+    text-align: center;
+    height: 1rem;
+    padding: 0.25rem 0rem;
+}
+
+.wbInboxActivePaginationLinkColor.sapMLnk {
+    color: var(--primary-Text-Color) !important;
+    background: var(--primary-color);
+    width: 2rem;
+    text-align: center;
+    height: 1rem;
+    padding: 0.25rem 0rem;
+}
+
+.wbInboxFilterContClass {
+    margin-top: 1.25rem;
+    height: 0em;
+}
+
+.wbInboxFilterClass {
+    z-index: 1;
+}
+
+.wbInboxCheckBoxAlign {
+    margin-left: 0.3rem;
+}
+
+.wbInboxTableHeaderText .sapMText {
+    color: var(--primary-Text-Color) !important;
+    font-size: 16px;
+}
+
+
+/****************Start - Table view related classes***********************/
+
+.wbInboxTableClass {
+    padding: 0.5rem;
+}
+
+.wbTableViewPaddingClass {
+    padding: 0rem 0.5rem;
+}
+
+.wbAdvSearchFieldStyle .sapMSFF {
+    border-radius: 1rem;
+    border: 1px solid #d9d9d9;
+}
+
+.wbAdvSearchFieldStyle.sapMSF {
+    padding-top: 0.6rem;
+}
+
+.wbTaskHdrTextClass.sapMText {
+    color: var(--secondary-Text-Color);
+    font-weight: 600;
+}
+
+.wbUiTableStyles.sapUiTableColHdrCnt {
+    background-color: #F2F3F4;
+}
+
+.wbUiTableStyles .sapUiTableCell .sapMLabel {
+    color: var(--secondary-Text-Color);
+    font-weight: 600 !important;
+    opacity: 0.8 !important;
+}
+
+.wbUiTableStyles .sapUiTableCnt {
+    border-radius: 3px 3px 3px 0px;
+}
+
+.wbUiTableStyles .sapUiTableRowSelectionCell::after {
+    border: 1.3px solid var(--secondary-Text-Color);
+    /*opacity: 0.2;*/
+}
+
+.wbUiTableStyles .sapUiTableSelectAllCheckBox::after {
+    border: none;
+    background-color: var(--secondary-background-color);
+}
+
+.wbUiTableStyles .sapUiTableColHdrCnt {
+    border-bottom: none;
+}
+
+.wbUiTableStyles.sapUiTableSelModeMultiToggle .sapUiTableRowSelectionHeaderCell.sapUiTableSelAllVisible .sapUiTableSelectAllCheckBox {
+    display: none;
+    width: 0rem !important;
+}
+
+.wbUiTableStyles.sapUiTableRowSelectors:not(.sapUiTableRowHighlights) .sapUiTableRowSelectionHeaderCell {
+    width: 0rem;
+    height: 0rem;
+}
+
+.wbUiTableStyles .sapUiTableRowSel>.sapUiTableCell {
+    border-bottom-color: #e5e5e5 !important;
+}
+
+.wbUiTableStyles .sapUiTableContentRow.sapUiTableRowSel {
+    background-color: var(--hover-background-color);
+}
+
+
+/**************** End - Table view related classes ***********************/
+
+
+/************************ Start - InboxCard related Classes ************************/
+
+.wbInboxContainerBorderClass {
+    border: 1px solid var(--secondary-background-color);
+}
+
+
+/********** start - classes using in hover functionality *************/
+
+.wbCardViewList {
+    width: auto;
+    height: 2.5rem;
+}
+
+.wbCardViewList:hover {
+    background: var(--page-background-color);
+}
+
+.wbInboxCardListDisplay.sapUiSizeCompact .sapMCbBg {
+    display: block !important;
+}
+
+/*.wbInboxActionContClass,*/
+.wbInboxCardBtnVisible,
+.wbShowDateClass {
+    display: block;
+}
+
+.wbCardViewList:hover .wbInboxActionContClass,
+.wbCardViewList:hover .wbInboxCardBtnVisible,
+.wbCardViewList:hover .wbShowTimeClass {
+    display: block;
+}
+
+.wbShowTimeClass,
+.wbInboxActionContClass {
+    display: none;
+}
+
+.wbCardViewList:hover .wbShowDateClass {
+    display: none;
+}
+
+
+
+/**********end - classes using in hover functionality*************/
+
+.wbInboxActionBackgroundClass {
+    background: var(--primary-Text-Color);
+}
+
+.wbInboxActionTransparentClass {
+    background: transparent;
+}
+
+.wbInboxListStatusRedBorderClass {
+    border-left: 4px solid rgb(255, 96, 96, 0.8);
+}
+
+.wbInboxListStatusGreenBorderClass {
+    border-left: 4px solid rgb(52, 168, 83, 0.8);
+
+}
+
+.wbTaskBoardBorderClass {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.wbInboxListStatusAmberBorderClass {
+    border-left: 4px solid rgb(250, 174, 51, 0.8);
+}
+
+.wbInboxTextCreatedAtClass.sapMText {
+    font-size: 0.75rem;
+    color: var(--secondary-Text-Color);
+    opacity: 39%;
+}
+
+.wbInboxTextCreatedByClass.sapMText {
+    font-weight: 600;
+    color: var(--secondary-Text-Color);
+}
+
+.wbInboxTextDraftClass.sapMText {
+    color: var(--primary-color);
+}
+
+.wbInboxStatusTextClass.sapMText {
+    text-align: right !important;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+.wbInboxMoreIconClass.sapUiIcon {
+    font-size: x-small;
+    color: var(--secondary-Text-Color);
+    opacity: 32%;
+}
+
+.wbInboxCardActionButton .sapMBtnInner .sapMBtnIcon.sapMImg {
+    height: 0.875rem;
+    width: 0.875rem;
+    margin-top: 0.3rem;
+    color: var(--primary-color) !important;
+}
+
+.wbChatPinActionButton .sapMBtnInner .sapMBtnIcon.sapMImg {
+    height: 0.875rem;
+    width: 0.875rem;
+    margin-top: 0.3rem;
+    color: var(--primary-color) !important;
+    position: absolute;
+    right: 2rem;
+}
+
+.wbChatPinActionButton .sapMBtnInner {
+    border-radius: none;
+    border: none;
+    background: transparent;
+    min-width: 1.5rem;
+}
+
+.wbInboxCardActionButton .sapMBtnInner {
+    border-radius: none;
+    border: none;
+    background: transparent;
+    min-width: 1.5rem;
+}
+
+.wbInboxRemoveBtnClass .sapMBtnInner.sapMBtnReject {
+    background: #FF60601A;
+    border: none;
+    border-radius: 3px;
+    color: #FF6060;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+
+/************************ End - InboxCard related Classes ************************/
+
+
+/************************ Start - InboxTaskBoard related Classes ************************/
+
+.wbTaskBoardClass {
+    padding: 0.5rem;
+    margin: 0rem 0.5rem;
+    background: var(--page-background-color)
+}
+
+.wbTaskBoardPadding {
+    /*used for equal padding*/
+    padding: 0.5rem;
+}
+
+.wbTaskTrayFooterClass {
+    width: 100%;
+    padding: 0.25rem 0.5rem;
+    border-top: 1px solid #efefef;
+}
+
+.wbTaskBoardTray {
+    background: var(--secondary-background-color);
+    border-radius: 10px;
+    height: fit-content;
+    padding: 0.5rem 5px 0.5rem 4px;
+}
+
+.wbTaskBoardTrayLabel {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin: 0rem 0rem 0.5rem 0.5rem;
+}
+
+.wbTaskBoardTrayTaskLabel {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: .825rem;
+}
+
+.wbTaskBoardTrayTaskStatusLabel {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: .725rem;
+}
+
+.wbTaskBoardTrayMainContent {
+    background: var(--page-background-color);
+    border-radius: 6px;
+    margin: 0.5rem 4px 0 4px;
+    box-shadow: 1px 1px 5px rgba(var(--root-color), 0.35);
+}
+
+.wbTaskBoardTrayMainContent:last-child {
+    margin-bottom: 5px;
+}
+
+.wbTaskBoardTrayMainContent:hover {
+    background: rgba(var(--root-color), 0.05);
+    box-shadow: 1px 1px 7px rgba(var(--root-color), 0.35);
+}
+
+.wbTaskBoardUnreadColor {
+    border-left: 5px solid var(--primary-color);
+}
+
+.wbTaskBoardTrayTaskChildContent {
+    background: var(--page-background-color);
+    width: 100%;
+    border-radius: 6px;
+}
+
+.wbTaskBoardTrayTaskChildContent:hover {
+    background: rgba(var(--root-color), 0.05);
+}
+
+.wbTaskBoardCommentIcon.sapUiIcon {
+    padding-top: 3px;
+    padding-left: 6px;
+    font-size: 14px;
+    color: rgb(250, 174, 51, 0.8);
+}
+
+.wbTaskBoardTaskText {
+    font-size: .8rem;
+}
+
+.wbTaskBoardCarousalColor {
+    background: var(--page-background-color)
+}
+
+.wbTaskBoardCarousal.sapMCrslFluid .sapMCrslItem {
+    width: 23.5% !important;
+}
+
+.wbTaskBoardMarginClass {
+    margin: 0.07rem 0.025rem;
+}
+
+/************************ End - InboxTaskBoard related Classes ************************/
+
+
+/************************ Start - Task Detail View Page related Classes ************************/
+.wbTaskDetailAvatar {
+    height: 1.8rem;
+    width: 1.8rem;
+    font-size: 13px;
+    background: var(--primary-color);
+}
+
+.wbTaskDetailAvatar .sapFAvatarInitialsHolder {
+    color: var(--page-background-color) !important;
+}
+
+.wbTaskDetailiFrameClass {
+    margin: 1rem;
+    width: 97.5%;
+    border-radius: 4px;
+    border: 1px solid rgba(var(--root-color), 0.1) !important;
+    height: -webkit-fill-available !important;
+}
+
+.wbTaskDetailHeaderClass {
+    padding: 0.75rem 1.5%;
+    background: var(--page-background-color);
+}
+
+.wbTaskDetailHeaderText.sapMText {
+    font-size: 16px;
+}
+
+.wbPreviewGraph {
+    width: fit-content;
+    margin-bottom: 0.5rem;
+    margin-left: -4.25rem;
+}
+
+.wbPreviewTaskFlowArrow .sapSuiteUiCommonsMicroProcessFlowItemSeparatorWrapper {
+    height: 1.5px !important;
+    width: 5rem !important;
+    background-color: var(--primary-color) !important;
+}
+
+.wbPreviewTaskFlowArrow .sapSuiteUiCommonsMicroProcessFlowItem {
+    height: 50px !important;
+    width: 50px !important;
+    color: var(--primary-color) !important;
+    border: 2px solid;
+}
+
+.wbPreviewTaskFlowArrow .sapSuiteUiCommonsMicroProcessFlowItem .sapUiIcon:not(.sapMLIBImgNav):not(.sapMBtnIcon) {
+    font-size: 1.5rem;
+}
+
+.wbTaskDetailHeaderIconClass.sapUiIcon {
+    color: var(--primary-color);
+}
+
+.wbTaskDetailCreatedInfoClass {
+    background: rgba(var(--root-color), 0.1);
+    margin: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.wbTaskDetailCreatedByContentClass {
+    padding: 0.5rem 0.75rem;
+}
+
+.wbTaskDetailCreatedByBorderClass {
+    border-bottom: 0.5px solid rgba(112, 112, 112, 0.26);
+}
+
+.wbTaskDetailCreatedByTextClass.sapMText {
+    font-size: 13px;
+    opacity: 0.72;
+}
+
+.wbTaskDetailCreatedByNameClass.sapMText {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.wbTaskDetailContentClass {
+    background: #EFEFEF;
+    border: 1px solid rgba(var(--root-color), 0.1);
+    border-radius: 4px;
+    margin: 0.5rem 1rem;
+}
+
+.wbTaskDetailContentMargin {
+    margin: 0.5rem 0.75rem !important;
+}
+
+.wbTaskTemplateContentClass {
+    background: #EFEFEF;
+    border-bottom: 1px solid rgba(var(--root-color), 0.1);
+}
+
+.wbFormTemplateBorderClass {
+    background: #EFEFEF;
+    border: 1px solid rgba(var(--root-color), 0.1);
+    border-radius: 4px;
+}
+
+.wbFormApprovedStatusText.sapMText {
+    color: rgb(52, 168, 83, 0.8) !important;
+}
+
+.wbFormReturnedStatusText.sapMText {
+    color: rgb(255, 96, 96, 0.8) !important;
+}
+
+.wbFormPendingStatusText.sapMText {
+    color: rgb(250, 174, 51, 0.8) !important;
+}
+
+.wbTaskDetailInputWrapper .sapMInputBaseContentWrapper {
+    border: 0.4000000059604645px solid rgba(var(--root-color), 0.2);
+    border-radius: 2px;
+    background: var(--primary-Text-Color) !important;
+}
+
+.wbTaskDetailInputWrapper .sapMInputBaseIconContainer .sapMInputBaseIcon {
+    color: rgba(var(--root-color), 0.2);
+}
+
+.wbTaskDetailInputWrapper .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover {
+    background: var(--primary-Text-Color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.wbTaskDetailPaddingClass {
+    padding: 0.5rem 0.75rem !important;
+}
+
+.wbTaskDetailGridPositionClass {
+    margin-top: -2.5rem;
+}
+
+.wbTaskDetailAttachmentClass {
+    width: 101.75%;
+    margin-left: -0.65rem;
+    padding: 0.25rem 0.75rem;
+    border-bottom: 0.5px solid rgba(112, 112, 112, 0.26);
+}
+
+.wbTaskDetailSubHeaderClass {
+    background: #EFEFEF;
+    width: 100%;
+    border-bottom: 0.5px solid rgba(112, 112, 112, 0.26);
+    padding: 0.5rem;
+}
+
+.wbTaskDetailAribaTableClass {
+    margin: 0.25rem 0rem;
+}
+
+.wbTaskDetailFileNameClass {
+    color: var(--primary-color) !important;
+}
+
+.wbTaskDetailFileSizeClass {
+    opacity: 80%;
+    font-size: 13px;
+}
+
+
+/************************ End - Task Detail View Page related Classes ************************/
+
+
+/************Start - Filter List Related Classes**********************/
+
+.wbFilterListMenu .sapUiMnuItmTxt {
+    font-weight: 600;
+    font-size: 12.8px;
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbFilterListMenu .sapUiMnuItmSbMnu {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--secondary-Text-Color);
+}
+
+.wbFilterListMenu .sapUiMnuItmL+.sapUiMnuItmTxt {
+    margin-left: 1.7rem;
+}
+
+.wbFilterListMenuSelectedIcon .sapUiMnuItmIco {
+    font-weight: 600;
+    font-size: 12.8px;
+    color: red !important;
+}
+
+.wbFilterListMenuIcon .sapUiMnuItmIco {
+    font-weight: 600;
+    font-size: 12.8px;
+    color: var(--secondary-Text-Color) !important;
+}
+
+
+/************Start - Filter List Related Classes**********************/
+
+
+/************************ End - Inbox related Classes ************************/
+
+
+/************************ Start - AdminConsole Page related Classes ************************/
+
+.wbAdminIconTabBackground .sapMITBContent {
+    padding: 0rem;
+    position: relative;
+    background: var(--page-background-color) !important;
+    border-left: 1px solid rgba(var(--root-color), 0.1) !important;
+    border-right: 1px solid rgba(var(--root-color), 0.1) !important;
+    border-bottom: 1px solid rgba(var(--root-color), 0.1) !important;
+    border-bottom-left-radius: 0.25rem !important;
+    border-bottom-right-radius: 0.25rem !important;
+}
+
+.wbAdminIconTabBackground .sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected .sapMITBText {
+    color: var(--secondary-Text-Color);
+    font-weight: 600;
+}
+
+.wbAdminIconTabBackground .sapMITBInLine.sapMITBTextOnly .sapMITBVertical.sapMITBFilter .sapMITBContentArrow {
+    height: .65rem;
+}
+
+.wbAdminIconTabBackground .sapMITBItem {
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbAdminIconTabBackground .sapMITBSelected .sapMITBContentArrow::after {
+    background: var(--primary-color);
+}
+
+.wbAdminIconTabBackground .sapMITH {
+    box-shadow: none !important;
+    height: 2.5625rem !important;
+    border: 1px solid rgba(var(--root-color), 0.1) !important;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.wbAdminIconTabBackground .sapMITBInLine.sapMITBTextOnly .sapMITBVertical.sapMITBFilter .sapMITBContentArrow {
+    height: .65rem;
+}
+
+.wbAdminIconTabBackground .sapMITBItem {
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbAdminIconTabBackground .sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected>.sapMITBText {
+    color: var(--secondary-Text-Color) !important;
+    font-weight: 600;
+}
+
+.wbAdminIconTabBackground .sapMITBSelected>.sapMITBContentArrow::after {
+    background: var(--primary-color);
+}
+
+.wbAdminIconTabBackground .sapMITH {
+    box-shadow: none !important;
+    height: 2.5625rem !important;
+    padding: 0rem 1rem !important;
+}
+
+.wbAdminIconTaskTabBackground .sapMITBContent {
+    padding: 0rem;
+    position: relative;
+    background: var(--page-background-color) !important;
+    border: none !important;
+}
+
+.wbAdminIconTaskTabBackground .sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected .sapMITBText {
+    color: var(--secondary-Text-Color);
+    font-weight: 600;
+}
+
+.wbAdminIconTaskTabBackground .sapMITBInLine.sapMITBTextOnly .sapMITBVertical.sapMITBFilter .sapMITBContentArrow {
+    height: .65rem;
+}
+
+.wbAdminIconTaskTabBackground .sapMITBItem {
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbAdminIconTaskTabBackground .sapMITBSelected .sapMITBContentArrow::after {
+    background: var(--primary-color);
+}
+
+.wbAdminIconTaskTabBackground .sapMITH {
+    box-shadow: none !important;
+    height: 2.5625rem !important;
+    border-top: 0rem !important;
+    border-radius: 0rem !important;
+    border-right: 0rem !important;
+    border-left: 0rem !important;
+    border-bottom: 1px solid rgba(var(--root-color), 0.1) !important;
+}
+
+.wbAdminIconTaskTabBackground .sapMITBInLine.sapMITBTextOnly .sapMITBVertical.sapMITBFilter .sapMITBContentArrow {
+    height: .65rem;
+}
+
+.wbAdminIconTaskTabBackground .sapMITBItem {
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbAdminIconTaskTabBackground .sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected>.sapMITBText {
+    color: var(--secondary-Text-Color) !important;
+    font-weight: 600;
+}
+
+.wbAdminIconTaskTabBackground .sapMITBSelected>.sapMITBContentArrow::after {
+    background: var(--primary-color);
+}
+
+.wbAdminIconTaskTabBackground .sapMITH {
+    box-shadow: none !important;
+    height: 2.5625rem !important;
+    padding: 0rem 1rem !important;
+}
+
+.wbDialogActionFooterClass {
+    box-shadow: 0px -1px 2px #00000029 !important;
+    padding: 0.25rem 0.5rem;
+}
+
+.wbAdminGraphIconContent {
+    padding: 0.5rem;
+}
+
+.wbAdminGraphIconSizeClass {
+    font-size: xxx-large;
+    padding: 0.25rem;
+    background: transparent;
+    border-radius: 0.25rem;
+}
+
+.wbAdminManageGraphIconSizeClass {
+    font-size: 1.6rem;
+    padding: 0.25rem;
+    background: transparent;
+    border-radius: 0.25rem;
+}
+
+.wbAdminGraphSelIconClass {
+    background: rgba(var(--root-color), 0.2);
+}
+
+.wbAdminGraphAxisLabel.sapMLabel {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: black;
+    font-style: italic;
+}
+
+.wbAdminGraphGridClass .sapFGridList .sapMLIB:not(.sapMGHLI) {
+    border-radius: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    max-height: 1.85rem !important;
+    margin-right: 0.5rem !important;
+}
+
+.wbAdminGraphGridClass .sapFGridListDefault {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(34.4rem, 1fr)) !important;
+    grid-gap: 0.25rem !important;
+}
+
+/************************ Start - AdminConsole (Common & Custom Attributes) Page related Classes ************************/
+
+.wbAdminNoteTextClass.sapMText {
+    color: #6b6a6a;
+    font-style: italic;
+}
+
+.wbAdminActionSecClass {
+    background: var(--secondary-background-color);
+}
+
+.wbAdminCustActiveText.sapMText {
+    background: var(--transparent-button-background);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    color: var(--secondary-Text-Color);
+}
+
+.wbAdminCustActivatedText.sapMText {
+    background: var(--primary-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    color: var(--primary-Text-Color);
+}
+
+.wbAdminGridClass .sapFGridList .sapMLIB:not(.sapMGHLI) {
+    border-radius: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    max-height: 1.85rem !important;
+    margin-right: 0.5rem !important;
+}
+
+.wbAdminGridClass .sapFGridListDefault {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(32.5rem, 1fr)) !important;
+    grid-gap: 0.25rem !important;
+}
+
+.wbAdminCustLabelProcess.sapMLabel {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: black;
+}
+
+.wbAdminWorkLoadLabel.sapMLabel {
+    font-size: 16px !important;
+}
+
+.wbAdminSelectListClass .sapMSelectListItemBaseSelected {
+    background: rgba(var(--root-color), 0.12);
+    color: var(--primary-color);
+    font-weight: 600;
+    border-bottom: none;
+}
+
+
+/************************ End - AdminConsole (Common & Custom Attributes) Page related Classes ************************/
+
+
+/************************ Start - AdminConsole (WorkFlow) Page related Classes ************************/
+
+.wbAdminWfProcessContainer {
+    box-shadow: 0px 1.5px 3px #00000029 !important;
+    background: var(--primary-Text-Color);
+}
+
+.wbAdminWfInputContainer {
+    border-radius: 3px;
+    background: var(--secondary-background-color);
+    margin-top: 0.15rem;
+    height: 1.625rem;
+}
+
+.wbAdminWfRuleBasedInputContainer {
+    margin-top: 0.15rem;
+    height: 1.625rem;
+}
+
+.wbAdminWfPanelContentBorder {
+    border-radius: 4px;
+    border: 1px solid rgba(var(--root-color), 0.1);
+    margin: 0.5rem 1.25rem;
+}
+
+.wbAdminWfPanelClass .sapMPanelContent {
+    border-bottom: none !important;
+    padding: 0rem !important;
+}
+
+.wbAdminPanelContentHeaderClass {
+    padding: 0.5rem;
+    height: 2rem;
+
+    border-bottom: 0.5px solid rgba(112, 112, 112, 0.26);
+}
+
+.wbAdminWfPanelClass .sapMBtn:hover>.sapMBtnHoverable {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.wbAdminWfPanelClass .sapMBtn {
+    padding: 0rem !important;
+    margin-left: -0.5rem !important;
+}
+
+.wbAdminWfPanelClass.sapMPanel .sapMPanelWrappingDiv .sapMPanelHdr,
+.wbAdminWfPanelClass.sapMPanel .sapMPanelWrappingDivTb .sapMIBar.sapMTB {
+    margin-right: 0rem !important;
+    margin-left: 1.25rem !important;
+}
+
+.wbAdminWfPanelInputMarginClass {
+    margin-left: 1%;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkGraphBackgroundWhite {
+    background-color: #FAF9F8;
+}
+
+.wbPreviewGraph .sapSuiteUiCommonsNetworkGraphBackgroundWhite {
+    background-color: var(--primary-Text-Color) !important;
+}
+
+.wbAdminWfGraphContainer .sapMTB {
+    height: 0rem !important;
+    visibility: hidden !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkLinePath {
+    stroke: var(--primary-color) !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkLineArrow {
+    fill: var(--primary-color) !important;
+    stroke: var(--primary-color) !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkLines .sapSuiteUiCommonsNetworkElementSelected .sapSuiteUiCommonsNetworkLinePath,
+.sapSuiteUiCommonsNetworkLines .sapSuiteUiCommonsNetworkElementSelected .sapSuiteUiCommonsNetworkLineArrow,
+.sapSuiteUiCommonsNetworkLines .sapSuiteUiCommonsNetworkElementHighlight .sapSuiteUiCommonsNetworkLinePath,
+.sapSuiteUiCommonsNetworkLines .sapSuiteUiCommonsNetworkElementHighlight .sapSuiteUiCommonsNetworkLineArrow {
+    stroke-width: 1px !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkElementFocus .sapSuiteUiCommonsNetworkLineFocus {
+    visibility: hidden !important;
+}
+
+.wbAdminWfGraphContainer.sapSuiteUiCommonsNetworkInnerRect,
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkInnerCircle {
+    fill: var(--primary-Text-Color) !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkActionButtonFocusCircle,
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkBoxFocus {
+    stroke: var(--primary-Text-Color) !important;
+    stroke-dasharray: 30, 4 !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkNodeActionButton:hover {
+    fill: rgba(var(--root-color), 0.2) !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkNodeActionButton {
+    stroke: var(--primary-color) !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkNodeActionIcon {
+    fill: var(--primary-color) !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkBox.sapSuiteUiCommonsNetworkElementSuccess .sapSuiteUiCommonsNetworkNodeTitle {
+    fill: var(--primary-Text-Color) !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkInnerRect,
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkInnerCircle,
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkLane,
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkCircleNodeTitleWrapper {
+    stroke: rgba(var(--root-color), 0.2) !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkElementSuccess .sapSuiteUiCommonsNetworkInnerRect {
+    stroke: var(--primary-color) !important;
+    fill: var(--primary-color) !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkElementSuccess .sapSuiteUiCommonsNetworkNodeBoxStatus {
+    fill: var(--primary-color) !important;
+    stroke: var(--primary-color) !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkNodeCircle .sapSuiteUiCommonsNetworkNodeTitle {
+    fill: var(--secondary-Text-Color) !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkElementSuccess .sapSuiteUiCommonsNetworkInnerCircleStatus {
+    stroke: var(--primary-color) !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkGraph.sapSuiteUiCommonsNetworkGraphLayered.sapSuiteUiCommonsNetworkGraphCrispEdges .sapSuiteUiCommonsNetworkGraphSvg rect {
+    shape-rendering: geometricprecision !important;
+    border-radius: 4px !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkNodes .sapSuiteUiCommonsNetworkElementSelected .sapSuiteUiCommonsNetworkInnerCircle,
+.sapSuiteUiCommonsNetworkNodes .sapSuiteUiCommonsNetworkElementSelected .sapSuiteUiCommonsNetworkInnerRect {
+    stroke: var(--primary-color) !important;
+    fill: var(--primary-color) !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkGraphSvg .sapSuiteUiCommonsNetworkGraphAttribute {
+    fill: var(--primary-Text-Color) !important;
+}
+
+.wbAdminWfLeftPaneContainer {
+    box-shadow: 0px -1px 7.5px #00000029;
+    background: var(--page-background-color);
+}
+
+.wbAdminWfRightPaneClass.sapMITB {
+    height: 100% !important;
+    background: var(--page-background-color);
+}
+
+.wbAdminWfRightPaneClass .sapMITBContent {
+    border-bottom: none !important;
+}
+
+.wbAdminWfPanelBorderClass {
+    border-bottom: solid .0625rem #d9d9d9;
+    margin-top: 0.5rem;
+}
+
+.wbAdminWfTaskAttMargin {
+    margin-left: 0.25rem;
+}
+
+.wbAdminWfAttConfigText {
+    margin-left: 1.25rem;
+}
+
+.wbAdminWfPanelBorderClass .sapMBtnIcon {
+    color: var(--primary-color) !important;
+}
+
+.wbAdminWfDeleteBtn .sapSuiteUiCommonsNetworkNodeActionButton,
+.wbAdminWfDeleteBtn .sapSuiteUiCommonsNetworkNodeActionIcon,
+.wbAdminWfDeleteBtn .sapSuiteUiCommonsNetworkNodeActionButtonDisabled {
+    visibility: hidden !important;
+}
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkNodes .sapSuiteUiCommonsNetworkElementSelected .sapSuiteUiCommonsNetworkInnerCircle {
+    stroke: rgba(var(--root-color), 0.2) !important;
+    fill: rgb(255 255 255) !important;
+}
+
+.wbAdminPreviewGraphContainer .sapSuiteUiCommonsNetworkNodes .sapSuiteUiCommonsNetworkElementSelected .sapSuiteUiCommonsNetworkInnerCircle {
+    fill: var(--primary-color) !important;
+    stroke: white !important;
+}
+
+.wbAdminPreviewGraphContainer .sapSuiteUiCommonsNetworkNodes .sapSuiteUiCommonsNetworkElementSelected .sapSuiteUiCommonsNetworkInnerCircleStatus {
+    stroke: white !important;
+}
+
+
+.wbAdminWfGraphContainer .sapSuiteUiCommonsNetworkCircleFocus {
+    stroke: none !important;
+}
+
+.sapMTreeItemBaseExpander {
+    color: var(--primary-color);
+}
+
+.wbPreviewTreePadding .sapMLIB {
+    padding: 0 0rem 0 0rem !important;
+}
+
+/************************ End - AdminConsole (WorkFlow) Page related Classes ************************/
+
+
+/************************ Start - AdminConsole (Manage Groups) Page related Classes ************************/
+
+.wbAdminMGroupsIconTabBackground .sapMITBContent {
+    padding: 0rem;
+    position: relative;
+    border: none;
+    background: transparent;
+}
+
+.wbAdminMGroupsIconTabBackground .sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected .sapMITBText {
+    color: var(--secondary-Text-Color);
+    font-weight: 600;
+}
+
+.wbAdminMGroupsIconTabBackground .sapMITBInLine.sapMITBTextOnly .sapMITBVertical.sapMITBFilter .sapMITBContentArrow {
+    height: .65rem;
+}
+
+.wbAdminMGroupsIconTabBackground .sapMITBItem {
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbAdminMGroupsIconTabBackground .sapMITBSelected .sapMITBContentArrow::after {
+    background: var(--primary-color);
+}
+
+.wbAdminMGroupsIconTabBackground .sapMITH {
+    box-shadow: none;
+    height: 2.5625rem !important;
+    border: none;
+}
+
+.wbAdminMGroupsIconTabBackground .sapMITBInLine.sapMITBTextOnly .sapMITBVertical.sapMITBFilter .sapMITBContentArrow {
+    height: .65rem;
+}
+
+.wbAdminMGroupsIconTabBackground .sapMITBItem {
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbAdminMGroupsIconTabBackground .sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected>.sapMITBText {
+    color: var(--secondary-Text-Color) !important;
+    font-weight: 600;
+}
+
+.wbAdminMGroupsIconTabBackground .sapMITBSelected>.sapMITBContentArrow::after {
+    background: var(--primary-color);
+}
+
+.wbAdminMGroupsIconTabBackground .sapMITH {
+    box-shadow: none;
+    height: 2.5625rem !important;
+    padding: 0rem 1rem !important;
+}
+
+.wbAdminMGropusPaddingClass {
+    padding: 0.75rem;
+}
+
+.wbAdminMGroupsListItemHeight {
+    height: 2.25rem;
+}
+
+.wbAdminMGroupsCreateButton .sapMBtnInner {
+    height: 35px !important;
+    padding: 0.25rem 0rem !important;
+}
+
+.wbAdminMGroupsRemoveBtn .sapMBtnInner.sapMBtnReject {
+    background: transparent;
+    border: none;
+    color: #FF6060;
+}
+
+.wbAdminMGroupsRemoveBtn .sapMBtnInner.sapMBtnReject .sapUiIcon {
+    color: #FF6060 !important;
+}
+
+.wbAdminMGroupsRemoveBtn .sapMBtnInner.sapMBtnReject:hover {
+    background: transparent;
+    border: none;
+    color: #FF6060;
+}
+
+.wbAdminMGroupsRemoveBtn.sapMBtn:hover>.sapMBtnHoverable {
+    background: transparent !important;
+    border: none !important;
+}
+
+.wbAdminMGroupsRemoveBulkBtn .sapMBtnInner.sapMBtnReject {
+    background: #FF60601A;
+    border: 0.5px solid #FF6060;
+    border-radius: 4px;
+    color: #FF6060;
+}
+
+.wbAdminMGroupsRemoveBulkBtn .sapMBtnInner.sapMBtnReject .sapUiIcon {
+    color: #FF6060 !important;
+}
+
+.wbAdminMGroupsRemoveBulkBtn.sapMBtn:hover>.sapMBtnHoverable {
+    background: #FF60601A !important;
+    border: 0.5px solid #FF6060 !important;
+}
+
+.wbAdminActionSecGroupsClass {
+    background: var(--secondary-background-color);
+    padding: 0.25rem;
+    border-top: 1px solid rgba(var(--root-color), 0.2);
+}
+
+.wbAdminMGroupsSearch .sapMSFF {
+    border-radius: 2px;
+    background: rgba(var(--root-color), 0.1);
+    border: 0.5px solid rgba(var(--root-color), 0.8) !important;
+    height: 28px;
+}
+
+.wbAdminManageWF .sapMSFF {
+    border-radius: 2px;
+    background: rgba(var(--root-color), 0.1);
+    border: 0.5px solid rgba(var(--root-color), 0.8) !important;
+}
+
+.wbAdminTaskConfigPaddingClass {
+    padding: 0.5rem;
+}
+
+
+/************************ End - AdminConsole (Manage Groups) Page related Classes ************************/
+
+
+/************************ Start - AdminConsole (Workload) Page related Classes ************************/
+
+.wbAdminWorkloadInputWrapper .sapMInputBaseContentWrapper {
+    height: 35px !important;
+}
+
+.wbAdminWorkLoadLowClass {
+    background: var(--page-background-color);
+    border: 1px solid rgba(var(--root-color), 0.3);
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+}
+
+.wbAdminWorkLoadNormalClass {
+    background: rgba(var(--root-color), 0.4);
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 1px solid rgba(var(--root-color), 0.5);
+}
+
+.wbAdminWorkLoadHighClass {
+    background: rgba(var(--root-color), 0.74);
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: none;
+}
+
+
+/************************ End - AdminConsole (Workload) Page related Classes ************************/
+
+
+/************************ End - AdminConsole Page related Classes ************************/
+
+
+/************************ Start - AdminConsole (UI Generation) Page related Classes ************************/
+
+.wbTaskDetailSelectWrapperUI .sapMSlt,
+.sapMComboBoxTextField {
+    border: 0.4000000059604645px solid rgba(var(--root-color), 0.2) !important;
+    border-radius: 2px !important;
+    background: var(--primary-Text-Color) !important;
+    height: 1.5rem !important;
+}
+
+.wbTableDropdownStyle.sapMSlt {
+    border: transparent;
+    background: var(--secondary-background-color) !important;
+    border-radius: 0.125rem;
+    border-color: transparent;
+    height: 1.5rem !important;
+}
+
+.wbTableDropdownStyle .sapMSltArrow {
+    line-height: 1.5rem;
+    color: var(--root-color) !important;
+}
+
+.wbGridDropdownStyle.sapMSlt {
+    background: var(--primary-Text-Color);
+    border: 0.4000000059604645px solid rgba(var(--root-color), 0.2);
+    border-radius: 0.125rem;
+    height: 1.5rem !important;
+}
+
+.wbGridDropdownStyle .sapMSltArrow {
+    line-height: 1.5rem;
+    color: var(--root-color) !important;
+}
+
+.sapMSltError.sapMSlt,
+.sapMComboBoxTextField {
+    border: 0.4000000059604645px solid rgba(var(--root-color), 0.2);
+    background: #fff;
+    border-radius: 0.125rem;
+    border-color: #e52929 !important;
+}
+
+.wbTaskDetailInputWrapperUI .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState:not(.sapMInputBaseContentWrapperSuccess) {
+    border-color: #e52929 !important;
+    /*//border-radius: 0.125rem;*/
+}
+
+.wbTaskDetailInputWrapperUI .sapMInputBaseContentWrapper {
+    border: 0.4000000059604645px solid rgba(var(--root-color), 0.2);
+    border-radius: 0.125rem;
+    background: var(--primary-Text-Color) !important;
+    height: 1.5rem;
+}
+
+
+/*.sapMSltError.sapMSlt,
+.sapMComboBoxTextField {
+    border: 0.4000000059604645px solid rgba(var(--root-color), 0.2);
+    background: #fff;
+    border-color: #e52929 !important;
+}*/
+
+.wbmargintaskCreations {
+    padding-left: 1rem;
+}
+
+.wbuiTemplateTableBorder {
+    margin-right: 1rem !important;
+}
+
+.wbmargintaskCreationUiTable {
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+}
+
+.widthSelect {
+    width: 4rem !important;
+    max-width: 100%;
+}
+
+
+/*.taskDetailBoxStyleClass {
+    margin: 0.2rem 2rem 1rem 2rem !important;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    background: #F3F9FE !important;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, 0.2);
+}*/
+
+.taskHeaderBox {
+    padding: 0.8rem 0rem 0rem 0rem;
+}
+
+.taskDetailHeadingStyleClass {
+    margin: 1rem 2rem 0rem 2rem;
+    font-size: 1rem !important;
+    font-weight: 600;
+    color: #198FF4;
+}
+
+
+/*.wbmargintaskCreationUiSelect {
+    margin: 1rem 1rem 0rem 1rem;
+}*/
+
+.wbuiGenerationTemplateLabel {
+    margin: 0.5rem 0.5rem 0rem 1rem;
+}
+
+
+/*.newAdmminButton {
+    margin-left: 1rem;
+    margin-top: 0rem;
+}*/
+
+.wbTaskDetailInputWrapperUI .sapMInputBaseContentWrapper {
+    border: 0.4000000059604645px solid rgba(var(--root-color), 0.2);
+    border-radius: 2px;
+    background: var(--primary-Text-Color) !important;
+    height: 1.5rem;
+}
+
+.wbButtonOnCreate {
+    padding: 1rem 1rem 0rem 1rem;
+}
+
+
+/****************Start - User Workload Page related classes**************/
+
+.wbUserWorkLoadText.sapMLabel {
+    font-size: 1.25rem;
+    font-weight: 520;
+    color: #000;
+}
+
+.wbUserWorkloadDropdownStyle .sapMInputBaseContentWrapper {
+    border: 1px solid var(--primary-color);
+    border-radius: 0.3rem;
+}
+
+.wbUserWorkloadPanelStyle {
+    box-shadow: 0 0.25rem 0.25rem -0.25rem rgba(0, 0, 0, 0.15), inset 0 -0.0625rem 0 0 #d9d9d9;
+}
+
+.wbWorkLoadSegementedBtnStyle.sapMSegB .sapMSegBBtn .sapMSegBBtnInner {
+    border: none;
+    overflow: visible;
+    color: #6a6d70;
+    height: 2.5rem;
+    line-height: 2.25rem;
+}
+
+.wbWorkLoadSegementedBtnStyle .sapMSegBBtn.sapMSegBBtnSel .sapMSegBBtnInner {
+    background: none !important;
+    color: var(--secondary-Text-Color);
+    font-weight: 700;
+    border-bottom: 3px solid var(--primary-color) !important;
+}
+
+.wbWorkLoadSegementedBtnStyle .sapMSegBBtn.sapMSegBBtnFocusable.sapMSegBBtnSel .sapMSegBBtnInner:hover {
+    border-right: none !important;
+}
+
+.wbTaskCountCirclStyle {
+    background-color: #eaebe6;
+    padding: 0 !important;
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    top: -0.5rem;
+    margin: 0.25rem 0.5rem 0 0.25rem;
+}
+
+.wbHighWorkLoadUserBoxStyle {
+    background-color: #eea628;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+    border-bottom: 0.1px solid #d0cfcf;
+    border-right: 0.1px solid #d0cfcf;
+    cursor: pointer;
+}
+
+.wbNormalWorkLoadUserBoxStyle {
+    background-color: #f4cf7d;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+    border-bottom: 0.1px solid #d0cfcf;
+    border-right: 0.1px solid #d0cfcf;
+    cursor: pointer;
+}
+
+.wbLowWorkLoadUserBoxStyle {
+    background-color: #f7e0b8;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+    border-bottom: 0.1px solid #d0cfcf;
+    border-right: 0.1px solid #d0cfcf;
+    cursor: pointer;
+}
+
+.wbWorkloadSortLabel {
+    font-size: 14px !important;
+    font-weight: bold;
+}
+
+/*new Workload styles*/
+
+.wbWorkloadToolbarStyle {
+    background: var(--secondary-background-color);
+    box-shadow: 0px 2px 9px #0000001D;
+}
+
+.wbWorkloadBackground.sapMPage {
+    background: #FAF9F8 !important;
+    height: 38rem;
+    overflow-y: scroll;
+}
+
+.wbWorkloadToolbarStyle.sapMTBStandard {
+    border-bottom: none;
+}
+
+.wbWorkloadTextClass {
+    color: var(--primary-color);
+    opacity: 1;
+    font-weight: bold;
+}
+
+.wbHighWorkloadTileClass {
+    background: rgba(var(--root-color), 0.74);
+    box-shadow: 0px 2px 10px #00000029;
+    border-radius: 4px;
+    height: 2.75rem;
+    /*padding-top: 0.8rem;*/
+    cursor: pointer;
+}
+
+.wbNormalWorkloadTileClass {
+    background: rgba(var(--root-color), 0.4);
+    border: 1px solid rgba(var(--root-color), 0.5);
+    box-shadow: 0px 2px 10px #00000029;
+    border-radius: 4px;
+    height: 2.75rem;
+    /*padding-top: 0.8rem;*/
+    cursor: pointer;
+}
+
+.wbLowWorkloadTileClass {
+    background: var(--page-background-color);
+    border: 1px solid rgba(var(--root-color), 0.3);
+    border-radius: 4px;
+    height: 2.75rem;
+    /*padding-top: 0.8rem;*/
+    cursor: pointer;
+}
+
+.wbHighWorkloadTileTextClass {
+    color: var(--primary-Text-Color);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.wbLowWorkloadTileTextClass {
+    color: var(--secondary-Text-Color);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.wbWorkloadTileAvatarClass {
+    height: 1.5rem;
+    width: 1.5rem;
+    cursor: pointer;
+    background: var(--primary-color);
+    /*box-shadow: 0px 0px 0px 1px #ffffff63;*/
+}
+
+.wbWorkloadTileAvatarClass.sapFAvatarXS {
+    font-size: 0.75rem;
+}
+
+.wbUserWorkLoadChipText.sapMText {
+    background: var(--primary-color);
+    padding: 0.05rem 0.5rem;
+    border-radius: 0.75rem;
+    color: var(--primary-Text-Color) !important;
+    font-weight: bold;
+}
+
+.wbUserWorkLoadUserText.sapMText {
+    color: var(--primary-color) !important;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.wbWorkLoadSegementedBtnStyle.sapMSegB .sapMSegBBtn .sapMSegBBtnInner {
+    background: var(--secondary-background-color);
+}
+
+.wbUserWorkloadComboboxStyle .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper) {
+    background: rgba(var(--root-color), 0.24);
+    border: none;
+}
+
+.wbUserWorkloadComboboxStyle .sapMInputBaseIconContainer .sapMInputBaseIcon {
+    color: var(--primary-color);
+}
+
+.wbUserWorkloadComboboxStyle .sapMInputBaseInner {
+    color: var(--primary-color);
+}
+
+.wbUWLDropdownStyle {
+    background: rgba(var(--root-color), 0.24) !important;
+}
+
+.wbUWLDropdownStyle>span>span.sapMSelectListItemText {
+    color: var(--primary-color) !important;
+}
+
+.wbUWLDropdownStyle>span.sapMSltArrow {
+    color: var(--primary-color) !important;
+}
+
+.wbUWLDropdownStyle.sapMSlt {
+    height: 2rem;
+}
+
+
+/****************End - User Workload Page related classes**************/
+
+
+/****************Start -Dashboard Page related classes**************/
+.wbDashBoardFilterSelect {
+    background: rgba(var(--root-color), 0.24) !important;
+}
+
+.wbDashBoardFilterSelect .sapMSelectListItemText {
+    color: var(--primary-color) !important;
+}
+
+.wbDashboardChartClass {
+    background: var(--page-background-color);
+    border-radius: 8px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0.2, 0, 0.2), 0 0px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.wbDashboardHeaderClass {
+    border-bottom: 0.5px solid #70707030;
+    padding: 0.75rem;
+}
+
+
+/*
+.wbDashboardTileContainerClass {
+    padding: 1.5rem;
+    background: var(--primary-color);
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    opacity: 0.9;
+}
+
+.wbDashboardTileClass {
+    height: 50px;
+    border-right: 0.4px solid #D9D9D947;
+}
+*/
+
+.wbDashboardTileContainerClass {
+    margin-bottom: 1rem;
+    height: 5.125rem;
+}
+
+.wbDashboardTileClass {
+    cursor: pointer;
+    height: 5.125rem;
+    /*padding: 0 0 0 6%;*/
+    background: rgba(var(--root-color), 0.8);
+    border-radius: 4px;
+}
+
+.wbDashboardTileHeaderClass.sapMText {
+    color: var(--primary-Text-Color);
+    margin-top: 0.25rem;
+    cursor: pointer;
+    width: 100%;
+    background: #00000040;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.wbDashboardTileCountClass.sapMText {
+    color: var(--primary-Text-Color);
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+    /*margin: 8% 0 0 6%;*/
+    padding: 0 0 0 1rem;
+}
+
+
+/*** to get the border radius for bar graph ****/
+
+.wbDashboardScrollClass rect.v-m-scrollbarThumb {
+    fill: rgba(var(--root-color), 0.5);
+    rx: 7;
+}
+
+.wbDashboardScrollWidthClass rect.v-m-scrollbarThumb {
+    fill: rgba(var(--root-color), 0.5);
+    rx: 3;
+    width: 7px;
+}
+
+.wbDashboardScrollWidthClass rect.v-m-scrollbarTrack {
+    fill: rgba(var(--root-color), 0.1);
+    rx: 3;
+    width: 7px;
+}
+
+.wbDashboardScrollHeightClass rect.v-m-scrollbarThumb {
+    fill: rgba(var(--root-color), 0.5);
+    rx: 3;
+    height: 7px;
+}
+
+.wbDashboardScrollHeightClass rect.v-m-scrollbarTrack {
+    fill: rgba(var(--root-color), 0.1);
+    rx: 3;
+    height: 7px;
+}
+
+rect {
+    rx: 2.5;
+}
+
+.wbDashboardHeaderComboClass {
+    border-bottom: 0.5px solid #70707030;
+    padding: 0.325rem 0.75rem;
+}
+
+.wbDashboardLegendBreachedClass {
+    border-radius: 2px;
+    background: #FF6060;
+    height: 14px;
+    width: 14px;
+}
+
+.wbDashboardLegendCriticalClass {
+    border-radius: 2px;
+    background: #FBBC05;
+    height: 14px;
+    width: 14px;
+}
+
+.wbDashboardLegendOnTimeClass {
+    border-radius: 2px;
+    background: #34A853;
+    height: 14px;
+    width: 14px;
+}
+
+.wbDashboardLegendDonNewOnTimeClass {
+    border-radius: 2px;
+    background: #5792F5;
+    height: 14px;
+    width: 14px;
+}
+
+.wbDashboardLegendCompBreachedClass {
+    border-radius: 2px;
+    background: #2A5E2E;
+    height: 14px;
+    width: 14px;
+}
+
+.wbDashboardLegendProgBreachedClass {
+    border-radius: 2px;
+    background: #BC561E;
+    height: 14px;
+    width: 14px;
+}
+
+.wbDashboardLegendNewBreachedClass {
+    border-radius: 2px;
+    background: #3F5690;
+    height: 14px;
+    width: 14px;
+}
+
+.wbDashboardTitleTextClass.sapMText {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.wbDashboardLegendTextClass.sapMText {
+    color: var(--secondary-Text-Color);
+    opacity: 0.6;
+    font-size: 11px;
+}
+
+
+/****************End -Dashboard Page related classes**************/
+
+
+/********************Start - Action Button Header**********************/
+
+.wbMoreIconStyle .sapMSLIImg {
+    width: 0.7rem !important;
+}
+
+.wbCommentsFragList .sapMListUl>.sapMLIB.sapMGHLI {
+    background: #fff;
+    height: 2.25rem;
+    line-height: 2rem;
+    padding-top: 0.5rem;
+}
+
+.wbCommentsFragList .sapMLIB,
+.wbCommentsFragList .sapMListUl .sapMLIB.sapMGHLI {
+
+    border-bottom: none;
+}
+
+.wbCommentsFragList .sapMSLI {
+    height: 1.6rem;
+}
+
+/********************End - Action Button Header**********************/
+
+
+/*****************Start - IcoMoon Icons*****************/
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('fonts/icomoon.eot?38238t');
+    src: url('fonts/icomoon.eot?38238t#iefix') format('embedded-opentype'), url('fonts/icomoon.ttf?38238t') format('truetype'), url('fonts/icomoon.woff?38238t') format('woff'), url('fonts/icomoon.svg?38238t#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-TableSettings:before {
+    content: "\e923";
+    color: var(--primary-color) !important;
+}
+
+.icon-sendArrow:before {
+    content: "\e922";
+    color: var(--primary-color) !important;
+}
+
+.icon-PinIcon:before {
+    content: "\e921";
+    color: var(--primary-color) !important;
+}
+
+.icon-ChatAttchmentIcon:before {
+    content: "\e911";
+    color: var(--primary-color) !important;
+}
+
+.icon-ChatEmojiIcon:before {
+    content: "\e915";
+    color: var(--primary-color) !important;
+}
+
+.icon-DeliveredStatus:before {
+    content: "\e916";
+    color: var(--primary-color) !important;
+}
+
+.icon-Microphone:before {
+    content: "\e919";
+    color: var(--primary-color) !important;
+}
+
+.icon-SeenStatus .path1:before {
+    content: "\e91a";
+    color: var(--primary-color) !important;
+}
+
+.icon-SeenStatus .path2:before {
+    content: "\e91b";
+    /*margin-left: -1em;*/
+    color: var(--primary-color) !important;
+    /*opacity: 0.8;*/
+}
+
+.icon-SeenStatus .path3:before {
+    content: "\e91c";
+    /*margin-left: -1em;*/
+    color: var(--primary-color) !important;
+}
+
+.icon-SentStatus:before {
+    content: "\e91d";
+    color: var(--primary-color) !important;
+}
+
+.icon-unpinIcon:before {
+    content: "\e91e";
+    color: var(--primary-color) !important;
+}
+
+.icon-VolumeOff:before {
+    content: "\e91f";
+    color: var(--primary-color) !important;
+}
+
+.icon-volume-up:before {
+    content: "\e920";
+    color: var(--primary-color) !important;
+}
+
+.icon-chatbubblesIcon:before {
+    content: "\e907";
+    color: var(--primary-color) !important;
+}
+
+.icon-ExportIcon:before {
+    content: "\e912";
+    color: var(--primary-color) !important;
+}
+
+.icon-LineItemEyeIcon:before {
+    content: "\e913";
+    color: var(--primary-color) !important;
+}
+
+.icon-MoreIcon:before {
+    content: "\e914";
+    color: var(--primary-color) !important;
+}
+
+.icon-ResetIcon:before {
+    content: "\e917";
+    color: var(--primary-color) !important;
+}
+
+.icon-SaveIcon:before {
+    content: "\e918";
+    color: var(--primary-color) !important;
+}
+
+.icon-CompleteIcon:before {
+    content: "\e90f";
+    color: var(--primary-color) !important;
+}
+
+.icon-Eye:before {
+    content: "\e90c";
+    color: var(--primary-color) !important;
+}
+
+.icon-AdHoc:before {
+    content: "\e900";
+    color: var(--primary-color) !important;
+}
+
+.icon-ApproveAccept:before {
+    content: "\e901";
+    color: var(--primary-color) !important;
+}
+
+.icon-Archive:before {
+    content: "\e902";
+    color: var(--primary-color) !important;
+}
+
+.icon-Claim:before {
+    content: "\e903";
+    color: var(--primary-color) !important;
+}
+
+.icon-Complete:before {
+    content: "\e904";
+    color: var(--primary-color) !important;
+}
+
+.icon-CreateSubtask:before {
+    content: "\e905";
+    color: var(--primary-color) !important;
+}
+
+.icon-DeclineReject:before {
+    content: "\e906";
+    color: var(--primary-color) !important;
+}
+
+.icon-Forward:before {
+    content: "\e908";
+    color: var(--primary-color) !important;
+}
+
+.icon-PushBack:before {
+    content: "\e909";
+    color: var(--primary-color) !important;
+}
+
+.icon-Release:before {
+    content: "\e90a";
+    color: var(--primary-color) !important;
+}
+
+.icon-Renew:before {
+    content: "\e90b";
+    color: var(--primary-color) !important;
+}
+
+.icon-Resume:before {
+    content: "\e90d";
+    color: var(--primary-color) !important;
+}
+
+.icon-skipCurrentAssignement:before {
+    content: "\e90e";
+    color: var(--primary-color) !important;
+}
+
+.icon-Suspend:before {
+    content: "\e910";
+    color: var(--primary-color) !important;
+}
+
+
+/*****************End - IcoMoon Icons*****************/
+
+
+/*************Start - Overall Chat Screen Related Classes******************/
+
+.wbChatHeader .sapMIBar.sapMHeader-CTX {
+    background: transparent !important;
+}
+
+.wbChatMasterListItem {
+    border-bottom: none !important;
+    height: 3.5rem;
+}
+
+.wbChatMasterListItem .sapMLIB.sapMLIBSelected {
+    border-bottom: none;
+}
+
+.wbChatMasterListItem.sapMLIB.sapMLIBSelected {
+    background: rgba(var(--root-color), 0.1) !important;
+}
+
+.wbRecentChatText {
+    opacity: 0.5;
+}
+
+.wbChatMsgBoxWrapper {
+    width: 86%;
+    margin-left: 2.6%;
+}
+
+.wbChatAttachmentCLI {
+    border: none;
+    margin: 3px 0px;
+    width: 9rem;
+    margin-right: 5px;
+    background: var(--page-background-color) !important;
+    border-radius: 4px;
+    box-shadow: 0px 3px 6px #0000001c;
+}
+
+.wbChatDetailHeaderStyle {
+    background: rgba(var(--root-color), 0.1) !important;
+}
+
+.wbChatUserNameStyle {
+    font-weight: bold;
+    color: var(--secondary-Text-Color) !important;
+    font-size: 95%;
+    padding-top: 0.2rem;
+}
+
+.wbChatMasterUserNameStyle {
+    font-size: 85%;
+    font-weight: 600;
+}
+
+.wbChatDetailHeaderStyle.sapMBar {
+    box-shadow: none;
+}
+
+.wbMasterHeaderAvatarStyle {
+    height: 85%;
+    width: 12%;
+}
+
+.wbChatDetailPageBackground {
+    background: #FAF9F8 !important;
+}
+
+.wbChatTextAreaWrapper {
+    margin-left: 3.6%;
+    /*margin-right: 11.3%;*/
+    position: fixed;
+    bottom: 0.8rem;
+    width: 54%;
+}
+
+.wbChatTextAreaWrapper .sapMInputBaseHeightMargin {
+    margin: 0;
+}
+
+.wbChatAttachmentsBoxStyle {
+    background: var(--secondary-background-color);
+    padding-top: 0.5rem;
+    /* margin-right: 12%;*/
+}
+
+.wbTextAreaStyle .sapMInputBaseContentWrapper {
+    box-shadow: 0px 1px 0px rgba(var(--root-color), 0.6);
+    border-radius: 0px 0px 2px 2px;
+    border: none;
+}
+
+.wbTextAreaStyle .sapMInputBase.sapMTextArea .sapMTextAreaInner {
+    padding: 0.7rem .625rem;
+}
+
+.wbAlignAuto {
+    margin: auto;
+}
+
+.wbHAlignAuto {
+    margin: 0 auto;
+}
+
+.wbChatSendArrowStyle {
+    height: 50%;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.8rem;
+    color: var(--primary-color) !important;
+}
+
+.wbSenderMessageWrapperStyle {
+    background: #ffffff;
+    border: 1px solid #2F2C851A;
+    border-radius: 4px;
+    margin-left: 70%;
+    margin-right: 10.5%;
+    min-width: 20%;
+}
+
+.wbReceivingMessageWrapperStyle {
+    background: #2F2C850D;
+    border: 1px solid #2F2C851A;
+    border-radius: 4px;
+    margin-left: 6%;
+    margin-right: 30%;
+    min-width: 20%;
+}
+
+.wbSentTimeStyle {
+    color: #A6A6A6;
+    font-size: 0.8rem;
+    padding-top: 0.3rem;
+}
+
+.wbMasterTimeTextStyle {
+    color: #555555;
+    font-size: 0.8rem;
+    visibility: visible;
+}
+
+.wbMasterMessageTextSTyle {
+    color: #555555;
+    font-size: 0.8rem;
+}
+
+.wbDetailUsernameStyle {
+    color: var(--primary-color) !important;
+    font-size: small;
+    padding-top: 0.3rem;
+}
+
+.wbMasterPageStyle {
+    background: #ffffff !important;
+}
+
+.wbChatStarStyle {
+    font-size: small;
+}
+
+.wbReceivedTimeStyle {
+    color: var(--primary-color) !important;
+    font-size: small;
+    opacity: 0.6;
+    padding-top: 0.3rem;
+}
+
+.sapMSplitContainerMaster {
+    border-right: none;
+    width: 23%;
+}
+
+.wbCollaborationTextStyle {
+    color: var(--secondary-Text-Color);
+    font-weight: 600;
+}
+
+.wbMessageStyle {
+    color: #555555 !important;
+}
+
+.wbClipTextVBox {
+    overflow: hidden;
+}
+
+.wbFooterToolbarStyle html.sap-desktop .sapMIBar.sapMFooter-CTX {
+    box-shadow: none !important;
+}
+
+
+/*.wbCreateGroupBtnStyle{
+	background: var(--primary-color) !important;
+    border-color: transparent !important;
+    border-radius: 2px;
+	width: 98.25%;
+    height: 2.3rem;
+}*/
+
+
+/*.wbCreateGroupBtnStyle .sapMBtnInner.sapMBtnText{
+	color: var(--primary-Text-Color) !important;
+}*/
+
+.wbCreateGroupBtnStyle {
+    width: 93.5%;
+}
+
+.wbCreateGroupBtnStyle>span {
+    background: var(--primary-color) !important;
+    color: var(--primary-Text-Color) !important;
+    border-color: transparent !important;
+    border-radius: 2px;
+    height: 2.3rem;
+}
+
+
+/*.wbCreateGroupBtnStyle.sapMBtn:hover>.sapMBtnHoverable {*/
+
+
+/*    background-color: var(--primary-color) !important;*/
+
+
+/*    border: none !important;*/
+
+
+/*}*/
+
+.wbCreateGroupBtnStyle.sapMBtn:hover>.sapMBtnTransparent.sapMBtnHoverable:not(.sapMBtnActive):not(.sapMToggleBtnPressed)>bdi {
+    color: var(--primary-Text-Color) !important;
+}
+
+.wbCreateGroupBtnStyle .sapMBtnContent {
+    line-height: 2.1rem;
+}
+
+.wbDiscardBtnStyle>span {
+    border-radius: 2px;
+    width: 7.3rem;
+    height: 1.8rem;
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.wbCreateTextBtnStyle>span {
+    border: none;
+    background: var(--primary-color) !important;
+    border-radius: 2px;
+    color: #fff;
+    padding-top: 1px;
+    width: 7.3rem;
+}
+
+.wbGroupCreationSectionStyle {
+    position: absolute;
+    width: 100%;
+    bottom: 0
+}
+
+.wbChatScreenSerchStyles .sapMSFI {
+    height: 1.55rem;
+}
+
+.wbChatScreenSerchStyles .sapMSFB {
+    line-height: 1.6rem;
+    height: 1.6rem;
+}
+
+.wbUserTokenStyle .sapMTokenizerScrollContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.wbSenderMessageWrapperStyle:hover .wbChatStarStyle {
+    visibility: visible;
+}
+
+.wbChatStarStyle {
+    visibility: hidden;
+    /*margin-bottom: 0.5rem;*/
+}
+
+.wbMessageFavStyle {
+    align-items: flex-end;
+}
+
+.wbChatMasterListItem:hover .wbChatPinStyle {
+    visibility: visible;
+    position: absolute;
+    top: 20%;
+    right: 9%;
+    background: transparent;
+}
+
+.wbChatPinStyle {
+    visibility: hidden;
+    background: transparent;
+}
+
+.wbChatPinStyle .sapMBtnIcon {
+    color: var(--primary-color) !important;
+}
+
+.wbChatPinStyle.sapMBtn:hover>.sapMBtnHoverable {
+    background: transparent;
+}
+
+.wbChatMasterListItem:hover .wbMasterTimeTextStyle {
+    visibility: hidden;
+}
+
+.wbFavMsgWrapperStyle {
+    background: #FFFFFF;
+    border-radius: 4px;
+    border: 1px solid #2F2C851A;
+    margin-right: 30%;
+    margin-left: 7%;
+}
+
+.wbFavMsgUserNameWrapper {
+    padding: 0 1%;
+}
+
+.wbFavMsgMessageStyle {
+    color: #555555;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-bottom: 1%;
+    /*var(--page-background-color)-space: none !important;*/
+}
+
+
+/*.wbFavMsgMessageStyle.sapMLabel {
+    var(--page-background-color)-space: none !important;
+}*/
+
+.wbFavMsgAvatarUserNameWrapper {
+    margin-left: 4.3%;
+}
+
+.wbFavMsgDividerStyle {
+    border-bottom: #555555;
+}
+
+
+/*Chat Screen new CSS - */
+
+.wbChatMsgHeader.wbChatSentMsgHeader {
+    padding-right: 8.5%;
+}
+
+.wbChatMsgWrapper {
+    width: auto;
+    min-width: 3rem;
+    margin-left: 3%;
+    padding: 0% 1% 0% 1%;
+    border-radius: 4px;
+    box-shadow: 0px 0px 2px 0px rgba(var(--root-color), 0.2);
+    margin-top: 0.8%;
+    max-width: 80%;
+}
+
+.wbEmojiBtnStyle {
+    padding-top: 0.80rem;
+    color: var(--primary-color) !important;
+}
+
+
+/*.wbChatSentMsgHeader:hover .wbChatStarStyle {*/
+
+
+/*    visibility: visible;*/
+
+
+/*}*/
+
+
+/*.wbChatSentMsgHeader:hover .wbStarHBoxStyle{
+	visibility: visible;
+}
+
+.wbStarHBoxStyle {
+	visibility: hidden;
+}*/
+
+.wbChatStarStyle {
+    visibility: hidden;
+    /*margin-bottom: 0.5rem;*/
+}
+
+.wbChatMsgWrapper:hover .wbChatStarStyle {
+    visibility: visible;
+}
+
+.wbChatMsgWrapper:hover .wbStarHBoxStyle {
+    visibility: visible;
+}
+
+
+/*.wbChatFavoriteMsgStyle:hover .wbChatFavStarStyle {
+    visibility: visible;
+}
+
+.wbChatFavStarStyle {
+    visibility: hidden;
+}*/
+
+.wbFavMsgDividerStyle:hover .wbChatFavStarStyle {
+    visibility: visible;
+}
+
+.wbChatFavStarStyle {
+    visibility: hidden;
+}
+
+.wbGroupChatListBox {
+    height: 84%;
+}
+
+@media only screen and (min-width: 1800px) {
+    .wbGroupChatListBox {
+        height: 85% !important;
+    }
+
+    .wbChatTextAreaWrapper {
+        width: 58% !important;
+    }
+}
+
+.WbChatBusyIndicator {
+    font-size: 0.5rem !important;
+}
+
+.wbGroupMembersStyle {
+    color: var(--primary-color) !important;
+    font-size: small;
+    padding-bottom: 0.2rem;
+}
+
+.wbChatPanel .sapMPanelContent {
+    padding: 0.5rem 0.5rem 0rem;
+    background: rgba(var(--root-color), 0.1) !important;
+    border-bottom: none !important;
+}
+
+
+/*************End - Overall Chat Screen Related Classes******************/
+
+
+/**********Start - To Arabic**************/
+
+html[dir="rtl"] .wbMainContentClass .sapTntToolPageMain {
+    padding-left: 0rem !important;
+    padding-right: 13rem !important;
+}
+
+html[dir="rtl"] .wbMainCollapsedContentClass .sapTntToolPageMain {
+    padding-left: 0rem !important;
+    padding-right: 3rem !important;
+}
+
+.wbMainPagePadding div#__page0-main {
+    padding-left: 13rem;
+}
+
+html[dir="rtl"] .wbMainPagePaddingAr div#__page0-main {
+    padding-left: 0rem !important;
+    padding-right: 13rem !important;
+}
+
+html[dir="rtl"] .wbAdvSearchDropdownIconInactive {
+    color: var(--primary-color) !important;
+    background: var(--page-background-color);
+    opacity: 0.6;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+html[dir="rtl"] .wbAdvSearchComboboxInactive .sapMInputBaseContentWrapper {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 0;
+}
+
+html[dir="rtl"] .wbChatSendArrowStyle {
+    height: 50%;
+    position: absolute;
+    right: -2rem;
+    top: 0.8rem;
+    color: var(--primary-color) !important;
+}
+
+html[dir="rtl"] .wbChatTextAreaWrapper {
+    margin-left: 3.6%;
+    /* margin-right: 11.3%; */
+    position: fixed;
+    bottom: 0.8rem;
+    width: 54%;
+    margin-right: 0.5rem;
+}
+
+html[dir="rtl"] .userProfileNameSectionStyleClass {
+    padding: 0.3rem 0.5rem 0rem 0rem;
+}
+
+html[dir="rtl"] .wbInboxListStatusAmberBorderClass {
+    border-right: 4px solid rgb(250, 174, 51, 0.8) !important;
+    border-left: 0;
+}
+
+html[dir="rtl"] .wbInboxListStatusRedBorderClass {
+    border-right: 4px solid rgb(255, 96, 96, 0.8) !important;
+    border-left: 0;
+}
+
+html[dir="rtl"] .wbInboxListStatusGreenBorderClass {
+    border-right: 4px solid rgb(52, 168, 83, 0.8) !important;
+    border-left: 0;
+}
+
+html[dir="rtl"] .wbDashboardTileClass {
+    height: 50px;
+    border-left: 0.4px solid #D9D9D947;
+    border-right: 0;
+}
+
+html[dir="rtl"] .wbInboxIconTabBackground .sapMITH {
+    box-shadow: none !important;
+    height: 2.5625rem !important;
+    z-index: 0 !important;
+    margin-top: -1.25rem;
+    /* padding-left: 4rem; */
+    padding-right: 4rem;
+    /* margin-right: 0.5rem; */
+}
+
+html[dir="rtl"] .wbChatPinActionButton .sapMBtnInner .sapMBtnIcon.sapMImg {
+    position: absolute;
+    right: -2rem;
+    bottom: 1.5rem;
+}
+
+html[dir="rtl"] .sapTntSideNavigation .sapTntNavLI:not(.sapTntNavLINoIcons) .sapTntNavLIGroupItem>.sapMText {
+    padding-right: 0rem;
+}
+
+html[dir="rtl"] .wbFavMsgAvatarUserNameWrapper {
+    margin-left: 0;
+    margin-right: 4.3%;
+}
+
+html[dir="rtl"] .wbFavMsgWrapperStyle {
+    background: #FFFFFF;
+    border-radius: 4px;
+    border: 1px solid #2F2C851A;
+    margin-right: 7%;
+    margin-left: 16%;
+}
+
+
+/*.sapTntToolPageAsideCollapsed>.sapTntToolPageAside {
+	width: 3rem !important;
+}*/
+
+
+/*.sapTntToolPageAsideContent{
+	width: 13rem;
+}
+
+.sapTntToolPageAside {
+    width: 13rem !important;
+}*/
+
+html[dir="rtl"] .wbInboxCardDescStyle {
+    padding-right: 2rem;
+}
+
+.wbInboxCardDescStyle {
+    padding-right: 0;
+}
+
+.sapMSegBBtn.sapMSegBBtnFocusable.sapMSegBBtnSel .sapMSegBBtnInner:hover {
+    border-left: none;
+}
+
+.wbMainPagePadding .sapTntToolPageAsideContent {
+    width: 13rem !important;
+}
+
+.wbMainPagePadding .sapTntToolPageAside {
+    width: 13rem !important;
+}
+
+.wbMainPagePaddingAr .sapTntToolPageAsideContent {
+    width: 13rem !important;
+}
+
+.wbMainPagePaddingAr .sapTntToolPageAside {
+    width: 13rem !important;
+}
+
+
+/**********End - To Arabic**************/
+
+.wbActionPopupRejectTextColor {
+    color: red;
+}
+
+.wbActionPopupNormalTextColor {
+    color: black;
+}
+
+
+/**************** collaboration Changes****************/
+
+.wbChatMasterListItem:hover .wbChatNotificationCountStyle {
+    visibility: hidden;
+    position: absolute;
+    top: 25%;
+    right: 0;
+    background: var(--primary-color);
+}
+
+.wbChatNotificationCountStyle {
+    visibility: visible;
+    position: absolute;
+    top: 46%;
+    right: 17%;
+    background: var(--primary-color);
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+}
+
+.wbChatNotificationTextStyle {
+    color: var(--page-background-color);
+    font-size: 0.6rem;
+}
+
+.textcomplete-dropdown {
+    border: 1px solid #ddd;
+    background-color: var(--page-background-color);
+}
+
+.textcomplete-dropdown li {
+    border-top: 1px solid #ddd;
+    padding: 11px 5px;
+    color: var(--secondary-Text-Color);
+    /*height: 40px;*/
+}
+
+.textcomplete-dropdown li:first-child {
+    border-top: none;
+}
+
+.textcomplete-dropdown li:hover,
+.textcomplete-dropdown .active {
+    background-color: var(--primary-color);
+    color: var(--primary-Text-Color);
+}
+
+.textcomplete-dropdown {
+    list-style: none;
+    padding: 0;
+    /*margin: 0;*/
+}
+
+.textcomplete-dropdown a:hover {
+    cursor: pointer;
+}
+
+.textcomplete-item-Icon {
+    height: 17px;
+    padding-right: 19px;
+    padding-left: 11px;
+}
+
+.wbChatChannelsPannel .sapMPanelContent {
+    padding: 0 !important;
+}
+
+.wbChatHighlightVBox {
+    border: 1px solid var(--primary-color);
+}
+
+.sapMITBContent {
+    padding: 0 0 0 0;
+    position: relative;
+    background-color: #f7f7f7;
+}
+
+.wbChatIconTab .sapMITH {
+    display: block;
+}
+
+.wbChatIconTab .sapMITBTextOnly .sapMITBText {
+    font-size: 0.8rem !important;
+}
+
+.wbChatIconTab .sapMITBTextOnly .sapMITBFilter {
+    padding: 0 .5rem !important;
+}
+
+.wbTLCustomList {
+    height: 2.5rem;
+}
+
+.wbChatIconTabScroll {
+    height: 32rem !important;
+}
+
+.wbTLAddMemberIcon {
+    font-size: 15px;
+    color: rgba(var(--root-color), 1);
+}
+
+.wbTaskLevelDecilneButton .sapMBtnInner .sapMBtnIcon.sapMImg {
+    height: 0.875rem;
+    width: 0.875rem;
+    margin-top: 0.8rem;
+    color: var(--primary-color) !important;
+}
+
+.wbTLRemoveMember .sapMBtnInner .sapMBtnIcon.sapMImg {
+    height: 0.6rem;
+    width: 0.875rem;
+    margin-top: 0.4rem;
+    color: black !important;
+    visibility: visible;
+}
+
+.wbTLRemoveMember .sapMBtnInner {
+    border-radius: none;
+    border: none;
+    background: transparent;
+    min-width: 1.5rem;
+}
+
+.wbTLCustomList:hover .wbTaskLevelRemoveMember {
+    visibility: visible;
+}
+
+.wbTLRemoveSearch .sapMBtnInner .sapMBtnIcon.sapMImg {
+    height: 0.875rem;
+    width: 0.875rem;
+    margin-top: 0.8rem;
+    border: none;
+}
+
+.wbTLRemoveSearch .sapMBtnInner {
+    border-radius: none;
+    border: none;
+    /*background: transparent;*/
+    min-width: 1.5rem;
+}
+
+.wbChatGoToBtn {
+    position: absolute;
+    right: 29px;
+    color: var(--primary-color) !important;
+    font-size: small;
+}
+
+.wbChatGoToBtn.sapMBtn:hover>.sapMBtnHoverable {
+    background-image: none;
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+.wbChatGoToBtn .sapMBtnInner {
+    color: var(--primary-color) !important;
+    font-size: small;
+    padding-top: 8px;
+    /*height: 1.5rem;*/
+}
+
+.wbChatGoToBtn .sapMBtnIcon {
+    color: var(--primary-color) !important;
+}
+
+.wbChatGoToBtn .sapMBtnContent {
+    line-height: 2.9rem;
+}
+
+.wbChatGoToBtn .sapMBtnIcon {
+    line-height: 2.6rem;
+}
+
+.wbChatMemberPanel {
+    font-size: 11px;
+    color: rgba(var(--root-color), 1);
+    position: absolute;
+    right: 11px;
+    top: 29px;
+}
+
+.wbChatDetailPageBackground.sapMPage>section {
+    overflow-y: hidden !important;
+}
+
+.wbCloseReplyBtn {
+    bottom: -3px;
+    position: absolute;
+    right: 11px;
+}
+
+.wbChatMessageActionList {
+    height: 1.6rem;
+}
+
+.wbChatMessageActionList .sapMSLITitleOnly {
+    font-size: 13px;
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbChatPanel .sapMPanelContent {
+    overflow: hidden;
+}
+
+.wbTLChatMsgVBox:hover .wbStarHBoxStyle {
+    visibility: visible;
+}
+
+.wbTLChatMsgVBox:hover .wbChatStarStyle {
+    visibility: visible;
+}
+
+.wbTextAreaStyleShrink {
+    margin-left: 3.6%;
+    /*margin-right: 11.3%;*/
+    position: fixed;
+    bottom: 0.8rem;
+    width: 34% !important;
+}
+
+.wbTextAreaStyleShrink .sapMInputBaseHeightMargin {
+    margin: 0;
+}
+
+.wbChatbotSound {
+    color: var(--primary-color) !important;
+}
+
+.wbChatIconTab .sapMITBSelected .sapMITBContentArrow::after {
+    background: var(--primary-color) !important;
+}
+
+.wbChatIconTab .sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected .sapMITBText {
+    color: var(--primary-color) !important;
+}
+
+.wbChatChannelsPannel .sapMPanelWrappingDiv .sapUiIcon {
+    color: var(--secondary-Text-Color) !important;
+}
+
+.wbChatDynamicSideContent .sapUiDSCS {
+    border-left: 1px solid var(--primary-color) !important;
+}
+
+.wbChatListBox {
+    height: 72%;
+}
+
+.wbFavouriteIcon {
+    visibility: hidden;
+}
+
+.wbChatMasterListItem:hover .wbFavouriteIcon {
+    visibility: visible;
+}
+
+.wbChatGroupMemberText {
+    position: absolute;
+    left: 34%;
+}
+
+.wbSearchIcon {
+    color: var(--primary-color) !important;
+}
+
+.wbTLSendArrowStyle .sapMBtnIcon {
+    color: var(--primary-color) !important;
+}
+
+.wbTLSendAction .sapMBtn .sapMBtnInner {
+    display: flex;
+    /*justify-content: left !important;*/
+    font-weight: bold;
+}
+
+.wbTLChatPopOver.sapMPopover {
+    min-width: 3rem !important;
+    width: 3.25rem;
+}
+
+.wbChatCheckbox .sapMCbBg {
+    /*background: var(--page-background-color);*/
+    /*border: 1.25px solid var(--secondary-Text-Color) !important;*/
+    display: block !important;
+    width: 1rem;
+    height: 1rem;
+    line-height: 0.8rem !important;
+}
+
+.wbChatCheckbox .sapMCbBg.sapMCbMarkChecked:before {
+    /*color: var(--primary-color) !important;*/
+    font-size: 84%;
+    font-weight: lighter !important;
+    /*margin-top: -14%;*/
+}
+
+.wbChatCheckbox.sapMCb .sapMLabel {
+    margin-top: -2% !important;
+}
+
+.wbChatChannelsPannel .sapMPanelWrappingDiv,
+.sapMPanelWrappingDivTb {
+    border-bottom: none;
+}
+
+.wbChatChannelsPannel .sapMPanelContent:not(.sapMPanelBGTransparent) {
+    border-bottom: none;
+}
+
+/**************** End of collaboration Changes****************/
+
+
+/*************New Styles for Theme changes - start**************/
+
+.wbCardHoverActionBtnStyle.sapMBtnIcon {
+    color: var(--primary-color) !important;
+}
+
+.wbMicrophoneStyle {
+    color: var(--primary-color) !important;
+}
+
+
+/*.sapTntToolPageMain {
+    padding-left: 13rem !important;
+}
+*/
+
+
+/*.wbchatStausStyle{
+	color: var(--primary-color) !important;;
+}*/
+
+
+/*************New Styles for Theme changes - End**************/
+
+.wbCSSGridStyle {
+    grid-auto-flow: dense !important;
+}
+
+.wbGraphGridClass .sapFGridListDefault {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35.2rem, 1fr)) !important;
+    grid-gap: 0.25rem !important;
+}
+
+/********Styles For Calendar - start**************/
+
+.wbPlanningCalendarStyle .sapUiCalItem.sapUiCalItemNow {
+    border: .125rem solid var(--primary-color) !important;
+}
+
+.wbPlanningCalendarStyle .sapUiCalendarRowNow {
+    border-color: var(--primary-color);
+}
+
+.wbPlanningCalendarStyle .sapUiCalendarAppTitle {
+    font-weight: 600;
+    color: var(--secondary-Text-Color);
+}
+
+.wbPlanningCalendarStyle .sapUiCalendarAppText {
+    color: var(--secondary-Text-Color);
+    margin-top: 0.85rem;
+}
+
+.wbPlanningCalendarStyle .sapMBtnContent {
+    color: var(--primary-color) !important;
+}
+
+.wbPlanningCalendarStyle .sapUiCalendarAppType02.sapUiCalendarApp {
+    border-left-color: #735204;
+}
+
+.wbPlanningCalendarStyle .sapUiCalendarAppType06.sapUiCalendarApp {
+    border-left-color: #02561c;
+}
+
+.wbPlanningCalendarStyle .sapUiCalendarAppType08.sapUiCalendarApp {
+    border-left-color: #9e0303;
+}
+
+.wbPlanningCalendarStyle .sapUiCalendarRowVisFilled>.sapUiCalendarRowApps>.sapUiCalendarAppType02.sapUiCalendarApp:not(.sapUiCalendarAppSel)>.sapUiCalendarAppCont {
+    background-color: #FBBC05;
+}
+
+.wbPlanningCalendarStyle .sapUiCalendarRowVisFilled>.sapUiCalendarRowApps>.sapUiCalendarAppType06.sapUiCalendarApp:not(.sapUiCalendarAppSel)>.sapUiCalendarAppCont {
+    background-color: #34A853;
+}
+
+.wbPlanningCalendarStyle .sapUiCalendarRowVisFilled>.sapUiCalendarRowApps>.sapUiCalendarAppType08.sapUiCalendarApp:not(.sapUiCalendarAppSel)>.sapUiCalendarAppCont {
+    background-color: #FF6060;
+}
+
+.wbPlanningCalendarStyle .sap-desktop .sapMIBar-CTX .sapMBtn:not(.sapMBtnDisabled):hover>.sapMBtnInner:not(.sapMToggleBtnPressed):not(.sapMBtnEmphasized):not(.sapMBtnAccept):not(.sapMBtnAttention):not(.sapMBtnReject):not(.sapMBtnActive):not(.sapMBtnGhost):not(.sapMBtnCritical):not(.sapMBtnNegative):not(.sapMBtnNeutral):not(.sapMBtnSuccess),
+.sap-desktop .sapMTB-Transparent-CTX .sapMBtn:not(.sapMBtnDisabled):hover>.sapMBtnInner:not(.sapMToggleBtnPressed):not(.sapMBtnEmphasized):not(.sapMBtnAccept):not(.sapMBtnAttention):not(.sapMBtnReject):not(.sapMBtnActive):not(.sapMBtnGhost):not(.sapMBtnCritical):not(.sapMBtnNegative):not(.sapMBtnNeutral):not(.sapMBtnSuccess) {
+    border-color: var(--primary-color);
+}
+
+.wbPlanningCalendarStyle .sapMBtnIcon {
+    color: var(--primary-color);
+}
+
+.wbPlanningCalendarStyle .sapMSltArrow {
+    color: var(--primary-color);
+}
+
+.wbPlanningCalendarStyle .sapUiCalendarAppTitleWrapper,
+.sapUiCalendarRowAppsIntHeadTitle,
+.sapUiCalendarAppTitle,
+.sapUiCalendarAppText {
+
+    display: flex;
+    align-items: center;
+}
+
+.wbPlanningCalendarStyle .sapMIBar .sapMBarChild {
+    margin-left: 0rem;
+}
+
+.wbPlanningCalendarStyle .sapMTBStandard {
+    border-bottom: none;
+}
+
+.wbPlanningCalendarStyle .sapMPCHead .sapMPCHeadNavToolbar.sapMIBar {
+    margin-top: -2.95rem;
+    padding-left: 0;
+}
+
+html.sap-desktop .sapMPlanCal .sapUiCalItem:not(.sapUiCalItemSel):hover {
+    background-color: #fafafa;
+}
+
+
+.wbPlanningCalendarStyle .sapMTB-Transparent-CTX .sapMBtn:hover>.sapMBtnDefault.sapMBtnHoverable {
+    background: var(--hover-background-color);
+}
+
+.wbPlanningCalendarStyle .sapMListTblRow:not(.sapMLIBSelected) .sapUiCalendarRowAppsNoWork,
+.sapMListTblSubRow:not(.sapMLIBSelected) .sapUiCalendarRowAppsNoWork {
+    background-color: transparent;
+}
+
+.wbPlanningCalendarStyle .sapUiCalItemWeekEnd,
+html.sap-desktop .sapUiCalItemWeekEnd:not(.sapUiCalItemSel):focus {
+    background-color: #fafafa;
+}
+
+.wbPlanningCalendarStyle .sapUiCalItemWeekEnd {
+    color: red !important;
+}
+
+.wbPlanningCalendarStyle .sapUiCalItem {
+    background-color: var(--transparent-button-background);
+}
+
+.wbPlanningCalendarStyle .sapUiCalendarRowAppsInt,
+.sapUiCalendarRowAppsSubInt {
+    border-color: var(--transparent-button-background);
+}
+
+.wbPlanningCalendarStyle .sapUiCalendarApp {
+    box-shadow: 0px 1px 0px rgba(var(--root-color), 0.65);
+}
+
+.wbPlanningCalendarStyle .sapMSlt>.sapMSltLabel {
+    color: var(--primary-color) !important;
+}
+
+.wbPlanningCalendarStyle .sapMSlt {
+    height: 2rem;
+    background: rgba(var(--root-color), 0.24) !important;
+}
+
+html.sap-desktop .wbPlanningCalendarStyle .sapUiCalendarApp.sapUiCalendarAppSel:hover:not(:active),
+html.sap-desktop .sapUiCalendarApp.sapUiCalendarAppSel:focus:not(:active) {
+    background-color: var(--primary-color) !important;
+}
+
+html.sap-desktop .wbPlanningCalendarStyle .sapUiCalendarApp.sapUiCalendarAppSel:hover:not(:active),
+html.sap-desktop .sapUiCalendarApp.sapUiCalendarAppSel:focus:not(:active)>.sapUiCalendarAppCont {
+    background-color: var(--primary-color) !important;
+}
+
+.wbPlanningCalendarStyle .sapUiCalendarApp.sapUiCalendarAppSel,
+.sapUiCalendarApp:active,
+.sapUiCalendarApp.sapUiCalendarAppSel:active {
+    background-color: var(--primary-color) !important;
+}
+
+/********Styles For Calendar - start**************/
+
+/************************ Start - Email Template(Admin Console Page) related Classes ************************/
+.wbEmailTemplateSendButton .sapMBtnInner,
+.wbEmailTemplateSendButton .sapMBtnInner:hover {
+    background: var(--primary-color) !important;
+    color: var(--primary-Text-Color) !important;
+    border-color: transparent !important;
+    border-radius: 3px;
+    height: 28px;
+    /*position: fixed;*/
+    /*margin-top: 10%;*/
+}
+
+.wbEmailTemplateSendButton .sapMBtnContent {
+    line-heigth: 2.1rem;
+}
+
+.wbEmailTemplateMultiInputHbox {
+    padding: 0.25em 0.5em 0.25em 1em;
+    border-bottom: 1px solid #bdbdbd57;
+}
+
+.wbEmailTemplateMultiInput .sapMInputBaseContentWrapper {
+    border: none;
+    background: #EFEFEF;
+}
+
+.wbEmailTemplateMultiInput .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover {
+    background: transparent;
+    border-color: none !important;
+}
+
+.wbEmailTemplateAttributesContainer {
+    margin-left: 0.75%;
+    margin-right: 1.5%;
+}
+
+.wbEmailTemplateText {
+    font-weight: 900;
+    font-size: 13px;
+}
+
+.wbEmailTemplateVerticalLayout {
+    padding: 0.25em 1em 0.25em 1em !important;
+}
+
+.wbEmailTemplateRTE :not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon {
+    color: var(--primary-color) !important;
+}
+
+.wbEmailTemplateRTE .span.sapMBtnInner.sapMToggleBtnPressed .sapMBtnIcon,
+span.sapMBtnInner.sapMToggleBtnPressed.sapMBtnTransparent>.sapMBtnIcon,
+html.sap-desktop .sapMToggleBtnPressed.sapMBtnTransparent>.sapMBtnIcon {
+    color: white !important;
+}
+
+.wbEmailTemplateRTE .html.sap-desktop .sapMToggleBtnPressed,
+.sapMToggleBtnPressed:not(.sapMBtnDisabled),
+html.sap-desktop .sapMIBar-CTX .sapMToggleBtnPressed,
+.sapMIBar-CTX .sapMToggleBtnPressed:not(.sapMBtnDisabled),
+html.sap-desktop .sapMTB-Transparent-CTX .sapMBtnInner.sapMToggleBtnPressed,
+.sapMTB-Transparent-CTX .sapMBtnInner.sapMToggleBtnPressed:not(.sapMBtnDisabled) {
+    background-image: none;
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: #fff;
+    text-shadow: none;
+}
+
+.wbEmailTemplateRTE :not(.sapMBtnDisabled)>.sapMBtnInner.sapMBtnActive {
+    background-image: none;
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: #fff;
+    text-shadow: none;
+}
+
+.wbEmailTemplateRTE .sapUiRTECustomToolbar {
+    border: 1px solid #c8c8c8;
+    background: rgb(239, 239, 239);
+    border-radius: 4px;
+}
+
+.wbEmailTemplateRTE .sapUiRTEWithCustomToolbar .mce-edit-area.mce-panel,
+.sapUiRTEWithCustomToolbar .mce-tinymce.mce-panel {
+    box-sizing: border-box !important;
+    border-top: 0 !important;
+    border-color: rgb(239, 239, 239) !important;
+    border-radius: 4px;
+}
+
+.wbEmailTemplatePopover {
+    left: 85.75% !important;
+    width: 13%;
+}
+
+.wbAdminEmailTemplateNoteTextClass {
+    color: #6b6a6a;
+    font-style: italic !important;
+    font-size: 0.9em !important;
+}
+
+/*.wbEmailTemplatePopover .sapMPopover.sapUiPopupWithPadding .sapMPopoverScroll {*/
+/*    padding: 0.25rem;*/
+/*}*/
+
+/*.wbCustomRte .sapMBtnInner {*/
+/*	background-color: #fff;*/
+/*    border: .0625rem solid var(--primary-color) !important;*/
+/*}*/
+
+/************************ End - Email Template(Admin Console Page) related Classes ************************/
+
+
+/*.wbAdminGridClass .sapFGridList .sapMLIB:not(.sapMGHLI) {
+    border-radius: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    max-height: 1.85rem !important;
+    margin-right: 0.5rem !important;
+}
+
+.wbAdminGridClass .sapFGridListDefault {
+    
+}*/
+
+/*********************Start - New Substitution screen styles************************/
+.wbSubsitutionProcessBtn {
+    margin-left: 4rem;
+}
+
+.wbSubsitutionProcessBtnIamsubstituting {
+    margin-left: 1rem;
+}
+
+.wbSubsitutionProcessBtnRight {
+    margin-right: 1rem;
+    color: Green;
+    /* border-color: var(--primary-Text-Color);*/
+}
+
+.wbSubsitutionProcessBtnGreen .sapMBtnInner,
+.wbSubsitutionProcessBtnGreen .sapMBtnInner:hover {
+    color: var(--primary-color) !important;
+    border-color: Green !important;
+    font-weight: 600;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+.wbSubsitutionProcessBtnGreen.sapMBtn:hover>.sapMBtnHoverable {
+    border-color: Green !important;
+}
+
+.wbSubsitutionProcessBtnRed .sapMBtnInner,
+.wbSubsitutionProcessBtnRed .sapMBtnInner:hover {
+    color: var(--primary-color) !important;
+    border-color: Red !important;
+    font-weight: 600;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+.wbSubsitutionProcessBtnRed.sapMBtn:hover>.sapMBtnHoverable {
+    border-color: Red !important;
+}
+
+/*.wbSubsitutionProcessBtnRight .sapMBtnInner .sapMBtnIcon.sapMImg {
+    height: 1rem;
+    width: 1rem;
+    margin-top: 0.15rem;
+}
+
+.wbSubsitutionProcessBtnRight .sapMBtnIcon {
+    color: var(--primary-color) !important;
+}*/
+
+.wbSubsUserName {
+    font-weight: 600;
+}
+
+.wbSubsFromToDateText {
+    color: #6b6a6a;
+}
+
+.wbSubsListCarouselStyle {
+    /*margin-left: 0.5rem;*/
+    background-color: transparent;
+
+}
+
+.sapMCrslFluid .sapMCrslItem {
+    margin-right: 1.2rem;
+}
+
+/*******************End - New Substitution screen styles**************************/
+/****************Tooltip for calender view - start**********/
+
+
+
+
+/****************Tooltip for calender view - end**********/
+.wbGraphPagination .sapMBtnInner {
+    background: var(--transparent-button-background);
+    border-radius: 3px;
+    height: 1.5rem;
+}
+
+/****************Create task progress bar css*************/
+.wbBusyIndicator .sapMPIBarNeutral {
+    background: rgba(var(--root-color), 0.45);
+}
+
+.wbFloatChatImage {
+    z-index: 2;
+    /*position: fixed;*/
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/****************Custom excel upload*************/
+.wbExcelReview .sapMInputBaseInner {
+    width: 100% !important;
+}
+
+.wbExcelReview .sapMInputBaseIcon {
+    width: 0rem !important;
+    min-width: 0rem !important;
+    visibility: hidden !important;
+}
+
+.wbLabelBlurBg .sapMListTbl .sapMLabel {
+    color: #b9b9b9 !important;
+}
+
+.wbHorizontalLine {
+    border-bottom: solid 0.0925rem #efefef;
+}
+
+.wbAddAttrLayoutPadding {
+    padding-left: 1%;
+}
+
+/****************Custom excel upload*************/
+
+/* ***************************** */
+.wbCaseIdHbox {
+    background-color: white;
+    border: 1px solid lightgray;
+    padding: 0.5rem;
+}
+/* ***************************** */

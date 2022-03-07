@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<VBox renderType="Bare" class="sapUiSizeCompact sapUiSmallMargin">
+		<VBox renderType="Bare">
+			<Label text="{i18n>PROCESS_NAME_TEXT}"/>
+			<HBox renderType="Bare" justifyContent="SpaceBetween">
+				<ComboBox enabled="{= ${oAppModel>/draftEventId} ? false : true}" items="{oCustomTaskModel>/customProcessNames}" change="dynamicInstanceCreation" width="16rem"
+					class="sapUiTinyMarginTop wbDefaultCustomInputWrapper" selectedKey="{oCustomTaskModel>/selectedProcess}">
+					<core:Item text="{oCustomTaskModel>processDisplayName}" key="{oCustomTaskModel>processName}"
+						enabled="{= ${oCustomTaskModel>processName} !== 'ALL'}"/>
+				</ComboBox>
+				<ProgressIndicator width="25%" visible="{= ${oCustomTaskModel>/busyBarIndicator} &amp;&amp; ${oAppModel>/currentView}==='CreateTask' ? true:false}" class="sapUiSmallMarginTop sapUiSmallMarginEnd wbBusyIndicator" displayAnimation="true" percentValue="{oCustomTaskModel>/busyIndicatorValue}" displayValue="{i18n>CREATING_TEXT} {oCustomTaskModel>/busyIndicatorValue}%..." showValue="true"/>
+			</HBox>
+		</VBox>
+		<VBox renderType="Bare" class="wbCustomContentWrapperStyle sapUiSmallMarginTop sapUiSizeCompact"
+			visible="{= ${oCustomTaskModel>/multipleInstance} === true || ${oCustomTaskModel>/singleInstance} === true || ${oAppModel>/draftEventId} ? true : false}">
+			<HBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween"
+				class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" visible="{oCustomTaskModel>/multipleInstance}">
+				<Text text="{i18n>TASK_INSTANCES_TEXT}" class="wbCreateTaskTitleClass"/>
+				<Button icon="sap-icon://add" text="{i18n>ADD_TEXT}" press="addInstance" class="wbDefaultButtonClass" tooltip="{i18n>ADD_TASK}"/>
+			</HBox>
+			<VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom sapUiTinyMarginTop" renderType="Bare" width="auto"
+				id="ID_INSTANCE_AGGEGRATION_VBOX" visible="{oCustomTaskModel>/enableVBoxContent}" busy="{oCustomTaskModel>/enableBusyIndicators}"
+				busyIndicatorDelay="0"></VBox>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

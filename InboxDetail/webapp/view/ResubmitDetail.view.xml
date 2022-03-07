@@ -1,0 +1,117 @@
+<mvc:View controllerName="InboxDetail.controller.ResubmitDetail" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout">
+			<Page id="id_Container" class="cl_VRPageBackGrnd" enableScrolling="true" showHeader="false">
+				<subHeader>
+					<Toolbar class="cl_VRHeaderBackGrnd sapUiSizeCompact">
+						<Link text="{i18n>Home}" press="fnNavToHome" class="sapUiSmallMarginBegin cl_TIHomeLink"></Link>
+						 <ToolbarSpacer ></ToolbarSpacer>
+                          <Title text="{i18n>CreateTooltip}" ></Title>
+                           <ToolbarSpacer ></ToolbarSpacer>
+					</Toolbar>
+				</subHeader>
+				<content>
+ <Panel width="auto"   expandable="false" expanded="false" class="cl_VRPanelClass cl_PanelMargonTop  sapUiTinyMarginBegin  sapUiTinyMarginEnd">
+ 	<headerToolbar>
+							<Toolbar class="cl_VRHeaderBackGrndPnl">
+								<Title text="{i18n>Search}"/>
+								<ToolbarSpacer/>
+								
+								<Button text="{i18n>Search}" press="fnSearchTooltip" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
+							</Toolbar>
+						</headerToolbar>
+ 	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
+								
+                            <VBox class="VRVboxStyle1">
+									<Label text="{i18n>Country}" class="cl_VRLablCls "></Label>
+								<ComboBox width="95%"  items="{oBPLookUpMdl>/Country}" required="true"  valueState="{JMBPCreate>/countrye}" valueStateText="{JMBPCreate>/countrym}"
+											filterSecondaryValues="true" change="fnLiveChangeCountry" showSecondaryValues="true" selectedKey="{JMFilter>/country}"
+											class="cl_VRInputCls"  >
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</ComboBox>
+							</VBox>
+                             <VBox class="VRVboxStyle1">
+									<Label text="{i18n>TaxCategory}"  required="true" class="cl_VRLablCls "></Label>
+										<ComboBox  items="{oBPLookUpMdl>/taxCategory}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}" change="fnChangeTaxCategory"
+											filterSecondaryValues="true"  showSecondaryValues="true" selectedKey="{JMFilter>/taxCategory}"
+											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}" >
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</ComboBox>
+							</VBox>
+                              
+                              
+                          
+							</l:Grid>
+                            <Table class="sapUiSizeCompact cl_BPListTable"   alternateRowColors="true" items="{JMTooltipSearch>/}">
+										
+										<columns>
+											<Column >
+												<Label text="{i18n>Country}" class="cl_VRLablCls "></Label>
+											</Column>
+                                             
+										 <Column >
+												<Label text="{i18n>TaxCategory}" class="cl_VRLablCls "></Label>
+											</Column>
+                                            <Column >
+												<Label text="{i18n>Tooltip}" class="cl_VRLablCls "></Label>
+											</Column>
+                                             <Column >
+												<!-- <Label text="{i18n>Tooltip}" class="cl_VRLablCls "></Label> -->
+											</Column>
+											
+										
+										</columns>
+										<items>
+											<ColumnListItem press="fnCaseListPressNav"  type="Active"  >
+												<cells>
+													<Text text="{JMTooltipSearch>country}"  class="cl_ListNameClass"></Text>
+												 <Text text="{JMTooltipSearch>taxType}"  wrapping="false" class="cl_ListNameClass"></Text>
+													<Text text="{JMTooltipSearch>toolTip}" class="cl_ListNameClass"></Text>
+													     <Button text="{i18n>Delete}" press="fnDeleteCC" type="Reject" class="sapUiSmallMarginBegin  cl_BPCDraft1 sapUiSizeCompact" />
+													
+                                                </cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+						
+</Panel>
+
+<Panel width="auto"   expandable="false" expanded="false" class="cl_VRPanelClass cl_PanelMargonTop  sapUiTinyMarginBegin  sapUiTinyMarginEnd">
+ 	<headerToolbar>
+							<Toolbar class="cl_VRHeaderBackGrndPnl">
+								<Title text="{i18n>CreateTooltip}"/>
+                                <ToolbarSpacer ></ToolbarSpacer>
+									<Button text="{i18n>Submit}" press="fnSubmitTooltip" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
+							</Toolbar>
+						</headerToolbar>
+ 	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
+								
+                            <VBox class="VRVboxStyle1">
+									<Label text="{i18n>Country}" required="true" class="cl_VRLablCls "></Label>
+								<ComboBox width="95%"  items="{oBPLookUpMdl>/Country}"   valueState="{JMBPCreate>/countrye}" valueStateText="{JMBPCreate>/countrym}"
+											filterSecondaryValues="true" change="fnLiveChangeCountry1" showSecondaryValues="true" selectedKey="{JMFilter1>/country}"
+											class="cl_VRInputCls"  >
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</ComboBox>
+							</VBox>
+                             <VBox class="VRVboxStyle1">
+									<Label text="{i18n>TaxCategory}" required="true" class="cl_VRLablCls "></Label>
+										<ComboBox  items="{oBPLookUpMdl>/taxCategory1}"  valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}" change="fnChangeTaxCategory"
+											filterSecondaryValues="true"  showSecondaryValues="true" selectedKey="{JMFilter1>/taxCategory}"
+											class="cl_VRInputCls"  editable="{oBTHeaderMdl>/EDITABLE}" >
+											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</ComboBox>
+							</VBox>
+                            <VBox class="VRVboxStyle1">
+									<Label text="{i18n>Tooltip}" required="true" class="cl_VRLablCls "></Label>
+									<Input class="cl_VRInputCls" value="{JMFilter1>/toolTip}"></Input>
+							</VBox>
+                              
+							</l:Grid>
+                            
+						
+</Panel>
+
+
+                            	</content>
+			</Page>
+</mvc:View>

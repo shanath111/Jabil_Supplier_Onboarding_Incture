@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition xmlns="sap.m" xmlns:grid="sap.ui.layout.cssgrid" xmlns:un="sap.ui.unified" xmlns:g="sap.f" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>SMEDialogHeader}" contentWidth="35%">
+		<content>
+        <VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
+            <Label required="true" text="{i18n>SMEList}" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
+          <!-- <ComboBox width="95%"  items="{oBPLookUpMdl>/SMEList}" valueState="{JMSMESel>/smeEmaile}" valueStateText="{JMSMESel>/smeEmailm}"
+											filterSecondaryValues="true" change="fnLiveChangeSME" showSecondaryValues="true" selectedKey="{JMSMESel>/smeEmail}"
+											class="cl_VRInputCls sapUiSmallMarginBegin"  >
+											<core:ListItem key="{oBPLookUpMdl>smeEmail}" text="{oBPLookUpMdl>smeEmail}" additionalText="Company Code : {oBPLookUpMdl>companyCode} - P Org. : {oBPLookUpMdl>purchasingOrganisation}" />
+										</ComboBox> -->
+                                        <Input
+				width="95%"
+				class="cl_VRInputCls sapUiSmallMarginBegin" 
+				value="{JMSMESel>/smeEmail}"
+				
+                change="fnLiveChangeSME"
+                valueState="{JMSMESel>/smeEmaile}" valueStateText="{JMSMESel>/smeEmailm}"
+				showValueHelp="true"
+				valueHelpOnly="true"
+				valueHelpRequest="fnSMETableOpen"/>
+
+            </VBox>
+            <VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
+            <Label required="true" text="Comments" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
+            <TextArea change="fnInputSpaceCheck" value="{JMSMESel>/Comments}" liveChange="fnLiveChangeCmntTxtArea" valueState="{JMSMESel>/Commentse}" valueStateText="{JMSMESel>/Commentsm}" class="sapUiSmallMarginBegin" required="true"  width="95%" ></TextArea>
+            </VBox>
+			<OverflowToolbar class="barClass sapUiTinyMarginTop">
+            	<ToolbarSpacer/>
+				<Button class="cl_VRActnBtnClear" text="{i18n>close}" visible="true" press="fnCloseSME" tooltip="{i18n>close}"/>
+				<Button  class="cl_VRActnBtnApply" text="{i18n>submit}" press="fnSendToGBS" tooltip="{i18n>submit}"/>
+			</OverflowToolbar>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+xmlns="sap.m"
+xmlns:core="sap.ui.core">
+<ResponsivePopover
+placement="Bottom"
+showHeader="false"
+contentWidth="40rem"
+class="cl_popOverInfo"
+afterClose= "fnClosePopover">
+
+<content>
+<Text text=""/>
+</content>
+</ResponsivePopover>
+</core:FragmentDefinition>
+

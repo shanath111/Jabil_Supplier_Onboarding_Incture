@@ -1,0 +1,75 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns="sap.m"
+	xmlns:custom="oneapp.incture.workbox.controlExtension" xmlns:l="sap.ui.layout">
+	<VBox renderType="Bare" alignItems="Start" width="100%" busyIndicatorDelay="0" busy="{oUserSettingsModel>/settings/busy}"
+		visible="{= ${oUserSettingsModel>/settings/allVersions}.length>0 ? true: false}"
+		class="wbSettingsVersionControlMainContent sapUiTinyMarginTop">
+		<VBox renderType="Bare" class="wbNotificationVersionHeader" width="100%">
+			<l:Grid containerQuery="true" defaultSpan="XL6 L6 M6 S12" class="wbChatAttachmentGridList">
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMarginTop">
+					<Text text="{i18n>OS_DETAILS_TEXT}:" class="wbSettingsNotifLabel wbFont13 wbTextBoldClass" width="30%"/>
+					<Text text="{oUserSettingsModel>/settings/versionDetails/technicalInformation/osDetails}" class="wbFont13"/>
+				</HBox>
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMarginTop">
+					<Text text="{i18n>LANGUAGE_TEXT}:" class="wbSettingsNotifLabel wbFont13 wbTextBoldClass" width="30%"/>
+					<Text text="{oUserSettingsModel>/settings/versionDetails/technicalInformation/language}" class="wbFont13"/>
+				</HBox>
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMarginTop">
+					<Text text="{i18n>DATE_OF_RELEASE_TEXT}:" class="wbSettingsNotifLabel wbFont13 wbTextBoldClass" width="30%"/>
+					<Text text="{path:'oUserSettingsModel>/settings/versionDetails/technicalInformation/dateofRelease', formatter:'oneapp.incture.workbox.util.formatter.wbDateFormatter'} {path:'oUserSettingsModel>/settings/versionDetails/technicalInformation/dateofRelease', formatter:'oneapp.incture.workbox.util.formatter.wbTimeFormatter'}" class="wbFont13"/>
+				</HBox>
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMarginTop">
+					<Text text="{i18n>USERS_TEXT}:" class="wbSettingsNotifLabel wbFont13 wbTextBoldClass" width="30%"/>
+					<Text text="{oUserSettingsModel>/settings/versionDetails/technicalInformation/users}" class="wbFont13"/>
+				</HBox>
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMarginTop">
+					<Text text="{i18n>APPLICATION_SIZE_TEXT}:" class="wbSettingsNotifLabel wbFont13 wbTextBoldClass" width="30%"/>
+					<Text text="{oUserSettingsModel>/settings/versionDetails/technicalInformation/applicationSize}" class="wbFont13"/>
+				</HBox>
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMarginTop">
+					<Text text="{i18n>FRONTEND_VERSION_TEXT}:" class="wbSettingsNotifLabel wbFont13 wbTextBoldClass" width="30%"/>
+					<Text text="{oUserSettingsModel>/settings/versionDetails/technicalInformation/frontendVersion}" class="wbFont13"/>
+				</HBox>
+				<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMarginTop">
+					<Text text="{i18n>BACKEND_VERSION_TEXT}:" class="wbSettingsNotifLabel wbFont13 wbTextBoldClass" width="30%"/>
+					<Text text="{oUserSettingsModel>/settings/versionDetails/technicalInformation/gitDetails}" class="wbFont13"/>
+				</HBox>
+			</l:Grid>
+		</VBox>
+		<VBox renderType="Bare" width="100%" height="43.5vh" class="wbOverflowVertical sapUiSmallMarginTop sapUiSmallMarginBegin">
+			<Text text="{i18n>WHATS_NEW_TEXT}" class="wbSettingsNotifLabel wbTextBoldClass"
+				visible="{= ${oUserSettingsModel>/settings/versionDetails/whatsNew}.length>0 ? true: false}"/>
+			<VBox width="100%" renderType="Bare" items="{oUserSettingsModel>/settings/versionDetails/whatsNew}">
+				<HBox width="98%" renderType="Bare" alignItems="Start" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
+					<HBox renderType="Bare" alignItems="Start" justifyContent="Start">
+						<core:Icon src="sap-icon://circle-task-2" size="4px" class="wbVersionControlAlignTop"/>
+						<Text text="{oUserSettingsModel>description}" class="sapUiTinyMarginBegin wbSettingsNotifLabel wbFont13"></Text>
+					</HBox>
+					<!--<Button text="View Demo" class="wbCustomButtonClass wbFont13 wbDefaultCursor" type="Transparent"-->
+					<!--	press="openLinkVersionControl(${oUserSettingsModel>documentId})" visible="{= ${oUserSettingsModel>documentId}!==''}"/>-->
+					<Link text="{i18n>TRYOUT_TEXT}" class="wbPrimaryColorIcon wbFont13" press="openLinkVersionControl(${oUserSettingsModel>documentId},${oUserSettingsModel>link})"
+						visible="{= ${oUserSettingsModel>documentId}!=='' ||${oUserSettingsModel>link}!=='' }"/>
+				</HBox>
+			</VBox>
+			<Text text="{i18n>IMPROVEMENTS_TEXT}" class="sapUiTinyMarginTop wbSettingsNotifLabel wbTextBoldClass"
+				visible="{= ${oUserSettingsModel>/settings/versionDetails/improvements}.length>0 ? true: false}"/>
+			<VBox width="100%" renderType="Bare" items="{oUserSettingsModel>/settings/versionDetails/improvements}">
+				<HBox renderType="Bare" alignItems="Start" justifyContent="Start" class="sapUiTinyMarginTop">
+					<core:Icon src="sap-icon://circle-task-2" size="4px" class="wbVersionControlAlignTop"/>
+					<Text text="{oUserSettingsModel>description}" class="sapUiTinyMarginBegin wbSettingsNotifLabel wbFont13"></Text>
+				</HBox>
+			</VBox>
+			<Text text="{i18n>BUG_FIXES_TEXT}" class="sapUiTinyMarginTop wbSettingsNotifLabel wbTextBoldClass"
+				visible="{= ${oUserSettingsModel>/settings/versionDetails/bugFixes}.length>0 ? true: false}"/>
+			<VBox width="100%" renderType="Bare" items="{oUserSettingsModel>/settings/versionDetails/bugFixes}">
+				<HBox renderType="Bare" alignItems="Start" justifyContent="Start" class="sapUiTinyMarginTop">
+					<core:Icon src="sap-icon://circle-task-2" size="4px" class="wbVersionControlAlignTop"/>
+					<Text text="{oUserSettingsModel>description}" class="sapUiTinyMarginBegin wbSettingsNotifLabel wbFont13"></Text>
+				</HBox>
+			</VBox>
+		</VBox>
+	</VBox>
+	<VBox renderType="Bare" alignItems="Center" height="100%" width="100%" class="wbSettingsVersionControlMainContent"
+		visible="{= ${oUserSettingsModel>/settings/allVersions}.length===0 ? true: false}">
+		<Text text="{i18n>NO_VERSION_TEXT}" class="wbNotificationDisclaimerText sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiTinyMarginTop"/>
+	</VBox>
+</core:FragmentDefinition>

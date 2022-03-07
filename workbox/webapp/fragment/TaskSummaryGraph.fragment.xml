@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:f="sap.f"
+	xmlns:grid="sap.ui.layout.cssgrid" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+	<VBox renderType="Bare" alignItems="Center" width="100%" class="wbDashboardChartClass" visible="{oGraphDataModel>/graphTaskSummary}">
+		<layoutData>
+			<grid:GridItemLayoutData gridColumn="span 1"/>
+		</layoutData>
+		<HBox renderType="Bare" alignItems="Center" width="100%" justifyContent="SpaceBetween" class="wbDashboardHeaderClass">
+			<Text text="{i18n>TASK_SUMMARY_TEXT}" class="wbDashboardTitleTextClass"/>
+		</HBox>
+		<viz:VizFrame busy="{oGraphDataModel>/enableBusyIndicators/donutGraph}" busyIndicatorDelay="0" xmlns="sap.viz" id="WB_DONUT_GRAPH"
+			selectData="fetchGraphDetailFn" vizType="donut" legendVisible="false" width="100%"
+			height="{path : '/' ,formatter: 'oneapp.incture.workbox.util.formatter.wbDonutGraphHeight'}"/>
+		<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMarginBottom">
+			<HBox renderType="Bare" alignItems="Center" class="wbDashboardLegendOnTimeClass sapUiTinyMarginEnd"/>
+			<Text text="{i18n>COMPLETED_LEGEND_TEXT}" class="sapUiTinyMarginEnd wbDashboardLegendTextClass"/>
+			<HBox renderType="Bare" alignItems="Center" class="wbDashboardLegendCriticalClass sapUiTinyMarginEnd"/>
+			<Text text="{i18n>IN_PROGRESS_LEGEND_TEXT}" class="sapUiTinyMarginEnd wbDashboardLegendTextClass"/>
+			<HBox renderType="Bare" alignItems="Center" class="wbDashboardLegendDonNewOnTimeClass sapUiTinyMarginEnd"/>
+			<Text text="{i18n>NEW_LEGEND_TEXT}" class="sapUiTinyMarginEnd wbDashboardLegendTextClass"/>
+		</HBox>
+		<HBox renderType="Bare" alignItems="Center" class="sapUiTinyMarginBottom">
+			<HBox renderType="Bare" alignItems="Center" class="wbDashboardLegendCompBreachedClass sapUiTinyMarginEnd"/>
+			<Text text="{i18n>COMPLETED_BREACHED_LEGEND_TEXT}" class="sapUiTinyMarginEnd wbDashboardLegendTextClass"/>
+			<HBox renderType="Bare" alignItems="Center" class="wbDashboardLegendProgBreachedClass sapUiTinyMarginEnd"/>
+			<Text text="{i18n>IN_PROGRESS_BREACHED_LEGEND_TEXT}" class="sapUiTinyMarginEnd wbDashboardLegendTextClass"/>
+			<HBox renderType="Bare" alignItems="Center" class="wbDashboardLegendNewBreachedClass sapUiTinyMarginEnd"/>
+			<Text text="{i18n>NEW_BREACHED_LEGEND_TEXT}" class="sapUiTinyMarginEnd wbDashboardLegendTextClass"/>
+		</HBox>
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,101 @@
+{
+	"_version": "3.0.0",
+	"identification": {
+		"id": "dcc63dac-1516-4c1a-8466-6ec175001697",
+		"entityType": "bundle"
+	},
+	"payload": {
+		"catalogs": [{
+			"_version": "3.0.0",
+			"identification": {
+				"id": "defaultCatalogId",
+				"title": "{{title}}",
+				"entityType": "catalog",
+				"i18n": "i18n/defaultCatalogId.properties"
+			},
+			"payload": {
+				"viz": []
+			}
+		}],
+		"groups": [{
+			"_version": "3.0.0",
+			"identification": {
+				"id": "defaultGroupId",
+				"title": "{{title}}",
+				"entityType": "group",
+				"i18n": "i18n/defaultGroupId.properties"
+			},
+			"payload": {
+				"viz": [{
+					"id": "com.jabil.surveyform-0-1642591424182",
+					"appId": "com.jabil.surveyform",
+					"vizId": "surveyform-Display"
+				}, {
+					"id": "ns.BuyerRegistration-1-1642591424182",
+					"appId": "ns.BuyerRegistration",
+					"vizId": "buyerRegistration-Display"
+				}, {
+					"id": "InboxDetail-2-1642591424182",
+					"appId": "InboxDetail",
+					"vizId": "InboxDetail-Display"
+				}, {
+					"id": "oneapp.incture.workbox-3-1642591424182",
+					"appId": "oneapp.incture.workbox",
+					"vizId": "inbox-Approve"
+				}, {
+					"id": "oneapp.incture.report.reports-4-1642591424182",
+					"appId": "oneapp.incture.report.reports",
+					"vizId": "reports-display"
+				}, {
+					"id": "oneapp.incture.processFlow.processFlow-5-1642591424182",
+					"appId": "oneapp.incture.processFlow.processFlow",
+					"vizId": "processFlow-display"
+				}, {
+					"id": "dashboard-6-1642591424182",
+					"appId": "dashboard",
+					"vizId": "buyerDashboard-Display"
+				}]
+			}
+		}],
+		"sites": [{
+			"_version": "3.0.0",
+			"identification": {
+				"id": "0fc6e303-eb66-42a3-a719-f0da5ace8422",
+				"entityType": "site",
+				"title": "SAP Fiori launchpad site on Cloud Foundry",
+				"description": "SAP Fiori launchpad site on Cloud Foundry, deployed from WING"
+			},
+			"payload": {
+				"config": {
+					"ushellConfig": {
+						"renderers": {
+							"fiori2": {
+								"componentData": {
+									"config": {
+										"applications": {
+											"Shell-home": {}
+										},
+										"enableSearch": false,
+										"enablePersonalization": true,
+										"enableSetTheme": true,
+										"enableSetLanguage": true,
+										"enableAutomaticSignout": true,
+										"sessionTimeoutIntervalInMinutes": 15,
+										"sessionTimeoutReminderInMinutes": 3
+									}
+								}
+							}
+						}
+					}
+				},
+				"groupsOrder": ["defaultGroupId"],
+				"sap.cloud.portal": {
+					"config": {
+						"theme.id": "custom_quartzlight",
+						"theme.active": ["custom_quartzlight", "sap_fiori_3", "sap_fiori_3_dark", "sap_belize_hcb", "sap_belize_hcw"]
+					}
+				}
+			}
+		}]
+	}
+}

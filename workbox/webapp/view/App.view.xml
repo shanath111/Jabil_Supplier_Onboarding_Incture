@@ -1,0 +1,105 @@
+<mvc:View controllerName="oneapp.incture.workbox.controller.App" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:tnt="sap.tnt" xmlns:custom="oneapp.incture.workbox.controlExtension" xmlns:u="sap.ui.unified">
+	<App>
+		<pages>
+			<Page showHeader="false" class="wbMainPagePadding">
+				<customHeader>
+					<Bar visible="false">
+						<contentLeft>
+							<HBox alignItems="Center" renderType="Bare">
+								<HBox width="12.5rem" renderType="Bare" alignItems="Center">
+									<!--<Image class="sapUiTinyMarginBegin" src="images/Cherrywork_logo.png"/>-->
+									<Text text="" class="sapUiTinyMarginBegin wbHeaderAppTitleText"/>
+								</HBox>
+							</HBox>
+						</contentLeft>
+					</Bar>
+				</customHeader>
+				<content>
+					<tnt:ToolPage sideExpanded="{oAppModel>/functionality/expanded}">
+						<tnt:header>
+							<tnt:ToolHeader>
+								<!--Action buttons - Start-->
+								<HBox renderType="Bare" alignItems="Center"
+									visible="{= ${oAppModel>/currentView} === 'unifiedInbox' || ${oAppModel>/currentView} !== 'taskDetailPage' ? true : false}" class="sapUiSmallMarginBegin wbHeaderActionsHbox">
+									<HBox items="{oActionHeader>/dtoDefaultCopy}" renderType="Bare" alignItems="Center" class="sapUiSizeCompact"
+										visible="{= ${oAppModel>/currentViewPage} === 'Draft' ? false : true}">
+										<Button text="{oActionHeader>name}" icon="{oActionHeader>icon}" enabled="{oActionHeader>enabled}" type="Transparent"
+											class="wbCustomButtonClass" textDirection="RTL" press="onActionPress"
+											visible='{parts:["oActionHeader>visible", "oAppModel>/currentViewPage", "oActionHeader>key", "oAppModel>/inboxTab"], formatter:"oneapp.incture.workbox.util.formatter.setActionButtonVisibility"}'>
+											<customData>
+												<core:CustomData key="{oActionHeader>key}" value="{oActionHeader>name}"/>
+											</customData>
+										</Button>
+									</HBox>
+									<Button icon="sap-icon://delete" text="{i18n>DELETE_TEXT}" press="bulkDeleteDraft" type="Transparent" class="wbCustomButtonClass"
+										enabled="{oAppModel>/enableBulkDeleteButton}" visible="{= ${oAppModel>/currentViewPage} === 'Draft' ? true : false}"/>
+									<Button icon="images/MoreIcon.png" text="More" press="onMoreActionsClick" type="Transparent"
+										class="wbCustomButtonClass wbCustomButtonMoreClass" enabled="{oActionHeader>/enableMore}" visible="false"/>
+								</HBox>
+								<!--Action buttons - End-->
+                                <!-- Search bar - start -->
+								<!-- <Text text="{oAppModel>/currentViewDisplayText}" visible="{= ${oAppModel>/currentView} === 'adminConsole'}"/> -->
+								<ToolbarSpacer/>
+                                	<HBox width="38.8rem" renderType="Bare" alignItems="Center" class="wbHeaderSeachField" visible="{= ${oAppModel>/currentView} === 'unifiedInbox' || ${oAppModel>/currentView} !== 'taskDetailPage' ? true : false}">
+                                  <Input value="Search" enabled="false"  width="71%" class="wbHeaderSearchClass sapUiSizeCompact"/>
+                                    <!-- <Input
+                                        visible="{parts: ['oAdvanceFilterModel>/subjectIndex','oAppModel>/currentViewPage','oAppModel>/filterTokens'] ,formatter: 'oneapp.incture.workbox.util.formatter.wbSetSearchSubject'}"
+                                        class="wbHeaderSearchClass" placeholder="{i18n>SEARCH_TEXT}" value="{i18n>SEARCH_TEXT}" enabled="false" liveChange="onChangeGlobalSearch" width="71%" submit="applyFilter"
+                                        id="ID_GLOBAL_SEARCH"></Input> -->
+                                    <!--on adding of filter tokens get added-->
+                                    <HBox renderType="Bare" width="71%" height="2.25rem" visible="{= ${oAppModel>/filterTokens}.length > 0 ? true : false}"
+                                        class="wbFilterHeaderClass" justifyContent="SpaceBetween" alignContent="Center">
+                                        <core:Icon src="sap-icon://initiative" class="wbFilterCarouselBtn wbFilterCarouselBtnL" press="scrollFilterCarousel($event,'L')"/>
+                                        <ScrollContainer width="100%" vertical="false" horizontal="true" content="{path:'oAppModel>/filterTokens'}"
+                                            class="wbFilterScrollContainer wbHideScrollY"
+                                            visible="{path:'oAppModel>/filterTokens' ,formatter: 'oneapp.incture.workbox.util.formatter.wbFilterScroll'}">
+                                            <Token key="{oAppModel>key}" text="{oAppModel>value}" tooltip="{oAppModel>key}"
+                                                editable="{= ${oAppModel>/currentView} !== 'processFlow' &amp;&amp; ${oAppModel>/currentView} !== 'taskDetailPage' }"
+                                                delete="removeFilterTokenFn" class="wbCustomTokenClass sapUiTinyMarginEnd"/>
+                                        </ScrollContainer>
+                                        <core:Icon src="sap-icon://initiative" class="wbFilterCarouselBtn wbFilterCarouselBtnR" press="scrollFilterCarousel($event,'R')"/>
+                                    </HBox>
+                                    <!--dropdown icon to open adv filter fragment-->
+                                    <core:Icon size="1.4rem" press="onOpenAdvFilter" class="wbAdvSearchDropdownIconInactive wbAdvSearchFilterDropdownIcon"
+                                        id="WB_ADVANCE_SEARCH_ICON" visible="true" src="sap-icon://dropdown"/>
+                                </HBox>
+								<!-- Search bar - End -->
+								<ToolbarSpacer/>
+								<HBox justifyContent="End" alignItems="Center" renderType="Bare" class="sapUiSizeCompact" visible="{= ${oAppModel>/currentView} === 'unifiedInbox' || ${oAppModel>/currentView} !== 'taskDetailPage' ? true : false}">
+									<Button icon="images/PrintIcon.png" text="{i18n>PRINT_TEXT}" type="Transparent" class="wbCustomButtonClass wbPrintButtonStlye" visible="false"/>
+									<Button text="Substitution" type="Transparent" class="wbCustomButtonClass" press="openSubstitution" visible="false"/>
+								</HBox>
+							</tnt:ToolHeader>
+						</tnt:header>
+						<tnt:sideContent>
+							<custom:ExtSideNavigation visible="false">
+								<tnt:NavigationList id="WB_SIDENAV_LIST" items="{oAppModel>/navigationItems/navigationDto}">
+									<tnt:NavigationListItem visible="{oAppModel>/functionality/visibility}" text="{oAppModel>name}" items="{oAppModel>dtoList}"
+										icon="{oAppModel>icon}" select="onSelectApp" key="{oAppModel>inboxId}">
+										<custom:ExtNavigationListItem text="{oAppModel>name}" icon="{oAppModel>icon}" select="onSelectApp" key="{oAppModel>inboxId}"
+											count="{oAppModel>count}"></custom:ExtNavigationListItem>
+									</tnt:NavigationListItem>
+								</tnt:NavigationList>
+								<custom:footer>
+									<FlexBox class="wbSideNavListFooterClass" direction="{oAppModel>/functionality/direction}" items="{oAppModel>/navigationItems}"
+										alignItems="Start">
+										<Image src="{oAppModel>icon}" press="onSelectView" class="wbFooterNavIconClass sapUiTinyMarginEnd" tooltip="{oAppModel>name}"
+											visible='{parts:["oAppModel>/currentView", "oAppModel>inboxId"], formatter:"oneapp.incture.workbox.util.formatter.wbFooterIconColor"}'/>
+									</FlexBox>
+								</custom:footer>
+							</custom:ExtSideNavigation>
+						</tnt:sideContent>
+						<tnt:mainContents>
+							<NavContainer id="WORKBOX_NAV_CONTAINER" width="100%" busy="{oAppModel>/transitionWait}" busyIndicatorDelay="0"></NavContainer>
+							<HBox visible="{= ${oUserSettingsModel>/settings/notificationStyle} ==='Banner'}" class="wbNotificationBannerPosition">
+								<core:Fragment fragmentName="oneapp.incture.workbox.fragment.NotificationBanner" type="XML"></core:Fragment>
+							</HBox>
+							<!--<Fragment visible="{= ${oUserSettingsModel>/settings/notificationStyle}==='Banner'}"></Fragment>-->
+						</tnt:mainContents>
+					</tnt:ToolPage>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

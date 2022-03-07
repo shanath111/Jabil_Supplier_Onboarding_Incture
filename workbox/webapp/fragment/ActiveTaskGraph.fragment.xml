@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:f="sap.f"
+	xmlns:grid="sap.ui.layout.cssgrid" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+	<VBox renderType="Bare" alignItems="Center" width="100%" class="wbDashboardChartClass" visible="{oGraphDataModel>/graphActiveTasks}">
+		<layoutData>
+			<grid:GridItemLayoutData gridColumn="span 1"/>
+		</layoutData>
+		<HBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween" width="100%" class="wbDashboardHeaderClass">
+			<Text text="{i18n>ACTIVE_TASKS_TEXT}" class="wbDashboardTitleTextClass"/>
+			<HBox renderType="Bare" alignItems="Center">
+				<HBox renderType="Bare" alignItems="Center" class="wbDashboardLegendBreachedClass sapUiTinyMarginEnd"/>
+				<Text text="{i18n>SLA_BREACHED_LEGEND_TEXT}" class="sapUiTinyMarginEnd wbDashboardLegendTextClass"/>
+				<HBox renderType="Bare" alignItems="Center" class="wbDashboardLegendCriticalClass sapUiTinyMarginEnd"/>
+				<Text text="{i18n>CRITICAL_LEGEND_TEXT}" class="sapUiTinyMarginEnd wbDashboardLegendTextClass"/>
+				<HBox renderType="Bare" alignItems="Center" class="wbDashboardLegendOnTimeClass sapUiTinyMarginEnd"/>
+				<Text text="{i18n>ON_TIME_LEGEND_TEXT}" class="sapUiTinyMarginEnd wbDashboardLegendTextClass"/>
+			</HBox>
+		</HBox>
+		<viz:VizFrame busy="{oGraphDataModel>/enableBusyIndicators/activeGraph}" busyIndicatorDelay="0" xmlns="sap.viz" id="WB_STACKED_BAR_GRAPH"
+			uiConfig="{applicationSet:'fiori'}" selectData="fetchGraphDetailFn" vizType="stacked_bar" legendVisible="false"
+			class="wbDashboardScrollClass wbDashboardScrollWidthClass" width="100%"
+			height="{path : '/' ,formatter: 'oneapp.incture.workbox.util.formatter.wbGraphHeight'}"/>
+	</VBox>
+</core:FragmentDefinition>

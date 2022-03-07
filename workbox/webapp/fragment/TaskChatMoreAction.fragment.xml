@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:u="sap.ui.unified"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Popover placement="Top" afterClose="onCloseSendActionPopover" showHeader="false" class="wbTLChatPopOver">
+		<VBox class="wbTLSendAction">
+			<u:FileUploader class="wbCustomButtonClass wbTLSendActionBtn sapUiSizeCompact sapUiTinyMarginBegin" name="myFileUpload" uploadUrl="upload/"
+				tooltip="{i18n>UPLOAD_FILE_TEXT}" typeMissmatch="handleTypeMissmatchChat" style="Emphasized" multiple="true"
+				fileType="jpg,jpeg,png,xlsx,ods,xls,docx,zip,ppt,pdf" enabled="{= ${oTaskLevelChat>/msgSentBusy}===true ?false:true}" buttonOnly="true"
+				icon="sap-icon://customfont/ChatEmojiIcon" change="uploadChatAttachment" iconOnly="true"/>
+			<Button icon="sap-icon://customfont/ChatAttchmentIcon" tooltip="{i18n>EMOJI_TEXT}"
+				class="wbCustomButtonClass wbTLSendActionBtn sapUiSizeCompact sapUiTinyMarginBegin" press="openEmojiTLChat"/>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>
+<!--Action items-->
+<!--<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:u="sap.ui.unified"-->
+<!--	xmlns:html="http://www.w3.org/1999/xhtml">-->
+<!--	<ActionSheet xmlns="sap.m" xmlns:core="sap.ui.core" placement="Top">-->
+<!--		<u:FileUploader buttonText="Attachment" class="wbCustomButtonClass wbTLSendActionBtn sapUiSizeCompact" name="myFileUpload"-->
+<!--			uploadUrl="upload/" tooltip="{i18n>UPLOAD_FILE_TEXT}" typeMissmatch="handleTypeMissmatchChat" style="Emphasized" multiple="true"-->
+<!--			fileType="jpg,jpeg,png,xlsx,ods,xls,docx,zip,ppt,pdf" enabled="{= ${oTaskLevelChat>/msgSentBusy}===true ?false:true}" buttonOnly="true"-->
+<!--			icon="sap-icon://customfont/ChatEmojiIcon" change="uploadChatAttachment"/>-->
+<!--		<Button icon="sap-icon://customfont/ChatAttchmentIcon" text="Emoji" class="wbCustomButtonClass wbTLSendActionBtn sapUiSizeCompact"-->
+<!--			width="100%" press="openEmojiTLChat"/>-->
+<!--	</ActionSheet>-->
+<!--</core:FragmentDefinition>-->

@@ -1,0 +1,204 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:u="sap.ui.unified" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f"
+ xmlns:c="com.jabil.surveyform.controls" async="true">
+    <Panel width="100%" class="panelPadding sapUiSmallMarginBegin sapUiSmallMarginEnd">
+    <VBox class="fontStyle sapUiSizeCompact">
+     <Text wrapping="true" visible= "true"
+				text="{oi18n_En>companyContactText}"></Text> 
+     <Text  wrapping="true" visible= "true"
+				text="{oi18n_En>companyContactTableText}"></Text> 
+                <Text  wrapping="true" visible= "true"
+				text="{oi18n_En>companyContactTableText1}"></Text> 
+    <Text wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" 
+		        text="{i18n>companyContactText}"></Text> 
+    <Text  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" 
+				text="{i18n>companyContactTableText}"></Text> 
+                 <Text  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" 
+				text="{i18n>companyContactTableTex1}"></Text> 
+                </VBox>
+    <!-- <VBox class="fontStyle sapUiSizeCompact sapUiSmallMarginTop">
+        <HBox class="copyPasteInfo sapUiSmallMarginEnd">
+            <Text wrapping="true" text="{oi18n_En>copyPasteInfo1}" class="sapUiTinyMarginEnd" />
+            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon" />
+            <Text wrapping="true" text="{oi18n_En>copyPasteInfo6}" class="sapUiTinyMarginEnd" />
+            <core:Icon src="sap-icon://paste" class="sapUiTinyMarginEnd blueIcon" />
+            <Text wrapping="true" text="{oi18n_En>copyPasteInfo2}" />
+        </HBox>
+        <HBox class="copyPasteInfo sapUiSmallMarginEnd">
+            <Text wrapping="true" text="{oi18n_En>copyPasteInfo3}" class="sapUiTinyMarginEnd"  />
+            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon" />
+            <Text wrapping="true" text="{oi18n_En>copyPasteInfo4}" class="sapUiTinyMarginEnd" />
+            <core:Icon src="sap-icon://course-program" class="sapUiTinyMarginEnd blueIcon" />
+            <Text wrapping="true" text="{oi18n_En>copyPasteInfo5}" />
+        </HBox> 
+    </VBox> -->
+    <!-- <VBox class="fontStyle sapUiSizeCompact sapUiTinyMarginTop">
+        <HBox class="copyPasteInfo sapUiSmallMarginEnd">
+            <Text wrapping="true" text="{i18n>copyPasteInfo1}" class="sapUiTinyMarginEnd" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <Text wrapping="true" text="{i18n>copyPasteInfo6} " class="sapUiTinyMarginEnd" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <core:Icon src="sap-icon://paste" class="sapUiTinyMarginEnd blueIcon" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <Text wrapping="true" text="{i18n>copyPasteInfo2}" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+        </HBox>
+        <HBox class="copyPasteInfo sapUiSmallMarginEnd">
+            <Text wrapping="true" text="{i18n>copyPasteInfo3}" class="sapUiTinyMarginEnd" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd blueIcon" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <Text wrapping="true" text="{i18n>copyPasteInfo4}" class="sapUiTinyMarginEnd" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+            <core:Icon src="sap-icon://course-program" class="sapUiTinyMarginEnd blueIcon" visible= "{=!${oVisibilityModel>/isdefaultLan}}" />
+            <Text wrapping="true" text="{i18n>copyPasteInfo5}" visible= "{=!${oVisibilityModel>/isdefaultLan}}"/>
+        </HBox> 
+    </VBox> -->
+    </Panel>
+				
+                 <VBox fitContainer="true" class="fontStyle" >
+                <c:TabbingTable id="contTable" items="{oLookUpModel>/tabledata}" class="mtableMargin sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSizeCompact">
+               
+                <c:columns >
+                <Column minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact">
+                <Text text="{=${oVisibilityModel>/isdefaultLan}?${oi18n_En>contactType}:${oi18n_En>contactType} + '&#10;' +${i18n>contactType}}" class="mtableColH"/>
+                </Column>
+                <Column minScreenWidth="Desktop" 
+				demandPopin="true" class="sapUiSizeCompact">
+                <HBox>
+                <Text text="{=${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} + '&#10;' +${i18n>eMail}}" class="mtableColH"/>
+               <Label required="true"/>
+                </HBox>
+                </Column>
+                <Column minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact">
+                 <HBox>
+                <Text text="{=${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} + '&#10;' +${i18n>firstName}}" class="mtableColH"/>
+                 <Label required="true"/>
+                </HBox>
+                </Column>
+                <Column minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact">
+               <HBox> <Text text="{=${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} + '&#10;' +${i18n>lastName}}" class="mtableColH"/>
+                 <Label required="true"/>
+                </HBox>
+                </Column>
+                <Column minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact">
+               <HBox> <Text text="{=${oVisibilityModel>/isdefaultLan}?${oi18n_En>jobTitle}:${oi18n_En>jobTitle} + '&#10;' +${i18n>jobTitle}}" class="mtableColH"/>
+                 <Label required="true"/>
+                </HBox>
+                </Column>
+                <Column minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact" width="12rem">
+                <HBox><Text text="{=${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} + '&#10;' +${i18n>phoneNum}}" class="mtableColH"/>
+                 <Label required="true"/>
+                </HBox>
+                </Column>
+                <Column minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact">
+               <HBox> <Text text="{=${oVisibilityModel>/isdefaultLan}?${oi18n_En>extension}:${oi18n_En>extension} + '&#10;' +${i18n>extension}}" class="mtableColH"/>
+                 <Label required="false"/>
+                <!-- <Button icon="sap-icon://course-program" type="Transparent" visible="{oVisibilityModel>/pasteData}" tooltip="CopyToAll" iconFirst="true" class=" sapUiMediumMarginBegin addMoreBtn" press="fnCopyAllContactData"/>  -->
+                </HBox>
+                </Column>
+                <!-- <Column minScreenWidth="Desktop" width="25px"
+				demandPopin="true" class="sapUiSizeCompact mtableMarginIcon">
+               
+                </Column> -->
+                </c:columns>
+                	<c:items>
+			<ColumnListItem class="sapUiSizeCompact">
+            <cells >
+            <Label text="{oLookUpModel>contactType}" tooltip="{oLookUpModel>tooltip}" required="{oLookUpModel>required}" wrapping="true" />
+            <Input valueLiveUpdate="true" maxLength="242" value="{oLookUpModel>email}" enabled="{oEnableMdl>/comContactemailEnb}" liveChange="fnRemoveSpace" change="fnLiveEmailNotJValid" class="inputStyle" />
+            <Input valueLiveUpdate="true" maxLength="31" value="{oLookUpModel>firstName}" enabled="{oEnableMdl>/comContactfirstNameEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
+            <Input valueLiveUpdate="true" maxLength="31" value="{oLookUpModel>lastName}" enabled="{oEnableMdl>/comContactlastNameEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
+            <Input valueLiveUpdate="true" value="{oLookUpModel>jobTitle}" enabled="{oEnableMdl>/comContactjobTitleEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
+            <HBox fitContainer="true" alignItems="Start">
+            <ComboBox width="100%" items="{oLookUpModel>/countryContactCode}" showSecondaryValues="true" filterSecondaryValues="false" value="{oLookUpModel>countryCodeDesc}"  selectedKey="{oLookUpModel>countryContactCode}" class="inputStyle" change="fnLiveValueCountryCodeChange" enabled="{oEnableMdl>/comContactCountryContactEnb}">
+                                            <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                 <layoutData>
+                <FlexItemData styleClass="contactStyle"></FlexItemData></layoutData>
+				</ComboBox>
+
+            <Input valueLiveUpdate="true" maxLength="31" class="inputStyle" value="{oLookUpModel>contact}" liveChange="fnLiveInputNumericValueChange" enabled="{oEnableMdl>/comContactcontactEnb}" />
+            </HBox>
+          
+                <!-- <tooltip>
+                    <c:Tooltip 
+                    closeDuration="0"
+                    >
+                    <VBox class="sapUiTinyMargin">
+                        <HBox>
+                            <Text text="You can use the copy " class="sapUiTinyMarginEnd"/>
+                            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd"/>
+                            <Text text="/ " class="sapUiTinyMarginEnd"/>
+                            <core:Icon src="sap-icon://paste" class="sapUiTinyMarginEnd"/>
+                            <Text text="feature to help fill in the additional contacts. "/>
+                        </HBox>
+                        <HBox>
+                            <Text text="Once you copy  " class="sapUiTinyMarginEnd"/>
+                            <core:Icon src="sap-icon://copy" class="sapUiTinyMarginEnd"/>
+                            <Text text="the row, then select the paste " class="sapUiTinyMarginEnd"/>
+                            <core:Icon src="sap-icon://course-program" class="sapUiTinyMarginEnd"/>
+                            <Text text=" option, just above the list, to add to the other lines. "/>
+                        </HBox>
+
+                    </VBox>
+                    </c:Tooltip>
+                </tooltip> -->
+                 <HBox>  <Input valueLiveUpdate="true" maxLength="4" class="inputStyle" value="{oLookUpModel>extension}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/comContactextensionEnb}" />
+             <!-- <Button icon="sap-icon://copy" press="fnCopyContactData" visible="{oVisibilityModel>/copiedData}" type="Transparent" class="addMoreBtn" >
+            </Button> -->
+                <!-- <Button icon="sap-icon://paste" press="fnPasteContactData" visible="{oVisibilityModel>/pasteData}" type="Transparent" class="addMoreBtn"/> -->
+                </HBox>
+            </cells>
+            </ColumnListItem>
+            </c:items>
+            </c:TabbingTable>
+                 <layoutData>
+					<FlexItemData growFactor="1" baseSize="0%"></FlexItemData>
+				</layoutData>
+            </VBox>
+            <!-- <VBox class="sapUiTinyMarginTop sapUiTinyMarginBegin">
+                  
+                             <Text text="{i18n>Attachments}" class="fontBold  sapUiTinyMarginBegin" visible= "{oVisibilityModel>/isdefaultLan}" />
+                            <Text text="{oi18n_En>Attachments}/&#160;{i18n>Attachments}" class="fontBold  sapUiTinyMarginBegin" visible= "{=!${oVisibilityModel>/isdefaultLan}}" />
+			<HBox wrap="Wrap">
+				<u:FileUploader id="fileUploader_CCO" buttonOnly="true" buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"
+					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{oEnableMdl>/comContactInfoAttachmentEnb}"
+					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"></u:FileUploader>
+				<g:GridList width="auto" items="{oAttachmentList>/0/compContDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">
+					<g:customLayout>
+						<grid:GridResponsiveLayout>
+							<grid:layoutS>
+								<grid:GridSettings gridTemplateColumns="1fr" gridGap="1rem"/>
+							</grid:layoutS>
+							<grid:layoutM>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr" gridGap="1rem"/>
+							</grid:layoutM>
+							<grid:layoutL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutL>
+							<grid:layoutXL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutXL>
+						</grid:GridResponsiveLayout>
+					</g:customLayout>
+					<g:GridListItem>
+						<HBox>
+							<HBox width="90%" class="sapUiTinyMarginBegin sapUiSizeCompact">
+								<core:Icon src="{path:'oAttachmentList>fileExt',formatter:'com.jabil.surveyform.formatter.formatter.mediaTypeformatter'}"
+									class="attachmentIcon sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom" size="2.5rem" color="#48639d"/>
+						<VBox>		<Text text="{oAttachmentList>name}" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+							<Text text="{oAttachmentList>fileSize}" class="sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiLargeMarginEnd"/></VBox>
+                            </HBox>
+							<VBox alignItems="Center" class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">
+								<core:Icon src="sap-icon://decline" class="docIconStyle" press="fnOnCancelAttachment"/>
+								<core:Icon src="sap-icon://download" class="docIconStyle" press="fnOnDownlAttachment"/>
+							</VBox>
+						</HBox>
+					</g:GridListItem>
+				</g:GridList>
+			</HBox>
+      <layoutData>
+					<FlexItemData growFactor="1"></FlexItemData>
+				</layoutData>
+      </VBox> -->
+    </core:FragmentDefinition>
+    	
