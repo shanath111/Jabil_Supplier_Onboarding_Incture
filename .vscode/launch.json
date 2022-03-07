@@ -18,7 +18,27 @@
         "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
         "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/surveyform\"}"
       },
-      "envFile": "${workspaceFolder}/surveyform/.env3",
+      "envFile": "${workspaceFolder}/surveyform/.env4",
+      "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
+    },
+    {
+      "name": "Run Partner Lifecycle Supplier Portal-InboxDetail",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/supplieronboarding-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/InboxDetail/index.html",
+        "--ui5",
+        "{\"version\":\".\"}"
+      ],
+      "cwd": "${workspaceFolder}/InboxDetail",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/InboxDetail\"}"
+      },
+      "envFile": "${workspaceFolder}/InboxDetail/.env8",
       "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
     }
   ]

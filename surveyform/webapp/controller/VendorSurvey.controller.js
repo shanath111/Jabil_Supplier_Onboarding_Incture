@@ -21,7 +21,7 @@ sap.ui.define([
     function (BaseController, JSONModel, MessageBox, formatter, BusyDialog, Fragment) {
 
         "use strict";
-        var oBusyDialog, oBusyDialogFile, oBusyDialogLoadData, oView, oi18n, vAppName, copiedData, listenFirst, emailValidResult;
+        var oBusyDialog, oBusyDialogFile, oBusyDialogLoadData, oBusyDialogSearching, oView, oi18n, vAppName, copiedData, listenFirst, emailValidResult;
         return BaseController.extend("com.jabil.surveyform.controller.VendorSurvey", {
             formatter: formatter,
             onInit: function () {
@@ -46,6 +46,7 @@ sap.ui.define([
                 oBusyDialog = new sap.m.BusyDialog({ text: "Posting data" });
                 oBusyDialogLoadData = new sap.m.BusyDialog({ text: "...please wait while the data is loading" });
                 oBusyDialogFile = new sap.m.BusyDialog({ text: "Uploading File" });
+                oBusyDialogSearching = new sap.m.BusyDialog({ text: "Searching" });
                 oView = this.getView();
                 oi18n = this.getOwnerComponent().getModel("i18n").getResourceBundle();
                 var that = this;
@@ -11647,7 +11648,9 @@ sap.ui.define([
                 if(oEvent.getSource().getSelectedIndices().length == 0){
                     oView.getModel("bankSearchModel").getData().selectedBankItem = "";
                     oView.getModel("bankSearchModel").refresh();
+                    oView.byId('accuityBankTable').removeStyleClass("cl_AccuityTableSelect");
                 } else {
+                    oView.byId('accuityBankTable').addStyleClass("cl_AccuityTableSelect");
                     var oSelectedItem = oEvent.getParameter("rowContext").sPath;
                     if(oView.getModel("bankDataModel").getProperty(oSelectedItem).bankSanctioned){
                         var sErMsg = oi18n.getText("bankSanctionMsg");
@@ -11681,6 +11684,8 @@ sap.ui.define([
             },
             fnConfirmBankInfo: function(oEvent){
                 var selectedBankInfo =  oView.getModel("bankSearchModel").getData().selectedBankItem;
+                oView.getModel("oVisibilityModel").getData().bankAccuityPanel = false;
+                oView.getModel("oVisibilityModel").refresh();
                 if((!selectedBankInfo || selectedBankInfo=="") && !oView.getModel("bankSearchModel").getData().isManualEntry){
                     var sErMsg = oi18n.getText("selectBankItemError");
                     MessageBox.show(sErMsg, {
@@ -11711,7 +11716,7 @@ sap.ui.define([
             },
             fnManualBankInfoEntry: function() {
                 oView.getModel("oVisibilityModel").getData().manualBankInfoEdit = true;
-                oView.getModel("oVisibilityModel").getData().bankAccuityPanel = false;
+                // oView.getModel("oVisibilityModel").getData().bankAccuityPanel = false;
                 oView.getModel("oVisibilityModel").refresh();
                 oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry ="";
                 oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName ="";
@@ -11753,7 +11758,7 @@ sap.ui.define([
                 }
                 oView.getModel("oErrorModel").refresh();
                 if(vError == false){
-                    oBusyDialog.open();
+                    oBusyDialogSearching.open();
                     var oModel = new JSONModel();
                     var sUrl = "/comjabilsurveyform/plcm_portal_services/acuity/getBankData";
                     var oPayload = {
@@ -11768,7 +11773,7 @@ sap.ui.define([
                     });
                     oModel.attachRequestCompleted(function onCompleted(oEvent) {
                         if (oEvent.getParameter("success")) {
-                            oBusyDialog.close(); 
+                            oBusyDialogSearching.close(); 
                             var oJsonBankSearch = new sap.ui.model.json.JSONModel();
                             oJsonBankSearch.setData(oEvent.getSource().getData());
                             oView.setModel(oJsonBankSearch, "bankDataModel");
@@ -11801,7 +11806,7 @@ sap.ui.define([
                                 });
                             }
                         } else {
-                            oBusyDialog.close();
+                            oBusyDialogSearching.close();
                             
                         }
                     });

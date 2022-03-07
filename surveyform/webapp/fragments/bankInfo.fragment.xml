@@ -109,8 +109,8 @@
             <Toolbar class="cl_VRHeaderBackGrndPnl">
                     <Text text="{i18n>SearchBank}" class="fontBold sapUiTinyMarginBegin"/>
                     <ToolbarSpacer/>
-                    <Button text="{i18n>BSAClear}" press="fnClearBankSearch" class="cl_VRActnBtnClear"/>
-                    <Button text="{i18n>Search}" press="fnSearchAccuityBank" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
+                    <Button text="{i18n>BSAClear}" press="fnClearBankSearch" class="cl_VRActnBtnClear" visible="{oVisibilityModel>/bankAccuityPanel}"/>
+                    <Button text="{i18n>Search}" press="fnSearchAccuityBank" class="cl_VRActnBtnApply sapUiSmallMarginEnd" visible="{oVisibilityModel>/bankAccuityPanel}"/>
                 </Toolbar>
             </headerToolbar> 
             <Label text="{i18n>BankSearchMsg}" class="fontStyle sapUiTinyMarginBegin" wrapping="true"/>
@@ -140,7 +140,7 @@
                     <Input value="{bankSearchModel>/banksearchParam/bankCity}" valueState="{oErrorModel>/bankSearchCityE}" valueStateText="{oErrorModel>/bankSearchCityM}" change="fnInputSpaceCheck" class="inputStyle"></Input>
                 </VBox>			
             </l:Grid>
-            <t:Table id="accuityBankTable" class="sapUiSizeCompact cl_BPListTable"   alternateRowColors="true" selectionMode="MultiToggle" enableSelectAll="false" rowSelectionChange="fnSelectBankInfo" selectionBehavior="RowSelector" rows="{bankDataModel>/bankDto}" visibleRowCount="5">
+            <t:Table id="accuityBankTable" class="sapUiSizeCompact cl_AccuityTable"   alternateRowColors="true" selectionMode="MultiToggle" enableSelectAll="false" rowSelectionChange="fnSelectBankInfo" selectionBehavior="RowSelector" rows="{bankDataModel>/bankDto}" visibleRowCount="5">
                     <t:extension>
                         <OverflowToolbar style="Clear">
                             <Title text="{i18n>searchResults}"/>
@@ -158,73 +158,81 @@
                         </MessageStrip> -->
                     </t:extension>
                     <t:columns>
-                        <t:Column >
+                        <!-- <t:Column>
+                            <Label text="" ></Label>
+                            <t:template>
+                                
+                                    <RadioButton select="fnSelectBankInfo"/>
+                                
+                            </t:template>    
+                        </t:Column> -->
+                        <t:Column width="8rem">
                             <Label text="{i18n>BSACountry}" class="cl_VRLablCls "></Label>
                             <t:template>
                                 <Text text="{bankDataModel>bankCountry}" wrapping="true" class="cl_ListNameClass"/>
                             </t:template>    
                         </t:Column>
-                        <t:Column >
+                        <t:Column width="18rem">
                             <Label text="{i18n>BSABankName}" class="cl_VRLablCls "></Label>
                             <t:template>
                                 <Text text="{bankDataModel>bankName}" wrapping="true" />
                             </t:template>
                         </t:Column>
-                        <t:Column >
+                        <t:Column width="10rem">
                             <Label text="{i18n>BSABranch}" class="cl_VRLablCls "></Label>
                             <t:template>
                                 <Text text="{bankDataModel>bankBranch}" wrapping="true" />
                             </t:template>
                         </t:Column>
-                        <t:Column >
+                        <t:Column width="10rem">
                             <Label text="{i18n>BSAAddress}" class="cl_VRLablCls "></Label>
                             <t:template>
                                 <Text text="{bankDataModel>bankStreet}" wrapping="true" />
                             </t:template>
                         </t:Column>
-                        <t:Column >
+                        <t:Column width="8rem">
                             <Label text="{i18n>BSACity}" class="cl_VRLablCls "></Label>
                             <t:template>
                                 <Text text="{bankDataModel>bankCity}" wrapping="true" />
                             </t:template>
                         </t:Column>
-                        <t:Column >
+                        <t:Column width="8rem">
                             <Label text="{i18n>BSAState}" class="cl_VRLablCls "></Label>
                             <t:template>
                                 <Text text="{bankDataModel>bankState}" wrapping="true" />
                             </t:template>
                         </t:Column>
-                        <t:Column >
+                        <t:Column width="7rem" >
                             <Label text="{i18n>BSABankNum}" class="cl_VRLablCls "></Label>
                             <t:template>
-                                <Text text="{bankDataModel>bankNumber}" wrapping="true" />
+                                <Text text="{bankDataModel>bankNumber}" />
                             </t:template>
                         </t:Column>
-                        <t:Column >
+                        <t:Column width="8rem">
                             <Label text="{i18n>BSASwift}" class="cl_VRLablCls "></Label>
                             <t:template>
-                                <Text text="{bankDataModel>swiftCode}" wrapping="true" />
+                                <Text text="{bankDataModel>swiftCode}"/>
                             </t:template>
                         </t:Column>
-                        <t:Column >
+                        <t:Column width="10rem">
                             <Label text="{i18n>BSALocalName}" class="cl_VRLablCls "></Label>
                             <t:template>
                                 <Text text="{bankDataModel>localName}" wrapping="true" />
                             </t:template>
                         </t:Column>
-                        <t:Column >
+                        <t:Column width="10rem">
                             <Label text="{i18n>BSALocalBranch}" class="cl_VRLablCls "></Label>
                             <t:template>
                                 <Text text="{bankDataModel>localBranch}" wrapping="true" />
                             </t:template>
                         </t:Column>
-                        <t:Column >
+                        <t:Column width="10rem">
                             <Label text="{i18n>BSALocalAddress}" class="cl_VRLablCls "></Label>
                             <t:template>
                                 <Text text="{bankDataModel>localAddress}" wrapping="true" />
                             </t:template>
                         </t:Column>
-                        <t:Column >
+                        <t:Column width="10rem">
                             <Label text="{i18n>BSALocalCity}" class="cl_VRLablCls "></Label>
                             <t:template>
                                 <Text text="{bankDataModel>localCity}" wrapping="true" />
@@ -236,7 +244,7 @@
                
                 <Toolbar class="sapUiSizeCompact">
                         <!-- <Text text="{i18n>selectandconfirmBank}" class="sapUiTinyMarginBegin fontStyleBlue"/> -->
-                         <CheckBox text="{i18n>bankNotDisplayed}" wrapping="true" class="sapUiTinyMarginTop fontStyle inputStyle"  select="fnSelectManualBankEntry" selected="{bankSearchModel>/isManualEntry}"/>
+                         <RadioButton text="{i18n>bankNotDisplayed}" class="sapUiTinyMarginTop"  select="fnSelectManualBankEntry" selected="{bankSearchModel>/isManualEntry}"/>
                         <ToolbarSpacer></ToolbarSpacer>
                         
                         <Button text="{i18n>Confirm}" press="fnConfirmBankInfo" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>

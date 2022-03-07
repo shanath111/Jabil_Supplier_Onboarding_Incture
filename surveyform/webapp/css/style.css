@@ -913,6 +913,17 @@ outline: none !important;
     background: #ebf1f5;
     color: #000;
 }
+
+.cl_AccuityTable .sapUiTableRowSelectionCell::after {
+    border-radius: 50%;
+    height: 1.2rem;
+    width: 1.2rem;
+    font-size: .48rem;
+}
+
+.cl_AccuityTableSelect .sapUiTableRowSel .sapUiTableRowSelectionCell::after {
+    content: '\e255' !important;
+}
 /* .boxStyle.sapMCb {
     height: 2rem;
     line-height: 2rem;
