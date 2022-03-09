@@ -91,7 +91,11 @@
             },
             "oGraphDataModel": {
                 "type": "sap.ui.model.json.JSONModel"
+            },
+            "oConfigMdl": {
+                "type": "sap.ui.model.json.JSONModel"
             }
+            
         },
         "resources": {
             "js": [

@@ -13,9 +13,10 @@ sap.ui.define([
 	return BaseController.extend("oneapp.incture.workbox.controller.App", {
 		formatter: formatter,
 		utility: utility,
-
+        
 		onInit: function () {
 			var that = this;
+            this.fnLoadUser();
 			this.fnInitApp();
 			this.router = sap.ui.core.UIComponent.getRouterFor(this);
 			this.router.attachRoutePatternMatched(function (oEvent) {
@@ -51,6 +52,44 @@ sap.ui.define([
 			this.setChatBot();
 
 		},
+        fnLoadUser: function () {
+            var that = this;
+            var sUrl = "/oneappinctureworkbox/plcm_portal_services/loggedinUser";
+            $.ajax({
+                url: sUrl,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    that.getView().getModel("oConfigMdl").setProperty("/usrData", data);
+                    that.getView().getModel("oConfigMdl").refresh();
+
+                    var aUsrData = this.getView().getModel("oConfigMdl").getData().usrData;
+                    this.getView().getModel("oConfigMdl").getData().claimVisible = false;
+                    this.getView().getModel("oConfigMdl").getData().ListMode = "None";
+                    if (aUsrData) {
+                        var aADGroups = JSON.parse(aUsrData.adGroups);
+                        if (aADGroups) {
+                            for (var i = 0; i < aADGroups.length; i++) {
+                                if (aADGroups[i] == "IAM_P_SCP_PLC_ADMIN" || aADGroups[i] == "IAM_S_SCP_SUP_PORTAL_APPROVER") {
+                                    this.getView().getModel("oConfigMdl").getData().claimVisible = true;
+                                   // this.getView().getModel("oConfigMdl").getData().ListMode = "SingleSelectLeft";
+                                   this.getView().getModel("oConfigMdl").getData().ListMode = "SingleSelectLeft";
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    this.getView().getModel("oConfigMdl").refresh();
+
+
+                },
+                async: false,
+                error: function (data) {
+
+                }
+            });
+        },
+	
 
 		setChatBot: function () {
 			var chatBot = {
