@@ -40,9 +40,7 @@
         "envFile": "${workspaceFolder}/surveyform/.env2",
         "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
       },
-      "envFile": "${workspaceFolder}/InboxDetail/.env9",
-      "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
-    },
+    
     {
       "name": "Run Partner Lifecycle Supplier Portal-surveyform",
       "type": "node",
