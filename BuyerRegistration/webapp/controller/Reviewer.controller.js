@@ -114,7 +114,7 @@ sap.ui.define([
                     oView.byId("id_SegmentedBtn").setSelectedKey("BuyerData");
                     oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
                     oView.getModel("oConfigMdl").getData().defaultEnable = true;
-                    oView.getModel("oConfigMdl").getData().bankNotFoundTitle = true;
+                    oView.getModel("oConfigMdl").getData().bankNotFoundTitle = false;
                     this._fnLoadCurrency();
 
                 } else if (oContext.Name == "Approver1") {

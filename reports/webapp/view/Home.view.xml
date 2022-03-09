@@ -4,7 +4,7 @@
 				<subHeader>
 					<Toolbar class="cl_VRHeaderBackGrnd sapUiSizeCompact">
                     <ToolbarSpacer ></ToolbarSpacer>
-						<!-- <Link text="{i18n>GraphicalView}" press="fnNavToGraph" class="sapUiSmallMarginBegin cl_TIHomeLink"></Link> -->
+						<Link text="{i18n>GraphicalView}" press="fnNavToGraph" class="sapUiSmallMarginBegin cl_TIHomeLink"></Link>
 						
 					</Toolbar>
 				</subHeader>

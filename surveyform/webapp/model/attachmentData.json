@@ -9,5 +9,6 @@
  "compFinDArray": [],
  "compComplDArray": [],
  "compSecuDArray": [],
- "bankINDArray":[]
+ "bankINDArray":[],
+ "NDADocument":[]
 }]

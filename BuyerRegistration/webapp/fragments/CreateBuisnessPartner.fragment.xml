@@ -501,7 +501,7 @@
                                 </VBox>
                                 <VBox 
                                 >
-                                  <Link  text="{i18n>COILinkTxt}" target="_blank" href="https://jabil.sharepoint.com/en/employees/JabilCodePolicies/Documents/Corporate%20Policies/FCPA,%20UK%20Bribery%20Act%20and%20Anti-Corruption%20Policy_English%20RV0414C.pdf" wrapping="true" class="" />
+                                   <Link  text="{i18n>COILinkTxt}" target="_blank" href="https://jabil.sharepoint.com/en/employees/JabilCodePolicies/Documents/Forms/AllItems.aspx?id=%2Fen%2Femployees%2FJabilCodePolicies%2FDocuments%2FConflict%20of%20Interest%20Policy" wrapping="true" class="" />
                                   <layoutData>
               <l:GridData
                 span="XL12 L12 M12 S12" />

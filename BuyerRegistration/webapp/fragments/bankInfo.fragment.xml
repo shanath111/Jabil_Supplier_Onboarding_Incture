@@ -2,7 +2,10 @@
 	xmlns:u="sap.ui.unified" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f" async="true">
 	<Panel width="100%" class="sapUiTinyMarginTop panelPadding">
 		<content>
-			<Text text="{i18n>bankInformation}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+            <VBox>
+                <Text text="{i18n>bankNotValidatedMsg}" class="sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+                <Text text="{i18n>bankInformation}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+            </VBox>
 		<l:Grid  containerQuery="true" defaultSpan="XL2 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 			<VBox  class="fontStyle">
 					<Label wrapping="true" text="{i18n>bankCountry}"></Label>
@@ -83,9 +86,26 @@
 					<Input  id="id_BankKey" change="fnInputSpaceCheck" value="{oDataModel>/bankDto/bankInfoDto/0/bankKey}" liveChange="fnLiveChangeBankKey"  class="inputStyle"></Input>
                    
 				</VBox>
+                
 			</l:Grid>
-        
-    
+            <l:Grid  containerQuery="true" defaultSpan="XL2 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+                <VBox class="fontStyle">
+				<Label text="{i18n>bankNameLocal}" wrapping="true"></Label>
+					<Input maxLength="61" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/localName}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>
+                <VBox class="fontStyle">
+				<Label text="{i18n>bankAddressLocal}" wrapping="true"></Label>
+					<Input maxLength="36" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/localAddress}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>
+                <VBox class="fontStyle">
+				<Label text="{i18n>bankCityLocal}" wrapping="true"></Label>
+					<Input maxLength="36" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/localCity}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>
+                <VBox class="fontStyle">
+				<Label text="{i18n>bankBranchLocal}" wrapping="true"></Label>
+					<Input maxLength="41" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/localBranch}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>
+            </l:Grid>
     
     
     

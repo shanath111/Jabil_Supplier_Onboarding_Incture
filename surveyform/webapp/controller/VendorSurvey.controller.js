@@ -1925,6 +1925,7 @@ sap.ui.define([
                 that.getView().getModel("oAttachmentList").getData()[0].compFinDArray = [];
                 that.getView().getModel("oAttachmentList").getData()[0].compComplDArray = [];
                 that.getView().getModel("oAttachmentList").getData()[0].compSecuDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].NDADocument = [];
                 $.ajax({
                     url: sUrl,
 
@@ -1969,6 +1970,9 @@ sap.ui.define([
                             else if (value.docInSection == "cyberSecInfo") {
                                 // that.getView().getModel("oAttachmentList").getData()[0].compSecuDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].compSecuDArray.push(value);
+                            }else if (value.docInSection == "NDADocument") {
+                                // that.getView().getModel("oAttachmentList").getData()[0].compSecuDArray = [];
+                                that.getView().getModel("oAttachmentList").getData()[0].NDADocument.push(value);
                             }
                         });
 
@@ -4744,6 +4748,7 @@ sap.ui.define([
 
             },
             _fnValidateCompanyCompliance: function () {
+                var that = this;
                 var spaceRegex = /^\s+$/;
                 var iError = false;
 
@@ -5023,6 +5028,17 @@ sap.ui.define([
                 }
 
                 oView.getModel("oErrorModel").refresh();
+                if (oView.getModel("oDataModel").getData().comComplianceDto.ndaSignedBefore === 0) {
+                    if (that.getView().getModel("oAttachmentList").getData()[0].NDADocument.length == 0) {
+                        iError = true;
+                        oView.byId("fileUploader_NDA").removeStyleClass("attachmentWithoutBorder");
+                        oView.byId("fileUploader_NDA").addStyleClass("attachmentWithBorder");
+                    } else {
+                        oView.byId("fileUploader_NDA").removeStyleClass("attachmentWithBorder");
+                        oView.byId("fileUploader_NDA").addStyleClass("attachmentWithoutBorder");
+                    }
+                 
+                }
                 if (iError) {
                     oView.byId("cComplianceInfo").setValidated(false);
                 } else {
@@ -8450,6 +8466,9 @@ sap.ui.define([
                 if (secName == "bankInfo" && fileUploadId == "fileUploader_BIA") {
                     secName = "bankIntermediateInfo";
                 }
+                if (secName == "cComplianceInfo" && fileUploadId == "fileUploader_NDA") {
+                    secName = "NDADocument";
+                }
                 if (file.name.length > 60) {
                     if (isDefaultLan) {
                         sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
@@ -8716,6 +8735,8 @@ sap.ui.define([
                 }
                 else if (fileUploadId == "fileUploader_CY") {
                     return "compSecuDArray";
+                }  else if (fileUploadId == "fileUploader_NDA") {
+                    return "NDADocument";
                 }
                 return "";
             },
@@ -10396,7 +10417,11 @@ sap.ui.define([
 
 
                 // }
+                var vNDAQuetion = "NO";
 
+                if (oView.getModel("oDataModel").getData().comComplianceDto.ndaSignedBefore === 0) {
+                    vNDAQuetion = "YES";
+                }
 
                 var wPayload =
                 {
@@ -10405,6 +10430,7 @@ sap.ui.define([
                         "caseId": oView.getModel("oUserModel").getData().caseId,
                         "isEULAAccepted": true,
                         "supplierAction": "EULA_accepted",
+                        "ndaQuestion":vNDAQuetion,
                         // "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided ? "YES" : "NO",
                         "bankDetailsProvided": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "YES" : "NO",
                         "isbankdetailsHidden": oView.getModel("oDataModel").getData().bankDto.isbankdetailsHidden ? "YES" : "NO",
@@ -11707,6 +11733,10 @@ sap.ui.define([
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch = selectedBankInfo.bankBranch;
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode = selectedBankInfo.swiftCode;
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber = selectedBankInfo.bankNumber;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].localName = selectedBankInfo.localName;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].localAddress = selectedBankInfo.localAddress;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].localCity = selectedBankInfo.localCity;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].localBranch = selectedBankInfo.localBranch;
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].validationIndicator = "1";
                     oView.getModel("oDataModel").refresh();
                     oView.getModel("oVisibilityModel").getData().manualBankInfoEdit = false;
@@ -11726,6 +11756,10 @@ sap.ui.define([
                 oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch ="";
                 oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode ="";
                 oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].localName = "";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].localAddress = "";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].localCity = "";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].localBranch = "";
                 oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].validationIndicator="0";
                 
                 oView.getModel("oDataModel").refresh();
