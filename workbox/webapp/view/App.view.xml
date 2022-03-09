@@ -22,23 +22,23 @@
 								<!--Action buttons - Start-->
 								<HBox renderType="Bare" alignItems="Center"
 									visible="{= ${oAppModel>/currentView} === 'unifiedInbox' || ${oAppModel>/currentView} !== 'taskDetailPage' ? true : false}" class="sapUiSmallMarginBegin wbHeaderActionsHbox">
-									<!-- <HBox items="{oActionHeader>/dtoDefaultCopy}" renderType="Bare" alignItems="Center" class="sapUiSizeCompact"
+									<HBox items="{oActionHeader>/dtoDefaultCopy}" renderType="Bare" alignItems="Center" class="sapUiSizeCompact"
 										visible="{= ${oAppModel>/currentViewPage} === 'Draft' ? false : true}">
 										<Button text="{oActionHeader>name}" icon="{oActionHeader>icon}" enabled="{oActionHeader>enabled}" type="Transparent"
 											class="wbCustomButtonClass" textDirection="RTL" press="onActionPress"
-											visible="{oConfigMdl>/claimVisible}">
+											visible='{parts:["oActionHeader>visible", "oAppModel>/currentViewPage", "oActionHeader>key", "oAppModel>/inboxTab"], formatter:"oneapp.incture.workbox.util.formatter.setActionButtonVisibility"}'>
 											<customData>
 												<core:CustomData key="{oActionHeader>key}" value="{oActionHeader>name}"/>
 											</customData>
 										</Button>
-									</HBox> -->
-                                    <Button text="{oActionHeader>name}" icon="{oActionHeader>icon}" enabled="{oActionHeader>enabled}" type="Transparent"
+									</HBox>
+                                    <!-- <Button text="{oActionHeader>name}" icon="{oActionHeader>icon}" enabled="{oActionHeader>enabled}" type="Transparent"
 											class="wbCustomButtonClass" textDirection="RTL" press="onActionPress"
-											visible="{oConfigMdl>/claimVisible}">
-											<!-- <customData>
+											visible="true">
+											<customData>
 												<core:CustomData key="{oActionHeader>key}" value="{oActionHeader>name}"/>
-											</customData> -->
-										</Button>
+											</customData>
+										</Button> -->
 									<Button icon="sap-icon://delete" text="{i18n>DELETE_TEXT}" press="bulkDeleteDraft" type="Transparent" class="wbCustomButtonClass"
 										enabled="{oAppModel>/enableBulkDeleteButton}" visible="{= ${oAppModel>/currentViewPage} === 'Draft' ? true : false}"/>
 									<Button icon="images/MoreIcon.png" text="More" press="onMoreActionsClick" type="Transparent"
