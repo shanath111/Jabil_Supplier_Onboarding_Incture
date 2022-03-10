@@ -63,23 +63,23 @@ sap.ui.define([
                     that.getView().getModel("oConfigMdl").setProperty("/usrData", data);
                     that.getView().getModel("oConfigMdl").refresh();
 
-                    var aUsrData = this.getView().getModel("oConfigMdl").getData().usrData;
-                    this.getView().getModel("oConfigMdl").getData().claimVisible = true;
-                    this.getView().getModel("oConfigMdl").getData().ListMode = "SingleSelectLeft";
+                    var aUsrData = that.getView().getModel("oConfigMdl").getData().usrData;
+                    that.getView().getModel("oConfigMdl").getData().claimVisible = false;
+                    that.getView().getModel("oConfigMdl").getData().ListMode = "None";
                     if (aUsrData) {
                         var aADGroups = JSON.parse(aUsrData.adGroups);
                         if (aADGroups) {
                             for (var i = 0; i < aADGroups.length; i++) {
                                 if (aADGroups[i] == "IAM_D_SCP_PLC_ADMIN" || aADGroups[i] == "IAM_D_SCP_SUP_PORTAL_APPROVER") {
-                                    this.getView().getModel("oConfigMdl").getData().claimVisible = true;
+                                    that.getView().getModel("oConfigMdl").getData().claimVisible = true;
                                    // this.getView().getModel("oConfigMdl").getData().ListMode = "SingleSelectLeft";
-                                   this.getView().getModel("oConfigMdl").getData().ListMode = "SingleSelectLeft";
+                                   that.getView().getModel("oConfigMdl").getData().ListMode = "SingleSelectLeft";
                                     break;
                                 }
                             }
                         }
                     }
-                    this.getView().getModel("oConfigMdl").refresh();
+                    that.getView().getModel("oConfigMdl").refresh();
 
 
                 },
