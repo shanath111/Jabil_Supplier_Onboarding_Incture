@@ -564,8 +564,8 @@ sap.ui.define([
                     oAppModel.setProperty("/isAdmin", false);
                 }
                 // this.chatWebSocket();
-                this.notificationWebSocket();
-                this.collaboratioWebSocket(oData.userIDPMappingDto.userId); // Collaboration Change - By Karishma
+              //  this.notificationWebSocket();
+              //  this.collaboratioWebSocket(oData.userIDPMappingDto.userId); // Collaboration Change - By Karishma
                 this.setUserSettings();
             }.bind(this), function (oError) { }.bind(this));
         },
@@ -805,7 +805,7 @@ sap.ui.define([
                 }
             }.bind(this);
             this.notifSocket.onerror = function (event) {
-                that.notificationWebSocket();
+              //  that.notificationWebSocket();
             }.bind(this);
         },
         triggerNotification: function (notificationEvent, triggerSrc) {
@@ -1770,7 +1770,7 @@ sap.ui.define([
                 // }
             };
             this.socket.onerror = function (event) {
-                that.collaboratioWebSocket(sUserId, true);
+               // that.collaboratioWebSocket(sUserId, true);
             }.bind(this);
         },
         fnSendAcknowledgement: function (sSentBy, aSentTo, sChatId, sChatType) {
