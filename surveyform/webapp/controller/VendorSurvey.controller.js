@@ -3265,10 +3265,18 @@ sap.ui.define([
                             iError = true;
                             oView.byId("bpAttachBtn").removeStyleClass("attachmentWithoutBorderBP");
                             oView.byId("bpAttachBtn").addStyleClass("attachmentWithBorderBP");
-                            MessageBox.show(oi18n.getText("attachW9Er"), {
-                                icon: MessageBox.Icon.ERROR,
-                                title: "Error"
-                            });
+                            if(isDefaultLan) {
+                                MessageBox.show(oi18n.getText("attachW9Er"), {
+                                    icon: MessageBox.Icon.ERROR,
+                                    title: "Error"
+                                });
+                            } else {
+                                MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.attachW9Er + "\n" + oi18n.getText("attachW9Er"), {
+                                    icon: MessageBox.Icon.ERROR,
+                                    title: "Error"
+                                });
+                            }
+                            
                         } else {
                             oView.byId("bpAttachBtn").removeStyleClass("attachmentWithBorderBP");
                             oView.byId("bpAttachBtn").addStyleClass("attachmentWithoutBorderBP");
@@ -3282,10 +3290,18 @@ sap.ui.define([
                             oView.byId("bpAttachBtn").removeStyleClass("attachmentWithoutBorderBP");
                             oView.byId("bpAttachBtn").addStyleClass("attachmentWithBorderBP");
                             iError = true;
-                            MessageBox.show(oi18n.getText("attachW8Er"), {
-                                icon: MessageBox.Icon.ERROR,
-                                title: "Error"
-                            });
+                            if(isDefaultLan) {
+                                MessageBox.show(oi18n.getText("attachW8Er"), {
+                                    icon: MessageBox.Icon.ERROR,
+                                    title: "Error"
+                                });
+                            } else {
+                                MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.attachW8Er + "\n" + oi18n.getText("attachW8Er"), {
+                                    icon: MessageBox.Icon.ERROR,
+                                    title: "Error"
+                                });
+                            }
+                            
                         } else {
                             oView.byId("bpAttachBtn").removeStyleClass("attachmentWithBorderBP");
                             oView.byId("bpAttachBtn").addStyleClass("attachmentWithoutBorderBP");
@@ -3306,7 +3322,8 @@ sap.ui.define([
             _fnValidateOwnerInfo: function (oEvent) {
                 var spaceRegex = /^\s+$/;
                 var iError = false;
-
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
+                    isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntityTradedCompany === null) {
                     oView.getModel("oErrorModel").getData().isEntityTradedCompanyE = "Error";
                     iError = true;
@@ -3315,8 +3332,11 @@ sap.ui.define([
 
                 if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.ownershipType) {
                     oView.getModel("oErrorModel").getData().ownershipTypeE = "Error";
-                    oView.getModel("oErrorModel").getData().ownershipTypeM = oi18n.getText("mandatoryOwnshpType");
-
+                    if(isDefaultLan){
+                        oView.getModel("oErrorModel").getData().ownershipTypeM = oi18n.getText("mandatoryOwnshpType");
+                    } else {
+                        oView.getModel("oErrorModel").getData().ownershipTypeM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryOwnshpType + "\n" + oi18n.getText("mandatoryOwnshpType");
+                    }
                     iError = true;
                 }
                 if (oView.getModel("oUserModel").getData().isNew) {
@@ -3327,8 +3347,11 @@ sap.ui.define([
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.doesOtherEntityOwnSite && (!oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum || oView.getModel("oDataModel").getData().bpInfoDto.dunsRegistrationNum === "NODUNS"))
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.companyName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.companyName)) {
                             oView.getModel("oErrorModel").getData().compNameE = "Error";
-                            oView.getModel("oErrorModel").getData().compNameM = oi18n.getText("mandatoryCompName");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().compNameM = oi18n.getText("mandatoryCompName");
+                            } else {
+                                oView.getModel("oErrorModel").getData().compNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCompName + "\n" + oi18n.getText("mandatoryCompName");
+                            }
                             iError = true;
                         }
                     if (oView.getModel("oDataModel").getData().ownerShipInfoDto.isEntitySDNList === null) {
@@ -3342,11 +3365,20 @@ sap.ui.define([
                             var item = oView.byId("sdnLC").getItems()[index].getAggregation("cells");
                             if (row.firstName == null || row.firstName == "" || spaceRegex.test(row.firstName)) {
                                 item[0].getAggregation("items")[2].setValueState("Error");
-                                item[0].getAggregation("items")[2].setValueStateText(oi18n.getText("mandatoryFName"));
+                                if(isDefaultLan){
+                                    item[0].getAggregation("items")[2].setValueStateText(oi18n.getText("mandatoryFName"));
+                                } else {
+                                    item[0].getAggregation("items")[2].setValueStateText(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryFName + "\n" + oi18n.getText("mandatoryFName"));
+                                }
                                 iError = true;
                             } if (row.lastName == null || row.lastName == "" || spaceRegex.test(row.lastName)) {
                                 item[1].getAggregation("items")[2].setValueState("Error");
-                                item[1].getAggregation("items")[2].setValueStateText(oi18n.getText("mandatoryLName"));
+                                if(isDefaultLan){
+                                    item[1].getAggregation("items")[2].setValueStateText(oi18n.getText("mandatoryLName"));
+                                } else {
+                                    item[1].getAggregation("items")[2].setValueStateText(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryLName + "\n" + oi18n.getText("mandatoryLName"));
+                                }
+                                
                                 iError = true;
                             }
                         });
@@ -3370,11 +3402,20 @@ sap.ui.define([
                             var item = oView.byId("cisnkLC").getItems()[index].getAggregation("cells");
                             if (row.firstName == null || row.firstName == "" || spaceRegex.test(row.firstName)) {
                                 item[0].getAggregation("items")[2].setValueState("Error");
-                                item[0].getAggregation("items")[2].setValueStateText(oi18n.getText("mandatoryFName"));
+                                if(isDefaultLan){
+                                    item[0].getAggregation("items")[2].setValueStateText(oi18n.getText("mandatoryFName"));
+                                } else {
+                                    item[0].getAggregation("items")[2].setValueStateText(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryFName + "\n" + oi18n.getText("mandatoryFName"));
+                                }
                                 iError = true;
                             } if (row.lastName == null || row.lastName == "" || spaceRegex.test(row.lastName)) {
                                 item[1].getAggregation("items")[2].setValueState("Error");
-                                item[1].getAggregation("items")[2].setValueStateText(oi18n.getText("mandatoryLName"));
+                                if(isDefaultLan){
+                                    item[1].getAggregation("items")[2].setValueStateText(oi18n.getText("mandatoryLName"));
+                                } else {
+                                    item[1].getAggregation("items")[2].setValueStateText(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryLName + "\n" + oi18n.getText("mandatoryLName"));
+                                }
+                                
                                 iError = true;
                             }
                         });
@@ -3397,52 +3438,76 @@ sap.ui.define([
                         }
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName)) {
                             oView.getModel("oErrorModel").getData().govtEntityNameE = "Error";
-                            oView.getModel("oErrorModel").getData().govtEntityNameM = oi18n.getText("mandatoryGEName");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().govtEntityNameM = oi18n.getText("mandatoryGEName");
+                            } else {
+                                oView.getModel("oErrorModel").getData().govtEntityNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryGEName + "\n" + oi18n.getText("mandatoryGEName");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.firstName)) {
                             oView.getModel("oErrorModel").getData().govtEntityFNameE = "Error";
-                            oView.getModel("oErrorModel").getData().govtEntityFNameM = oi18n.getText("mandatoryFName");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().govtEntityFNameM = oi18n.getText("mandatoryFName");
+                            } else {
+                                oView.getModel("oErrorModel").getData().govtEntityFNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryFName + "\n" + oi18n.getText("mandatoryFName");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.lastName)) {
                             oView.getModel("oErrorModel").getData().govtEntityLNameE = "Error";
-                            oView.getModel("oErrorModel").getData().govtEntityLNameM = oi18n.getText("mandatoryLName");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().govtEntityLNameM = oi18n.getText("mandatoryLName");
+                            } else {
+                                oView.getModel("oErrorModel").getData().govtEntityLNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryLName + "\n" + oi18n.getText("mandatoryLName");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.email || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.email)) {
                             oView.getModel("oErrorModel").getData().govtEntityEmailE = "Error";
-                            oView.getModel("oErrorModel").getData().govtEntityEmailM = oi18n.getText("mandatoryEmail");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().govtEntityEmailM = oi18n.getText("mandatoryEmail");
+                            } else {
+                                oView.getModel("oErrorModel").getData().govtEntityEmailM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryEmail + "\n" + oi18n.getText("mandatoryEmail");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact)) {
                             oView.getModel("oErrorModel").getData().govtEntityContE = "Error";
-                            oView.getModel("oErrorModel").getData().govtEntityContM = oi18n.getText("mandatoryContact");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().govtEntityContM = oi18n.getText("mandatoryContact");
+                            } else {
+                                oView.getModel("oErrorModel").getData().govtEntityContM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryContact + "\n" + oi18n.getText("mandatoryContact");
+                            }
                             iError = true;
                         }
                         if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact !== "" && Number(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.contact.replaceAll("-", "")) == 0) {
                             oView.getModel("oErrorModel").getData().govtEntityContE = "Error";
-                            oView.getModel("oErrorModel").getData().govtEntityContM = oi18n.getText("invalidContact");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().govtEntityContM = oi18n.getText("invalidContact");
+                            } else {
+                                oView.getModel("oErrorModel").getData().govtEntityContM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidContact + "\n" + oi18n.getText("invalidContact");
+                            }
                             iError = true;
                         }
 
 
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.jobTitle || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.jobTitle)) {
                             oView.getModel("oErrorModel").getData().govtEntityJobTitleE = "Error";
-                            oView.getModel("oErrorModel").getData().govtEntityJobTitleM = oi18n.getText("mandatoryJobTitle");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().govtEntityJobTitleM = oi18n.getText("mandatoryJobTitle");
+                            } else {
+                                oView.getModel("oErrorModel").getData().govtEntityJobTitleM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryJobTitle + "\n" + oi18n.getText("mandatoryJobTitle");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.countryContactCode)) {
                             oView.getModel("oErrorModel").getData().govtEntityCountryCodeE = "Error";
-                            oView.getModel("oErrorModel").getData().govtEntityCountryCodeM = oi18n.getText("mandatoryCountryConatactCode");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().govtEntityCountryCodeM = oi18n.getText("mandatoryCountryConatactCode");
+                            } else {
+                                oView.getModel("oErrorModel").getData().govtEntityCountryCodeM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountryConatactCode + "\n" + oi18n.getText("mandatoryCountryConatactCode");
+                            }
                             iError = true;
                         }
                         if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.entityName.length > 30) {
@@ -3475,50 +3540,74 @@ sap.ui.define([
                         }
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName)) {
                             oView.getModel("oErrorModel").getData().closegovtEntityNameE = "Error";
-                            oView.getModel("oErrorModel").getData().closegovtEntityNameM = oi18n.getText("mandatoryGEName");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().closegovtEntityNameM = oi18n.getText("mandatoryGEName");
+                            } else {
+                                oView.getModel("oErrorModel").getData().closegovtEntityNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryGEName + "\n" + oi18n.getText("mandatoryGEName");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.firstName)) {
                             oView.getModel("oErrorModel").getData().closegovtEntityFNameE = "Error";
-                            oView.getModel("oErrorModel").getData().closegovtEntityFNameM = oi18n.getText("mandatoryFName");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().closegovtEntityFNameM = oi18n.getText("mandatoryFName");
+                            } else {
+                                oView.getModel("oErrorModel").getData().closegovtEntityFNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryFName + "\n" + oi18n.getText("mandatoryFName");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.lastName)) {
                             oView.getModel("oErrorModel").getData().closegovtEntityLNameE = "Error";
-                            oView.getModel("oErrorModel").getData().closegovtEntityLNameM = oi18n.getText("mandatoryLName");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().closegovtEntityLNameM = oi18n.getText("mandatoryLName");
+                            } else {
+                                oView.getModel("oErrorModel").getData().closegovtEntityLNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryLName + "\n" + oi18n.getText("mandatoryLName");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.email || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.email)) {
                             oView.getModel("oErrorModel").getData().closegovtEntityEmailE = "Error";
-                            oView.getModel("oErrorModel").getData().closegovtEntityEmailM = oi18n.getText("mandatoryEmail");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().closegovtEntityEmailM = oi18n.getText("mandatoryEmail");
+                            } else {
+                                oView.getModel("oErrorModel").getData().closegovtEntityEmailM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryEmail + "\n" + oi18n.getText("mandatoryEmail");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact)) {
                             oView.getModel("oErrorModel").getData().closegovtEntityContE = "Error";
-                            oView.getModel("oErrorModel").getData().closegovtEntityContM = oi18n.getText("mandatoryContact");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().closegovtEntityContM = oi18n.getText("mandatoryContact");
+                            } else {
+                                oView.getModel("oErrorModel").getData().closegovtEntityContM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryContact + "\n" + oi18n.getText("mandatoryContact");
+                            }
                             iError = true;
                         }
                         if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact !== "" && Number(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.contact.replaceAll("-", "")) == 0) {
                             oView.getModel("oErrorModel").getData().closegovtEntityContE = "Error";
-                            oView.getModel("oErrorModel").getData().closegovtEntityContM = oi18n.getText("invalidContact");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().closegovtEntityContM = oi18n.getText("invalidContact");
+                            } else {
+                                oView.getModel("oErrorModel").getData().closegovtEntityContM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidContact + "\n" + oi18n.getText("invalidContact");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.jobTitle || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.jobTitle)) {
                             oView.getModel("oErrorModel").getData().closegovtEntityJobTitleE = "Error";
-                            oView.getModel("oErrorModel").getData().closegovtEntityJobTitleM = oi18n.getText("mandatoryJobTitle");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().closegovtEntityJobTitleM = oi18n.getText("mandatoryJobTitle");
+                            } else {
+                                oView.getModel("oErrorModel").getData().closegovtEntityJobTitleM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryJobTitle + "\n" + oi18n.getText("mandatoryJobTitle");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.countryContactCode)) {
                             oView.getModel("oErrorModel").getData().closegovtEntityCountryCodeE = "Error";
-                            oView.getModel("oErrorModel").getData().closegovtEntityCountryCodeM = oi18n.getText("mandatoryCountryConatactCode");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().closegovtEntityCountryCodeM = oi18n.getText("mandatoryCountryConatactCode");
+                            } else {
+                                oView.getModel("oErrorModel").getData().closegovtEntityCountryCodeM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountryConatactCode + "\n" + oi18n.getText("mandatoryCountryConatactCode");
+                            }
                             iError = true;
                         }
                         if (oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName && oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.entityName.length > 30) {
@@ -3560,29 +3649,41 @@ sap.ui.define([
                     if (oView.getModel("companyInfoModel").getData().isOrderFromAddress) {
                         if (!oView.getModel("companyInfoModel").getData().paymentTerms || spaceRegex.test(oView.getModel("companyInfoModel").getData().paymentTerms)) {
                             oView.getModel("oErrorModel").getData().paymentTermOFAE = "Error";
-                            oView.getModel("oErrorModel").getData().paymentTermOFAM = oi18n.getText("mandatoryPrefPaymentTerms");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().paymentTermOFAM = oi18n.getText("mandatoryPrefPaymentTerms");
+                            } else {
+                                oView.getModel("oErrorModel").getData().paymentTermOFAM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryPrefPaymentTerms + "\n" + oi18n.getText("mandatoryPrefPaymentTerms");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("companyInfoModel").getData().oName || spaceRegex.test(oView.getModel("companyInfoModel").getData().oName)) {
                             oView.getModel("oErrorModel").getData().oFANameE = "Error";
-                            oView.getModel("oErrorModel").getData().oFANameM = oi18n.getText("mandatoryName");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().oFANameM = oi18n.getText("mandatoryName");
+                            } else {
+                                oView.getModel("oErrorModel").getData().oFANameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryName + "\n" + oi18n.getText("mandatoryName");
+                            }
                             iError = true;
                         }
 
                         if (!oView.getModel("companyInfoModel").getData().oAddress1 || spaceRegex.test(oView.getModel("companyInfoModel").getData().oAddress1)) {
                             oView.getModel("oErrorModel").getData().oFAAddr1E = "Error";
-                            oView.getModel("oErrorModel").getData().oFAAddr1M = oi18n.getText("mandatoryAddr1");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().oFAAddr1M = oi18n.getText("mandatoryAddr1");
+                            } else {
+                                oView.getModel("oErrorModel").getData().oFAAddr1M = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryAddr1 + "\n" + oi18n.getText("mandatoryAddr1");
+                            }
                             iError = true;
                         }
 
 
                         if (!oView.getModel("companyInfoModel").getData().oPostalCode || spaceRegex.test(oView.getModel("companyInfoModel").getData().oPostalCode)) {
                             oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
-                            oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("mandatoryPostalCode");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("mandatoryPostalCode");
+                            } else {
+                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryPostalCode + "\n" + oi18n.getText("mandatoryPostalCode");
+                            }
                             iError = true;
 
 
@@ -3590,44 +3691,60 @@ sap.ui.define([
                         // did not undertand below code
                         if (oView.getModel("companyInfoModel").getData().oPostalCode !== "" && Number(oView.getModel("companyInfoModel").getData().oPostalCode.replaceAll("-", "")) == 0) {
                             oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
-                            oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("invalidPostalCode");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("invalidPostalCode");
+                            } else {
+                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidPostalCode + "\n" + oi18n.getText("invalidPostalCode");
+                            }
                             iError = true;
                         }
 
 
                         if (!oView.getModel("companyInfoModel").getData().oCity || spaceRegex.test(oView.getModel("companyInfoModel").getData().oCity)) {
                             oView.getModel("oErrorModel").getData().oFACityE = "Error";
-                            oView.getModel("oErrorModel").getData().oFACityM = oi18n.getText("mandatoryCity");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().oFACityM = oi18n.getText("mandatoryCity");
+                            } else {
+                                oView.getModel("oErrorModel").getData().oFACityM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCity + "\n" + oi18n.getText("mandatoryCity");
+                            }
                             iError = true;
-
-
 
                         }
                         if (!oView.getModel("companyInfoModel").getData().oCountry || spaceRegex.test(oView.getModel("companyInfoModel").getData().oCountry)) {
                             oView.getModel("oErrorModel").getData().oFACounE = "Error";
-                            oView.getModel("oErrorModel").getData().oFACounM = oi18n.getText("mandatoryCountry");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().oFACounM = oi18n.getText("mandatoryCountry");
+                            } else {
+                                oView.getModel("oErrorModel").getData().oFACounM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountry + "\n" + oi18n.getText("mandatoryCountry");
+                            }
                             iError = true;
 
                         }
                         if (!oView.getModel("companyInfoModel").getData().oTeleNumCode || spaceRegex.test(oView.getModel("companyInfoModel").getData().oTeleNumCode)) {
                             oView.getModel("oErrorModel").getData().oFATeleNumCodeE = "Error";
-                            oView.getModel("oErrorModel").getData().oFATeleNumCodeM = oi18n.getText("mandatoryCountryConatactCode");;
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().oFATeleNumCodeM = oi18n.getText("mandatoryCountryConatactCode");
+                            } else {
+                                oView.getModel("oErrorModel").getData().oFATeleNumCodeM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountryConatactCode + "\n" + oi18n.getText("mandatoryCountryConatactCode");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("companyInfoModel").getData().oTeleNum || spaceRegex.test(oView.getModel("companyInfoModel").getData().oTeleNum)) {
                             oView.getModel("oErrorModel").getData().oFATeleNumE = "Error";
-                            oView.getModel("oErrorModel").getData().oFATeleNumM = oi18n.getText("mandatoryTel");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().oFATeleNumM = oi18n.getText("mandatoryTel");
+                            } else {
+                                oView.getModel("oErrorModel").getData().oFATeleNumM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryTel + "\n" + oi18n.getText("mandatoryTel");
+                            }
                             iError = true;
                         }
                         if (oView.getModel("companyInfoModel").getData().oTeleNum !== "" && Number(oView.getModel("companyInfoModel").getData().oTeleNum.replaceAll("-", "")) == 0) {
                             oView.getModel("oErrorModel").getData().oFATeleNumE = "Error";
-                            oView.getModel("oErrorModel").getData().oFATeleNumM = oi18n.getText("invalidTel");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().oFATeleNumM = oi18n.getText("invalidTel");
+                            } else {
+                                oView.getModel("oErrorModel").getData().oFATeleNumM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidTel + "\n" + oi18n.getText("invalidTel");
+                            }
                             iError = true;
                         }
                         // if (oView.getModel("companyInfoModel").getData().oCountry === 'USA' && oView.getModel("companyInfoModel").getData().haveDiversityCertifications === null) {
@@ -3671,56 +3788,89 @@ sap.ui.define([
                                     case 1:
                                         if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
                                             oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRule1");
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRule1");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule1 + "\n" + oi18n.getText("postalCodeRule1");
+                                            }
                                             iError = true;
                                         }
                                         break;
                                     case 2:
                                         if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
                                             oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRule2");
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRule2");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule2 + "\n" + oi18n.getText("postalCodeRule2");
+                                            }
                                             iError = true;
                                         }
                                         break;
                                     case 3:
                                         if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
                                             oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().oFAPostCdM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRule3_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule3_2");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule3_1 + " " + postalCodeLength + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule3_2 + "\n" + oi18n.getText("postalCodeRule3_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule3_2");
+                                            }
                                             iError = true;
                                         }
                                         break;
                                     case 4:
                                         if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
                                             oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().oFAPostCdM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRul3_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule4_2");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule3_1 + " " + postalCodeLength + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule4_2 + "\n" + oi18n.getText("postalCodeRule3_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule4_2");
+                                            }
                                             iError = true;
                                         }
                                         break;
                                     case 5:
                                         if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
                                             oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRule5");
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRule5");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule5 + "\n" + oi18n.getText("postalCodeRule5");
+                                            }
+                                            
                                             iError = true;
                                         }
                                         break;
                                     case 6:
                                         if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
                                             oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRule6");
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRule6");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule6 + "\n" + oi18n.getText("postalCodeRule6");
+                                            }
                                             iError = true;
                                         }
                                         break;
                                     case 7:
                                         if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
                                             oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().oFAPostCdM = "Code must be of exactly " + postalCodeLength + "characters in length";
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRul7_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule7_2");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule7_1 + " " + postalCodeLength + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule7_2 + "\n" + oi18n.getText("postalCodeRule7_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule7_2");
+                                            }
                                             iError = true;
                                         }
                                         break;
                                     case 8:
                                         if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
                                             oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().oFAPostCdM = "Code must be of exactly " + postalCodeLength + "digits in length";
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRul7_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule7_2");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule7_1 + " " + postalCodeLength + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule7_2 + "\n" + oi18n.getText("postalCodeRule7_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule7_2");
+                                            }
                                             iError = true;
                                         }
                                 }
@@ -3728,7 +3878,11 @@ sap.ui.define([
                                 if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || postalCode.includes(" ") || (!(postalCode.length === 8) && postalCode.length > 0)) {
 
                                     oView.getModel("oErrorModel").getData().oFAPostCdE = "Error";
-                                    oView.getModel("oErrorModel").getData().oFAPostCdM = "Postal Code must be 8 numeric values";
+                                    if(isDefaultLan){
+                                        oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n.getText("postalCodeRule9");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().oFAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule9 + "\n" + oi18n.getText("postalCodeRule9");
+                                    }
                                     iError = true;
                                 }
                             }
@@ -3749,65 +3903,99 @@ sap.ui.define([
                     if (oView.getModel("remitModel").getData().isRemitToAddress) {
                         if (!oView.getModel("remitModel").getData().paymentTerms || spaceRegex.test(oView.getModel("remitModel").getData().paymentTerms)) {
                             oView.getModel("oErrorModel").getData().paymentTermRTAE = "Error";
-                            oView.getModel("oErrorModel").getData().paymentTermRTAM = oi18n.getText("mandatoryPrefPaymentTerms");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().paymentTermRTAM = oi18n.getText("mandatoryPrefPaymentTerms");
+                            } else {
+                                oView.getModel("oErrorModel").getData().paymentTermRTAM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryPrefPaymentTerms + "\n" + oi18n.getText("mandatoryPrefPaymentTerms");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("remitModel").getData().rName || spaceRegex.test(oView.getModel("remitModel").getData().rName)) {
                             oView.getModel("oErrorModel").getData().rTANameE = "Error";
-                            oView.getModel("oErrorModel").getData().rTANameM = oi18n.getText("mandatoryName");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().rTANameM = oi18n.getText("mandatoryName");
+                            } else {
+                                oView.getModel("oErrorModel").getData().rTANameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryName + "\n" + oi18n.getText("mandatoryName");
+                            }
                             iError = true;
                         }
 
                         if (!oView.getModel("remitModel").getData().rAddress1 || spaceRegex.test(oView.getModel("remitModel").getData().rAddress1)) {
                             oView.getModel("oErrorModel").getData().rTAAddr1E = "Error";
-                            oView.getModel("oErrorModel").getData().rTAAddr1M = oi18n.getText("mandatoryAddr1");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().rTAAddr1M = oi18n.getText("mandatoryAddr1");
+                            } else {
+                                oView.getModel("oErrorModel").getData().rTAAddr1M = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryAddr1 + "\n" + oi18n.getText("mandatoryAddr1");
+                            }
                             iError = true;
 
 
                         }
                         if (!oView.getModel("remitModel").getData().rPostalCode || spaceRegex.test(oView.getModel("remitModel").getData().rPostalCode)) {
                             oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
-                            oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("mandatoryPostalCode");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("mandatoryPostalCode");
+                            } else {
+                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryPostalCode + "\n" + oi18n.getText("mandatoryPostalCode");
+                            }
                             iError = true;
                         }
                         if (oView.getModel("remitModel").getData().rPostalCode !== "" && Number(oView.getModel("remitModel").getData().rPostalCode.replaceAll("-", "")) == 0) {
                             oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("invalidPostalCode");
+                            } else {
+                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidPostalCode + "\n" + oi18n.getText("invalidPostalCode");
+                            }
                             oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("invalidPostalCode");
 
                             iError = true;
                         }
                         if (!oView.getModel("remitModel").getData().rCity || spaceRegex.test(oView.getModel("remitModel").getData().rCity)) {
                             oView.getModel("oErrorModel").getData().rTACityE = "Error";
-                            oView.getModel("oErrorModel").getData().rTACityM = oi18n.getText("mandatoryCity");
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().rTACityM = oi18n.getText("mandatoryCity");
+                            } else {
+                                oView.getModel("oErrorModel").getData().rTACityM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCity + "\n" + oi18n.getText("mandatoryCity");
+                            }
 
                             iError = true;
 
                         }
                         if (!oView.getModel("remitModel").getData().rCountry || spaceRegex.test(oView.getModel("remitModel").getData().rCountry)) {
                             oView.getModel("oErrorModel").getData().rTACounE = "Error";
-                            oView.getModel("oErrorModel").getData().rTACounM = oi18n.getText("mandatoryCountry");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().rTACounM = oi18n.getText("mandatoryCountry");
+                            } else {
+                                oView.getModel("oErrorModel").getData().rTACounM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountry + "\n" + oi18n.getText("mandatoryCountry");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("remitModel").getData().rTeleNumCode || spaceRegex.test(oView.getModel("remitModel").getData().rTeleNumCode)) {
                             oView.getModel("oErrorModel").getData().rTATeleNumCodeE = "Error";
-                            oView.getModel("oErrorModel").getData().rTATeleNumCodeM = oi18n.getText("mandatoryCountryConatactCode");
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().rTATeleNumCodeM = oi18n.getText("mandatoryCountryConatactCode");
+                            } else {
+                                oView.getModel("oErrorModel").getData().rTATeleNumCodeM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountryConatactCode + "\n" + oi18n.getText("mandatoryCountryConatactCode");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("remitModel").getData().rTeleNum || spaceRegex.test(oView.getModel("remitModel").getData().rTeleNum)) {
                             oView.getModel("oErrorModel").getData().rTATeleNumE = "Error";
-                            oView.getModel("oErrorModel").getData().rTATeleNumM = oi18n.getText("mandatoryTel");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().rTATeleNumM = oi18n.getText("mandatoryTel");
+                            } else {
+                                oView.getModel("oErrorModel").getData().rTATeleNumM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryTel + "\n" + oi18n.getText("mandatoryTel");
+                            }
                             iError = true;
                         }
                         if (oView.getModel("remitModel").getData().rTeleNum !== "" && Number(oView.getModel("remitModel").getData().rTeleNum.replaceAll("-", "")) == 0) {
                             oView.getModel("oErrorModel").getData().rTATeleNumE = "Error";
-                            oView.getModel("oErrorModel").getData().rTATeleNumM = oi18n.getText("invalidTel");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().rTATeleNumM = oi18n.getText("invalidTel");
+                            } else {
+                                oView.getModel("oErrorModel").getData().rTATeleNumM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidTel + "\n" + oi18n.getText("invalidTel");
+                            }
                             iError = true;
                         }
                         if (oView.getModel("remitModel").getData().rName && oView.getModel("remitModel").getData().rName.length > 35) {
@@ -3847,56 +4035,89 @@ sap.ui.define([
                                     case 1:
                                         if (/\s/.test(postalCode) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
                                             oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule1");
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule1");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule1 + "\n" + oi18n.getText("postalCodeRule1");
+                                            }
                                             iError = true;
                                         }
                                         break;
                                     case 2:
                                         if (!(/^\d+$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
                                             oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule2");
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule2");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule2 + "\n" + oi18n.getText("postalCodeRule2");
+                                            }
                                             iError = true;
                                         }
                                         break;
                                     case 3:
                                         if (/\s/.test(postalCode) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
                                             oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().rTAPostCdM = "Code must be of " + postalCodeLength + " characters in length without any spaces";
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule3_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule3_2");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule3_1 + " " + postalCodeLength + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule3_2 + "\n" + oi18n.getText("postalCodeRule3_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule3_2");
+                                            }
+                                            
                                             iError = true;
                                         }
                                         break;
                                     case 4:
                                         if (!(/^\d+$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
                                             oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().rTAPostCdM = "Code must be of " + postalCodeLength + " numerical digits in length without any spaces";
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule3_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule4_2");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule3_1 + " " + postalCodeLength + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule4_2 + "\n" + oi18n.getText("postalCodeRule3_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule4_2");
+                                            }
                                             iError = true;
                                         }
                                         break;
                                     case 5:
                                         if (postalCode.includes("_") || postalCode.length > postalCodeLength) {
                                             oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule5");
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule5");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule5 + "\n" + oi18n.getText("postalCodeRule5");
+                                            }
                                             iError = true;
                                         }
                                         break;
                                     case 6:
                                         if (!(/^[\d ]*$/.test(postalCode)) || (postalCode.includes("_") || postalCode.length > postalCodeLength)) {
                                             oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule6");
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule6");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule6 + "\n" + oi18n.getText("postalCodeRule6");
+                                            }
                                             iError = true;
                                         }
                                         break;
                                     case 7:
                                         if (postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
                                             oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().rTAPostCdM = "Code must be of exactly " + postalCodeLength + "characters in length";
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule7_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule7_2");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule7_1 + " " + postalCodeLength + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule7_2 + "\n" + oi18n.getText("postalCodeRule7_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule7_2");
+                                            }
                                             iError = true;
                                         }
                                         break;
                                     case 8:
                                         if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || (!(postalCode.length === postalCodeLength) && postalCode.length > 0)) {
                                             oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
-                                            oView.getModel("oErrorModel").getData().rTAPostCdM = "Code must be of exactly " + postalCodeLength + "digits in length";
+                                            if(isDefaultLan){
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule7_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule7_2");
+                                            } else {
+                                                oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule7_1 + " " + postalCodeLength + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule7_2 + "\n" + oi18n.getText("postalCodeRule7_1") + " " + postalCodeLength + " " + oi18n.getText("postalCodeRule7_2");
+                                            }
                                             iError = true;
                                         }
                                 }
@@ -3904,7 +4125,11 @@ sap.ui.define([
                                 if (!(/^[\d ]*$/.test(postalCode)) || postalCode.includes("_") || postalCode.includes(" ") || (!(postalCode.length === 8) && postalCode.length > 0)) {
 
                                     oView.getModel("oErrorModel").getData().rTAPostCdE = "Error";
-                                    oView.getModel("oErrorModel").getData().rTAPostCdM = "Postal Code must be 8 numeric values";
+                                    if(isDefaultLan){
+                                        oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n.getText("postalCodeRule9");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().rTAPostCdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.postalCodeRule9 + "\n" + oi18n.getText("postalCodeRule9");
+                                    }
                                     iError = true;
                                 }
                             }
@@ -4055,21 +4280,30 @@ sap.ui.define([
                 if (oView.getModel("oUserModel").getData().isNew) {
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentTerms) {
                         oView.getModel("oErrorModel").getData().paymentTermE = "Error";
-                        oView.getModel("oErrorModel").getData().paymentTermM = oi18n.getText("mandatoryPayTerms");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().paymentTermM = oi18n.getText("mandatoryPayTerms");
+                        } else {
+                            oView.getModel("oErrorModel").getData().paymentTermM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryPayTerms + "\n" + oi18n.getText("mandatoryPayTerms");
+                        }
                         iError = true;
                     }
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod) {
                         oView.getModel("oErrorModel").getData().paymentTermMethdE = "Error";
-                        oView.getModel("oErrorModel").getData().paymentTermMethdM = oi18n.getText("mandatoryPayMethod");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().paymentTermMethdM = oi18n.getText("mandatoryPayMethod");
+                        } else {
+                            oView.getModel("oErrorModel").getData().paymentTermMethdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryPayMethod + "\n" + oi18n.getText("mandatoryPayMethod");
+                        }
                         iError = true;
                     }
 
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency) {
                         oView.getModel("oErrorModel").getData().paymentCurrE = "Error";
-                        oView.getModel("oErrorModel").getData().paymentCurrM = oi18n.getText("mandatoryCurr");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().paymentCurrM = oi18n.getText("mandatoryCurr");
+                        } else {
+                            oView.getModel("oErrorModel").getData().paymentCurrM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCurr + "\n" + oi18n.getText("mandatoryCurr");
+                        }
                         iError = true;
                     }
                     if (oView.getModel("oDataModel").getData().shippingInfoDto.isPaymentTermsAgreed === null) {
@@ -4086,103 +4320,148 @@ sap.ui.define([
                             //if(apaymentMethod !== 'Optional'){
                             if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry)) {
                                 oView.getModel("oErrorModel").getData().bankCountryE = "Error";
-                                oView.getModel("oErrorModel").getData().bankCountryM = oi18n.getText("mandatoryCountry");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().bankCountryM = oi18n.getText("mandatoryCountry");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().bankCountryM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountry + "\n" + oi18n.getText("mandatoryCountry");
+                                }
                                 iError = true;
                             }
 
                             if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName && bankFields.bankName) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName)) {
                                 oView.getModel("oErrorModel").getData().bankNameE = "Error";
-                                oView.getModel("oErrorModel").getData().bankNameM = oi18n.getText("mandatoryBName");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().bankNameM = oi18n.getText("mandatoryBName");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().bankNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryBName + "\n" + oi18n.getText("mandatoryBName");
+                                }
                                 iError = true;
                             }
 
                             if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress && bankFields.bankStreet) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress)) {
                                 oView.getModel("oErrorModel").getData().bankAddrE = "Error";
-                                oView.getModel("oErrorModel").getData().bankAddrM = oi18n.getText("mandatoryBAddress");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().bankAddrM = oi18n.getText("mandatoryBAddress");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().bankAddrM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryBAddress + "\n" + oi18n.getText("mandatoryBAddress");
+                                }
                                 iError = true;
                             }
                             if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity && bankFields.bankCity) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity)) {
                                 oView.getModel("oErrorModel").getData().bankCityE = "Error";
-                                oView.getModel("oErrorModel").getData().bankCityM = oi18n.getText("mandatoryCity");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().bankCityM = oi18n.getText("mandatoryCity");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().bankCityM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCity + "\n" + oi18n.getText("mandatoryCity");
+                                }
                                 iError = true;
                             }
 
                             if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum && bankFields.benificiaryAccountNumber) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum)) {
                                 oView.getModel("oErrorModel").getData().bankAccNumE = "Error";
-                                oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("mandatoryAccNum");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("mandatoryAccNum");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().bankAccNumM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryAccNum + "\n" + oi18n.getText("mandatoryAccNum");
+                                }
                                 iError = true;
                             }
 
                             if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm && bankFields.benificiaryAccountNumber) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm)) {
                                 oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
-                                oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("mandatoryAccNumConfirm");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("mandatoryAccNumConfirm");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryAccNumConfirm + "\n" + oi18n.getText("mandatoryAccNumConfirm");
+                                }
                                 iError = true;
                             } else if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm) {
                                 if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm !== oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum) {
                                     oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
-                                    oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
-
+                                    if(isDefaultLan){
+                                        oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("mandatoryAccNumConfirm");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.identicalValuesRequiredAccNum + "\n" + oi18n.getText("identicalValuesRequiredAccNum");
+                                    }
                                     iError = true;
                                 }
                             }
 
                             if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName && bankFields.benificiaryAccHolderName) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry)) {
                                 oView.getModel("oErrorModel").getData().benifAccHNameE = "Error";
-                                oView.getModel("oErrorModel").getData().benifAccHNameM = oi18n.getText("mandatoryHolderName");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().benifAccHNameM = oi18n.getText("mandatoryHolderName");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().benifAccHNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryHolderName + "\n" + oi18n.getText("mandatoryHolderName");
+                                }
                                 iError = true;
                             }
 
                             if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode && bankFields.swiftCode) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode)) {
                                 oView.getModel("oErrorModel").getData().bankSwiftE = "Error";
-                                oView.getModel("oErrorModel").getData().bankSwiftM = oi18n.getText("mandatorySwftCd");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().bankSwiftM = oi18n.getText("mandatorySwftCd");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().bankSwiftM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatorySwftCd + "\n" + oi18n.getText("mandatorySwftCd");
+                                }
                                 iError = true;
                             }
 
                             if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch && bankFields.bankBranch) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch)) {
                                 // if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry == "CN" && !oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch) {
                                 oView.getModel("oErrorModel").getData().bankBranchE = "Error";
-                                oView.getModel("oErrorModel").getData().bankBranchM = oi18n.getText("mandatoryBranch");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().bankBranchM = oi18n.getText("mandatoryBranch");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().bankBranchM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryBranch + "\n" + oi18n.getText("mandatoryBranch");
+                                }
                                 iError = true;
                             }
                             if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].refBankDetails && bankFields.referenceDetails) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].refBankDetails)) {
                                 oView.getModel("oErrorModel").getData().bankRefE = "Error";
-                                oView.getModel("oErrorModel").getData().bankRefM = oi18n.getText("mandatoryRefDet");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().bankRefM = oi18n.getText("mandatoryRefDet");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().bankRefM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryRefDet + "\n" + oi18n.getText("mandatoryRefDet");
+                                }
                                 iError = true;
                             }
                             if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber && bankFields.bankNumber) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber)) {
                                 oView.getModel("oErrorModel").getData().bankNumE = "Error";
-                                oView.getModel("oErrorModel").getData().bankNumM = oi18n.getText("mandatoryBankNum");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().bankNumM = oi18n.getText("mandatoryBankNum");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().bankNumM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryBankNum + "\n" + oi18n.getText("mandatoryBankNum");
+                                }
                                 iError = true;
                             }
                             if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum && bankFields.iban) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum)) {
                                 oView.getModel("oErrorModel").getData().ibanE = "Error";
-                                oView.getModel("oErrorModel").getData().ibanM = oi18n.getText("mandatoryIban");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().ibanM = oi18n.getText("mandatoryIban");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().ibanM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryIban + "\n" + oi18n.getText("mandatoryIban");
+                                }
                                 iError = true;
                             }
                             if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm && bankFields.iban) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm)) {
 
                                 oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
-                                oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("mandatoryIbanConfirm");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("mandatoryIbanConfirm");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryIbanConfirm + "\n" + oi18n.getText("mandatoryIbanConfirm");
+                                }
                                 iError = true;
 
                             } else if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm) {
                                 if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm !== oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum) {
                                     oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
-                                    oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
-
+                                    if(isDefaultLan){
+                                        oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.identicalValuesRequiredIBAN + "\n" + oi18n.getText("identicalValuesRequiredIBAN");
+                                    }
                                     iError = true;
                                 }
                             }
@@ -4190,8 +4469,11 @@ sap.ui.define([
 
                             if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].partnerBankType && bankFields.benificiaryAccCurrency) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].partnerBankType)) {
                                 oView.getModel("oErrorModel").getData().benifAccCurrE = "Error";
-                                oView.getModel("oErrorModel").getData().benifAccCurrM = oi18n.getText("mandatoryAccCurr");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().benifAccCurrM = oi18n.getText("mandatoryAccCurr");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().benifAccCurrM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryAccCurr + "\n" + oi18n.getText("mandatoryAccCurr");
+                                }
                                 iError = true;
                             }
                             // if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey && bankFields.bankControlKey) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey)) {
@@ -4426,56 +4708,83 @@ sap.ui.define([
                         if (visiblility.isBankProvided === false) {
                             if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName)) {
                                 oView.getModel("oErrorModel").getData().finance1FNameE = "Error";
-                                oView.getModel("oErrorModel").getData().finance1FNameM = oi18n.getText("mandatoryFName");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().finance1FNameM = oi18n.getText("mandatoryFName");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance1FNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryFName + "\n" + oi18n.getText("mandatoryFName");
+                                }
                                 iError = true;
                             } if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.lastName)) {
                                 oView.getModel("oErrorModel").getData().finance1LNameE = "Error";
-                                oView.getModel("oErrorModel").getData().finance1LNameM = oi18n.getText("mandatoryLName");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().finance1LNameM = oi18n.getText("mandatoryLName");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance1LNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryLName + "\n" + oi18n.getText("mandatoryLName");
+                                }
                                 iError = true;
                             }
                             if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.email || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.email)) {
 
                                 oView.getModel("oErrorModel").getData().finance1EmailE = "Error";
-                                oView.getModel("oErrorModel").getData().finance1EmailM = oi18n.getText("mandatoryEmail");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().finance1EmailM = oi18n.getText("mandatoryEmail");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance1EmailM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryEmail + "\n" + oi18n.getText("mandatoryEmail");
+                                }
                                 iError = true;
                             }
                             if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.countryContactCode)) {
                                 oView.getModel("oErrorModel").getData().finance1CountryContCodeE = "Error";
-                                oView.getModel("oErrorModel").getData().finance1CountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().finance1CountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance1CountryContCodeM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountryConatactCode + "\n" + oi18n.getText("mandatoryCountryConatactCode");
+                                }
                                 iError = true;
                             }
                             if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.contact || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.contact)) {
                                 oView.getModel("oErrorModel").getData().finance1ContE = "Error";
-                                oView.getModel("oErrorModel").getData().finance1ContM = oi18n.getText("mandatoryContact");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().finance1ContM = oi18n.getText("mandatoryContact");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance1ContM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryContact + "\n" + oi18n.getText("mandatoryContact");
+                                }
                                 iError = true;
                             }
                             if (oView.getModel("oDataModel").getData().bankDto.financeContact1.contact !== "" && Number(oView.getModel("oDataModel").getData().bankDto.financeContact1.contact.replaceAll("-", "")) == 0) {
                                 oView.getModel("oErrorModel").getData().finance1ContE = "Error";
-                                oView.getModel("oErrorModel").getData().finance1ContM = oi18n.getText("invalidContact");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().finance1ContM = oi18n.getText("invalidContact");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance1ContM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidContact + "\n" + oi18n.getText("invalidContact");
+                                }
                                 iError = true;
                             }
                             if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.countryMobileCode || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.countryMobileCode)) {
                                 oView.getModel("oErrorModel").getData().finance1CountryContCodeMobE = "Error";
-                                oView.getModel("oErrorModel").getData().finance1CountryContCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().finance1CountryContCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance1CountryContCodeMobM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountryConatactCode + "\n" + oi18n.getText("mandatoryCountryConatactCode");
+                                }
                                 iError = true;
                             }
                             if (!oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile)) {
                                 oView.getModel("oErrorModel").getData().finance1MobE = "Error";
-                                oView.getModel("oErrorModel").getData().finance1MobM = oi18n.getText("mandatoryMContact");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().finance1MobM = oi18n.getText("mandatoryMContact");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance1MobM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryMContact + "\n" + oi18n.getText("mandatoryMContact");
+                                }
                                 iError = true;
                             }
                             if (oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile !== "" && Number(oView.getModel("oDataModel").getData().bankDto.financeContact1.mobile.replaceAll("-", "")) == 0) {
                                 oView.getModel("oErrorModel").getData().finance1MobE = "Error";
-                                oView.getModel("oErrorModel").getData().finance1MobM = oi18n.getText("invalidMContact");
-
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().finance1MobM = oi18n.getText("invalidMContact");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance1MobM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidMContact + "\n" + oi18n.getText("invalidMContact");
+                                }
                                 iError = true;
                             }
                             if (oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName && oView.getModel("oDataModel").getData().bankDto.financeContact1.firstName.length > 30) {
@@ -4508,7 +4817,11 @@ sap.ui.define([
                             if (email) {
                                 if (!email.match(mailregex)) {
                                     oView.getModel("oErrorModel").getData().finance1EmailE = "Error";
-                                    oView.getModel("oErrorModel").getData().finance1EmailM = oi18n.getText("invalidEmail");
+                                    if(isDefaultLan){
+                                        oView.getModel("oErrorModel").getData().finance1EmailM = oi18n.getText("invalidEmail");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().finance1EmailM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidEmail + "\n" + oi18n.getText("invalidEmail");
+                                    }
                                     iError = true;
 
                                 } else if (email.match(mailregex) && email.toUpperCase() == "NA@JABIL.COM") {
@@ -4522,56 +4835,86 @@ sap.ui.define([
 
                         if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName)) {
                             oView.getModel("oErrorModel").getData().finance2FNameE = "Error";
-                            oView.getModel("oErrorModel").getData().finance2FNameM = oi18n.getText("mandatoryFName");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().finance2FNameM = oi18n.getText("mandatoryFName");
+                            } else {
+                                oView.getModel("oErrorModel").getData().finance2FNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryFName + "\n" + oi18n.getText("mandatoryFName");
+                            }
                             iError = true;
                         } if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.lastName)) {
                             oView.getModel("oErrorModel").getData().finance2LNameE = "Error";
-                            oView.getModel("oErrorModel").getData().finance2LNameM = oi18n.getText("mandatoryLName");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().finance2LNameM = oi18n.getText("mandatoryLName");
+                            } else {
+                                oView.getModel("oErrorModel").getData().finance2LNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryLName + "\n" + oi18n.getText("mandatoryLName");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.email || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.email)) {
 
                             oView.getModel("oErrorModel").getData().finance2EmailE = "Error";
-                            oView.getModel("oErrorModel").getData().finance2EmailM = oi18n.getText("mandatoryEmail");
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().finance2EmailM = oi18n.getText("mandatoryEmail");
+                            } else {
+                                oView.getModel("oErrorModel").getData().finance2EmailM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryEmail + "\n" + oi18n.getText("mandatoryEmail");
+                            }
 
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.countryContactCode)) {
                             oView.getModel("oErrorModel").getData().finance2CountryContCodeE = "Error";
-                            oView.getModel("oErrorModel").getData().finance2CountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().finance2CountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
+                            } else {
+                                oView.getModel("oErrorModel").getData().finance2CountryContCodeM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountryConatactCode + "\n" + oi18n.getText("mandatoryCountryConatactCode");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.countryMobileCode || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.countryMobileCode)) {
                             oView.getModel("oErrorModel").getData().finance2CountryContCodeMobE = "Error";
-                            oView.getModel("oErrorModel").getData().finance2CountryContCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().finance2CountryContCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
+                            } else {
+                                oView.getModel("oErrorModel").getData().finance2CountryContCodeMobM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountryConatactCode + "\n" + oi18n.getText("mandatoryCountryConatactCode");
+                            }
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.contact || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.contact)) {
                             oView.getModel("oErrorModel").getData().finance2ContE = "Error";
-                            oView.getModel("oErrorModel").getData().finance2ContM = oi18n.getText("mandatoryContact");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().finance2ContM = oi18n.getText("mandatoryContact");
+                            } else {
+                                oView.getModel("oErrorModel").getData().finance2ContM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryContact + "\n" + oi18n.getText("mandatoryContact");
+                            }
                             iError = true;
                         }
                         if (oView.getModel("oDataModel").getData().bankDto.financeContact2.contact !== "" && Number(oView.getModel("oDataModel").getData().bankDto.financeContact2.contact.replaceAll("-", "")) == 0) {
                             oView.getModel("oErrorModel").getData().finance2ContE = "Error";
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().finance2ContM = oi18n.getText("invalidContact");
+                            } else {
+                                oView.getModel("oErrorModel").getData().finance2ContM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidContact + "\n" + oi18n.getText("invalidContact");
+                            }
                             oView.getModel("oErrorModel").getData().finance2ContM = oi18n.getText("invalidContact");
 
                             iError = true;
                         }
                         if (!oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile)) {
                             oView.getModel("oErrorModel").getData().finance2MobE = "Error";
-                            oView.getModel("oErrorModel").getData().finance2MobM = oi18n.getText("mandatoryMContact");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().finance2MobM = oi18n.getText("mandatoryMContact");
+                            } else {
+                                oView.getModel("oErrorModel").getData().finance2MobM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryMContact + "\n" + oi18n.getText("mandatoryMContact");
+                            }
                             iError = true;
                         }
                         if (oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile !== "" && Number(oView.getModel("oDataModel").getData().bankDto.financeContact2.mobile.replaceAll("-", "")) == 0) {
                             oView.getModel("oErrorModel").getData().finance2MobE = "Error";
-                            oView.getModel("oErrorModel").getData().finance2MobM = oi18n.getText("invalidMContact");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().finance2MobM = oi18n.getText("invalidMContact");
+                            } else {
+                                oView.getModel("oErrorModel").getData().finance2MobM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidMContact + "\n" + oi18n.getText("invalidMContact");
+                            }
                             iError = true;
                         }
                         if (oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName && oView.getModel("oDataModel").getData().bankDto.financeContact2.firstName.length > 30) {
@@ -4604,7 +4947,11 @@ sap.ui.define([
                         if (email) {
                             if (!email.match(mailregex)) {
                                 oView.getModel("oErrorModel").getData().finance2EmailE = "Error";
-                                oView.getModel("oErrorModel").getData().finance2EmailM = oi18n.getText("invalidEmail");
+                                if(isDefaultLan){
+                                    oView.getModel("oErrorModel").getData().finance2EmailM = oi18n.getText("invalidEmail");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance2EmailM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidEmail + "\n" + oi18n.getText("invalidEmail");
+                                }
                                 iError = true;
 
                             } else if (email.match(mailregex) && email.toUpperCase() == "NA@JABIL.COM") {
@@ -4627,8 +4974,11 @@ sap.ui.define([
                     if (oView.getModel("oDataModel").getData().financeInfoDto.financeAuditedLast12M === true) {
                         if (!oView.getModel("oDataModel").getData().financeInfoDto.userAudited || spaceRegex.test(oView.getModel("oDataModel").getData().financeInfoDto.userAudited)) {
                             oView.getModel("oErrorModel").getData().financeUserAuditE = "Error";
-                            oView.getModel("oErrorModel").getData().financeUserAuditM = oi18n.getText("mandatoryName");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().financeUserAuditM = oi18n.getText("mandatoryName");
+                            } else {
+                                oView.getModel("oErrorModel").getData().financeUserAuditM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryName + "\n" + oi18n.getText("mandatoryName");
+                            }
                             iError = true;
                         }
                     }
@@ -4738,8 +5088,11 @@ sap.ui.define([
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency) {
                         if (!oView.getModel("oDataModel").getData().shippingInfoDto.newpaymentCurrency) {
                             oView.getModel("oErrorModel").getData().newpaymentCurrE = "Error";
-                            oView.getModel("oErrorModel").getData().newpaymentCurrM = oi18n.getText("mandatoryNewCurr");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().newpaymentCurrM = oi18n.getText("mandatoryNewCurr");
+                            } else {
+                                oView.getModel("oErrorModel").getData().newpaymentCurrM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryNewCurr + "\n" + oi18n.getText("mandatoryNewCurr");
+                            }
                             iError = true;
                         }
                     }
@@ -4747,7 +5100,11 @@ sap.ui.define([
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isPaymentTermsAgreed === false) {
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentTermsComments) {
                         oView.getModel("oErrorModel").getData().paymentTermCmtE = "Error";
-                        oView.getModel("oErrorModel").getData().paymentTermCmtM = oi18n.getText("mandatoryPayTermComment");
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().paymentTermCmtM = oi18n.getText("mandatoryPayTermComment");
+                        } else {
+                            oView.getModel("oErrorModel").getData().paymentTermCmtM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryPayTermComment + "\n" + oi18n.getText("mandatoryPayTermComment");
+                        }
                         iError = true;
                     }
                 }
