@@ -7240,7 +7240,7 @@ sap.ui.define([
             fnLiveInputValueChange: function (oEvent) {
                 var spaceRegex = /^\s+$/;
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
-                var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                var isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 if (spaceRegex.test(oEvent.getSource().getValue())) {
                     oEvent.getSource().setValue("");
                 }
