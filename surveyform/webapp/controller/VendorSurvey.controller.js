@@ -6355,7 +6355,7 @@ sap.ui.define([
                 //     iError = true;
                 // }
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
-                var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                var isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 var email = oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.email
                 var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
                 if (email) {
@@ -7068,7 +7068,7 @@ sap.ui.define([
             _fnValidateDraftComplianceInfo: function () {
                 var iError = false;
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
-                var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                var isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 if (oView.getModel("oUserModel").getData().isNew) {
                     if (oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectations === false) {
 
@@ -7183,7 +7183,7 @@ sap.ui.define([
             _fnValidateDraftCyberSecurityInfo: function () {
                 var iError = false;
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
-                var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                var isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 if (oView.getModel("oDataModel").getData().itCyberDto.orgConnectToJabilSystem || oView.getModel("oDataModel").getData().itCyberDto.orgMaintainProcessDataFromJabil) {
                     if (this.emailValidResult) {
                         iError = true;
@@ -7340,7 +7340,7 @@ sap.ui.define([
 
             fnChangeTaxTypeLookup: function (oEvent) {
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
-                var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                var isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
@@ -8609,7 +8609,7 @@ sap.ui.define([
                 var that = this;
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
                 var listLen = this.getView().byId("operServList").getSelectedItems().length;
-                var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                var isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 if (listLen > 3) {
                     if (isDefaultLan) {
                         sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("oprServAlertMsg")), {
@@ -11365,7 +11365,7 @@ sap.ui.define([
                             "refBankDetails": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].refBankDetails,
                             "swiftCode": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode,
                             "ibanNum": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum,
-                            "bankNumber": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber,
+                            "bankNumber": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumNber,
                             "instructionKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey,
                             "partnerBankType": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].partnerBankType,
                             "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided ? true : false
@@ -12752,7 +12752,7 @@ sap.ui.define([
                 oView.getModel("bankSearchModel").getData().banksearchParam = clearData;
                 oView.getModel("bankSearchModel").refresh();
                 oView.getModel("bankDataModel").setData({});
-                View.getModel("bankDataModel").refresh();
+                oView.getModel("bankDataModel").refresh();
             },
             fnChangeBankCode: function(oEvent){
                 var spaceRegex = /^\s+$/;
