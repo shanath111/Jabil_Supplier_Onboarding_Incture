@@ -504,6 +504,22 @@ sap.ui.define([
                             if (!oEvent.getSource().getData().defaultValuesDto.searchTerm1) {
                                 oEvent.getSource().getData().defaultValuesDto.searchTerm1 = oView.getModel("JMBPCreate").getData().corporationName.substring(0, 10);
                             }
+                            if (!oEvent.getSource().getData().shippingInfoDto.reconciliationAccount) {
+                                oEvent.getSource().getData().shippingInfoDto.reconciliationAccount = "0000020000";
+                            }
+                            if (!oEvent.getSource().getData().shippingInfoDto.sortKey) {
+                                oEvent.getSource().getData().shippingInfoDto.sortKey = "001";
+                            }
+
+                            if(oEvent.getSource().getData().comInfoDto.isRemitToAddress){
+                                if (!oEvent.getSource().getData().shippingInfoDto.invoiceAddrReconciliationAccount) {
+                                    oEvent.getSource().getData().shippingInfoDto.invoiceAddrReconciliationAccount = "0000020000";
+                                }
+                                if (!oEvent.getSource().getData().shippingInfoDto.invoiceAddrSortKey) {
+                                    oEvent.getSource().getData().shippingInfoDto.invoiceAddrSortKey = "001";
+                                }
+                            }
+                           
                             if (oView.getModel("JMBPCreate").getData().isNew) {
                                 oEvent.getSource().getData().defaultValuesDto.changeType = "NEW";
                             }else{

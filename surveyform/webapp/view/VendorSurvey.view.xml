@@ -5,8 +5,8 @@
 			<Page showHeader="false" class="surveyPageBackground" enableScrolling="false">
             <Toolbar class="toolbarBackground">
             <Link text="{i18n>VRHome}" press="fnNavBackToHome" visible="{oVisibilityModel>/_HomeBtnVis}" class="sapUiSmallMarginBegin cl_TIHomeLink"></Link>
-            <Title text="{i18n>businessPartnerReg}" visible="{oVisibilityModel>/isdefaultLan}" class="toolbarfont sapUiSizeCompact sapUiMediumMarginBegin"/>
-              <Title text="{oi18n_En>businessPartnerReg}/&#160;{i18n>businessPartnerReg}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="toolbarfont sapUiSizeCompact sapUiMediumMarginBegin"/>
+            <Title text="{i18n>businessPartnerReg} : {oUserModel>/bankCompName}" visible="{oVisibilityModel>/isdefaultLan}" class="toolbarfont sapUiSizeCompact sapUiMediumMarginBegin"/>
+              <Title text="{oi18n_En>businessPartnerReg} : {oUserModel>/bankCompName}/&#160;{i18n>businessPartnerReg}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="toolbarfont sapUiSizeCompact sapUiMediumMarginBegin"/>
             </Toolbar>
             
 				<Wizard id="surveyWizard" finishButtonText="Finish" enableBranching="true" class="sapUiResponsivePadding--header sapUiResponsivePadding--content wizNavbackground" showNextButton="false">

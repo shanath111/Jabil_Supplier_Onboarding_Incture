@@ -49,14 +49,6 @@
                                 <Label class="  cl_BPCrSectHeaderExtend sapUiSmallMarginBegin " wrapping="true" text="{i18n>EnterBPDetails}"></Label>
 								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
 									<VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls "></Label>
-										<ComboBox width="95%" items="{oBPLookUpMdl>/CompanyCode}" editable="{oConfigMdl>/screenEditable}"  autocomplete="false" valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
-											filterSecondaryValues="true"  change="fnLiveChangeCompCode" showSecondaryValues="true" selectedKey="{JMBPCreate>/companyCode}"
-											class="cl_VRInputCls"    >
-											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
-										</ComboBox>
-									</VBox>
-									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCPlant}" required="true" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/Plant}" editable="{oConfigMdl>/screenEditable}" valueState="{JMBPCreate>/plante}" valueStateText="{JMBPCreate>/plantm}"
 											filterSecondaryValues="true" change="fnLiveChangePlant" showSecondaryValues="true" selectedKey="{JMBPCreate>/plant}"
@@ -64,6 +56,15 @@
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
 									</VBox>
+                                    <VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls "></Label>
+										<ComboBox width="95%" items="{oBPLookUpMdl>/CompanyCode}" editable="{oConfigMdl>/screenEditable}"  autocomplete="false" valueState="{JMBPCreate>/companyCodee}" valueStateText="{JMBPCreate>/companyCodem}"
+											filterSecondaryValues="true"  change="fnLiveChangeCompCode" showSecondaryValues="true" selectedKey="{JMBPCreate>/companyCode}"
+											class="cl_VRInputCls"    >
+											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
+										</ComboBox>
+									</VBox>
+									
                                    
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
@@ -170,7 +171,7 @@
                                   <HBox class="cl_HBoxBlockSep">
                                 </HBox>
                               
-                	<Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>BPCContact}"></Label>
+                	<Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>BPCHeaderContact1}"></Label>
 								<l:Grid defaultSpan="XL3 L3 M3 S12"  class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
 								<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCFirstName}" required="true" class="cl_VRLablCls "></Label>
@@ -355,7 +356,7 @@
                               <HBox class="cl_HBoxBlockSep">
                                 </HBox>
                                 				
-                                  <l:Grid  class="sapUiSizeCompact  cl_extendBuyerRegGrid" defaultSpan="XL3 L3 M3 S12">
+                                  <l:Grid visible="false"  class="sapUiSizeCompact  cl_extendBuyerRegGrid" defaultSpan="XL3 L3 M3 S12">
                                 <VBox >
 								<Label text="{i18n>cisoGrub}" tooltip="{i18n>cisoGrub}" required="true" class="cl_ConflictQtnCls sapUiTinyMarginTop sapUiSmallMarginBegin"></Label>
 									<RadioButtonGroup class="sapUiTinyMarginBegin"  enabled="{oConfigMdl>/screenEditable}" select="fnChangeCiscoGrub"  selectedIndex="{JMBPCreate>/isExclCiscoGhub}" valueState="{JMBPCreate>/isExclCiscoGhube}" columns="2">
@@ -370,8 +371,8 @@
                                 
                                   
                                 </l:Grid>
-                                 <HBox class="cl_BPCBlockSep">
-                                </HBox> 
+                                 <!-- <HBox class="cl_BPCBlockSep">
+                                </HBox>  -->
                                   <l:Grid  class="sapUiSizeCompact  cl_extendBuyerRegGrid" defaultSpan="XL3 L3 M3 S12">
                                    
                                  <VBox visible="true">
@@ -448,7 +449,7 @@
 									</VBox> -->
 								<!-- </l:Grid> -->
                                  
-                                	<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginBegin sapUiSmallMarginTop">
+                                	<l:Grid defaultSpan="XL3 L3 M3 S12"  visible="false" class="sapUiSizeCompact sapUiTinyMarginBegin sapUiSmallMarginTop">
 	<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCCustDirectedSupInd}" required="true" class="cl_VRLablCls sapUiTinyMarginBegin"></Label>
 										<RadioButtonGroup columns="2" selectedIndex="{JMBPCreate>/customerDirectedSupplierIndicators}" valueState="{JMBPCreate>/customerDirectedSupplierIndicatorse}" select="fnCustDirChange" enabled="{oConfigMdl>/screenEditable}">
@@ -466,8 +467,8 @@
 									</VBox>
 </l:Grid>
 
-                                     <HBox class="cl_BPCBlockSep">
-                                      </HBox>
+                                     <!-- <HBox class="cl_BPCBlockSep">
+                                      </HBox> -->
                                        <Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_BPCrSectHeader" visible="false" required="false" wrapping="true"  text="{i18n>BPCProduct}"></Label>
 								<l:Grid defaultSpan="XL3 L3 M3 S12" visible="false" class="sapUiSizeCompact sapUiTinyMarginTop">
 									<VBox class="VRVboxStyle1">

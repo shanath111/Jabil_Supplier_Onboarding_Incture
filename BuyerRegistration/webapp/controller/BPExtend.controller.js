@@ -1576,16 +1576,16 @@ sap.ui.define([
                         vError = true;
                         oView.getModel("JMBPCreate").refresh();
                     }
-                    if (oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicators == -1) {
-                        oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicatorse = "Error";
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    }
-                    if (oView.getModel("JMBPCreate").getData().isExclCiscoGhub == -1) {
-                        oView.getModel("JMBPCreate").getData().isExclCiscoGhube = "Error";
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    }
+                    // if (oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicators == -1) {
+                    //     oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicatorse = "Error";
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // }
+                    // if (oView.getModel("JMBPCreate").getData().isExclCiscoGhub == -1) {
+                    //     oView.getModel("JMBPCreate").getData().isExclCiscoGhube = "Error";
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // }
                     if (!oView.getModel("JMBPCreate").getData().plant) {
                         oView.getModel("JMBPCreate").getData().plante = "Error";
                         oView.getModel("JMBPCreate").getData().plantm = oi18n.getProperty("BPCMandatoryValidationPlant");

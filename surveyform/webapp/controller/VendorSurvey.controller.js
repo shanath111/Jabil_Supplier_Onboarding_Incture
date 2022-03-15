@@ -5121,7 +5121,7 @@ sap.ui.define([
                     }
                 }
 
-                }
+                
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isPaymentTermsAgreed === false) {
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentTermsComments) {
                         oView.getModel("oErrorModel").getData().paymentTermCmtE = "Error";

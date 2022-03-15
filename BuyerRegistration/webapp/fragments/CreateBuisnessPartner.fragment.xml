@@ -262,7 +262,7 @@
 									</VBox>
 								</l:Grid>
                                 </VBox>
-                                	<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_BPCrSectHeader" wrapping="true" text="{i18n>BPCHeaderContact}"></Label>
+                                	<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_BPCrSectHeader" wrapping="true" text="{i18n>BPCHeaderContact1}"></Label>
 								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCFirstName}" required="true" class="cl_VRLablCls "></Label>
@@ -449,7 +449,7 @@
 								</l:Grid>
                                 <HBox class="cl_BPCBlockSep">
                                       </HBox>
-                                	<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
+                                	<l:Grid defaultSpan="XL3 L3 M3 S12" visible="false" class="sapUiSizeCompact sapUiSmallMarginTop">
 	<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCCustDirectedSupInd}" required="true" class="cl_VRLablCls "></Label>
 										<RadioButtonGroup class="sapUiSmallMarginEnd" columns="2" selectedIndex="{JMBPCreate>/customerDirectedSupplierIndicators}" valueState="{JMBPCreate>/customerDirectedSupplierIndicatorse}" select="fnCustDirChange" enabled="{oConfigMdl>/screenEditable}">
@@ -467,8 +467,8 @@
 									</VBox>
 </l:Grid>
 
-                                     <HBox class="cl_BPCBlockSep">
-                                      </HBox>
+                                     <!-- <HBox class="cl_BPCBlockSep">
+                                      </HBox> -->
                                        <Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_BPCrSectHeader" required="false" wrapping="true"  visible="false" text="{i18n>BPCProduct}"></Label>
 								<l:Grid defaultSpan="XL3 L3 M3 S12" visible="false" class="sapUiSizeCompact sapUiTinyMarginTop">
 									<VBox class="VRVboxStyle1">
