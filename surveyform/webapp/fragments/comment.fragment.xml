@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<Dialog title="{i18n>confirmDecline}" contentWidth="25%">
+	<Dialog title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>confirmDecline}:${oi18n_En>confirmDecline} + '/&#160;' +${i18n>confirmDecline}}" contentWidth="25%">
 		<content>
         <VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
-            <Label text="{i18n>comments}" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>comments}:${oi18n_En>comments} + '/&#160;' +${i18n>comments}}" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
             <TextArea value="{commentModel>/0/comment}" class="sapUiSmallMarginBegin" required="true" placeholder="{i18n>provideComments}" width="90%" ></TextArea>
             </VBox>
 			<OverflowToolbar class="barClass sapUiTinyMarginTop">
