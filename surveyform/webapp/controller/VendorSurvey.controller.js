@@ -4743,6 +4743,31 @@ sap.ui.define([
                             iError = true;
                         }
                     }
+                    if (oView.getModel("oDataModel").getData().shippingInfoDto.isPaymentTermsAgreed === null) {
+                        oView.getModel("oErrorModel").getData().isPaymentTermsAgreedE = "Error";
+                        iError = true;
+                    }
+                    if (iError) {
+                        var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
+                            isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                        if (isDefaultLan) {
+                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        } else {
+                            sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.validationDefaultMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        }
+                    }
+                }
+
                 }
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.isPaymentTermsAgreed === false) {
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentTermsComments) {

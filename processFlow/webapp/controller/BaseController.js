@@ -534,8 +534,8 @@ sap.ui.define([
 				} else {
 					oAppModel.setProperty("/isAdmin", false);
 				}
-				this.notificationWebSocket();
-				this.collaboratioWebSocket(oData.userIDPMappingDto.userId); // Collaboration Change - By Karishma
+			//	this.notificationWebSocket();
+				//this.collaboratioWebSocket(oData.userIDPMappingDto.userId); // Collaboration Change - By Karishma
 				this.setUserSettings();
 			}.bind(this), function (oError) {}.bind(this));
 			taskManagement.setServerStatusTimer(this);

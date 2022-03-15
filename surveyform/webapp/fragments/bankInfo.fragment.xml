@@ -80,7 +80,7 @@
 				 
 			</l:Grid>
              <VBox class="fontStyle sapUiSizeCompact">
-                <Label  labelFor="idPaymentAgree" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>paymentTermsAgree}:${oi18n_En>paymentTermsAgree} +'/&#160;' +${i18n>paymentTermsAgree}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+                <Label required="true" labelFor="idPaymentAgree" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>paymentTermsAgree}:${oi18n_En>paymentTermsAgree} +'/&#160;' +${i18n>paymentTermsAgree}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
                     <RadioButtonGroup id="idPaymentAgree" class="inputStyle" columns="2" selectedIndex="{=${oDataModel>/shippingInfoDto/isPaymentTermsAgreed} === true? 0 :(${oDataModel>/shippingInfoDto/isPaymentTermsAgreed}=== false ?1: -1)}" valueState="{oErrorModel>/isPaymentTermsAgreedE}" enabled="{oEnableMdl>/paymentTermsEnb}" select="fnClearValueState">
                     <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/shippingInfoDto/isPaymentTermsAgreed}"></RadioButton>
                     <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}"  select="fnSelectionChange"></RadioButton>
