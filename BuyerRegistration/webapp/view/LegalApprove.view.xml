@@ -406,7 +406,7 @@
 									</VBox>
 								</l:Grid>
                                 </VBox>
-                                	<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_BPCrSectHeader" wrapping="true" text="{i18n>BPCHeaderContact}"></Label>
+                                	<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_BPCrSectHeader" wrapping="true" text="{i18n>BPCHeaderContact1}"></Label>
 								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCFirstName}" required="true" class="cl_VRLablCls "></Label>

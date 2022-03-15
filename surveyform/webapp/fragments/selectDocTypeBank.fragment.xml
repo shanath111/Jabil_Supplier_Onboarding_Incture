@@ -8,7 +8,7 @@
         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>docType}:${oi18n_En>docType} + '/&#160;' +${i18n>docType}}" required="true"/>
             	<ComboBox width="50%" selectedKey="" class="inputStyle" change="fnDocTypeChange">
 								<core:Item key="Indemnity Letter" text="Indemnity Letter"/>
-								<core:Item key="Bank Statement" text="Bank Statement"/>
+								<core:Item key="Bank Verification" text="Bank Verification"/>
                                 <core:Item key="other" text="Other"/>
                   </ComboBox>
             </VBox>

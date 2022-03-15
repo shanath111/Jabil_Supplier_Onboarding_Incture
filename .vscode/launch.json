@@ -77,7 +77,7 @@
         "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
         "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/Partner Lifecycle Supplier Portal/BuyerRegistration\"}"
       },
-      "envFile": "${workspaceFolder}/BuyerRegistration/.env60",
+      "envFile": "${workspaceFolder}/BuyerRegistration/.env59",
       "preLaunchTask": "Build Partner Lifecycle Supplier Portal"
     }
   ],

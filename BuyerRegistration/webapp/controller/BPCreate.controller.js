@@ -657,11 +657,11 @@ sap.ui.define([
                         vError = true;
                         oView.getModel("JMBPCreate").refresh();
                     }
-                    if (oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicators == -1) {
-                        oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicatorse = "Error";
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    }
+                    // if (oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicators == -1) {
+                    //     oView.getModel("JMBPCreate").getData().customerDirectedSupplierIndicatorse = "Error";
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // }
 
 
                     // if (!oView.getModel("JMBPCreate").getData().address1) {
