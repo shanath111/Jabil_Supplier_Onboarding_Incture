@@ -125,11 +125,11 @@
                 </VBox>
                 <VBox class="VRVboxStyle1">	
                     <Label text="{i18n>BSANumberOrSwift}" ></Label>
-                    <Input value="{bankSearchModel>/banksearchParam/bankCode}" valueState="{oErrorModel>/bankSearchCodeE}" valueStateText="{oErrorModel>/bankSearchCodeM}" change="fnChangeBankCode" class="inputStyle"></Input>
+                    <Input maxLength="11" value="{bankSearchModel>/banksearchParam/bankCode}" valueState="{oErrorModel>/bankSearchCodeE}" valueStateText="{oErrorModel>/bankSearchCodeM}" change="fnChangeBankCode" class="inputStyle"></Input>
                 </VBox>	
                 <VBox class="VRVboxStyle1">	
                     <Label text="{i18n>BSABankName}"  required="{oVisibilityModel>/bankNameSearchMandate}"></Label>
-                    <Input value="{bankSearchModel>/banksearchParam/bankName}" valueState="{oErrorModel>/bankSearchNameE}" valueStateText="{oErrorModel>/bankSearchNameM}" change="fnLiveInputValueChange" class="inputStyle"></Input>
+                    <Input maxLength="60" value="{bankSearchModel>/banksearchParam/bankName}" valueState="{oErrorModel>/bankSearchNameE}" valueStateText="{oErrorModel>/bankSearchNameM}" change="fnLiveInputValueChange" class="inputStyle"></Input>
                 </VBox>
                 <VBox class="VRVboxStyle1">	
                     <Label text="{i18n>BSABranch}" ></Label>
