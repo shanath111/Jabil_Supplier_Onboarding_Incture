@@ -198,8 +198,9 @@
                             <ToolbarSpacer/>
                              <Button text="{i18n>Cancel Task}"  visible="{oConfigMdl>/CompleteTaskVis}" press="fnCloseTask" class="cl_VRActnBtnApply sapUiSizeCompact"  tooltip="{i18n>Complete Task}" />
                                 <Button text="{i18n>BPNewBuisnessPartner}" visible="{=!${oConfigMdl>/CompleteTaskVis}}" enabled="{=${oConfigMdl>/searchEnable} &amp;&amp;${oConfigMdl>/createNewBtn}}" press="fnNewBuinessPartner" class="cl_VRActnBtnApply sapUiSizeCompact"  tooltip="{i18n>SearchTooltip}" />
-			                    <Button text="{i18n>BPSendToSME}"  visible="{=!${oConfigMdl>/CompleteTaskVis}}"  press="fnSendToSME" enabled="{oConfigMdl>/searchEnableGBS}" class="cl_VRActnBtnApply sapUiTinyarginBegin sapUiSizeCompact" />
-              	                <Button icon="sap-icon://action-settings"  press="fnPersonaliseColumns" class="cl_VRActnBtnApply sapUiSizeCompact"  />
+			                    <!-- <Button text="{i18n>BPSendToSME}"  visible="{=!${oConfigMdl>/CompleteTaskVis}}"  press="fnSendToSME" enabled="{oConfigMdl>/searchEnableGBS}" class="cl_VRActnBtnApply sapUiTinyarginBegin sapUiSizeCompact" /> -->
+  <Button text="{i18n>BPSendToSME}"  visible="false"  press="fnSendToSME" enabled="{oConfigMdl>/searchEnableGBS}" class="cl_VRActnBtnApply sapUiTinyarginBegin sapUiSizeCompact" />
+                                  <Button icon="sap-icon://action-settings"  press="fnPersonaliseColumns" class="cl_VRActnBtnApply sapUiSizeCompact"  />
 						</OverflowToolbar>
 				    </u:extension>
 				    <u:columns>
