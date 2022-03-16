@@ -12689,6 +12689,9 @@ sap.ui.define([
             },
             fnSearchAccuityBank: function(oEvent) {
                 var vError = false;
+                var nflag = 0;
+                var oi18n_En = that.getOwnerComponent().getModel("oi18n_En"),
+                    isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 if (!oView.getModel("bankSearchModel").getData().banksearchParam.bankCountry) {
                     oView.getModel("oErrorModel").getData().bankSearchCountryE = "Error";
                     oView.getModel("oErrorModel").getData().bankSearchCountryM = oi18n.getText("mandatoryCountry");
@@ -12713,14 +12716,17 @@ sap.ui.define([
                         "bankCountry": oView.getModel("bankSearchModel").getData().banksearchParam.bankCountry,
                         "bankName": oView.getModel("bankSearchModel").getData().banksearchParam.bankName
                     }
-                    oModel.loadData(sUrl, JSON.stringify(oPayload), true, "POST", false, true, {
-                        "Content-Type": "application/json"
-                    });
-                    oModel.attachRequestCompleted(function onCompleted(oEvent) {
-                        if (oEvent.getParameter("success")) {
-                            oBusyDialogSearching.close(); 
+                    $.ajax({
+                        timeout: 5000,
+                        url: sUrl,
+                        type: 'POST',
+                        data: JSON.stringify(oPayload),
+                        contentType: "application/json",
+                        dataType: "json",
+                        success: function(data) {
+                            oBusyDialogSearching.close();
                             var oJsonBankSearch = new sap.ui.model.json.JSONModel();
-                            oJsonBankSearch.setData(oEvent.getSource().getData());
+                            oJsonBankSearch.setData(data);
                             oView.setModel(oJsonBankSearch, "bankDataModel");
                             if(oJsonBankSearch.getData().exceptions[0].code == "100"){
                                 if(oJsonBankSearch.getData().exceptions[1].code == "101") {
@@ -12750,14 +12756,91 @@ sap.ui.define([
                                     title: oi18n.getText("error")
                                 });
                             }
-                        } else {
+                
+                        },
+                        error: function(jqXHR, textStatus) {
                             oBusyDialogSearching.close();
-                            
+                            if (textStatus === 'timeout') {
+                                nflag += 1;
+                                if(nflag == 1){
+                                    if(isDefaultLan){
+                                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityNoResponse1"), {
+                                            icon: MessageBox.Icon.ERROR,
+                                            title: oi18n.getText("error")
+                                        });
+                                   } else {
+                                    
+                                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityNoResponse1 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityNoResponse1"), {
+                                            icon: MessageBox.Icon.ERROR,
+                                            title: oi18n.getText("error")
+                                        });
+                                   }
+                                } else if(nflag > 1){
+                                    if(isDefaultLan){
+                                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityNoResponse2"), {
+                                            icon: MessageBox.Icon.ERROR,
+                                            title: oi18n.getText("error")
+                                        });
+                                   } else {
+                                    
+                                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityNoResponse2 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityNoResponse2"), {
+                                            icon: MessageBox.Icon.ERROR,
+                                            title: oi18n.getText("error")
+                                        });
+                                   }
+                                }
+                               
+                            }
                         }
                     });
-                } else {
-                    // sap.m.MessageToast.show(oi18n.getProperty("enterTaxCategory"))
+
                 }
+
+                //     oModel.loadData(sUrl, JSON.stringify(oPayload), true, "POST", false, true, {
+                //         "Content-Type": "application/json"
+                //     });
+                //     oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                //         if (oEvent.getParameter("success")) {
+                //             oBusyDialogSearching.close(); 
+                //             var oJsonBankSearch = new sap.ui.model.json.JSONModel();
+                //             oJsonBankSearch.setData(oEvent.getSource().getData());
+                //             oView.setModel(oJsonBankSearch, "bankDataModel");
+                //             if(oJsonBankSearch.getData().exceptions[0].code == "100"){
+                //                 if(oJsonBankSearch.getData().exceptions[1].code == "101") {
+                //                     var sErMsg = oi18n.getText("InvalidBankSearchError");
+                //                     MessageBox.show(sErMsg, {
+                //                         icon: MessageBox.Icon.ERROR,
+                //                         title: oi18n.getText("error")
+                //                     });
+                //                 } else {
+                //                     var sErMsg = oJsonBankSearch.getData().exceptions[1].description;
+                //                     MessageBox.show(sErMsg, {
+                //                         icon: MessageBox.Icon.ERROR,
+                //                         title: oi18n.getText("error")
+                //                     });
+                //                 }
+                                
+                //             } else if(oJsonBankSearch.getData().exceptions[0].code == "000" && oJsonBankSearch.getData().exceptions[1].code == "102"){
+                //                 var sErMsg =  oi18n.getText("BankSearchTooManyMatches");
+                //                 MessageBox.show(sErMsg, {
+                //                     icon: MessageBox.Icon.ERROR,
+                //                     title: oi18n.getText("error")
+                //                 });
+                //             } else if(oJsonBankSearch.getData().exceptions[0].code == "000" && oJsonBankSearch.getData().exceptions.length>=2){
+                //                 var sErMsg =  oJsonBankSearch.getData().exceptions[1].description;
+                //                 MessageBox.show(sErMsg, {
+                //                     icon: MessageBox.Icon.ERROR,
+                //                     title: oi18n.getText("error")
+                //                 });
+                //             }
+                //         } else {
+                //             oBusyDialogSearching.close();
+                            
+                //         }
+                //     });
+                // } else {
+                    // sap.m.MessageToast.show(oi18n.getProperty("enterTaxCategory"))
+                // }
 
             },
             fnInputSpaceCheck: function (oEvent) {
