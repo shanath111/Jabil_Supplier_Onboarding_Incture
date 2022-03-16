@@ -33,18 +33,15 @@ sap.ui.define([
                 var oJsonFilter = new sap.ui.model.json.JSONModel();
                 var temp = {
                     "companyCode": "",
-                    "purchasingOrganisation": ""
+                    "purchasingOrganisation": "",
+                    "siteName": "",
+                    "paymentMethod": "",
+                    "erpSystem": ""
                 };
                 oJsonFilter.setData(temp);
                 oView.setModel(oJsonFilter, "JMFilter");
+                this.fnClearSearch();
 
-                var oJsonFilter = new sap.ui.model.json.JSONModel();
-                var temp = {
-                    "companyCode": "",
-                    "purchasingOrganisation": ""
-                };
-                oJsonFilter.setData(temp);
-                oView.setModel(oJsonFilter, "JMFilter1");
                 // this.fnLoadSiteName();
                 // this.fnLoadSiteName1();
                 this.fnLoadCompanyCode();
@@ -52,6 +49,51 @@ sap.ui.define([
                 // this.fnLoadDocName();
                 // this.fnLoadDocName1();
 
+
+            },
+            fnClearSearch: function () {
+                var oJsonFilter = new sap.ui.model.json.JSONModel();
+                var temp = {
+                    "companyCode": "",
+                    "purchasingOrganisation": "",
+                    "siteName": "",
+                    "paymentMethod": "",
+                    "erpSystem": ""
+                };
+                oJsonFilter.setData(temp);
+                oView.setModel(oJsonFilter, "JMFilter1");
+                oView.byId("id_PaymentMetod").setEnabled(false);
+                oView.byId("id_PaymentMethodLbl").setRequired(false);
+            },
+            fnChangeERPSystem: function () {
+                if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {
+                    oView.byId("id_PaymentMetod").setEnabled(true);
+                    oView.byId("id_PaymentMethodLbl").setRequired(true);
+                } else {
+                    oView.byId("id_PaymentMetod").setEnabled(false);
+                    oView.byId("id_PaymentMethodLbl").setRequired(false);
+                }
+            },
+
+            fnLivePaymentMethodChange: function (oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+
+            },
+            fnLivePaymentMethodFinish: function (oEvent) {
+                if (oEvent.getSource().getSelectedKeys().length !== 0) {
+                    oView.getModel("JMFilter1").getData().paymentMethod = "";
+                    for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
+                        oView.getModel("JMFilter1").getData().paymentMethod = oView.getModel("JMFilter1").getData().paymentMethod + oEvent.getSource().getSelectedKeys()[i];
+                    }
+                } else {
+                    oView.getModel("JMFilter1").getData().paymentMethod = "";
+                }
+                oView.getModel("JMFilter1").refresh();
 
             },
 
@@ -120,6 +162,7 @@ sap.ui.define([
 
                 }
                 this.fnLoadPurOrg(oView.getModel("JMFilter").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
+
                 oView.getModel("JMFilter").getData().purchasingOrg = "";
                 oView.getModel("JMFilter").refresh();
                 if (oView.getModel("JMFilter").getData().companyCodee == "Error") {
@@ -127,6 +170,22 @@ sap.ui.define([
                     oView.getModel("JMFilter").getData().companyCodem = "";
                     oView.getModel("JMFilter").refresh();
                 }
+
+            },
+            fnLoadPaymentMethod: function (vCompCode) {
+                var oModel = new JSONModel();
+                var sUrl = "/InboxDetail/plcm_reference_data/api/v1/reference-data/paymentMethod/" + vCompCode;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/PaymentMethod", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+
+
+                });
 
             },
             fnLiveChangeCompCode1: function (oEvent) {
@@ -139,7 +198,9 @@ sap.ui.define([
 
                 }
                 this.fnLoadPurOrg1(oView.getModel("JMFilter1").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
-                oView.getModel("JMFilter").getData().purchasingOrg = "";
+                this.fnLoadPaymentMethod(oView.getModel("JMFilter1").getData().companyCode);
+                oView.getModel("JMFilter1").getData().purchasingOrg = "";
+                oView.getModel("JMFilter1").getData().paymentMethod = "";
                 oView.getModel("JMFilter").refresh();
                 if (oView.getModel("JMFilter").getData().companyCodee == "Error") {
                     oView.getModel("JMFilter").getData().companyCodee = "None";
@@ -303,7 +364,8 @@ sap.ui.define([
                     var oPayload = {
                         "companyCode": oView.getModel("JMFilter").getData().companyCode,
                         "purchasingOrganisation": oView.getModel("JMFilter").getData().purchasingOrganisation,
-                        
+                        "siteName": oView.getModel("JMFilter").getData().siteName,
+                        "erpSystem": oView.getModel("JMFilter").getData().erpSystem,
 
                     }
 
@@ -360,14 +422,26 @@ sap.ui.define([
             },
             fnSubmitCCPO: function () {
                 var vError = false;
-                
+
                 if (oView.getModel("JMFilter1").getData().companyCode == "") {
                     vError = true
                 }
                 if (oView.getModel("JMFilter1").getData().purchasingOrganisation == "") {
                     vError = true
                 }
-                
+                // if (oView.getModel("JMFilter1").getData().siteName == "") {
+                //     vError = true
+                // }
+                if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {
+                if (oView.getModel("JMFilter1").getData().paymentMethod == "") {
+                    vError = true
+                }
+            }
+                if (oView.getModel("JMFilter1").getData().erpSystem == "") {
+                    vError = true
+                }
+
+
 
                 if (vError == false) {
                     var that = this;
@@ -393,7 +467,9 @@ sap.ui.define([
                                     "purchasingOrganisation": oView.getModel("JMFilter1").getData().companyCode,
                                     "companyCodeDescription": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode1, oView.getModel("JMFilter1").getData().companyCode, "CompanyCode"),
                                     "purchasingOrganisationDescription": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurOrg1, oView.getModel("JMFilter1").getData().purchasingOrganisation, "PurchOrg"),
-                                    
+                                    "siteName": oView.getModel("JMFilter1").getData().siteName,
+                                    "paymentMethod": oView.getModel("JMFilter1").getData().paymentMethod,
+                                    "erpSystem": oView.getModel("JMFilter1").getData().erpSystem,
                                     "createdOn": new Date(),
                                     //"updatedOn": null,
                                     "createdBy": vBuyer
@@ -419,6 +495,7 @@ sap.ui.define([
                                             oView.addDependent(that.oBPSuccess);
                                         }
                                         oBusyDilog.close();
+                                        that.fnClearSearch();
                                         that.oBPSuccess.open();
 
                                     } else {
@@ -459,7 +536,7 @@ sap.ui.define([
                             oBusyDilog.open();
                             var oModel = new JSONModel();
 
-                         
+
                             var sUrl = "/nsBuyerRegistration/plcm_portal_services/ccpo/deleteById/" + vccId;
                             $.ajax({
                                 url: sUrl,
@@ -519,7 +596,7 @@ sap.ui.define([
             fnNavToHome: function () {
                 this.getOwnerComponent().getRouter().navTo("Home");
             },
-            onChangeLookupValue: function(oEvent) {
+            onChangeLookupValue: function (oEvent) {
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
@@ -529,10 +606,10 @@ sap.ui.define([
                 }
             },
             fnLiveChangePurchOrg: function (oEvent) {
-                var compCode= oView.getModel("JMFilter").getData().companyCode;
-                if(compCode === "" || compCode === undefined){
+                var compCode = oView.getModel("JMFilter").getData().companyCode;
+                if (compCode === "" || compCode === undefined) {
                     sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
-                    
+
                 }
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
@@ -543,10 +620,10 @@ sap.ui.define([
             },
 
             fnLiveChangePurchOrg1: function (oEvent) {
-                var compCode= oView.getModel("JMFilter1").getData().companyCode;
-                if(compCode === "" || compCode === undefined){
+                var compCode = oView.getModel("JMFilter1").getData().companyCode;
+                if (compCode === "" || compCode === undefined) {
                     sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
-                    
+
                 }
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
@@ -555,6 +632,7 @@ sap.ui.define([
                     }
                 }
             },
+
             // onChangeDocLink: function(oEvent) {
             //     if(oEvent.getSource().getValue().length > 255) {
             //         oView.getModel("JMFilter").getData().docLinke ="Error";
