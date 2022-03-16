@@ -112,24 +112,25 @@
                                      	<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_TIDescTxt" wrapping="true" text="{i18n>EnterBPDetails}"></Label>
                                     
                                     	<l:Grid defaultSpan="XL2 L2 M2 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
-										
+											<VBox class="VRVboxStyle1">
+												<Label text="{i18n>TICorporationName}" class="cl_PreviewLablCls "></Label>
+												<Label text="{JMBPCreate>/corporationName}" wrapping="true" class="cl_PreviewLablClsValue "></Label>
+											</VBox>
 
 											<VBox class="VRVboxStyle1">
 												<Label text="{i18n>TIPlant}" class="cl_PreviewLablCls "></Label>
 												<Label text="{JMBPCreate>/plant}" class="cl_PreviewLablClsValue "></Label>
 											</VBox>
 											<VBox class="VRVboxStyle1">
-												<Label text="{i18n>TIPurchasingOrg}" class="cl_PreviewLablCls "></Label>
-												<Label text="{JMBPCreate>/purchasingOrg}" class="cl_PreviewLablClsValue "></Label>
-											</VBox>
-                                            	<VBox class="VRVboxStyle1">
 												<Label text="{i18n>TICompanyCode}" class="cl_PreviewLablCls "></Label>
 												<Label text="{JMBPCreate>/companyCode}" class="cl_PreviewLablClsValue "></Label>
 											</VBox>
-											<VBox class="VRVboxStyle1">
-												<Label text="{i18n>TICorporationName}" class="cl_PreviewLablCls "></Label>
-												<Label text="{JMBPCreate>/corporationName}" wrapping="true" class="cl_PreviewLablClsValue "></Label>
+                                        	<VBox class="VRVboxStyle1">
+												<Label text="{i18n>TIPurchasingOrg}" class="cl_PreviewLablCls "></Label>
+												<Label text="{JMBPCreate>/purchasingOrg}" class="cl_PreviewLablClsValue "></Label>
 											</VBox>
+                                            
+										
 										</l:Grid>
 							
                                    	<HBox class="cl_HBoxBlockSep"></HBox>
