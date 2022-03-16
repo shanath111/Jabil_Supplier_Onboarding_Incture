@@ -1143,6 +1143,16 @@
                                         <Label text="{oi18n_En>bankBranch}&#10;{i18n>bankBranch}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
 										<Label text="{=${oDataModel>/bankDto/bankInfoDto/0/bankBranch}?${oDataModel>/bankDto/bankInfoDto/0/bankBranch}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
+                                    <VBox class="VRVboxStyle1">
+										<Label text="{i18n>swift}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                        <Label text="{oi18n_En>swift}&#10;{i18n>swift}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+										<Label text="{=${oDataModel>/bankDto/bankInfoDto/0/swiftCode}?${oDataModel>/bankDto/bankInfoDto/0/swiftCode}:'---'}"  class="cl_PreviewLablClsValue "></Label>
+									</VBox>
+                                     <VBox class="VRVboxStyle1">
+										<Label text="{i18n>bankNum}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
+                                        <Label text="{oi18n_En>bankNum}&#10;{i18n>bankNum}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+										<Label text="{=${oDataModel>/bankDto/bankInfoDto/0/bankNumber}?${oDataModel>/bankDto/bankInfoDto/0/bankNumber}:'---'}"  class="cl_PreviewLablClsValue "></Label>
+									</VBox>
                                      <VBox class="VRVboxStyle1">
 										<Label text="{i18n>accHolderName}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         	<Label text="{oi18n_En>accHolderName}&#10;{i18n>accHolderName}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
@@ -1158,16 +1168,7 @@
                                         	<Label text="{oi18n_En>refDetails}&#10;{i18n>refDetails}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
 										<Label text="{=${oDataModel>/bankDto/bankInfoDto/0/refBankDetails}?${oDataModel>/bankDto/bankInfoDto/0/refBankDetails}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
-                                     <VBox class="VRVboxStyle1">
-										<Label text="{i18n>swift}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
-                                        <Label text="{oi18n_En>swift}&#10;{i18n>swift}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
-										<Label text="{=${oDataModel>/bankDto/bankInfoDto/0/swiftCode}?${oDataModel>/bankDto/bankInfoDto/0/swiftCode}:'---'}"  class="cl_PreviewLablClsValue "></Label>
-									</VBox>
-                                     <VBox class="VRVboxStyle1">
-										<Label text="{i18n>bankNum}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
-                                        <Label text="{oi18n_En>bankNum}&#10;{i18n>bankNum}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
-										<Label text="{=${oDataModel>/bankDto/bankInfoDto/0/bankNumber}?${oDataModel>/bankDto/bankInfoDto/0/bankNumber}:'---'}"  class="cl_PreviewLablClsValue "></Label>
-									</VBox>
+                                     
                                      <VBox class="VRVboxStyle1">
 										<Label text="{i18n>iban}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>iban}&#10;{i18n>iban}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
@@ -1195,6 +1196,27 @@
 										<Label text="{=${oDataModel>/bankDto/bankInfoDto/0/instructionKey}?${oDataModel>/bankDto/bankInfoDto/0/instructionKey}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
 								</l:Grid>
+                                <l:Grid class="cl_PreviewGrid sapUiSmallMarginTop" visible="{=${oDataModel>/bankDto/isBankProvided} &amp;&amp; ${oUserModel>/isNew}}" defaultSpan="XL2 L2 M4 S12">
+                                    <VBox  class="VRVboxStyle1">
+                                        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankNameLocal}:${oi18n_En>bankNameLocal}+ '&#10;' +${i18n>bankNameLocal}}" class="cl_PreviewLablCls " wrapping="true"></Label>
+                                        <Label text="{=${oDataModel>/bankDto/bankInfoDto/0/localName}?${oDataModel>/bankDto/bankInfoDto/0/localName}:'---'}" class="cl_PreviewLablClsValue "></Label>
+                                    </VBox>
+                                    <VBox  class="VRVboxStyle1">
+                                        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankAddrLocal}:${oi18n_En>bankAddrLocal}+ '&#10;' +${i18n>bankAddrLocal}}" class="cl_PreviewLablCls " wrapping="true"></Label>
+                                        <Label text="{=${oDataModel>/bankDto/bankInfoDto/0/localAddress}?${oDataModel>/bankDto/bankInfoDto/0/localAddress}:'---'}" class="cl_PreviewLablClsValue "></Label>
+                                    </VBox>
+                                    <VBox  class="VRVboxStyle1">
+                                        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankCityLocal}:${oi18n_En>bankCityLocal}+ '&#10;' +${i18n>bankCityLocal}}" class="cl_PreviewLablCls " wrapping="true"></Label>
+                                        <Label text="{=${oDataModel>/bankDto/bankInfoDto/0/localCity}?${oDataModel>/bankDto/bankInfoDto/0/localCity}:'---'}" class="cl_PreviewLablClsValue "></Label>
+                                    </VBox>
+                                    <VBox  class="VRVboxStyle1">
+                                        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankBranchLocal}:${oi18n_En>bankBranchLocal}+ '&#10;' +${i18n>bankBranchLocal}}" class="cl_PreviewLablCls " wrapping="true"></Label>
+                                        <Label text="{=${oDataModel>/bankDto/bankInfoDto/0/localBranch}?${oDataModel>/bankDto/bankInfoDto/0/localBranch}:'---'}" class="cl_PreviewLablClsValue "></Label>
+                                    </VBox>
+                                    <VBox class="VRVboxStyle1 sapUiTinyMarginTop">
+                                        <CheckBox enabled="false" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>validated}:${oi18n_En>validated}+ '/ ' +${i18n>validated}}" selected="{path:'oDataModel>/bankDto/bankInfoDto/0/validationIndicator',formatter:'com.jabil.surveyform.formatter.formatter.fnBankInfoValidated'}" class="sapUiSizeCompact sapUIfontStyle inputStyle" />
+                                    </VBox>
+                                </l:Grid>
                                 <VBox class="fontStyle sapUiSizeCompact" visible="{=${oDataModel>/bankDto/isBankProvided} &amp;&amp; ${oUserModel>/isNew}}">
                                     <CheckBox editable="false" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/bankDto/isIntermediateBankProvided}" class="cl_PreviewLablCls" />
                                     <gl:GridList width="auto" items="{oAttachmentList>/0/bankINDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin">
