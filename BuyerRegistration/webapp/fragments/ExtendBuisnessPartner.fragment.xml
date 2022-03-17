@@ -69,7 +69,7 @@
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
 											<c:ExtComboBox width="95%" items="{oBPLookUpMdl>/PurOrg}" editable="{oConfigMdl>/screenEditable}" valueState="{JMBPCreate>/purchasingOrge}" valueStateText="{JMBPCreate>/purchasingOrgm}"
-											filterSecondaryValues="true" change="fnLiveChangePurchOrg" click="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMBPCreate>/purchasingOrg}"
+											filterSecondaryValues="true" change="fnLiveChangePurchOrgVal" click="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMBPCreate>/purchasingOrg}"
 											class="cl_VRInputCls"   >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</c:ExtComboBox>
