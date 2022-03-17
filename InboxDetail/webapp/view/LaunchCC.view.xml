@@ -22,12 +22,12 @@
  	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
 							<VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCSiteName}:" required="true" class="cl_VRLablCls "></Label>
-                                <ComboBox width="95%"   autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter1>/siteName}"
+                                <!-- <ComboBox width="95%"   autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter1>/siteName}"
                                     class="cl_VRInputCls" change="onChangeLookupValue" >
-                                    <!-- <core:ListItem key="Jabil's MDG"  text="Jabil's MDG" additionalText="{oBPLookUpMdl>description}"/>
-                                    <core:ListItem key="Site's ERP}"  text="Site's ERP" additionalText="{oBPLookUpMdl>description}"/> -->
+                                  
                                 </ComboBox>
-                                
+                                 -->
+                                   <Input maxLength="100" width="95%" value="{JMFilter1>/siteName}" class="cl_VRInputCls" />
 							</VBox>	
                              <VBox class="VRVboxStyle1">
 								
@@ -101,11 +101,11 @@
 							</VBox>		 -->
                             <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCSiteName}" required="false" class="cl_VRLablCls "></Label>
-                                <ComboBox width="95%"   autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter>/siteName}"
+                                <!-- <ComboBox width="95%"   autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter>/siteName}"
                                     class="cl_VRInputCls" change="onChangeLookupValue" >
-                                    <!-- <core:ListItem key="Jabil's MDG"  text="Jabil's MDG" additionalText="{oBPLookUpMdl>description}"/>
-                                    <core:ListItem key="Site's ERP}"  text="Site's ERP" additionalText="{oBPLookUpMdl>description}"/> -->
-                                </ComboBox>
+                                  
+                                </ComboBox> -->
+                                <Input maxLength="100" width="95%" value="{JMFilter>/siteName}" class="cl_VRInputCls" />
                                 
 							</VBox>	
                             <VBox class="VRVboxStyle1">
