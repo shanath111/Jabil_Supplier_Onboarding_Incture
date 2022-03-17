@@ -12717,7 +12717,7 @@ sap.ui.define([
                         "bankName": oView.getModel("bankSearchModel").getData().banksearchParam.bankName
                     }
                     $.ajax({
-                        timeout: 5000,
+                        // timeout: 5000,
                         url: sUrl,
                         type: 'POST',
                         data: JSON.stringify(oPayload),
@@ -12760,37 +12760,37 @@ sap.ui.define([
                         },
                         error: function(jqXHR, textStatus) {
                             oBusyDialogSearching.close();
-                            if (textStatus === 'timeout') {
-                                nflag += 1;
-                                if(nflag == 1){
-                                    if(isDefaultLan){
-                                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityNoResponse1"), {
-                                            icon: MessageBox.Icon.ERROR,
-                                            title: oi18n.getText("error")
-                                        });
-                                   } else {
+                            // if (textStatus === 'timeout') {
+                            //     nflag += 1;
+                            //     if(nflag == 1){
+                            //         if(isDefaultLan){
+                            //             MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityNoResponse1"), {
+                            //                 icon: MessageBox.Icon.ERROR,
+                            //                 title: oi18n.getText("error")
+                            //             });
+                            //        } else {
                                     
-                                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityNoResponse1 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityNoResponse1"), {
-                                            icon: MessageBox.Icon.ERROR,
-                                            title: oi18n.getText("error")
-                                        });
-                                   }
-                                } else if(nflag > 1){
-                                    if(isDefaultLan){
-                                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityNoResponse2"), {
-                                            icon: MessageBox.Icon.ERROR,
-                                            title: oi18n.getText("error")
-                                        });
-                                   } else {
+                            //             MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityNoResponse1 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityNoResponse1"), {
+                            //                 icon: MessageBox.Icon.ERROR,
+                            //                 title: oi18n.getText("error")
+                            //             });
+                            //        }
+                            //     } else if(nflag > 1){
+                            //         if(isDefaultLan){
+                            //             MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityNoResponse2"), {
+                            //                 icon: MessageBox.Icon.ERROR,
+                            //                 title: oi18n.getText("error")
+                            //             });
+                            //        } else {
                                     
-                                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityNoResponse2 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityNoResponse2"), {
-                                            icon: MessageBox.Icon.ERROR,
-                                            title: oi18n.getText("error")
-                                        });
-                                   }
-                                }
+                            //             MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityNoResponse2 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityNoResponse2"), {
+                            //                 icon: MessageBox.Icon.ERROR,
+                            //                 title: oi18n.getText("error")
+                            //             });
+                            //        }
+                            //     }
                                
-                            }
+                            // }
                         }
                     });
 
