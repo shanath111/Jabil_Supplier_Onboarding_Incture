@@ -1578,7 +1578,7 @@ sap.ui.define([
             },
             _fnLoadPaymentMethod: function () {
                 var oModel = new JSONModel();
-                var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/paymentMethod/" + oView.getModel("oDataModel").getData().shippingInfoDto.comCode;
+                var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/paymentMethod/" + oView.getModel("oDataModel").getData().shippingInfoDto.comCode+"/"+oView.getModel("oDataModel").getData().shippingInfoDto.purchasingOrg;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });

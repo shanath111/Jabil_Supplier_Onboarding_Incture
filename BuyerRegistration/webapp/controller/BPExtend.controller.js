@@ -933,7 +933,7 @@ sap.ui.define([
                                 that.fnLoadIncoterms(true);
                                 that.fnLoadCountry(true);
                                 that.fnLoadState(temp.country);
-                                that.fnLoadPaymentMethod(temp.companyCode);
+                                that.fnLoadPaymentMethod(temp.companyCode,temp.purchasingOrg);
                                 that.fnLoadPurOrg(temp.companyCode, that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, temp.companyCode, "CompanyCode"));
                                 that.fnLoadPayemntTerms(true);
                                 if (oView.getModel("JMBPCreate").getData().plant == "CN30" || oView.getModel("JMBPCreate").getData().plant == "CN81") {
@@ -1085,8 +1085,8 @@ sap.ui.define([
                 if (oView.getModel("oConfigMdl").getData().contextPath.Id == "New" || oView.getModel("oConfigMdl").getData().contextPath.Name == "BuyerApproveExtention") {
 
                     var temp = oView.getModel("oVendorListModel").getData().data[oEvent.getSource().getSelectedIndex()];
-                    if (temp.COMPANY_CODE) {
-                        this.fnLoadPaymentMethod(temp.COMPANY_CODE);
+                    if (temp.COMPANY_CODE && temp.PURCHASING_ORG) {
+                        this.fnLoadPaymentMethod(temp.COMPANY_CODE,temp.PURCHASING_ORG);
 
                     }
                     if (temp.isError == true) {
@@ -1314,9 +1314,9 @@ sap.ui.define([
                 }
 
             },
-            fnLoadPaymentMethod: function (vCompCode) {
+            fnLoadPaymentMethod: function (vCompCode,vPOrg) {
                 var oModel = new JSONModel();
-                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/paymentMethod/" + vCompCode;
+                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/paymentMethod/" + vCompCode+"/"+vPOrg;
                 oModel.loadData(sUrl, {
                     "Content-Type": "application/json"
                 });
@@ -2703,7 +2703,7 @@ sap.ui.define([
                     }
                 }
                 this.fnLoadPurOrg(oView.getModel("JMBPCreate").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
-                this.fnLoadPaymentMethod(oView.getModel("JMBPCreate").getData().companyCode);
+               // this.fnLoadPaymentMethod(oView.getModel("JMBPCreate").getData().companyCode);
                 oView.getModel("JMBPCreate").getData().purchasingOrg = "";
                 oView.getModel("JMBPCreate").getData().newPaymentMethod = "";
                 
@@ -2784,6 +2784,8 @@ sap.ui.define([
                 if (compCode === "" || compCode === undefined) {
                     sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
 
+                }else{
+                    this.fnLoadPaymentMethod(oView.getModel("JMBPCreate").getData().companyCode,oView.getModel("JMBPCreate").getData().purchasingOrg);
                 }
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
