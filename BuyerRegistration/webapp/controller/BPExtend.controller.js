@@ -3007,11 +3007,11 @@ sap.ui.define([
                             oVendorListJson.setData(temp);
                             that.getView().setModel(oVendorListJson, "oVendorListModel");
 
-                            if (oView.getModel("oVendorListModel").getData().currentPage == 1) {
-                                if (temp.data.length > 1) {
-                                    MessageBox.information(oi18n.getProperty("DuplicateInfoText"));
-                                }
-                            }
+                            // if (oView.getModel("oVendorListModel").getData().currentPage == 1) {
+                            //     if (temp.data.length > 1) {
+                            //         MessageBox.information(oi18n.getProperty("DuplicateInfoText"));
+                            //     }
+                            // }
 
                             if (oData.statusCode === "0" || (oData.responseMessage !== undefined ? oData.responseMessage.statusCode === "0" : false)) {
 
