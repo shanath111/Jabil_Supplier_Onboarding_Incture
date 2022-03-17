@@ -199,13 +199,13 @@ sap.ui.define([
                 }
                 this.fnLoadPurOrg1(oView.getModel("JMFilter1").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
                 this.fnLoadPaymentMethod(oView.getModel("JMFilter1").getData().companyCode);
-                oView.getModel("JMFilter1").getData().purchasingOrg = "";
+                oView.getModel("JMFilter1").getData().purchasingOrganisation = "";
                 oView.getModel("JMFilter1").getData().paymentMethod = "";
-                oView.getModel("JMFilter").refresh();
-                if (oView.getModel("JMFilter").getData().companyCodee == "Error") {
-                    oView.getModel("JMFilter").getData().companyCodee = "None";
-                    oView.getModel("JMFilter").getData().companyCodem = "";
-                    oView.getModel("JMFilter").refresh();
+                oView.getModel("JMFilter1").refresh();
+                if (oView.getModel("JMFilter1").getData().companyCodee == "Error") {
+                    oView.getModel("JMFilter1").getData().companyCodee = "None";
+                    oView.getModel("JMFilter1").getData().companyCodem = "";
+                    oView.getModel("JMFilter1").refresh();
                 }
 
             },
@@ -429,9 +429,9 @@ sap.ui.define([
                 if (oView.getModel("JMFilter1").getData().purchasingOrganisation == "") {
                     vError = true
                 }
-                // if (oView.getModel("JMFilter1").getData().siteName == "") {
-                //     vError = true
-                // }
+                if (oView.getModel("JMFilter1").getData().siteName == "") {
+                    vError = true
+                }
                 if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {
                 if (oView.getModel("JMFilter1").getData().paymentMethod == "") {
                     vError = true
