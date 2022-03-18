@@ -95,6 +95,7 @@ sap.ui.define([
                         } else {
                             that.getOwnerComponent().getModel("oVisibilityModel").getData()._CompletedTask = true
                         }
+                        that.getOwnerComponent().getModel("oVisibilityModel").getData().taskName = oEvent.getSource().getData().taskName;
                     }
                     that.getOwnerComponent().getModel("oVisibilityModel").refresh();
                 });
@@ -1545,7 +1546,10 @@ sap.ui.define([
                     oFormData.append("type", "application/octet-stream");
                     //   oFormData.append("expiryDate", expiryDate);
                     //    oFormData.append("reminderDays", reminderDays);
+
                     oFormData.append("overwriteFlag", false);
+                    oFormData.append("docDescription", secName);
+                    oFormData.append("processName", that.getOwnerComponent().getModel("oVisibilityModel").getData().taskName);
 
                     if (oView.getModel("oUserModel")) {
                         oFormData.append("addedBy", oView.getModel("oUserModel").getData().user.givenName);
@@ -1835,6 +1839,8 @@ sap.ui.define([
                         // oFormData.append("reminderDays", reminderDays);
                         oFormData.append("docFormType", docType);
                         oFormData.append("overwriteFlag", false);
+                        oFormData.append("docDescription", secName);
+                        oFormData.append("processName", that.getOwnerComponent().getModel("oVisibilityModel").getData().taskName);
 
                         if (oView.getModel("oUserModel")) {
                             oFormData.append("addedBy", oView.getModel("oUserModel").getData().user.givenName);

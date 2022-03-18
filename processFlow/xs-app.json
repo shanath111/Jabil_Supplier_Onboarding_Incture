@@ -10,6 +10,13 @@
             "csrfProtection": false
     },
     {
+        "source": "^/plcm_portal_services/(.*)$",
+        "target": "$1",
+        "authenticationType": "xsuaa",
+        "destination": "plcm_portal_services",
+        "csrfProtection": false
+    },
+    {
       "source": "^(.*)$",
       "target": "$1",
       "service": "html5-apps-repo-rt",

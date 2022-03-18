@@ -16,6 +16,7 @@
                     <HBox>
 				    <Button  text="View Flow" id="id_ViewProcessBtn" press="onClickViewFLowBtn" class="sapUiSizeCompact"/>
                       <Button text="View Mail Notification" id="id_ViewEmail" press="fnOpenEmail" class="sapUiSizeCompact sapUiTinyMarginBegin"/>
+                       <Button text="View Attachments" press="fnOpenAttachments" class="sapUiSizeCompact sapUiTinyMarginBegin"/>
             </HBox>
              </VBox>
                     

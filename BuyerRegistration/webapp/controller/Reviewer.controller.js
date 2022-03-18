@@ -401,6 +401,7 @@ sap.ui.define([
                             oView.getModel("oConfigMdl").getData().AttachVis = false;
                         }
                         oView.getModel("oConfigMdl").getData().validationMessage = oEvent.getSource().getData().validationMessage;
+                        oView.getModel("oConfigMdl").getData().taskName = oEvent.getSource().getData().taskName;
                         oView.getModel("oConfigMdl").refresh();
                     }
                 });
@@ -1849,6 +1850,7 @@ sap.ui.define([
                 oFormData.append("overwriteFlag", false);
                 oFormData.append("fileExt", file.name.split(".")[1]);
                 oFormData.append("type", "application/octet-stream");
+                oFormData.append("processName",oView.getModel("oConfigMdl").getData().taskName);
 
 
                 oFormData.append("addedBy", oView.getModel("oConfigMdl").getData().usrData.givenName);
@@ -2664,6 +2666,7 @@ sap.ui.define([
                 oFormData.append("docInSection", oView.getModel("oConfigMdl").getData().contextPath.Id);
                 oFormData.append("fileExt", file.name.split(".")[1]);
                 oFormData.append("type", "application/octet-stream");
+                oFormData.append("processName",oView.getModel("oConfigMdl").getData().taskName);
 
 
                 oFormData.append("addedBy", oView.getModel("oConfigMdl").getData().usrData.givenName);
