@@ -360,6 +360,9 @@
                                    <VBox>
                                   <CheckBox wrapping="true" text="{i18n>newPartnerCreatioExtText} " select="fnCompanyRTAClick"  selected="{oConfigMdl>/orderingAddNew}" enabled="{oConfigMdl>/orderingAddNewEnb}" class="fontBold inputStyle  sapUiTinyMarginTop " />
 						<Text text="Name:{oConfigMdl>/companyInfoOrd/0/name}   /  Address:{oConfigMdl>/companyInfoOrd/0/address1}" class="fontBold inputStyle  sapUiTinyMarginTop sapUiTinyMarginBegin" />
+                        
+
+                        
                         <u:Table
 				rows="{oVendorListModel>/orderAddressResults/d/results}"
 				selectionMode="Single"
