@@ -79,6 +79,13 @@
                     "bundleName": "ns.BuyerRegistration.i18n.i18n"
                 }
             },
+            "oi18n_En": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ns.BuyerRegistration.i18n.i18n_en",
+                    "async": true
+                }
+            },
             "oDataModel": {
                 "type": "sap.ui.model.json.JSONModel"
             },
