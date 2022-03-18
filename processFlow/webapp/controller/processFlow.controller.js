@@ -8,15 +8,15 @@ sap.ui.define([
     "sap/m/Dialog",
     "sap/m/BusyDialog",
     "sap/m/MessageBox"
-], function (BaseController, formatter, JSONModel, Dialog,BusyDialog,MessageBox) {
+], function (BaseController, formatter, JSONModel, Dialog, BusyDialog, MessageBox) {
     "use strict";
-var oBusyDilog,oi18n;
+    var oBusyDilog, oi18n;
     return BaseController.extend("oneapp.incture.processFlow.processFlow.controller.processFlow", {
         onInit: function () {
-             oi18n = this.getOwnerComponent().getModel("i18n");
-                oBusyDilog = new BusyDialog({
-                    text: oi18n.getProperty("BusyTxt") //initialize Busy Dialog
-                });
+            oi18n = this.getOwnerComponent().getModel("i18n");
+            oBusyDilog = new BusyDialog({
+                text: oi18n.getProperty("BusyTxt") //initialize Busy Dialog
+            });
             var oRouter = this.getOwnerComponent().getRouter();
             var oAppModel = this.getOwner().getModel("oAppModel");
             this.oAppModel = oAppModel;
@@ -37,8 +37,8 @@ var oBusyDilog,oi18n;
             this.showEventDetails(oProcessFlowModel.getProperty("/taskDetails"));
             this.getView().byId("id_CaseId").setEnabled(true);
             this.getView().byId("id_ViewProcessBtn").setVisible(true);
-             this.getView().byId("id_ViewEmail").setVisible(true);
-            
+            this.getView().byId("id_ViewEmail").setVisible(true);
+
 
             // 	}
             // }.bind(this));
@@ -49,7 +49,7 @@ var oBusyDilog,oi18n;
                     this.getModel("oProcessFlowModel").refresh();
                     this.getView().byId("id_CaseId").setEnabled(false);
                     this.getView().byId("id_ViewProcessBtn").setVisible(false);
-                      this.getView().byId("id_ViewEmail").setVisible(true);
+                    this.getView().byId("id_ViewEmail").setVisible(true);
                     this.onClickViewFLowBtn();
                 }
             }
@@ -65,29 +65,40 @@ var oBusyDilog,oi18n;
 
             this.oEmailList.open();
         },
-        fnLoadEmail: function () {
-                oBusyDilog.open();
-                var that = this;
+        fnOpenAttachments: function () {
+            this.fnLoadAttachment();
+            if (!this.oAttachMentList) {
+                this.oAttachMentList = sap.ui.xmlfragment(
+                    "oneapp.incture.processFlow.processFlow.fragment.AttachmentList", this);
+                this.getView().addDependent(this.oAttachMentList);
+            }
+
+            this.oAttachMentList.open();
+        },
+        fnLoadAttachment: function () {
+            oBusyDilog.open();
+            var that = this;
             var vCaseId = this.getModel("oProcessFlowModel").getData().caseIdInput;
+         //   vCaseId = "0000003";
             // if(!vCaseId){
             //     vCaseId = "0000559";
             // }
-            var sUrl = "/oneappinctureprocessFlowprocessFlow/WorkboxJavaService/inbox/getEmailData/?requestId=" + vCaseId;
+            var sUrl = "/oneappinctureprocessFlowprocessFlow/plcm_portal_services/document/getAllDocuments/" + vCaseId;
             var oModel = new JSONModel();
             oModel.loadData(sUrl);
             oModel.attachRequestCompleted(function onCompleted(oEvent) {
                 if (oEvent.getParameter("success")) {
-                   
+
                     var oJosonMail = new sap.ui.model.json.JSONModel();
                     oJosonMail.setData(oEvent.getSource().getData());
-                    that.getView().setModel(oJosonMail,"JMEmailList");
-    oBusyDilog.close();
+                    that.getView().setModel(oJosonMail, "JMAttachmentList");
+                    oBusyDilog.close();
                 }
                 else {
-                        var oJosonMail = new sap.ui.model.json.JSONModel();
+                    var oJosonMail = new sap.ui.model.json.JSONModel();
                     oJosonMail.setData([]);
-                    that.getView().setModel(oJosonMail,"JMEmailList");
-                        oBusyDilog.close();
+                    that.getView().setModel(oJosonMail, "JMAttachmentList");
+                    oBusyDilog.close();
                     var sErMsg = oEvent.getParameter("errorobject").responseText;
                     MessageBox.show(sErMsg, {
                         icon: MessageBox.Icon.ERROR,
@@ -97,11 +108,45 @@ var oBusyDilog,oi18n;
 
             }
             );
+        },
+        fnLoadEmail: function () {
+            oBusyDilog.open();
+            var that = this;
+            var vCaseId = this.getModel("oProcessFlowModel").getData().caseIdInput;
+            // if(!vCaseId){
+            //     vCaseId = "0000559";
+            // }
+            var sUrl = "/oneappinctureprocessFlowprocessFlow/WorkboxJavaService/inbox/getEmailData/?requestId=" + vCaseId;
+            var oModel = new JSONModel();
+            oModel.loadData(sUrl);
+            oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                if (oEvent.getParameter("success")) {
 
+                    var oJosonMail = new sap.ui.model.json.JSONModel();
+                    oJosonMail.setData(oEvent.getSource().getData());
+                    that.getView().setModel(oJosonMail, "JMEmailList");
+                    oBusyDilog.close();
+                }
+                else {
+                    var oJosonMail = new sap.ui.model.json.JSONModel();
+                    oJosonMail.setData([]);
+                    that.getView().setModel(oJosonMail, "JMEmailList");
+                    oBusyDilog.close();
+                    var sErMsg = oEvent.getParameter("errorobject").responseText;
+                    MessageBox.show(sErMsg, {
+                        icon: MessageBox.Icon.ERROR,
+                        title: oi18n.getProperty("Error")
+                    });
+                }
 
+            }
+            );
         },
         fnCloseEmail: function () {
             this.oEmailList.close();
+        },
+        fnCloseAttachList: function () {
+            this.oAttachMentList.close();
         },
         fnViewMailContent: function (oEvent) {
             if (!this.oEmailContent) {
@@ -113,10 +158,25 @@ var oBusyDilog,oi18n;
             this.oEmailContent.open();
             var oJsonEmailContent = new sap.ui.model.json.JSONModel();
             oJsonEmailContent.setData(oEvent.getSource().getBindingContext("JMEmailList").getProperty());
-            this.getView().setModel(oJsonEmailContent,"JMMailContent");
+            this.getView().setModel(oJsonEmailContent, "JMMailContent");
+        },
+        fnViewAttachmentContent: function (oEvent) {
+            if (!this.oAttachmentContent) {
+                this.oAttachmentContent = sap.ui.xmlfragment(
+                    "oneapp.incture.processFlow.processFlow.fragment.AttachmentContent", this);
+                this.getView().addDependent(this.oAttachmentContent);
+            }
+
+            this.oAttachmentContent.open();
+            var oJsonEmailContent1 = new sap.ui.model.json.JSONModel();
+            oJsonEmailContent1.setData(oEvent.getSource().getBindingContext("JMAttachmentList").getProperty("docLinks"));
+            this.getView().setModel(oJsonEmailContent1, "JMAttachmentContent");
         },
         fnCloseEmailContent: function () {
             this.oEmailContent.close();
+        },
+        fnCloseEmailAattchContent: function () {
+            this.oAttachmentContent.close();
         },
         fetchEventClicked: function (oEvent) {
             var context = oEvent.getSource().getBindingContext("oProcessFlowModel");
