@@ -49,7 +49,7 @@
                 </VBox>
                 <VBox class="VRVboxStyle1">	
                     <Label text="{i18n>BSANumberOrSwift}" ></Label>
-                    <Input maxLength="11" value="{bankSearchModel>/banksearchParam/bankCode}" valueState="{oErrorModel>/bankSearchCodeE}" valueStateText="{oErrorModel>/bankSearchCodeM}" change="fnChangeBankCode" class="inputStyle"></Input>
+                    <Input maxLength="15" value="{bankSearchModel>/banksearchParam/bankCode}" valueState="{oErrorModel>/bankSearchCodeE}" valueStateText="{oErrorModel>/bankSearchCodeM}" change="fnChangeBankCode" class="inputStyle"></Input>
                 </VBox>	
                 <VBox class="VRVboxStyle1">	
                     <Label text="{i18n>BSABankName}"  required="{oVisibilityModel>/bankNameSearchMandate}"></Label>
@@ -57,11 +57,11 @@
                 </VBox>
                 <VBox class="VRVboxStyle1">	
                     <Label text="{i18n>BSABranch}" ></Label>
-                    <Input value="{bankSearchModel>/banksearchParam/bankBranch}" valueState="{oErrorModel>/bankSearchBranchE}" valueStateText="{oErrorModel>/bankSearchBranchM}" change="fnInputSpaceCheck" class="inputStyle"></Input>
+                    <Input maxLength="40" value="{bankSearchModel>/banksearchParam/bankBranch}" valueState="{oErrorModel>/bankSearchBranchE}" valueStateText="{oErrorModel>/bankSearchBranchM}" change="fnInputSpaceCheck" class="inputStyle"></Input>
                 </VBox>
                 <VBox class="VRVboxStyle1">	
                     <Label text="{i18n>BSACity}" ></Label>
-                    <Input value="{bankSearchModel>/banksearchParam/bankCity}" valueState="{oErrorModel>/bankSearchCityE}" valueStateText="{oErrorModel>/bankSearchCityM}" change="fnInputSpaceCheck" class="inputStyle"></Input>
+                    <Input maxLength="35" value="{bankSearchModel>/banksearchParam/bankCity}" valueState="{oErrorModel>/bankSearchCityE}" valueStateText="{oErrorModel>/bankSearchCityM}" change="fnInputSpaceCheck" class="inputStyle"></Input>
                 </VBox>			
             </l:Grid>
             <t:Table id="accuityBankTableReview" class="sapUiSizeCompact cl_AccuityTable sapuiSmallMarginBeginEnd"   alternateRowColors="true" selectionMode="MultiToggle" enableSelectAll="false" rowSelectionChange="fnSelectBankInfo" selectionBehavior="RowSelector" rows="{bankDataModel>/bankDto}" visibleRowCount="5">

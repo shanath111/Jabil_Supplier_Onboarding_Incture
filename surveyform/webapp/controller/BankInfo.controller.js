@@ -2076,6 +2076,95 @@ sap.ui.define([
                 var selectedBankInfo =  oView.getModel("bankSearchModel").getData().selectedBankItem;
                 oView.getModel("oVisibilityModel").getData().bankAccuityPanel = false;
                 oView.getModel("oVisibilityModel").refresh();
+                if(selectedBankInfo.bankName && selectedBankInfo.bankName.length > 60){
+                    selectedBankInfo.bankName = selectedBankInfo.bankName.substring(0,60);
+                    
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " +oView.getModel("i18n").getResourceBundle().getText("bankNameAccuity")+" "+ oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                            icon: MessageBox.Icon.INFORMATION,
+                            title: oi18n.getText("information")
+                        });
+                   
+                }
+                if(selectedBankInfo.bankStreet && selectedBankInfo.bankStreet.length > 35){
+                    selectedBankInfo.bankStreet = selectedBankInfo.bankStreet.substring(0,35);
+                    
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " +oView.getModel("i18n").getResourceBundle().getText("bankAddrAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                            icon: MessageBox.Icon.INFORMATION,
+                            title: oi18n.getText("information")
+                        });
+                }
+                if(selectedBankInfo.bankCity && selectedBankInfo.bankCity.length > 35){
+                    selectedBankInfo.bankCity = selectedBankInfo.bankCity.substring(0,35);
+                    
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankCityAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                            icon: MessageBox.Icon.INFORMATION,
+                            title: oi18n.getText("information")
+                        });
+                   
+                }
+                if(selectedBankInfo.bankBranch && selectedBankInfo.bankBranch.length > 40){
+                    selectedBankInfo.bankBranch = selectedBankInfo.bankBranch.substring(0,40);
+                    
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankBranchAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                            icon: MessageBox.Icon.INFORMATION,
+                            title: oi18n.getText("information")
+                        });
+                   
+                }
+                if(selectedBankInfo.swiftCode && selectedBankInfo.swiftCode.length > 11){
+                    selectedBankInfo.swiftCode = selectedBankInfo.swiftCode.substring(0,11);
+                    
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("swiftAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                            icon: MessageBox.Icon.INFORMATION,
+                            title: oi18n.getText("information")
+                        });
+                   
+                }
+                if(selectedBankInfo.bankNumber && selectedBankInfo.bankNumber.length > 15){
+                    selectedBankInfo.bankNumber = selectedBankInfo.bankNumber.substring(0,15);
+                    
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNumAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                            icon: MessageBox.Icon.INFORMATION,
+                            title: oi18n.getText("information")
+                        });
+                   
+                }
+                if( selectedBankInfo.localName && selectedBankInfo.localName.length > 60){
+                    selectedBankInfo.localName = selectedBankInfo.localName.substring(0,60);
+                    
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNameLocalAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                            icon: MessageBox.Icon.INFORMATION,
+                            title: oi18n.getText("information")
+                        });
+                   
+                }
+                if(selectedBankInfo.localAddress && selectedBankInfo.localAddress.length > 35){
+                    selectedBankInfo.localAddress = selectedBankInfo.localAddress.substring(0,35);
+                    
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankAddrLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                            icon: MessageBox.Icon.INFORMATION,
+                            title: oi18n.getText("information")
+                        });
+                   
+                }
+                if(selectedBankInfo.localCity && selectedBankInfo.localCity.length > 35){
+                    selectedBankInfo.localCity = selectedBankInfo.localCity.substring(0,35);
+                    
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankCityLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                            icon: MessageBox.Icon.INFORMATION,
+                            title: oi18n.getText("information")
+                        });
+                   
+                }
+                if(selectedBankInfo.localBranch && selectedBankInfo.localBranch.length > 40){
+                    selectedBankInfo.localBranch = selectedBankInfo.localBranch.substring(0,40);
+                    
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankBranchLocalAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                            icon: MessageBox.Icon.INFORMATION,
+                            title: oi18n.getText("information")
+                        });
+                  
+                }
                 if((!selectedBankInfo || selectedBankInfo=="") && !oView.getModel("bankSearchModel").getData().isManualEntry){
                     var sErMsg = oi18n.getText("selectBankItemError");
                     MessageBox.show(sErMsg, {

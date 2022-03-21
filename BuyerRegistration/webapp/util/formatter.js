@@ -227,6 +227,6 @@ ns.BuyerRegistration.util.formatter = {
                 }
             }
             return a;
-        },
+        }
 
 };
