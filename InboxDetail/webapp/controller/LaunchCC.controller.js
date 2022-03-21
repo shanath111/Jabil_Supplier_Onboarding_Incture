@@ -6,10 +6,11 @@ sap.ui.define([
     "sap/ui/model/FilterOperator",
     "sap/m/MessageBox",
     "sap/m/BusyDialog",
-    "sap/ui/model/Sorter"
+    "sap/ui/model/Sorter",
+    'sap/m/Token'
 ],
 
-    function (Controller, formatter, JSONModel, Filter, FilterOperator, MessageBox, BusyDialog, Sorter) {
+    function (Controller, formatter, JSONModel, Filter, FilterOperator, MessageBox, BusyDialog, Sorter,Token) {
         "use strict";
         var that, oView, oBusyDilog, oi18n;
         return Controller.extend("InboxDetail.controller.LaunchCC", {
@@ -64,6 +65,16 @@ sap.ui.define([
                 oView.setModel(oJsonFilter, "JMFilter1");
                 oView.byId("id_PaymentMetod").setEnabled(false);
                 oView.byId("id_PaymentMethodLbl").setRequired(false);
+
+                var oMultiInput1 = oView.byId("id_PaymentMetod");
+                oMultiInput1.destroyTokens();
+                var fnValidator = function(args){
+                    var text = args.text;
+    
+                    return new Token({key: text, text: text});
+                };
+    
+                oMultiInput1.addValidator(fnValidator);
             },
             fnChangeERPSystem: function () {
                 if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {
@@ -424,21 +435,33 @@ sap.ui.define([
                 var vError = false;
 
                 if (oView.getModel("JMFilter1").getData().companyCode == "") {
-                    vError = true
+                    vError = true;
                 }
                 if (oView.getModel("JMFilter1").getData().purchasingOrganisation == "") {
-                    vError = true
+                    vError = true;
                 }
                 if (oView.getModel("JMFilter1").getData().siteName == "") {
-                    vError = true
+                    vError = true;
                 }
-                if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {
-                if (oView.getModel("JMFilter1").getData().paymentMethod == "") {
-                    vError = true
+                if (oView.getModel("JMFilter1").getData().erpSystem == "") {
+                    vError = true;
                 }
+                var vPaymentMethod = oView.byId("id_PaymentMetod").getTokens();
+                var vPaymentMethodVal = "";
+                if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {       
+                if (vPaymentMethod.length == 0) {
+                    vError = true;
+                }else{
+                  for (var i=0;i<vPaymentMethod.length;i++){
+                      if(!vPaymentMethodVal){
+                        vPaymentMethodVal = vPaymentMethod[i].getText();
+                      }else{
+                        vPaymentMethodVal = vPaymentMethodVal + ","+vPaymentMethod[i].getText();
+                      }
+                  }                }
             }
                 if (oView.getModel("JMFilter1").getData().erpSystem == "") {
-                    vError = true
+                    vError = true;
                 }
 
 
@@ -468,7 +491,7 @@ sap.ui.define([
                                     "companyCodeDescription": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode1, oView.getModel("JMFilter1").getData().companyCode, "CompanyCode"),
                                     "purchasingOrganisationDescription": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurOrg1, oView.getModel("JMFilter1").getData().purchasingOrganisation, "PurchOrg"),
                                     "siteName": oView.getModel("JMFilter1").getData().siteName,
-                                    "paymentMethod": oView.getModel("JMFilter1").getData().paymentMethod,
+                                    "paymentMethod": vPaymentMethodVal,
                                     "erpSystem": oView.getModel("JMFilter1").getData().erpSystem,
                                     "createdOn": new Date(),
                                     //"updatedOn": null,

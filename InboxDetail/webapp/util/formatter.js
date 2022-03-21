@@ -15,30 +15,38 @@ InboxDetail.util.formatter = {
             return "Warning";
         }
     },
-    stringToArrays: function(stringValue){
-        if(stringValue){
-            var a= [];
+    fnTextAreaVis: function (val) {
+        if (val) {
+            return true;
+        } else {
+            return false;
+        }
+       
+    },
+    stringToArrays: function (stringValue) {
+        if (stringValue) {
+            var a = [];
             var stringlistLen = stringValue.length;
-            if(stringlistLen === 1){
+            if (stringlistLen === 1) {
                 a.push(stringValue);
-            } else if(stringlistLen > 1){
-for(var i=0; i<stringlistLen;i++){
-    a.push(stringValue[i]);
-}
+            } else if (stringlistLen > 1) {
+                for (var i = 0; i < stringlistLen; i++) {
+                    a.push(stringValue[i]);
+                }
             }
         }
         return a;
     },
-    fnEnableRetriggerBtn:function(oVal){
-      if(oVal == "In_Progress"){
-          return true;
-      }else{
-          return false;
-      }
+    fnEnableRetriggerBtn: function (oVal) {
+        if (oVal == "In_Progress") {
+            return true;
+        } else {
+            return false;
+        }
 
     },
     fnMaskInput: function (oVal) {
-        var l1,l2;
+        var l1, l2;
         l1 = 6;
         l2 = 4;
         return oVal.replace(/\d{6}(\d{4})/, "XXXXXX$1");

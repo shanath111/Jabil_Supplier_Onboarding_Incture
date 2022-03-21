@@ -57,9 +57,9 @@
 							</VBox>	
                             <VBox class="VRVboxStyle1">
 										<Label id="id_PaymentMethodLbl" text="{i18n>BPCPaymentMethord}:" required="false" class="cl_VRLablCls "></Label>
-									  <MultiComboBox id="id_PaymentMetod" items="{oBPLookUpMdl>/PaymentMethod}" change="fnLiveChangePurchOrg1" showSecondaryValues="true" selectedKeys="{path:'JMFilter1>/paymentMethod',formatter:'InboxDetail.util.formatter.stringToArrays'}"   valueState="{JMBPCreate>/newPaymentMethode}" valueStateText="{JMBPCreate>/newPaymentMethodm}" selectionChange="fnLivePaymentMethodChange" selectionFinish="fnLivePaymentMethodFinish"  class="cl_VRInputCls">
-                      <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/></MultiComboBox>
-                                       
+									  <!-- <MultiComboBox id="id_PaymentMetod" items="{oBPLookUpMdl>/PaymentMethod}" change="fnLiveChangePurchOrg1" showSecondaryValues="true" selectedKeys="{path:'JMFilter1>/paymentMethod',formatter:'InboxDetail.util.formatter.stringToArrays'}"   valueState="{JMBPCreate>/newPaymentMethode}" valueStateText="{JMBPCreate>/newPaymentMethodm}" selectionChange="fnLivePaymentMethodChange" selectionFinish="fnLivePaymentMethodFinish"  class="cl_VRInputCls">
+                      <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/></MultiComboBox> -->
+                                       	<MultiInput id="id_PaymentMetod" enableMultiLineMode="true" class="cl_VRInputCls" width="95%" showValueHelp="false"/>
 									</VBox>
                                   
 
@@ -196,7 +196,8 @@
                                                   <Text text="{JMCompSearchResult>purchasingOrganisation}"  wrapping="false" class="cl_ListNameClass"></Text>
                                                 	<Text text="{JMCompSearchResult>purchasingOrganisationDescription}" class="cl_ListNameClass"></Text>
                                                    <Text text="{JMCompSearchResult>erpSystem}"  wrapping="false" class="cl_ListNameClass"></Text>
-                                                     <Text text="{JMCompSearchResult>paymentMethod}"  wrapping="false" class="cl_ListNameClass"></Text>
+<TextArea visible="{path:'JMCompSearchResult>paymentMethod',formatter:'InboxDetail.util.formatter.fnTextAreaVis'}"  value="{JMCompSearchResult>paymentMethod}" editable="false"></TextArea>
+
 												<!-- <ComboBox width="50%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMFilter>/purchasingOrge}" valueStateText="{JMFilter>/purchasingOrgm}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMCompSearchResult>/purchasingOrganisation}"
 											class="cl_VRInputCls"  >
