@@ -6967,11 +6967,13 @@ sap.ui.define([
 
                         iError = true;
                     }
+                    if(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum){
                     if (this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.ibanLength && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum.length !== parseInt(this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.ibanLength)) {
 
 
                         iError = true;
                     }
+                }
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity.length > 35) {
 
 
