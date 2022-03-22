@@ -33,8 +33,6 @@ sap.ui.define([
                 var that = this;
                 this._router = this.getOwnerComponent().getRouter();
                 this._router.getRoute("BankInfo").attachPatternMatched(this._fnHandleRouteMatched, this);
-
-
             },
             onAfterRendering: function () {
                 var bID = oView.byId('bankAccNumConfirmField').sId;

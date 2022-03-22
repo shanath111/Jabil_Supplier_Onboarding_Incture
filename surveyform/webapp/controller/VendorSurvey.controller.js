@@ -6,7 +6,6 @@ sap.ui.define([
     'com/jabil/surveyform/formatter/formatter',
     "sap/m/BusyDialog",
     "sap/ui/core/Fragment"
-
 ],
 	/**
 	 * @param {typeof sap.ui.core.mvc.Controller} Controller
