@@ -9,8 +9,8 @@
 						
 								<VBox class="cl_TIVBoxShadow">
 									<Toolbar height="3rem" class="cl_TIToolbarBorder sapUiTinyMarginTop">
-                                     <Label visible="{oConfigMdl>/COIVis}" text="{i18n>LegalTxtGovtOffice}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
-                                       <Label visible="{oConfigMdl>/CyberSecVis}" text="{i18n>CyberSecHeader}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
+                                     <!-- <Label visible="{oConfigMdl>/COIVis}" text="{i18n>LegalTxtGovtOffice}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
+                                       <Label visible="{oConfigMdl>/CyberSecVis}" text="{i18n>CyberSecHeader}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label> -->
 										<ToolbarSpacer ></ToolbarSpacer>
 										<Button text="{i18n>TIViewDetails}"  press="fnViewDetails" class="cl_VRActnBtnClear sapUiTinyMarginBottom"/>
                                         
