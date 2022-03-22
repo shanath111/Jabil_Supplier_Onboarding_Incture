@@ -28,7 +28,10 @@
                                   <l:GridData spanM="3" spanL="3" spanXL="3"></l:GridData></layoutData>
          </VBox>
          </l:Grid>
-      <l:Grid containerQuery="true" visible="{companyInfoModel>/isOrderFromAddress}" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+         
+        
+    
+    <l:Grid containerQuery="true" visible="{companyInfoModel>/isOrderFromAddress}" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey}+ '&#xA;' +${i18n>countrykey}}" wrapping="true" required="true" />
            <ComboBox width="100%" items="{oLookUpModel>/Country}" showSecondaryValues="true" filterSecondaryValues="true"  placeholder="{i18n>select}" value="{companyInfoModel>/oCountry}" selectedKey="{companyInfoModel>/oCountryC}" valueState="{oErrorModel>/oFACounE}" valueStateText="{oErrorModel>/oFACounM}" selectionChange="fnLoadStateOFA" change="fnLiveValueChange" class="inputStyle">
@@ -50,6 +53,7 @@
                 </layoutData>
 
         </VBox>
+
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>name}:${oi18n_En>name}+ '&#xA;' +${i18n>name}}" wrapping="true" required="true" />
             <Input valueLiveUpdate="true"  maxLength="36" value="{companyInfoModel>/oName}" valueState="{oErrorModel>/oFANameE}" valueStateText="{oErrorModel>/oFANameM}" liveChange="fnLiveInputValueChange" class="inputStyle" />
