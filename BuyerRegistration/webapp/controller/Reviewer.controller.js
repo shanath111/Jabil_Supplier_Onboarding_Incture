@@ -578,9 +578,13 @@ sap.ui.define([
                             oView.getModel("JMBPCreate").getData().incoTerms = oEvent.getSource().getData().shippingInfoDto.incoterm;
                             oView.getModel("JMBPCreate").getData().paymentTerms = oEvent.getSource().getData().shippingInfoDto.paymentTerms;
                             oView.getModel("JMBPCreate").getData().incotermNameLocation = oEvent.getSource().getData().shippingInfoDto.incotermNamedPlace;
+                            oView.getModel("JMBPCreate").getData().paymentMethod = oEvent.getSource().getData().shippingInfoDto.paymentMethod;
+                            oView.getModel("JMBPCreate").getData().paymentCurrency = oEvent.getSource().getData().shippingInfoDto.paymentCurrency
                             oView.getModel("JMBPCreate").refresh();
                             that.fnLoadIncoterms(true);
                             that.fnLoadPayemntTerms(true);
+                            that.fnLoadPaymentMethods();
+
                             that.fnActivateBankScreen();
                         }
 
@@ -709,6 +713,19 @@ sap.ui.define([
                         }
 
 
+                    }
+                });
+            },
+            fnLoadPaymentMethods:function() {
+                var oModel = new JSONModel();
+                var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/paymentMethod/" + oView.getModel("JMBPCreate").getData().companyCode + "/" + oView.getModel("oDataModel").getData().shippingInfoDto.purchasingOrg;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oLookUpModel").setProperty("/PaymentMethod", oEvent.getSource().getData());
+                        oView.getModel("oLookUpModel").refresh();
                     }
                 });
             },
