@@ -21,7 +21,7 @@ sap.ui.define([
     function (BaseController, JSONModel, MessageBox, formatter, BusyDialog, oBusyDialogSearching, Fragment) {
 
         "use strict";
-        var oBusyDialog, oBusyDialogFile ,oView, oi18n, vAppName, copiedData, listenFirst;
+        var oBusyDialog, oBusyDialogFile, oView, oi18n, vAppName, copiedData, listenFirst;
         return BaseController.extend("com.jabil.surveyform.controller.BankInfo", {
             formatter: formatter,
             onInit: function () {
@@ -86,7 +86,7 @@ sap.ui.define([
                 });
                 oModel.attachRequestCompleted(function (oEvent) {
                     if (oEvent.getParameter("success")) {
-                    //  oEvent.getSource().getData().isTaskCompleted = false;
+                        //  oEvent.getSource().getData().isTaskCompleted = false;
                         if (oEvent.getSource().getData().isTaskCompleted == true) {
                             that.getOwnerComponent().getModel("oVisibilityModel").getData()._FinanceReviewEdit = false
                             that.getOwnerComponent().getModel("oVisibilityModel").getData()._CompletedTask = false
@@ -115,7 +115,7 @@ sap.ui.define([
                     "contact": "",
                     "extension": "",
                     "mobile": "",
-                    
+
                 };
                 var oJsonContact = new sap.ui.model.json.JSONModel();
                 oJsonContact.setData(oContactInfo);
@@ -191,7 +191,7 @@ sap.ui.define([
                         "bankCountry": "",
                         "bankName": ""
                     }
-                        
+
                 };
                 var obankSearchModel = new sap.ui.model.json.JSONModel();
                 obankSearchModel.setData(bankSearchData);
@@ -236,14 +236,14 @@ sap.ui.define([
                     if (oEvent.getParameter("success")) {
                         var temp = {};
                         var oi18n_En = that.getOwnerComponent().getModel("oi18n_En"),
-                        isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan,
-                         vMessage;
-                        
+                            isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan,
+                            vMessage;
+
                         if (isDefaultLan) {
                             vMessage = oi18n_En.getProperty("SaveAsDraftSuccessFinance");
 
                         } else {
-                            vMessage = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.SaveAsDraftSuccessFinance + "\n"+"/ " +that.getView().getModel("i18n").getProperty("SaveAsDraftSuccessFinance");
+                            vMessage = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.SaveAsDraftSuccessFinance + "\n" + "/ " + that.getView().getModel("i18n").getProperty("SaveAsDraftSuccessFinance");
                         }
 
                         temp.Message = vMessage;
@@ -274,56 +274,56 @@ sap.ui.define([
                 if (!vError) {
                     if (that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
                         var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
-                        isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                            isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                         if (isDefaultLan) {
-                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("PleaseProvideAttachment")), {
-                            icon: sap.m.MessageBox.Icon.ERROR,
-                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                            contentWidth: "30%",
-                            styleClass: "sapUiSizeCompact"
-                        });
-                    } else {
-                        sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.PleaseProvideAttachment + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("PleaseProvideAttachment")), {
-                            icon: sap.m.MessageBox.Icon.ERROR,
-                            title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                            contentWidth: "30%",
-                            styleClass: "sapUiSizeCompact"
-                        });
-                    }
-                   
-                    
-                    
-                     
+                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("PleaseProvideAttachment")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        } else {
+                            sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.PleaseProvideAttachment + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("PleaseProvideAttachment")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        }
+
+
+
+
                         return;
 
-                    }else{
-                        if (oView.getModel("oUserModel").getData().bankCompName !=  oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName) {
-                      
+                    } else {
+                        if (oView.getModel("oUserModel").getData().bankCompName != oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName) {
+
                             var findDomesticDoc = this.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").findIndex(function (doc) {
                                 return doc.docFormType == "Indemnity Letter";
                             });
                             if (findDomesticDoc == -1) {
-                             
+
                                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
-                                isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                                    isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                                 if (isDefaultLan) {
-                                sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("IdemnityMsg")), {
-                                    icon: sap.m.MessageBox.Icon.ERROR,
-                                    title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                                    contentWidth: "30%",
-                                    styleClass: "sapUiSizeCompact"
-                                });
-                            } else {
-                                sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.IdemnityMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("IdemnityMsg")), {
-                                    icon: sap.m.MessageBox.Icon.ERROR,
-                                    title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                                    contentWidth: "30%",
-                                    styleClass: "sapUiSizeCompact"
-                                });
+                                    sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("IdemnityMsg")), {
+                                        icon: sap.m.MessageBox.Icon.ERROR,
+                                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                        contentWidth: "30%",
+                                        styleClass: "sapUiSizeCompact"
+                                    });
+                                } else {
+                                    sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.IdemnityMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("IdemnityMsg")), {
+                                        icon: sap.m.MessageBox.Icon.ERROR,
+                                        title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                        contentWidth: "30%",
+                                        styleClass: "sapUiSizeCompact"
+                                    });
+                                }
+                                return;
                             }
-                            return;
-                            } 
-                           
+
                         }
                     }
                     var that = this;
@@ -390,19 +390,19 @@ sap.ui.define([
                                 if (oEvent.getParameter("success")) {
                                     var temp = {};
                                     var oi18n_En = that.getOwnerComponent().getModel("oi18n_En"),
-                                    isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan,
-                                     vMessage;
-                                    
+                                        isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan,
+                                        vMessage;
+
                                     if (isDefaultLan) {
                                         vMessage = oi18n_En.getProperty("EulaSubSuccess");
-            
+
                                     } else {
-                                        vMessage = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.EulaSubSuccess+ "\n"+"/ " +that.getView().getModel("i18n").getProperty("EulaSubSuccess");
+                                        vMessage = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.EulaSubSuccess + "\n" + "/ " + that.getView().getModel("i18n").getProperty("EulaSubSuccess");
                                     }
-            
+
                                     temp.Message = vMessage;
 
-                                  
+
                                     var oJosnMessage = new sap.ui.model.json.JSONModel();
                                     oJosnMessage.setData(temp);
                                     oView.setModel(oJosnMessage, "JMMessageData");
@@ -439,7 +439,7 @@ sap.ui.define([
                 } else {
 
 
-                     var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
+                    var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
                         isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                     if (isDefaultLan) {
                         sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
@@ -460,7 +460,7 @@ sap.ui.define([
 
 
 
-                   
+
                 }
             },
             fnTransfer: function () {
@@ -589,16 +589,16 @@ sap.ui.define([
                             oBusyDialog.close();
                             var temp = {};
                             var oi18n_En = that.getOwnerComponent().getModel("oi18n_En"),
-                            isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan,
-                             vMessage;
-                            
+                                isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan,
+                                vMessage;
+
                             if (isDefaultLan) {
                                 vMessage = oi18n_En.getProperty("EulaSubSuccess");
-    
+
                             } else {
-                                vMessage = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.EulaSubSuccess+ "\n"+"/ " +that.getView().getModel("i18n").getProperty("EulaSubSuccess");
+                                vMessage = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.EulaSubSuccess + "\n" + "/ " + that.getView().getModel("i18n").getProperty("EulaSubSuccess");
                             }
-    
+
                             temp.Message = vMessage;
 
                             // temp.Message = that.getOwnerComponent().getModel("i18n").getProperty("EulaSubSuccess");
@@ -786,8 +786,8 @@ sap.ui.define([
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey.length > 3) {
                         iError = true;
                     }
-                    if(oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided){
-                        if(that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.length == 0) {
+                    if (oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided) {
+                        if (that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.length == 0) {
                             iError = true;
                             oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithoutBorder");
                             oView.byId("fileUploader_BIA").addStyleClass("attachmentWithBorder");
@@ -810,7 +810,7 @@ sap.ui.define([
                         oEvent.getSource().setValueState("Error");
                         oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
                     } else if (!alphaRegex.test(oEvent.getSource().getValue())) {
-                        oEvent.getSource().setValue(oEvent.getSource().getValue().slice(0,-1));
+                        oEvent.getSource().setValue(oEvent.getSource().getValue().slice(0, -1));
                         // var newval = val.substring(0, val.length - 1);
                         // oEvent.getSource().setValue(newval);
 
@@ -829,7 +829,7 @@ sap.ui.define([
                     oEvent.getSource().setValueState("Error");
                     oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
                 } else if (!numRegex.test(oEvent.getSource().getValue())) {
-                    oEvent.getSource().setValue(oEvent.getSource().getValue().replace(/\D+/g,''));
+                    oEvent.getSource().setValue(oEvent.getSource().getValue().replace(/\D+/g, ''));
 
                 }
                 else if (oEvent.getSource().getValue()) {
@@ -944,7 +944,7 @@ sap.ui.define([
                 } else {
                     // that.emailValidResult = false;
                     oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "None";
-                  
+
                     oView.getModel("oErrorModel").refresh();
                 }
             },
@@ -989,7 +989,7 @@ sap.ui.define([
                 } else {
                     // that.emailValidResult = false;
                     oView.getModel("oErrorModel").getData().ibanConfirmE = "None";
-                 //   oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
+                    //   oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
                     oView.getModel("oErrorModel").refresh();
                 }
             },
@@ -1072,37 +1072,37 @@ sap.ui.define([
                 if (vBtn == "AP") {
                     vConfirmTxt = this.getOwnerComponent().getModel("i18n").getProperty("EulaSubConfirm");
                     var oi18n_En = that.getOwnerComponent().getModel("oi18n_En"),
-                    isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan,
-                     vMessage;
-                    
+                        isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan,
+                        vMessage;
+
                     if (isDefaultLan) {
                         vMessage = oi18n_En.getProperty("EulaSubSuccess");
 
                     } else {
-                        vMessage = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.EulaSubSuccess + "\n"+"/ " +that.getView().getModel("i18n").getProperty("EulaSubSuccess");
+                        vMessage = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.EulaSubSuccess + "\n" + "/ " + that.getView().getModel("i18n").getProperty("EulaSubSuccess");
                     }
 
                     vSccuessTxt = vMessage;
-                  //  vSccuessTxt = this.getOwnerComponent().getModel("i18n").getProperty("EulaSubSuccess");
-                    
+                    //  vSccuessTxt = this.getOwnerComponent().getModel("i18n").getProperty("EulaSubSuccess");
+
 
                     vAprActn = true;
                 } else {
                     vConfirmTxt = this.getOwnerComponent().getModel("i18n").getProperty("EulaRejConfirm");
-                 
+
                     var oi18n_En = that.getOwnerComponent().getModel("oi18n_En"),
-                    isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan,
-                     vMessage;
-                    
+                        isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan,
+                        vMessage;
+
                     if (isDefaultLan) {
                         vMessage = oi18n_En.getProperty("EulaRejSuccess");
 
                     } else {
-                        vMessage = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.EulaRejSuccess + "\n"+"/ " +that.getView().getModel("i18n").getProperty("EulaRejSuccess");
+                        vMessage = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.EulaRejSuccess + "\n" + "/ " + that.getView().getModel("i18n").getProperty("EulaRejSuccess");
                     }
 
                     vSccuessTxt = vMessage;
-                   // vSccuessTxt = this.getOwnerComponent().getModel("i18n").getProperty("EulaRejSuccess");
+                    // vSccuessTxt = this.getOwnerComponent().getModel("i18n").getProperty("EulaRejSuccess");
                     vAprActn = false;
                 }
                 // MessageBox.confirm(vConfirmTxt, {
@@ -1153,9 +1153,9 @@ sap.ui.define([
                     vBnkaPayload.bankBranch = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch;
                 }
                 var vInterMedbank;
-                if(oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided == true){
+                if (oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided == true) {
                     vInterMedbank = true;
-                }else{
+                } else {
                     vInterMedbank = false;
                 }
                 var oPayload = {
@@ -1458,8 +1458,8 @@ sap.ui.define([
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
                 }
-              
-                    if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");
@@ -1491,13 +1491,17 @@ sap.ui.define([
                     // @ts-ignore
                     file = domRef.files[0],
                     secName = "";
+
                 var _arrayTitle = "";
+                var vSectionTitle = "";
                 if (fileUploadId == "fileUploader_BIA") {
                     secName = "bankIntermediateInfo";
-                    _arrayTitle = "bankINDArray"
+                    _arrayTitle = "bankINDArray";
+                    vSectionTitle = "Intermediary Bank";
                 } else {
                     secName = "bankInfo";
                     _arrayTitle = "bankDArray";
+                    vSectionTitle = "Payment/Banking Supplier Finance";
                 }
                 if (file.name.length > 60) {
                     if (isDefaultLan) {
@@ -1739,7 +1743,7 @@ sap.ui.define([
                         $.each(data, function (index, value) {
                             if (value.docInSection == "bankInfo") {
                                 that.getView().getModel("oAttachmentList").getData()[0].bankDArray.push(value);
-                            }else if(value.docInSection == "bankIntermediateInfo"){
+                            } else if (value.docInSection == "bankIntermediateInfo") {
                                 that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.push(value);
                             }
 
@@ -1822,7 +1826,7 @@ sap.ui.define([
                         var oFormData = new FormData(),
 
                             secName = "bankInfo";
-
+                        var vSectionTitle = "Payment/Banking Supplier Finance";
                         // jQuery.sap.domById(fileUploadId + "-fu").setAttribute("type", "file");
                         // @ts-ignore
                         // oFormData.append("file", jQuery.sap.domById(fileUploadId + "-fu").files[0]);
@@ -1837,7 +1841,7 @@ sap.ui.define([
                         // oFormData.append("reminderDays", reminderDays);
                         oFormData.append("docFormType", docType);
                         oFormData.append("overwriteFlag", false);
-                        oFormData.append("docDescription", secName);
+                        oFormData.append("docDescription", vSectionTitle);
                         oFormData.append("processName", that.getOwnerComponent().getModel("oVisibilityModel").getData().taskName);
 
                         if (oView.getModel("oUserModel")) {
@@ -1850,7 +1854,7 @@ sap.ui.define([
                             "name": file.name,
                             "docFormType": docType
                         };
-                      
+
                         var _arrayTitle = "bankDArray";
                         oBusyDialogFile.open();
                         var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
@@ -1947,11 +1951,11 @@ sap.ui.define([
 
                             }
                         });
-                    }else{
+                    } else {
                         sap.m.MessageToast.show("Please select Document Type");
                         return;
-                
-                      
+
+
                     }
 
                 }
@@ -1959,22 +1963,22 @@ sap.ui.define([
                 this.oPopup.destroy();
                 this.oPopup = undefined;
             },
-            fnSearchAccuityBank: function(oEvent) {
+            fnSearchAccuityBank: function (oEvent) {
                 var vError = false;
                 if (!oView.getModel("bankSearchModel").getData().banksearchParam.bankCountry) {
                     oView.getModel("oErrorModel").getData().bankSearchCountryE = "Error";
                     oView.getModel("oErrorModel").getData().bankSearchCountryM = oi18n.getText("mandatoryCountry");
-                    
+
                     vError = true;
                 }
-                if(!oView.getModel("bankSearchModel").getData().banksearchParam.bankName && oView.getModel("oVisibilityModel").getData().bankNameSearchMandate) {
+                if (!oView.getModel("bankSearchModel").getData().banksearchParam.bankName && oView.getModel("oVisibilityModel").getData().bankNameSearchMandate) {
                     oView.getModel("oErrorModel").getData().bankSearchNameE = "Error";
                     oView.getModel("oErrorModel").getData().bankSearchNameM = oi18n.getText("mandatoryBName");
 
                     vError = true;
                 }
                 oView.getModel("oErrorModel").refresh();
-                if(vError == false){
+                if (vError == false) {
                     oBusyDialogSearching.open();
                     var oModel = new JSONModel();
                     var sUrl = "/comjabilsurveyform/plcm_portal_services/acuity/getBankData";
@@ -1990,12 +1994,12 @@ sap.ui.define([
                     });
                     oModel.attachRequestCompleted(function onCompleted(oEvent) {
                         if (oEvent.getParameter("success")) {
-                            oBusyDialogSearching.close(); 
+                            oBusyDialogSearching.close();
                             var oJsonBankSearch = new sap.ui.model.json.JSONModel();
                             oJsonBankSearch.setData(oEvent.getSource().getData());
                             oView.setModel(oJsonBankSearch, "bankDataModel");
-                            if(oJsonBankSearch.getData().exceptions[0].code == "100"){
-                                if(oJsonBankSearch.getData().exceptions[1].code == "101") {
+                            if (oJsonBankSearch.getData().exceptions[0].code == "100") {
+                                if (oJsonBankSearch.getData().exceptions[1].code == "101") {
                                     var sErMsg = oi18n.getText("InvalidBankSearchError");
                                     MessageBox.show(sErMsg, {
                                         icon: MessageBox.Icon.ERROR,
@@ -2008,15 +2012,15 @@ sap.ui.define([
                                         title: oi18n.getText("error")
                                     });
                                 }
-                                
-                            } else if(oJsonBankSearch.getData().exceptions[0].code == "000" && oJsonBankSearch.getData().exceptions[1].code == "102"){
-                                var sErMsg =  oi18n.getText("BankSearchTooManyMatches");
+
+                            } else if (oJsonBankSearch.getData().exceptions[0].code == "000" && oJsonBankSearch.getData().exceptions[1].code == "102") {
+                                var sErMsg = oi18n.getText("BankSearchTooManyMatches");
                                 MessageBox.show(sErMsg, {
                                     icon: MessageBox.Icon.ERROR,
                                     title: oi18n.getText("error")
                                 });
-                            } else if(oJsonBankSearch.getData().exceptions[0].code == "000" && oJsonBankSearch.getData().exceptions.length>=2){
-                                var sErMsg =  oJsonBankSearch.getData().exceptions[1].description;
+                            } else if (oJsonBankSearch.getData().exceptions[0].code == "000" && oJsonBankSearch.getData().exceptions.length >= 2) {
+                                var sErMsg = oJsonBankSearch.getData().exceptions[1].description;
                                 MessageBox.show(sErMsg, {
                                     icon: MessageBox.Icon.ERROR,
                                     title: oi18n.getText("error")
@@ -2024,7 +2028,7 @@ sap.ui.define([
                             }
                         } else {
                             oBusyDialogSearching.close();
-                            
+
                         }
                     });
                 } else {
@@ -2032,15 +2036,15 @@ sap.ui.define([
                 }
 
             },
-            fnSelectBankInfo: function(oEvent){
-                if(oEvent.getSource().getSelectedIndices().length == 0){
+            fnSelectBankInfo: function (oEvent) {
+                if (oEvent.getSource().getSelectedIndices().length == 0) {
                     oView.getModel("bankSearchModel").getData().selectedBankItem = "";
                     oView.getModel("bankSearchModel").refresh();
                     oView.byId('accuityBankTableReview').removeStyleClass("cl_AccuityTableSelect");
                 } else {
                     oView.byId('accuityBankTableReview').addStyleClass("cl_AccuityTableSelect");
                     var oSelectedItem = oEvent.getParameter("rowContext").sPath;
-                    if(oView.getModel("bankDataModel").getProperty(oSelectedItem).bankSanctioned){
+                    if (oView.getModel("bankDataModel").getProperty(oSelectedItem).bankSanctioned) {
                         var sErMsg = oi18n.getText("bankSanctionMsg");
                         MessageBox.show(sErMsg, {
                             icon: MessageBox.Icon.ERROR,
@@ -2051,133 +2055,133 @@ sap.ui.define([
                         oView.getModel("bankSearchModel").refresh();
                         var oAccuityBankTable = this.getView().byId("accuityBankTableReview");
                         oAccuityBankTable.setSelectedIndex(-1);
-                       
-                    } else{
+
+                    } else {
                         oView.getModel("bankSearchModel").getData().selectedBankItem = oView.getModel("bankDataModel").getProperty(oSelectedItem);
                         oView.getModel("bankSearchModel").getData().isManualEntry = false;
                         oView.getModel("bankSearchModel").refresh();
                         var oAccuityBankTable = this.getView().byId("accuityBankTableReview"),
-                        iSelectedIndex = oEvent.getSource().getSelectedIndex();
+                            iSelectedIndex = oEvent.getSource().getSelectedIndex();
                         oAccuityBankTable.setSelectedIndex(iSelectedIndex);
                     }
-                   
-                    
-                    
-                    
-                
-                    
+
+
+
+
+
+
                 }
-               
-                
+
+
             },
-            fnConfirmBankInfo: function(oEvent){
-                var selectedBankInfo =  oView.getModel("bankSearchModel").getData().selectedBankItem;
+            fnConfirmBankInfo: function (oEvent) {
+                var selectedBankInfo = oView.getModel("bankSearchModel").getData().selectedBankItem;
                 oView.getModel("oVisibilityModel").getData().bankAccuityPanel = false;
                 oView.getModel("oVisibilityModel").refresh();
-                if(selectedBankInfo.bankName && selectedBankInfo.bankName.length > 60){
-                    selectedBankInfo.bankName = selectedBankInfo.bankName.substring(0,60);
-                    
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " +oView.getModel("i18n").getResourceBundle().getText("bankNameAccuity")+" "+ oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
-                            icon: MessageBox.Icon.INFORMATION,
-                            title: oi18n.getText("information")
-                        });
-                   
+                if (selectedBankInfo.bankName && selectedBankInfo.bankName.length > 60) {
+                    selectedBankInfo.bankName = selectedBankInfo.bankName.substring(0, 60);
+
+                    MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNameAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                        icon: MessageBox.Icon.INFORMATION,
+                        title: oi18n.getText("information")
+                    });
+
                 }
-                if(selectedBankInfo.bankStreet && selectedBankInfo.bankStreet.length > 35){
-                    selectedBankInfo.bankStreet = selectedBankInfo.bankStreet.substring(0,35);
-                    
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " +oView.getModel("i18n").getResourceBundle().getText("bankAddrAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
-                            icon: MessageBox.Icon.INFORMATION,
-                            title: oi18n.getText("information")
-                        });
+                if (selectedBankInfo.bankStreet && selectedBankInfo.bankStreet.length > 35) {
+                    selectedBankInfo.bankStreet = selectedBankInfo.bankStreet.substring(0, 35);
+
+                    MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankAddrAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                        icon: MessageBox.Icon.INFORMATION,
+                        title: oi18n.getText("information")
+                    });
                 }
-                if(selectedBankInfo.bankCity && selectedBankInfo.bankCity.length > 35){
-                    selectedBankInfo.bankCity = selectedBankInfo.bankCity.substring(0,35);
-                    
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankCityAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
-                            icon: MessageBox.Icon.INFORMATION,
-                            title: oi18n.getText("information")
-                        });
-                   
+                if (selectedBankInfo.bankCity && selectedBankInfo.bankCity.length > 35) {
+                    selectedBankInfo.bankCity = selectedBankInfo.bankCity.substring(0, 35);
+
+                    MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankCityAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                        icon: MessageBox.Icon.INFORMATION,
+                        title: oi18n.getText("information")
+                    });
+
                 }
-                if(selectedBankInfo.bankBranch && selectedBankInfo.bankBranch.length > 40){
-                    selectedBankInfo.bankBranch = selectedBankInfo.bankBranch.substring(0,40);
-                    
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankBranchAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
-                            icon: MessageBox.Icon.INFORMATION,
-                            title: oi18n.getText("information")
-                        });
-                   
+                if (selectedBankInfo.bankBranch && selectedBankInfo.bankBranch.length > 40) {
+                    selectedBankInfo.bankBranch = selectedBankInfo.bankBranch.substring(0, 40);
+
+                    MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankBranchAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                        icon: MessageBox.Icon.INFORMATION,
+                        title: oi18n.getText("information")
+                    });
+
                 }
-                if(selectedBankInfo.swiftCode && selectedBankInfo.swiftCode.length > 11){
-                    selectedBankInfo.swiftCode = selectedBankInfo.swiftCode.substring(0,11);
-                    
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("swiftAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
-                            icon: MessageBox.Icon.INFORMATION,
-                            title: oi18n.getText("information")
-                        });
-                   
+                if (selectedBankInfo.swiftCode && selectedBankInfo.swiftCode.length > 11) {
+                    selectedBankInfo.swiftCode = selectedBankInfo.swiftCode.substring(0, 11);
+
+                    MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("swiftAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                        icon: MessageBox.Icon.INFORMATION,
+                        title: oi18n.getText("information")
+                    });
+
                 }
-                if(selectedBankInfo.bankNumber && selectedBankInfo.bankNumber.length > 15){
-                    selectedBankInfo.bankNumber = selectedBankInfo.bankNumber.substring(0,15);
-                    
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNumAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
-                            icon: MessageBox.Icon.INFORMATION,
-                            title: oi18n.getText("information")
-                        });
-                   
+                if (selectedBankInfo.bankNumber && selectedBankInfo.bankNumber.length > 15) {
+                    selectedBankInfo.bankNumber = selectedBankInfo.bankNumber.substring(0, 15);
+
+                    MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNumAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                        icon: MessageBox.Icon.INFORMATION,
+                        title: oi18n.getText("information")
+                    });
+
                 }
-                if( selectedBankInfo.localName && selectedBankInfo.localName.length > 60){
-                    selectedBankInfo.localName = selectedBankInfo.localName.substring(0,60);
-                    
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNameLocalAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
-                            icon: MessageBox.Icon.INFORMATION,
-                            title: oi18n.getText("information")
-                        });
-                   
+                if (selectedBankInfo.localName && selectedBankInfo.localName.length > 60) {
+                    selectedBankInfo.localName = selectedBankInfo.localName.substring(0, 60);
+
+                    MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNameLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                        icon: MessageBox.Icon.INFORMATION,
+                        title: oi18n.getText("information")
+                    });
+
                 }
-                if(selectedBankInfo.localAddress && selectedBankInfo.localAddress.length > 35){
-                    selectedBankInfo.localAddress = selectedBankInfo.localAddress.substring(0,35);
-                    
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankAddrLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
-                            icon: MessageBox.Icon.INFORMATION,
-                            title: oi18n.getText("information")
-                        });
-                   
+                if (selectedBankInfo.localAddress && selectedBankInfo.localAddress.length > 35) {
+                    selectedBankInfo.localAddress = selectedBankInfo.localAddress.substring(0, 35);
+
+                    MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankAddrLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                        icon: MessageBox.Icon.INFORMATION,
+                        title: oi18n.getText("information")
+                    });
+
                 }
-                if(selectedBankInfo.localCity && selectedBankInfo.localCity.length > 35){
-                    selectedBankInfo.localCity = selectedBankInfo.localCity.substring(0,35);
-                    
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankCityLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
-                            icon: MessageBox.Icon.INFORMATION,
-                            title: oi18n.getText("information")
-                        });
-                   
+                if (selectedBankInfo.localCity && selectedBankInfo.localCity.length > 35) {
+                    selectedBankInfo.localCity = selectedBankInfo.localCity.substring(0, 35);
+
+                    MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankCityLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                        icon: MessageBox.Icon.INFORMATION,
+                        title: oi18n.getText("information")
+                    });
+
                 }
-                if(selectedBankInfo.localBranch && selectedBankInfo.localBranch.length > 40){
-                    selectedBankInfo.localBranch = selectedBankInfo.localBranch.substring(0,40);
-                    
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankBranchLocalAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
-                            icon: MessageBox.Icon.INFORMATION,
-                            title: oi18n.getText("information")
-                        });
-                  
+                if (selectedBankInfo.localBranch && selectedBankInfo.localBranch.length > 40) {
+                    selectedBankInfo.localBranch = selectedBankInfo.localBranch.substring(0, 40);
+
+                    MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankBranchLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                        icon: MessageBox.Icon.INFORMATION,
+                        title: oi18n.getText("information")
+                    });
+
                 }
-                if((!selectedBankInfo || selectedBankInfo=="") && !oView.getModel("bankSearchModel").getData().isManualEntry){
+                if ((!selectedBankInfo || selectedBankInfo == "") && !oView.getModel("bankSearchModel").getData().isManualEntry) {
                     var sErMsg = oi18n.getText("selectBankItemError");
                     MessageBox.show(sErMsg, {
                         icon: MessageBox.Icon.ERROR,
                         title: oi18n.getText("error")
                     });
-                } else if(oView.getModel("bankSearchModel").getData().isManualEntry){
+                } else if (oView.getModel("bankSearchModel").getData().isManualEntry) {
                     this.fnManualBankInfoEntry();
-                } else{
+                } else {
 
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry = selectedBankInfo.bankCountry;
                     this.fnActivateBankScreen();
                     // this._fnLoadBankRegion(selectedBankInfo.country); 
 
-                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName= selectedBankInfo.bankName;
+                    oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName = selectedBankInfo.bankName;
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress = selectedBankInfo.bankStreet;
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity = selectedBankInfo.bankCity;
                     oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState = selectedBankInfo.bankState;
@@ -2193,43 +2197,43 @@ sap.ui.define([
                     oView.getModel("oVisibilityModel").getData().manualBankInfoEdit = false;
                     oView.getModel("oVisibilityModel").refresh();
                 }
-                
+
             },
-            fnManualBankInfoEntry: function() {
+            fnManualBankInfoEntry: function () {
                 oView.getModel("oVisibilityModel").getData().manualBankInfoEdit = true;
                 // oView.getModel("oVisibilityModel").getData().bankAccuityPanel = false;
                 oView.getModel("oVisibilityModel").refresh();
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry ="";
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName ="";
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress ="";
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity ="";
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState ="";
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch ="";
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode ="";
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber ="";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry = "";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName = "";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress = "";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity = "";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankState = "";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch = "";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode = "";
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber = "";
                 oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].localName = "";
                 oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].localAddress = "";
                 oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].localCity = "";
                 oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].localBranch = "";
-                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].validationIndicator="0";
-                
+                oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].validationIndicator = "0";
+
                 oView.getModel("oDataModel").refresh();
 
             },
-            fnSelectManualBankEntry: function(oEvent){
-                if(oEvent.getParameters('selected').selected){
+            fnSelectManualBankEntry: function (oEvent) {
+                if (oEvent.getParameters('selected').selected) {
                     oView.getModel("bankSearchModel").getData().isManualEntry = true;
                     var oAccuityBankTable = this.getView().byId("accuityBankTableReview");
                     oAccuityBankTable.setSelectedIndex(-1);
-                } else{
+                } else {
                     oView.getModel("bankSearchModel").getData().isManualEntry = false;
 
                 }
                 oView.getModel("bankSearchModel").refresh();
             },
-            fnClearBankSearch: function() {
+            fnClearBankSearch: function () {
                 var clearData = {
-                    "bankBranch":"",
+                    "bankBranch": "",
                     "bankCity": "",
                     "bankCode": "",
                     "bankCountry": "",
@@ -2240,26 +2244,26 @@ sap.ui.define([
                 oView.getModel("bankDataModel").setData({});
                 oView.getModel("bankDataModel").refresh();
             },
-            fnChangeBankCode: function(oEvent){
+            fnChangeBankCode: function (oEvent) {
                 var spaceRegex = /^\s+$/;
-                   if(spaceRegex.test(oEvent.getSource().getValue())){
-                       oEvent.getSource().setValue(""); 
-                   }
+                if (spaceRegex.test(oEvent.getSource().getValue())) {
+                    oEvent.getSource().setValue("");
+                }
                 if (oEvent.getSource().getValue()) {
-                        oEvent.getSource().setValueState("None");
-                        oEvent.getSource().setValueStateText("");
-                        oView.getModel("oErrorModel").getData().bankSearchNameE = "None";
-                        oView.getModel("oErrorModel").getData().bankSearchNameM = "";
-                        oView.getModel("oErrorModel").refresh();
-                        oView.getModel("oVisibilityModel").getData().bankNameSearchMandate = false;
-                        oView.getModel("oVisibilityModel").refresh();
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                    oView.getModel("oErrorModel").getData().bankSearchNameE = "None";
+                    oView.getModel("oErrorModel").getData().bankSearchNameM = "";
+                    oView.getModel("oErrorModel").refresh();
+                    oView.getModel("oVisibilityModel").getData().bankNameSearchMandate = false;
+                    oView.getModel("oVisibilityModel").refresh();
                 } else {
                     oView.getModel("oVisibilityModel").getData().bankNameSearchMandate = true;
                     oView.getModel("oVisibilityModel").refresh();
                 }
 
             },
-            fnChangeBankSearchCountry: function(oEvent){
+            fnChangeBankSearchCountry: function (oEvent) {
                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
