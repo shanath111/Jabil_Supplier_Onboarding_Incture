@@ -21,7 +21,7 @@
 											<ColumnListItem type="Active"  >
 												<cells>
 													<!-- <Text text="{JMAttachmentList>notifiedDate}"  class="cl_ListNameClass"></Text> -->
-												 <Link text="{JMAttachmentContent>link}" href="{JMAttachmentContent>link}"   class="cl_ListNameClass"></Link>
+												 <Link text="{JMAttachmentContent>section}" href="{JMAttachmentContent>link}"   class="cl_ListNameClass"></Link>
 												
 													
 												</cells>

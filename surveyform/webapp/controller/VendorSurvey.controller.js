@@ -9048,7 +9048,7 @@ sap.ui.define([
                         var oFormData = new FormData(),
 
                             secName = that.oWizard.getCurrentStep().split("---VendorSurvey--")[1];
-
+                            var vSectionTitle = that.fnGetSectionName(fileUploadId);
                         // jQuery.sap.domById(fileUploadId + "-fu").setAttribute("type", "file");
                         // @ts-ignore
                         // oFormData.append("file", jQuery.sap.domById(fileUploadId + "-fu").files[0]);
@@ -9065,7 +9065,7 @@ sap.ui.define([
                         // oFormData.append("reminderDays", reminderDays);
                         oFormData.append("docFormType", docType);
                         oFormData.append("overwriteFlag", false);
-                        oFormData.append("docDescription", secName);
+                        oFormData.append("docDescription", vSectionTitle);
                         oFormData.append("processName", that.getOwnerComponent().getModel("oVisibilityModel").getData().taskName);
 
                         if (oView.getModel("oUserModel")) {
@@ -9080,6 +9080,7 @@ sap.ui.define([
                         };
 
                         var _arrayTitle = that._fnGetUploaderId(fileUploadId);
+                     
                         oBusyDialogFile.open();
                         var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
                         // @ts-ignore
@@ -9239,7 +9240,7 @@ sap.ui.define([
                         var oFormData = new FormData(),
 
                             secName = that.oWizard.getCurrentStep().split("---VendorSurvey--")[1];
-
+                            var vSectionTitle = that.fnGetSectionName(fileUploadId);
                         // jQuery.sap.domById(fileUploadId + "-fu").setAttribute("type", "file");
                         // @ts-ignore
                         // oFormData.append("file", jQuery.sap.domById(fileUploadId + "-fu").files[0]);
@@ -9254,7 +9255,7 @@ sap.ui.define([
                         // oFormData.append("reminderDays", reminderDays);
                         oFormData.append("docFormType", docType);
                         oFormData.append("overwriteFlag", false);
-                        oFormData.append("docDescription", secName);
+                        oFormData.append("docDescription", vSectionTitle);
                         oFormData.append("processName", that.getOwnerComponent().getModel("oVisibilityModel").getData().taskName);
 
                         if (oView.getModel("oUserModel")) {
@@ -9388,6 +9389,7 @@ sap.ui.define([
                 if (secName == "cComplianceInfo" && fileUploadId == "fileUploader_NDA") {
                     secName = "NDADocument";
                 }
+                var vSectionTitle = that.fnGetSectionName(fileUploadId);
                 if (file.name.length > 60) {
                     if (isDefaultLan) {
                         sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
@@ -9434,7 +9436,7 @@ sap.ui.define([
                     // oFormData.append("expiryDate", expiryDate);
                     // oFormData.append("reminderDays", reminderDays);
                     oFormData.append("overwriteFlag", false);
-                    oFormData.append("docDescription", secName);
+                    oFormData.append("docDescription", vSectionTitle);
                     oFormData.append("processName", that.getOwnerComponent().getModel("oVisibilityModel").getData().taskName);
 
                     if (oView.getModel("oUserModel")) {
@@ -9658,6 +9660,44 @@ sap.ui.define([
                     return "compSecuDArray";
                 } else if (fileUploadId == "fileUploader_NDA") {
                     return "NDADocument";
+                }
+                return "";
+            },
+            fnGetSectionName: function (fileUploadId) {
+
+                if (fileUploadId == "fileUploader") {
+                    return "Business Partner Information";
+                } else if (fileUploadId == "fileUploader_OW") {
+                    return "Ownership Information";
+                }
+                else if (fileUploadId == "fileUploader_CO") {
+                    return "Company Information";
+                }
+                else if (fileUploadId == "fileUploader_BA") {
+                    return "Supplier Payment/Banking";
+                }
+                else if (fileUploadId == "fileUploader_BIA") {
+                    return "Intermediary Bank";
+                }
+                else if (fileUploadId == "fileUploader_SH") {
+                    return "Traffic/Shipping Information";
+                }
+                else if (fileUploadId == "fileUploader_PR") {
+                    return "Company Products/Services";
+                }
+                else if (fileUploadId == "fileUploader_CCO") {
+                    return "compContDArray";
+                }
+                else if (fileUploadId == "fileUploader_FI") {
+                    return "compFinDArray";
+                }
+                else if (fileUploadId == "fileUploader_CC") {
+                    return "Company Compliance";
+                }
+                else if (fileUploadId == "fileUploader_CY") {
+                    return "compSecuDArray";
+                } else if (fileUploadId == "fileUploader_NDA") {
+                    return "Company Compliance NDA";
                 }
                 return "";
             },
