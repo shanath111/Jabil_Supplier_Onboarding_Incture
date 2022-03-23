@@ -8997,15 +8997,15 @@ sap.ui.define([
             fnDocNameChange: function (oEvent) {
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
-                    // this.getOwnerComponent().getModel("oVisibilityModel").getData().LocDocNameSelected = false;
+                    this.getOwnerComponent().getModel("oVisibilityModel").getData().LocDocNameSelected = false;
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");
                     }
                 } 
-                // else {
-                //     this.getOwnerComponent().getModel("oVisibilityModel").getData().LocDocNameSelected = true;
-                // }
-                // this.getOwnerComponent().getModel("oVisibilityModel").refresh(true);
+                else {
+                    this.getOwnerComponent().getModel("oVisibilityModel").getData().LocDocNameSelected = true;
+                }
+                this.getOwnerComponent().getModel("oVisibilityModel").refresh(true);
             },
             fnOnFileUploadBPBank: function (oEvt) {
                 var that = this;

@@ -216,7 +216,7 @@
 							<RadioButtonGroup id="agreement" columns="3" selectedIndex="{oDataModel>/comComplianceDto/ndaSignedBefore}"  valueState="{oErrorModel>/ndaSignedBeforeE}" select="fnClearValueState" enabled="{oEnableMdl>/ndaSignedBeforeEnb}" class="inputStyle sapUiSizeCompact sapUiTinyMarginBottom">
 								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}"/>
 								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}"/>
-								<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>iDontKnow}:${oi18n_En>iDontKnow} +'/&#160;' +${i18n>iDontKnow}}"/>
+								<!-- <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>iDontKnow}:${oi18n_En>iDontKnow} +'/&#160;' +${i18n>iDontKnow}}"/> -->
 							</RadioButtonGroup>
                             <VBox visible="{=${oDataModel>/comComplianceDto/ndaSignedBefore}=== 0 ? true: false}">
                                 <Label required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>docVerbiageNDA}:${oi18n_En>docVerbiageNDA}+ '/&#160;'+${i18n>docVerbiageNDA}}" wrapping="true" class="fontStyle hOverInfo sapUiTinyMarginTop sapUiTinyMarginBegin"/>
