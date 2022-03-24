@@ -1151,6 +1151,7 @@ sap.ui.define([
 
 
                         if (vBankValid == true) {
+                            vMessage = oi18n.getProperty("ErrorOnBank");
                             MessageBox.show(vMessage, {
                                 icon: MessageBox.Icon.ERROR,
                                 title: "Error"
@@ -2850,6 +2851,19 @@ sap.ui.define([
                 if (vCount == 1) {
                     sap.m.MessageToast.show(oi18n.getProperty("BPEEnterAtLeastOneFiltr"))
                 } else {
+                    if(aFilter.country){
+                        if(!aFilter.vendorName && !aFilter.vendorNumber && !aFilter.duns){
+                            var sMsg = oi18n.getProperty("FilterForSearchErr");
+                            
+                          MessageBox.show(sMsg, {
+                              icon: MessageBox.Icon.ERROR,
+                              title: "Error"
+                          });
+                          return;
+                        }
+                     
+                    }
+  
                     oBusyDilog.open();
 
                     var oModel = new JSONModel();
