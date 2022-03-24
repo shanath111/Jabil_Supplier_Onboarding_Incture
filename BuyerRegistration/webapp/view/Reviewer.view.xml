@@ -950,8 +950,10 @@
 					</VBox>
 			
                                 </VBox>
+                                <Button visible="{oConfigMdl>/viewAttachments}" text="View Attachments" press="fnOpenAttachments" class="sapUiSizeCompact sapUiTinyMarginBegin sapUiTinyMarginTop"/>
 						</content>
 					</Panel>
+                    
 				</content>
                     <footer>
 			<OverflowToolbar  class="cl_BPCFooterClr sapUiSizeCompact">

@@ -71,6 +71,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().orderingAddNew = false;
                     oView.getModel("oConfigMdl").getData().orderingAddNewEnb = true;
                     oView.getModel("oConfigMdl").getData().defaultEnable = true;
+                    oView.getModel("oConfigMdl").getData().viewAttachments = true;
 
                     this.fnLoadCompanyCode();
                     this.fnLoadPurOrg();
@@ -96,6 +97,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
                     oView.getModel("oConfigMdl").getData().defaultEnable = true;
                     oView.getModel("oConfigMdl").getData().NDAScreenReconVis = false;
+                    oView.getModel("oConfigMdl").getData().viewAttachments = false;
                 } else if (oContext.Name == "GBSBank") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = false;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;
@@ -115,6 +117,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
                     oView.getModel("oConfigMdl").getData().defaultEnable = true;
                     oView.getModel("oConfigMdl").getData().bankNotFoundTitle = false;
+                    oView.getModel("oConfigMdl").getData().viewAttachments = false;
                     this._fnLoadCurrency();
 
                 } else if (oContext.Name == "Approver1") {
@@ -133,6 +136,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmentVisibleP = false;
                     oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
                     oView.getModel("oConfigMdl").getData().defaultEnable = false;
+                    oView.getModel("oConfigMdl").getData().viewAttachments = true;
                 } else if (oContext.Name == "Approver2") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = false;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;
@@ -149,6 +153,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmentVisibleP = false;
                     oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
                     oView.getModel("oConfigMdl").getData().defaultEnable = false;
+                    oView.getModel("oConfigMdl").getData().viewAttachments = true;
                 } else if (oContext.Name == "Approver3") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = false;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;
@@ -165,6 +170,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmentVisibleP = false;
                     oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
                     oView.getModel("oConfigMdl").getData().defaultEnable = false;
+                    oView.getModel("oConfigMdl").getData().viewAttachments = true;
                 } else if (oContext.Name == "Approver4") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = false;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;
@@ -181,6 +187,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmentVisibleP = false;
                     oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
                     oView.getModel("oConfigMdl").getData().defaultEnable = false;
+                    oView.getModel("oConfigMdl").getData().viewAttachments = true;
                 } else if (oContext.Name == "Approver5") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = false;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;
@@ -197,6 +204,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmentVisibleP = false;
                     oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
                     oView.getModel("oConfigMdl").getData().defaultEnable = false;
+                    oView.getModel("oConfigMdl").getData().viewAttachments = true;
                 } else if (oContext.Name == "GTS") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = false;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;
@@ -213,6 +221,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmentVisibleP = false;
                     oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
                     oView.getModel("oConfigMdl").getData().defaultEnable = false;
+                    oView.getModel("oConfigMdl").getData().viewAttachments = false;
                 }
                 else if (oContext.Name == "Legal") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = false;
@@ -230,6 +239,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().SegmentVisibleP = false;
                     oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
                     oView.getModel("oConfigMdl").getData().defaultEnable = false;
+                    oView.getModel("oConfigMdl").getData().viewAttachments = false;
 
                 }
                 oView.getModel("oConfigMdl").getData().contextPath = oContext;
@@ -2966,7 +2976,70 @@ sap.ui.define([
                 // oView.byId("purchaseOrgId").addEventDelegate({
                 //     ontap: this.fnLiveChangePurchOrg
                 // }, this);
-            }
+            },
+
+            fnOpenAttachments: function () {
+                this.fnLoadAttachment();
+                if (!this.oAttachMentList) {
+                    this.oAttachMentList = sap.ui.xmlfragment(
+                        "ns.BuyerRegistration.fragments.AttachmentList", this);
+                    this.getView().addDependent(this.oAttachMentList);
+                }
+    
+                this.oAttachMentList.open();
+            },
+            fnLoadAttachment: function () {
+                oBusyDilog.open();
+                var that = this;
+                var vCaseId = oView.getModel("JMBPCreate").getData().caseId;
+             //   vCaseId = "0000003";
+                // if(!vCaseId){
+                //     vCaseId = "0000559";
+                // }
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/document/getAllDocuments/" + vCaseId;
+                var oModel = new JSONModel();
+                oModel.loadData(sUrl);
+                oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                    if (oEvent.getParameter("success")) {
+    
+                        var oJosonMail = new sap.ui.model.json.JSONModel();
+                        oJosonMail.setData(oEvent.getSource().getData());
+                        that.getView().setModel(oJosonMail, "JMAttachmentList");
+                        oBusyDilog.close();
+                    }
+                    else {
+                        var oJosonMail = new sap.ui.model.json.JSONModel();
+                        oJosonMail.setData([]);
+                        that.getView().setModel(oJosonMail, "JMAttachmentList");
+                        oBusyDilog.close();
+                        var sErMsg = oEvent.getParameter("errorobject").responseText;
+                        MessageBox.show(sErMsg, {
+                            icon: MessageBox.Icon.ERROR,
+                            title: oi18n.getProperty("Error")
+                        });
+                    }
+    
+                }
+                );
+            },
+            fnCloseAttachList: function () {
+                this.oAttachMentList.close();
+            },
+            fnViewAttachmentContent: function (oEvent) {
+                if (!this.oAttachmentContent) {
+                    this.oAttachmentContent = sap.ui.xmlfragment(
+                        "ns.BuyerRegistration.fragments.AttachmentContent", this);
+                    this.getView().addDependent(this.oAttachmentContent);
+                }
+    
+                this.oAttachmentContent.open();
+                var oJsonEmailContent1 = new sap.ui.model.json.JSONModel();
+                oJsonEmailContent1.setData(oEvent.getSource().getBindingContext("JMAttachmentList").getProperty("docLinks"));
+                this.getView().setModel(oJsonEmailContent1, "JMAttachmentContent");
+            },
+            fnCloseEmailAattchContent: function () {
+                this.oAttachmentContent.close();
+            },
 
 
         });
