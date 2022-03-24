@@ -30,6 +30,8 @@
     "FinanceReviewVis1": false,
     "_CompletedTask": false,
     "enableNPI":false,
+    "bankDocTypeSelected": false,
+    "LocDocNameSelected": false,
     "manualBankInfoEdit": false,
     "bankNameSearchMandate": true,
     "bankAccuityPanel": true,

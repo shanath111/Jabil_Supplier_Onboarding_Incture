@@ -2277,6 +2277,19 @@ sap.ui.define([
                         oEvent.getSource().setValue("");
                     }
                 }
+            },
+            fnDocTypeChange: function (oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    this.getOwnerComponent().getModel("oVisibilityModel").getData().bankDocTypeSelected = false;
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                } else{
+                    this.getOwnerComponent().getModel("oVisibilityModel").getData().bankDocTypeSelected = true;
+                }
+                this.getOwnerComponent().getModel("oVisibilityModel").refresh(true);
+                
             }
 
         });
