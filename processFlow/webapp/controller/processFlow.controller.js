@@ -8,7 +8,7 @@ sap.ui.define([
     "sap/m/Dialog",
     "sap/m/BusyDialog",
     "sap/m/MessageBox"
-], function (BaseController, formatter, JSONModel, Dialog, BusyDialog, MessageBox) {
+], function (BaseController, factionormatter, JSONModel, Dialog, BusyDialog, MessageBox) {
     "use strict";
     var oBusyDilog, oi18n;
     return BaseController.extend("oneapp.incture.processFlow.processFlow.controller.processFlow", {

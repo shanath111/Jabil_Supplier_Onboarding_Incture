@@ -138,7 +138,7 @@
                                
 								<VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCorporationName" change="fnInputSpaceCheck" valueState="{JMBPCreate>/corporationNamee}" valueStateText="{JMBPCreate>/corporationNamem}" value="{JMBPCreate>/corporationName}"></Input>
+										<Input width="95%" class="cl_VRInputCls" maxLength="35" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCorporationName" change="fnInputSpaceCheck" valueState="{JMBPCreate>/corporationNamee}" valueStateText="{JMBPCreate>/corporationNamem}" value="{JMBPCreate>/corporationName}"></Input>
 								
                                 	</VBox>
                                  <VBox class="VRVboxStyle1">
