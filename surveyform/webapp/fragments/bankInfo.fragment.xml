@@ -107,16 +107,16 @@
           <Panel expandable="true" expanded="{oVisibilityModel>/bankAccuityPanel}" width="auto" class="sapUiTinyMarginTop panelPadding" visible="{=${oDataModel>/bankDto/isBankProvided}=== true || ${oUserModel>/isNew} === false}">
         <headerToolbar>
             <Toolbar class="cl_VRHeaderBackGrndPnl">
-                    <Text text="{i18n>SearchBank}" class="fontBold sapUiTinyMarginBegin"/>
+                    <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>SearchBank}:${oi18n_En>SearchBank} +'/&#160;' +${i18n>SearchBank}}" class="fontBold sapUiTinyMarginBegin"/>
                     <ToolbarSpacer/>
-                    <Button text="{i18n>BSAClear}" press="fnClearBankSearch" class="cl_VRActnBtnClear" visible="{oVisibilityModel>/bankAccuityPanel}"/>
-                    <Button text="{i18n>Search}" press="fnSearchAccuityBank" class="cl_VRActnBtnApply sapUiSmallMarginEnd" visible="{oVisibilityModel>/bankAccuityPanel}"/>
+                    <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSAClear}:${oi18n_En>BSAClear} +'/&#160;' +${i18n>BSAClear}}" press="fnClearBankSearch" class="cl_VRActnBtnClear" visible="{oVisibilityModel>/bankAccuityPanel}"/>
+                    <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>Search}:${oi18n_En>Search} +'/&#160;' +${i18n>Search}}" press="fnSearchAccuityBank" class="cl_VRActnBtnApply sapUiSmallMarginEnd" visible="{oVisibilityModel>/bankAccuityPanel}"/>
                 </Toolbar>
             </headerToolbar> 
-            <Label text="{i18n>BankSearchMsg}" class="fontStyle sapUiTinyMarginBegin" wrapping="true"/>
+            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BankSearchMsg}:${oi18n_En>BankSearchMsg} +'&#10;' +${i18n>BankSearchMsg}}" class="fontStyle sapUiTinyMarginBegin" wrapping="true"/>
             <l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
                 <VBox class="VRVboxStyle1">
-                    <Label text="{i18n>BSACountry}" required="true" ></Label>
+                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSACountry}:${oi18n_En>BSACountry}+ '&#10;' +${i18n>BSACountry}}" wrapping="true" required="true" ></Label>
                             <ComboBox width="95%" items="{oLookUpModel>/Country}"  autocomplete="false" valueState="{oErrorModel>/bankSearchCountryE}" valueStateText="{oErrorModel>/bankSearchCountryM}"
                                 filterSecondaryValues="true" showSecondaryValues="true" selectedKey="{bankSearchModel>/banksearchParam/bankCountry}" selectionChange="fnChangeBankSearchCountry"
                                 class="inputStyle"  required="true">
@@ -124,31 +124,31 @@
                             </ComboBox>
                 </VBox>
                 <VBox class="VRVboxStyle1">	
-                    <Label text="{i18n>BSANumberOrSwift}" ></Label>
+                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSANumberOrSwift}:${oi18n_En>BSANumberOrSwift} +'&#10;' +${i18n>BSANumberOrSwift}}" wrapping="true" ></Label>
                     <Input maxLength="15" value="{bankSearchModel>/banksearchParam/bankCode}" valueState="{oErrorModel>/bankSearchCodeE}" valueStateText="{oErrorModel>/bankSearchCodeM}" change="fnChangeBankCode" class="inputStyle"></Input>
                 </VBox>	
                 <VBox class="VRVboxStyle1">	
-                    <Label text="{i18n>BSABankName}"  required="{oVisibilityModel>/bankNameSearchMandate}"></Label>
+                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSABankName}:${oi18n_En>BSABankName} +'&#10;' +${i18n>BSABankName}}" wrapping="true"   required="{oVisibilityModel>/bankNameSearchMandate}"></Label>
                     <Input maxLength="60" value="{bankSearchModel>/banksearchParam/bankName}" valueState="{oErrorModel>/bankSearchNameE}" valueStateText="{oErrorModel>/bankSearchNameM}" change="fnLiveInputValueChange" class="inputStyle"></Input>
                 </VBox>
                 <VBox class="VRVboxStyle1">	
-                    <Label text="{i18n>BSABranch}" ></Label>
+                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSABranch}:${oi18n_En>BSABranch} +'&#10;' +${i18n>BSABranch}}" wrapping="true"></Label>
                     <Input maxLength="40" value="{bankSearchModel>/banksearchParam/bankBranch}" valueState="{oErrorModel>/bankSearchBranchE}" valueStateText="{oErrorModel>/bankSearchBranchM}" change="fnInputSpaceCheck" class="inputStyle"></Input>
                 </VBox>
                 <VBox class="VRVboxStyle1">	
-                    <Label text="{i18n>BSACity}" ></Label>
+                    <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSACity}:${oi18n_En>BSACity} +'&#10;' +${i18n>BSACity}}" wrapping="true"></Label>
                     <Input maxLength="35" value="{bankSearchModel>/banksearchParam/bankCity}" valueState="{oErrorModel>/bankSearchCityE}" valueStateText="{oErrorModel>/bankSearchCityM}" change="fnInputSpaceCheck" class="inputStyle"></Input>
                 </VBox>			
             </l:Grid>
             <t:Table id="accuityBankTable" class="sapUiSizeCompact cl_AccuityTable"   alternateRowColors="true" selectionMode="MultiToggle" enableSelectAll="false" rowSelectionChange="fnSelectBankInfo" selectionBehavior="RowSelector" rows="{bankDataModel>/bankDto}" visibleRowCount="5">
                     <t:extension>
                         <OverflowToolbar style="Clear">
-                            <Title text="{i18n>searchResults}"/>
+                            <Title text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>searchResults}:${oi18n_En>searchResults} +'/&#160;' +${i18n>searchResults}}"/>
                             <ToolbarSpacer/>
                             
                         </OverflowToolbar>
                         <OverflowToolbar design="Info" height="1.5rem" class="bankAccuityInfoBar">
-                            <Text  text="{i18n>selectandconfirmBank}"/>
+                            <Text  text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selectandconfirmBank}:${oi18n_En>selectandconfirmBank} +'/&#160;' +${i18n>selectandconfirmBank}}"/>
                         </OverflowToolbar>
                         <!-- <MessageStrip
                             text="Filtered By:"
@@ -167,73 +167,73 @@
                             </t:template>    
                         </t:Column> -->
                         <t:Column width="8rem">
-                            <Label text="{i18n>BSACountry}" class="cl_VRLablCls "></Label>
+                            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSACountry}:${oi18n_En>BSACountry} +'&#10;' +${i18n>BSACountry}}" wrapping="true" class="cl_VRLablCls "></Label>
                             <t:template>
                                 <Text text="{bankDataModel>bankCountry}" wrapping="true" class="cl_ListNameClass"/>
                             </t:template>    
                         </t:Column>
                         <t:Column width="18rem">
-                            <Label text="{i18n>BSABankName}" class="cl_VRLablCls "></Label>
+                            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSABankName}:${oi18n_En>BSABankName} +'&#10;' +${i18n>BSABankName}}" wrapping="true" class="cl_VRLablCls "></Label>
                             <t:template>
                                 <Text text="{bankDataModel>bankName}" wrapping="true" />
                             </t:template>
                         </t:Column>
                         <t:Column width="10rem">
-                            <Label text="{i18n>BSABranch}" class="cl_VRLablCls "></Label>
+                            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSABranch}:${oi18n_En>BSABranch} +'&#10;' +${i18n>BSABranch}}" wrapping="true" class="cl_VRLablCls "></Label>
                             <t:template>
                                 <Text text="{bankDataModel>bankBranch}" wrapping="true" />
                             </t:template>
                         </t:Column>
                         <t:Column width="10rem">
-                            <Label text="{i18n>BSAAddress}" class="cl_VRLablCls "></Label>
+                            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSAAddress}:${oi18n_En>BSAAddress} +'&#10;' +${i18n>BSAAddress}}" class="cl_VRLablCls " wrapping="true"></Label>
                             <t:template>
                                 <Text text="{bankDataModel>bankStreet}" wrapping="true" />
                             </t:template>
                         </t:Column>
                         <t:Column width="8rem">
-                            <Label text="{i18n>BSACity}" class="cl_VRLablCls "></Label>
+                            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSACity}:${oi18n_En>BSACity} +'&#10;' +${i18n>BSACity}}" class="cl_VRLablCls " wrapping="true"></Label>
                             <t:template>
                                 <Text text="{bankDataModel>bankCity}" wrapping="true" />
                             </t:template>
                         </t:Column>
                         <t:Column width="8rem">
-                            <Label text="{i18n>BSAState}" class="cl_VRLablCls "></Label>
+                            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSAState}:${oi18n_En>BSAState} +'&#10;' +${i18n>BSAState}}" class="cl_VRLablCls " wrapping="true"></Label>
                             <t:template>
                                 <Text text="{bankDataModel>bankState}" wrapping="true" />
                             </t:template>
                         </t:Column>
                         <t:Column width="7rem" >
-                            <Label text="{i18n>BSABankNum}" class="cl_VRLablCls "></Label>
+                            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSABankNum}:${oi18n_En>BSABankNum} +'&#10;' +${i18n>BSABankNum}}" class="cl_VRLablCls " wrapping="true"></Label>
                             <t:template>
                                 <Text text="{bankDataModel>bankNumber}" />
                             </t:template>
                         </t:Column>
                         <t:Column width="8rem">
-                            <Label text="{i18n>BSASwift}" class="cl_VRLablCls "></Label>
+                            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSASwift}:${oi18n_En>BSASwift} +'&#10;' +${i18n>BSASwift}}" class="cl_VRLablCls " wrapping="true"></Label>
                             <t:template>
                                 <Text text="{bankDataModel>swiftCode}"/>
                             </t:template>
                         </t:Column>
                         <t:Column width="10rem">
-                            <Label text="{i18n>BSALocalName}" class="cl_VRLablCls "></Label>
+                            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSALocalName}:${oi18n_En>BSALocalName} +'&#10;' +${i18n>BSALocalName}}" class="cl_VRLablCls " wrapping="true"></Label>
                             <t:template>
                                 <Text text="{bankDataModel>localName}" wrapping="true" />
                             </t:template>
                         </t:Column>
                         <t:Column width="10rem">
-                            <Label text="{i18n>BSALocalBranch}" class="cl_VRLablCls "></Label>
+                            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSALocalBranch}:${oi18n_En>BSALocalBranch} +'&#10;' +${i18n>BSALocalBranch}}" class="cl_VRLablCls " wrapping="true"></Label>
                             <t:template>
                                 <Text text="{bankDataModel>localBranch}" wrapping="true" />
                             </t:template>
                         </t:Column>
                         <t:Column width="10rem">
-                            <Label text="{i18n>BSALocalAddress}" class="cl_VRLablCls "></Label>
+                            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSALocalAddress}:${oi18n_En>BSALocalAddress} +'&#10;' +${i18n>BSALocalAddress}}" class="cl_VRLablCls " wrapping="true"></Label>
                             <t:template>
                                 <Text text="{bankDataModel>localAddress}" wrapping="true" />
                             </t:template>
                         </t:Column>
                         <t:Column width="10rem">
-                            <Label text="{i18n>BSALocalCity}" class="cl_VRLablCls "></Label>
+                            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSALocalCity}:${oi18n_En>BSALocalCity} +'&#10;' +${i18n>BSALocalCity}}" class="cl_VRLablCls " wrapping="true"></Label>
                             <t:template>
                                 <Text text="{bankDataModel>localCity}" wrapping="true" />
                             </t:template>
@@ -244,10 +244,10 @@
                
                 <Toolbar class="sapUiSizeCompact">
                         <!-- <Text text="{i18n>selectandconfirmBank}" class="sapUiTinyMarginBegin fontStyleBlue"/> -->
-                         <RadioButton text="{i18n>bankNotDisplayed}" class="sapUiTinyMarginTop"  select="fnSelectManualBankEntry" selected="{bankSearchModel>/isManualEntry}"/>
+                         <RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankNotDisplayed}:${oi18n_En>bankNotDisplayed} +'&#10;' +${i18n>bankNotDisplayed}}" class="sapUiTinyMarginTop"  select="fnSelectManualBankEntry" selected="{bankSearchModel>/isManualEntry}"/>
                         <ToolbarSpacer></ToolbarSpacer>
                         
-                        <Button text="{i18n>Confirm}" press="fnConfirmBankInfo" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
+                        <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>Confirm}:${oi18n_En>Confirm} +'/&#160;' +${i18n>Confirm}}" press="fnConfirmBankInfo" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
 				</Toolbar>
                 <!-- <VBox class="sapUiTinyMarginTop">
                     <Label text="{i18n>bankNotDisplayed}" wrapping="true" class="fontStyle fontStyleItalic " /> 
