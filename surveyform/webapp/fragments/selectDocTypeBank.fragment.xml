@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
-	<Dialog title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selDocType}:${oi18n_En>selDocType} + '/&#160;' +${i18n>selDocType}}" contentWidth="40%"  class="sapUiSizeCompact">
+	<Dialog title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selDocType}:${oi18n_En>selDocType} + '/&#160;' +${i18n>selDocType}}" contentWidth="{= ${oVisibilityModel>/isdefaultLan}?'40%':'50%'}"  class="sapUiSizeCompact">
 		<content>
         <HBox>
         <VBox class="sapUiTinyMarginTop sapUiSmallMarginBegin">
-        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selDocType1}:${oi18n_En>selDocType1} + '/&#160;' +${i18n>selDocType1}}" required="false"/>
+        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selDocType1}:${oi18n_En>selDocType1} + '&#10;' +${i18n>selDocType1}}" wrapping="true" required="false"/>
         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>docType}:${oi18n_En>docType} + '/&#160;' +${i18n>docType}}" required="true"/>
             	<ComboBox width="50%" selectedKey="" class="inputStyle" change="fnDocTypeChange">
 								<core:Item key="Indemnity Letter" text="Indemnity Letter"/>

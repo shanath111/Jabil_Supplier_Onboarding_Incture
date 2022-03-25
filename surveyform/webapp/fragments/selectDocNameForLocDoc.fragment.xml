@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
-	<Dialog title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selDocName}:${oi18n_En>selDocName} + '/&#160;' +${i18n>selDocName}}" contentWidth="25%"  class="sapUiSizeCompact">
+	<Dialog title="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selDocName}:${oi18n_En>selDocName} + '/&#160;' +${i18n>selDocName}}" contentWidth="{= ${oVisibilityModel>/isdefaultLan}?'25%':'45%'}"  class="sapUiSizeCompact">
 		<content>
         <HBox>
         <VBox class="sapUiTinyMarginTop sapUiSmallMarginBegin">
