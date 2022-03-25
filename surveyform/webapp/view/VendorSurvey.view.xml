@@ -30,7 +30,7 @@
 </VBox>
                         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressLabel}:${oi18n_En>addressLabel} +'/&#160;' + ${i18n>addressLabel}}" class="fontBold sapUiSizeCompact sapUiTinyMarginBegin"/>
                         
-                        	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
+                        	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 							<VBox >
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey} +'&#10;' + ${i18n>countrykey}}" wrapping="true"  required="true" class="fontStyle "></Label>
                                     	<ComboBox id="hello" width="100%" items="{oLookUpModel>/SupplierCountry}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/countryEnb}"  valueState="{oErrorModel>/countryE}" valueStateText="{oErrorModel>/countryM}" filterSecondaryValues="false" selectionChange="fnChangeSupplierCountry"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" value="{oDataModel>/surveyInfoDto/address/0/postal/0/country}" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/countryCode}">
@@ -123,7 +123,7 @@
 						<Panel width="100%" class="sapUiTinyMarginTop panelPadding">
                     	<l:VerticalLayout width="100%">
 							<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>companyContact}:${oi18n_En>companyContact} +'/&#160;' + ${i18n>companyContact}}" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-                            <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
+                            <l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;'+${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
@@ -227,7 +227,7 @@
                            
 						</VBox>
 						<l:VerticalLayout visible="{=${oDataModel>/surveyInfoDto/isAuthority} === false}" width="100%">
-							<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+							<l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} + '&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
@@ -299,7 +299,7 @@
 							</RadioButtonGroup>
 						</VBox>
 						<l:VerticalLayout width="100%">
-							<l:Grid visible="{=${oDataModel>/surveyInfoDto/isJabilMainContact} === false}" containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+							<l:Grid visible="{=${oDataModel>/surveyInfoDto/isJabilMainContact} === false}" containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
@@ -377,7 +377,7 @@
                         </Panel>
                         <l:VerticalLayout width="100%">
 							<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>altCompanyContact}:${oi18n_En>altCompanyContact} +'/&#160;' + ${i18n>altCompanyContact}}" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-                            <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
+                            <l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>

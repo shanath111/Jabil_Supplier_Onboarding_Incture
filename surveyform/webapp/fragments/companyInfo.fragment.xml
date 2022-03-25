@@ -31,7 +31,7 @@
          
         
     
-    <l:Grid containerQuery="true" visible="{companyInfoModel>/isOrderFromAddress}" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+    <l:Grid containerQuery="true" visible="{companyInfoModel>/isOrderFromAddress}" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey}+ '&#xA;' +${i18n>countrykey}}" wrapping="true" required="true" />
            <ComboBox width="100%" items="{oLookUpModel>/Country}" showSecondaryValues="true" filterSecondaryValues="true"  placeholder="{i18n>select}" value="{companyInfoModel>/oCountry}" selectedKey="{companyInfoModel>/oCountryC}" valueState="{oErrorModel>/oFACounE}" valueStateText="{oErrorModel>/oFACounM}" selectionChange="fnLoadStateOFA" change="fnLiveValueChange" class="inputStyle">
@@ -166,7 +166,7 @@
          </VBox>
          </l:Grid>
                                  
-      <l:Grid visible="{remitModel>/isRemitToAddress}" containerQuery="true"  defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+      <l:Grid visible="{remitModel>/isRemitToAddress}" containerQuery="true"  defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
         <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey}+ '&#xA;' +${i18n>countrykey}}" wrapping="true" required="true" />
             <ComboBox width="100%" value="{remitModel>/rCountry}" selectedKey="{remitModel>/rCountryC}" items="{oLookUpModel>/Country}" filterSecondaryValues="true" showSecondaryValues="true" valueState="{oErrorModel>/rTACounE}" valueStateText="{oErrorModel>/rTACounM}" selectionChange="fnLoadStateRTA" change="fnLiveValueChange" placeholder="{i18n>select}" class="inputStyle">

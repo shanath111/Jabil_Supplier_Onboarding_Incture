@@ -6,7 +6,7 @@
 		</Panel>
 		<Panel visible="{=!${oUserModel>/isNew}}" width="100%" class="sapUiTinyMarginTop panelPadding">
 				<Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>information}:${oi18n_En>information} +'/&#160;' +${i18n>information}}" class="fontBold sapUiTinyMarginBegin"/>
-				<l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M3 S12"
+				<l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M12 S12"
 					class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 					<VBox class="fontStyle">
 						<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>legalName}: ${oi18n_En>legalName} +'&#10;' + ${i18n>legalName}}" required="true"></Label>
@@ -64,7 +64,7 @@
                 </HBox>
             </VBox>
 			<VBox alignContent="Start" visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber} === true}" class="fontStyle sapUiSmallMarginTop">
-				<l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M4 S12" class="gridSpacing">
+				<l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M12 S12" class="gridSpacing">
 					<VBox class="fontStyle sapUiSizeCompact">
 						<Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsRegNum}:${oi18n_En>dunsRegNum} +'&#10;' +${i18n>dunsRegNum}}" ></Label>
 						<Input valueLiveUpdate="true" maxLength="9" value="{oDataModel>/bpInfoDto/dunsRegistrationNum}"  valueState="{oErrorModel>/dunsRegistrationNumE}" valueStateText="{oErrorModel>/dunsRegistrationNumM}" liveChange="fnValueChange" enabled="{oEnableMdl>/dunsRegistrationNumEnb}" class="inputStyle"></Input>
@@ -83,7 +83,7 @@
 				</RadioButtonGroup> -->
                
 			
-                <l:Grid containerQuery="true" visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber}=== false}" class="gridSpacing fontStyle" width="90%" defaultSpan="XL3 L3 M4 S12">
+                <l:Grid containerQuery="true" visible="{=${oDataModel>/bpInfoDto/siteHaveDunsNumber}=== false}" class="gridSpacing fontStyle" width="90%" defaultSpan="XL3 L3 M12 S12">
 					<VBox class="fontStyle sapUiSizeCompact">
 						<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>numOfEmployees}:${oi18n_En>numOfEmployees} +'&#10;' +${i18n>numOfEmployees}}" wrapping="true" required="true" ></Label>
 						<ComboBox width="100%" placeholder="{i18n>select}" selectedKey="{oDataModel>/bpInfoDto/noOfEmployees}" enabled="{oEnableMdl>/noOfEmployeesEnb}" items="{oLookUpModel>/employeeCount}" valueState="{oErrorModel>/numOfEmpE}" valueStateText="{oErrorModel>/numOfEmpM}" class="inputStyle" change="fnLiveValueChange">
@@ -112,7 +112,7 @@
                         <Label  wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>LegalBusinessName}:${oi18n_En>LegalBusinessName} +'&#10;' +${i18n>LegalBusinessName}}" required="true" class="fontStyle sapUiTinyMarginEnd"></Label>
 						<Label  wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>LegalBusinessNameInfo}:${oi18n_En>LegalBusinessNameInfo} +'&#10;' +${i18n>LegalBusinessNameInfo}}" required="true" class="fontStyle "></Label>
                     </HBox>
-                    <l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M4 S12" class="gridSpacing fontStyle">
+                    <l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M12 S12" class="gridSpacing fontStyle">
                         <VBox class="fontStyle sapUiSizeCompact">
                             <Input valueLiveUpdate="true" maxLength="35" value="{oDataModel>/bpInfoDto/corpHeadquartersLegalBusinessName1}" valueState="{oErrorModel>/corpHeadLegalBusinessNameE}" valueStateText="{oErrorModel>/corpHeadLegalBusinessNameM}" liveChange="fnLiveInputValueChange"   enabled="{oEnableMdl>/LegalBusinessName1Enb}" class="inputStyle"></Input>
                         </VBox>
@@ -237,7 +237,7 @@
                                 </VBox>  
                             </l:Grid>
                     </l:VerticalLayout> -->
-                    <l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M4 S12" visible="{=${oDataModel>/bpInfoDto/isCorpHeadquartersDunsRegistered}=== true}" class="gridSpacing fontStyle">
+                    <l:Grid containerQuery="true" width="90%" defaultSpan="XL3 L3 M12 S12" visible="{=${oDataModel>/bpInfoDto/isCorpHeadquartersDunsRegistered}=== true}" class="gridSpacing fontStyle">
                         <VBox class="fontStyle sapUiSizeCompact">
                             <Label wrapping= "true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>dunsRegNum}:${oi18n_En>dunsRegNum} +'&#10;' +${i18n>dunsRegNum}}" required="true"></Label>
                             <Input valueLiveUpdate="true" maxLength="9" value="{oDataModel>/bpInfoDto/corpHeadquartersDunsRegNum}"  valueState="{oErrorModel>/corpHeaddunsRegistrationNumE}" valueStateText="{oErrorModel>/corpHeaddunsRegistrationNumM}" enabled="{oEnableMdl>/CorpHeadDunsRegNumEnb}" liveChange="fnValueChange" class="inputStyle"></Input>
@@ -330,7 +330,7 @@
                     <ComboBox width="100%" items="{oLookUpModel>/taxType8}" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckTaxType8'}" filterSecondaryValues="true"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" selectedKey="{oDataModel>type}" enabled="{oEnableMdl>/typeEnb}" change="fnChangeTaxTypeLookup" id="taxTypeId8">
                         <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
                      <layoutData>
-						<l:GridData span="XL3 L3 M3 S12"></l:GridData>
+						<l:GridData span="XL3 L3 M12 S12"></l:GridData>
 					</layoutData>
 				</VBox>
 		
@@ -430,7 +430,7 @@
 
                   
                     <layoutData>
-						<l:GridData span="XL3 L3 M3 S12"></l:GridData>
+						<l:GridData span="XL3 L3 M12 S12"></l:GridData>
 					</layoutData>
 				</VBox>
 				
@@ -443,7 +443,7 @@
 					<Button icon="sap-icon://add" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckFirstItem'}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addMore}:${oi18n_En>addMore} +'/&#160;' +${i18n>addMore}}" type="Transparent" iconFirst="true" press="addTaxRegistration" enabled="{oEnableMdl>/addMoreEnb}" class="addMoreBtn"/>
 						<Button icon="sap-icon://delete" visible="{path:'i18n>oDataModel', formatter:'com.jabil.surveyform.formatter.formatter.fnCheckOtherItem'}" type="Transparent" press="fnDeleteContainerlayout" enabled="{oEnableMdl>/deleteBtnEnb}"  class="addMoreBtn"/>
                     <layoutData>
-						<l:GridData span="XL3 L3 M3 S12"></l:GridData>
+						<l:GridData span="XL3 L3 M12 S12"></l:GridData>
 					</layoutData>
 				</VBox>
                 
@@ -488,7 +488,7 @@
 		<VBox>
         <l:VerticalLayout width="100%" class="sapUiSmallMarginTop">
 							<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>ppoc}:${oi18n_En>ppoc} +'/&#160;' + ${i18n>ppoc}}" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-                            <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
+                            <l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstNameG}:${oi18n_En>firstNameG} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstNameG}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>

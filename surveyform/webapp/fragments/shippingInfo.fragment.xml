@@ -2,7 +2,7 @@
 	xmlns:u="sap.ui.unified" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f" async="true">
     <Panel width="100%" class="sapUiTinyMarginTop panelPadding">
     <content>
-   <l:Grid containerQuery="true" visible="{=!${oUserModel>/isNew}}" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+   <l:Grid containerQuery="true" visible="{=!${oUserModel>/isNew}}" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 				<VBox  class="fontStyle">
 					<Label text="{i18n>incoterm}" visible= "{oVisibilityModel>/isdefaultLan}" required="true"></Label>
                     <Label text="{oi18n_En>incoterm}&#10;{i18n>incoterm}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
@@ -15,7 +15,7 @@
 				</VBox>
 			</l:Grid>
              <Label visible="{=!${oUserModel>/isNew}}" class="sapUiTinyMarginTop fontStyleBold sapUiTinyMarginBegin" wrapping="true" text="{i18n>incotermNewTerms}"></Label>
-    <l:Grid containerQuery="true" visible="{oUserModel>/isNew}" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+    <l:Grid containerQuery="true" visible="{oUserModel>/isNew}" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 				<VBox class="fontStyle" >
 					<Label text="{i18n>vendorName}" visible= "{oVisibilityModel>/isdefaultLan}" required="false"></Label>
                     <Label text="{oi18n_En>vendorName}&#10;{i18n>vendorName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="false"></Label>
@@ -34,7 +34,7 @@
 						<Input valueLiveUpdate="true" maxLength="29" class="inputStyle" value="{oDataModel>/shippingInfoDto/incotermNamedPlace}" enabled="{oEnableMdl>/incotermNamedPlaceEnb}" valueState="{oErrorModel>/incotermNPE}" valueStateText="{oErrorModel>/incotermNPM}" liveChange="fnLiveInputValueChange"/>
 				</VBox>
 			</l:Grid>
-            <l:Grid containerQuery="true" visible="{=!${oUserModel>/isNew}}" defaultSpan="XL3 L3 M3 S12" class="sapUiTinyMarginTop gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+            <l:Grid containerQuery="true" visible="{=!${oUserModel>/isNew}}" defaultSpan="XL3 L3 M12 S12" class="sapUiTinyMarginTop gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 				<VBox class="fontStyle" >
 					<Label text="{i18n>vendorName}" visible= "{oVisibilityModel>/isdefaultLan}" required="false"></Label>
                     <Label text="{oi18n_En>vendorName}&#10;{i18n>vendorName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="false"></Label>
@@ -53,7 +53,7 @@
 						<Input valueLiveUpdate="true" maxLength="29" class="inputStyle" value="{oDataModel>/shippingInfoDto/newincotermNamedPlace}" enabled="{oEnableMdl>/incotermNamedPlaceEnb}" valueState="{oErrorModel>/incotermNPE}" valueStateText="{oErrorModel>/incotermNPM}" liveChange="fnLiveInputValueChange"/>
 				</VBox>
 			</l:Grid>
-             <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="fontStyle gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+             <l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="fontStyle gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
             <VBox class="fontStyle">
 										<Label text="{i18n>deliveryLoc}"  required="false"  visible= "{oVisibilityModel>/isdefaultLan}" ></Label>
 					<Label text="{oi18n_En>deliveryLoc}&#10;{i18n>deliveryLoc}"  required="false" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" ></Label>
@@ -68,7 +68,7 @@
 						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>yes}}" select="fnSelectionChange"/>
 					</RadioButtonGroup>
 				</VBox>
-                 <l:Grid visible="{=${oDataModel>/shippingInfoDto/isDeliver}=== true}" containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="fontStyle gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+                 <l:Grid visible="{=${oDataModel>/shippingInfoDto/isDeliver}=== true}" containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="fontStyle gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 				<VBox class="fontStyle" >
 					<Label text="{i18n>companyNameM}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                     <Label text="{oi18n_En>companyNameM}&#10;{i18n>companyNameM}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true" ></Label>
