@@ -1141,6 +1141,11 @@ sap.ui.define([
                                     var oldExceptionalData = new JSONModel();
                                     oldExceptionalData.setData(oldExceptionDataObj);
                                     oView.setModel(oldExceptionalData,"oldExceptionalData");
+
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().authorityContactContactCode =  oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.countryContactCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().ackContactContactCode =  oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.countryContactCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().ackContactMobileCode =  oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.countryMobileCode;
+                                  
                                 }
                                 oBusyDialogLoadData.close();
 
