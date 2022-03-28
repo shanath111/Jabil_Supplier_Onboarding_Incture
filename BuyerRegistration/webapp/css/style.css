@@ -470,6 +470,7 @@ border-radius: 4px !important;
 .cl_SuccessMessageTxt {
     font-size: 14px !important;
     color:#000000 !important;
+    text-align: center !important;
 }
 .barClass {
     border-top: solid .0625rem #ccc !important;
