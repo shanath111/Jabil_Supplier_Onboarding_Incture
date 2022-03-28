@@ -243,7 +243,13 @@ com.jabil.surveyform.formatter.formatter = {
                         if (item) {
                             return value + ' (' + item.code + ')';
                         } else {
+                            var item = aArray.find(item => item.key == value);
+                           if(item){
+                            return item.description + ' (' + item.code + ')';
+                           }else{
                             return '';
+                           }
+                           
                         }
 
                     } else {

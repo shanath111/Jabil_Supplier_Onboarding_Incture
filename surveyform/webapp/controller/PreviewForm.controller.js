@@ -1143,9 +1143,25 @@ sap.ui.define([
                                     oView.setModel(oldExceptionalData,"oldExceptionalData");
 
                                     that.getOwnerComponent().getModel("oVisibilityModel").getData().authorityContactContactCode =  oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.countryContactCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().authorityContactMobileCode = oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.countryMobileCode;
                                     that.getOwnerComponent().getModel("oVisibilityModel").getData().ackContactContactCode =  oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.countryContactCode;
-                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().ackContactMobileCode =  oView.getModel("oDataModel").getData().surveyInfoDto.authorityContact.countryMobileCode;
-                                  
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().ackContactMobileCode =  oView.getModel("oDataModel").getData().surveyInfoDto.ackContact.countryMobileCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().mainContactContactCode = oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.countryContactCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().mainContactMobileCode = oView.getModel("oDataModel").getData().surveyInfoDto.mainContact.countryMobileCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().altContactContactCode = oView.getModel("oDataModel").getData().surveyInfoDto.altContact.countryContactCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().pointOfContactContactCode = oView.getModel("oDataModel").getData().bpInfoDto.pointOfContact.countryContactCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().managedByGovtContactContactCode = oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtContact.countryContactCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().managedByGovtFamilyContactContactCode= oView.getModel("oDataModel").getData().ownerShipInfoDto.managedByGovtFamilyContact.countryContactCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().OFAContactCode= oView.getModel("companyInfoModel").getData().oTeleNumCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().RTAContactCode = oView.getModel("remitModel").getData().rTeleNumCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().finance1ContactCode = oView.getModel("oDataModel").getData().bankDto.financeContact1.countryContactCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().finance1MobileCode = oView.getModel("oDataModel").getData().bankDto.financeContact1.countryMobileCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().finance2ContactCode = oView.getModel("oDataModel").getData().bankDto.financeContact2.countryContactCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().finance2MobileCode = oView.getModel("oDataModel").getData().bankDto.financeContact2.countryMobileCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().deliveryRepContactCode = oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepCountryContactCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().cocContactCode = oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.countryContactCode;
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().itCyberContactCode = oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.countryContactCode;                                    
+                                    that.getOwnerComponent().getModel("oVisibilityModel").refresh();
                                 }
                                 oBusyDialogLoadData.close();
 
