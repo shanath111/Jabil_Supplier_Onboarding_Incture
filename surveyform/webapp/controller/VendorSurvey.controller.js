@@ -11449,7 +11449,7 @@ sap.ui.define([
                             "refBankDetails": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].refBankDetails,
                             "swiftCode": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode,
                             "ibanNum": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum,
-                            "bankNumber": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumNber,
+                            "bankNumber": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber,
                             "instructionKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey,
                             "partnerBankType": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].partnerBankType,
                             "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided ? true : false
