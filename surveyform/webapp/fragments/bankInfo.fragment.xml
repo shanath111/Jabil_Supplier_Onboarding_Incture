@@ -4,7 +4,7 @@
 		<content>
 			<Text text="{i18n>paymentTermsL}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontBold sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
             <Text text="{oi18n_En>paymentTermsL}/&#160;{i18n>paymentTermsL}" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontBold sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
-				<l:Grid containerQuery="true" visible="{=!${oUserModel>/isNew}}" defaultSpan="XL3 L4 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+				<l:Grid containerQuery="true" visible="{=!${oUserModel>/isNew}}" defaultSpan="XL3 L4 M12 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 				<VBox  class="fontStyle">
 					<Label text="{i18n>paymentTerms}"  visible= "{oVisibilityModel>/isdefaultLan}"  required="true"></Label>
                     <Label text="{oi18n_En>paymentTerms}&#10;{i18n>paymentTerms}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
@@ -18,7 +18,7 @@
 
 			</l:Grid>
             <Label visible="{=!${oUserModel>/isNew}}" class="sapUiTinyMarginTop fontStyleBold sapUiTinyMarginBegin" wrapping="true" text="{i18n>paymentNewTerms}"></Label>
-            <l:Grid containerQuery="true" visible="{oUserModel>/isNew}" defaultSpan="XL3 L4 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+            <l:Grid containerQuery="true" visible="{oUserModel>/isNew}" defaultSpan="XL3 L4 M12 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 				<VBox  class="fontStyle">
 					<Label text="{i18n>PaymentTermsEOM}"  visible= "{oVisibilityModel>/isdefaultLan}"  required="true"></Label>
                     <Label text="{oi18n_En>PaymentTermsEOM}&#10;{i18n>PaymentTermsEOM}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
@@ -49,7 +49,7 @@
                  
 			</l:Grid>
             
-             <l:Grid containerQuery="true" visible="{=!${oUserModel>/isNew}}"  defaultSpan="XL3 L4 M4 S12" class="gridSpacing sapUiTinyMarginTop sapUiSizeCompact sapUiNoContentPadding ">
+             <l:Grid containerQuery="true" visible="{=!${oUserModel>/isNew}}"  defaultSpan="XL3 L4 M12 S12" class="gridSpacing sapUiTinyMarginTop sapUiSizeCompact sapUiNoContentPadding ">
                 <VBox  class="fontStyle">
                         <Label text="{i18n>newPaymentTermsEOM}"  visible= "{oVisibilityModel>/isdefaultLan}" ></Label>
                         <Label text="{oi18n_En>newPaymentTermsEOM}&#10;{i18n>newPaymentTermsEOM}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" ></Label>
@@ -114,7 +114,7 @@
                 </Toolbar>
             </headerToolbar> 
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BankSearchMsg}:${oi18n_En>BankSearchMsg} +'&#10;' +${i18n>BankSearchMsg}}" class="fontStyle sapUiTinyMarginBegin" wrapping="true"/>
-            <l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
+            <l:Grid defaultSpan="XL2 L2 M12 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
                 <VBox class="VRVboxStyle1">
                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>BSACountry}:${oi18n_En>BSACountry}+ '&#10;' +${i18n>BSACountry}}" wrapping="true" required="true" ></Label>
                             <ComboBox width="95%" items="{oLookUpModel>/Country}"  autocomplete="false" valueState="{oErrorModel>/bankSearchCountryE}" valueStateText="{oErrorModel>/bankSearchCountryM}"
@@ -260,7 +260,7 @@
             </VBox> -->
             <Label visible="{=!${oUserModel>/isNew}}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>existingBankDetails}:${oi18n_En>existingBankDetails} +'/&#160;' +${i18n>existingBankDetails}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
 			<!-- <CheckBox selected="{oDataModel>/bankDto/isBankProvided}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankInformation2}:${oi18n_En>bankInformation2} +'/&#160;' + ${i18n>bankInformation2}}" class="fontBold inputStyle sapUiTinyMarginBottom"/> -->
-			<l:Grid visible="{=${oDataModel>/bankDto/isBankProvided}=== true || ${oUserModel>/isNew} === false}" containerQuery="true" defaultSpan="XL3 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding sapUiTinyMarginTop">
+			<l:Grid visible="{=${oDataModel>/bankDto/isBankProvided}=== true || ${oUserModel>/isNew} === false}" containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding sapUiTinyMarginTop">
 			<VBox  class="fontStyle">
 					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankCountry}:${oi18n_En>bankCountry}+ '&#10;' +${i18n>bankCountry}}" required="true"></Label>
 					<ComboBox width="100%" enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/validationIndicator} === '0'? true:false}"  items="{oLookUpModel>/Country}" showSecondaryValues="true" filterSecondaryValues="true" selectedKey="{oDataModel>/bankDto/bankInfoDto/0/bankCountry}" editable="{oUserModel>/isNew}" valueState="{oErrorModel>/bankCountryE}" valueStateText="{oErrorModel>/bankCountryM}"  selectionChange="fnLiveValueBankInput" class="inputStyle">
@@ -372,7 +372,7 @@
 				</VBox>
                 
 			</l:Grid>
-            <l:Grid visible="{=${oDataModel>/bankDto/isBankProvided}=== true || ${oUserModel>/isNew} === false}" containerQuery="true" defaultSpan="XL2 L2 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding sapUiTinyMarginTop">
+            <l:Grid visible="{=${oDataModel>/bankDto/isBankProvided}=== true || ${oUserModel>/isNew} === false}" containerQuery="true" defaultSpan="XL2 L2 M12 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding sapUiTinyMarginTop">
                  <VBox  class="fontStyle">
 					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankNameLocal}:${oi18n_En>bankNameLocal}+ '&#10;' +${i18n>bankNameLocal}}" wrapping="true"></Label>
 					<Input maxLength="61"  enabled="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false) &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/validationIndicator} === '0'? true:false}" value="{oDataModel>/bankDto/bankInfoDto/0/localName}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
@@ -458,7 +458,7 @@
        <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepFinancialInfo}:${oi18n_En>wizardStepFinancialInfo} +'/&#160;' + ${i18n>wizardStepFinancialInfo}}" class="fontBold sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
         <!-- <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>financeVerbiage}:${oi18n_En>financeVerbiage} +'/&#160;' + ${i18n>financeVerbiage}}" class="fontBold fontStyleItalic sapUiTinyMarginBegin sapUiTinyMarginBottom"/> -->
         <Label  visible="{=${oDataModel>/bankDto/isBankProvided} === false || ${oDataModel>/bankDto/isBankProvided} === null}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>financeContact1}:${oi18n_En>financeContact1} +'/&#160;' + ${i18n>financeContact1}}"  class="inputStyle sapUiTinyMarginBegin fontStyleItalic sapUiTinyMarginBottom"/>
-        <l:Grid containerQuery="true"  visible="{=${oDataModel>/bankDto/isBankProvided} === false || ${oDataModel>/bankDto/isBankProvided} === null}" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
+        <l:Grid containerQuery="true"  visible="{=${oDataModel>/bankDto/isBankProvided} === false || ${oDataModel>/bankDto/isBankProvided} === null}" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
@@ -497,7 +497,7 @@
                                                 </ComboBox>
                                             </VBox>
                                             <layoutData>
-                                                <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData>
+                                                <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData>
                                             </layoutData>
                                         </VBox>
                                         <VBox class="fontStyle">
@@ -507,7 +507,7 @@
                                             
                                         <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
                                             <layoutData>
-                                                <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+                                                <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData>
                                             </layoutData>
                                         </VBox>     
                                 <!-- <VBox>
@@ -535,7 +535,7 @@
                                                 </ComboBox>
                                             </VBox>
                                             <layoutData>
-                                                <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData>
+                                                <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData>
                                             </layoutData>
                                         </VBox>
                                   <VBox>
@@ -544,14 +544,14 @@
                                     <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
 											<Input valueLiveUpdate="true" maxLength="31" value="{oDataModel>/bankDto/financeContact1/mobile}" enabled="{oEnableMdl>/finance1mobPhoneEnb}" valueState="{oErrorModel>/finance1MobE}" valueStateText="{oErrorModel>/finance1MobM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
                                             <layoutData>
-                                                <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+                                                <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData>
                                             </layoutData>
                             
                                         </VBox> 
 							</l:Grid>
                               <Label visible ="{=${oDataModel>/bankDto/isBankProvided} === true}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>financeContact}:${oi18n_En>financeContact} +'/&#160;' + ${i18n>financeContact}}"  class="inputStyle fontStyleItalic sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
                               <Label visible ="{=${oDataModel>/bankDto/isBankProvided} === false || ${oDataModel>/bankDto/isBankProvided} === null}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>financeContact2}:${oi18n_En>financeContact2} +'/&#160;' + ${i18n>financeContact2}}"  class="inputStyle fontStyleItalic sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
-        <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
+        <l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                      <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
@@ -596,7 +596,7 @@
                                                 </ComboBox>
                                             </VBox>
                                             <layoutData>
-                                                <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData>
+                                                <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData>
                                             </layoutData>
                                         </VBox>
                                         <VBox class="fontStyle">
@@ -605,7 +605,7 @@
                                             <Input valueLiveUpdate="true" maxLength="31" value="{oDataModel>/bankDto/financeContact2/contact}" enabled="{oEnableMdl>/finance2phoneNumEnb}" valueState="{oErrorModel>/finance2ContE}" valueStateText="{oErrorModel>/finance2ContM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
                                         <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
                                             <layoutData>
-                                                <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+                                                <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData>
                                             </layoutData>
                                         </VBox>     
                                                        
@@ -627,7 +627,7 @@
                                                 </ComboBox>
                                             </VBox>
                                             <layoutData>
-                                                <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData>
+                                                <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData>
                                             </layoutData>
                                         </VBox>
                                   <VBox>
@@ -636,7 +636,7 @@
                                     <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
 											<Input valueLiveUpdate="true" maxLength="31" value="{oDataModel>/bankDto/financeContact2/mobile}" enabled="{oEnableMdl>/finance2mobPhoneEnb}"  valueState="{oErrorModel>/finance2MobE}" valueStateText="{oErrorModel>/finance2MobM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
                                             <layoutData>
-                                                <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+                                                <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData>
                                             </layoutData>
                             
                                         </VBox> 

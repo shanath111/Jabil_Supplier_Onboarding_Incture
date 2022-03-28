@@ -134,7 +134,7 @@
         <Text text="{i18n>infoSecurityContact}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle sapUiSizeCompact sapUiTinyMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop"/>
          <Text text="{oi18n_En>infoSecurityContact}&#10;{i18n>infoSecurityContact}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle sapUiSizeCompact sapUiTinyMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop"/>	
           <l:VerticalLayout class="fontStyle sapUiSizeCompact" width="100%">
-							<l:Grid containerQuery="true" defaultSpan="XL3 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+							<l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 								<VBox>
 									<Label text="{i18n>firstNameG}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
                                     <Label text="{oi18n_En>firstNameG}&#10;{i18n>firstNameG}" wrapping="true" required="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
@@ -165,7 +165,7 @@
                                                 </ComboBox>
                                             </VBox>
                                   <layoutData>
-                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData></layoutData>
                                        </VBox>
 								<VBox>
                                 <Label text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
@@ -173,7 +173,7 @@
 											<Input valueLiveUpdate="true" maxLength="31" value="{oDataModel>/itCyberDto/itcyberSecurityContact/contact}" valueState="{oErrorModel>/cyberSurveyMNE}" valueStateText="{oErrorModel>/cyberSurveyMNM}" enabled="{oEnableMdl>/itcyberSecurityContactcontactEnb}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
                                 <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
                                 <layoutData>
-                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData></layoutData>
                                         </VBox> 
                                
 								<VBox>

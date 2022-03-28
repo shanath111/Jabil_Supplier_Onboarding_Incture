@@ -7,7 +7,7 @@
 		</VBox>
 	</Panel>
 	<l:VerticalLayout width="100%" class="fontStyle sapUiTinyMarginTop sapUiSizeCompact">
-		<l:Grid visible="{oUserModel>/isNew}" containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="fontStyle gridMargin gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+		<l:Grid visible="{oUserModel>/isNew}" containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="fontStyle gridMargin gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 			<VBox class="fontStyle sapUiSizeCompact">
 				<Label required="true" labelFor="ownSite" class="sapUiTinyMarginBegin" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>hasOwnSite}:${oi18n_En>hasOwnSite} +'&#10;' +${i18n>hasOwnSite}}" wrapping="true"/>
 				<RadioButtonGroup id="ownSite" columns="2" selectedIndex="{=${oDataModel>/ownerShipInfoDto/doesOtherEntityOwnSite} === true? 0 :(${oDataModel>/ownerShipInfoDto/doesOtherEntityOwnSite}=== false ?1: -1)}" class="inputStyle sapUiNoMarginBegin sapUiTinyMarginEnd" enabled="{oEnableMdl>/doesOtherEntityOwnSiteEnb}" valueState="{oErrorModel>/doesOtherEntityOwnSiteE}" select="fnClearValueState">
@@ -36,7 +36,7 @@
 			</VBox>
 			
 		</l:Grid>
-        	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="fontStyle gridMargin gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+        	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="fontStyle gridMargin gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
         <VBox class="sapUiTinyMarginBegin fontStyle">
 				<Label text="{i18n>ownerShipType}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact"/>
                 <Label wrapping="true" text="{oi18n_En>ownerShipType}&#10;{i18n>ownerShipType}" required="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="sapUiSizeCompact"/>
@@ -239,7 +239,7 @@
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/ownerShipInfoDto/isEntityManagedByGovt}"></RadioButton>
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 		</RadioButtonGroup>
-		<l:Grid  visible="{=${oDataModel>/ownerShipInfoDto/isEntityManagedByGovt}=== true}" containerQuery="true" defaultSpan="XL3 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+		<l:Grid  visible="{=${oDataModel>/ownerShipInfoDto/isEntityManagedByGovt}=== true}" containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 			<VBox class="fontStyle">
 				<Label required="true"  text="{i18n>govtEntityName}" visible= "{oVisibilityModel>/isdefaultLan}" ></Label>
                 <Label required="true"  text="{oi18n_En>govtEntityName}&#10;{i18n>govtEntityName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
@@ -270,7 +270,7 @@
                     </ComboBox>
 				</VBox>
 				<layoutData>
-					<l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData>
+					<l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData>
 				</layoutData>
 			</VBox>
 			<VBox class="fontStyle">
@@ -279,7 +279,7 @@
 				<Input valueLiveUpdate="true" maxLength="31" class="inputStyle" value="{oDataModel>/ownerShipInfoDto/managedByGovtContact/contact}" valueState="{oErrorModel>/govtEntityContE}" valueStateText="{oErrorModel>/govtEntityContM}" enabled="{oEnableMdl>/managedByGovtContactcontactEnb}" liveChange="fnLiveInputNumericValueChange"></Input>
             <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
 				<layoutData>
-					<l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+					<l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData>
 				</layoutData>
 			</VBox>
 			<VBox class="fontStyle">
@@ -305,7 +305,7 @@
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/ownerShipInfoDto/isEntityManagedByGovtFamily}"></RadioButton>
 			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" select="fnSelectionChange"></RadioButton>
 		</RadioButtonGroup>
-		<l:Grid visible="{=${oDataModel>/ownerShipInfoDto/isEntityManagedByGovtFamily}=== true}" containerQuery="true" defaultSpan="XL3 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+		<l:Grid visible="{=${oDataModel>/ownerShipInfoDto/isEntityManagedByGovtFamily}=== true}" containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 			<VBox class="fontStyle">
 				<Label required="true"  text="{i18n>govtEntityName}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 <Label required="true" text="{oi18n_En>govtEntityName}&#10;{i18n>govtEntityName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
@@ -336,7 +336,7 @@
                     </ComboBox>
 				</VBox>
 				<layoutData>
-					<l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData>
+					<l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData>
 				</layoutData>
 			</VBox>
 			<VBox class="fontStyle">
@@ -345,7 +345,7 @@
 				<Input valueLiveUpdate="true" maxLength="31" class="inputStyle" value="{oDataModel>/ownerShipInfoDto/managedByGovtFamilyContact/contact}" valueState="{oErrorModel>/closegovtEntityContE}" valueStateText="{oErrorModel>/closegovtEntityContM}" enabled="{oEnableMdl>/managedByGovtFamilycontactEnb}"  liveChange="fnLiveInputNumericValueChange"></Input>
                 <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
 				<layoutData>
-					<l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+					<l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData>
 				</layoutData>
 			</VBox>
 			<VBox class="fontStyle">

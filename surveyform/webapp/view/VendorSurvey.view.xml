@@ -30,7 +30,7 @@
 </VBox>
                         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressLabel}:${oi18n_En>addressLabel} +'/&#160;' + ${i18n>addressLabel}}" class="fontBold sapUiSizeCompact sapUiTinyMarginBegin"/>
                         
-                        	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
+                        	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 							<VBox >
 									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>countrykey}:${oi18n_En>countrykey} +'&#10;' + ${i18n>countrykey}}" wrapping="true"  required="true" class="fontStyle "></Label>
                                     	<ComboBox id="hello" width="100%" items="{oLookUpModel>/SupplierCountry}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/countryEnb}"  valueState="{oErrorModel>/countryE}" valueStateText="{oErrorModel>/countryM}" filterSecondaryValues="false" selectionChange="fnChangeSupplierCountry"  showSecondaryValues="true" placeholder="{i18n>select}" class="inputStyle" value="{oDataModel>/surveyInfoDto/address/0/postal/0/country}" selectedKey="{oDataModel>/surveyInfoDto/address/0/postal/0/countryCode}">
@@ -123,7 +123,7 @@
 						<Panel width="100%" class="sapUiTinyMarginTop panelPadding">
                     	<l:VerticalLayout width="100%">
 							<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>companyContact}:${oi18n_En>companyContact} +'/&#160;' + ${i18n>companyContact}}" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-                            <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
+                            <l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;'+${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
@@ -163,7 +163,7 @@
                                         </ComboBox>	
                                     </VBox>
                                   <layoutData>
-                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData></layoutData>
                                 </VBox>
 								<VBox>
                                 <!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" required="true" wrapping="true" class="fontStyle"></Label> -->
@@ -172,7 +172,7 @@
 											<Input valueLiveUpdate="true" maxLength="31" editable="{oUserModel>/isNew}" value="{oDataModel>/surveyInfoDto/authorityContact/contact}" enabled="{oEnableMdl>/contactEnb}" valueState="{oErrorModel>/authorityContE}" valueStateText="{oErrorModel>/authorityContM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
                                 <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
                                 <layoutData>
-                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData></layoutData>
                                         </VBox>
                                 <!-- </HBox> -->
                                 <!-- <VBox>
@@ -200,7 +200,7 @@
                                         </ComboBox>	
                                     </VBox>
                                   <layoutData>
-                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData></layoutData>
                                 </VBox>
 								
                                   <VBox>
@@ -209,7 +209,7 @@
                                     <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
 											<Input valueLiveUpdate="true" maxLength="31" value="{oDataModel>/surveyInfoDto/authorityContact/mobile}" enabled="{oEnableMdl>/mobileEnb}" valueState="{oErrorModel>/authorityMobE}" valueStateText="{oErrorModel>/authorityMobM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
                                         <layoutData>
-                                        <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
+                                        <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData></layoutData>
                             
                                         </VBox> 
 							</l:Grid>
@@ -227,7 +227,7 @@
                            
 						</VBox>
 						<l:VerticalLayout visible="{=${oDataModel>/surveyInfoDto/isAuthority} === false}" width="100%">
-							<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+							<l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} + '&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
@@ -259,14 +259,14 @@
                                         </ComboBox>
                                     </VBox>
                                     <layoutData>
-                                    <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                    <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData></layoutData>
                                 </VBox>
 								<VBox>
                                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" wrapping="true" class="fontStyle" required="true"></Label>
 									<Input valueLiveUpdate="true" maxLength="31" value="{oDataModel>/surveyInfoDto/ackContact/contact}" class="inputStyle"  valueState="{oErrorModel>/ackContactE}" valueStateText="{oErrorModel>/ackContactM}" liveChange="fnLiveInputNumericValueChange"></Input>
                                     <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
                                     <layoutData>
-                                        <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+                                        <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData>
                                     </layoutData>
                                 </VBox>
                                 <VBox>
@@ -278,7 +278,7 @@
                                         </ComboBox>
                                     </VBox>
                                     <layoutData>
-                                    <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                    <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData></layoutData>
                                 </VBox>
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>mobPhone}:${oi18n_En>mobPhone} +'&#10;' + ${i18n>mobPhone}}" class="fontStyle" required="true"></Label> -->
@@ -286,7 +286,7 @@
                                     <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
 									<Input valueLiveUpdate="true" maxLength="31" value="{oDataModel>/surveyInfoDto/ackContact/mobile}" class="inputStyle"  valueState="{oErrorModel>/ackPhoneE}" valueStateText="{oErrorModel>/ackPhoneM}" liveChange="fnLiveInputNumericValueChange"></Input>
                                     <layoutData>
-                                        <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+                                        <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData>
                                     </layoutData>
 								</VBox>
                                 </l:Grid>
@@ -299,7 +299,7 @@
 							</RadioButtonGroup>
 						</VBox>
 						<l:VerticalLayout width="100%">
-							<l:Grid visible="{=${oDataModel>/surveyInfoDto/isJabilMainContact} === false}" containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+							<l:Grid visible="{=${oDataModel>/surveyInfoDto/isJabilMainContact} === false}" containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
@@ -334,14 +334,14 @@
                                         </ComboBox>
                                     </VBox>
                                     <layoutData>
-                                    <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                    <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData></layoutData>
                                 </VBox>
 								<VBox>
                                     <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'&#10;' + ${i18n>phoneNum}}" wrapping="true" class="fontStyle" required="true"></Label>
 									<Input valueLiveUpdate="true" maxLength="31" class="inputStyle" value="{oDataModel>/surveyInfoDto/mainContact/contact}" enabled="{oEnableMdl>/mainContactcontactEnb}" valueState="{oErrorModel>/mcContE}" valueStateText="{oErrorModel>/mcContM}" liveChange="fnLiveInputNumericValueChange"></Input>
                                     <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
                                     <layoutData>
-                                        <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+                                        <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData>
                                     </layoutData>
                                 </VBox>
                                 <VBox>
@@ -360,7 +360,7 @@
                                         </ComboBox>
                                     </VBox>
                                     <layoutData>
-                                    <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                    <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData></layoutData>
                                 </VBox>
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>mobPhone}:${oi18n_En>mobPhone} +'&#10;' + ${i18n>mobPhone}}" class="fontStyle" required="true"></Label> -->
@@ -368,7 +368,7 @@
                                     <Label text="{oi18n_En>mobPhone}&#10;{i18n>mobPhone}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
 									<Input valueLiveUpdate="true" maxLength="31" value="{oDataModel>/surveyInfoDto/mainContact/mobile}" enabled="{oEnableMdl>/mainContactmobileEnb}" class="inputStyle"  valueState="{oErrorModel>/mcPhoneE}" valueStateText="{oErrorModel>/mcPhoneM}" liveChange="fnLiveInputNumericValueChange"></Input>
                                      <layoutData>
-                                        <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData>
+                                        <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData>
                                     </layoutData>
 								</VBox>
 								
@@ -377,7 +377,7 @@
                         </Panel>
                         <l:VerticalLayout width="100%">
 							<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>altCompanyContact}:${oi18n_En>altCompanyContact} +'/&#160;' + ${i18n>altCompanyContact}}" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-                            <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
+                            <l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
 								<VBox>
 									<!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'&#10;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label> -->
                                     <Label text="{i18n>firstName}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true" ></Label>
@@ -415,7 +415,7 @@
                                         </ComboBox>
                                     </VBox>
                                   <layoutData>
-                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData></layoutData>
                                        </VBox>
 								<VBox>
                                 <Label text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle" required="true"></Label>
@@ -423,7 +423,7 @@
 								<Input valueLiveUpdate="true" maxLength="31" value="{oDataModel>/surveyInfoDto/altContact/contact}" enabled="{oEnableMdl>/altContactcontactEnb}" valueState="{oErrorModel>/altContactE}" valueStateText="{oErrorModel>/altContactM}" liveChange="fnLiveInputNumericValueChange"  class="inputStyle"></Input>
                                 <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
                                 <layoutData>
-                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData></layoutData>
                                         </VBox> 
                                
                                 <!-- <VBox>

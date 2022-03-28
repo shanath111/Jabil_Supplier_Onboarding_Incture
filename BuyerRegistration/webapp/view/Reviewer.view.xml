@@ -111,7 +111,7 @@
                                     		<VBox visible="{oConfigMdl>/onBoardDet}">
                                      	<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_TIDescTxt" wrapping="true" text="{i18n>EnterBPDetails}"></Label>
                                     
-                                    	<l:Grid defaultSpan="XL2 L2 M2 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
+                                    	<l:Grid defaultSpan="XL2 L2 M12 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
 											<VBox class="VRVboxStyle1">
 												<Label text="{i18n>TICorporationName}" class="cl_PreviewLablCls "></Label>
 												<Label text="{JMBPCreate>/corporationName}" wrapping="true" class="cl_PreviewLablClsValue "></Label>
@@ -136,7 +136,7 @@
                                    	<HBox class="cl_HBoxBlockSep"></HBox>
                                        
                                        <Label text="{i18n>TIAddress}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
-										<l:Grid defaultSpan="XL2 L2 M2 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
+										<l:Grid defaultSpan="XL2 L2 M12 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
 											<VBox class="VRVboxStyle1">
 												<Label text="{i18n>TIAddressLine1}" class="cl_PreviewLablCls "></Label>
 												<Label text="{oDataModel>/surveyInfoDto/address/0/postal/0/address1}" wrapping="true" class="cl_PreviewLablClsValue "></Label>
@@ -156,7 +156,7 @@
 										</l:Grid>
                                         	<HBox class="cl_HBoxBlockSep"></HBox>
                                        <Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_TIDescTxt" wrapping="true" text="{i18n>BPCContact}"></Label>
-										<l:Grid defaultSpan="XL2 L2 M2 S12" class="cl_PreviewGrid sapUiSmallMarginTop">
+										<l:Grid defaultSpan="XL2 L2 M12 S12" class="cl_PreviewGrid sapUiSmallMarginTop">
 											<VBox class="VRVboxStyle1">
 												<Label text="{i18n>firstName}" class="cl_PreviewLablCls "></Label>
 												<Label text="{JMBPCreate>/firstName}" class="cl_PreviewLablClsValue "></Label>
@@ -183,7 +183,7 @@
 										<HBox class="cl_HBoxBlockSep"></HBox>
 									
 										<Label text="{i18n>TITrafficPaymentInfo}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
-											<l:Grid defaultSpan="XL2 L2 M2 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
+											<l:Grid defaultSpan="XL2 L2 M12 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
                                                 <VBox class="VRVboxStyle1">
                                                     <Label text="{i18n>BPCIncoterms}" class="cl_PreviewLablCls "></Label>
                                                     <Label text="{JMBPCreate>/incoTermsd}" class="cl_PreviewLablClsValue "></Label>
@@ -270,7 +270,7 @@
 								</VBox>
 								<VBox  visible="{oConfigMdl>/buyerData}">
 									
-											<l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" vSpacing="0.5" class="cl_PreviewGrid sapUiTinyMarginTop"
+											<l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" vSpacing="0.5" class="cl_PreviewGrid sapUiTinyMarginTop"
 												binding="{apexData>/d/ZSREVFOREDETAILS}">
 												<VBox class="VRVboxStyle1">
 													<Label text="{i18n>TIPaymentMethod}" required="true" class="cl_VRLablCls "></Label>
@@ -646,7 +646,7 @@
 			<Text visible="{oConfigMdl>/invoicingAddNew}" text="Name: {oConfigMdl>/companyInfoInv/0/name}   /  Address: Address Line 1: {oConfigMdl>/companyInfoInv/0/address1}{=${oConfigMdl>/companyInfoInv/0/address2}?', Address Line 2 ':''}{oConfigMdl>/companyInfoInv/0/address2}{oConfigMdl>/companyInfoInv/0/address2}{=${oConfigMdl>/companyInfoInv/0/address3}?', Address Line 3: ':''}{oConfigMdl>/companyInfoInv/0/address3}{oConfigMdl>/companyInfoInv/0/address3}{=${oConfigMdl>/companyInfoInv/0/address4}?', Address Line 4: ':''}{oConfigMdl>/companyInfoInv/0/address4}{oConfigMdl>/companyInfoInv/0/address4}{=${oConfigMdl>/companyInfoInv/0/address5}?', Address Line 5: ':''}{oConfigMdl>/companyInfoInv/0/address5}{oConfigMdl>/companyInfoInv/0/address5}{=${oConfigMdl>/companyInfoInv/0/district}?', District: ':''}{oConfigMdl>/companyInfoInv/0/district}{oConfigMdl>/companyInfoInv/0/district}, City: {oConfigMdl>/companyInfoInv/0/city}{=${oConfigMdl>/companyInfoInv/0/region}?', Region: ':''}{oConfigMdl>/companyInfoInv/0/region}, Country: {oConfigMdl>/companyInfoInv/0/country}, Postal Code: {oConfigMdl>/companyInfoInv/0/postalCode}, Country Code: {oConfigMdl>/companyInfoInv/0/telephone/0/telephoneCountryCode}, Telephone Number: {oConfigMdl>/companyInfoInv/0/telephone/0/telephoneNum}." class="fontBold inputStyle  sapUiTinyMarginTop sapUiTinyMarginBegin" />
              <VBox visible="{oDataModel>/comInfoDto/isRemitToAddress}" >
                <Label text="{i18n>ReconsilationAndPaymentTxt}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
-                                        <l:Grid defaultSpan="XL2 L2 M2 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
+                                        <l:Grid defaultSpan="XL2 L2 M12 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
 											
 											<!-- <VBox class="VRVboxStyle1">
 												<Label text="{i18n>Currency}" class="cl_PreviewLablCls "></Label>
