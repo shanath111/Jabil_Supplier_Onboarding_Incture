@@ -1160,7 +1160,17 @@ sap.ui.define([
                                     that.getOwnerComponent().getModel("oVisibilityModel").getData().finance2MobileCode = oView.getModel("oDataModel").getData().bankDto.financeContact2.countryMobileCode;
                                     that.getOwnerComponent().getModel("oVisibilityModel").getData().deliveryRepContactCode = oView.getModel("oDataModel").getData().shippingInfoDto.deliverRepCountryContactCode;
                                     that.getOwnerComponent().getModel("oVisibilityModel").getData().cocContactCode = oView.getModel("oDataModel").getData().comComplianceDto.commitedToExpectationsContact.countryContactCode;
-                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().itCyberContactCode = oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.countryContactCode;                                    
+                                    that.getOwnerComponent().getModel("oVisibilityModel").getData().itCyberContactCode = oView.getModel("oDataModel").getData().itCyberDto.itcyberSecurityContact.countryContactCode;
+                                    that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[0].countryCodeDesc = that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[0].countryContactCode;
+                                    that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[1].countryCodeDesc = that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[1].countryContactCode;
+                                    that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[2].countryCodeDesc = that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[2].countryContactCode;
+                                    that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[3].countryCodeDesc = that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[3].countryContactCode;
+                                    that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[4].countryCodeDesc = that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[4].countryContactCode;
+                                    that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[5].countryCodeDesc = that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[5].countryContactCode;
+                                    that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[6].countryCodeDesc = that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[6].countryContactCode;
+                                    that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[7].countryCodeDesc = that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[7].countryContactCode;
+                                    that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[8].countryCodeDesc = that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[8].countryContactCode;
+                                    that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[9].countryCodeDesc = that.getOwnerComponent().getModel("oLookUpModel").getData().tabledata[9].countryContactCode;
                                     that.getOwnerComponent().getModel("oVisibilityModel").refresh();
                                 }
                                 oBusyDialogLoadData.close();
