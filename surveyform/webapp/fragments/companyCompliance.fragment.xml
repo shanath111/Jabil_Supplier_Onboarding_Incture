@@ -220,6 +220,7 @@
 							</RadioButtonGroup>
                             <VBox visible="{=${oDataModel>/comComplianceDto/ndaSignedBefore}=== 0 ? true: false}">
                                 <Label required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>docVerbiageNDA}:${oi18n_En>docVerbiageNDA}+ '/&#160;'+${i18n>docVerbiageNDA}}" wrapping="true" class="fontStyle hOverInfo sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+                            <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>docVerbiage}:${oi18n_En>docVerbiage}+ '/&#160;'+${i18n>docVerbiage}}" wrapping="true" class="fontStyleBlue sapUiTinyMarginBegin"/>
                             <HBox wrap="Wrap">
 				<u:FileUploader id="fileUploader_NDA" buttonOnly="true" maximumFileSize="10" buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"
 					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" enabled="{oEnableMdl>/bpInfoAttachmentEnb}"

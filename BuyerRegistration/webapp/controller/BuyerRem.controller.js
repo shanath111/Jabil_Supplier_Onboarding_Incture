@@ -264,7 +264,9 @@ sap.ui.define([
 
             },
             fnDoneSubmit: function () {
+                if(!that.EmailResend){
                 window.parent.location.reload();
+                }
             },
             fnResendEmail: function () {
 
@@ -297,6 +299,7 @@ sap.ui.define([
                                         oView.addDependent(that.oBPSuccess);
                                     }
                                     oBusyDilog.close();
+                                    that.EmailResend = true;
                                     that.oBPSuccess.open();
 
                                 } else {
