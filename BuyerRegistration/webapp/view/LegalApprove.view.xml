@@ -41,6 +41,7 @@
      <l:Grid defaultSpan="XL12 L12 M12 S12" visible="{oConfigMdl>/MitgatnReasonVis}" class="sapUiSizeCompact  "> 
         <VBox>
              <Text text="{i18n>Attachments}" class="  cl_TIDescTxt"/>
+               <Label text="{i18n>docVerbiage}" wrapping="true" class="fontStyleBlue sapUiTinyMarginBegin"/>
 			<HBox wrap="Wrap"  >
 				<un:FileUploader id="id_MitigationDoc" buttonOnly="true" buttonText="{i18n>addAttachment}" iconFirst="true" icon="sap-icon://add" multiple="true"
 					useMultipart="true"  fileType="[doc,xls,pdf,jpeg,png,gif,docx,xlsx]" typeMissmatch="fnHandleTypeMissmatch" change="fnOnFileUploadMitigate" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete"

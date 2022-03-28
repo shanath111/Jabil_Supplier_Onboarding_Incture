@@ -5,6 +5,11 @@
 .errorColorLine .sapUiTableCell {
     border-bottom: 1px solid #FF0000 !important;
 }
+.fontStyleBlue{
+    letter-spacing: 0.17px !important ;
+  color: #041c92;
+  opacity: 1 !important;  
+  }
 .whiteColorLine .sapUiTableCell{
     border-bottom: 1px solid #fdfdaa;
 }

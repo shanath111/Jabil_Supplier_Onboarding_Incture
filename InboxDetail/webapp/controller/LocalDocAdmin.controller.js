@@ -433,7 +433,7 @@ sap.ui.define([
                                 oModel.attachRequestCompleted(function onCompleted(oEvent) {
                                     if (oEvent.getParameter("success")) {
                                         var temp = {};
-                                        var vSccuessTxt = oi18n.getProperty("CCCPPLaunchedSuccess");
+                                        var vSccuessTxt = oi18n.getProperty("LocalDocSuccess");
                                         temp.Message = vSccuessTxt;
                                         var oJosnMessage = new sap.ui.model.json.JSONModel();
                                         oJosnMessage.setData(temp);

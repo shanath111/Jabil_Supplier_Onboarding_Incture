@@ -67,7 +67,8 @@
                                                                    <VBox visible="{oConfigMdl>/NDAVisible}">
                                   <Label text="{i18n>NDAHeaderTxt1}" wrapping="true" class="sapUiTinyMarginTop sapUiTinyMarginBegin"></Label>
                                    <Label text="{i18n>NDAHeaderTxt2}" required="true" wrapping="true" class="sapUiTinyMarginTop sapUiTinyMarginBegin"></Label>
-                                  	<HBox wrap="Wrap"  >
+                                  	 <Label text="{i18n>docVerbiage}" wrapping="true" class="fontStyleBlue sapUiTinyMarginBegin"/>
+                                      <HBox wrap="Wrap"  >
 				<un:FileUploader id="id_NDADocUpload" buttonOnly="true" buttonText="{i18n>addAttachment}" fileType="[doc,xls,pdf,jpeg,png,gif,docx,xlsx]" typeMissmatch="fnHandleTypeMissmatch" iconFirst="true" icon="sap-icon://add" multiple="true"
 					useMultipart="true"  enabled="{oConfigMdl>/isClaimed}" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete"
 					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"></un:FileUploader>
