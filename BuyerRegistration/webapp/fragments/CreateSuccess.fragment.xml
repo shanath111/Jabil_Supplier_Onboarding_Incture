@@ -12,8 +12,8 @@
 			</core:layoutData>
 		</core:Icon>
 		    <!-- <Image src="" class="sapUiSmallMarginTop cl_SuccuessImageCl"></Image> -->
-            <Label text="{i18n>VRRequestIDTb} : {JMMessageData>/caseId}" class="sapUiTinyMarginTop cl_SuccessMessageTxt" ></Label>
-            <Label text="{JMMessageData>/Message}" class="sapUiTinyMarginTop cl_SuccessMessageTxt" ></Label>
+            <Label text="{i18n>VRRequestIDTb} : {JMMessageData>/caseId}" wrapping="true" class="sapUiTinyMarginTop cl_SuccessMessageTxt" ></Label>
+            <Label text="{JMMessageData>/Message}" wrapping="true" class="sapUiTinyMarginTop cl_SuccessMessageTxt" ></Label>
             </VBox>
 			<OverflowToolbar class="barClass sapUiTinyMarginTop">
             	<ToolbarSpacer/>
