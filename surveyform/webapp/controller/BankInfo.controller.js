@@ -1764,6 +1764,8 @@ sap.ui.define([
             },
             fnOpenBankAttachment: function () {
                 var that = this;
+                this.getOwnerComponent().getModel("oVisibilityModel").getData().bankDocTypeSelected = false;
+                this.getOwnerComponent().getModel("oVisibilityModel").refresh();
                 if (!that.oPopup) {
                     that.oPopup = sap.ui.xmlfragment(
                         "com.jabil.surveyform.fragments.selectDocTypeBank", that);
