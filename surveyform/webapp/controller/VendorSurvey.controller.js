@@ -4533,7 +4533,11 @@ sap.ui.define([
 
 
                             //  if (apaymentMethod !== 'Optional' && that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
-                            if (that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
+                                var findBankDoc = this.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").findIndex(function (doc) {
+                                    return doc.docFormType !== "Indemnity Letter";
+                                });
+                            if(findBankDoc == -1){
+                            // if (that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
                                 iError = true;
                                 oView.byId("fileUploader_Button").removeStyleClass("attachmentWithoutBorderBP");
                                 oView.byId("fileUploader_Button").addStyleClass("attachmentWithBorderBP");

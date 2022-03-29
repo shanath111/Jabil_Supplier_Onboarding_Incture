@@ -272,7 +272,11 @@ sap.ui.define([
                 var that = this;
                 var vError = this._fnValidateBankInfo();
                 if (!vError) {
-                    if (that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
+                    var findBankDoc = this.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").findIndex(function (doc) {
+                        return doc.docFormType !== "Indemnity Letter";
+                    });
+                if(findBankDoc == -1){
+                  //  if (that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
                         var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
                             isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                         if (isDefaultLan) {
