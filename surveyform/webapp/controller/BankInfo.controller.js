@@ -2284,7 +2284,7 @@ sap.ui.define([
                     }
                 }
             },
-            fnDocTypeChange: function (oEvent) {
+            fnDocTypeBankChange: function (oEvent) {
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     this.getOwnerComponent().getModel("oVisibilityModel").getData().bankDocTypeSelected = false;
