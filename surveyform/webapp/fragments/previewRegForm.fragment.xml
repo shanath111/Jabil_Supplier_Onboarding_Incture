@@ -619,9 +619,9 @@
 										<Label text="{=${oDataModel>/ownerShipInfoDto/isEntitySDNList}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin"></Label>
 									</HBox>
 								</l:Grid>
-                                <Label text="{i18n>legalEntityTextPreview}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact sapUiTinyMarginBegin"/>
-                                <Label text="{oi18n_En>legalEntityTextPreview}&#10;{i18n>legalEntityText}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="sapUiSizeCompact sapUiTinyMarginBegin"/>
-                                <Table items="{oDataModel>/ownerShipInfoDto/sdnlistContact}" width="30%" class="sapUiTinyMarginTop sapUiTinyMarginBegin cl_CompContTabale"  visible="{=${oDataModel>/ownerShipInfoDto/isEntitySDNList} &amp;&amp; ${oUserModel>/isNew}}">
+                                <Label text="{i18n>legalEntityTextPreview}" visible= "{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}" class="sapUiSizeCompact sapUiTinyMarginBegin"/>
+                                <Label text="{oi18n_En>legalEntityTextPreview}&#10;{i18n>legalEntityText}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}"  class="sapUiSizeCompact sapUiTinyMarginBegin"/>
+                                <Table items="{oDataModel>/ownerShipInfoDto/sdnlistContact}" width="30%" class="sapUiTinyMarginTop sapUiTinyMarginBegin cl_CompContTabale"  visible="{=${oDataModel>/ownerShipInfoDto/isEntitySDNList}===true &amp;&amp; ${oUserModel>/isNew}}">
                                     <columns>
                                     <Column class="sapUiSizeCompact">
                                     <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstNameG}:${oi18n_En>firstNameG} +'&#10;' +${i18n>firstNameG}}" class="cl_PreviewLablCls"/>
@@ -653,9 +653,9 @@
                                     </HBox>
 									<!-- </VBox>	 -->
 								</l:Grid> 
-                                <Label text="{i18n>legalEntityTextPreview}" visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact sapUiTinyMarginBegin"/>
-                                <Label text="{oi18n_En>legalEntityTextPreview}&#10;{i18n>legalEntityText}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="sapUiSizeCompact sapUiTinyMarginBegin"/>
-                                 <Table items="{oDataModel>/ownerShipInfoDto/regInCISNKContact}" width="30%"  class="sapUiTinyMarginTop sapUiTinyMarginBegin cl_CompContTabale" visible="{=${oDataModel>/ownerShipInfoDto/isEntityRegInCISNK} &amp;&amp; ${oUserModel>/isNew}}">
+                                <Label text="{i18n>legalEntityTextPreview}" visible= "{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}" class="sapUiSizeCompact sapUiTinyMarginBegin"/>
+                                <Label text="{oi18n_En>legalEntityTextPreview}&#10;{i18n>legalEntityText}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oUserModel>/isNew}}"  class="sapUiSizeCompact sapUiTinyMarginBegin"/>
+                                 <Table items="{oDataModel>/ownerShipInfoDto/regInCISNKContact}" width="30%"  class="sapUiTinyMarginTop sapUiTinyMarginBegin cl_CompContTabale" visible="{=${oDataModel>/ownerShipInfoDto/isEntityRegInCISNK}===true &amp;&amp; ${oUserModel>/isNew}}">
                                     <columns>
                                     <Column class="sapUiSizeCompact">
                                   <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstNameG}:${oi18n_En>firstNameG} +'&#10;' +${i18n>firstNameG}}"  class="cl_PreviewLablCls"/>
@@ -686,7 +686,7 @@
                                     <Label text="{oi18n_En>govtOfficial}/&#160;{i18n>govtOfficial}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}  &amp;&amp; ${oUserModel>/isNew}}"  class="cl_PreviewLablCls sapUiTinyMarginBegin"></Label>
                                     <Label text="{=${oDataModel>/ownerShipInfoDto/isEntityManagedByGovt}?${oi18n_En>yes}:${oi18n_En>no}}" visible="{oUserModel>/isNew}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin"></Label>
                                 </HBox>
-   <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop " visible="{=${oDataModel>/ownerShipInfoDto/isEntityManagedByGovt} &amp;&amp; ${oUserModel>/isNew}}">
+   <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop " visible="{=${oDataModel>/ownerShipInfoDto/isEntityManagedByGovt}===true &amp;&amp; ${oUserModel>/isNew}}">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>govtEntityName}"  visible="{oVisibilityModel>/isdefaultLan}"  wrapping="true" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>govtEntityName}&#10;{i18n>govtEntityName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
@@ -743,7 +743,7 @@
 									
                                     	
 								</l:Grid>
-                                 <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid " visible="{=${oDataModel>/ownerShipInfoDto/isEntityManagedByGovtFamily} &amp;&amp; ${oUserModel>/isNew}}">
+                                 <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid " visible="{=${oDataModel>/ownerShipInfoDto/isEntityManagedByGovtFamily}===true &amp;&amp; ${oUserModel>/isNew}}">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>govtEntityName}"  visible="{oVisibilityModel>/isdefaultLan}"  wrapping="true" class="cl_PreviewLablCls "></Label>
                                         	<Label text="{oi18n_En>govtEntityName}&#10;{i18n>govtEntityName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
