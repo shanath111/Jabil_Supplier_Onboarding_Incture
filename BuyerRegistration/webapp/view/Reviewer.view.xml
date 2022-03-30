@@ -105,11 +105,28 @@
 					</g:GridListItem>
 				</g:GridList>
 			</HBox>
+            
         
                                    <HBox class="cl_HBoxBlockSep">
                                 </HBox>
                                   </VBox>
+                                 
                                     		<VBox visible="{oConfigMdl>/onBoardDet}">
+                                             <VBox visible="{oConfigMdl>/NonMDGVis}">
+            
+            <Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_TIDescTxt" wrapping="true" text="{i18n>NonMDGTxt1}"></Label>
+           <Label text="This case has been create to onboard Supplier [ {JMBPCreate>/corporationName} ] to [ {JMBPCreate>/plantd}-{JMBPCreate>/plant}]" class="cl_VRLablCls sapUiTinyMarginBegin" wrapping="true" ></Label>
+            <Label text="{i18n>NonMDGTxt2}" class="cl_VRLablCls sapUiTinyMarginBegin" wrapping="true" ></Label>
+            <Label text="{i18n>NonMDGTxt3}" class="cl_VRLablCls sapUiSmallMarginTop sapUiTinyMarginBegin" wrapping="true" ></Label>
+             <Label text="{i18n>NonMDGTxt4}" class="cl_VRLablCls  sapUiTinyMarginBegin" wrapping="true" ></Label>
+            <VBox class="VRVboxStyle1 sapUiTinyMarginTop sapUiTinyMarginBottom sapUiTinyMarginBegin">
+									<Label text="{i18n>NonMDGVendorCode}" required="true" class="cl_VRLablCls "></Label>
+									<Input width="20%"  value="{oDataModel>/defaultValuesDto/bpNumber}" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
+							</VBox>
+          
+            <HBox class="cl_HBoxBlockSep">
+                                </HBox>
+            </VBox>
                                      	<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_TIDescTxt" wrapping="true" text="{i18n>EnterBPDetails}"></Label>
                                     
                                     	<l:Grid defaultSpan="XL2 L2 M12 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
