@@ -38,8 +38,8 @@ sap.ui.define([
                 that.fnSetConfigModel(vContext);
             },
             fnSetConfigModel: function (oContext) {
-               
-                if (oContext.Name == "EulaReject" ) {
+
+                if (oContext.Name == "EulaReject") {
                     oView.getModel("oConfigMdl").getData().BuyerFollowUpVis = false;
                     oView.getModel("oConfigMdl").getData().EulaRejectVis = true;
                     oView.getModel("oConfigMdl").getData().EulaRejectTxt1 = "The Welcome email has been sent to the Supplier contact you provided.";
@@ -47,7 +47,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().EulaRejectTxt3 = "If not, the Supplier will need to utilize the standard Vendor Management Maintenance form and supporting documents that have been used prior to the Portal.";
                     oView.getModel("oConfigMdl").getData().EulaRejectTxt4 = "Your follow-up call will ensure that there are no unnecessary delays in the process. By checking the box below, you are saying that you have called and personally spoken to the Supplier Contact and they understand they must accept the Jabil EULA to complete the online form.";
                     oView.getModel("oConfigMdl").getData().EulaRejectTxt5 = "Yes, I have called the Supplier Contact and spoken to them, letting them know they must accept the Portal EULA to complete the online form";
-                }else if(oContext.Name == "EulaRejectFin" ){
+                } else if (oContext.Name == "EulaRejectFin") {
                     oView.getModel("oConfigMdl").getData().BuyerFollowUpVis = false;
                     oView.getModel("oConfigMdl").getData().EulaRejectVis = true;
                     oView.getModel("oConfigMdl").getData().EulaRejectTxt1 = "The Welcome email has been sent to the Finance Provider contact you provided.";
@@ -56,14 +56,14 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().EulaRejectTxt4 = "Your follow-up call will ensure that there are no unnecessary delays in the process. By checking the box below, you are saying that you have called and personally spoken to the Finance Provider Contact and they understand they must accept the Jabil EULA to complete the online form.";
                     oView.getModel("oConfigMdl").getData().EulaRejectTxt5 = "Yes, I have called the Finance Provider Contact and spoken to them, letting them know they must accept the Portal EULA to complete the online form";
 
-                }else if(oContext.Name == "EulaRejectFinReview" ){
+                } else if (oContext.Name == "EulaRejectFinReview") {
                     oView.getModel("oConfigMdl").getData().BuyerFollowUpVis = false;
                     oView.getModel("oConfigMdl").getData().EulaRejectVis = true;
                     oView.getModel("oConfigMdl").getData().EulaRejectTxt1 = "The Welcome email has been sent to the Finance Reviewer contact you provided.";
                     oView.getModel("oConfigMdl").getData().EulaRejectTxt2 = "We request that you follow-up with the Finance Reviewer and determine why they chose not to accept the Portal End User Licensing Agreement. This may have been in error. However, with a follow-up conversation the Finance Reviewer may be willing to accept the EULA.";
                     oView.getModel("oConfigMdl").getData().EulaRejectTxt3 = "If not, the Finance Reviewer will need to utilize the standard Vendor Management Maintenance form and supporting documents that have been used prior to the Portal.";
                     oView.getModel("oConfigMdl").getData().EulaRejectTxt4 = "Your follow-up call will ensure that there are no unnecessary delays in the process. By checking the box below, you are saying that you have called and personally spoken to the Finance Reviewer Contact and they understand they must accept the Jabil EULA to complete the online form.";
-                    oView.getModel("oConfigMdl").getData().EulaRejectTxt5 = "Yes, I have called the Finance Reviewer Contact and spoken to them, letting them know they must accept the Portal EULA to complete the online form"; 
+                    oView.getModel("oConfigMdl").getData().EulaRejectTxt5 = "Yes, I have called the Finance Reviewer Contact and spoken to them, letting them know they must accept the Portal EULA to complete the online form";
                 }
                 else {
                     oView.getModel("oConfigMdl").getData().BuyerFollowUpVis = true;
@@ -134,7 +134,7 @@ sap.ui.define([
                 });
             },
             fnApproveSub: function (vBtn) {
-                if (oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaReject" || oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaRejectFin" || oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaRejectFinReview" ) {
+                if (oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaReject" || oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaRejectFin" || oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaRejectFinReview") {
                     if (oView.byId("id_ConfirmFollowUp1").getSelected() == false) {
                         var sErMsg = oi18n.getProperty("pleaseConfirmCheckBox");
                         MessageBox.show(sErMsg, {
@@ -183,7 +183,7 @@ sap.ui.define([
                                 vCommentsActn = "reject";
                                 vContextActn = "rejected";
                             }
-                            if(oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaRejectFin"){
+                            if (oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaRejectFin") {
                                 var oPayload = {
                                     "context": {
                                         "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
@@ -195,8 +195,8 @@ sap.ui.define([
                                     "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                                     "action": vCommentsActn,
                                     //"comments": oView.getModel("JMAppvrComments").getData().Comments
-                                } 
-                            }else if(oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaRejectFinReview"){
+                                }
+                            } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "EulaRejectFinReview") {
                                 var oPayload = {
                                     "context": {
                                         "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
@@ -208,8 +208,8 @@ sap.ui.define([
                                     "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                                     "action": vCommentsActn,
                                     //"comments": oView.getModel("JMAppvrComments").getData().Comments
-                                }   
-                            }else{
+                                }
+                            } else {
                                 var oPayload = {
                                     "context": {
                                         "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
@@ -221,9 +221,9 @@ sap.ui.define([
                                     "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
                                     "action": vCommentsActn,
                                     //"comments": oView.getModel("JMAppvrComments").getData().Comments
-                                } 
+                                }
                             }
-                           
+
 
                             oModel.loadData(sUrl, JSON.stringify(
                                 oPayload
@@ -244,6 +244,7 @@ sap.ui.define([
                                     }
                                     oBusyDilog.close();
                                     that.oBPSuccess.open();
+                                    that.EmailResend = false;
 
                                 } else {
                                     oBusyDilog.close();
@@ -264,8 +265,11 @@ sap.ui.define([
 
             },
             fnDoneSubmit: function () {
-                if(!that.EmailResend){
-                window.parent.location.reload();
+                if (that.EmailResend) {
+                    this.oBPSuccess.close();
+                }
+                    else {
+                    window.parent.location.reload();
                 }
             },
             fnResendEmail: function () {
