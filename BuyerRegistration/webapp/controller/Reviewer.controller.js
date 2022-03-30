@@ -49,6 +49,8 @@ sap.ui.define([
                 oView.getModel("oConfigMdl").getData().CommentsVis = false;
                 oView.getModel("oConfigMdl").getData().bankNotFoundTitle = false;
                 oView.getModel("oConfigMdl").getData().NDAScreenReconVis = true;
+                oView.getModel("oConfigMdl").getData().NonMDGVis = false;
+
                 if (oContext.Name == "Buyer") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = true;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;
@@ -241,6 +243,24 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().defaultEnable = false;
                     oView.getModel("oConfigMdl").getData().viewAttachments = false;
 
+                } else if (oContext.Name == "NonMDG") {
+                    oView.getModel("oConfigMdl").getData().NonMDGVis = true;
+                    oView.getModel("oConfigMdl").getData().ValidateVisible = false;
+                    oView.getModel("oConfigMdl").getData().NDAVisible = false;
+                    oView.getModel("oConfigMdl").getData().RejectBtnVis = false;
+                    oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataReviewForm");
+                    oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
+                    oView.getModel("oConfigMdl").getData().SegmentVisible = true;
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Submit";
+                    oView.getModel("oConfigMdl").getData().RjectBtnName = "Disqualify";
+                    oView.getModel("oConfigMdl").getData().MitgationVis = false;
+                    oView.getModel("oConfigMdl").getData().buyerData = false;
+                    oView.getModel("oConfigMdl").getData().BankDetails = false;
+                    oView.getModel("oConfigMdl").getData().onBoardDet = true;
+                    oView.getModel("oConfigMdl").getData().SegmentVisibleP = false;
+                    oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
+                    oView.getModel("oConfigMdl").getData().defaultEnable = false;
+                    oView.getModel("oConfigMdl").getData().viewAttachments = true;
                 }
                 oView.getModel("oConfigMdl").getData().contextPath = oContext;
 
@@ -402,8 +422,8 @@ sap.ui.define([
                         if (oView.getModel("oConfigMdl").getData().isClaimed == false) {
                             oView.getModel("oConfigMdl").getData().defaultEnable = false;
                         }
-        // oView.getModel("oConfigMdl").getData().isTaskCompleted = true;
-        //  oView.getModel("oConfigMdl").getData().isClaimed = true;
+                        // oView.getModel("oConfigMdl").getData().isTaskCompleted = true;
+                        //  oView.getModel("oConfigMdl").getData().isClaimed = true;
                         oView.getModel("oConfigMdl").getData().documentSection = oEvent.getSource().getData().documentSection;
                         if (oEvent.getSource().getData().documentSection) {
                             oView.getModel("oConfigMdl").getData().AttachVis = true;
@@ -522,7 +542,7 @@ sap.ui.define([
                                 oEvent.getSource().getData().shippingInfoDto.sortKey = "001";
                             }
 
-                            if(oEvent.getSource().getData().comInfoDto.isRemitToAddress){
+                            if (oEvent.getSource().getData().comInfoDto.isRemitToAddress) {
                                 if (!oEvent.getSource().getData().shippingInfoDto.invoiceAddrReconciliationAccount) {
                                     oEvent.getSource().getData().shippingInfoDto.invoiceAddrReconciliationAccount = "0000020000";
                                 }
@@ -530,10 +550,10 @@ sap.ui.define([
                                     oEvent.getSource().getData().shippingInfoDto.invoiceAddrSortKey = "001";
                                 }
                             }
-                           
+
                             if (oView.getModel("JMBPCreate").getData().isNew) {
                                 oEvent.getSource().getData().defaultValuesDto.changeType = "NEW";
-                            }else{
+                            } else {
                                 oEvent.getSource().getData().defaultValuesDto.changeType = "EXTEND";
                             }
                             if (!oEvent.getSource().getData().defaultValuesDto.priority) {
@@ -726,7 +746,7 @@ sap.ui.define([
                     }
                 });
             },
-            fnLoadPaymentMethods:function() {
+            fnLoadPaymentMethods: function () {
                 var oModel = new JSONModel();
                 var sUrl = "/comjabilsurveyform/plcm_reference_data/api/v1/reference-data/paymentMethod/" + oView.getModel("JMBPCreate").getData().companyCode + "/" + oView.getModel("oDataModel").getData().shippingInfoDto.purchasingOrg;
                 oModel.loadData(sUrl, {
@@ -843,6 +863,9 @@ sap.ui.define([
                         oModelLdData.attachRequestCompleted(function onCompleted(oEvent) {
                             if (oEvent.getParameter("success")) {
                                 var data = oEvent.getSource().getData();
+                                var oBuyerData = new sap.ui.model.json.JSONModel();
+                                oBuyerData.setData(oEvent.getSource().getData());
+                                oView.setModel(oBuyerData, "JMBuyerData");
                                 var temp;
                                 if (data) {
                                     temp = {
@@ -1130,7 +1153,7 @@ sap.ui.define([
                         oView.byId("id_BankKey").setValueStateText(oi18n.getProperty("pleaseProvideBankKey"));
                         return;
                     }
-                }else if(oView.getModel("oConfigMdl").getData().contextPath.Name == "NDARejectLegal"){
+                } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "NDARejectLegal") {
                     if (this.getView().getModel("oAttachmentList").getData().NDADocuments.length == 0) {
                         var sErMsg = "Please upload the jointly executed NDA to the Supplier onboarding form";
                         MessageBox.show(sErMsg, {
@@ -1142,36 +1165,70 @@ sap.ui.define([
                     }
                 }
                 if (vError == false) {
-                    var oPayloadSupp = that.getView().getModel("oDataModel").getData();
-                    oPayloadSupp.shippingInfoDto.comCode = oPayloadSupp.defaultValuesDto.reqCompanyCode;
-                    oPayloadSupp.shippingInfoDto.purchasingOrg = oPayloadSupp.defaultValuesDto.reqPurchasingOrg;
-                    oPayloadSupp.defaultValuesDto.orderAddrBpNumber = orderBpNumber.replace(/^0+/, '');
-                    oPayloadSupp.defaultValuesDto.invoiceAddrBpNumber = invoiceBpNumber.replace(/^0+/, '');
-                    oPayloadSupp.userUpdated = oView.getModel("oConfigMdl").getData().usrData.givenName
-                    var sUrl1 = "/nsBuyerRegistration/plcm_portal_services/supplier/update";
-                    var oModelSave = new JSONModel();
-                    oModelSave.loadData(sUrl1, JSON.stringify(oPayloadSupp), true, "PUT", false, true, {
-                        "Content-Type": "application/json"
-                    });
 
-                    var temp = {};
-                    temp.Action = "AP";
-                    //  temp.Comments = "";
-                    temp.Commentse = "None";
-                    temp.required = false;
-                    temp.commentsTxt = "Comments (if any)";
-                    temp.orderBpNumber = orderBpNumber;
-                    temp.invoiceBpNumber = invoiceBpNumber;
-                    var oJosnComments = new sap.ui.model.json.JSONModel();
-                    oJosnComments.setData(temp);
-                    oView.setModel(oJosnComments, "JMAppvrComments");
-                    if (!this.oBankComments) {
-                        this.oBankComments = sap.ui.xmlfragment(
-                            "ns.BuyerRegistration.fragments.ApproverComments", this);
-                        oView.addDependent(this.oBankComments);
+                    if (oView.getModel("oConfigMdl").getData().contextPath.Name == "NonMDG") {
+                        var oPayloadSupp = that.getView().getModel("oDataModel").getData();
+                       
+                        if(oPayloadSupp.defaultValuesDto.bpNumber){
+                            oPayloadSupp.defaultValuesDto.bpReceiverInternalId = oPayloadSupp.defaultValuesDto.bpNumber;
+                        oPayloadSupp.userUpdated = oView.getModel("oConfigMdl").getData().usrData.givenName;
+                        var sUrl1 = "/nsBuyerRegistration/plcm_portal_services/supplier/update";
+                        var oModelSave = new JSONModel();
+                        oModelSave.loadData(sUrl1, JSON.stringify(oPayloadSupp), true, "PUT", false, true, {
+                            "Content-Type": "application/json"
+                        });
+
+                        var sUrl2 = "/nsBuyerRegistration/plcm_portal_services/case/updateBP";
+                        var oModelSaveBP = new JSONModel();
+                        var oPayloadBP = oView.getModel("JMBuyerData").getData();
+                        oPayloadBP.bpNumber = oPayloadSupp.defaultValuesDto.bpNumber;
+                        oPayloadBP.userUpdated = oView.getModel("oConfigMdl").getData().usrData.givenName;
+                        oModelSaveBP.loadData(sUrl2, JSON.stringify(oPayloadBP), true, "PUT", false, true, {
+                            "Content-Type": "application/json"
+                        });
+                        this.fnApproveSub("AP");
+                    }else{
+                        sap.m.MessageBox.error("Please provide Vendor Code / BPID", {
+                            icon: sap.m.MessageBox.Icon.Error,
+                            title: "Error"
+                        });
                     }
 
-                    this.oBankComments.open();
+                    } else {
+
+                        var oPayloadSupp = that.getView().getModel("oDataModel").getData();
+                        oPayloadSupp.shippingInfoDto.comCode = oPayloadSupp.defaultValuesDto.reqCompanyCode;
+                        oPayloadSupp.shippingInfoDto.purchasingOrg = oPayloadSupp.defaultValuesDto.reqPurchasingOrg;
+                        oPayloadSupp.defaultValuesDto.orderAddrBpNumber = orderBpNumber.replace(/^0+/, '');
+                        oPayloadSupp.defaultValuesDto.invoiceAddrBpNumber = invoiceBpNumber.replace(/^0+/, '');
+                        oPayloadSupp.userUpdated = oView.getModel("oConfigMdl").getData().usrData.givenName
+                        var sUrl1 = "/nsBuyerRegistration/plcm_portal_services/supplier/update";
+                        var oModelSave = new JSONModel();
+                        oModelSave.loadData(sUrl1, JSON.stringify(oPayloadSupp), true, "PUT", false, true, {
+                            "Content-Type": "application/json"
+                        });
+
+                        
+
+                        var temp = {};
+                        temp.Action = "AP";
+                        //  temp.Comments = "";
+                        temp.Commentse = "None";
+                        temp.required = false;
+                        temp.commentsTxt = "Comments (if any)";
+                        temp.orderBpNumber = orderBpNumber;
+                        temp.invoiceBpNumber = invoiceBpNumber;
+                        var oJosnComments = new sap.ui.model.json.JSONModel();
+                        oJosnComments.setData(temp);
+                        oView.setModel(oJosnComments, "JMAppvrComments");
+                        if (!this.oBankComments) {
+                            this.oBankComments = sap.ui.xmlfragment(
+                                "ns.BuyerRegistration.fragments.ApproverComments", this);
+                            oView.addDependent(this.oBankComments);
+                        }
+
+                        this.oBankComments.open();
+                    }
                 } else {
                     oView.byId("id_SegmentedBtn").setSelectedKey("partnerFunction");
                     oView.getModel("oConfigMdl").getData().buyerData = false;
@@ -1682,6 +1739,35 @@ sap.ui.define([
                         "firstLevelReasonCode": oView.getModel("JMAppvrComments").getData().firstLevelReason,
                         "secondLevelReasonCode": oView.getModel("JMAppvrComments").getData().secondLevelReason
                     }
+                }else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "NonMDG") {
+                    var vCommentsActn;
+                    if (vBtn == "AP") {
+                        vAprActn = "approved";
+                        vCommentsActn = "approve";
+                    } else if (vBtn == "RJ") {
+                        vAprActn = "rejected";
+                        vCommentsActn = "disqualify";
+                    } else {
+                        vAprActn = "mitigation";
+                        vCommentsActn = "mitigation";
+                    }
+                    var oPayload = {
+                        "context": {
+                            "bpNumber": oView.getModel("JMEulaComments").getData().bpNumber,
+                            "caseId": oView.getModel("JMEulaComments").getData().caseId,
+                            "buyerActionOnNonMdgSite": vAprActn,
+                            // "operational_approver5_doc_section": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                            // "operational_approver5_first_level_reason": oView.getModel("JMAppvrComments").getData().firstLevelReason,
+                            // "operational_approver5_second_level_reason": oView.getModel("JMAppvrComments").getData().secondLevelReason,
+                            // "operational_approver5_comment": oView.getModel("JMAppvrComments").getData().Comments
+                        },
+                        "status": "",
+                        "taskId": oView.getModel("oConfigMdl").getData().contextPath.Id,
+                        "action": vCommentsActn,
+                        //"comments": oView.getModel("JMAppvrComments").getData().Comments,
+                        // "firstLevelReasonCode": oView.getModel("JMAppvrComments").getData().firstLevelReason,
+                        // "secondLevelReasonCode": oView.getModel("JMAppvrComments").getData().secondLevelReason
+                    }
                 }
                 // var oPayload = {
                 //     "taskId": vAction,
@@ -1836,7 +1922,7 @@ sap.ui.define([
             },
             // @ts-ignore
             fnOnFileUpload: function (oEvt) {
-                var  oBusyDialogFile = new sap.m.BusyDialog({ text: "Uploading File" });
+                var oBusyDialogFile = new sap.m.BusyDialog({ text: "Uploading File" });
                 var oFormData = new FormData(),
                     that = this,
                     fileUpload = this.getView().byId("id_NDADocUpload"),
@@ -1877,7 +1963,7 @@ sap.ui.define([
                 oFormData.append("overwriteFlag", false);
                 oFormData.append("fileExt", file.name.split(".")[1]);
                 oFormData.append("type", "application/octet-stream");
-                oFormData.append("processName",oView.getModel("oConfigMdl").getData().taskName);
+                oFormData.append("processName", oView.getModel("oConfigMdl").getData().taskName);
 
 
                 oFormData.append("addedBy", oView.getModel("oConfigMdl").getData().usrData.givenName);
@@ -1920,18 +2006,19 @@ sap.ui.define([
                                 emphasizedAction: MessageBox.Action.YES,
                                 onClose: function (oAction) {
                                     if (oAction == "YES") {
-                                       
+
                                         oFormData.set("overwriteFlag", true);
                                         //  oFormData.append("deletedBy", oView.getModel("oUserModel").getData().user.givenName);
                                         var index = that.getView().getModel("oAttachmentList").getData().NDADocuments.findIndex(function (docId) { return docId.name === file.name });
-                                        if(index !== -1){
-                                        that.getView().getModel("oAttachmentList").getData().NDADocuments.splice(index, 1);}
-                                    //     if(_arrayTitle === "bankINDArray" || _arrayTitle === "bankDArray"){
-                                    //         var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").findIndex(function (docId) { return docId.name == file.name });
-                                    //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").splice(index, 1);
-                                    //     var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").findIndex(function (docId) { return docId.name == file.name });
-                                    //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").splice(index, 1);
-                                    //    }
+                                        if (index !== -1) {
+                                            that.getView().getModel("oAttachmentList").getData().NDADocuments.splice(index, 1);
+                                        }
+                                        //     if(_arrayTitle === "bankINDArray" || _arrayTitle === "bankDArray"){
+                                        //         var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").findIndex(function (docId) { return docId.name == file.name });
+                                        //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").splice(index, 1);
+                                        //     var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").findIndex(function (docId) { return docId.name == file.name });
+                                        //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").splice(index, 1);
+                                        //    }
                                         that.getView().getModel("oAttachmentList").refresh(true);
                                         var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
                                         oBusyDialogFile.open();
@@ -2136,7 +2223,7 @@ sap.ui.define([
 
                         $.each(data, function (index, value) {
                             if (value.docInSection == "NDADocument") {
-                            that.getView().getModel("oAttachmentList").getData().NDADocuments.push(value);
+                                that.getView().getModel("oAttachmentList").getData().NDADocuments.push(value);
                             }
                         });
 
@@ -2327,15 +2414,15 @@ sap.ui.define([
                 }
                 var vReconError = false;
 
-              //  if (oView.getModel("oBPLookUpMdl").getData().ReconAcc) {
-                  //  if (oView.getModel("oBPLookUpMdl").getData().ReconAcc.length > 0) {
-                        if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.reconciliationAccount) {
-                            oView.getModel("JMValidateDefault").getData().reconciliationAccounte = "Error";
-                            oView.getModel("JMValidateDefault").getData().reconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
-                            vReconError = true;
-                        }
-                   // }
-              //  }
+                //  if (oView.getModel("oBPLookUpMdl").getData().ReconAcc) {
+                //  if (oView.getModel("oBPLookUpMdl").getData().ReconAcc.length > 0) {
+                if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.reconciliationAccount) {
+                    oView.getModel("JMValidateDefault").getData().reconciliationAccounte = "Error";
+                    oView.getModel("JMValidateDefault").getData().reconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
+                    vReconError = true;
+                }
+                // }
+                //  }
                 if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.sortKey) {
                     oView.getModel("JMValidateDefault").getData().sortKeye = "Error";
                     oView.getModel("JMValidateDefault").getData().sortKeym = oi18n.getProperty("BPCMandatoryValidation");
@@ -2456,15 +2543,15 @@ sap.ui.define([
                 } else {
                     var vReConError = false;
                     if (oView.getModel("oDataModel").getData().comInfoDto.isRemitToAddress == true) {
-                     //   if (oView.getModel("oBPLookUpMdl").getData().ReconAcc) {
-                          //  if (oView.getModel("oBPLookUpMdl").getData().ReconAcc.length > 0) {
-                                if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount) {
-                                    oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccounte = "Error";
-                                    oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
-                                    vReConError = true;
-                                }
-                           // }
-                      //  }
+                        //   if (oView.getModel("oBPLookUpMdl").getData().ReconAcc) {
+                        //  if (oView.getModel("oBPLookUpMdl").getData().ReconAcc.length > 0) {
+                        if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount) {
+                            oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccounte = "Error";
+                            oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
+                            vReConError = true;
+                        }
+                        // }
+                        //  }
                         if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrSortKey) {
                             oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeye = "Error";
                             oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeym = oi18n.getProperty("BPCMandatoryValidation");
@@ -2693,7 +2780,7 @@ sap.ui.define([
                 oFormData.append("docInSection", oView.getModel("oConfigMdl").getData().contextPath.Id);
                 oFormData.append("fileExt", file.name.split(".")[1]);
                 oFormData.append("type", "application/octet-stream");
-                oFormData.append("processName",oView.getModel("oConfigMdl").getData().taskName);
+                oFormData.append("processName", oView.getModel("oConfigMdl").getData().taskName);
 
 
                 oFormData.append("addedBy", oView.getModel("oConfigMdl").getData().usrData.givenName);
@@ -2985,14 +3072,14 @@ sap.ui.define([
                         "ns.BuyerRegistration.fragments.AttachmentList", this);
                     this.getView().addDependent(this.oAttachMentList);
                 }
-    
+
                 this.oAttachMentList.open();
             },
             fnLoadAttachment: function () {
                 oBusyDilog.open();
                 var that = this;
                 var vCaseId = oView.getModel("JMBPCreate").getData().caseId;
-             //   vCaseId = "0000003";
+                //   vCaseId = "0000003";
                 // if(!vCaseId){
                 //     vCaseId = "0000559";
                 // }
@@ -3001,7 +3088,7 @@ sap.ui.define([
                 oModel.loadData(sUrl);
                 oModel.attachRequestCompleted(function onCompleted(oEvent) {
                     if (oEvent.getParameter("success")) {
-    
+
                         var oJosonMail = new sap.ui.model.json.JSONModel();
                         oJosonMail.setData(oEvent.getSource().getData());
                         that.getView().setModel(oJosonMail, "JMAttachmentList");
@@ -3018,7 +3105,7 @@ sap.ui.define([
                             title: oi18n.getProperty("Error")
                         });
                     }
-    
+
                 }
                 );
             },
@@ -3031,7 +3118,7 @@ sap.ui.define([
                         "ns.BuyerRegistration.fragments.AttachmentContent", this);
                     this.getView().addDependent(this.oAttachmentContent);
                 }
-    
+
                 this.oAttachmentContent.open();
                 var oJsonEmailContent1 = new sap.ui.model.json.JSONModel();
                 oJsonEmailContent1.setData(oEvent.getSource().getBindingContext("JMAttachmentList").getProperty("docLinks"));
