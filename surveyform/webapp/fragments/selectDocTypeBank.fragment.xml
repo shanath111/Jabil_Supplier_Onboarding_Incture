@@ -6,7 +6,7 @@
         <VBox class="sapUiTinyMarginTop sapUiSmallMarginBegin">
         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>selDocType1}:${oi18n_En>selDocType1} + '&#10;' +${i18n>selDocType1}}" wrapping="true" required="false"/>
         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>docType}:${oi18n_En>docType} + '/&#160;' +${i18n>docType}}" required="true"/>
-            	<ComboBox width="50%" selectedKey="" class="inputStyle" change="fnDocTypeChange">
+            	<ComboBox width="50%" selectedKey="" class="inputStyle" change="fnDocTypeBankChange">
 								<core:Item key="Indemnity Letter" text="Indemnity Letter"/>
 								<core:Item key="Bank Verification" text="Bank Verification"/>
                                 <core:Item key="other" text="Other"/>

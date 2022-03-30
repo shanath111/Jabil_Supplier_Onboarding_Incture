@@ -8950,6 +8950,8 @@ sap.ui.define([
             },
             fnFileUploadBtn: function (oEvt) {
                 var that = this;
+                this.getOwnerComponent().getModel("oVisibilityModel").getData().DocTypeSelected = false;
+                this.getOwnerComponent().getModel("oVisibilityModel").refresh();
                 if (!that.oPopup) {
                     that.oPopup = sap.ui.xmlfragment(
                         "com.jabil.surveyform.fragments.selectDocType", that);
@@ -8959,6 +8961,8 @@ sap.ui.define([
             },
             fnOpenBankAttachment: function () {
                 var that = this;
+                this.getOwnerComponent().getModel("oVisibilityModel").getData().bankDocTypeSelected = false;
+                this.getOwnerComponent().getModel("oVisibilityModel").refresh();
                 if (!that.oPopup) {
                     that.oPopup = sap.ui.xmlfragment(
                         "com.jabil.surveyform.fragments.selectDocTypeBank", that);
@@ -8986,6 +8990,21 @@ sap.ui.define([
             fnDocTypeChange: function (oEvent) {
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
+                    this.getOwnerComponent().getModel("oVisibilityModel").getData().DocTypeSelected = false;
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                } else{
+                    this.getOwnerComponent().getModel("oVisibilityModel").getData().DocTypeSelected = true;
+                }
+                this.getOwnerComponent().getModel("oVisibilityModel").refresh(true);
+                // if (oEvent.getSource().getValue() == "") {
+                //     oEvent.getSource().setSelectedKey("w8");
+                // }
+            },
+            fnDocTypeBankChange: function (oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
                     this.getOwnerComponent().getModel("oVisibilityModel").getData().bankDocTypeSelected = false;
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");
@@ -8994,9 +9013,7 @@ sap.ui.define([
                     this.getOwnerComponent().getModel("oVisibilityModel").getData().bankDocTypeSelected = true;
                 }
                 this.getOwnerComponent().getModel("oVisibilityModel").refresh(true);
-                if (oEvent.getSource().getValue() == "") {
-                    oEvent.getSource().setSelectedKey("w8");
-                }
+                
             },
             fnDocNameChange: function (oEvent) {
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {

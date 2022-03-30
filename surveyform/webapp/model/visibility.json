@@ -31,6 +31,7 @@
     "_CompletedTask": false,
     "enableNPI":false,
     "bankDocTypeSelected": false,
+    "DocTypeSelected":false,
     "LocDocNameSelected": false,
     "manualBankInfoEdit": false,
     "bankNameSearchMandate": true,
