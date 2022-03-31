@@ -121,7 +121,7 @@
              <Label text="{i18n>NonMDGTxt4}" class="cl_VRLablCls  sapUiTinyMarginBegin" wrapping="true" ></Label>
             <VBox class="VRVboxStyle1 sapUiTinyMarginTop sapUiTinyMarginBottom sapUiTinyMarginBegin">
 									<Label text="{i18n>NonMDGVendorCode}" required="true" class="cl_VRLablCls "></Label>
-									<Input width="20%"  value="{oDataModel>/defaultValuesDto/bpNumber}" maxLength="10" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
+									<Input width="20%" editable="{oConfigMdl>/isClaimed}"  value="{oDataModel>/defaultValuesDto/bpNumber}" maxLength="10" change="fnInputSpaceCheck" class="cl_VRInputCls"></Input>
 							</VBox>
           
             <HBox class="cl_HBoxBlockSep">
