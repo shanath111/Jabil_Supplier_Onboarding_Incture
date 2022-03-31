@@ -722,6 +722,20 @@ sap.ui.define([
                     }
                 });
             },
+            fnLiveChangeSuppLang: function (oEvent) {
+                var vSelected = oEvent.getParameter("itemPressed");
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                if (oView.getModel("JMBPCreate").getData().supplierLanguagee == "Error") {
+                    oView.getModel("JMBPCreate").getData().supplierLanguagee = "None";
+                    oView.getModel("JMBPCreate").getData().supplierLanguagem = "";
+                    oView.getModel("JMBPCreate").refresh();
+                }
+            },
 
 
             fnLoadCaseDetail: function (vCaseId) {
@@ -855,7 +869,8 @@ sap.ui.define([
                                     "requestorCOIReason": data.bpRequestScope.bpRequestScopeAddlDetails.requestorCOIReason,
                                     "addlSurveyForSupplier": data.bpRequestScope.bpRequestScopeAddlDetails.addlSurveyForSupplier,
                                     "bpSearch": data.bpSearch,
-                                    "materialGroup": data.bpRequestScope.materialGroup
+                                    "materialGroup": data.bpRequestScope.materialGroup,
+                                    "supplierLanguage": data.bpRequestScope.bpRequestScopeAddlDetails.supplierLanguage
                                 };
                                 if (temp.conflictOfInterest == true) {
                                     temp.conflictOfInterests = 1;
@@ -1268,6 +1283,7 @@ sap.ui.define([
                             "addlSurveyForSuppliers": 1,
                             "materialGroupVis": vMatGrpVis,
                             "materialGroup": "",
+                            "supplierLanguage":"en",
 
                             "bpSearch": {
                                 "selectedSupplier": JSON.stringify(temp)
@@ -1651,6 +1667,12 @@ sap.ui.define([
                         oView.getModel("JMBPCreate").getData().contactCountryCodem = oi18n.getProperty("BPCEnterCountryCode");
                         oView.getModel("JMBPCreate").refresh();
                         vError = true;
+                    }
+                    if (!oView.getModel("JMBPCreate").getData().supplierLanguage) {
+                        oView.getModel("JMBPCreate").getData().supplierLanguagee = "Error";
+                        oView.getModel("JMBPCreate").getData().supplierLanguagem = oi18n.getProperty("BPCMandatoryLanguage");
+                        vError = true;
+                        oView.getModel("JMBPCreate").refresh();
                     }
                     if (!oView.getModel("JMBPCreate").getData().mobileCountryCode) {
                         oView.getModel("JMBPCreate").getData().mobileCountryCodee = "Error";
@@ -2127,7 +2149,8 @@ sap.ui.define([
                                 "contactMobilePhone": oView.getModel("JMBPCreate").getData().contactMobilePhone,
                                 "contactCountryCode": oView.getModel("JMBPCreate").getData().contactCountryCode,
                                 "altContactCountryCode": oView.getModel("JMBPCreate").getData().altContactCountryCode,
-                                "mobileCountryCode": oView.getModel("JMBPCreate").getData().mobileCountryCode
+                                "mobileCountryCode": oView.getModel("JMBPCreate").getData().mobileCountryCode,
+                                "supplierLanguage": oView.getModel("JMBPCreate").getData().supplierLanguage
                             },
                             "additionalInformation": oView.getModel("JMBPCreate").getData().additionalInformation,
                             "buyerName": oView.getModel("JMBPCreate").getData().buyerName,
@@ -2415,7 +2438,8 @@ sap.ui.define([
                                             "altContactCountryCode": oView.getModel("JMBPCreate").getData().altContactCountryCode,
                                             "contactMobilePhone": oView.getModel("JMBPCreate").getData().contactMobilePhone,
                                             "contactCountryCode": oView.getModel("JMBPCreate").getData().contactCountryCode,
-                                            "mobileCountryCode": oView.getModel("JMBPCreate").getData().mobileCountryCode
+                                            "mobileCountryCode": oView.getModel("JMBPCreate").getData().mobileCountryCode,
+                                            "supplierLanguage": oView.getModel("JMBPCreate").getData().supplierLanguage
                                         },
                                         "additionalInformation": oView.getModel("JMBPCreate").getData().additionalInformation,
                                         "buyerName": oView.getModel("JMBPCreate").getData().buyerName,

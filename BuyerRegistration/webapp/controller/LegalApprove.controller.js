@@ -293,7 +293,8 @@ sap.ui.define([
                                         "requestorCOISelected": data.bpRequestScope.bpRequestScopeAddlDetails.requestorCOISelected,
                                         "addlSurveyForSupplier": data.bpRequestScope.bpRequestScopeAddlDetails.addlSurveyForSupplier,
                                         "instructionKey": data.bpRequestScope.bpRequestScopeAddlDetails.instructionKey,
-                                        "materialGroup": data.bpRequestScope.materialGroup
+                                        "materialGroup": data.bpRequestScope.materialGroup,
+                                        "supplierLanguage": data.bpRequestScope.bpRequestScopeAddlDetails.supplierLanguage
                                     };
 
                                 }

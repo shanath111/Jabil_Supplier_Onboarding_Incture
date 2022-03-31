@@ -268,7 +268,30 @@
                                 <layoutData>
                                   <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
                                         </VBox>
-
+<VBox class="VRVboxStyle1">
+										<Label text="{i18n>BPCSUpplierPreferedLang}" required="true" class="cl_VRLablCls "></Label>
+										<ComboBox width="95%"  valueState="{JMBPCreate>/supplierLanguagee}" valueStateText="{JMBPCreate>/supplierLanguagem}"
+											filterSecondaryValues="true" change="fnLiveChangeSuppLang" showSecondaryValues="true" selectedKey="{JMBPCreate>/supplierLanguage}"
+											class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}" >
+											<core:Item key="en" text="English"/>
+								<core:Item key="pt" text="Portuguese"/>
+                                <core:Item key="es" text="Spanish"/>
+                                 <core:Item key="zh_CN" text="Chinese(China)"/>
+                                  <core:Item key="zh_TW" text="Chinese(Taiwan)"/>
+                                   <core:Item key="iw" text="Hebrew"/>
+                                     <core:Item key="pl" text="Polish"/>
+                                      <core:Item key="uk" text="Ukraine"/>
+                                  <core:Item key="hu" text="Hungary"/>
+                                   <core:Item key="fr" text="French(France)"/>
+                                     <core:Item key="ru" text="Russian"/>
+                                     <core:Item key="it" text="Italian"/>
+                                     <core:Item key="de" text="German"/>
+                                     <core:Item key="ja" text="Japanese"/>
+                                     <core:Item key="vi" text="Vietnamese"/>
+										</ComboBox>
+									</VBox>
+                                	
+	
 								</l:Grid>
                                  <!-- <HBox class="cl_HBoxBlockSep">
                                 </HBox>
