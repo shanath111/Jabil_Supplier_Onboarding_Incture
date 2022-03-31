@@ -857,6 +857,9 @@ sap.ui.define([
                         var oBPCreateModelCmnt = new sap.ui.model.json.JSONModel();
                         oBPCreateModelCmnt.setData(oEvent.getSource().getData());
                         oView.setModel(oBPCreateModelCmnt, "JMEulaComments");
+                        
+                       
+
                         var oModelLdData = new JSONModel();
                         var sUrl = "/nsBuyerRegistration/plcm_portal_services/case/findById/" + oEvent.getSource().getData().caseId
                         oModelLdData.loadData(sUrl);
@@ -1014,9 +1017,22 @@ sap.ui.define([
                                     if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GBSBank") {
                                         that._fnReadDocumentList1(temp.caseId, that);
                                     }
+                                    // if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
+                                    //     // that.fnLoadPartnerData(temp.caseId);
+                                    //     that.fnLoadValidationDone(temp.caseId);
+                                    // }
                                     if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
-                                        // that.fnLoadPartnerData(temp.caseId);
-                                        that.fnLoadValidationDone(temp.caseId);
+                                        if(oView.getModel("JMEulaComments").getData().isSiteNonMDG){
+                                            if(oEvent.getSource().getData().isSiteNonMDG == "YES"){
+                                                oView.getModel("oConfigMdl").getData().ValidateVisible = false;
+                                                oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
+                                                oView.getModel("oConfigMdl").refresh();
+                                            }else{
+                                                that.fnLoadValidationDone(temp.caseId);
+                                            }
+                                        }else{
+                                            that.fnLoadValidationDone(temp.caseId);
+                                        }
                                     }
 
                                     that.fnLoadSurveyFormDetail(temp.caseId, that);
