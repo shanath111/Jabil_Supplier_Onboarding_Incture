@@ -11473,7 +11473,9 @@ sap.ui.define([
                             "bankNumber": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber,
                             "instructionKey": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].instructionKey,
                             "partnerBankType": oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].partnerBankType,
-                            "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided ? true : false
+                            "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided ? true : false,
+                            "financeContact1": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "" : oView.getModel("oDataModel").getData().bankDto.financeContact1.email,
+                            "financeContact2": oView.getModel("oDataModel").getData().bankDto.financeContact2.email
                         }
 
                     },
