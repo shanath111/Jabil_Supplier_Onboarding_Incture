@@ -1023,7 +1023,7 @@ sap.ui.define([
                                     // }
                                     if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
                                         if(oView.getModel("JMEulaComments").getData().isSiteNonMDG){
-                                            if(oEvent.getSource().getData().isSiteNonMDG == "YES"){
+                                            if(oView.getModel("JMEulaComments").getData().isSiteNonMDG == "YES"){
                                                 oView.getModel("oConfigMdl").getData().ValidateVisible = false;
                                                 oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                                                 oView.getModel("oConfigMdl").refresh();
