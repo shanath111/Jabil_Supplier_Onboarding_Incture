@@ -968,7 +968,47 @@
 					</VBox>
 			
                                 </VBox>
-                                <Button visible="{oConfigMdl>/viewAttachments}" text="View Attachments" press="fnOpenAttachments" class="sapUiSizeCompact sapUiTinyMarginBegin sapUiTinyMarginTop"/>
+                                <VBox visible="{oConfigMdl>/viewAttachments}">
+                                    <Text text="{i18n>Attachments}" class="  cl_TIDescTxt"/>
+		 
+        	<HBox wrap="Wrap"  >
+			
+				<g:GridList width="auto" items="{oAttachmentList>/AllDocuments}" growing="true" class=" sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin">
+					<g:customLayout>
+							<grid:GridResponsiveLayout>
+							<grid:layoutS>
+								<grid:GridSettings gridTemplateColumns="1fr" gridGap="1rem"/>
+							</grid:layoutS>
+							<grid:layoutM>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr" gridGap="1rem"/>
+							</grid:layoutM>
+							<grid:layoutL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutL>
+							<grid:layoutXL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutXL>
+						</grid:GridResponsiveLayout>
+					</g:customLayout>
+					<g:GridListItem>
+						<HBox>
+							<HBox width="90%" class="sapUiTinyMarginBegin sapUiSizeCompact">
+								<core:Icon src="{path:'oAttachmentList>fileExt',formatter:'ns.BuyerRegistration.util.formatter.mediaTypeformatter'}"
+									class="attachmentIcon sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom" size="2.5rem" color="#48639d"/>
+							<VBox>	<Text text="{oAttachmentList>name}" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+						<Text text="{oAttachmentList>fileSize}" class="sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+                      </VBox>  	</HBox>
+							<VBox alignItems="Center" class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">
+								<core:Icon src="sap-icon://decline" class="docIconStyle" visible="false" press="fnOnCancelAttachmentMitigate"/>
+								<core:Icon src="sap-icon://download" class="docIconStyle" press="fnOnDownlAttachmentAll"/>
+							</VBox>
+						</HBox>
+					</g:GridListItem>
+				</g:GridList>
+			</HBox>
+         
+                                </VBox>
+                                <!-- <Button  text="View Attachments" press="fnOpenAttachments" class="sapUiSizeCompact sapUiTinyMarginBegin sapUiTinyMarginTop"/> -->
 						</content>
 					</Panel>
                     
