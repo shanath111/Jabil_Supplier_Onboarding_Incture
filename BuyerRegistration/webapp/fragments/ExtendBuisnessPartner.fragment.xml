@@ -11,7 +11,7 @@
 		  	<Button type="Transparent" visible="{oConfigMdl>/exitFullScreen}" icon="sap-icon://exit-full-screen"  press="fnExitFullScreen" class="sapUiSizeCompact" tooltip="{i18n>BPCExitFullScreen}" />		
                     		<Button type="Transparent" tooltip="{i18n>close}" visible="{oConfigMdl>/closeFullScreenButton}" icon="sap-icon://decline" class="sapUiSizeCompact" press="fnCloseFullScreen"/>
        </Toolbar>
-       <l:Grid defaultSpan="XL3 L3 M3 S12" visible="{oConfigMdl>/caseDeailVis}" class="sapUiSizeCompact sapUiSmallMarginBegin sapUiTinyMarginTop"> 
+       <l:Grid defaultSpan="XL3 L3 M12 S12" visible="{oConfigMdl>/caseDeailVis}" class="sapUiSizeCompact sapUiSmallMarginBegin sapUiTinyMarginTop"> 
                   <VBox class="VRVboxStyle1">
 												<Label text="{i18n>VRRequestID}" class="cl_VRLablCls "></Label>
 												<Label text="{JMBPCreate>/caseId}" class="cl_PreviewLablClsValue "></Label>
@@ -40,14 +40,14 @@
 											</VBox>
                                             
 								</l:Grid>
-                        		 <l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiSmallMarginBegin "> 
+                        		 <l:Grid defaultSpan="XL3 L3 M12 S12" class="sapUiSizeCompact sapUiSmallMarginBegin "> 
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCBuyerName}" class="cl_VRLablCls "></Label>
 										<Input width="95%" enabled="false" class="cl_VRInputCls" maxLength="100" value="{JMBPCreate>/buyerName}"></Input>
 									</VBox>
 								</l:Grid>
                                 <Label class="  cl_BPCrSectHeaderExtend sapUiSmallMarginBegin " wrapping="true" text="{i18n>EnterBPDetails}"></Label>
-								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+								<l:Grid defaultSpan="XL3 L3 M12 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCPlant}" required="true" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/Plant}" editable="{oConfigMdl>/screenEditable}" valueState="{JMBPCreate>/plante}" valueStateText="{JMBPCreate>/plantm}"
@@ -88,7 +88,7 @@
                                     <Label text="{i18n>ExtendLabel3}"  wrapping="true" class="cl_VRLablCls sapUiSmallMarginBegin sapUiTinyMarginTop"></Label>
                                     <Label text="{i18n>ExtendLabel4}"  wrapping="true" class="cl_VRLablCls sapUiSmallMarginBegin sapUiTinyMarginTop"></Label>
                                 
-                                	<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiSmallMarginBegin sapUiTinyMarginTop cl_extendBuyerRegGrid">
+                                	<l:Grid defaultSpan="XL3 L3 M12 S12" class="sapUiSizeCompact sapUiSmallMarginBegin sapUiTinyMarginTop cl_extendBuyerRegGrid">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCCorporationName}" class="cl_VRLablCls "></Label>
 										<Label text="{JMBPCreate>/corporationName}"  class="cl_VRLablClsValue "></Label>
@@ -113,7 +113,7 @@
                                     <HBox class="cl_HBoxBlockSep">
                                 </HBox>
                                 	<Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>Address}"></Label>
-								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+								<l:Grid defaultSpan="XL3 L3 M12 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCAddressLine1}" required="true" class="cl_VRLablCls "></Label>
 										<Label text="{JMBPCreate>/address1}" tooltip="{JMBPCreate>/address1}" wrapping="true" class="cl_VRLablClsValue "></Label>
@@ -172,7 +172,7 @@
                                 </HBox>
                               
                 	<Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>BPCHeaderContact1}"></Label>
-								<l:Grid defaultSpan="XL3 L3 M3 S12"  class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+								<l:Grid defaultSpan="XL3 L3 M12 S12"  class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
 								<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCFirstName}" required="true" class="cl_VRLablCls "></Label>
 										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/firstName}" liveChange="fnChangeFirstName" valueState="{JMBPCreate>/firstNamee}" valueStateText="{JMBPCreate>/firstNamem}" class="cl_VRInputCls"></Input>
@@ -197,13 +197,13 @@
                                         </ComboBox>	
                                     </VBox>
                                   <layoutData>
-                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData></layoutData>
                                        </VBox>
 								<VBox>
                              	<Label text="{i18n>BPCContact1}" required="true" class="cl_VRLablCls"></Label>
 											<Input width="93%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeTelephone" value="{JMBPCreate>/telephone}" valueState="{JMBPCreate>/telephonee}" valueStateText="{JMBPCreate>/telephonem}" class="cl_VRInputCls"></Input>
                                 <layoutData>
-                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData></layoutData>
                                         </VBox>
 
 
@@ -217,13 +217,13 @@
                                         </ComboBox>	
                                     </VBox>
                                   <layoutData>
-                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData></layoutData>
                                        </VBox>
 								<VBox>
                              		<Label text="{i18n>BPCMobilePhone}" required="true" class="cl_VRLablCls "></Label>
 											<Input width="93%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeTelephoneMob" change="fnInputSpaceCheck"  value="{JMBPCreate>/contactMobilePhone}" valueState="{JMBPCreate>/contactMobilePhonee}" valueStateText="{JMBPCreate>/contactMobilePhonem}" class="cl_VRInputCls"></Input>
                                 <layoutData>
-                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData></layoutData>
                                         </VBox>
 								<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCSUpplierPreferedLang}" required="true" class="cl_VRLablCls "></Label>
@@ -253,7 +253,7 @@
                                 </HBox>
                                 <VBox visible="false">
                                   <Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>BPCAltrnateContaact}"></Label>
-								<l:Grid defaultSpan="XL3 L3 M3 S12"  class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+								<l:Grid defaultSpan="XL3 L3 M12 S12"  class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
 									
                             
 									<VBox class="VRVboxStyle1">
@@ -281,13 +281,13 @@
                                         </ComboBox>	
                                     </VBox>
                                   <layoutData>
-                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData></layoutData>
                                        </VBox>
 								<VBox>
                              	<Label text="{i18n>BPCContact1}" required="true" class="cl_VRLablCls"></Label>
 											<Input width="95%"   value="{JMBPCreate>/altPhoneNumber}" editable="{oConfigMdl>/screenEditable}" liveChange="fnChangeContactNumber1" valueState="{JMBPCreate>/altPhoneNumbere}" valueStateText="{JMBPCreate>/altPhoneNumberm}"  class="cl_VRInputCls "></Input>
                                 <layoutData>
-                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData></layoutData>
                                         </VBox>
 
                                 	
@@ -309,7 +309,7 @@
                                 </HBox>
                                 </VBox>
                                 	<Label class="sapUiSmallMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderExtend" wrapping="true" text="{i18n>BPCPayment}"></Label>
-								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+								<l:Grid defaultSpan="XL3 L3 M12 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCPayemntTerms}" class="cl_VRLablCls "></Label>
 										<Label text="{JMBPCreate>/paymentTermsd}" class="cl_VRLablClsValue "></Label>
@@ -344,7 +344,7 @@
                                 </HBox>
                                     
                                        <Label class="sapUiTinyMarginBegin sapUiSmallMarginTop cl_BPCrSectHeaderCompExtend sapUiSmallMarginBegin" wrapping="true" text="{i18n>BPCPaymentNew}"></Label>
-								<l:Grid defaultSpan="XL3 L3 M3 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
+								<l:Grid defaultSpan="XL3 L3 M12 S12" class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin cl_extendBuyerRegGrid">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCNewPaymentTerms}" class="cl_VRLablCls "></Label>
 										<ComboBox width="95%" items="{oBPLookUpMdl>/PaymentTerms}" editable="{oConfigMdl>/screenEditable}"  valueState="{JMBPCreate>/paymentTermse}" valueStateText="{JMBPCreate>/paymentTermsm}"
@@ -379,9 +379,9 @@
                               <HBox class="cl_HBoxBlockSep">
                                 </HBox>
                                 				
-                                  <l:Grid visible="false"  class="sapUiSizeCompact  cl_extendBuyerRegGrid" defaultSpan="XL3 L3 M3 S12">
+                                  <l:Grid visible="false"  class="sapUiSizeCompact  cl_extendBuyerRegGrid" defaultSpan="XL3 L3 M12 S12">
                                 <VBox >
-								<Label text="{i18n>cisoGrub}" tooltip="{i18n>cisoGrub}" required="true" class="cl_ConflictQtnCls sapUiTinyMarginTop sapUiSmallMarginBegin"></Label>
+								<Label text="{i18n>cisoGrub}" tooltip="{i18n>cisoGrub}" required="true" wrapping="true" class="cl_ConflictQtnCls sapUiTinyMarginTop sapUiSmallMarginBegin"></Label>
 									<RadioButtonGroup class="sapUiTinyMarginBegin"  enabled="{oConfigMdl>/screenEditable}" select="fnChangeCiscoGrub"  selectedIndex="{JMBPCreate>/isExclCiscoGhub}" valueState="{JMBPCreate>/isExclCiscoGhube}" columns="2">
 									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>Yes}"/>
 									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
@@ -396,10 +396,10 @@
                                 </l:Grid>
                                  <!-- <HBox class="cl_BPCBlockSep">
                                 </HBox>  -->
-                                  <l:Grid  class="sapUiSizeCompact  cl_extendBuyerRegGrid" defaultSpan="XL3 L3 M3 S12">
+                                  <l:Grid  class="sapUiSizeCompact  cl_extendBuyerRegGrid" defaultSpan="XL3 L3 M12 S12">
                                    
                                  <VBox visible="true">
-								<Label text="{i18n>RequesterConflictofInterest}" tooltip="{i18n>RequesterConflictofInterest}" required="false" class="cl_ConflictQtnCls sapUiSmallMarginBegin sapUiTinyMarginTop"></Label>
+								<Label text="{i18n>RequesterConflictofInterest}" tooltip="{i18n>RequesterConflictofInterest}" wrapping="true" required="false" class="cl_ConflictQtnCls sapUiSmallMarginBegin sapUiTinyMarginTop"></Label>
 									<RadioButtonGroup select="fnChangeReqCOI" class="sapUiTinyMarginBegin" enabled="{oConfigMdl>/screenEditable}"  selectedIndex="{JMBPCreate>/requestorConflictOfInterests}" valueState="{JMBPCreate>/requestorConflictOfInterestse}"  columns="2">
 									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>Yes}"/>
 									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
@@ -410,7 +410,7 @@
             </layoutData>
                                 </VBox>
                                     </l:Grid>
-                                 <l:Grid  class="sapUiSizeCompact  sapUiSmallMarginBegin cl_extendBuyerRegGrid" defaultSpan="XL3 L3 M3 S12">
+                                 <l:Grid  class="sapUiSizeCompact  sapUiSmallMarginBegin cl_extendBuyerRegGrid" defaultSpan="XL3 L3 M12 S12">
                                  <VBox class="VRVboxStyle1" visible="{JMBPCreate>/reqCoIFields}">
 										<Label text="{i18n>BPCNameReq}" required="true" class="cl_VRLablCls "></Label>
 										<Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/requestorCOIName}" liveChange="fnChangeFirstName2" valueState="{JMBPCreate>/requestorCOINamee}" valueStateText="{JMBPCreate>/requestorCOINamem}" class="cl_VRInputCls"></Input>
@@ -472,9 +472,9 @@
 									</VBox> -->
 								<!-- </l:Grid> -->
                                  
-                                	<l:Grid defaultSpan="XL3 L3 M3 S12"  visible="false" class="sapUiSizeCompact sapUiTinyMarginBegin sapUiSmallMarginTop">
+                                	<l:Grid defaultSpan="XL3 L3 M12 S12"  visible="false" class="sapUiSizeCompact sapUiTinyMarginBegin sapUiSmallMarginTop">
 	<VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCCustDirectedSupInd}" required="true" class="cl_VRLablCls sapUiTinyMarginBegin"></Label>
+										<Label text="{i18n>BPCCustDirectedSupInd}" required="true" wrapping="true" class="cl_VRLablCls sapUiTinyMarginBegin"></Label>
 										<RadioButtonGroup columns="2" selectedIndex="{JMBPCreate>/customerDirectedSupplierIndicators}" valueState="{JMBPCreate>/customerDirectedSupplierIndicatorse}" select="fnCustDirChange" enabled="{oConfigMdl>/screenEditable}">
 									<RadioButton  class=" cl_BPCRadioBtnTxt" text="{i18n>Yes}"/>
 									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>
@@ -493,7 +493,7 @@
                                      <!-- <HBox class="cl_BPCBlockSep">
                                       </HBox> -->
                                        <Label class="sapUiTinyMarginBegin sapUiTinyMarginTop cl_BPCrSectHeader" visible="false" required="false" wrapping="true"  text="{i18n>BPCProduct}"></Label>
-								<l:Grid defaultSpan="XL3 L3 M3 S12" visible="false" class="sapUiSizeCompact sapUiTinyMarginTop">
+								<l:Grid defaultSpan="XL3 L3 M12 S12" visible="false" class="sapUiSizeCompact sapUiTinyMarginTop">
 									<VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCProductOrServiceTxt}" required="true" class="cl_VRLablCls sapUiTinyMarginTop"></Label>
                                         <Input width="95%" editable="{oConfigMdl>/screenEditable}" value="{JMBPCreate>/product}" liveChange="fnLiveChangeProduct" valueState="{JMBPCreate>/producte}" valueStateText="{JMBPCreate>/productm}" class="cl_VRInputCls"></Input>
@@ -505,7 +505,7 @@
                                 <l:Grid  class="sapUiSizeCompact sapUiTinyMarginTop">
                                 <VBox >
                        
-								<Label text="{i18n>ConflitOfIntrest}" required="true"  class="cl_ConflictQtnCls sapUiSmallMarginBegin "></Label>
+								<Label text="{i18n>ConflitOfIntrest}" required="true" wrapping="true"  class="cl_ConflictQtnCls sapUiSmallMarginBegin "></Label>
 									<RadioButtonGroup  class="sapUiTinyMarginBegin" enabled="{oConfigMdl>/screenEditable}" select="fnConflictOfIntChnage" valueState="{JMBPCreate>/conflicte}" selectedIndex="{JMBPCreate>/conflictOfInterests}"  columns="1">
 									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>BPCIDoNotHaveCOI}"/>
 									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>BPCIHaveCOI}"/>
@@ -540,7 +540,7 @@
 								</l:Grid>
                                    <l:Grid visible="{= ${JMBPCreate>/ReqCOIVis1} === 'ReqCOI' ? true : false}" defaultSpan="XL12 L12 M12 S12"  class="sapUiSizeCompact">
  <VBox  class="VRVboxStyle1">
- <Label text="{i18n>ConflitOfIntrest1}" required="true"  class="cl_ConflictQtnCls sapUiTinyMarginTop"></Label>
+ <Label text="{i18n>ConflitOfIntrest1}" required="true" wrapping="true" class="cl_ConflictQtnCls sapUiTinyMarginTop"></Label>
 					<RadioButtonGroup  enabled="{= ${oConfigMdl>/ReqCOIVis} === 'ReqCOI' ? true : false}" select="fnConflictOfIntChnage1" valueState="{JMBPCreate>/conflict1e}" selectedIndex="{JMBPCreate>/conflictOfInterests1}"  columns="1">
 									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>BPCIDoNotHaveCOI}"/>
 									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>BPCIHaveCOI}"/>
@@ -560,7 +560,7 @@
                                                 <l:Grid  class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBottom">
                                
                                  <VBox class="sapUiSmallMarginBegin cl_extendBuyerRegGrid" visible="false">
-								<Label text="{i18n>AdditionalSurveyforSupp}" required="false" class="cl_ConflictQtnCls "></Label>
+								<Label text="{i18n>AdditionalSurveyforSupp}" wrapping="true" required="false" class="cl_ConflictQtnCls "></Label>
 									<RadioButtonGroup select="fnChangeAttachmentVis" enabled="{oConfigMdl>/screenEditable}"  selectedIndex="{JMBPCreate>/addlSurveyForSuppliers}"  columns="2">
 									<RadioButton  class=" cl_BPCRadioBtnTxt" selected="false" text="{i18n>Yes}"/>
 									<RadioButton  class="cl_BPCRadioBtnTxt" text="{i18n>No}"/>

@@ -18,7 +18,7 @@
                                     <VBox visible="{oConfigMdl>/MitgatnReasonVis}">
                                     <Label  text="Please Review the {JMEulaComments>/subject} risk and select the appropriate Level 1 and Level 2 responses. Once complete, submit your responses to the Buyer." wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop  "></Label>
                                     </VBox>
- <l:Grid defaultSpan="XL3 L3 M3 S12" visible="{oConfigMdl>/MitgatnReasonVis}" class="sapUiSizeCompact  sapUiTinyMarginTop"> 
+ <l:Grid defaultSpan="XL3 L3 M12 S12" visible="{oConfigMdl>/MitgatnReasonVis}" class="sapUiSizeCompact  sapUiTinyMarginTop"> 
  	<VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
             <Label required="true" text="{i18n>FirstLevelReason}" class="sapUiTinyMarginTop "  wrapping="true"></Label>
           <ComboBox width="95%"  items="{oBPLookUpMdl>/firstLevelReason}" valueState="{JMAppvrComments>/firstLevelReasone}" valueStateText="{JMAppvrComments>/firstLevelReasonm}"
@@ -146,7 +146,7 @@
 			<RadioButton text="{i18n>Yes}" selected="{oDataModel>/ownerShipInfoDto/isEntityManagedByGovt}"></RadioButton>
 			<RadioButton text="{i18n>No}" selected="{=!${oDataModel>/ownerShipInfoDto/isEntityManagedByGovt}}"></RadioButton>
 		</RadioButtonGroup>
-		<l:Grid  visible="{oDataModel>/ownerShipInfoDto/isEntityManagedByGovt}" containerQuery="true" defaultSpan="XL3 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+		<l:Grid  visible="{oDataModel>/ownerShipInfoDto/isEntityManagedByGovt}" containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 			<VBox class="fontStyle">
 				<Label text="{i18n>govtEntityName}" visible= "{oVisibilityModel>/isdefaultLan}" ></Label>
              
@@ -212,7 +212,7 @@
 			<RadioButton text="{i18n>Yes}" selected="{oDataModel>/ownerShipInfoDto/isEntityManagedByGovtFamily}"></RadioButton>
 			<RadioButton text="{i18n>No}" selected="{=!${oDataModel>/ownerShipInfoDto/isEntityManagedByGovtFamily}}"></RadioButton>
 		</RadioButtonGroup>
-		<l:Grid visible="{oDataModel>/ownerShipInfoDto/isEntityManagedByGovtFamily}" containerQuery="true" defaultSpan="XL3 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+		<l:Grid visible="{oDataModel>/ownerShipInfoDto/isEntityManagedByGovtFamily}" containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 			<VBox class="fontStyle">
 				<Label text="{i18n>govtEntityName}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
               
@@ -396,7 +396,7 @@
 						<RadioButton text="{i18n>No}" select="fnSelectionChange"></RadioButton>
 					</RadioButtonGroup>
                      <Label text="{i18n>quesDirectPOC}" wrapping="true" visible="{oDataModel>/comComplianceDto/companyRelationWithJabilEmp}" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-                 <l:Grid containerQuery="true" defaultSpan="XL2 L2 M3 S12" visible="{=${oDataModel>/comComplianceDto/companyRelationWithJabilEmp}=== true}" class=" gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+                 <l:Grid containerQuery="true" defaultSpan="XL2 L2 M12 S12" visible="{=${oDataModel>/comComplianceDto/companyRelationWithJabilEmp}=== true}" class=" gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 								<VBox class="fontStyle" >
 									<Label text="{i18n>name}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                       <Label text="{oi18n_En>name}&#10;{i18n>name}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
@@ -430,7 +430,7 @@
 						<RadioButton text="{i18n>No}" select="fnSelectionChange"></RadioButton>
 					</RadioButtonGroup>
                      <Label text="{i18n>provideEmpDetails}" visible="{oDataModel>/comComplianceDto/companyContactWithPreviouseJabilEmp}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
-                 <l:Grid containerQuery="true" defaultSpan="XL3 L3 M3 S12" visible="{=${oDataModel>/comComplianceDto/companyContactWithPreviouseJabilEmp}=== true}" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+                 <l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" visible="{=${oDataModel>/comComplianceDto/companyContactWithPreviouseJabilEmp}=== true}" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 								<VBox class="fontStyle" >
 									<Label required="true" text="{i18n>empName}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                                       <Label required="true" text="{oi18n_En>empName}&#10;{i18n>empName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
@@ -555,7 +555,7 @@
         <Text text="{i18n>infoSecurityContact}" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle sapUiSizeCompact sapUiTinyMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop"/>
          <Text text="{i18n>infoSecurityContact}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="fontStyle sapUiSizeCompact sapUiTinyMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop"/>	
           <l:VerticalLayout class="fontStyle sapUiSizeCompact" width="100%">
-							<l:Grid containerQuery="true" defaultSpan="XL3 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
+							<l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop">
 								<VBox>
 									<Label text="{i18n>firstNameG}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
                                    
@@ -586,7 +586,7 @@
                                                 </ComboBox>
                                             </VBox>
                                   <layoutData>
-                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData></layoutData>
                                        </VBox>
 								<VBox>
                                 <Label text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}" required="true" class="fontStyle"></Label>
@@ -594,7 +594,7 @@
 											<Input maxLength="31" value="{oDataModel>/itCyberDto/itcyberSecurityContact/contact}" valueState="{oErrorModel>/cyberSurveyMNE}" valueStateText="{oErrorModel>/cyberSurveyMNM}" editable="false" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
                                 <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
                                 <layoutData>
-                                  <l:GridData spanM="2" spanL="2" spanXL="1"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="2" spanXL="1"></l:GridData></layoutData>
                                         </VBox> 
                                
 								<VBox>

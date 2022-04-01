@@ -121,7 +121,7 @@
                                         </ComboBox>
                                     </VBox>
                                   <layoutData>
-                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData></layoutData>
                                        </VBox>
          <VBox class="fontStyle">
             <Label text="{i18n>teleNum}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
@@ -129,7 +129,7 @@
             <!-- <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>teleNum}:${oi18n_En>teleNum}+ '&#xA;' +${i18n>teleNum}}" wrapping="true" required="true" /> -->
             <Input valueLiveUpdate="true" maxLength="31" value="{companyInfoModel>/oTeleNum}" valueState="{oErrorModel>/oFATeleNumE}" valueStateText="{oErrorModel>/oFATeleNumM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle" />
            <layoutData>
-                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData></layoutData>
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>faxNum}:${oi18n_En>faxNum}+ '&#xA;'+${i18n>faxNum}}" wrapping="true" />
@@ -251,7 +251,7 @@
                                         </ComboBox>
                                     </VBox>
                                   <layoutData>
-                                  <l:GridData spanM="1" spanL="1" spanXL="1"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData></layoutData>
                                        </VBox>
          <VBox class="fontStyle">
             <Label text="{i18n>teleNum}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
@@ -260,7 +260,7 @@
             <Input valueLiveUpdate="true" maxLength="31" value="{remitModel>/rTeleNum}" enabled="{oEnableMdl>/rTeleNumEnb}" valueState="{oErrorModel>/rTATeleNumE}" valueStateText="{oErrorModel>/rTATeleNumM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle" />
             <!-- <html:input type="text" id="iTeleNumR"   class="cl_HTMLInput" ></html:input>  -->
             <layoutData>
-                                  <l:GridData spanM="2" spanL="2" spanXL="2"></l:GridData></layoutData>
+                                  <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData></layoutData>
          </VBox>
          <VBox class="fontStyle">
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>faxNum}:${oi18n_En>faxNum}+'&#xA;'+${i18n>faxNum}}" wrapping="true" />
