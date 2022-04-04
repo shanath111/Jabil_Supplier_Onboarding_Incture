@@ -192,7 +192,7 @@
 									<Label text="{i18n>countryCode}" required="true"  class="cl_VRLablCls"></Label>
                                  
 									<VBox>
-										<ComboBox width="100%"  filterSecondaryValues="false" editable="{oConfigMdl>/screenEditable}" selectedKey="{JMBPCreate>/contactCountryCode}" valueState="{JMBPCreate>/contactCountryCodee}" valueStateText="{JMBPCreate>/contactCountryCodem}" change="fnLiveChangeCountryCode" showSecondaryValues="true" items="{oBPLookUpMdl>/countryContactCode}"  class="cl_VRInputCls">
+										<ComboBox width="95%"  filterSecondaryValues="false" editable="{oConfigMdl>/screenEditable}" selectedKey="{JMBPCreate>/contactCountryCode}" valueState="{JMBPCreate>/contactCountryCodee}" valueStateText="{JMBPCreate>/contactCountryCodem}" change="fnLiveChangeCountryCode" showSecondaryValues="true" items="{oBPLookUpMdl>/countryContactCode}"  class="cl_VRInputCls">
                                           <core:ListItem key="{oBPLookUpMdl>key}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
                                         </ComboBox>	
                                     </VBox>
@@ -201,7 +201,7 @@
                                        </VBox>
 								<VBox>
                              	<Label text="{i18n>BPCContact1}" required="true" class="cl_VRLablCls"></Label>
-											<Input width="93%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeTelephone" value="{JMBPCreate>/telephone}" valueState="{JMBPCreate>/telephonee}" valueStateText="{JMBPCreate>/telephonem}" class="cl_VRInputCls"></Input>
+											<Input width="95%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeTelephone" value="{JMBPCreate>/telephone}" valueState="{JMBPCreate>/telephonee}" valueStateText="{JMBPCreate>/telephonem}" class="cl_VRInputCls"></Input>
                                 <layoutData>
                                   <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData></layoutData>
                                         </VBox>
@@ -212,7 +212,7 @@
 									<Label text="{i18n>countryCode}" required="true"  class="cl_VRLablCls"></Label>
                                  
 									<VBox>
-										<ComboBox width="100%"  filterSecondaryValues="false" editable="{oConfigMdl>/screenEditable}" selectedKey="{JMBPCreate>/mobileCountryCode}" valueState="{JMBPCreate>/mobileCountryCodee}" valueStateText="{JMBPCreate>/mobileCountryCodem}" change="fnLiveChangeCountryCodeMob" showSecondaryValues="true" items="{oBPLookUpMdl>/countryContactCode}"  class="cl_VRInputCls">
+										<ComboBox width="95%"  filterSecondaryValues="false" editable="{oConfigMdl>/screenEditable}" selectedKey="{JMBPCreate>/mobileCountryCode}" valueState="{JMBPCreate>/mobileCountryCodee}" valueStateText="{JMBPCreate>/mobileCountryCodem}" change="fnLiveChangeCountryCodeMob" showSecondaryValues="true" items="{oBPLookUpMdl>/countryContactCode}"  class="cl_VRInputCls">
                                          <core:ListItem key="{oBPLookUpMdl>key}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
                                         </ComboBox>	
                                     </VBox>
@@ -221,7 +221,7 @@
                                        </VBox>
 								<VBox>
                              		<Label text="{i18n>BPCMobilePhone}" required="true" class="cl_VRLablCls "></Label>
-											<Input width="93%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeTelephoneMob" change="fnInputSpaceCheck"  value="{JMBPCreate>/contactMobilePhone}" valueState="{JMBPCreate>/contactMobilePhonee}" valueStateText="{JMBPCreate>/contactMobilePhonem}" class="cl_VRInputCls"></Input>
+											<Input width="95%" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeTelephoneMob" change="fnInputSpaceCheck"  value="{JMBPCreate>/contactMobilePhone}" valueState="{JMBPCreate>/contactMobilePhonee}" valueStateText="{JMBPCreate>/contactMobilePhonem}" class="cl_VRInputCls"></Input>
                                 <layoutData>
                                   <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData></layoutData>
                                         </VBox>
@@ -276,7 +276,7 @@
 									<Label text="{i18n>countryCode}" required="true"  class="cl_VRLablCls"></Label>
                                  
 									<VBox>
-										<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" items="{oBPLookUpMdl>/countryContactCode}" selectedKey="{JMBPCreate>/altContactCountryCode}" valueState="{JMBPCreate>/altContactCountryCodee}" valueStateText="{JMBPCreate>/altContactCountryCodem}" change="fnLiveChangeCountryCode1" class="cl_VRInputCls">
+										<ComboBox width="95%" showSecondaryValues="true" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" items="{oBPLookUpMdl>/countryContactCode}" selectedKey="{JMBPCreate>/altContactCountryCode}" valueState="{JMBPCreate>/altContactCountryCodee}" valueStateText="{JMBPCreate>/altContactCountryCodem}" change="fnLiveChangeCountryCode1" class="cl_VRInputCls">
                                         <core:ListItem key="{oBPLookUpMdl>key}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
                                         </ComboBox>	
                                     </VBox>
@@ -356,7 +356,7 @@
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCNewPaymentMethod}:" class="cl_VRLablCls "></Label>
-									  <MultiComboBox  items="{oBPLookUpMdl>/PaymentMethod}" showSecondaryValues="true" selectedKeys="{path:'JMBPCreate>/newPaymentMethod',formatter:'ns.BuyerRegistration.util.formatter.stringToArrays'}"   valueState="{JMBPCreate>/newPaymentMethode}" valueStateText="{JMBPCreate>/newPaymentMethodm}" selectionChange="fnLivePaymentMethodChange" selectionFinish="fnLivePaymentMethodFinish" class="inputStyle">
+									  <MultiComboBox width="95%" items="{oBPLookUpMdl>/PaymentMethod}" showSecondaryValues="true" selectedKeys="{path:'JMBPCreate>/newPaymentMethod',formatter:'ns.BuyerRegistration.util.formatter.stringToArrays'}"   valueState="{JMBPCreate>/newPaymentMethode}" valueStateText="{JMBPCreate>/newPaymentMethodm}" selectionChange="fnLivePaymentMethodChange" selectionFinish="fnLivePaymentMethodFinish" class="inputStyle">
                       <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/></MultiComboBox>
                                        
 									</VBox>

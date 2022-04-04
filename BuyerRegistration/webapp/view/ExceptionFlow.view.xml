@@ -172,7 +172,7 @@
 				<Label text="{i18n>countryCode}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                 
 				<VBox>
-					<ComboBox width="100%" items="" selectedKey="001"  editable="false" class="inputStyle">
+					<ComboBox width="95%" items="" selectedKey="001"  editable="false" class="inputStyle">
 						<core:ListItem key="001" text="001"/>
 					</ComboBox>
 				</VBox>
@@ -238,7 +238,7 @@
 				<Label text="{i18n>countryCode}" visible="{oVisibilityModel>/isdefaultLan}" ></Label>
                
 				<VBox>
-					<ComboBox width="100%" items=""  editable="false" selectedKey="001" class="inputStyle">
+					<ComboBox width="95%" items=""  editable="false" selectedKey="001" class="inputStyle">
 						<core:ListItem key="001" text="001"/>
 					</ComboBox>
 				</VBox>
@@ -581,7 +581,7 @@
 									<Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}" class="fontStyle"></Label>
                                    
 									 <VBox>
-											<ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="false"  items="{oLookUpModel>/countryContactCode}"  selectedKey="{oDataModel>/itCyberDto/itcyberSecurityContact/countryContactCode}" valueState="{oErrorModel>/cyberSurveyCountryCodeE}" valueStateText="{oErrorModel>/cyberSurveyCountryCodeM}" change="fnLiveValueCountryCodeChange" editable="false" class="inputStyle">
+											<ComboBox width="95%" showSecondaryValues="true" filterSecondaryValues="false"  items="{oLookUpModel>/countryContactCode}"  selectedKey="{oDataModel>/itCyberDto/itcyberSecurityContact/countryContactCode}" valueState="{oErrorModel>/cyberSurveyCountryCodeE}" valueStateText="{oErrorModel>/cyberSurveyCountryCodeM}" change="fnLiveValueCountryCodeChange" editable="false" class="inputStyle">
                                                     <core:ListItem key="{oLookUpModel>key}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
                                                 </ComboBox>
                                             </VBox>
