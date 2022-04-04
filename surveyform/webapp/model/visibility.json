@@ -36,6 +36,7 @@
     "manualBankInfoEdit": false,
     "bankNameSearchMandate": true,
     "bankAccuityPanel": true,
+    "isSignedDocCC": false,
     "bankValidation": {
         "bankMatrixId": "",
         "companyCodeCountry": "",

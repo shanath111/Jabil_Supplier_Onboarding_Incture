@@ -91,6 +91,8 @@ sap.ui.define([
                 var maxDate = new Date(currentYear, 11, 31);
                 that.getOwnerComponent().getModel("oLookUpModel").getData().startYear.maxYear = maxDate.toLocaleDateString();
                 that.getOwnerComponent().getModel("oLookUpModel").refresh();
+
+                
             },
 
 
@@ -1334,6 +1336,20 @@ sap.ui.define([
                                 });
                                 oBusyDialogLoadData.close();
                             }
+                            if(that.getView().getModel("oDataModel").getData().comComplianceDto.localDocuments &&that.getView().getModel("oDataModel").getData().comComplianceDto.localDocuments.length >0){
+                                var findDomesticDoc = oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.findIndex(function (doc) {
+                                    return doc.documentType == "Signature Required";
+                                });
+                                if(findDomesticDoc !== -1){
+                                    oView.getModel('oVisibilityModel').getData().isSignedDocCC = true;
+                                }
+                                
+                                // $.each(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments, function (index, row) {
+                                //     if (row.documentType == "Signature Required") {
+                                        
+                                //     }    
+                                // });
+                            }
 
                         }
                         );
@@ -1355,6 +1371,8 @@ sap.ui.define([
                 var obankSearchModel = new sap.ui.model.json.JSONModel();
                 obankSearchModel.setData(bankSearchData);
                 oView.setModel(obankSearchModel, "bankSearchModel");
+
+                
             },
             _fnGETSupplierAuthority: function () {
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/case/findById/" + oView.getModel("oUserModel").getData().caseId;
