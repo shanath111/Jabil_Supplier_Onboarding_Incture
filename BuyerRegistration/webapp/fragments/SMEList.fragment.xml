@@ -23,7 +23,7 @@
             </VBox>
             <VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
             <Label required="true" text="Comments" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
-            <TextArea change="fnInputSpaceCheck" value="{JMSMESel>/Comments}" liveChange="fnLiveChangeCmntTxtArea" valueState="{JMSMESel>/Commentse}" valueStateText="{JMSMESel>/Commentsm}" class="sapUiSmallMarginBegin" required="true"  width="95%" ></TextArea>
+            <TextArea change="fnInputSpaceCheck" value="{JMSMESel>/Comments}" liveChange="fnLiveChangeCmntTxtArea" valueState="{JMSMESel>/Commentse}" valueStateText="{JMSMESel>/Commentsm}" class="sapUiSmallMarginBegin" required="true" maxLength="2000"  width="95%" ></TextArea>
             </VBox>
 			<OverflowToolbar class="barClass sapUiTinyMarginTop">
             	<ToolbarSpacer/>

@@ -4,7 +4,7 @@
 		<content>
         <VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
             <Label required="{JMBankComments>/required}"  text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>comments}:${oi18n_En>comments} + '/&#160;' + ${i18n>comments}}" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
-            <TextArea value="{JMBankComments>/Comments}" liveChange="fnLiveChangeCmntTxtArea" valueState="{JMBankComments>/Commentse}" valueStateText="{JMBankComments>/Commentsm}" class="sapUiSmallMarginBegin" required="true"  width="90%" ></TextArea>
+            <TextArea value="{JMBankComments>/Comments}" liveChange="fnLiveChangeCmntTxtArea" valueState="{JMBankComments>/Commentse}" valueStateText="{JMBankComments>/Commentsm}" class="sapUiSmallMarginBegin" required="true"  maxLength="2000" width="90%" ></TextArea>
             </VBox>
 			<OverflowToolbar class="barClass sapUiTinyMarginTop">
             	<ToolbarSpacer/>

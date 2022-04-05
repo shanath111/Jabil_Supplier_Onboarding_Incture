@@ -4,7 +4,7 @@
 		<content>
         <VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
             <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>comments}:${oi18n_En>comments} + '/&#160;' +${i18n>comments}}" class="sapUiTinyMarginTop sapUiSmallMarginBegin"  wrapping="true"></Label>
-            <TextArea value="{commentModel>/0/comment}" class="sapUiSmallMarginBegin" required="true" placeholder="{i18n>provideComments}" width="90%" ></TextArea>
+            <TextArea value="{commentModel>/0/comment}" class="sapUiSmallMarginBegin" required="true" placeholder="{i18n>provideComments}" maxLength="2000" width="90%" ></TextArea>
             </VBox>
 			<OverflowToolbar class="barClass sapUiTinyMarginTop">
             	<ToolbarSpacer/>

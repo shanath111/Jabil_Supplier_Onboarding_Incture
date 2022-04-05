@@ -68,7 +68,7 @@
 							</VBox>	
                             <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCAffirmationStatement}" required="true" class="cl_VRLablCls "></Label>
-                                <TextArea value="{JMFilter1>/AffirmationStatement}" editable="{oConfigMdl>/screenEditable}" class="cl_VRInputCls"></TextArea>
+                                <TextArea value="{JMFilter1>/AffirmationStatement}" maxLength="255" editable="{oConfigMdl>/screenEditable}" class="cl_VRInputCls"></TextArea>
 							</VBox>	  
 							</l:Grid>
                             

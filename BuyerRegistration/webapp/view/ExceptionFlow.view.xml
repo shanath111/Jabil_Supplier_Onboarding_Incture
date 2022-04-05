@@ -37,7 +37,7 @@
             </VBox>
              <VBox fitContainer="true"  alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
             <Label required="true" text="Comments" class="sapUiTinyMarginTop "  wrapping="true"></Label>
-            <TextArea change="fnInputSpaceCheck" value="{JMAppvrComments>/Comments}" liveChange="fnLiveChangeCmntTxtArea" valueState="{JMAppvrComments>/Commentse}" valueStateText="{JMAppvrComments>/Commentsm}" class=" cl_VRInputCls"  required="true"  width="95%" ></TextArea>
+            <TextArea change="fnInputSpaceCheck" value="{JMAppvrComments>/Comments}" liveChange="fnLiveChangeCmntTxtArea" valueState="{JMAppvrComments>/Commentse}" valueStateText="{JMAppvrComments>/Commentsm}" class=" cl_VRInputCls"  required="true" maxLength="2000"  width="95%" ></TextArea>
             </VBox>
           
         
