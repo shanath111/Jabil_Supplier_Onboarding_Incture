@@ -2422,7 +2422,7 @@ sap.ui.define([
                 }
             },
             fnValidateData: function () {
-
+               var that = this;
                 var vError = false;
                 if (that.getView().getModel("oDataModel").getData().shippingInfoDto.isPaymentTermsAgreed == false) {
                     sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("paymentTermsNotAgreed")), {
@@ -2597,6 +2597,45 @@ sap.ui.define([
 
                     }
                 }
+
+                if(that.getView().getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode == "BR"){
+                    oBusyDilog.open();
+                    var vBrazilJur = false;
+    
+                   // var that = this;
+                    var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/checkTaxJurisdictionCode/"+that.getView().getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].regionCode+"/"+that.getView().getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].postalCode;
+                    $.ajax({
+                        url: sUrl,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            vBrazilJur = false;
+                            oBusyDilog.close();
+                        },
+                        async: false,
+                        error: function (data) {
+                            oBusyDilog.close();
+                            vBrazilJur = true;
+                            if(data.status == 500){
+                                var sErMsg = data.responseJSON.message;
+                            }else{
+                                var sErMsg = data.getParameter("errorobject").responseText;
+                            }                            
+                            
+                            MessageBox.show(sErMsg, {
+                                icon: MessageBox.Icon.ERROR,
+                                title: "Error"
+                            });
+                        }
+                    });
+    
+    
+                    if(vBrazilJur == true){
+                        return;
+                    }
+                }
+    
+    
 
 
                 oBusyDilog.open();

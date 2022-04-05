@@ -1563,7 +1563,7 @@ sap.ui.define([
                 if (oEvent.getSource().getSelectedKeys().length !== 0) {
                     oView.getModel("JMBPCreate").getData().newPaymentMethod = "";
                     for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
-                        oView.getModel("JMBPCreate").getData().newPaymentMethod = oView.getModel("JMBPCreate").getData().newPaymentMethod + oEvent.getSource().getSelectedKeys()[i];
+                        oView.getModel("JMBPCreate").getData().newPaymentMethod = oView.getModel("JMBPCreate").getData().newPaymentMethod +","+ oEvent.getSource().getSelectedKeys()[i];
                     }
                 } else {
                     oView.getModel("JMBPCreate").getData().newPaymentMethod = "";

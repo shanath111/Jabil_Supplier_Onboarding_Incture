@@ -214,19 +214,27 @@ ns.BuyerRegistration.util.formatter = {
                            return '---';
                        }
            },
-           stringToArrays: function(stringValue){
-            if(stringValue){
-                var a= [];
-                var stringlistLen = stringValue.length;
-                if(stringlistLen === 1){
-                    a.push(stringValue);
-                } else if(stringlistLen > 1){
-    for(var i=0; i<stringlistLen;i++){
-        a.push(stringValue[i]);
-    }
-                }
+    //        stringToArrays: function(stringValue){
+    //         if(stringValue){
+    //             var a= [];
+    //             var stringlistLen = stringValue.length;
+    //             if(stringlistLen === 1){
+    //                 a.push(stringValue);
+    //             } else if(stringlistLen > 1){
+    // for(var i=0; i<stringlistLen;i++){
+    //     a.push(stringValue[i]);
+    // }
+    //             }
+    //         }
+    //         return a;
+    //     }
+    stringToArrays: function(stringValue){
+        var a= [];
+                if(stringValue){
+                  
+                    a = stringValue.split(",");
+                 
+                return a;
             }
-            return a;
         }
-
 };
