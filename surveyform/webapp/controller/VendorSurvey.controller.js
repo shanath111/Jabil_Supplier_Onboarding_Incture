@@ -8755,7 +8755,7 @@ sap.ui.define([
                 if (oEvent.getSource().getSelectedKeys().length !== 0) {
                     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = "";
                     for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
-                        oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod + oEvent.getSource().getSelectedKeys()[i];
+                        oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod +","+ oEvent.getSource().getSelectedKeys()[i];
                     }
                 } else {
                     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = "";

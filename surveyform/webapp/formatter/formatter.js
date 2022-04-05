@@ -259,23 +259,33 @@ com.jabil.surveyform.formatter.formatter = {
                     return '';
                 }
     },
+//     stringToArrays: function(stringValue){
+//         if(stringValue){
+//             var a= [];
+//             var stringlistLen = stringValue.length;
+//             if(stringlistLen === 1){
+//                 a.push(stringValue);
+//             } else if(stringlistLen > 1){
+// for(var i=0; i<stringlistLen;i++){
+//     a.push(stringValue[i]);
+// }
+//             }
+//         }
+//         return a;
+//     },
     stringToArrays: function(stringValue){
-        if(stringValue){
-            var a= [];
-            var stringlistLen = stringValue.length;
-            if(stringlistLen === 1){
-                a.push(stringValue);
-            } else if(stringlistLen > 1){
-for(var i=0; i<stringlistLen;i++){
-    a.push(stringValue[i]);
-}
+        var a= [];
+                if(stringValue){
+                  
+                    a = stringValue.split(",");
+                 
+                return a;
             }
-        }
-        return a;
-    },
+        },
     fnFetchDescMultiplePayment: function(aArray, value){
         if (aArray) {
                            if (value) {
+                            value = value.split(",");
                                var itemDesc ="";
                                for(var i=0;i<value.length;i++){
                                var item = aArray.find(item => item.code == value[i]);
