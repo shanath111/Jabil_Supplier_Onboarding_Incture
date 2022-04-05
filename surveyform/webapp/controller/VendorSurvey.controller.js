@@ -1343,6 +1343,7 @@ sap.ui.define([
                                 if(findDomesticDoc !== -1){
                                     oView.getModel('oVisibilityModel').getData().isSignedDocCC = true;
                                 }
+                                oView.getModel('oVisibilityModel').refresh();
                                 
                                 // $.each(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments, function (index, row) {
                                 //     if (row.documentType == "Signature Required") {
