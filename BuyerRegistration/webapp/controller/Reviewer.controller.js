@@ -50,6 +50,7 @@ sap.ui.define([
                 oView.getModel("oConfigMdl").getData().bankNotFoundTitle = false;
                 oView.getModel("oConfigMdl").getData().NDAScreenReconVis = true;
                 oView.getModel("oConfigMdl").getData().NonMDGVis = false;
+              
 
                 if (oContext.Name == "Buyer") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = true;
@@ -261,6 +262,7 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
                     oView.getModel("oConfigMdl").getData().defaultEnable = false;
                     oView.getModel("oConfigMdl").getData().viewAttachments = true;
+                    oView.getModel("oConfigMdl").getData().NDAScreenReconVis = false;
                 }
                 oView.getModel("oConfigMdl").getData().contextPath = oContext;
 
@@ -1025,8 +1027,10 @@ sap.ui.define([
                                     // }
                                     if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
                                         if(oView.getModel("JMEulaComments").getData().isSiteNonMDG){
+                                            
                                             if(oView.getModel("JMEulaComments").getData().isSiteNonMDG == "YES"){
                                                 oView.getModel("oConfigMdl").getData().ValidateVisible = false;
+                                                oView.getModel("oConfigMdl").getData().NDAScreenReconVis = false;
                                                 oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
                                                 oView.getModel("oConfigMdl").refresh();
                                             }else{

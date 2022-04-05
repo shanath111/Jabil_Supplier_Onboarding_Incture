@@ -662,6 +662,7 @@
             <VBox > 
              <CheckBox wrapping="true" text="{i18n>newPartnerCreatioExtTextRemit}" select="fnCompanyRTAClick" selected="{oConfigMdl>/invoicingAddNew}" enabled="{oConfigMdl>/invoicingAddNewEnb}" class="fontBold inputStyle  sapUiTinyMarginTop sapUiTinyMarginBottom" />
 			<Text visible="{oConfigMdl>/invoicingAddNew}" text="Name: {oConfigMdl>/companyInfoInv/0/name}   /  Address: Address Line 1: {oConfigMdl>/companyInfoInv/0/address1}{=${oConfigMdl>/companyInfoInv/0/address2}?', Address Line 2 ':''}{oConfigMdl>/companyInfoInv/0/address2}{oConfigMdl>/companyInfoInv/0/address2}{=${oConfigMdl>/companyInfoInv/0/address3}?', Address Line 3: ':''}{oConfigMdl>/companyInfoInv/0/address3}{oConfigMdl>/companyInfoInv/0/address3}{=${oConfigMdl>/companyInfoInv/0/address4}?', Address Line 4: ':''}{oConfigMdl>/companyInfoInv/0/address4}{oConfigMdl>/companyInfoInv/0/address4}{=${oConfigMdl>/companyInfoInv/0/address5}?', Address Line 5: ':''}{oConfigMdl>/companyInfoInv/0/address5}{oConfigMdl>/companyInfoInv/0/address5}{=${oConfigMdl>/companyInfoInv/0/district}?', District: ':''}{oConfigMdl>/companyInfoInv/0/district}{oConfigMdl>/companyInfoInv/0/district}, City: {oConfigMdl>/companyInfoInv/0/city}{=${oConfigMdl>/companyInfoInv/0/region}?', Region: ':''}{oConfigMdl>/companyInfoInv/0/region}, Country: {oConfigMdl>/companyInfoInv/0/country}, Postal Code: {oConfigMdl>/companyInfoInv/0/postalCode}, Country Code: {oConfigMdl>/companyInfoInv/0/telephone/0/telephoneCountryCode}, Telephone Number: {oConfigMdl>/companyInfoInv/0/telephone/0/telephoneNum}." class="fontBold inputStyle  sapUiTinyMarginTop sapUiTinyMarginBegin" />
+            <VBox visible="{oConfigMdl>/NDAScreenReconVis}">
              <VBox visible="{oDataModel>/comInfoDto/isRemitToAddress}" >
                <Label text="{i18n>ReconsilationAndPaymentTxt}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
                                         <l:Grid defaultSpan="XL2 L2 M12 S12" class="cl_PreviewGrid sapUiTinyMarginTop">
@@ -697,6 +698,7 @@
 											
                                           
 										</l:Grid>
+                                         </VBox>
                                          </VBox>
             	<u:Table
 				rows="{oVendorListModel>/invoiceAddressResults/d/results}"
