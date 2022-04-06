@@ -24,6 +24,20 @@ sap.ui.define([
                 return sap.ui.core.UIComponent.getRouterFor(this);
             },
 
+            // getUser: function () {
+            //     var that = this;
+            //     var oModel = new JSONModel();
+            //     var sUrl = "/comjabilsurveyform/plcm_portal_services/loggedinUser";
+            //     oModel.loadData(sUrl, true, {
+            //         "Content-Type": "application/json"
+            //     });
+            //     oModel.attachRequestCompleted(function (oEvent) {
+            //         if (oEvent.getParameter("success")) {
+            //             that.getView().getModel("oUserModel").setProperty("/user", oEvent.getSource().getData());
+            //             that.getView().getModel("oUserModel").refresh();
+            //         }
+            //     });
+            // },
             getUser: function () {
                 var that = this;
                 var oModel = new JSONModel();

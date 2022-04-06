@@ -109,6 +109,45 @@ sap.ui.define([
                     });
                 }
             }else{
+                var aModel = new JSONModel();
+
+                var sUrl = "/comjabilsurveyform/plcm_portal_services/case/findById/" + vtaskId;
+
+                aModel.loadData(sUrl);
+
+                aModel.attachRequestCompleted(function (oEvent) {
+
+                    if (oEvent.getParameter("success")) {
+
+                        that.getView().getModel("oUserModel").setProperty("/isNew", oEvent.getSource().getData().bpRequestScope.isNew);
+
+
+
+
+                        that.getView().getModel("oUserModel").refresh();
+
+
+
+                    }
+
+                    else {
+
+                        var sErMsg = oEvent.getParameter("errorobject").responseText;
+
+                        MessageBox.show(sErMsg, {
+
+                            icon: MessageBox.Icon.ERROR,
+
+                            title: oi18n.getText("error")
+
+                        });
+
+
+
+
+                    }
+
+                });
                 oView.getModel("oUserModel").getData().caseId = vtaskId;
                 oView.byId("id_HeaderBtnToolbar").setVisible(false);
                 oView.getModel("oUserModel").refresh();
