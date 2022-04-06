@@ -36,7 +36,7 @@
 												class="wbProcessStoryAuditValue" maxLines="3"/>
 											<Text
 												text="{parts: ['oProcessFlowModel>action','oProcessFlowModel>comment'],formatter: 'oneapp.incture.processFlow.processFlow.util.formatter.wbProcessFlowAuditComment'}"
-												maxLines="3" tooltip="{oProcessFlowModel>comment}"
+												 tooltip="{oProcessFlowModel>comment}"
 												visible="{= ${oProcessFlowModel>comment} !== null &amp;&amp; ${oProcessFlowModel>comment} !== 'undefined'}" class="wbProcessStoryAuditValue"/>
 										</VBox>
 									</HBox>

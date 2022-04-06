@@ -127,6 +127,31 @@ InboxDetail.util.formatter = {
             return "";
         }
     },
+    fnCheckFirstItem: function (value) {
+        if (value == "JMFilter1") {
+            var oContext = this.getBindingContext(value).sPath.split("/")[2];
+        } else {
+            var oContext = this.getBindingContext(value).sPath.split("/")[0];
+        }
+        //var oContext = this.oPropagatedProperties.oBindingContexts.modelSDNList.sPath.split("/")[1];
+        if (Number(oContext) == 0) {
+            return true;
+        }
+        return false;
+    },
+    fnCheckOtherItem: function (value) {
+        if (value == "JMFilter1") {
+            var oContext = this.getBindingContext(value).sPath.split("/")[2];
+        } else {
+            var oContext = this.getBindingContext(value).sPath.split("/")[0];
+        }
+        //var oContext = this.oPropagatedProperties.oBindingContexts.modelSDNList.sPath.split("/")[1];
+        if (Number(oContext) == 0) {
+            return false;
+        }
+        return true;
+    },
+
 
 
 };

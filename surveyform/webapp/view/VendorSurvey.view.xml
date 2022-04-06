@@ -93,7 +93,7 @@
                                 </VBox>
 							
                                 <VBox>
-                               	<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>PostalCode}:${oi18n_En>PostalCode} +'&#10;' + ${i18n>PostalCode}}" wrapping="true"  required="true" class="fontStyle "></Label>
+                               	<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>postalCode}:${oi18n_En>postalCode} +'&#10;' + ${i18n>postalCode}}" wrapping="true"  required="true" class="fontStyle "></Label>
                                      <Input valueLiveUpdate="true" maxLength="{oLookUpModel>/PostalCodeValidation/postalCodeLength}" value="{oDataModel>/surveyInfoDto/address/0/postal/0/postalCode}"  editable="{oUserModel>/isNew}"  enabled="{oEnableMdl>/postalCodeEnb}" valueState="{oErrorModel>/poE}" valueStateText="{oErrorModel>/poM}" change="fnVerifyPostalCode" class="inputStyle" />
                                   
                                         </VBox>       

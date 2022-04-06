@@ -55,13 +55,54 @@
                                 </ComboBox>
                                 
 							</VBox>	
-                            <VBox class="VRVboxStyle1">
+                            <!-- <VBox class="VRVboxStyle1">
 										<Label id="id_PaymentMethodLbl" text="{i18n>BPCPaymentMethord}:" required="false" class="cl_VRLablCls "></Label>
-									  <!-- <MultiComboBox id="id_PaymentMetod" items="{oBPLookUpMdl>/PaymentMethod}" change="fnLiveChangePurchOrg1" showSecondaryValues="true" selectedKeys="{path:'JMFilter1>/paymentMethod',formatter:'InboxDetail.util.formatter.stringToArrays'}"   valueState="{JMBPCreate>/newPaymentMethode}" valueStateText="{JMBPCreate>/newPaymentMethodm}" selectionChange="fnLivePaymentMethodChange" selectionFinish="fnLivePaymentMethodFinish"  class="cl_VRInputCls">
-                      <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/></MultiComboBox> -->
+									  
                                        	<MultiInput id="id_PaymentMetod" enableMultiLineMode="true" class="cl_VRInputCls" width="95%" showValueHelp="false"/>
-									</VBox>
-                                  
+									
+                                    </VBox> -->
+                                    <VBox class="VRVboxStyle1">	
+                                    <Table  items="{JMFilter1>/paymentMethod}" class="taxTableMargin sapUiSizeCompact sapUiTinyMarginTop">
+               <columns>
+                <Column minScreenWidth="Desktop" 
+				demandPopin="true" class="sapUiSizeCompact"></Column>
+                  <Column minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact"></Column>
+                 <Column minScreenWidth="Desktop"
+				demandPopin="true" class="sapUiSizeCompact"></Column>
+                    
+                </columns>
+                
+                
+                <ColumnListItem class="sapUiSizeCompact">
+            <cells >
+            	<VBox >
+                 <Input></Input>
+  <layoutData>
+						<l:GridData span="XL1 L1 M1 S1"></l:GridData>
+					</layoutData>
+                </VBox>
+                <VBox >
+                 <Input ></Input>
+                   <layoutData>
+						<l:GridData span="XL3 L3 M3 S3"></l:GridData>
+					</layoutData>
+                </VBox>
+				<VBox class="sapUiSizeCompact">
+					<Label/>
+					<Button icon="sap-icon://add" visible="{path:'i18n>JMFilter1', formatter:'InboxDetail.util.formatter.fnCheckFirstItem'}" text="{i18n>addMore}" type="Transparent" iconFirst="true" press="addTaxRegistration"  class="addMoreBtn"/>
+						<Button icon="sap-icon://delete" visible="{path:'i18n>JMFilter1', formatter:'InboxDetail.util.formatter.fnCheckOtherItem'}" type="Transparent" press="fnDeleteContainerlayout"   class="addMoreBtn"/>
+                    <layoutData>
+						<l:GridData span="XL1 L1 M1 S1"></l:GridData>
+					</layoutData>
+				</VBox>
+                
+            </cells>
+            </ColumnListItem></Table>
+              <layoutData>
+						<l:GridData span="XL4 L4 M4 S4"></l:GridData>
+					</layoutData>
+                 </VBox>	                 
 
                            <!-- <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCDocName}" required="true" class="cl_VRLablCls "></Label>
@@ -82,6 +123,7 @@
                             
 						
 </Panel>
+
  <Panel width="auto"   expandable="false" expanded="false" class="cl_VRPanelClass cl_PanelMargonTop  sapUiTinyMarginBegin  sapUiTinyMarginEnd">
  	<headerToolbar>
 							<Toolbar class="cl_VRHeaderBackGrndPnl">

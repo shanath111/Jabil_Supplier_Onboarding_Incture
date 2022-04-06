@@ -58,23 +58,23 @@ sap.ui.define([
                     "companyCode": "",
                     "purchasingOrganisation": "",
                     "siteName": "",
-                    "paymentMethod": "",
+                    "paymentMethod": [{"code":"","description":""}],
                     "erpSystem": ""
                 };
                 oJsonFilter.setData(temp);
                 oView.setModel(oJsonFilter, "JMFilter1");
-                oView.byId("id_PaymentMetod").setEnabled(false);
-                oView.byId("id_PaymentMethodLbl").setRequired(false);
+               // oView.byId("id_PaymentMetod").setEnabled(false);
+              //  oView.byId("id_PaymentMethodLbl").setRequired(false);
 
-                var oMultiInput1 = oView.byId("id_PaymentMetod");
-                oMultiInput1.destroyTokens();
-                var fnValidator = function(args){
-                    var text = args.text;
+                // var oMultiInput1 = oView.byId("id_PaymentMetod");
+                // oMultiInput1.destroyTokens();
+                // var fnValidator = function(args){
+                //     var text = args.text;
     
-                    return new Token({key: text, text: text});
-                };
+                //     return new Token({key: text, text: text});
+                // };
     
-                oMultiInput1.addValidator(fnValidator);
+                // oMultiInput1.addValidator(fnValidator);
             },
             fnChangeERPSystem: function () {
                 if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {
