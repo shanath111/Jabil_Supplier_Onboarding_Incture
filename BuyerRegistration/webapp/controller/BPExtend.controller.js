@@ -1562,9 +1562,19 @@ sap.ui.define([
             fnLivePaymentMethodFinish: function (oEvent) {
                 if (oEvent.getSource().getSelectedKeys().length !== 0) {
                     oView.getModel("JMBPCreate").getData().newPaymentMethod = "";
-                    for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
-                        oView.getModel("JMBPCreate").getData().newPaymentMethod = oView.getModel("JMBPCreate").getData().newPaymentMethod +","+ oEvent.getSource().getSelectedKeys()[i];
+                    // if(oEvent.getSource().getSelectedKeys().length == 1){
+                    //     oView.getModel("JMBPCreate").getData().newPaymentMethod =    oEvent.getSource().getSelectedKeys()[0];
+                    // }else{
+                        for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
+                            if(!oView.getModel("JMBPCreate").getData().newPaymentMethod){
+                                oView.getModel("JMBPCreate").getData().newPaymentMethod = oEvent.getSource().getSelectedKeys()[i];
+                            }else{
+                                oView.getModel("JMBPCreate").getData().newPaymentMethod = oView.getModel("JMBPCreate").getData().newPaymentMethod +","+ oEvent.getSource().getSelectedKeys()[i];
+                            }
+                           
+                        //}
                     }
+                   
                 } else {
                     oView.getModel("JMBPCreate").getData().newPaymentMethod = "";
                 }

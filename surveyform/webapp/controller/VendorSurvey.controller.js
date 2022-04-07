@@ -8773,9 +8773,18 @@ sap.ui.define([
             fnLivePaymentMethodFinish: function (oEvent) {
                 if (oEvent.getSource().getSelectedKeys().length !== 0) {
                     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = "";
-                    for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
-                        oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod +","+ oEvent.getSource().getSelectedKeys()[i];
-                    }
+                    // if(oEvent.getSource().getSelectedKeys().length == 1){
+                    //     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod =    oEvent.getSource().getSelectedKeys()[0];
+                    // }else{
+                        for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
+                            if(!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod){
+                            oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod =oEvent.getSource().getSelectedKeys()[i];
+                            }else{
+                                oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod +","+ oEvent.getSource().getSelectedKeys()[i];
+                            }
+                        }
+                    
+                   
                 } else {
                     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = "";
                 }
