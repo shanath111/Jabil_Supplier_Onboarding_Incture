@@ -10392,6 +10392,18 @@ sap.ui.define([
                                 oView.getModel("oDataModel").setData(oEvent.getSource().oData);
                                 oView.getModel("oDataModel").refresh();
 
+                                if(that.getView().getModel("oDataModel").getData().comComplianceDto.localDocuments &&that.getView().getModel("oDataModel").getData().comComplianceDto.localDocuments.length >0){
+                                    var findDomesticDoc = oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.findIndex(function (doc) {
+                                        return doc.documentType == "Signature Required";
+                                    });
+                                    if(findDomesticDoc !== -1){
+                                        oView.getModel('oVisibilityModel').getData().isSignedDocCC = true;
+                                    }
+                                    oView.getModel('oVisibilityModel').refresh();
+                                    
+                                  
+                                }
+
                                 oBusyDialogSave.close();
                             }
 
