@@ -79,7 +79,10 @@
 			},
 			"oGraphDataModel": {
 				"type": "sap.ui.model.json.JSONModel"
-			}
+			},
+            "oAttachmentList": {
+                "type": "sap.ui.model.json.JSONModel"
+            }
         },
         "resources": {
             "css": [

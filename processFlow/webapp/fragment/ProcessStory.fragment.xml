@@ -1,5 +1,6 @@
-<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:grid="sap.ui.layout.cssgrid" xmlns:l="sap.ui.layout"
-	xmlns:ExtVbox="oneapp.incture.processFlow.processFlow.controlExtension">
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m"  xmlns:l="sap.ui.layout"
+	xmlns:ExtVbox="oneapp.incture.processFlow.processFlow.controlExtension" xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:g="sap.f">
 
     <HBox  renderType="Bare" height="100%">
     	 <VBox id="WB_PROCESSFLOW_CONTAINER" height="100%" class="wbProcessFlowContents wbOverflowVertical" renderType="Bare" busyIndicatorDelay="0"
@@ -7,16 +8,16 @@
 		
 
      
-        				<VBox visible="{oProcessFlowModel>/showDetails}" width="{= ${oProcessFlowModel>/showDetails} === true ? '61%': '0'}"
+        				<VBox visible="{oProcessFlowModel>/showDetails}" width="{= ${oProcessFlowModel>/showDetails} === true ? '30%': '0'}"
 					class="wbProcessFlowInformationVBox">
 					<HBox width="100%" renderType="Bare" justifyContent="Start">
-						<Label text="{oProcessFlowModel>/selTaskSubject}" tooltip="{oProcessFlowModel>/selTaskSubject}" class="wbProcessFlowInformationSubjectLabel"/>
+						<Label text="{oProcessFlowModel>/selTaskSubject}" tooltip="{oProcessFlowModel>/selTaskSubject}" wrapping="true" class="wbProcessFlowInformationSubjectLabel"/>
 					</HBox>
 					<HBox width="100%" height="98%" renderType="Bare" busy="{oProcessFlowModel>/busy}" busyIndicatorDelay="0">
 						<!--_________________________________________CUSTOM ATTRIBUTE AND CHAT_________________________________________-->
 						
 						<!--_________________________________________ACTIVITY LOG AND ATTACHMENTS_________________________________________-->
-						<VBox width="70%" height="100%" renderType="Bare" class="sapUiTinyMarginBegin">
+						<VBox width="97%" height="100%" renderType="Bare" class="sapUiTinyMarginBegin">
                             <VBox class="wbProcessFlowAuditHeight wbProcessFlowTaskDynamicDto sapUiTinyMarginBottom"
 								visible="{= ${oProcessFlowModel>/activityDto}.length !== 0 ? true : false}">
 								<Text text="{i18n>ACTIVITY_LOG_TEXT}" class="wbProcessFlowTaskCA wbTextBoldClass"/>
@@ -45,6 +46,54 @@
 						</VBox>
 					</HBox>
 				</VBox>
+                <VBox  width="30%"
+					class="wbProcessFlowInformationVBox">
+                    <VBox >
+                                    <Text text="{i18n>Attachments}" class="cl_TIDescTxt"/>
+		 
+        	<HBox wrap="Wrap"  >
+			
+				<g:GridList width="auto" items="{oAttachmentList>/AllDocuments}" growing="true" class=" sapUiSizeCompact addMoreBtn attachmentMargin sapUiTinyMarginBegin">
+					<g:customLayout>
+							<grid:GridResponsiveLayout>
+							<grid:layoutS>
+								<grid:GridSettings gridTemplateColumns="1fr" gridGap="1rem"/>
+							</grid:layoutS>
+							<grid:layoutM>
+								<grid:GridSettings gridTemplateColumns="1fr" gridGap="1rem"/>
+							</grid:layoutM>
+							<grid:layoutL>
+								<grid:GridSettings gridTemplateColumns="1fr" gridGap="1rem"/>
+							</grid:layoutL>
+							<grid:layoutXL>
+								<grid:GridSettings gridTemplateColumns="1fr" gridGap="1rem"/>
+							</grid:layoutXL>
+						</grid:GridResponsiveLayout>
+					</g:customLayout>
+					<g:GridListItem>
+                   
+                    <VBox class="cl_headerVBox">
+                    <Label text="Added by: {oAttachmentList>addedBy} {oAttachmentList>addedOn}"  class="cl_VRLablCls "></Label>
+					</VBox>
+                    	<HBox>
+							<HBox width="90%"  class="sapUiTinyMarginBegin sapUiSizeCompact">
+								<core:Icon src="{path:'oAttachmentList>fileExt',formatter:'oneapp.incture.processFlow.processFlow.util.formatter.mediaTypeformatter'}"
+									class="attachmentIcon sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom" size="1.5rem" color="#48639d"/>
+							<VBox>	<Text text="{oAttachmentList>name}" wrapping="true" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+						<Text text="{oAttachmentList>fileSize}" class="sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+                      </VBox>  	</HBox>
+							<VBox alignItems="Center" class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">
+								<core:Icon src="sap-icon://decline" class="docIconStyle" visible="false" press="fnOnCancelAttachmentMitigate"/>
+								<core:Icon src="sap-icon://download" class="docIconStyle" press="fnOnDownlAttachmentAll"/>
+							</VBox>
+						</HBox>
+                       
+					</g:GridListItem>
+				</g:GridList>
+			</HBox>
+         
+                                </VBox>
+                    	</VBox>
                 
     </HBox>
 
