@@ -10172,12 +10172,13 @@ sap.ui.define([
                         oPayload.ownerShipInfoDto.managedByGovtFamilyContact.jobTitle = "";
                         oPayload.ownerShipInfoDto.managedByGovtFamilyContact.countryContactCode = "";
                     }
-
-                    if (oPayload.comInfoDto.isRemitToAddress) {
-                        oPayload.bankDto.bankInfoDto[0].accountGroup = "Z004";
-                    } else {
-                        oPayload.bankDto.bankInfoDto[0].accountGroup = "ZVEN";
-                    }
+//Commented as per new req on bank
+                    // if (oPayload.comInfoDto.isRemitToAddress) {
+                    //     oPayload.bankDto.bankInfoDto[0].accountGroup = "Z004";
+                    // } else {
+                    //     oPayload.bankDto.bankInfoDto[0].accountGroup = "ZVEN";
+                    // }
+                    oPayload.bankDto.bankInfoDto[0].accountGroup = "ZVEN";
 
                     if (oPayload.shippingInfoDto.isDeliver === false) {
                         oPayload.shippingInfoDto.deliverRepName = "";
@@ -10825,12 +10826,13 @@ sap.ui.define([
                         oPayload.ownerShipInfoDto.managedByGovtFamilyContact.jobTitle = "";
                         oPayload.ownerShipInfoDto.managedByGovtFamilyContact.countryContactCode = "";
                     }
-
-                    if (oPayload.comInfoDto.isRemitToAddress) {
-                        oPayload.bankDto.bankInfoDto[0].accountGroup = "Z004";
-                    } else {
-                        oPayload.bankDto.bankInfoDto[0].accountGroup = "ZVEN";
-                    }
+//Commented as per new req for bank
+                    // if (oPayload.comInfoDto.isRemitToAddress) {
+                    //     oPayload.bankDto.bankInfoDto[0].accountGroup = "Z004";
+                    // } else {
+                    //     oPayload.bankDto.bankInfoDto[0].accountGroup = "ZVEN";
+                    // }
+                    oPayload.bankDto.bankInfoDto[0].accountGroup = "ZVEN";
 
                     if (oPayload.shippingInfoDto.isDeliver === false) {
                         oPayload.shippingInfoDto.deliverRepName = "";
