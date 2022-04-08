@@ -10238,7 +10238,8 @@ sap.ui.define([
                         oPayload.bankDto.financeContact2.countryMobileCode = "";
                         oPayload.bankDto.financeContact2.contactInSection = "";
                     }
-                    if (oPayload.bankDto.isBankProvided === false) {
+                    if (oPayload.bankDto.isBankProvided === false ) {
+                        if( oPayload.bankDto.bankInfoDto[0].bankCountry === ""){
                         oPayload.bankDto.bankInfoDto[0].bankName = "";
                         oPayload.bankDto.bankInfoDto[0].bankAddress = "";
                         oPayload.bankDto.bankInfoDto[0].bankCity = "";
@@ -10259,6 +10260,8 @@ sap.ui.define([
                         // oPayload.bankDto.bankInfoDto[0].instructionKey = ""; // commented since the key is default value in all screens- siva ---- date:01/10/2021
                         oPayload.bankDto.financeContact1.contactInSection = "FinanceSupplier";
                         oPayload.bankDto.financeContact2.contactInSection = "Reviewer";
+
+                    }
                     } else {
                         oPayload.bankDto.financeContact1.firstName = "";
                         oPayload.bankDto.financeContact1.lastName = "";
@@ -10885,6 +10888,7 @@ sap.ui.define([
                         oPayload.bankDto.financeContact2.contactInSection = "";
                     }
                     if (oPayload.bankDto.isBankProvided === false) {
+                        if(oPayload.bankDto.bankInfoDto[0].bankCountry === ""){
                         oPayload.bankDto.bankInfoDto[0].bankName = "";
                         oPayload.bankDto.bankInfoDto[0].bankAddress = "";
                         oPayload.bankDto.bankInfoDto[0].bankCity = "";
@@ -10902,9 +10906,11 @@ sap.ui.define([
                         oPayload.bankDto.bankInfoDto[0].bankCode = "";
                         oPayload.bankDto.bankInfoDto[0].partnerBankType = "";
                         oPayload.bankDto.bankInfoDto[0].bankControlKey = "";
+                        }
                         // oPayload.bankDto.bankInfoDto[0].instructionKey = ""; // commented since the key is default value in all screens- siva ---- date:01/10/2021
                         oPayload.bankDto.financeContact1.contactInSection = "FinanceSupplier";
                         oPayload.bankDto.financeContact2.contactInSection = "Reviewer";
+                        
                     } else {
                         oPayload.bankDto.financeContact1.firstName = "";
                         oPayload.bankDto.financeContact1.lastName = "";
