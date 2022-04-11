@@ -73,7 +73,7 @@
 					<g:GridListItem>
                    
                     <VBox class="cl_headerVBox">
-                    <Label text="Added by: {oAttachmentList>addedBy} {oAttachmentList>addedOn}"  class="cl_VRLablCls "></Label>
+                    <Label text="Added by: {oAttachmentList>addedBy} {oAttachmentList>addedOnString}"  class="cl_VRLablCls "></Label>
 					</VBox>
                     	<HBox>
 							<HBox width="90%"  class="sapUiTinyMarginBegin sapUiSizeCompact">
