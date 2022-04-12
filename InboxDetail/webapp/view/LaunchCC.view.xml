@@ -19,7 +19,7 @@
 									<Button text="{i18n>Submit}" press="fnSubmitCCPO" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
 							</Toolbar>
 						</headerToolbar>
- 	<l:Grid defaultSpan="XL2 L2 M2 S12" class="sapUiSizeCompact sapUiSmallMarginTop">
+ 	<l:Grid  class="sapUiSizeCompact sapUiSmallMarginTop">
 							<VBox class="VRVboxStyle1">	
 								<Label text="{i18n>BPCSiteName}:" required="true" class="cl_VRLablCls "></Label>
                                 <!-- <ComboBox width="95%"   autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter1>/siteName}"
@@ -28,7 +28,10 @@
                                 </ComboBox>
                                  -->
                                    <Input maxLength="100" width="95%" value="{JMFilter1>/siteName}" class="cl_VRInputCls" />
-							</VBox>	
+							 <layoutData>
+						<l:GridData  span="XL2 L2 M2 S2"></l:GridData>
+					</layoutData>
+                            </VBox>	
                              <VBox class="VRVboxStyle1">
 								
 								<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls "></Label>
@@ -37,7 +40,10 @@
 											class="cl_VRInputCls">
 											<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</ComboBox>
-							</VBox>
+							 <layoutData>
+						<l:GridData  span="XL2 L2 M2 S2"></l:GridData>
+					</layoutData>
+                            </VBox>
                              <VBox class="VRVboxStyle1">
 									<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
 										<c:ExtComboBox width="95%" items="{oBPLookUpMdl>/PurOrg1}" valueState="{JMFilter>/purchasingOrganisatione}" valueStateText="{JMFilter>/purchasingOrganisationm}"
@@ -45,7 +51,10 @@
 											class="cl_VRInputCls" >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</c:ExtComboBox>
-							</VBox>
+							 <layoutData>
+						<l:GridData  span="XL2 L2 M2 S2"></l:GridData>
+					</layoutData>
+                            </VBox>
                             <VBox class="VRVboxStyle1">	
 								<Label text="{i18n>ERPSystem}" required="true" class="cl_VRLablCls "></Label>
                                 <ComboBox width="95%" selectionChange="fnChangeERPSystem"   autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter1>/erpSystem}"
@@ -53,7 +62,9 @@
                                     <core:ListItem key="Jabil's MDG"  text="Jabil's MDG" additionalText="{oBPLookUpMdl>description}"/>
                                     <core:ListItem key="Site's ERP"  text="Site's ERP" additionalText="{oBPLookUpMdl>description}"/>
                                 </ComboBox>
-                                
+                                 <layoutData>
+						<l:GridData  span="XL2 L2 M2 S2"></l:GridData>
+					</layoutData>
 							</VBox>	
                             <!-- <VBox class="VRVboxStyle1">
 										<Label id="id_PaymentMethodLbl" text="{i18n>BPCPaymentMethord}:" required="false" class="cl_VRLablCls "></Label>
@@ -61,40 +72,41 @@
                                        	<MultiInput id="id_PaymentMetod" enableMultiLineMode="true" class="cl_VRInputCls" width="95%" showValueHelp="false"/>
 									
                                     </VBox> -->
-                                    <VBox class="VRVboxStyle1">	
-                                    <Table  items="{JMFilter1>/paymentMethod}" class="taxTableMargin sapUiSizeCompact sapUiTinyMarginTop">
-               <columns>
-                <Column minScreenWidth="Desktop" 
-				demandPopin="true" class="sapUiSizeCompact"></Column>
-                  <Column minScreenWidth="Desktop"
-				demandPopin="true" class="sapUiSizeCompact"></Column>
-                 <Column minScreenWidth="Desktop"
-				demandPopin="true" class="sapUiSizeCompact"></Column>
-                    
-                </columns>
+            <VBox class="VRVboxStyle1">	
+                <Label text="{i18n>BPCPaymentMethord}" id="id_PaymentMethodLbl" required="false" class="cl_VRLablCls "></Label>
+                <Table  items="{JMFilter1>/paymentMethod}" class="taxTableMargin sapUiSizeCompact">
+                    <columns>
+                        <Column minScreenWidth="Desktop" 
+                        demandPopin="true" class="sapUiSizeCompact"></Column>
+                        <Column minScreenWidth="Desktop"
+                        demandPopin="true" class="sapUiSizeCompact"></Column>
+                        <Column minScreenWidth="Desktop"
+                        demandPopin="true" class="sapUiSizeCompact"></Column>
+                    </columns>
                 
                 
                 <ColumnListItem class="sapUiSizeCompact">
             <cells >
             	<VBox >
-                 <Input></Input>
-  <layoutData>
-						<l:GridData span="XL1 L1 M1 S1"></l:GridData>
+                 <Input  placeholder="{i18n>CodePM}" value="{JMFilter1>code}" maxLength="1" valueState="{JMFilter1>codee}" valueStateText="{JMFilter1>codem}" enabled="{JMFilter1>codeEnabled}" change="fnChangeInputVal" class="cl_VRInputCls"></Input>
+                
+                    <layoutData>
+						<l:GridData  span="XL2 L2 M2 S2"></l:GridData>
 					</layoutData>
                 </VBox>
                 <VBox >
-                 <Input ></Input>
+                        <Input placeholder="{i18n>DescriptionPM}" value="{JMFilter1>description}" valueState="{JMFilter1>descriptione}" valueStateText="{JMFilter1>descriptionm}" enabled="{JMFilter1>descEnabled}" change="fnChangeInputVal" class="cl_VRInputCls"></Input>
                    <layoutData>
-						<l:GridData span="XL3 L3 M3 S3"></l:GridData>
+						<l:GridData  span="XL6 L6 M6 S6"></l:GridData>
 					</layoutData>
                 </VBox>
 				<VBox class="sapUiSizeCompact">
-					<Label/>
-					<Button icon="sap-icon://add" visible="{path:'i18n>JMFilter1', formatter:'InboxDetail.util.formatter.fnCheckFirstItem'}" text="{i18n>addMore}" type="Transparent" iconFirst="true" press="addTaxRegistration"  class="addMoreBtn"/>
-						<Button icon="sap-icon://delete" visible="{path:'i18n>JMFilter1', formatter:'InboxDetail.util.formatter.fnCheckOtherItem'}" type="Transparent" press="fnDeleteContainerlayout"   class="addMoreBtn"/>
-                    <layoutData>
-						<l:GridData span="XL1 L1 M1 S1"></l:GridData>
-					</layoutData>
+					<!-- <Label/> -->
+					<Button icon="sap-icon://add" visible="{path:'i18n>JMFilter1', formatter:'InboxDetail.util.formatter.fnCheckFirstItem'}" text="{i18n>addMore}" type="Transparent" iconFirst="true" press="addPaymentMethod" enabled="{JMFilter1>descEnabled}" class="addMoreBtn"/>
+						<Button icon="sap-icon://delete" visible="{path:'i18n>JMFilter1', formatter:'InboxDetail.util.formatter.fnCheckOtherItem'}" type="Transparent" press="fnDeleteContainerlayout" enabled="{JMFilter1>descEnabled}"  class="addMoreBtn"/>
+                    <!-- <layoutData>
+						<l:GridData span="XL4 L4 M4 S4"></l:GridData>
+					</layoutData> -->
 				</VBox>
                 
             </cells>
@@ -238,6 +250,7 @@
                                                   <Text text="{JMCompSearchResult>purchasingOrganisation}"  wrapping="false" class="cl_ListNameClass"></Text>
                                                 	<Text text="{JMCompSearchResult>purchasingOrganisationDescription}" class="cl_ListNameClass"></Text>
                                                    <Text text="{JMCompSearchResult>erpSystem}"  wrapping="false" class="cl_ListNameClass"></Text>
+                                                   <!-- <Link text="View Payment Methods" subtle="true" press="fnViewPaymentMethod" wrapping="true"/> -->
 <TextArea visible="{path:'JMCompSearchResult>paymentMethod',formatter:'InboxDetail.util.formatter.fnTextAreaVis'}"  value="{JMCompSearchResult>paymentMethod}" editable="false"></TextArea>
 
 												<!-- <ComboBox width="50%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMFilter>/purchasingOrge}" valueStateText="{JMFilter>/purchasingOrgm}"
