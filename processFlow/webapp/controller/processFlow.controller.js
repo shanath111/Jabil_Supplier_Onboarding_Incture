@@ -465,12 +465,88 @@ sap.ui.define([
                 }.bind(this));
             return subTaskParent;
         },
+       
+        _fnReadDocumentList: function (caseId, that) {
+            that = this;
+         
+            that.getView().getModel("oAttachmentList").setProperty("/AllDocuments", []);
+            var sUrl = "/oneappinctureprocessFlowprocessFlow/plcm_portal_services/document/findByRequestId/" + caseId;
+            $.ajax({
+                url: sUrl,
 
+                type: 'GET',
+                success: function (data) {
+
+                    $.each(data, function (index, value) {
+                       
+                        that.getView().getModel("oAttachmentList").getData().AllDocuments.push(value);
+
+                    });
+
+                    that.getView().getModel("oAttachmentList").refresh();
+                },
+                error: function (data) {
+                    var eMsg = data.responseText
+                    MessageBox.show(eMsg, {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: oi18n.getProperty("Error")
+                    });
+
+                }
+            });
+
+        },
+        
+        fnOnDownlAttachmentAll: function (oEvt) {
+            this.getView().getModel("oAttachmentList").refresh(true);
+            var name = oEvt.getSource().getParent().oParent.getItems()[0].mAggregations.items[1].mAggregations.items[0].getProperty("text"),
+                _arrayTitle = oEvt.oSource.oParent.oParent.oParent.oParent.mBindingInfos.items.path.split("/0/")[1];
+            // @ts-ignore
+            var dmsDocId = this.getView().getModel("oAttachmentList").getData().AllDocuments.filter(function (docId) {
+                return docId.name == name
+            })[0].dmsDocumentId;
+            //var _arrayTitle= this._fnGetUploaderId(fileUploadId);
+            var sUrl = "/nsBuyerRegistration/plcm_portal_services/document/download/" + dmsDocId;
+            // @ts-ignore
+            $.ajax({
+                url: sUrl,
+                //   contentType: false,
+                //   accept:'*/*',
+                //   localUri: "/Downloads",
+                type: 'GET',
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                //   processData: false,
+                success: function (data) {
+                    var a = document.createElement('a');
+                    var url = window.URL.createObjectURL(data);
+                    a.href = url;
+                    a.download = name;
+                    document.body.append(a);
+                    a.click();
+                    a.remove();
+                    window.URL.revokeObjectURL(url);
+
+                },
+                error: function () {
+                    var eMsg = data.responseText
+                    MessageBox.show(eMsg, {
+                        icon: sap.m.MessageBox.Icon.ERROR,
+                        title: oi18n.getProperty("Error")
+                    });
+
+                }
+            });
+
+        },
         onClickViewFLowBtn: function (oEvent) {
             var oEvent = oEvent;
             var oProcessFlowModel = this.getModel("oProcessFlowModel");
             //var caseId = oEvent.getSource().getParent().getItems()[0].getValue();
             var caseId = oProcessFlowModel.getProperty("/caseIdInput");
+            this._fnReadDocumentList(caseId);
+
             var requestPayload = {
                 "requestId": caseId
             }

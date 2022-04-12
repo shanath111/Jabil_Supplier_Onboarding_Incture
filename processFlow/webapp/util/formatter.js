@@ -10,6 +10,37 @@ oneapp.incture.processFlow.processFlow.util.formatter = {
 			return [];
 		}
 	},
+    
+    mediaTypeformatter: function (type) {
+        if (type) {
+            var mediaType = type.toLowerCase();
+            if (mediaType == "txt") {
+                return "sap-icon://attachment-text-file";
+            } else if (mediaType == "pdf") {
+                return "sap-icon://pdf-attachment";
+            } else if (mediaType == "jpg") {
+                return "sap-icon://attachment-photo";
+            } else if (mediaType == "png") {
+                return "sap-icon://attachment-photo";
+            } else if (mediaType == "mp4") {
+                return "sap-icon://attachment-video";
+            } else if (mediaType == "xlsx") {
+                return "sap-icon://excel-attachment";
+            } else if (mediaType == "csv") {
+                return "sap-icon://excel-attachment";
+            } else if (mediaType == "pptx") {
+                return "sap-icon://ppt-attachment";
+            } else if (mediaType == "docx") {
+                return "sap-icon://doc-attachment";
+            } else if (mediaType == "zip") {
+                return "sap-icon://attachment-zip-file";
+            } else if (mediaType == "html") {
+                return "sap-icon://attachment-html";
+            } else if (mediaType == "exe") {
+                return "sap-icon://attachment-html";
+            }
+        }
+    },
 	wbDateFormatter: function (value) {
 		if (!value) {
 			value = new Date();

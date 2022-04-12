@@ -30,6 +30,10 @@
 .wbDefaultCursor {
     cursor: default !important;
 }
+.cl_headerVBox{
+    background-color: #faf9f8 !important;
+}
+
 
 .wbRightTextAlignClass {
     text-align: right !important;
@@ -6333,5 +6337,34 @@ html.sap-desktop .sapMTB-Transparent-CTX .sapMBtnInner.sapMToggleBtnPressed,
     background-color: white;
     border: 1px solid lightgray;
     padding: 0.5rem;
+}
+.cl_TIDescTxt{
+    letter-spacing: 0.14px !important;
+       color: #000000 !important;
+       font-size: 13px !important;  
+        font-weight: bold; 
+   }
+   .addMoreBtn>span>span{
+       color: #0088DE !important;
+       font-size: 0.9rem !important;
+      
+   }
+   .addMoreBtn>span {
+    outline: none !important;
+   }
+   .addMoreBtn:hover>.sapMBtnHoverable {
+       background-color: transparent !important;
+       border-color: transparent !important;
+       color: #0088DE !important;
+   }
+   .attachmentMargin{
+       margin-top: 0.8rem;
+   }
+   .sapFGridList .sapMLIB:not(.sapMGHLI) {
+    border-radius: none;
+    border: none;
+    box-shadow: none !important;
+    max-height: 4.5rem !important;
+    margin-right: 0.5rem;
 }
 /* ***************************** */
