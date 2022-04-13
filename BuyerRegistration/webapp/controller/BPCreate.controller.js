@@ -632,14 +632,14 @@ sap.ui.define([
                     } else if (oView.getModel("JMBPCreate").getData().corporationNamee == "Error") {
                         vError = true;
                     }
-                    if (!oView.getModel("JMBPCreate").getData().instructionKey) {
-                        oView.getModel("JMBPCreate").getData().instructionKeye = "Error";
-                        oView.getModel("JMBPCreate").getData().instructionKeym = oi18n.getProperty("BPCMandatoryInstructionKey");
-                        vError = true;
-                        oView.getModel("JMBPCreate").refresh();
-                    } else if (oView.getModel("JMBPCreate").getData().instructionKeye == "Error") {
-                        vError = true;
-                    }
+                    // if (!oView.getModel("JMBPCreate").getData().instructionKey) {
+                    //     oView.getModel("JMBPCreate").getData().instructionKeye = "Error";
+                    //     oView.getModel("JMBPCreate").getData().instructionKeym = oi18n.getProperty("BPCMandatoryInstructionKey");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // } else if (oView.getModel("JMBPCreate").getData().instructionKeye == "Error") {
+                    //     vError = true;
+                    // }
 
                     // if (!oView.getModel("JMBPCreate").getData().product) {
                     //     oView.getModel("JMBPCreate").getData().producte = "Error";

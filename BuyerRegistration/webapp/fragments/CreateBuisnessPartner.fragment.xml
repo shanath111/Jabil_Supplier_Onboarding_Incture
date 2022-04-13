@@ -94,7 +94,7 @@
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 										</c:ExtComboBox>
 									</VBox>
-                                    <VBox class="VRVboxStyle1">
+                                    <!-- <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPInstructionKey}" required="true" class="cl_VRLablCls "></Label>
 									<ComboBox width="95%" items="{oStaticData>/InstructionKey}" editable="{oConfigMdl>/screenEditable}" valueState="{JMBPCreate>/instructionKeye}" valueStateText="{JMBPCreate>/instructionKeym}"
 											filterSecondaryValues="true" change="fnInstructionKeyChange" showSecondaryValues="true" selectedKey="{JMBPCreate>/instructionKey}"
@@ -104,7 +104,7 @@
 										</ComboBox>
                                     
                                     	
-									</VBox>
+									</VBox> -->
                                      <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCPayemntTerms}" required="true" tooltip="{i18n>JabilPaymentTermStd}"  class="cl_VRLablCls "></Label>
 									<ComboBox width="95%" items="{oBPLookUpMdl>/PaymentTerms}"  tooltip="{i18n>JabilPaymentTermStd}" valueState="{JMBPCreate>/paymentTermse}" valueStateText="{JMBPCreate>/paymentTermsm}"

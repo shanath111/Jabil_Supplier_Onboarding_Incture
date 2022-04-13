@@ -48,7 +48,7 @@ sap.ui.define([
                 this.fnLoadTaskClaimed(oContext.Id);
                 oView.getModel("oConfigMdl").getData().CommentsVis = false;
                 oView.getModel("oConfigMdl").getData().bankNotFoundTitle = false;
-                oView.getModel("oConfigMdl").getData().NDAScreenReconVis = true;
+                oView.getModel("oConfigMdl").getData().NDAScreenReconVis = false;
                 oView.getModel("oConfigMdl").getData().NonMDGVis = false;
               
 
@@ -2441,28 +2441,28 @@ sap.ui.define([
 
                 //  if (oView.getModel("oBPLookUpMdl").getData().ReconAcc) {
                 //  if (oView.getModel("oBPLookUpMdl").getData().ReconAcc.length > 0) {
-                if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.reconciliationAccount) {
-                    oView.getModel("JMValidateDefault").getData().reconciliationAccounte = "Error";
-                    oView.getModel("JMValidateDefault").getData().reconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
-                    vReconError = true;
-                }
+                // if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.reconciliationAccount) {
+                //     oView.getModel("JMValidateDefault").getData().reconciliationAccounte = "Error";
+                //     oView.getModel("JMValidateDefault").getData().reconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
+                //     vReconError = true;
+                // }
                 // }
                 //  }
-                if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.sortKey) {
-                    oView.getModel("JMValidateDefault").getData().sortKeye = "Error";
-                    oView.getModel("JMValidateDefault").getData().sortKeym = oi18n.getProperty("BPCMandatoryValidation");
-                    vReconError = true;
-                }
-                oView.getModel("JMValidateDefault").refresh();
-                if (vReconError == true) {
-                    sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
-                        icon: sap.m.MessageBox.Icon.ERROR,
-                        title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                        contentWidth: "30%",
-                        styleClass: "sapUiSizeCompact"
-                    });
-                    return;
-                }
+                // if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.sortKey) {
+                //     oView.getModel("JMValidateDefault").getData().sortKeye = "Error";
+                //     oView.getModel("JMValidateDefault").getData().sortKeym = oi18n.getProperty("BPCMandatoryValidation");
+                //     vReconError = true;
+                // }
+                // oView.getModel("JMValidateDefault").refresh();
+                // if (vReconError == true) {
+                //     sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                //         icon: sap.m.MessageBox.Icon.ERROR,
+                //         title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                //         contentWidth: "30%",
+                //         styleClass: "sapUiSizeCompact"
+                //     });
+                //     return;
+                // }
 
 
 
@@ -2566,40 +2566,40 @@ sap.ui.define([
                     });
                     return;
                 } else {
-                    var vReConError = false;
-                    if (oView.getModel("oDataModel").getData().comInfoDto.isRemitToAddress == true) {
-                        //   if (oView.getModel("oBPLookUpMdl").getData().ReconAcc) {
-                        //  if (oView.getModel("oBPLookUpMdl").getData().ReconAcc.length > 0) {
-                        if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount) {
-                            oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccounte = "Error";
-                            oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
-                            vReConError = true;
-                        }
-                        // }
-                        //  }
-                        if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrSortKey) {
-                            oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeye = "Error";
-                            oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeym = oi18n.getProperty("BPCMandatoryValidation");
-                            vReConError = true;
-                        }
-                        if (vReConError) {
-                            oView.getModel("JMValidateDefault").refresh();
-                            oView.byId("id_SegmentedBtn").setSelectedKey("partnerFunction");
-                            oView.getModel("oConfigMdl").getData().buyerData = false;
-                            oView.getModel("oConfigMdl").getData().onBoardDet = false;
-                            oView.getModel("oConfigMdl").getData().BankDetails = false;
-                            oView.getModel("oConfigMdl").getData().PartnerFunctionVis = true;
-                            oView.getModel("oConfigMdl").refresh();
-                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
-                                icon: sap.m.MessageBox.Icon.ERROR,
-                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
-                                contentWidth: "30%",
-                                styleClass: "sapUiSizeCompact"
-                            });
-                            return;
-                        }
+                    // var vReConError = false;
+                    // if (oView.getModel("oDataModel").getData().comInfoDto.isRemitToAddress == true) {
+                    //     //   if (oView.getModel("oBPLookUpMdl").getData().ReconAcc) {
+                    //     //  if (oView.getModel("oBPLookUpMdl").getData().ReconAcc.length > 0) {
+                    //     if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrReconciliationAccount) {
+                    //         oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccounte = "Error";
+                    //         oView.getModel("JMValidateDefault").getData().invoiceAddrReconciliationAccountm = oi18n.getProperty("BPCMandatoryValidation");
+                    //         vReConError = true;
+                    //     }
+                    //     // }
+                    //     //  }
+                    //     if (!that.getView().getModel("oDataModel").getData().shippingInfoDto.invoiceAddrSortKey) {
+                    //         oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeye = "Error";
+                    //         oView.getModel("JMValidateDefault").getData().invoiceAddrSortKeym = oi18n.getProperty("BPCMandatoryValidation");
+                    //         vReConError = true;
+                    //     }
+                    //     if (vReConError) {
+                    //         oView.getModel("JMValidateDefault").refresh();
+                    //         oView.byId("id_SegmentedBtn").setSelectedKey("partnerFunction");
+                    //         oView.getModel("oConfigMdl").getData().buyerData = false;
+                    //         oView.getModel("oConfigMdl").getData().onBoardDet = false;
+                    //         oView.getModel("oConfigMdl").getData().BankDetails = false;
+                    //         oView.getModel("oConfigMdl").getData().PartnerFunctionVis = true;
+                    //         oView.getModel("oConfigMdl").refresh();
+                    //         sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                    //             icon: sap.m.MessageBox.Icon.ERROR,
+                    //             title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                    //             contentWidth: "30%",
+                    //             styleClass: "sapUiSizeCompact"
+                    //         });
+                    //         return;
+                    //     }
 
-                    }
+                    // }
                 }
 
                 if(that.getView().getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].countryCode == "BR"){
