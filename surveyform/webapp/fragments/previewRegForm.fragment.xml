@@ -1190,11 +1190,7 @@
                                         <Label text="{oi18n_En>bankCtrlKey}&#10;{i18n>bankCtrlKey}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
 										<Label text="{=${oDataModel>/bankDto/bankInfoDto/0/bankControlKey}?${oDataModel>/bankDto/bankInfoDto/0/bankControlKey}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
-                                      <VBox class="VRVboxStyle1">
-										<Label text="{i18n>instKey}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
-                                        <Label text="{oi18n_En>instKey}&#10;{i18n>instKey}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
-										<Label text="{=${oDataModel>/bankDto/bankInfoDto/0/instructionKey}?${oDataModel>/bankDto/bankInfoDto/0/instructionKey}:'---'}" class="cl_PreviewLablClsValue "></Label>
-									</VBox>
+                                      
 								</l:Grid>
                                 <l:Grid class="cl_PreviewGrid sapUiSmallMarginTop" visible="{=${oDataModel>/bankDto/isBankProvided} &amp;&amp; ${oUserModel>/isNew}}" defaultSpan="XL2 L2 M4 S12">
                                     <VBox  class="VRVboxStyle1">

@@ -250,8 +250,8 @@
                                                   <Text text="{JMCompSearchResult>purchasingOrganisation}"  wrapping="false" class="cl_ListNameClass"></Text>
                                                 	<Text text="{JMCompSearchResult>purchasingOrganisationDescription}" class="cl_ListNameClass"></Text>
                                                    <Text text="{JMCompSearchResult>erpSystem}"  wrapping="false" class="cl_ListNameClass"></Text>
-                                                   <!-- <Link text="View Payment Methods" subtle="true" press="fnViewPaymentMethod" wrapping="true"/> -->
-<TextArea visible="{path:'JMCompSearchResult>paymentMethod',formatter:'InboxDetail.util.formatter.fnTextAreaVis'}"  value="{JMCompSearchResult>paymentMethod}" editable="false"></TextArea>
+                                                   <Link text="View Payment Methods" subtle="true" press="fnViewPaymentMethod" visible="{=${JMCompSearchResult>erpSystem}===&quot;Site's ERP&quot; ?true:false}" wrapping="true"/>
+<!-- <TextArea visible="{path:'JMCompSearchResult>paymentMethod',formatter:'InboxDetail.util.formatter.fnTextAreaVis'}"  value="{JMCompSearchResult>paymentMethod}" editable="false"></TextArea> -->
 
 												<!-- <ComboBox width="50%" items="{oBPLookUpMdl>/PurOrg}" valueState="{JMFilter>/purchasingOrge}" valueStateText="{JMFilter>/purchasingOrgm}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg" showSecondaryValues="true" selectedKey="{JMCompSearchResult>/purchasingOrganisation}"

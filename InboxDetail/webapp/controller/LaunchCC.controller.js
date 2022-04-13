@@ -456,15 +456,21 @@ sap.ui.define([
                     vError = true;
                 }
                 var aPaymentMethod = oView.getModel("JMFilter1").getData().paymentMethod;
-                if(oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP" && aPaymentMethod.length==1){
-                    if(aPaymentMethod[0].code =="" || aPaymentMethod[0].description==""){
-                        vError = true;
-                        oView.getModel("JMFilter1").getData().paymentMethod[0].codee="Error";
-                        oView.getModel("JMFilter1").getData().paymentMethod[0].codem="Please enter payment method Code.";
-                        oView.getModel("JMFilter1").getData().paymentMethod[0].descriptione="Error";
-                        oView.getModel("JMFilter1").getData().paymentMethod[0].descriptionm="Please enter payment method description.";
+                if(oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP" && aPaymentMethod.length>0){
+                    for(let i=0; i<aPaymentMethod.length; i++){
+                        if(aPaymentMethod[i].code === ""){
+                            vError = true;
+                            oView.getModel("JMFilter1").getData().paymentMethod[i].codee="Error";
+                            oView.getModel("JMFilter1").getData().paymentMethod[i].codem="Please enter payment method Code.";
+                        }
+                        if(aPaymentMethod[i].description === ""){
+                            vError = true;
+                            oView.getModel("JMFilter1").getData().paymentMethod[i].descriptione="Error";
+                            oView.getModel("JMFilter1").getData().paymentMethod[i].descriptionm="Please enter payment method description.";
+                        }
+                        oView.getModel("JMFilter1").refresh();
+
                     }
-                    
                 }
                 oView.getModel("JMFilter1").refresh();
             //     var vPaymentMethodVal = "";
@@ -481,16 +487,16 @@ sap.ui.define([
             //       }                }
             // }
                 
-                if(aPaymentMethod && aPaymentMethod.length>0){
-                    for(let i=0; i<aPaymentMethod.length; i++){
-                        if(aPaymentMethod[i].code != "" && aPaymentMethod[i].description === ""){
-                            vError = true;
-                            oView.getModel("JMFilter1").getData().paymentMethod[i].descriptione="Error";
-                            oView.getModel("JMFilter1").getData().paymentMethod[i].descriptionm="Please enter payment method description.";
-                        }
-                        oView.getModel("JMFilter1").refresh();
-                    }
-                }
+                // if(aPaymentMethod && aPaymentMethod.length>0){
+                //     for(let i=0; i<aPaymentMethod.length; i++){
+                //         if(aPaymentMethod[i].code != "" && aPaymentMethod[i].description === ""){
+                //             vError = true;
+                //             oView.getModel("JMFilter1").getData().paymentMethod[i].descriptione="Error";
+                //             oView.getModel("JMFilter1").getData().paymentMethod[i].descriptionm="Please enter payment method description.";
+                //         }
+                //         oView.getModel("JMFilter1").refresh();
+                //     }
+                // }
 
 
                 if (vError == false) {
@@ -650,7 +656,7 @@ sap.ui.define([
                 var temp = {
                     "companyCode": "",
                     "purchasingOrganisation": "",
-                    "paymentMethod": [{"code":"","description":"","codee":"None","codem":"","descriptione":"None","descriptionm":"","codeEnabled":true, "descEnabled":true}]
+                    "paymentMethod": [{"code":"","description":"","codee":"None","codem":"","descriptione":"None","descriptionm":"","codeEnabled":false, "descEnabled":false}]
                 };
                 oJsonFilter1.setData(temp);
                 oView.setModel(oJsonFilter1, "JMFilter1");
@@ -718,15 +724,23 @@ sap.ui.define([
                     oEvent.getSource().setValueStateText("");
                 }
             },
-            // fnViewPaymentMethod: function(oEvent){
-            //     if (!this.PaymentMethodPopover) {
-            //         this.PaymentMethodPopover = sap.ui.xmlfragment("idPaymentMetodList", "InboxDetail.fragments.PaymentMethodList", this);
-            //         oView.addDependent(this.PaymentMethodPopover);
-            //     }
-            //     this.PaymentMethodPopover.open();
+            fnViewPaymentMethod: function(oEvent){
+                var that = this;
+                var index = oEvent.getParameter('id').split('-')[2];
+                var aPMList =JSON.parse(oView.getModel("JMCompSearchResult").getData()[index].paymentMethod);
+                // if()
+                var oJsonPM = new sap.ui.model.json.JSONModel();
                 
+                oJsonPM.setData(aPMList);
+                oView.setModel(oJsonPM, "PMList");
+                if (!that.oPopup) {
+                    that.oPopup = sap.ui.xmlfragment(
+                        "InboxDetail.fragments.PaymentMethodList", that);
+                    this.getView().addDependent(that.oPopup);
+                }
+                that.oPopup.openBy(oEvent.getSource());
                 
-            // }
+            }
 
             // onChangeDocLink: function(oEvent) {
             //     if(oEvent.getSource().getValue().length > 255) {

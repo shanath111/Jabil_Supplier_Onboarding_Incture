@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
@@ -5,18 +6,14 @@
 	<Popover
 		id="myListPopover"
 		title="Payment Methods"
-		afterClose="handleAfterClose"
-		placement="Left">
+		placement="Top"
+        class="PMListCell"
+        >
 		<List
-			id="list"
-			items="{/ProductCollection}" >
+			items="{PMList>/}">
 			<StandardListItem
-				title="{Name}"
-				description="{ProductId}"
-				type="Active"
-				icon="{ProductPicUrl}"
-				iconDensityAware="false"
-				iconInset="false" />
+				title="Code: {PMList>code}"
+				description="Description: {PMList>description}"/>
 		</List>
     </Popover>
 </core:FragmentDefinition>
