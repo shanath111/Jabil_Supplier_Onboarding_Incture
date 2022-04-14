@@ -447,11 +447,12 @@
                    <layoutData>
                 <l:GridData visibleS="false" visibleM="false" visibleL="false" visibleXL="false"></l:GridData></layoutData>
 				</VBox>
-				<VBox class="fontStyle">
+				<!-- <VBox class="fontStyle">
 					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>instKey}:${oi18n_En>instKey}+ '&#10;' +${i18n>instKey}}" required="{oVisibilityModel>/bankValidation/instructionKey}"></Label>
 					<Input valueLiveUpdate="true" enabled="{=${oVisibilityModel>/_SupplierBankEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/bankDto/bankInfoDto/0/bankCountry}? true: false)}" editable="{oUserModel>/isNew}" value="{parts:['oLookUpModel>/InstructionKey','oDataModel>/bankDto/bankInfoDto/0/instructionKey'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
-                     <!-- <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>instKeyHint}:${oi18n_En>instKeyHint}+ '&#10;' +${i18n>instKeyHint}}" textAlign="End" class="disabledFontClr"/> -->
-				</VBox>
+                  
+				</VBox> -->
+                   <!-- <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>instKeyHint}:${oi18n_En>instKeyHint}+ '&#10;' +${i18n>instKeyHint}}" textAlign="End" class="disabledFontClr"/> -->
 			</l:Grid>
             <!-- old bankInfo from dev ends here -->
             <VBox class="sapUiSizeCompact">

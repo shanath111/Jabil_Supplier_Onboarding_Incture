@@ -78,11 +78,12 @@
 					<Input maxLength="3"  value="{oDataModel>/bankDto/bankInfoDto/0/bankControlKey}" valueState="{oErrorModel>/bankCtrlKeyE}" valueStateText="{oErrorModel>/bankCtrlKeyM}"  liveChange="fnLiveInputValueChange"  editable="{oConfigMdl>/BankFieldsEdit}" class="inputStyle"></Input>
                     
 				</VBox> -->
-				<VBox class="fontStyle">
+				<!-- <VBox class="fontStyle">
 					<Label wrapping="true" text="{i18n>instKey}" ></Label>
 					<Input maxLength="4" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/instructionKey}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
-                     <!-- <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>instKeyHint}:${oi18n_En>instKeyHint}+ '&#10;' +${i18n>instKeyHint}}" textAlign="End" class="disabledFontClr"/> -->
-				</VBox>
+                     
+				</VBox> -->
+                <!-- <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>instKeyHint}:${oi18n_En>instKeyHint}+ '&#10;' +${i18n>instKeyHint}}" textAlign="End" class="disabledFontClr"/> -->
                   <VBox  class="fontStyle">
 					<Label wrapping="true" required="true" text="{i18n>bankKeyGBS}"></Label>
 					<Input  id="id_BankKey" change="fnInputSpaceCheck" value="{oDataModel>/bankDto/bankInfoDto/0/bankKey}" liveChange="fnLiveChangeBankKey"  class="inputStyle"></Input>
