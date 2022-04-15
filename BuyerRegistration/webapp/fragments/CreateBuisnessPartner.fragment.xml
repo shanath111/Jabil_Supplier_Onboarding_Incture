@@ -116,7 +116,7 @@
 									</VBox>
                                      <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPEPaymentMethod}:" required="true" class="cl_VRLablCls "></Label>
-									  <MultiComboBox width="95%" items="{oBPLookUpMdl>/PaymentMethod}" showSecondaryValues="true" selectedKeys="{path:'JMBPCreate>/newPaymentMethod',formatter:'ns.BuyerRegistration.util.formatter.stringToArrays'}"   valueState="{JMBPCreate>/newPaymentMethode}" valueStateText="{JMBPCreate>/newPaymentMethodm}" selectionChange="fnLivePaymentMethodChange" selectionFinish="fnLivePaymentMethodFinish" class="cl_VRInputCls">
+									  <MultiComboBox width="95%" items="{oBPLookUpMdl>/PaymentMethod}" showSecondaryValues="true" selectedKeys="{path:'JMBPCreate>/newPaymentMethod',formatter:'ns.BuyerRegistration.util.formatter.stringToArrays'}"   valueState="{JMBPCreate>/newPaymentMethode}" valueStateText="{JMBPCreate>/newPaymentMethodm}" selectionChange="fnLivePaymentMethodChange" selectionFinish="fnLivePaymentMethodFinish" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}">
                                             <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/></MultiComboBox>
                                        
 									</VBox>
@@ -124,15 +124,15 @@
                                     <VBox class="VRVboxStyle1" >
 										<Label text="{i18n>BPCIncoterms1}" required="true" class="cl_VRLablCls "></Label>
 									<ComboBox width="95%" items="{oBPLookUpMdl>/Incoterms}" valueState="{JMBPCreate>/incoTermse}" valueStateText="{JMBPCreate>/incoTermsm}"
-											filterSecondaryValues="true" enabled="{oConfigMdl>/screenEditable}" change="fnLiveChangeIncoTerms" showSecondaryValues="true" selectedKey="{JMBPCreate>/incoTerms}"
-											class="cl_VRInputCls" editable="{oBTHeaderMdl>/EDITABLE}">
+											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeIncoTerms" showSecondaryValues="true" selectedKey="{JMBPCreate>/incoTerms}"
+											class="cl_VRInputCls" >
 											<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}" />
 										</ComboBox>
     
 									</VBox>
                                     <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPCIncotermNameLocation}" required="true" class="cl_VRLablCls "></Label>
-										<Input width="95%" class="cl_VRInputCls" enabled="{oConfigMdl>/screenEditable}"  liveChange="fnLiveChangeIncotermLoc"  value="{JMBPCreate>/incotermNameLocation}" valueState="{JMBPCreate>/incotermNameLocatione}" valueStateText="{JMBPCreate>/incotermNameLocationm}" ></Input>
+										<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}"  liveChange="fnLiveChangeIncotermLoc"  value="{JMBPCreate>/incotermNameLocation}" valueState="{JMBPCreate>/incotermNameLocatione}" valueStateText="{JMBPCreate>/incotermNameLocationm}" ></Input>
 								</VBox>
                                     
 								</l:Grid>
