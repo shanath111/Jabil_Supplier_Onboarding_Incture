@@ -28,6 +28,15 @@ sap.ui.define([
             },
 
             fnLaucnhCCRoute: function (oEvent) {
+                oView.setModel(new JSONModel({
+                 "ComCodeInputV":false,
+                 "ComCodeDDV":true,
+                 "PurcOrgDDV":true,
+                 "PurcOrgInputV":false,
+                "CompanyCodeDesc":"",
+                "PurOrgDesc":""
+              }),"LocalModel");
+             
                 oView.getModel("oBPLookUpMdl").setData([]);
                 oView.getModel("oBPLookUpMdl").setSizeLimit(10000);
 
@@ -80,14 +89,34 @@ sap.ui.define([
             fnChangeERPSystem: function () {
                 oView.getModel("JMFilter1").getData().paymentMethod = [{"code":"","description":"","codee":"None","codem":"","descriptione":"None","descriptionm":"","codeEnabled":true, "descEnabled":true}];
                 
-                if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {
+                if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {                               
+            
                     // oView.byId("id_PaymentMetod").setEnabled(true);
                     oView.byId("id_PaymentMethodLbl").setRequired(true);
+
+                    // Changes user story 596896
+                    oView.getModel("LocalModel").setProperty("/ComCodeInputV",true);
+                    oView.getModel("LocalModel").setProperty("/ComCodeDDV",false);
+                    oView.getModel("LocalModel").setProperty("/PurcOrgDDV",false);
+                    oView.getModel("LocalModel").setProperty("/PurcOrgInputV",true);   
+                    oView.getModel("JMFilter1").setProperty("/purchasingOrganisation","9999");  
+                    // Changes user story 596896
                 } else {
                     // oView.byId("id_PaymentMetod").setEnabled(false);
                     oView.getModel("JMFilter1").getData().paymentMethod[0].codeEnabled = false;
                     oView.getModel("JMFilter1").getData().paymentMethod[0].descEnabled = false;
                     oView.byId("id_PaymentMethodLbl").setRequired(false);
+
+                    //Changes User story 596896
+                     oView.getModel("LocalModel").setProperty("/ComCodeInputV",false);
+                    oView.getModel("LocalModel").setProperty("/ComCodeDDV",true);
+                    oView.getModel("LocalModel").setProperty("/PurcOrgDDV",true);
+                    oView.getModel("LocalModel").setProperty("/PurcOrgInputV",false);  
+                    oView.getModel("JMFilter1").setProperty("/purchasingOrganisation",""); 
+                    oView.getModel("LocalModel").setProperty("/CompanyCodeDesc",""); 
+                    oView.getModel("LocalModel").setProperty("/PurOrgDesc",""); 
+                    oView.getModel("LocalModel").setProperty("/companyCode","");                    
+                   //Changes User story 596896
                 }
                 
                 
@@ -542,8 +571,14 @@ sap.ui.define([
                                     //"updatedOn": null,
                                     "createdBy": vBuyer
                                     //"updatedBy": "Updated Again"
-                                }
+                                };
 
+                                if(oView.getModel("JMFilter1").getProperty("/erpSystem")==="Site's ERP"){
+                                    oPayload.companyCodeDescription = oView.getModel("LocalModel").getProperty("/CompanyCodeDesc");
+                                    oPayload.purchasingOrganisationDescription = oView.getModel("LocalModel").getProperty("/PurOrgDesc");
+                                          
+                                }
+                                
                                 oModel.loadData(sUrl, JSON.stringify(
                                     oPayload
                                 ), true, "POST", false, true, {
