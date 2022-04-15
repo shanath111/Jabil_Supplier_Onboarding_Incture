@@ -28,6 +28,33 @@
  <HBox  class="cl_BPCBlockSep sapUiTinyMarginBottom">
                                       </HBox>
 </VBox>
+                        <HBox class="sapUiTinyMarginBegin">
+                              <Label text="{i18n>BPCCorporationName}" required="true" class="cl_VRLablCls "></Label>
+								 <Label text="{i18n>CoprportionInfor}" required="false" class="cl_VRLablCls "></Label>
+                                 </HBox>
+                                 <l:Grid defaultSpan="XL3 L3 M12 S12" class="sapUiSizeCompact ">
+                               
+								<VBox class="VRVboxStyle1">
+										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
+										<Input width="95%" class="cl_VRInputCls" maxLength="35" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCorporationName" change="fnInputSpaceCheck" valueState="{JMBPCreate>/corporationNamee}" valueStateText="{JMBPCreate>/corporationNamem}" value="{JMBPCreate>/corporationName}"></Input>
+								
+                                	</VBox>
+                                 <VBox class="VRVboxStyle1">
+										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
+										<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}"  maxLength="35" change="fnInputSpaceCheck"  value="{JMBPCreate>/corporationName2}"></Input>
+								
+                                	</VBox>
+                                    <VBox class="VRVboxStyle1">
+										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
+										<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}"  maxLength="35" change="fnInputSpaceCheck" value="{JMBPCreate>/corporationName3}"></Input>
+								
+                                	</VBox>
+                                    <VBox class="VRVboxStyle1">
+										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
+										<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}"  maxLength="35" change="fnInputSpaceCheck" value="{JMBPCreate>/corporationName4}"></Input>
+                                	</VBox>   
+
+								</l:Grid>
                         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addressLabel}:${oi18n_En>addressLabel} +'/&#160;' + ${i18n>addressLabel}}" class="fontBold sapUiSizeCompact sapUiTinyMarginBegin"/>
                         
                         	<l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">

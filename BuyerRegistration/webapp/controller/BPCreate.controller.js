@@ -282,6 +282,58 @@ sap.ui.define([
                 });
             },
 
+            fnLoadPaymentMethod: function (vCompCode, vPOrg) {
+                var oModel = new JSONModel();
+                var sUrl = "/nsBuyerRegistration/plcm_reference_data/api/v1/reference-data/paymentMethod/" + vCompCode + "/" + vPOrg;
+                oModel.loadData(sUrl, {
+                    "Content-Type": "application/json"
+                });
+                oModel.attachRequestCompleted(function (oEvent) {
+                    if (oEvent.getParameter("success")) {
+                        oView.getModel("oBPLookUpMdl").setProperty("/PaymentMethod", oEvent.getSource().getData());
+                        oView.getModel("oBPLookUpMdl").refresh();
+                    }
+
+                    if (!oView.getModel("JMBPCreate").getData().newPaymentMethod) {
+                        var aArray = oView.getModel("oBPLookUpMdl").getData().PaymentMethod;
+                        var value = oView.getModel("JMBPCreate").getData().paymentMethod;
+                        if (aArray) {
+                            if (value) {
+                                var vMessage;
+                                for (var i = 0; i < value.length; i++) {
+                                    var item = aArray.find(item => item.code == value[i]);
+                                    if (!item) {
+                                        if (!vMessage) {
+                                            vMessage = "The current Payment Method " + value[i];
+                                        } else {
+                                            vMessage = vMessage + ', ' + value[i];
+                                        }
+
+                                    }
+                                }
+
+                            }
+                            if (vMessage) {
+                                vMessage = vMessage + " is not available for the new Site. Please select a New Payment Method";
+                                oView.getModel("JMBPCreate").getData().newPaymentMethode = "Error";
+                                oView.getModel("JMBPCreate").getData().newPaymentMethodm = vMessage;
+                                oView.getModel("JMBPCreate").refresh();
+                                // vError = true;
+                                sap.m.MessageBox.alert(vMessage, {
+                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                    title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                    contentWidth: "30%",
+                                    styleClass: "sapUiSizeCompact"
+                                });
+
+                            }
+
+                        }
+                    }
+                });
+
+            },
+
             fnClearData: function () {
                 // oView.getModel("oConfigMdl").setData([]);
                 // oView.getModel("oConfigMdl").refresh();
@@ -403,6 +455,7 @@ sap.ui.define([
                                 "product": data.bpRequestScope.bpRequestScopeAddlDetails.product,
                                 "requestorConflictOfInterest": data.bpRequestScope.bpRequestScopeAddlDetails.requestorConflictOfInterest,
                                 "paymentTerms": data.bpRequestScope.bpRequestScopeAddlDetails.paymentTerms,
+                                "newPaymentMethod": data.bpRequestScope.bpRequestScopeAddlDetails.newPaymentMethod,
                                 "currency": data.bpRequestScope.bpRequestScopeAddlDetails.currency,
                                 "dunsNumber": data.bpRequestScope.bpRequestScopeAddlDetails.dunsNumber,
                                 "incotermNameLocation": data.bpRequestScope.bpRequestScopeAddlDetails.incotermNameLocation,
@@ -492,7 +545,9 @@ sap.ui.define([
                             oView.setModel(oBPCreateModel, "JMBPCreate");
                             that.fnLoadState(temp.country);
                             that.fnLoadValidation(temp.country);
+                            that.fnLoadPaymentMethod(temp.companyCode, temp.purchasingOrg);
                             that.fnLoadPurOrg(temp.companyCode, that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode, temp.companyCode, "CompanyCode"));
+                            
                             //Set Radio Button Data
 
                             if (temp.status == "Draft") {
@@ -608,21 +663,30 @@ sap.ui.define([
                     //     vError = true;
                     //     oView.getModel("JMBPCreate").refresh();
                     // }
-                    // if (!oView.getModel("JMBPCreate").getData().incoTerms) {
-                    //     oView.getModel("JMBPCreate").getData().incoTermse = "Error";
-                    //     oView.getModel("JMBPCreate").getData().incoTermsm = oi18n.getProperty("BPCMandatoryValidationIncoterm");
-                    //     vError = true;
-                    //     oView.getModel("JMBPCreate").refresh();
-                    // }
+                    if (!oView.getModel("JMBPCreate").getData().incoTerms) {
+                        oView.getModel("JMBPCreate").getData().incoTermse = "Error";
+                        oView.getModel("JMBPCreate").getData().incoTermsm = oi18n.getProperty("BPCMandatoryValidationIncoterm");
+                        vError = true;
+                        oView.getModel("JMBPCreate").refresh();
+                    }
                     if (!oView.getModel("JMBPCreate").getData().paymentTerms) {
                         oView.getModel("JMBPCreate").getData().paymentTermse = "Error";
                         oView.getModel("JMBPCreate").getData().paymentTermsm = oi18n.getProperty("BPCMandatoryValidationPaymentTerms");
                         vError = true;
                         oView.getModel("JMBPCreate").refresh();
                     }
-
-                    if (oView.getModel("JMBPCreate").getData().incotermNameLocatione == "Error") {
+                    if (!oView.getModel("JMBPCreate").getData().newPaymentMethod) {
+                        oView.getModel("JMBPCreate").getData().newPaymentMethode = "Error";
+                        oView.getModel("JMBPCreate").getData().newPaymentMethodm = oi18n.getProperty("BPCMandatoryValidationPaymentMethod");
                         vError = true;
+                        oView.getModel("JMBPCreate").refresh();
+                    }
+
+                    if (!oView.getModel("JMBPCreate").getData().incotermNameLocatione) {
+                        oView.getModel("JMBPCreate").getData().incotermNameLocatione = "Error";
+                        oView.getModel("JMBPCreate").getData().incotermNameLocationm = oi18n.getProperty("BPCMandatoryValidationIncotermNamedLoc");
+                        vError = true;
+                        oView.getModel("JMBPCreate").refresh();
                     }
                     if (!oView.getModel("JMBPCreate").getData().corporationName) {
                         oView.getModel("JMBPCreate").getData().corporationNamee = "Error";
@@ -986,6 +1050,9 @@ sap.ui.define([
                     if (oView.getModel("JMBPCreate").getData().incotermNameLocatione == "Error") {
                         vError = true;
                     }
+                    if (oView.getModel("JMBPCreate").getData().incoTermse == "Error") {
+                        vError = true;
+                    }
                     if (oView.getModel("JMBPCreate").getData().corporationNamee == "Error") {
                         vError = true;
                     }
@@ -1222,6 +1289,7 @@ sap.ui.define([
                                 "product": oView.getModel("JMBPCreate").getData().product,
                                 "requestorConflictOfInterest": vConflictOfInt1,
                                 "paymentTerms": oView.getModel("JMBPCreate").getData().paymentTerms,
+                                "newPaymentMethod": oView.getModel("JMBPCreate").getData().newPaymentMethod,
                                 "incotermNameLocation": oView.getModel("JMBPCreate").getData().incotermNameLocation,
                                 "requestorCOIEmail": oView.getModel("JMBPCreate").getData().requestorCOIEmail,
                                 "requestorCOIName": oView.getModel("JMBPCreate").getData().requestorCOIName,
@@ -1469,6 +1537,7 @@ sap.ui.define([
                                             "product": oView.getModel("JMBPCreate").getData().product,
                                             "requestorConflictOfInterest": vConflictOfInt1,
                                             "paymentTerms": oView.getModel("JMBPCreate").getData().paymentTerms,
+                                            "newPaymentMethod": oView.getModel("JMBPCreate").getData().newPaymentMethod,
                                             "incotermNameLocation": oView.getModel("JMBPCreate").getData().incotermNameLocation,
                                             "requestorCOIEmail": oView.getModel("JMBPCreate").getData().requestorCOIEmail,
                                             "requestorCOIName": oView.getModel("JMBPCreate").getData().requestorCOIName,
@@ -1741,6 +1810,42 @@ sap.ui.define([
                     }
                 }
             },
+            fnLivePaymentMethodChange: function (oEvent) {
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                if (oView.getModel("JMBPCreate").getData().newPaymentMethode == "Error") {
+                    oView.getModel("JMBPCreate").getData().newPaymentMethode = "None";
+                    oView.getModel("JMBPCreate").getData().newPaymentMethodm = "";
+                    oView.getModel("JMBPCreate").refresh();
+                }
+            },
+
+            fnLivePaymentMethodFinish: function (oEvent) {
+                if (oEvent.getSource().getSelectedKeys().length !== 0) {
+                    oView.getModel("JMBPCreate").getData().newPaymentMethod = "";
+                    // if(oEvent.getSource().getSelectedKeys().length == 1){
+                    //     oView.getModel("JMBPCreate").getData().newPaymentMethod =    oEvent.getSource().getSelectedKeys()[0];
+                    // }else{
+                        for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
+                            if(!oView.getModel("JMBPCreate").getData().newPaymentMethod){
+                                oView.getModel("JMBPCreate").getData().newPaymentMethod = oEvent.getSource().getSelectedKeys()[i];
+                            }else{
+                                oView.getModel("JMBPCreate").getData().newPaymentMethod = oView.getModel("JMBPCreate").getData().newPaymentMethod +","+ oEvent.getSource().getSelectedKeys()[i];
+                            }
+                           
+                        //}
+                    }
+                   
+                } else {
+                    oView.getModel("JMBPCreate").getData().newPaymentMethod = "";
+                }
+                oView.getModel("JMBPCreate").refresh();
+
+            },
 
 
             fnConflictOfIntChnage: function (oEvent) {
@@ -1903,6 +2008,7 @@ sap.ui.define([
                 }
                 this.fnLoadPurOrg(oView.getModel("JMBPCreate").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
                 oView.getModel("JMBPCreate").getData().purchasingOrg = "";
+                oView.getModel("JMBPCreate").getData().newPaymentMethod = "";
                 oView.getModel("JMBPCreate").refresh();
                 if (oView.getModel("JMBPCreate").getData().companyCodee == "Error") {
                     oView.getModel("JMBPCreate").getData().companyCodee = "None";
@@ -1926,10 +2032,13 @@ sap.ui.define([
             },
             fnLiveChangePurchOrg: function (oEvent) {
                 var compCode= oView.getModel("JMBPCreate").getData().companyCode;
-                if(compCode === "" || compCode === undefined){
-                    sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
+                this.fnLoadPaymentMethod(oView.getModel("JMBPCreate").getData().companyCode, oView.getModel("JMBPCreate").getData().purchasingOrg);
+                oView.getModel("JMBPCreate").getData().newPaymentMethod = "";
+                oView.getModel("JMBPCreate").refresh();
+                // if(compCode === "" || compCode === undefined){
+                //     sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
                     
-                }
+                // }
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
@@ -1941,6 +2050,16 @@ sap.ui.define([
                     oView.getModel("JMBPCreate").getData().purchasingOrgm = "";
                     oView.getModel("JMBPCreate").refresh();
                 }
+            },
+            fnLiveChangePurchOrgClick: function (oEvent) {
+                var compCode= oView.getModel("JMBPCreate").getData().companyCode;
+              
+            
+                if(compCode === "" || compCode === undefined){
+                    sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
+                    
+                }
+               
             },
             fnLiveChangeIncoTerms: function (oEvent) {
                 var vSelected = oEvent.getParameter("itemPressed");
