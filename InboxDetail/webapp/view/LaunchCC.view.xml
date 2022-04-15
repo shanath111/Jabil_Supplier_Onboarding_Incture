@@ -55,17 +55,17 @@
 							<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 						</ComboBox>
 						<!-- new Changes user Story 596896 -->
-						<HBox visible="{LocalModel>/ComCodeInputV}">
-							<Input value="{JMFilter1>/companyCode}" maxLength="4">
-								<!-- <layoutData>
+						<!-- <HBox visible="{LocalModel>/ComCodeInputV}"> -->
+							<Input  visible="{LocalModel>/ComCodeInputV}" placeholder="Company code" value="{JMFilter1>/companyCode}" maxLength="4">
+								<!-- <layoutData> 
 									<l:GridData span="XL1 L1 M1 S1" />
 								</layoutData> -->
 							</Input>
-							<Input value="{LocalModel>/CompanyCodeDesc}"></Input>
+							<Input visible="{LocalModel>/ComCodeInputV}" placeholder="Company code desc" value="{LocalModel>/CompanyCodeDesc}"></Input>
 							<layoutData>
 								<l:GridData span="XL1 L1 M1 S1" />
 							</layoutData>
-						</HBox>
+						<!-- </HBox> -->
 						<!-- new Changes -->
 						<layoutData>
 							<l:GridData  span="XL2 L2 M2 S2"></l:GridData>
@@ -79,17 +79,17 @@
 							<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
 						</c:ExtComboBox>
 						<!-- new Changes user Story 596896 -->
-						<HBox visible="{LocalModel>/PurcOrgInputV}">
-							<Input maxLength="4" value="{JMFilter1>/purchasingOrganisation}">
+						<!-- <HBox visible="{LocalModel>/PurcOrgInputV}"> -->
+							<Input visible="{LocalModel>/PurcOrgInputV}" maxLength="4" placeholder="Purchase org" editable="false" value="{JMFilter1>/purchasingOrganisation}">
 								<layoutData>
 									<l:GridData span="XL1 L1 M1 S1" />
 								</layoutData>
 							</Input>
-							<Input value="{LocalModel>/PurOrgDesc}"></Input>
-							<layoutData>
+							<Input visible="{LocalModel>/PurcOrgInputV}" placeholder="Purchase org Desc" value="{LocalModel>/PurOrgDesc}" editable="false"></Input>
+							<!-- <layoutData>
 								<l:GridData span="XL1 L1 M1 S1" />
-							</layoutData>
-						</HBox>
+							</layoutData> -->
+						<!-- </HBox> -->
 						<!-- new Changes -->
 						<layoutData>
 							<l:GridData  span="XL2 L2 M2 S2"></l:GridData>

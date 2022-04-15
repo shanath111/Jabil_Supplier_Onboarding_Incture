@@ -34,7 +34,7 @@ sap.ui.define([
                  "PurcOrgDDV":true,
                  "PurcOrgInputV":false,
                 "CompanyCodeDesc":"",
-                "PurOrgDesc":""
+                "PurOrgDesc":"For Non PRD Sites"
               }),"LocalModel");
              
                 oView.getModel("oBPLookUpMdl").setData([]);
@@ -72,6 +72,13 @@ sap.ui.define([
                 };
                 oJsonFilter.setData(temp);
                 oView.setModel(oJsonFilter, "JMFilter1");
+                // user story 596896               
+                oView.getModel("LocalModel").setProperty("/ComCodeInputV",false);
+                oView.getModel("LocalModel").setProperty("/ComCodeDDV",true);
+                oView.getModel("LocalModel").setProperty("/PurcOrgDDV",true);
+                oView.getModel("LocalModel").setProperty("/PurcOrgInputV",false);
+                //oView.getModel("LocalModel").setProperty("/PurcOrgInputV",true);
+                // user story 596896
                 
                // oView.byId("id_PaymentMetod").setEnabled(false);
               //  oView.byId("id_PaymentMethodLbl").setRequired(false);
@@ -572,13 +579,14 @@ sap.ui.define([
                                     "createdBy": vBuyer
                                     //"updatedBy": "Updated Again"
                                 };
-
+                             // user story 596896     
                                 if(oView.getModel("JMFilter1").getProperty("/erpSystem")==="Site's ERP"){
                                     oPayload.companyCodeDescription = oView.getModel("LocalModel").getProperty("/CompanyCodeDesc");
                                     oPayload.purchasingOrganisationDescription = oView.getModel("LocalModel").getProperty("/PurOrgDesc");
                                           
                                 }
-                                
+                                // user story 596896     
+
                                 oModel.loadData(sUrl, JSON.stringify(
                                     oPayload
                                 ), true, "POST", false, true, {
