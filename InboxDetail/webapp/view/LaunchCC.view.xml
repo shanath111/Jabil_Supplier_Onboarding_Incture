@@ -57,7 +57,7 @@
 						<!-- new Changes user Story 596896 -->
 						<!-- <HBox visible="{LocalModel>/ComCodeInputV}"> -->
 							<Input  visible="{LocalModel>/ComCodeInputV}" placeholder="Company code" value="{JMFilter1>/companyCode}" maxLength="4">
-								<!-- <layoutData>
+								<!-- <layoutData> 
 									<l:GridData span="XL1 L1 M1 S1" />
 								</layoutData> -->
 							</Input>

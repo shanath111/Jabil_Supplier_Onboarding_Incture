@@ -76,7 +76,7 @@ sap.ui.define([
                 oView.getModel("LocalModel").setProperty("/ComCodeInputV",false);
                 oView.getModel("LocalModel").setProperty("/ComCodeDDV",true);
                 oView.getModel("LocalModel").setProperty("/PurcOrgDDV",true);
-                oView.getModel("LocalModel").setProperty("/PurcOrgInputV",false);
+                oView.getModel("LocalModel").setProperty("/PurcOrgInputV",false); 
                 // user story 596896
                 
                // oView.byId("id_PaymentMetod").setEnabled(false);
@@ -585,7 +585,7 @@ sap.ui.define([
                                           
                                 }
                                 // user story 596896     
-                                  
+
                                 oModel.loadData(sUrl, JSON.stringify(
                                     oPayload
                                 ), true, "POST", false, true, {
