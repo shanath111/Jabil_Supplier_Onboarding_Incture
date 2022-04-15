@@ -682,7 +682,7 @@ sap.ui.define([
                         oView.getModel("JMBPCreate").refresh();
                     }
 
-                    if (!oView.getModel("JMBPCreate").getData().incotermNameLocatione) {
+                    if (!oView.getModel("JMBPCreate").getData().incotermNameLocation) {
                         oView.getModel("JMBPCreate").getData().incotermNameLocatione = "Error";
                         oView.getModel("JMBPCreate").getData().incotermNameLocationm = oi18n.getProperty("BPCMandatoryValidationIncotermNamedLoc");
                         vError = true;

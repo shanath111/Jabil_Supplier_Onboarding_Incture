@@ -114,6 +114,8 @@
 										</ComboBox>
     
 									</VBox>
+                                    </l:Grid>
+                                    <l:Grid defaultSpan="XL3 L3 M12 S12" class="sapUiSizeCompact ">
                                      <VBox class="VRVboxStyle1">
 										<Label text="{i18n>BPEPaymentMethod}:" required="true" class="cl_VRLablCls "></Label>
 									  <MultiComboBox width="95%" items="{oBPLookUpMdl>/PaymentMethod}" showSecondaryValues="true" selectedKeys="{path:'JMBPCreate>/newPaymentMethod',formatter:'ns.BuyerRegistration.util.formatter.stringToArrays'}"   valueState="{JMBPCreate>/newPaymentMethode}" valueStateText="{JMBPCreate>/newPaymentMethodm}" selectionChange="fnLivePaymentMethodChange" selectionFinish="fnLivePaymentMethodFinish" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}">
