@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+
+	<Popover
+		id="myListPopover"
+		title="Payment Methods"
+		placement="Top"
+        class="PMListCell"
+        >
+		<List
+			items="{PMList>/}">
+			<StandardListItem
+				title="Code: {PMList>code}"
+				description="Description: {PMList>description}"/>
+		</List>
+    </Popover>
+</core:FragmentDefinition>

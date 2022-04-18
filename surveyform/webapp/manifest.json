@@ -109,6 +109,9 @@
             },
             "oUserModel": {
                 "type": "sap.ui.model.json.JSONModel"
+            },
+            "oBuyerModel": {
+                "type": "sap.ui.model.json.JSONModel"
             }
         },
         "resources": {

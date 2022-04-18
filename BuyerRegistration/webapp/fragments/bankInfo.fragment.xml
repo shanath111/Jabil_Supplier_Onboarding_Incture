@@ -2,10 +2,12 @@
 	xmlns:u="sap.ui.unified" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f" async="true">
 	<Panel width="100%" class="sapUiTinyMarginTop panelPadding">
 		<content>
-            <VBox>
+        <!-- ACCUITY validated msg -->
+            <!-- <VBox>
                 <Text text="{i18n>bankNotValidatedMsg}" class="sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
                 <Text text="{i18n>bankInformation}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
-            </VBox>
+            </VBox> -->
+        <Text text="{i18n>bankInformation}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
 		<l:Grid  containerQuery="true" defaultSpan="XL2 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 			<VBox  class="fontStyle">
 					<Label wrapping="true" text="{i18n>bankCountry}"></Label>
@@ -76,11 +78,12 @@
 					<Input maxLength="3"  value="{oDataModel>/bankDto/bankInfoDto/0/bankControlKey}" valueState="{oErrorModel>/bankCtrlKeyE}" valueStateText="{oErrorModel>/bankCtrlKeyM}"  liveChange="fnLiveInputValueChange"  editable="{oConfigMdl>/BankFieldsEdit}" class="inputStyle"></Input>
                     
 				</VBox> -->
-				<VBox class="fontStyle">
+				<!-- <VBox class="fontStyle">
 					<Label wrapping="true" text="{i18n>instKey}" ></Label>
 					<Input maxLength="4" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/instructionKey}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
-                     <!-- <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>instKeyHint}:${oi18n_En>instKeyHint}+ '&#10;' +${i18n>instKeyHint}}" textAlign="End" class="disabledFontClr"/> -->
-				</VBox>
+                     
+				</VBox> -->
+                <!-- <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>instKeyHint}:${oi18n_En>instKeyHint}+ '&#10;' +${i18n>instKeyHint}}" textAlign="End" class="disabledFontClr"/> -->
                   <VBox  class="fontStyle">
 					<Label wrapping="true" required="true" text="{i18n>bankKeyGBS}"></Label>
 					<Input  id="id_BankKey" change="fnInputSpaceCheck" value="{oDataModel>/bankDto/bankInfoDto/0/bankKey}" liveChange="fnLiveChangeBankKey"  class="inputStyle"></Input>
@@ -88,7 +91,8 @@
 				</VBox>
                 
 			</l:Grid>
-            <l:Grid  containerQuery="true" defaultSpan="XL2 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+            <!-- accuity local bank fields -->
+            <!-- <l:Grid  containerQuery="true" defaultSpan="XL2 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
                 <VBox class="fontStyle">
 				<Label text="{i18n>bankNameLocal}" wrapping="true"></Label>
 					<Input maxLength="61" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/localName}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
@@ -105,7 +109,8 @@
 				<Label text="{i18n>bankBranchLocal}" wrapping="true"></Label>
 					<Input maxLength="41" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/bankDto/bankInfoDto/0/localBranch}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
 				</VBox>
-            </l:Grid>
+            </l:Grid> -->
+            <!-- accuity local bank fields -->
     
     
     

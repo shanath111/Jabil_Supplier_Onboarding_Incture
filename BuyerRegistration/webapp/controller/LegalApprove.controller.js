@@ -1447,6 +1447,20 @@ sap.ui.define([
                     }
                 }
             },
+            fnLiveChangeIncoTerms: function (oEvent) {
+                var vSelected = oEvent.getParameter("itemPressed");
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+                if (oView.getModel("JMBPCreate").getData().incoTermse == "Error") {
+                    oView.getModel("JMBPCreate").getData().incoTermse = "None";
+                    oView.getModel("JMBPCreate").getData().incoTermsm = "";
+                    oView.getModel("JMBPCreate").refresh();
+                }
+            },
             fnOnCancelAttachment: function (oEvt) {
                 this.getView().getModel("oAttachmentList").refresh(true);
                 var name = oEvt.getSource().getParent().oParent.getItems()[0].mAggregations.items[1].mAggregations.items[0].getProperty("text");
