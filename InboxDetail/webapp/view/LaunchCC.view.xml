@@ -48,7 +48,7 @@
 						</layoutData>
 					</VBox>
 					<VBox class="VRVboxStyle1" >
-						<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls "></Label>
+						<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls"></Label>
 						<ComboBox visible="{LocalModel>/ComCodeDDV}" width="95%"  items="{oBPLookUpMdl>/CompanyCode1}"  autocomplete="false" valueState="{JMFilter>/companyCodee}" valueStateText="{JMFilter>/companyCodem}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeCompCode1" showSecondaryValues="true" selectedKey="{JMFilter1>/companyCode}"
 											class="cl_VRInputCls">
@@ -56,12 +56,12 @@
 						</ComboBox>
 						<!-- new Changes user Story 596896 -->
 						<!-- <HBox visible="{LocalModel>/ComCodeInputV}"> -->
-							<Input class="cl_VRLablCls" visible="{LocalModel>/ComCodeInputV}" placeholder="Company code" value="{JMFilter1>/companyCode}" maxLength="4">
+							<Input class="cl_VRInputCls" visible="{LocalModel>/ComCodeInputV}" placeholder="Company code" value="{JMFilter1>/companyCode}" maxLength="4">
 								<!-- <layoutData> 
 									<l:GridData span="XL1 L1 M1 S1" />
 								</layoutData> -->
 							</Input>
-							<Input class="cl_VRLablCls" visible="{LocalModel>/ComCodeInputV}" placeholder="Company code desc" value="{LocalModel>/CompanyCodeDesc}"></Input>
+							<Input class="cl_VRInputCls" visible="{LocalModel>/ComCodeInputV}" placeholder="Company code desc" value="{LocalModel>/CompanyCodeDesc}"></Input>
 							<layoutData>
 								<l:GridData span="XL1 L1 M1 S1" />
 							</layoutData>
@@ -80,12 +80,12 @@
 						</c:ExtComboBox>
 						<!-- new Changes user Story 596896 -->
 						<!-- <HBox visible="{LocalModel>/PurcOrgInputV}"> -->
-							<Input class="cl_VRLablCls" visible="{LocalModel>/PurcOrgInputV}" maxLength="4" placeholder="Purchase org" editable="false" value="{JMFilter1>/purchasingOrganisation}">
+							<Input class="cl_VRInputCls" visible="{LocalModel>/PurcOrgInputV}" maxLength="4" placeholder="Purchase org" editable="false" value="{JMFilter1>/purchasingOrganisation}">
 								<layoutData>
 									<l:GridData span="XL1 L1 M1 S1" />
 								</layoutData>
 							</Input>
-							<Input class="cl_VRLablCls" visible="{LocalModel>/PurcOrgInputV}" placeholder="Purchase org Desc" value="{LocalModel>/PurOrgDesc}" ></Input>
+							<Input class="cl_VRInputCls" visible="{LocalModel>/PurcOrgInputV}" placeholder="Purchase org Desc" value="{LocalModel>/PurOrgDesc}" ></Input>
 							<!-- <layoutData>
 								<l:GridData span="XL1 L1 M1 S1" />
 							</layoutData> -->

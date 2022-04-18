@@ -125,7 +125,7 @@ sap.ui.define([
                     oView.getModel("JMFilter1").setProperty("/purchasingOrganisation",""); 
                     oView.getModel("LocalModel").setProperty("/CompanyCodeDesc",""); 
                     oView.getModel("LocalModel").setProperty("/PurOrgDesc",""); 
-                    oView.getModel("LocalModel").setProperty("/companyCode","");                    
+                    oView.getModel("JMFilter1").setProperty("/companyCode","");                    
                    //Changes User story 596896
                 }
                 
@@ -510,7 +510,20 @@ sap.ui.define([
                         oView.getModel("JMFilter1").refresh();
 
                     }
-                }
+///////////////////// 596896 ///////////////
+vError = (oView.getModel("LocalModel").getProperty("/CompanyCodeDesc")===""|| oView.getModel("LocalModel").getProperty("/PurOrgDesc") ==="") ? true:false;
+                                          
+////////////////////596896///////////////////// 
+              }
+
+               
+
+
+
+
+
+
+
                 oView.getModel("JMFilter1").refresh();
             //     var vPaymentMethodVal = "";
             //     if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {       
@@ -586,7 +599,8 @@ sap.ui.define([
                                 if(oView.getModel("JMFilter1").getProperty("/erpSystem")==="Site's ERP"){
                                     oPayload.companyCodeDescription = oView.getModel("LocalModel").getProperty("/CompanyCodeDesc");
                                     oPayload.purchasingOrganisationDescription = oView.getModel("LocalModel").getProperty("/PurOrgDesc");
-                                          
+
+                                    
                                 }
                                 // user story 596896     
 
