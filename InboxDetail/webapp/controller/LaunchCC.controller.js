@@ -110,6 +110,7 @@ sap.ui.define([
                     oView.getModel("LocalModel").setProperty("/PurcOrgDDV",false);
                     oView.getModel("LocalModel").setProperty("/PurcOrgInputV",true);   
                     oView.getModel("JMFilter1").setProperty("/purchasingOrganisation","9999");  
+                    oView.getModel("LocalModel").setProperty("/PurOrgDesc","For Non PRD Sites"); 
                     // Changes user story 596896
                 } else {
                     // oView.byId("id_PaymentMetod").setEnabled(false);
