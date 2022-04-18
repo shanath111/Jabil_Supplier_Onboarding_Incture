@@ -1086,7 +1086,7 @@
 										<Label text="{=${oDataModel>/shippingInfoDto/newpaymentCurrency}?${oDataModel>/shippingInfoDto/newpaymentCurrency}:'---'}" class="cl_PreviewLablClsValue "></Label>
 									</VBox>
                                 </l:Grid>
-    <VBox class="sapUiTinyMarginBottom" visible="{oUserModel>/isNew}">
+    <VBox class="sapUiTinyMarginBottom">
                                         <HBox>
     										<Label text="{i18n>paymentTermsAgree}" visible="{oVisibilityModel>/isdefaultLan}" wrapping="true" class="cl_PreviewLablCls  sapUiTinyMarginBegin "></Label>
                                         	<Label text="{oi18n_En>paymentTermsAgree}&#10;{i18n>paymentTermsAgree}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls  sapUiTinyMarginBegin"></Label>
