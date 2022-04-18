@@ -1944,6 +1944,7 @@ sap.ui.define([
                 that.getView().getModel("oAttachmentList").getData()[0].compFinDArray = [];
                 that.getView().getModel("oAttachmentList").getData()[0].compComplDArray = [];
                 that.getView().getModel("oAttachmentList").getData()[0].compSecuDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].NDADocument = [];
                 $.ajax({
                     url: sUrl,
 
@@ -1988,6 +1989,9 @@ sap.ui.define([
                             else if (value.docInSection == "cyberSecInfo") {
                                // that.getView().getModel("oAttachmentList").getData()[0].compSecuDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].compSecuDArray.push(value);
+                            }else if (value.docInSection == "NDADocument") {
+                                // that.getView().getModel("oAttachmentList").getData()[0].compSecuDArray = [];
+                                that.getView().getModel("oAttachmentList").getData()[0].NDADocument.push(value);
                             }
                         });
 
