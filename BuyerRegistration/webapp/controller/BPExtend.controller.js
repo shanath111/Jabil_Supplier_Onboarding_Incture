@@ -1566,13 +1566,14 @@ sap.ui.define([
                     //     oView.getModel("JMBPCreate").getData().newPaymentMethod =    oEvent.getSource().getSelectedKeys()[0];
                     // }else{
                         for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
-                            if(!oView.getModel("JMBPCreate").getData().newPaymentMethod){
-                                oView.getModel("JMBPCreate").getData().newPaymentMethod = oEvent.getSource().getSelectedKeys()[i];
-                            }else{
-                                oView.getModel("JMBPCreate").getData().newPaymentMethod = oView.getModel("JMBPCreate").getData().newPaymentMethod +","+ oEvent.getSource().getSelectedKeys()[i];
-                            }
+                            // if(!oView.getModel("JMBPCreate").getData().newPaymentMethod){
+                            //     oView.getModel("JMBPCreate").getData().newPaymentMethod = oEvent.getSource().getSelectedKeys()[i];
+                            // }else{
+                            //     oView.getModel("JMBPCreate").getData().newPaymentMethod = oView.getModel("JMBPCreate").getData().newPaymentMethod +","+ oEvent.getSource().getSelectedKeys()[i];
+                            // }
                            
                         //}
+                        oView.getModel("JMBPCreate").getData().newPaymentMethod = oView.getModel("JMBPCreate").getData().newPaymentMethod + oEvent.getSource().getSelectedKeys()[i];
                     }
                    
                 } else {

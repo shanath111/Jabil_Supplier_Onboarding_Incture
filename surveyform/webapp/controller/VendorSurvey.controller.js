@@ -9867,11 +9867,12 @@ sap.ui.define([
                     //     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod =    oEvent.getSource().getSelectedKeys()[0];
                     // }else{
                     for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
-                        if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod) {
-                            oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oEvent.getSource().getSelectedKeys()[i];
-                        } else {
-                            oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod + "," + oEvent.getSource().getSelectedKeys()[i];
-                        }
+                        // if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod) {
+                        //     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oEvent.getSource().getSelectedKeys()[i];
+                        // } else {
+                        //     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod + "," + oEvent.getSource().getSelectedKeys()[i];
+                        // }
+                          oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod  + oEvent.getSource().getSelectedKeys()[i];
                     }
 
 
@@ -14703,11 +14704,12 @@ sap.ui.define([
                     //     oView.getModel("oDataModel").getData().comInfoDto.paymentMethod =    oEvent.getSource().getSelectedKeys()[0];
                     // }else{
                     for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
-                        if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod) {
-                            oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oEvent.getSource().getSelectedKeys()[i];
-                        } else {
-                            oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod + "," + oEvent.getSource().getSelectedKeys()[i];
-                        }
+                        // if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod) {
+                        //     oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oEvent.getSource().getSelectedKeys()[i];
+                        // } else {
+                        //     oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod + "," + oEvent.getSource().getSelectedKeys()[i];
+                        // }
+                        oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod  + oEvent.getSource().getSelectedKeys()[i];
                     }
 
 
