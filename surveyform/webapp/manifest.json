@@ -173,6 +173,13 @@
                     ]
                 },
                 {
+                    "name": "BankInfoRemit",
+                    "pattern": "BankInfoRemit/{Name}/{contextPath}",
+                    "target": [
+                        "BankInfoRemit"
+                    ]
+                },
+                {
                     "name": "PreviewForm",
                     "pattern": "PreviewForm/{Name}/{contextPath}",
                     "target": [
@@ -222,7 +229,16 @@
                     "clearControlAggregation": false,
                     "viewId": "BankInfo",
                     "viewName": "BankInfo"
-                },  "PreviewForm": {
+                },
+                "BankInfoRemit": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "BankInfoRemit",
+                    "viewName": "BankInfoRemit"
+                },
+                
+                "PreviewForm": {
                     "viewType": "XML",
                     "transition": "slide",
                     "clearControlAggregation": false,

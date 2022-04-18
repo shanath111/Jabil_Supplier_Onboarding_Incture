@@ -92,7 +92,7 @@ sap.ui.define([
                 that.getOwnerComponent().getModel("oLookUpModel").getData().startYear.maxYear = maxDate.toLocaleDateString();
                 that.getOwnerComponent().getModel("oLookUpModel").refresh();
 
-                
+
             },
 
 
@@ -1336,18 +1336,18 @@ sap.ui.define([
                                 });
                                 oBusyDialogLoadData.close();
                             }
-                            if(that.getView().getModel("oDataModel").getData().comComplianceDto.localDocuments &&that.getView().getModel("oDataModel").getData().comComplianceDto.localDocuments.length >0){
+                            if (that.getView().getModel("oDataModel").getData().comComplianceDto.localDocuments && that.getView().getModel("oDataModel").getData().comComplianceDto.localDocuments.length > 0) {
                                 var findDomesticDoc = oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.findIndex(function (doc) {
                                     return doc.documentType == "Signature Required";
                                 });
-                                if(findDomesticDoc !== -1){
+                                if (findDomesticDoc !== -1) {
                                     oView.getModel('oVisibilityModel').getData().isSignedDocCC = true;
                                 }
                                 oView.getModel('oVisibilityModel').refresh();
-                                
+
                                 // $.each(oView.getModel("oDataModel").getData().comComplianceDto.localDocuments, function (index, row) {
                                 //     if (row.documentType == "Signature Required") {
-                                        
+
                                 //     }    
                                 // });
                             }
@@ -1373,7 +1373,7 @@ sap.ui.define([
                 obankSearchModel.setData(bankSearchData);
                 oView.setModel(obankSearchModel, "bankSearchModel");
 
-                
+
             },
             _fnGETSupplierAuthority: function () {
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/case/findById/" + oView.getModel("oUserModel").getData().caseId;
@@ -1937,6 +1937,8 @@ sap.ui.define([
                 that.getView().getModel("oAttachmentList").getData()[0].ownerDArray = [];
                 that.getView().getModel("oAttachmentList").getData()[0].compDArray = [];
                 that.getView().getModel("oAttachmentList").getData()[0].bankDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].bankDArrayR = [];
+
                 that.getView().getModel("oAttachmentList").getData()[0].bankINDArray = [];
                 that.getView().getModel("oAttachmentList").getData()[0].shippingDArray = [];
                 that.getView().getModel("oAttachmentList").getData()[0].compProdDArray = [];
@@ -1964,6 +1966,10 @@ sap.ui.define([
                             } else if (value.docInSection == "bankInfo") {
                                 //that.getView().getModel("oAttachmentList").getData()[0].bankDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].bankDArray.push(value);
+                            }
+                            else if (value.docInSection == "bankDArrayR") {
+                                //that.getView().getModel("oAttachmentList").getData()[0].bankDArray = [];
+                                that.getView().getModel("oAttachmentList").getData()[0].bankDArrayR.push(value);
                             }
                             else if (value.docInSection == "bankIntermediateInfo") {
                                 // that.getView().getModel("oAttachmentList").getData()[0].bankINDArray = [];
@@ -4552,11 +4558,11 @@ sap.ui.define([
 
 
                             //  if (apaymentMethod !== 'Optional' && that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
-                                var findBankDoc = this.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").findIndex(function (doc) {
-                                    return doc.docFormType !== "Indemnity Letter";
-                                });
-                            if(findBankDoc == -1){
-                            // if (that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
+                            var findBankDoc = this.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").findIndex(function (doc) {
+                                return doc.docFormType !== "Indemnity Letter";
+                            });
+                            if (findBankDoc == -1) {
+                                // if (that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
                                 iError = true;
                                 oView.byId("fileUploader_Button").removeStyleClass("attachmentWithoutBorderBP");
                                 oView.byId("fileUploader_Button").addStyleClass("attachmentWithBorderBP");
@@ -5162,6 +5168,916 @@ sap.ui.define([
                     oView.byId("bankInfo").setValidated(false);
                 } else {
                     oView.byId("bankInfo").setValidated(true);
+                }
+                if (vAppName == "SupplierFinance") {
+                    if (iError == true) {
+                        return "Invalid";
+                    }
+                }
+            },
+            _fnValidateBankInfoRemit: function (oEvent) {
+                var spaceRegex = /^\s+$/;
+                var iError = false;
+                var bankFields = this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidationRemit;
+                var apaymentMethod = formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod);
+                if (this.emailValidResult) {
+                    iError = true;
+                }
+                var visiblility = oView.getModel("oDataModel").getData().comInfoDto;
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
+                    isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                var that = this;
+
+                if (oView.getModel("oUserModel").getData().isNew) {
+                    if (oView.getModel("remitModel").getData().isRemitToAddress) {
+                        // if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentTerms) {
+                        //     oView.getModel("oErrorModel").getData().paymentTermE = "Error";
+                        //     if (isDefaultLan) {
+                        //         oView.getModel("oErrorModel").getData().paymentTermM = oi18n.getText("mandatoryPayTerms");
+                        //     } else {
+                        //         oView.getModel("oErrorModel").getData().paymentTermM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryPayTerms + "\n" + oi18n.getText("mandatoryPayTerms");
+                        //     }
+                        //     iError = true;
+                        // }
+                        if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod) {
+                            oView.getModel("oErrorModel").getData().paymentTermMethdE = "Error";
+                            if (isDefaultLan) {
+                                oView.getModel("oErrorModel").getData().paymentTermMethdM = oi18n.getText("mandatoryPayMethod");
+                            } else {
+                                oView.getModel("oErrorModel").getData().paymentTermMethdM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryPayMethod + "\n" + oi18n.getText("mandatoryPayMethod");
+                            }
+                            iError = true;
+                        }
+
+                        if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentCurrency) {
+                            oView.getModel("oErrorModel").getData().paymentCurrE = "Error";
+                            if (isDefaultLan) {
+                                oView.getModel("oErrorModel").getData().paymentCurrM = oi18n.getText("mandatoryCurr");
+                            } else {
+                                oView.getModel("oErrorModel").getData().paymentCurrM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCurr + "\n" + oi18n.getText("mandatoryCurr");
+                            }
+                            iError = true;
+                        }
+                        // if (oView.getModel("oDataModel").getData().shippingInfoDto.isPaymentTermsAgreed === null) {
+                        //     oView.getModel("oErrorModel").getData().isPaymentTermsAgreedE = "Error";
+                        //     iError = true;
+                        // }
+
+                        if (oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === false || oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === null || oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === undefined) {
+                            if (visiblility.invoiceBankDto.isBankProvided === null) {
+                                oView.getModel("oErrorModel").getData().isBankProvidedE = "Error";
+                                iError = true;
+                            }
+                            if (visiblility.invoiceBankDto.isBankProvided) {
+                                //if(apaymentMethod !== 'Optional'){
+                                if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry)) {
+                                    oView.getModel("oErrorModel").getData().bankCountryE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().bankCountryM = oi18n.getText("mandatoryCountry");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().bankCountryM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountry + "\n" + oi18n.getText("mandatoryCountry");
+                                    }
+                                    iError = true;
+                                }
+
+                                if ((!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankName && bankFields.bankName) || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankName)) {
+                                    oView.getModel("oErrorModel").getData().bankNameE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().bankNameM = oi18n.getText("mandatoryBName");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().bankNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryBName + "\n" + oi18n.getText("mandatoryBName");
+                                    }
+                                    iError = true;
+                                }
+
+                                if ((!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAddress && bankFields.bankStreet) || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAddress)) {
+                                    oView.getModel("oErrorModel").getData().bankAddrE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().bankAddrM = oi18n.getText("mandatoryBAddress");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().bankAddrM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryBAddress + "\n" + oi18n.getText("mandatoryBAddress");
+                                    }
+                                    iError = true;
+                                }
+                                if ((!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCity && bankFields.bankCity) || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCity)) {
+                                    oView.getModel("oErrorModel").getData().bankCityE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().bankCityM = oi18n.getText("mandatoryCity");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().bankCityM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCity + "\n" + oi18n.getText("mandatoryCity");
+                                    }
+                                    iError = true;
+                                }
+
+                                if ((!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum && bankFields.benificiaryAccountNumber) || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum)) {
+                                    oView.getModel("oErrorModel").getData().bankAccNumE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("mandatoryAccNum");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().bankAccNumM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryAccNum + "\n" + oi18n.getText("mandatoryAccNum");
+                                    }
+                                    iError = true;
+                                }
+
+                                if ((!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNumConfirm && bankFields.benificiaryAccountNumber) || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNumConfirm)) {
+                                    oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("mandatoryAccNumConfirm");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryAccNumConfirm + "\n" + oi18n.getText("mandatoryAccNumConfirm");
+                                    }
+                                    iError = true;
+                                } else if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNumConfirm) {
+                                    if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNumConfirm !== oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum) {
+                                        oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
+                                        if (isDefaultLan) {
+                                            oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("mandatoryAccNumConfirm");
+                                        } else {
+                                            oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.identicalValuesRequiredAccNum + "\n" + oi18n.getText("identicalValuesRequiredAccNum");
+                                        }
+                                        iError = true;
+                                    }
+                                }
+
+                                if ((!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].benefAccHolderName && bankFields.benificiaryAccHolderName) || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry)) {
+                                    oView.getModel("oErrorModel").getData().benifAccHNameE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().benifAccHNameM = oi18n.getText("mandatoryHolderName");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().benifAccHNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryHolderName + "\n" + oi18n.getText("mandatoryHolderName");
+                                    }
+                                    iError = true;
+                                }
+
+                                if ((!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode && bankFields.swiftCode) || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode)) {
+                                    oView.getModel("oErrorModel").getData().bankSwiftE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().bankSwiftM = oi18n.getText("mandatorySwftCd");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().bankSwiftM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatorySwftCd + "\n" + oi18n.getText("mandatorySwftCd");
+                                    }
+                                    iError = true;
+                                }
+
+                                if ((!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch && bankFields.bankBranch) || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch)) {
+                                    // if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry == "CN" && !oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch) {
+                                    oView.getModel("oErrorModel").getData().bankBranchE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().bankBranchM = oi18n.getText("mandatoryBranch");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().bankBranchM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryBranch + "\n" + oi18n.getText("mandatoryBranch");
+                                    }
+                                    iError = true;
+                                }
+                                if ((!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails && bankFields.referenceDetails) || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails)) {
+                                    oView.getModel("oErrorModel").getData().bankRefE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().bankRefM = oi18n.getText("mandatoryRefDet");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().bankRefM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryRefDet + "\n" + oi18n.getText("mandatoryRefDet");
+                                    }
+                                    iError = true;
+                                }
+                                if ((!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankNumber && bankFields.bankNumber) || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankNumber)) {
+                                    oView.getModel("oErrorModel").getData().bankNumE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().bankNumM = oi18n.getText("mandatoryBankNum");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().bankNumM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryBankNum + "\n" + oi18n.getText("mandatoryBankNum");
+                                    }
+                                    iError = true;
+                                }
+                                if ((!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum && bankFields.iban) || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum)) {
+                                    oView.getModel("oErrorModel").getData().ibanE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().ibanM = oi18n.getText("mandatoryIban");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().ibanM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryIban + "\n" + oi18n.getText("mandatoryIban");
+                                    }
+                                    iError = true;
+                                }
+                                if ((!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNumConfirm && bankFields.iban) || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNumConfirm)) {
+
+                                    oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("mandatoryIbanConfirm");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryIbanConfirm + "\n" + oi18n.getText("mandatoryIbanConfirm");
+                                    }
+                                    iError = true;
+
+                                } else if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNumConfirm) {
+                                    if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNumConfirm !== oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum) {
+                                        oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
+                                        if (isDefaultLan) {
+                                            oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
+                                        } else {
+                                            oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.identicalValuesRequiredIBAN + "\n" + oi18n.getText("identicalValuesRequiredIBAN");
+                                        }
+                                        iError = true;
+                                    }
+                                }
+
+
+                                if ((!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].partnerBankType && bankFields.benificiaryAccCurrency) || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].partnerBankType)) {
+                                    oView.getModel("oErrorModel").getData().benifAccCurrE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().benifAccCurrM = oi18n.getText("mandatoryAccCurr");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().benifAccCurrM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryAccCurr + "\n" + oi18n.getText("mandatoryAccCurr");
+                                    }
+                                    iError = true;
+                                }
+                                // if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey && bankFields.bankControlKey) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey)) {
+                                //     oView.getModel("oErrorModel").getData().bankCtrlKeyE = "Error";
+                                //     oView.getModel("oErrorModel").getData().bankCtrlKeyM = oi18n.getText("mandatoryctrlKey");
+
+                                //     iError = true;
+                                // }
+                                //     }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankName && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankName.length > 60) {
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAddress && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAddress.length > 35) {
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum.length > 18) {
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNumConfirm && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNumConfirm.length > 18) {
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].benefAccHolderName && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].benefAccHolderName.length > 60) {
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails.length > 20) {
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode.length > 11) {
+                                    iError = true;
+                                }
+                                // if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCode.length > 4) {
+                                //     iError = true;
+                                // }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankNumber && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankNumber.length > 15) {
+                                    iError = true;
+                                }
+                                if (this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidationRemit.ibanLength) {
+                                    if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum.length !== parseInt(this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidationRemit.ibanLength)) {
+                                        iError = true;
+                                    }
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCity && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCity.length > 35) {
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankState && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankState.length > 3) {
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch.length > 40) {
+                                    iError = true;
+                                }
+                                // if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey.length > 2) {
+                                //     iError = true;
+                                // }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].instructionKey && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].instructionKey.length > 3) {
+                                    iError = true;
+                                }
+
+
+                                //  if (apaymentMethod !== 'Optional' && that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
+                                var findBankDoc = this.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArrayR").findIndex(function (doc) {
+                                    return doc.docFormType !== "Indemnity Letter";
+                                });
+                                if (findBankDoc == -1) {
+                                    // if (that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
+                                    iError = true;
+                                    oView.byId("fileUploader_ButtonRemit").removeStyleClass("attachmentWithoutBorderBP");
+                                    oView.byId("fileUploader_ButtonRemit").addStyleClass("attachmentWithBorderBP");
+                                } else {
+                                    oView.byId("fileUploader_ButtonRemit").removeStyleClass("attachmentWithBorderBP");
+                                    oView.byId("fileUploader_ButtonRemit").addStyleClass("attachmentWithoutBorderBP");
+                                }
+
+                                if (!iError) {
+
+                                    var vIndemintyInd = false;
+                                    if (oView.getModel("oUserModel").getData().bankCompName != oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].benefAccHolderName) {
+
+                                        var findDomesticDoc = this.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArrayR").findIndex(function (doc) {
+                                            return doc.docFormType == "Indemnity Letter";
+                                        });
+                                        if (findDomesticDoc == -1) {
+                                            iError = true;
+                                            vIndemintyInd = true;
+                                            var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
+                                                isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                                            if (isDefaultLan) {
+                                                sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("IdemnityMsg")), {
+                                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                                    title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                                    contentWidth: "30%",
+                                                    styleClass: "sapUiSizeCompact"
+                                                });
+                                            } else {
+                                                sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.IdemnityMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("IdemnityMsg")), {
+                                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                                    title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                                    contentWidth: "30%",
+                                                    styleClass: "sapUiSizeCompact"
+                                                });
+                                            }
+                                        }
+                                    }
+
+
+                                }
+
+
+                                // var oBankValidation = oView.getModel("oVisibilityModel").getProperty("/bankValidation");
+                                // if(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber) {
+                                //     var bankNum = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber;
+                                //     var bankNumMaxLength = oBankValidation.bankNumLength;
+                                //     var bankNumRule = oBankValidation.bankNumRule;
+                                //     switch(bankNumRule) {
+                                //         case 1:
+                                //             if (/\s/.test(bankNum) || bankNum.length > bankNumMaxLength) {
+                                //                 oView.getModel("oErrorModel").getData().bankNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankNumM = oi18n.getText("rule1");
+                                //                 iError = true;
+                                //             }
+                                //             break;
+                                //         case 2:
+                                //             if (!(/^\d+$/.test(bankNum)) || bankNum.length > bankNumMaxLength) {
+                                //                 oView.getModel("oErrorModel").getData().bankNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankNumM = oi18n.getText("rule2");
+                                //                 iError = true;
+                                //             }
+                                //             break;
+                                //         case 3:
+                                //             if (/\s/.test(bankNum) || !(bankNum.length === bankNumMaxLength)) {
+                                //                 oView.getModel("oErrorModel").getData().bankNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankNumM = oi18n.getText("rule3_1") + " " + bankNumMaxLength + " " + oi18n.getText("rule3_2");
+                                //                 iError = true;
+                                //             }
+                                //             break;
+                                //         case 4:
+                                //             if (!(/^\d+$/.test(bankNum)) || !(bankNum.length === bankNumMaxLength)) {
+                                //                 oView.getModel("oErrorModel").getData().bankNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankNumM = oi18n.getText("rule3_1") + " " + bankNumMaxLength + " " + oi18n.getText("rule4");
+                                //                 iError = true;
+                                //             }
+                                //             break;
+                                //         case 5:
+                                //             if (bankNum.length > bankNumMaxLength) {
+                                //                 oView.getModel("oErrorModel").getData().bankNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankNumM = oi18n.getText("rule5");
+                                //                 iError = true;
+                                //             }
+                                //             break;
+                                //         case 6:
+                                //             if (!(/^[\d ]*$/.test(bankNum)) || bankNum.length > bankNumMaxLength) {
+                                //                 oView.getModel("oErrorModel").getData().bankNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankNumM = oi18n.getText("rule6");
+                                //                 iError = true;
+                                //             }
+                                //             break;
+                                //         case 7:
+                                //             if (!(bankNum.length === bankNumMaxLength)) {
+                                //                 oView.getModel("oErrorModel").getData().bankNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankNumM = oi18n.getText("rule7_1") + " " + bankNumMaxLength + " " + oi18n.getText("rule7_2");
+                                //                     iError = true;
+                                //             }
+                                //             break;
+                                //         case 8:
+                                //             if (!(/^[\d ]*$/.test(bankNum)) || !(bankNum.length === bankNumMaxLength)) {
+                                //                 oView.getModel("oErrorModel").getData().bankNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankNumM = oi18n.getText("rule7_1") + " " + bankNumMaxLength + " " + oi18n.getText("rule8");
+                                //                 iError = true;
+                                //             }     
+                                //     }
+                                // }
+                                // if(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum) {
+                                //     var bankAccNum = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum;
+                                //     var bankAccNumMaxLength = oBankValidation.bankAccNumLength;
+                                //     var bankAccNumRule = oBankValidation.bankAccNumRule;
+                                //     switch(bankAccNumRule) {
+                                //         case 1:
+                                //             if (/\s/.test(bankAccNum) || bankAccNum.length > bankAccNumMaxLength) {
+                                //                 oView.getModel("oErrorModel").getData().bankAccNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("rule1");
+                                //                 iError = true;
+                                //             }
+                                //             break;
+                                //         case 2:
+                                //             if (!(/^\d+$/.test(bankAccNum)) || bankAccNum.length > bankAccNumMaxLength) {
+                                //                 oView.getModel("oErrorModel").getData().bankAccNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("rule2");
+                                //                 iError = true;
+                                //             }
+                                //             break;
+                                //         case 3:
+                                //             if (/\s/.test(bankAccNum) || !(bankAccNum.length === bankAccNumMaxLength)) {
+                                //                 oView.getModel("oErrorModel").getData().bankAccNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("rule3_1") + " " + bankNumMaxLength + " " + oi18n.getText("rule3_2");
+                                //                 iError = true;
+                                //             }
+                                //             break;
+                                //         case 4:
+                                //             if (!(/^\d+$/.test(bankAccNum)) || !(bankAccNum.length === bankAccNumMaxLength)) {
+                                //                 oView.getModel("oErrorModel").getData().bankAccNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("rule3_1") + " " + bankNumMaxLength + " " + oi18n.getText("rule4");
+                                //                 iError = true;
+                                //             }
+                                //             break;
+                                //         case 5:
+                                //             if (bankAccNum.length > bankAccNumMaxLength) {
+                                //                 oView.getModel("oErrorModel").getData().bankAccNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("rule5");
+                                //                 iError = true;
+                                //             }
+                                //             break;
+                                //         case 6:
+                                //             if (!(/^[\d ]*$/.test(bankAccNum)) || bankAccNum.length > bankAccNumMaxLength) {
+                                //                 oView.getModel("oErrorModel").getData().bankAccNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("rule6");
+                                //                 iError = true;
+                                //             }
+                                //             break;
+                                //         case 7:
+                                //             if (!(bankAccNum.length === bankAccNumMaxLength)) {
+                                //                     oView.getModel("oErrorModel").getData().bankAccNumE = "Error";
+                                //                     oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("rule7_1") + " " + bankNumMaxLength + " " + oi18n.getText("rule7_2");
+                                //                     iError = true;
+                                //             }
+                                //             break;
+                                //         case 8:
+                                //             if (!(/^[\d ]*$/.test(bankAccNum)) || !(bankAccNum.length === bankAccNumMaxLength)) {
+                                //                 oView.getModel("oErrorModel").getData().bankAccNumE = "Error";
+                                //                 oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("rule7_1") + " " + bankNumMaxLength + " " + oi18n.getText("rule8");
+                                //                 iError = true;
+                                //             }     
+                                //     }
+                                // }
+                            } else {
+                                oView.byId("fileUploader_ButtonRemit").removeStyleClass("attachmentWithBorderBP");
+                            }
+                            if (visiblility.invoiceBankDto.isBankProvided === false) {
+                                if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.firstName)) {
+                                    oView.getModel("oErrorModel").getData().finance1FNameE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().finance1FNameM = oi18n.getText("mandatoryFName");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().finance1FNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryFName + "\n" + oi18n.getText("mandatoryFName");
+                                    }
+                                    iError = true;
+                                } if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.lastName)) {
+                                    oView.getModel("oErrorModel").getData().finance1LNameE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().finance1LNameM = oi18n.getText("mandatoryLName");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().finance1LNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryLName + "\n" + oi18n.getText("mandatoryLName");
+                                    }
+                                    iError = true;
+                                }
+                                if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email)) {
+
+                                    oView.getModel("oErrorModel").getData().finance1EmailE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().finance1EmailM = oi18n.getText("mandatoryEmail");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().finance1EmailM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryEmail + "\n" + oi18n.getText("mandatoryEmail");
+                                    }
+                                    iError = true;
+                                }
+                                if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.countryContactCode)) {
+                                    oView.getModel("oErrorModel").getData().finance1CountryContCodeE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().finance1CountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().finance1CountryContCodeM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountryConatactCode + "\n" + oi18n.getText("mandatoryCountryConatactCode");
+                                    }
+                                    iError = true;
+                                }
+                                if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.contact || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.contact)) {
+                                    oView.getModel("oErrorModel").getData().finance1ContE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().finance1ContM = oi18n.getText("mandatoryContact");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().finance1ContM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryContact + "\n" + oi18n.getText("mandatoryContact");
+                                    }
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.contact !== "" && Number(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.contact.replaceAll("-", "")) == 0) {
+                                    oView.getModel("oErrorModel").getData().finance1ContE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().finance1ContM = oi18n.getText("invalidContact");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().finance1ContM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidContact + "\n" + oi18n.getText("invalidContact");
+                                    }
+                                    iError = true;
+                                }
+                                if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.countryMobileCode || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.countryMobileCode)) {
+                                    oView.getModel("oErrorModel").getData().finance1CountryContCodeMobE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().finance1CountryContCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().finance1CountryContCodeMobM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountryConatactCode + "\n" + oi18n.getText("mandatoryCountryConatactCode");
+                                    }
+                                    iError = true;
+                                }
+                                if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.mobile)) {
+                                    oView.getModel("oErrorModel").getData().finance1MobE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().finance1MobM = oi18n.getText("mandatoryMContact");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().finance1MobM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryMContact + "\n" + oi18n.getText("mandatoryMContact");
+                                    }
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.mobile !== "" && Number(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.mobile.replaceAll("-", "")) == 0) {
+                                    oView.getModel("oErrorModel").getData().finance1MobE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().finance1MobM = oi18n.getText("invalidMContact");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().finance1MobM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidMContact + "\n" + oi18n.getText("invalidMContact");
+                                    }
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.firstName && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.firstName.length > 30) {
+
+
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.lastName && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.lastName.length > 30) {
+
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email.length && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email.length > 241) {
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.contact && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.contact.length > 30) {
+
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.mobile && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.mobile.length > 30) {
+
+                                    iError = true;
+                                }
+                                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.extension && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.extension.length > 3) {
+                                    iError = true;
+                                }
+                                var that = this;
+                                var email = oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email;
+                                var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
+                                var sDeferred = $.Deferred();
+                                if (email) {
+                                    if (!email.match(mailregex)) {
+                                        oView.getModel("oErrorModel").getData().finance1EmailE = "Error";
+                                        if (isDefaultLan) {
+                                            oView.getModel("oErrorModel").getData().finance1EmailM = oi18n.getText("invalidEmail");
+                                        } else {
+                                            oView.getModel("oErrorModel").getData().finance1EmailM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidEmail + "\n" + oi18n.getText("invalidEmail");
+                                        }
+                                        iError = true;
+
+                                    } else if (email.match(mailregex) && email.toUpperCase() == "NA@JABIL.COM") {
+                                        oView.getModel("oErrorModel").getData().finance1EmailE = "None";
+                                        oView.getModel("oErrorModel").getData().finance1EmailM = "";
+
+                                    }
+
+                                }
+                            }
+
+                            if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.firstName || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.firstName)) {
+                                oView.getModel("oErrorModel").getData().finance2FNameE = "Error";
+                                if (isDefaultLan) {
+                                    oView.getModel("oErrorModel").getData().finance2FNameM = oi18n.getText("mandatoryFName");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance2FNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryFName + "\n" + oi18n.getText("mandatoryFName");
+                                }
+                                iError = true;
+                            } if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.lastName || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.lastName)) {
+                                oView.getModel("oErrorModel").getData().finance2LNameE = "Error";
+                                if (isDefaultLan) {
+                                    oView.getModel("oErrorModel").getData().finance2LNameM = oi18n.getText("mandatoryLName");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance2LNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryLName + "\n" + oi18n.getText("mandatoryLName");
+                                }
+                                iError = true;
+                            }
+                            if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email)) {
+
+                                oView.getModel("oErrorModel").getData().finance2EmailE = "Error";
+                                if (isDefaultLan) {
+                                    oView.getModel("oErrorModel").getData().finance2EmailM = oi18n.getText("mandatoryEmail");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance2EmailM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryEmail + "\n" + oi18n.getText("mandatoryEmail");
+                                }
+
+                                iError = true;
+                            }
+                            if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.countryContactCode || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.countryContactCode)) {
+                                oView.getModel("oErrorModel").getData().finance2CountryContCodeE = "Error";
+                                if (isDefaultLan) {
+                                    oView.getModel("oErrorModel").getData().finance2CountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance2CountryContCodeM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountryConatactCode + "\n" + oi18n.getText("mandatoryCountryConatactCode");
+                                }
+                                iError = true;
+                            }
+                            if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.countryMobileCode || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.countryMobileCode)) {
+                                oView.getModel("oErrorModel").getData().finance2CountryContCodeMobE = "Error";
+                                if (isDefaultLan) {
+                                    oView.getModel("oErrorModel").getData().finance2CountryContCodeMobM = oi18n.getText("mandatoryCountryConatactCode");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance2CountryContCodeMobM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountryConatactCode + "\n" + oi18n.getText("mandatoryCountryConatactCode");
+                                }
+                                iError = true;
+                            }
+                            if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.contact || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.contact)) {
+                                oView.getModel("oErrorModel").getData().finance2ContE = "Error";
+                                if (isDefaultLan) {
+                                    oView.getModel("oErrorModel").getData().finance2ContM = oi18n.getText("mandatoryContact");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance2ContM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryContact + "\n" + oi18n.getText("mandatoryContact");
+                                }
+                                iError = true;
+                            }
+                            if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.contact !== "" && Number(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.contact.replaceAll("-", "")) == 0) {
+                                oView.getModel("oErrorModel").getData().finance2ContE = "Error";
+                                if (isDefaultLan) {
+                                    oView.getModel("oErrorModel").getData().finance2ContM = oi18n.getText("invalidContact");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance2ContM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidContact + "\n" + oi18n.getText("invalidContact");
+                                }
+                                oView.getModel("oErrorModel").getData().finance2ContM = oi18n.getText("invalidContact");
+
+                                iError = true;
+                            }
+                            if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.mobile || spaceRegex.test(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.mobile)) {
+                                oView.getModel("oErrorModel").getData().finance2MobE = "Error";
+                                if (isDefaultLan) {
+                                    oView.getModel("oErrorModel").getData().finance2MobM = oi18n.getText("mandatoryMContact");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance2MobM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryMContact + "\n" + oi18n.getText("mandatoryMContact");
+                                }
+                                iError = true;
+                            }
+                            if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.mobile !== "" && Number(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.mobile.replaceAll("-", "")) == 0) {
+                                oView.getModel("oErrorModel").getData().finance2MobE = "Error";
+                                if (isDefaultLan) {
+                                    oView.getModel("oErrorModel").getData().finance2MobM = oi18n.getText("invalidMContact");
+                                } else {
+                                    oView.getModel("oErrorModel").getData().finance2MobM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidMContact + "\n" + oi18n.getText("invalidMContact");
+                                }
+                                iError = true;
+                            }
+                            if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.firstName && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.firstName.length > 30) {
+
+
+                                iError = true;
+                            }
+                            if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.lastName && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.lastName.length > 30) {
+
+                                iError = true;
+                            }
+                            if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email.length && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email.length > 241) {
+                                iError = true;
+                            }
+                            if (oView.getModel("oDataModel").getData().bankDto.financeContact2.contact && oView.getModel("oDataModel").getData().bankDto.financeContact2.contact.length > 30) {
+
+                                iError = true;
+                            }
+                            if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.mobile && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.mobile.length > 30) {
+
+                                iError = true;
+                            }
+                            if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.extension && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.extension.length > 3) {
+                                iError = true;
+                            }
+                            var that = this;
+                            var email = oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email;
+                            var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
+                            var sDeferred = $.Deferred();
+                            if (email) {
+                                if (!email.match(mailregex)) {
+                                    oView.getModel("oErrorModel").getData().finance2EmailE = "Error";
+                                    if (isDefaultLan) {
+                                        oView.getModel("oErrorModel").getData().finance2EmailM = oi18n.getText("invalidEmail");
+                                    } else {
+                                        oView.getModel("oErrorModel").getData().finance2EmailM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.invalidEmail + "\n" + oi18n.getText("invalidEmail");
+                                    }
+                                    iError = true;
+
+                                } else if (email.match(mailregex) && email.toUpperCase() == "NA@JABIL.COM") {
+                                    oView.getModel("oErrorModel").getData().finance2EmailE = "None";
+                                    oView.getModel("oErrorModel").getData().finance2EmailM = "";
+
+                                }
+
+                            }
+                        }
+
+                        // if (oView.getModel("oDataModel").getData().financeInfoDto.doesFinancialStatements === -1) {
+                        //     oView.getModel("oErrorModel").getData().doesFinancialStatementsE = "Error";
+                        //     iError = true;
+                        // }
+                        // if (oView.getModel("oDataModel").getData().financeInfoDto.financeAuditedLast12M === null) {
+                        //     oView.getModel("oErrorModel").getData().financeAuditedLast12ME = "Error";
+                        //     iError = true;
+                        // }
+                        // if (oView.getModel("oDataModel").getData().financeInfoDto.financeAuditedLast12M === true) {
+                        //     if (!oView.getModel("oDataModel").getData().financeInfoDto.userAudited || spaceRegex.test(oView.getModel("oDataModel").getData().financeInfoDto.userAudited)) {
+                        //         oView.getModel("oErrorModel").getData().financeUserAuditE = "Error";
+                        //         if (isDefaultLan) {
+                        //             oView.getModel("oErrorModel").getData().financeUserAuditM = oi18n.getText("mandatoryName");
+                        //         } else {
+                        //             oView.getModel("oErrorModel").getData().financeUserAuditM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryName + "\n" + oi18n.getText("mandatoryName");
+                        //         }
+                        //         iError = true;
+                        //     }
+                        // }
+                        if (visiblility.isIntermediateBankProvided) {
+                            if (that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.length == 0) {
+                                iError = true;
+                                oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithoutBorder");
+                                oView.byId("fileUploader_BIA").addStyleClass("attachmentWithBorder");
+                            } else {
+                                oView.byId("fileUploader_BIA").removeStyleClass("attachmentWithBorder");
+                                oView.byId("fileUploader_BIA").addStyleClass("attachmentWithoutBorder");
+                            }
+                        }
+                        // if (iError) {
+                        //     oView.byId("bankInfo").setValidated(false);
+                        //     if (!vIndemintyInd) {
+                        //         var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
+                        //             isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                        //         if (isDefaultLan) {
+                        //             sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                        //                 icon: sap.m.MessageBox.Icon.ERROR,
+                        //                 title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        //                 contentWidth: "30%",
+                        //                 styleClass: "sapUiSizeCompact"
+                        //             });
+                        //         } else {
+                        //             sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.validationDefaultMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                        //                 icon: sap.m.MessageBox.Icon.ERROR,
+                        //                 title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                        //                 contentWidth: "30%",
+                        //                 styleClass: "sapUiSizeCompact"
+                        //             });
+                        //         }
+                        //     }
+                        // } else {
+                        //     oView.byId("bankInfo").setValidated(true);
+                        // }
+                        if (!iError) {
+                            if (oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === false || oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === null || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === undefined) {
+                                if (visiblility.invoiceBankDto.isBankProvided === false) {
+                                    if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email !== "" && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email !== "") {
+                                        if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email == oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email) {
+                                            iError = true;
+                                            if (isDefaultLan) {
+                                                sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("correctFC")), {
+                                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                                    title: that.getView().getModel("i18n").getResourceBundle().getText("error")
+                                                });
+                                            } else {
+                                                sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.correctFC + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("correctFC")), {
+                                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                                    title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+
+                                                });
+                                            }
+                                        } else if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email == oView.getModel("oUserModel").getData().supplierEmail) {
+                                            iError = true;
+                                            if (isDefaultLan) {
+                                                sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("correctFC1")), {
+                                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                                    title: that.getView().getModel("i18n").getResourceBundle().getText("error")
+                                                });
+                                            } else {
+                                                sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.correctFC1 + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("correctFC1")), {
+                                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                                    title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+
+                                                });
+                                            }
+                                        } else if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email == oView.getModel("oUserModel").getData().supplierEmail) {
+                                            iError = true;
+                                            if (isDefaultLan) {
+                                                sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("correctFC2")), {
+                                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                                    title: that.getView().getModel("i18n").getResourceBundle().getText("error")
+                                                });
+                                            } else {
+                                                sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.correctFC2 + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("correctFC2")), {
+                                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                                    title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+
+                                                });
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email == oView.getModel("oUserModel").getData().supplierEmail) {
+                                        iError = true;
+                                        if (isDefaultLan) {
+                                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("correctFC2")), {
+                                                icon: sap.m.MessageBox.Icon.ERROR,
+                                                title: that.getView().getModel("i18n").getResourceBundle().getText("error")
+                                            });
+                                        } else {
+                                            sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.correctFC2 + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("correctFC2")), {
+                                                icon: sap.m.MessageBox.Icon.ERROR,
+                                                title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+
+                                            });
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                    } else {
+                        // if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentCurrency) {
+                        //     if (!oView.getModel("oDataModel").getData().shippingInfoDto.newpaymentCurrency) {
+                        //         oView.getModel("oErrorModel").getData().newpaymentCurrE = "Error";
+                        //         if (isDefaultLan) {
+                        //             oView.getModel("oErrorModel").getData().newpaymentCurrM = oi18n.getText("mandatoryNewCurr");
+                        //         } else {
+                        //             oView.getModel("oErrorModel").getData().newpaymentCurrM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryNewCurr + "\n" + oi18n.getText("mandatoryNewCurr");
+                        //         }
+                        //         iError = true;
+                        //     }
+                        // }
+                        // if (oView.getModel("oDataModel").getData().shippingInfoDto.isPaymentTermsAgreed === null) {
+                        //     oView.getModel("oErrorModel").getData().isPaymentTermsAgreedE = "Error";
+                        //     iError = true;
+                        // }
+                        if (iError) {
+                            var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
+                                isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                            if (isDefaultLan) {
+                                sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                    title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                    contentWidth: "30%",
+                                    styleClass: "sapUiSizeCompact"
+                                });
+                            } else {
+                                sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.validationDefaultMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                    icon: sap.m.MessageBox.Icon.ERROR,
+                                    title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                    contentWidth: "30%",
+                                    styleClass: "sapUiSizeCompact"
+                                });
+                            }
+                        }
+                    }
+                }
+
+
+                // if (oView.getModel("oDataModel").getData().shippingInfoDto.isPaymentTermsAgreed === false) {
+                //     if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentTermsComments) {
+                //         oView.getModel("oErrorModel").getData().paymentTermCmtE = "Error";
+                //         if (isDefaultLan) {
+                //             oView.getModel("oErrorModel").getData().paymentTermCmtM = oi18n.getText("mandatoryPayTermComment");
+                //         } else {
+                //             oView.getModel("oErrorModel").getData().paymentTermCmtM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryPayTermComment + "\n" + oi18n.getText("mandatoryPayTermComment");
+                //         }
+                //         iError = true;
+                //     }
+                // }
+                //  }
+                oView.getModel("oErrorModel").refresh();
+                if (oView.byId("companyInfo").getValidated()) {
+                    if (iError) {
+
+                        var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
+                            isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                        if (isDefaultLan) {
+                            sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        } else {
+                            sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.validationDefaultMsg + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("validationDefaultMsg")), {
+                                icon: sap.m.MessageBox.Icon.ERROR,
+                                title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                                contentWidth: "30%",
+                                styleClass: "sapUiSizeCompact"
+                            });
+                        }
+
+
+                        oView.byId("companyInfo").setValidated(false);
+                    } else {
+                        oView.byId("companyInfo").setValidated(true);
+                    }
                 }
                 if (vAppName == "SupplierFinance") {
                     if (iError == true) {
@@ -6989,13 +7905,13 @@ sap.ui.define([
 
                         iError = true;
                     }
-                    if(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum){
-                    if (this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.ibanLength && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum.length !== parseInt(this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.ibanLength)) {
+                    if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum) {
+                        if (this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.ibanLength && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum.length !== parseInt(this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.ibanLength)) {
 
 
-                        iError = true;
+                            iError = true;
+                        }
                     }
-                }
                     if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity && oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity.length > 35) {
 
 
@@ -8164,6 +9080,63 @@ sap.ui.define([
                     // that.emailValidResult = false;
                 }
             },
+            fnInputConfirmBankAccNumber1Remit: function (oEvent) {
+                if (oEvent.getSource().getValue()) {
+                    if (oEvent.getSource().getValue().length == oEvent.getSource().getMaxLength()) {
+                        oEvent.getSource().setValueState("Error");
+                        oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                    } else if (oEvent.getSource().getValue()) {
+                        oEvent.getSource().setValueState("None");
+                        oEvent.getSource().setValueStateText("");
+                    }
+                }
+                var firstDigit = "", secondDigit = "";
+                var bankCountryDesc = formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().Country, oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry);
+                if (bankCountryDesc == "Russian Fed.") {
+                    if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum) {
+                        oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankControlKey = oEvent.getSource().getValue().substring(2, 0);
+                    }
+                } else if (bankCountryDesc == "Brazil") {
+                    if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch.includes("-")) {
+                        var bankBranch = oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch;
+                        firstDigit = bankBranch.substring(bankBranch.indexOf("-") + 2, bankBranch.indexOf("-") + 1)
+                    } else {
+                        firstDigit = " ";
+                    }
+                    if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum.includes("-")) {
+                        var bankAccNum = oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum;
+                        secondDigit = bankAccNum.substring(bankAccNum.indexOf("-") + 2, bankAccNum.indexOf("-") + 1)
+                    }
+                    if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch.includes("-") && !oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum.includes("-")) {
+                        oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankControlKey = "";
+                    }
+                    else {
+                        oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankControlKey = firstDigit + secondDigit;
+                    }
+
+                }
+
+                var that = this;
+                var confirmBankAccNum = oEvent.getSource().getValue();
+                var InputBankAccNum = oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNumConfirm;
+                if (confirmBankAccNum !== InputBankAccNum) {
+                    oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
+                    oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
+                    oView.getModel("oErrorModel").refresh();
+                    // that.emailValidResult = true;
+                    // sap.m.MessageBox.alert(oView.getModel("i18n").getResourceBundle().getText("identicalValuesRequired"), {
+                    //             icon: sap.m.MessageBox.Icon.ERROR,
+                    //             title: oView.getModel("i18n").getResourceBundle().getText("error"),
+                    //             contentWidth: "30%",
+                    //             styleClass: "sapUiSizeCompact"
+                    //         });
+                } else {
+                    oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "None";
+
+                    oView.getModel("oErrorModel").refresh();
+                    // that.emailValidResult = false;
+                }
+            },
             fnInputConfirmBankAccNumber: function (oEvent) {
                 if (oEvent.getSource().getValue()) {
                     if (oEvent.getSource().getValue().length == oEvent.getSource().getMaxLength()) {
@@ -8177,7 +9150,36 @@ sap.ui.define([
 
                 var that = this;
                 var confirmBankAccNum = oEvent.getSource().getValue();
-                var InputBankAccNum = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum;
+                var InputBankAccNum = oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum;
+                if (confirmBankAccNum !== InputBankAccNum) {
+                    oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
+                    oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
+                    oView.getModel("oErrorModel").refresh();
+                    // that.emailValidResult = true;
+                    // sap.m.MessageBox.alert(oView.getModel("i18n").getResourceBundle().getText("identicalValuesRequired"), {
+                    //             icon: sap.m.MessageBox.Icon.ERROR,
+                    //             title: oView.getModel("i18n").getResourceBundle().getText("error"),
+                    //             contentWidth: "30%",
+                    //             styleClass: "sapUiSizeCompact"
+                    //         });
+                } else {
+                    // that.emailValidResult = false;
+                }
+            },
+            fnInputConfirmBankAccNumberRemit: function (oEvent) {
+                if (oEvent.getSource().getValue()) {
+                    if (oEvent.getSource().getValue().length == oEvent.getSource().getMaxLength()) {
+                        oEvent.getSource().setValueState("Error");
+                        oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                    } else if (oEvent.getSource().getValue()) {
+                        oEvent.getSource().setValueState("None");
+                        oEvent.getSource().setValueStateText("");
+                    }
+                }
+
+                var that = this;
+                var confirmBankAccNum = oEvent.getSource().getValue();
+                var InputBankAccNum = oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum;
                 if (confirmBankAccNum !== InputBankAccNum) {
                     oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
                     oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
@@ -8263,6 +9265,83 @@ sap.ui.define([
                     // that.emailValidResult = false;
                 }
             },
+            fnInputConfirmIban1Remit: function (oEvent) {
+                if (oEvent.getSource().getValue()) {
+
+                    if (oEvent.getSource().getMaxLength() && oEvent.getSource().getValue().length !== oEvent.getSource().getMaxLength()) {
+                        oEvent.getSource().setValueState("Error");
+                        oEvent.getSource().setValueStateText(oi18n.getText("exactLengthMessage") + " " + this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.ibanLength + " " + oi18n.getText("characters"));
+                    } else if (oEvent.getSource().getValue()) {
+                        oEvent.getSource().setValueState("None");
+                        oEvent.getSource().setValueStateText("");
+                    }
+
+                }
+                if (this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidationRemit.bankControlKeyLogic == "IBAN") {
+                    oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankControlKey = "";
+                    var digitVal = this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidationRemit.bankControlKeyDigitsLogic;
+                    digitVal = digitVal.split(",");
+                    var dlength = digitVal.length;
+                    if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum) {
+                        for (var i = 0; i < dlength; i++) {
+                            oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankControlKey = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey + oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum.charAt(digitVal[i] - 1);
+                        }
+                    }
+                }
+
+                var that = this;
+                var confirmIBAN = oEvent.getSource().getValue();
+                var InputIBAN = oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNumConfirm;
+                if (confirmIBAN !== InputIBAN) {
+                    oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
+                    oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
+                    oView.getModel("oErrorModel").refresh();
+                    // that.emailValidResult = true;
+                    // sap.m.MessageBox.alert(oView.getModel("i18n").getResourceBundle().getText("identicalValuesRequired"), {
+                    //             icon: sap.m.MessageBox.Icon.ERROR,
+                    //             title: oView.getModel("i18n").getResourceBundle().getText("error"),
+                    //             contentWidth: "30%",
+                    //             styleClass: "sapUiSizeCompact"
+                    //         });
+                } else {
+                    oView.getModel("oErrorModel").getData().ibanConfirmE = "None";
+                    //   oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
+                    oView.getModel("oErrorModel").refresh();
+                    // that.emailValidResult = false;
+                }
+            },
+
+            fnInputConfirmIbanRemit: function (oEvent) {
+                if (oEvent.getSource().getValue()) {
+
+                    if (oEvent.getSource().getMaxLength() && oEvent.getSource().getValue().length !== oEvent.getSource().getMaxLength()) {
+                        oEvent.getSource().setValueState("Error");
+                        oEvent.getSource().setValueStateText(oi18n.getText("exactLengthMessage") + " " + this.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation.ibanLength + " " + oi18n.getText("characters"));
+                    } else if (oEvent.getSource().getValue()) {
+                        oEvent.getSource().setValueState("None");
+                        oEvent.getSource().setValueStateText("");
+                    }
+                }
+
+                var that = this;
+                var confirmIBAN = oEvent.getSource().getValue();
+                var InputIBAN = oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum;
+                if (confirmIBAN !== InputIBAN) {
+                    oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
+                    oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
+                    oView.getModel("oErrorModel").refresh();
+                    // that.emailValidResult = true;
+                    // sap.m.MessageBox.alert(oView.getModel("i18n").getResourceBundle().getText("identicalValuesRequired"), {
+                    //             icon: sap.m.MessageBox.Icon.ERROR,
+                    //             title: oView.getModel("i18n").getResourceBundle().getText("error"),
+                    //             contentWidth: "30%",
+                    //             styleClass: "sapUiSizeCompact"
+                    //         });
+                } else {
+                    // that.emailValidResult = false;
+                }
+            },
+
             fnInputConfirmIban: function (oEvent) {
                 if (oEvent.getSource().getValue()) {
 
@@ -8295,6 +9374,7 @@ sap.ui.define([
                     // that.emailValidResult = false;
                 }
             },
+
 
             fnVerifyBankAccNum: function (oEvent) {
                 if (oEvent.getSource().getValue()) {
@@ -8776,15 +9856,15 @@ sap.ui.define([
                     // if(oEvent.getSource().getSelectedKeys().length == 1){
                     //     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod =    oEvent.getSource().getSelectedKeys()[0];
                     // }else{
-                        for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
-                            if(!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod){
-                            oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod =oEvent.getSource().getSelectedKeys()[i];
-                            }else{
-                                oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod +","+ oEvent.getSource().getSelectedKeys()[i];
-                            }
+                    for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
+                        if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod) {
+                            oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oEvent.getSource().getSelectedKeys()[i];
+                        } else {
+                            oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod + "," + oEvent.getSource().getSelectedKeys()[i];
                         }
-                    
-                   
+                    }
+
+
                 } else {
                     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = "";
                 }
@@ -9022,7 +10102,7 @@ sap.ui.define([
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");
                     }
-                } else{
+                } else {
                     this.getOwnerComponent().getModel("oVisibilityModel").getData().DocTypeSelected = true;
                 }
                 this.getOwnerComponent().getModel("oVisibilityModel").refresh(true);
@@ -9037,11 +10117,11 @@ sap.ui.define([
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");
                     }
-                } else{
+                } else {
                     this.getOwnerComponent().getModel("oVisibilityModel").getData().bankDocTypeSelected = true;
                 }
                 this.getOwnerComponent().getModel("oVisibilityModel").refresh(true);
-                
+
             },
             fnDocNameChange: function (oEvent) {
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
@@ -9050,7 +10130,7 @@ sap.ui.define([
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");
                     }
-                } 
+                }
                 else {
                     this.getOwnerComponent().getModel("oVisibilityModel").getData().LocDocNameSelected = true;
                 }
@@ -9106,7 +10186,7 @@ sap.ui.define([
                         var oFormData = new FormData(),
 
                             secName = that.oWizard.getCurrentStep().split("---VendorSurvey--")[1];
-                            var vSectionTitle = that.fnGetSectionName(fileUploadId);
+                        var vSectionTitle = that.fnGetSectionName(fileUploadId);
                         // jQuery.sap.domById(fileUploadId + "-fu").setAttribute("type", "file");
                         // @ts-ignore
                         // oFormData.append("file", jQuery.sap.domById(fileUploadId + "-fu").files[0]);
@@ -9115,8 +10195,8 @@ sap.ui.define([
                         oFormData.append("folderName", oView.getModel("oUserModel").getData().caseId);
                         oFormData.append("requestId", oView.getModel("oUserModel").getData().caseId);
                         oFormData.append("docInSection", secName);
-                       
-                        
+
+
                         oFormData.append("fileExt", file.name.split(".")[1]);
                         oFormData.append("type", "application/octet-stream");
                         // oFormData.append("expiryDate", expiryDate);
@@ -9138,7 +10218,198 @@ sap.ui.define([
                         };
 
                         var _arrayTitle = that._fnGetUploaderId(fileUploadId);
-                     
+
+                        oBusyDialogFile.open();
+                        var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
+                        // @ts-ignore
+                        $.ajax({
+                            url: sUrl,
+                            data: oFormData,
+                            contentType: false,
+                            accept: '*/*',
+                            type: 'POST',
+                            processData: false,
+                            success: function (data) {
+                                oAttachData.dmsDocumentId = data.dmsDocumentId;
+                                oAttachData.dmsFolderId = data.dmsFolderId;
+                                oAttachData.fileSize = data.fileSize;
+                                oAttachData.docFormType = data.docFormType;
+                                that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).push(oAttachData);
+                                that.getView().getModel("oAttachmentList").refresh(true);
+
+                                oBusyDialogFile.close();
+                            },
+                            error: function (data) {
+                                var eMsg = data.responseText;
+                                if (data.status == 406) {
+                                    // var eMsg = "The file already exists. Do you want to overwrite it?"
+                                    var msg;
+                                    if (isDefaultLan) {
+                                        msg = that.getView().getModel("i18n").getResourceBundle().getText("fileAlreadyExists");
+                                    } else {
+                                        msg = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.fileAlreadyExists + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("fileAlreadyExists");
+                                    }
+                                    MessageBox.confirm(msg, {
+                                        icon: MessageBox.Icon.Confirmation,
+                                        title: "Confirmation",
+                                        actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                                        emphasizedAction: MessageBox.Action.YES,
+                                        onClose: function (oAction) {
+                                            if (oAction == "YES") {
+                                                oFormData.set("overwriteFlag", true);
+                                                //  oFormData.append("deletedBy", oView.getModel("oUserModel").getData().user.givenName);
+                                                var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).findIndex(function (docId) { return docId.name === file.name });
+                                                if (index !== -1) {
+                                                    that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).splice(index, 1);
+                                                }
+                                                //     if(_arrayTitle === "bankINDArray" || _arrayTitle === "bankDArray"){
+                                                //         var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").findIndex(function (docId) { return docId.name == file.name });
+                                                //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankINDArray").splice(index, 1);
+                                                //     var index = that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").findIndex(function (docId) { return docId.name == file.name });
+                                                //    that.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArray").splice(index, 1);
+                                                //    }
+                                                that.getView().getModel("oAttachmentList").refresh(true);
+                                                var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
+                                                oBusyDialogFile.open();
+                                                // @ts-ignore
+                                                $.ajax({
+                                                    url: sUrl,
+                                                    data: oFormData,
+                                                    contentType: false,
+                                                    accept: '*/*',
+                                                    type: 'POST',
+                                                    processData: false,
+                                                    success: function (data) {
+                                                        oAttachData.dmsDocumentId = data.dmsDocumentId;
+                                                        oAttachData.dmsFolderId = data.dmsFolderId;
+                                                        oAttachData.fileSize = data.fileSize;
+                                                        oAttachData.docFormType = data.docFormType;
+                                                        that.getView().getModel("oAttachmentList").getProperty("/0/" + _arrayTitle).push(oAttachData);
+                                                        that.getView().getModel("oAttachmentList").refresh(true);
+                                                        oBusyDialogFile.close();
+
+                                                    }, error: function (data) {
+                                                        var eMsg = data.responseText
+                                                        MessageBox.show(eMsg, {
+                                                            icon: sap.m.MessageBox.Icon.ERROR,
+                                                            title: oi18n.getText("error")
+                                                        });
+                                                        oBusyDialogFile.close();
+                                                    }
+                                                });
+                                            } else {
+                                                if (oBusyDialogFile) {
+                                                    oBusyDialogFile.close();
+                                                }
+                                            }
+                                        }
+                                    });
+                                } else {
+
+                                    MessageBox.show(eMsg, {
+                                        icon: sap.m.MessageBox.Icon.ERROR,
+                                        title: oi18n.getText("error")
+                                    });
+                                }
+
+                            }
+                        });
+                    } else {
+                        sap.m.MessageToast.show("Please select Document Type");
+                        return;
+
+
+                    }
+
+                }
+                this.oPopup.close();
+                this.oPopup.destroy();
+                this.oPopup = undefined;
+            },
+            fnOnFileUploadBPBankRemit: function (oEvt) {
+                var that = this;
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
+                var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                var fileUploadId = oEvt.mParameters.id,
+                    fileUpload = oEvt.getSource(),
+                    domRef = fileUpload.getFocusDomRef(),
+                    // @ts-ignore
+                    file = domRef.files[0];
+                if (file.name.length > 60) {
+
+                    if (isDefaultLan) {
+                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                    } else {
+                        sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.docFileNameExtendedMessage + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("docFileNameExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                    }
+                } else if (Number((file.size * 0.000001).toFixed(1)) > 8) {
+                    if (isDefaultLan) {
+                        sap.m.MessageBox.alert((that.getView().getModel("i18n").getResourceBundle().getText("docFileSizeExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                    } else {
+                        sap.m.MessageBox.alert((oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.docFileNameExtendedMessage + "\n" + that.getView().getModel("i18n").getResourceBundle().getText("docFileSizeExtendedMessage")), {
+                            icon: sap.m.MessageBox.Icon.ERROR,
+                            title: oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.error + "/" + that.getView().getModel("i18n").getResourceBundle().getText("error"),
+                            contentWidth: "30%",
+                            styleClass: "sapUiSizeCompact"
+                        });
+                    }
+                }
+                else {
+                    var docType = this.oPopup.getContent()[0].getAggregation("items")[0].getAggregation("items")[2].getValue();
+                    // @ts-ignore
+                    if (docType) {
+                        var oFormData = new FormData(),
+
+                            secName = that.oWizard.getCurrentStep().split("---VendorSurvey--")[1];
+                        var vSectionTitle = that.fnGetSectionName(fileUploadId);
+                        var _arrayTitle = that._fnGetUploaderId(fileUploadId);
+                        // jQuery.sap.domById(fileUploadId + "-fu").setAttribute("type", "file");
+                        // @ts-ignore
+                        // oFormData.append("file", jQuery.sap.domById(fileUploadId + "-fu").files[0]);
+                        oFormData.append("file", file);
+                        oFormData.append("name", file.name);
+                        oFormData.append("folderName", oView.getModel("oUserModel").getData().caseId);
+                        oFormData.append("requestId", oView.getModel("oUserModel").getData().caseId);
+                        oFormData.append("docInSection", _arrayTitle);
+
+
+                        oFormData.append("fileExt", file.name.split(".")[1]);
+                        oFormData.append("type", "application/octet-stream");
+                        // oFormData.append("expiryDate", expiryDate);
+                        // oFormData.append("reminderDays", reminderDays);
+                        oFormData.append("docFormType", docType);
+                        oFormData.append("overwriteFlag", false);
+                        oFormData.append("docDescription", vSectionTitle);
+                        oFormData.append("processName", that.getOwnerComponent().getModel("oVisibilityModel").getData().taskName);
+
+                        if (oView.getModel("oUserModel")) {
+                            oFormData.append("addedBy", oView.getModel("oUserModel").getData().user.givenName);
+                        }
+                        var oAttachData = {
+
+                            "fileExt": file.name.split(".")[1],
+
+                            "name": file.name,
+                            "docFormType": docType
+                        };
+
+
+
                         oBusyDialogFile.open();
                         var sUrl = "/comjabilsurveyform/plcm_portal_services/document/upload";
                         // @ts-ignore
@@ -9298,7 +10569,7 @@ sap.ui.define([
                         var oFormData = new FormData(),
 
                             secName = that.oWizard.getCurrentStep().split("---VendorSurvey--")[1];
-                            var vSectionTitle = that.fnGetSectionName(fileUploadId);
+                        var vSectionTitle = that.fnGetSectionName(fileUploadId);
                         // jQuery.sap.domById(fileUploadId + "-fu").setAttribute("type", "file");
                         // @ts-ignore
                         // oFormData.append("file", jQuery.sap.domById(fileUploadId + "-fu").files[0]);
@@ -9696,6 +10967,9 @@ sap.ui.define([
                 else if (fileUploadId == "fileUploader_BA") {
                     return "bankDArray";
                 }
+                else if (fileUploadId == "fileUploader_BAR") {
+                    return "bankDArrayR";
+                }
                 else if (fileUploadId == "fileUploader_BIA") {
                     return "bankINDArray";
                 }
@@ -9733,6 +11007,9 @@ sap.ui.define([
                 }
                 else if (fileUploadId == "fileUploader_BA") {
                     return "Supplier Payment/Banking";
+                }
+                else if (fileUploadId == "fileUploader_BAR") {
+                    return "Supplier Remit to Address Bank";
                 }
                 else if (fileUploadId == "fileUploader_BIA") {
                     return "Intermediary Bank";
@@ -9877,8 +11154,9 @@ sap.ui.define([
 
                     }
                     else if (currentStepId == "companyInfo") {
-                        this._fnValidateCompanyInfo();
 
+                        this._fnValidateCompanyInfo();
+                        this._fnValidateBankInfoRemit();
                         oView.byId('bankInfo').addEventDelegate({
                             onAfterRendering: function () {
                                 if (isNew) {
@@ -10172,7 +11450,7 @@ sap.ui.define([
                         oPayload.ownerShipInfoDto.managedByGovtFamilyContact.jobTitle = "";
                         oPayload.ownerShipInfoDto.managedByGovtFamilyContact.countryContactCode = "";
                     }
-//Commented as per new req on bank
+                    //Commented as per new req on bank
                     // if (oPayload.comInfoDto.isRemitToAddress) {
                     //     oPayload.bankDto.bankInfoDto[0].accountGroup = "Z004";
                     // } else {
@@ -10239,30 +11517,30 @@ sap.ui.define([
                         oPayload.bankDto.financeContact2.countryMobileCode = "";
                         oPayload.bankDto.financeContact2.contactInSection = "";
                     }
-                    if (oPayload.bankDto.isBankProvided === false ) {
-                        if( oPayload.bankDto.bankInfoDto[0].bankCountry === ""){
-                        oPayload.bankDto.bankInfoDto[0].bankName = "";
-                        oPayload.bankDto.bankInfoDto[0].bankAddress = "";
-                        oPayload.bankDto.bankInfoDto[0].bankCity = "";
-                        oPayload.bankDto.bankInfoDto[0].bankState = "";
-                        oPayload.bankDto.bankInfoDto[0].bankCountry = "";
-                        oPayload.bankDto.bankInfoDto[0].bankBranch = "";
-                        oPayload.bankDto.bankInfoDto[0].benefAccHolderName = "";
-                        oPayload.bankDto.bankInfoDto[0].bankAccNum = "";
-                        oPayload.bankDto.bankInfoDto[0].refBankDetails = "";
-                        oPayload.bankDto.bankInfoDto[0].swiftCode = "";
-                        oPayload.bankDto.bankInfoDto[0].bankNumber = "";
-                        oPayload.bankDto.bankInfoDto[0].bankAccNumConfirm = "";
-                        oPayload.bankDto.bankInfoDto[0].ibanNum = "";
-                        oPayload.bankDto.bankInfoDto[0].ibanNumConfirm = "";
-                        oPayload.bankDto.bankInfoDto[0].bankCode = "";
-                        oPayload.bankDto.bankInfoDto[0].partnerBankType = "";
-                        oPayload.bankDto.bankInfoDto[0].bankControlKey = "";
-                        // oPayload.bankDto.bankInfoDto[0].instructionKey = ""; // commented since the key is default value in all screens- siva ---- date:01/10/2021
-                        oPayload.bankDto.financeContact1.contactInSection = "FinanceSupplier";
-                        oPayload.bankDto.financeContact2.contactInSection = "Reviewer";
+                    if (oPayload.bankDto.isBankProvided === false) {
+                        if (oPayload.bankDto.bankInfoDto[0].bankCountry === "") {
+                            oPayload.bankDto.bankInfoDto[0].bankName = "";
+                            oPayload.bankDto.bankInfoDto[0].bankAddress = "";
+                            oPayload.bankDto.bankInfoDto[0].bankCity = "";
+                            oPayload.bankDto.bankInfoDto[0].bankState = "";
+                            oPayload.bankDto.bankInfoDto[0].bankCountry = "";
+                            oPayload.bankDto.bankInfoDto[0].bankBranch = "";
+                            oPayload.bankDto.bankInfoDto[0].benefAccHolderName = "";
+                            oPayload.bankDto.bankInfoDto[0].bankAccNum = "";
+                            oPayload.bankDto.bankInfoDto[0].refBankDetails = "";
+                            oPayload.bankDto.bankInfoDto[0].swiftCode = "";
+                            oPayload.bankDto.bankInfoDto[0].bankNumber = "";
+                            oPayload.bankDto.bankInfoDto[0].bankAccNumConfirm = "";
+                            oPayload.bankDto.bankInfoDto[0].ibanNum = "";
+                            oPayload.bankDto.bankInfoDto[0].ibanNumConfirm = "";
+                            oPayload.bankDto.bankInfoDto[0].bankCode = "";
+                            oPayload.bankDto.bankInfoDto[0].partnerBankType = "";
+                            oPayload.bankDto.bankInfoDto[0].bankControlKey = "";
+                            // oPayload.bankDto.bankInfoDto[0].instructionKey = ""; // commented since the key is default value in all screens- siva ---- date:01/10/2021
+                            oPayload.bankDto.financeContact1.contactInSection = "FinanceSupplier";
+                            oPayload.bankDto.financeContact2.contactInSection = "Reviewer";
 
-                    }
+                        }
                     } else {
                         oPayload.bankDto.financeContact1.firstName = "";
                         oPayload.bankDto.financeContact1.lastName = "";
@@ -10394,18 +11672,104 @@ sap.ui.define([
                             if (oEvent.getParameter("success")) {
 
                                 oView.getModel("oDataModel").setData(oEvent.getSource().oData);
+
                                 oView.getModel("oDataModel").refresh();
 
-                                if(that.getView().getModel("oDataModel").getData().comComplianceDto.localDocuments &&that.getView().getModel("oDataModel").getData().comComplianceDto.localDocuments.length >0){
+                                // var temp = {
+                                //     "bankInfoDto": [
+                                //         {
+                                //             "accountGroup": "Z004",
+                                //             "bankAccNum": "",
+                                //             "bankAccNumConfirm": "",
+                                //             "bankAddress": "",
+                                //             "bankBranch": "",
+                                //             "bankCity": "",
+                                //             "bankCode": "",
+                                //             "bankControlKey": "",
+                                //             "bankCountry": "",
+                                //             "bankDetailsId": "",
+                                //             "bankKey": "",
+                                //             "bankName": "",
+                                //             "bankNumber": "",
+                                //             "bankState": "",
+                                //             "benefAccHolderName": "",
+                                //             "ibanNum": "",
+                                //             "ibanNumConfirm": "",
+                                //             "instructionKey": "",
+                                //             "localAddress": "",
+                                //             "localBranch": "",
+                                //             "localCity": "",
+                                //             "localName": "",
+                                //             "mdgBankDetailsId": "",
+                                //             "partnerBankType": "",
+                                //             "refBankDetails": "",
+                                //             "swiftCode": "",
+                                //             "validationIndicator": "0"
+                                //         }
+                                //     ],
+                                //     "financeContact1": {
+                                //         "contact": "",
+                                //         "contactId": "",
+                                //         "contactInSection": "",
+                                //         "contactName": "",
+                                //         "contactType": "",
+                                //         "countryContactCode": "",
+                                //         "countryMobileCode": "",
+                                //         "dateCreated": null,
+                                //         "dateUpdated": null,
+                                //         "department": "",
+                                //         "email": "",
+                                //         "entityName": "",
+                                //         "extension": "",
+                                //         "firstName": "",
+                                //         "jobTitle": "",
+                                //         "lastName": "",
+                                //         "mobile": "",
+                                //         "userCreated": "",
+                                //         "userUpdated": ""
+                                //     },
+                                //     "financeContact2": {
+                                //         "contact": "",
+                                //         "contactId": "",
+                                //         "contactInSection": "",
+                                //         "contactName": "",
+                                //         "contactType": "",
+                                //         "countryContactCode": "",
+                                //         "countryMobileCode": "",
+                                //         "dateCreated": null,
+                                //         "dateUpdated": null,
+                                //         "department": "",
+                                //         "email": "",
+                                //         "entityName": "",
+                                //         "extension": "",
+                                //         "firstName": "",
+                                //         "jobTitle": "",
+                                //         "lastName": "",
+                                //         "mobile": "",
+                                //         "userCreated": "",
+                                //         "userUpdated": ""
+                                //     },
+                                //     "isBankProvided": true,
+                                //     "isIntermediateBankProvided": true,
+                                //     "isbankdetailsHidden": true
+
+                                // };
+                                // oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto = temp;
+                                // oView.getModel("oDataModel").getData().comInfoDto.isBankProvided = null;
+                                // oView.getModel("oDataModel").getData().comInfoDto.isIntermediateBankProvided = false;
+                                // oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden = null;
+
+                                //oView.getModel("oDataModel").refresh();
+                                if (that.getView().getModel("oDataModel").getData().comComplianceDto.localDocuments && that.getView().getModel("oDataModel").getData().comComplianceDto.localDocuments.length > 0) {
                                     var findDomesticDoc = oView.getModel("oDataModel").getData().comComplianceDto.localDocuments.findIndex(function (doc) {
                                         return doc.documentType == "Signature Required";
                                     });
-                                    if(findDomesticDoc !== -1){
+                                    if (findDomesticDoc !== -1) {
                                         oView.getModel('oVisibilityModel').getData().isSignedDocCC = true;
                                     }
                                     oView.getModel('oVisibilityModel').refresh();
-                                    
-                                  
+
+
                                 }
 
                                 oBusyDialogSave.close();
@@ -10826,7 +12190,7 @@ sap.ui.define([
                         oPayload.ownerShipInfoDto.managedByGovtFamilyContact.jobTitle = "";
                         oPayload.ownerShipInfoDto.managedByGovtFamilyContact.countryContactCode = "";
                     }
-//Commented as per new req for bank
+                    //Commented as per new req for bank
                     // if (oPayload.comInfoDto.isRemitToAddress) {
                     //     oPayload.bankDto.bankInfoDto[0].accountGroup = "Z004";
                     // } else {
@@ -10890,29 +12254,29 @@ sap.ui.define([
                         oPayload.bankDto.financeContact2.contactInSection = "";
                     }
                     if (oPayload.bankDto.isBankProvided === false) {
-                        if(oPayload.bankDto.bankInfoDto[0].bankCountry === ""){
-                        oPayload.bankDto.bankInfoDto[0].bankName = "";
-                        oPayload.bankDto.bankInfoDto[0].bankAddress = "";
-                        oPayload.bankDto.bankInfoDto[0].bankCity = "";
-                        oPayload.bankDto.bankInfoDto[0].bankState = "";
-                        oPayload.bankDto.bankInfoDto[0].bankCountry = "";
-                        oPayload.bankDto.bankInfoDto[0].bankBranch = "";
-                        oPayload.bankDto.bankInfoDto[0].benefAccHolderName = "";
-                        oPayload.bankDto.bankInfoDto[0].bankAccNum = "";
-                        oPayload.bankDto.bankInfoDto[0].refBankDetails = "";
-                        oPayload.bankDto.bankInfoDto[0].swiftCode = "";
-                        oPayload.bankDto.bankInfoDto[0].bankNumber = "";
-                        oPayload.bankDto.bankInfoDto[0].bankAccNumConfirm = "";
-                        oPayload.bankDto.bankInfoDto[0].ibanNum = "";
-                        oPayload.bankDto.bankInfoDto[0].ibanNumConfirm = "";
-                        oPayload.bankDto.bankInfoDto[0].bankCode = "";
-                        oPayload.bankDto.bankInfoDto[0].partnerBankType = "";
-                        oPayload.bankDto.bankInfoDto[0].bankControlKey = "";
+                        if (oPayload.bankDto.bankInfoDto[0].bankCountry === "") {
+                            oPayload.bankDto.bankInfoDto[0].bankName = "";
+                            oPayload.bankDto.bankInfoDto[0].bankAddress = "";
+                            oPayload.bankDto.bankInfoDto[0].bankCity = "";
+                            oPayload.bankDto.bankInfoDto[0].bankState = "";
+                            oPayload.bankDto.bankInfoDto[0].bankCountry = "";
+                            oPayload.bankDto.bankInfoDto[0].bankBranch = "";
+                            oPayload.bankDto.bankInfoDto[0].benefAccHolderName = "";
+                            oPayload.bankDto.bankInfoDto[0].bankAccNum = "";
+                            oPayload.bankDto.bankInfoDto[0].refBankDetails = "";
+                            oPayload.bankDto.bankInfoDto[0].swiftCode = "";
+                            oPayload.bankDto.bankInfoDto[0].bankNumber = "";
+                            oPayload.bankDto.bankInfoDto[0].bankAccNumConfirm = "";
+                            oPayload.bankDto.bankInfoDto[0].ibanNum = "";
+                            oPayload.bankDto.bankInfoDto[0].ibanNumConfirm = "";
+                            oPayload.bankDto.bankInfoDto[0].bankCode = "";
+                            oPayload.bankDto.bankInfoDto[0].partnerBankType = "";
+                            oPayload.bankDto.bankInfoDto[0].bankControlKey = "";
                         }
                         // oPayload.bankDto.bankInfoDto[0].instructionKey = ""; // commented since the key is default value in all screens- siva ---- date:01/10/2021
                         oPayload.bankDto.financeContact1.contactInSection = "FinanceSupplier";
                         oPayload.bankDto.financeContact2.contactInSection = "Reviewer";
-                        
+
                     } else {
                         oPayload.bankDto.financeContact1.firstName = "";
                         oPayload.bankDto.financeContact1.lastName = "";
@@ -11461,6 +12825,10 @@ sap.ui.define([
                 if (oView.getModel("oDataModel").getData().comComplianceDto.ndaSignedBefore === 0) {
                     vNDAQuetion = "YES";
                 }
+                var vRemitance = "NO";
+                if(oView.getModel("oDataModel").getData().comInfoDto.isRemitToAddress){
+                    vRemitance = "YES";
+                }
 
                 var wPayload =
                 {
@@ -11524,8 +12892,41 @@ sap.ui.define([
                             "isIntermediateBankProvided": oView.getModel("oDataModel").getData().bankDto.isIntermediateBankProvided ? true : false,
                             "financeContact1": oView.getModel("oDataModel").getData().bankDto.isBankProvided ? "" : oView.getModel("oDataModel").getData().bankDto.financeContact1.email,
                             "financeContact2": oView.getModel("oDataModel").getData().bankDto.financeContact2.email
-                        }
+                        },
 
+                        "ipAuditWfDto": {
+                            "bankAccountNumber": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum,
+                            "bankAddress": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAddress,
+                            "bankBranch": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch,
+                            "bankCity": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCity,
+                            "bankCountryKey": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry,
+                            "bankName": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankName,
+                            "bankNumber": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankNumber,
+                            "bankState": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankState,
+                            "benfAccHolderName": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].benefAccHolderName,
+                            "caseId": oView.getModel("oUserModel").getData().caseId,
+                            "financeContact1": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isBankProvided ? "" : oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email,
+                            "financeContact2": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email,
+                            "ibanNum": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum,
+                            "instructionKey": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].instructionKey,
+                            "isBankProvided": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].isBankProvided,
+                            "partnerBankType": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].partnerBankType,
+                            "refBankDetails": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails,
+                            "swiftCode": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode
+                        },
+                        "invoiceBankDetailsProvided": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].isBankProvided,
+                        "invoiceFinanceContact1": {
+                            "email": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email,
+                            "firstName": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.firstName,
+                            "lastName": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.lastName
+                        },
+                        "invoiceFinanceContact2": {
+                            "email": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email,
+                            "firstName": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.firstName,
+                            "lastName": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.lastName,
+                        },
+                        "remitToAddressProvided": vRemitance,
+                        "invoiceIntermediateBankProvided": false
                     },
                     "action": "submit",
                     "comments": null,
@@ -11745,6 +13146,11 @@ sap.ui.define([
                     oPayload.comInfoDto = {
                         "isOrderToAddress": oView.getModel("companyInfoModel").getData().isOrderFromAddress || false,
                         // "isOrderToAddress": true,
+                        "invoiceBankDto": this.getView().getModel("oDataModel").getData().comInfoDto.invoiceBankDto,
+                        "invoiceAddrPaymentCurrency": this.getView().getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentCurrency,
+                        "invoiceAddrPaymentMethod": this.getView().getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod,
+                        "invoiceAddrPaymentTerms": this.getView().getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentTerms,
+                        
                         "address": [{ "addressInSection": "" }],
                         "isRemitToAddress": oView.getModel("remitModel").getData().isRemitToAddress || false,
                         "haveDiversityCertifications": oView.getModel("companyInfoModel").getData().haveDiversityCertifications,
@@ -12749,161 +14155,161 @@ sap.ui.define([
 
 
             },
-            fnConfirmBankInfo: function(oEvent){
-                var selectedBankInfo =  oView.getModel("bankSearchModel").getData().selectedBankItem;
+            fnConfirmBankInfo: function (oEvent) {
+                var selectedBankInfo = oView.getModel("bankSearchModel").getData().selectedBankItem;
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
                     isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
-                if(selectedBankInfo.bankName && selectedBankInfo.bankName.length > 60){
-                    selectedBankInfo.bankName = selectedBankInfo.bankName.substring(0,60);
-                    if(isDefaultLan){
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " +oView.getModel("i18n").getResourceBundle().getText("bankNameAccuity")+" "+ oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                if (selectedBankInfo.bankName && selectedBankInfo.bankName.length > 60) {
+                    selectedBankInfo.bankName = selectedBankInfo.bankName.substring(0, 60);
+                    if (isDefaultLan) {
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNameAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   } else {
-                    
-                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankNameAccuity +" " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" +oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " +oView.getModel("i18n").getResourceBundle().getText("bankNameAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                    } else {
+
+                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankNameAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNameAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   }
+                    }
                 }
-                if(selectedBankInfo.bankStreet && selectedBankInfo.bankStreet.length > 35){
-                    selectedBankInfo.bankStreet = selectedBankInfo.bankStreet.substring(0,35);
-                    if(isDefaultLan){
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " +oView.getModel("i18n").getResourceBundle().getText("bankAddrAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                if (selectedBankInfo.bankStreet && selectedBankInfo.bankStreet.length > 35) {
+                    selectedBankInfo.bankStreet = selectedBankInfo.bankStreet.substring(0, 35);
+                    if (isDefaultLan) {
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankAddrAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   } else {
-                    
-                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " "+ oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1.bankAddrAccuity +" " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" +oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") +" "+ oView.getModel("i18n").getResourceBundle().getText("bankAddrAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                    } else {
+
+                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1.bankAddrAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankAddrAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   }
+                    }
                 }
-                if(selectedBankInfo.bankCity && selectedBankInfo.bankCity.length > 35){
-                    selectedBankInfo.bankCity = selectedBankInfo.bankCity.substring(0,35);
-                    if(isDefaultLan){
+                if (selectedBankInfo.bankCity && selectedBankInfo.bankCity.length > 35) {
+                    selectedBankInfo.bankCity = selectedBankInfo.bankCity.substring(0, 35);
+                    if (isDefaultLan) {
                         MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankCityAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   } else {
-                    
-                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankCityAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" +oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankCityAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                    } else {
+
+                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankCityAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankCityAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   }
+                    }
                 }
-                if(selectedBankInfo.bankBranch && selectedBankInfo.bankBranch.length > 40){
-                    selectedBankInfo.bankBranch = selectedBankInfo.bankBranch.substring(0,40);
-                    if(isDefaultLan){
+                if (selectedBankInfo.bankBranch && selectedBankInfo.bankBranch.length > 40) {
+                    selectedBankInfo.bankBranch = selectedBankInfo.bankBranch.substring(0, 40);
+                    if (isDefaultLan) {
                         MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankBranchAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   } else {
-                    
-                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankBranchAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" +oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankBranchAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                    } else {
+
+                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankBranchAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankBranchAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   }
+                    }
                 }
-                if(selectedBankInfo.swiftCode && selectedBankInfo.swiftCode.length > 11){
-                    selectedBankInfo.swiftCode = selectedBankInfo.swiftCode.substring(0,11);
-                    if(isDefaultLan){
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("swiftAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                if (selectedBankInfo.swiftCode && selectedBankInfo.swiftCode.length > 11) {
+                    selectedBankInfo.swiftCode = selectedBankInfo.swiftCode.substring(0, 11);
+                    if (isDefaultLan) {
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("swiftAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   } else {
-                    
-                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.swiftAccuity+ " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" +oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("swiftAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                    } else {
+
+                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.swiftAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("swiftAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   }
+                    }
                 }
-                if(selectedBankInfo.bankNumber && selectedBankInfo.bankNumber.length > 15){
-                    selectedBankInfo.bankNumber = selectedBankInfo.bankNumber.substring(0,15);
-                    if(isDefaultLan){
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNumAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                if (selectedBankInfo.bankNumber && selectedBankInfo.bankNumber.length > 15) {
+                    selectedBankInfo.bankNumber = selectedBankInfo.bankNumber.substring(0, 15);
+                    if (isDefaultLan) {
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNumAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   } else {
-                    
-                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " "+ oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankNumAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" +oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNumAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                    } else {
+
+                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankNumAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNumAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   }
+                    }
                 }
-                if( selectedBankInfo.localName && selectedBankInfo.localName.length > 60){
-                    selectedBankInfo.localName = selectedBankInfo.localName.substring(0,60);
-                    if(isDefaultLan){
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNameLocalAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                if (selectedBankInfo.localName && selectedBankInfo.localName.length > 60) {
+                    selectedBankInfo.localName = selectedBankInfo.localName.substring(0, 60);
+                    if (isDefaultLan) {
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNameLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   } else {
-                    
-                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " "+ oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankNameLocalAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" +oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " +oView.getModel("i18n").getResourceBundle().getText("bankNameLocalAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                    } else {
+
+                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankNameLocalAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankNameLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   }
+                    }
                 }
-                if(selectedBankInfo.localAddress && selectedBankInfo.localAddress.length > 35){
-                    selectedBankInfo.localAddress = selectedBankInfo.localAddress.substring(0,35);
-                    if(isDefaultLan){
+                if (selectedBankInfo.localAddress && selectedBankInfo.localAddress.length > 35) {
+                    selectedBankInfo.localAddress = selectedBankInfo.localAddress.substring(0, 35);
+                    if (isDefaultLan) {
                         MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankAddrLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   } else {
-                    
-                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankAddrLocalAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" +oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankAddrLocalAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                    } else {
+
+                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankAddrLocalAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankAddrLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   }
+                    }
                 }
-                if(selectedBankInfo.localCity && selectedBankInfo.localCity.length > 35){
-                    selectedBankInfo.localCity = selectedBankInfo.localCity.substring(0,35);
-                    if(isDefaultLan){
+                if (selectedBankInfo.localCity && selectedBankInfo.localCity.length > 35) {
+                    selectedBankInfo.localCity = selectedBankInfo.localCity.substring(0, 35);
+                    if (isDefaultLan) {
                         MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankCityLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   } else {
-                    
-                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankCityLocalAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" +oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " +oView.getModel("i18n").getResourceBundle().getText("bankCityLocalAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                    } else {
+
+                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankCityLocalAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankCityLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   }
+                    }
                 }
-                if(selectedBankInfo.localBranch && selectedBankInfo.localBranch.length > 40){
-                    selectedBankInfo.localBranch = selectedBankInfo.localBranch.substring(0,40);
-                    if(isDefaultLan){
-                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankBranchLocalAccuity")+ " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                if (selectedBankInfo.localBranch && selectedBankInfo.localBranch.length > 40) {
+                    selectedBankInfo.localBranch = selectedBankInfo.localBranch.substring(0, 40);
+                    if (isDefaultLan) {
+                        MessageBox.show(oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankBranchLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   } else {
-                    
-                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankBranchLocalAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" +oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankBranchLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
+                    } else {
+
+                        MessageBox.show(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo1 + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.bankBranchLocalAccuity + " " + oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.acuityMaxLengthInfo2 + "\n" + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo1") + " " + oView.getModel("i18n").getResourceBundle().getText("bankBranchLocalAccuity") + " " + oView.getModel("i18n").getResourceBundle().getText("acuityMaxLengthInfo2"), {
                             icon: MessageBox.Icon.INFORMATION,
                             title: oi18n.getText("information")
                         });
-                   }
+                    }
                 }
-                
+
                 oView.getModel("oVisibilityModel").getData().bankAccuityPanel = false;
                 oView.getModel("oVisibilityModel").refresh();
                 if ((!selectedBankInfo || selectedBankInfo == "") && !oView.getModel("bankSearchModel").getData().isManualEntry) {
@@ -13271,6 +14677,242 @@ sap.ui.define([
                         oEvent.getSource().setValue("");
                     }
                 }
-            }
+            },
+
+
+
+            //  Remit to address Changes
+
+            fnLivePaymentMethodFinishRemit: function (oEvent) {
+                if (oEvent.getSource().getSelectedKeys().length !== 0) {
+                    oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = "";
+                    // if(oEvent.getSource().getSelectedKeys().length == 1){
+                    //     oView.getModel("oDataModel").getData().comInfoDto.paymentMethod =    oEvent.getSource().getSelectedKeys()[0];
+                    // }else{
+                    for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
+                        if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod) {
+                            oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oEvent.getSource().getSelectedKeys()[i];
+                        } else {
+                            oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod + "," + oEvent.getSource().getSelectedKeys()[i];
+                        }
+                    }
+
+
+                } else {
+                    oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = "";
+                }
+                oView.getModel("oDataModel").refresh();
+                var sUrl = "/comjabilsurveyform/plcm_portal_services/ccpaymentMethod/getBankVisibility/" + oView.getModel("oUserModel").getData().comCodeDesc + "/" + oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod;
+                $.ajax({
+                    url: sUrl,
+                    type: 'GET',
+                    success: function (data) {
+                        oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden = data.paymentVisibility.toLowerCase() === "optional" ? true : false;
+                        oView.getModel("oDataModel").refresh();
+                    },
+                    async: false,
+                    error: function (data) {
+
+                    }
+                });
+            },
+
+            fnLiveValueBankInputRemit: function (oEvent) {
+                var that = this;
+                if (oEvent.getSource().getValue()) {
+                    oEvent.getSource().setValueState("None");
+                    oEvent.getSource().setValueStateText("");
+                    oEvent.getSource().setSelectedKey(oEvent.getSource().getSelectedKey())
+                    oView.getModel("oDataModel").refresh();
+                }
+
+                if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
+                    var vSelected = oEvent.getParameter("itemPressed");
+                    if (vSelected == false) {
+                        oEvent.getSource().setValue("");
+                    }
+                }
+
+                oView.getModel("oErrorModel").getData().bankNameE = "None";
+                oView.getModel("oErrorModel").getData().bankNameM = "";
+                oView.getModel("oErrorModel").getData().bankAddrE = "None";
+                oView.getModel("oErrorModel").getData().bankAddrM = "";
+                oView.getModel("oErrorModel").getData().bankCityE = "None";
+                oView.getModel("oErrorModel").getData().bankCityM = "";
+                oView.getModel("oErrorModel").getData().bankAccNumE = "None";
+                oView.getModel("oErrorModel").getData().bankAccNumM = "";
+                oView.getModel("oErrorModel").getData().benifAccHNameE = "None";
+                oView.getModel("oErrorModel").getData().benifAccHNameM = "";
+                oView.getModel("oErrorModel").getData().bankSwiftE = "None";
+                oView.getModel("oErrorModel").getData().bankSwiftM = "";
+                oView.getModel("oErrorModel").getData().bankBranchE = "None";
+                oView.getModel("oErrorModel").getData().bankBranchM = "";
+                oView.getModel("oErrorModel").getData().bankRefE = "None";
+                oView.getModel("oErrorModel").getData().bankRefM = "";
+                oView.getModel("oErrorModel").getData().bankNumE = "None";
+                oView.getModel("oErrorModel").getData().bankNumM = "";
+                oView.getModel("oErrorModel").getData().ibanE = "None";
+                oView.getModel("oErrorModel").getData().ibanM = "";
+                oView.getModel("oErrorModel").getData().benifAccCurrE = "None";
+                oView.getModel("oErrorModel").getData().benifAccCurrM = "";
+                oView.getModel("oErrorModel").getData().bankCtrlKeyE = "None";
+                oView.getModel("oErrorModel").getData().bankCtrlKeyM = "";
+                oView.getModel("oErrorModel").getData().paymentCurrE = "None";
+                oView.getModel("oErrorModel").getData().paymentCurrM = "";
+                oView.getModel("oErrorModel").getData().newpaymentCurrE = "None";
+                oView.getModel("oErrorModel").getData().newpaymentCurrM = "";
+                oView.getModel("oErrorModel").refresh();
+                if (!oEvent.getSource().getBindingPath("items").includes('Currency')) {
+                    oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankState = "";
+                    oView.getModel("oDataModel").refresh();
+                    this._fnLoadBankRegion(oEvent.getSource().getSelectedKey());
+                }
+                this.fnActivateBankScreenRemit();
+            },
+
+            fnActivateBankScreenRemit: function () {
+                var that = this;
+                oView.byId('companyInfo').addEventDelegate({
+                    onAfterRendering: function () {
+                        var bID = oView.byId('bankAccNumConfirmFieldRemit').sId;
+                        $('#' + bID).bind("cut copy paste", function (e) {
+                            e.preventDefault();
+                            return false;
+                        });
+                        var cID = oView.byId('ibanConfirmFieldRemit').sId;
+                        $('#' + cID).bind("cut copy paste", function (e) {
+                            e.preventDefault();
+                            return false;
+                        });
+                    }
+                });
+                this._fnLoadBankRegion(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry);
+                //  var apaymentMethod =formatter.fnFetchAdditionalDescription(oView.getModel("oLookUpModel").getData().PaymentMethod, oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod);
+                // if(oView.getModel("oLookUpModel").getData().PaymentMethod && oView.getModel("oLookUpModel").getData().PaymentMethod !=="" && apaymentMethod === 'Optional'){
+                //      var bankFields = that.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidation;
+                //     bankFields.bankName = false;
+                //     bankFields.bankBranch = false;
+                //     bankFields.bankStreet = false;
+                //     bankFields.bankCity = false;
+                //     bankFields.benificiaryAccountNumber = false;
+                //     bankFields.swiftCode = false;
+                //     bankFields.bankNumber = false;
+                //     bankFields.bankCountry = false;
+                //     bankFields.benificiaryAccHolderName = false;
+                //     bankFields.bankKey = false;
+                //     bankFields.benificiaryAccCurrency = false;
+                //     bankFields.instructionKey = false;
+                //     bankFields.bankControlKey = false;
+                //     bankFields.referenceDetails = false;
+                //     bankFields.iban = false;
+                //     bankFields.ibanLength = null;
+                //     bankFields.bankControlKeyLogic = null;
+                //     bankFields.bankControlKeyDigitsLogic = null;
+                //     bankFields.companyCodeCountry = "";
+                //     bankFields.bankKeyVal1 = "";
+                //     bankFields.bankKeyVal2 = "";
+                //     bankFields.bankKeyVal3 = "";
+                //     that.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                // }
+                // else 
+                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentCurrency && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry) {
+                    var requestData = {
+                        "companyCodeCountry": oView.getModel("oDataModel").getData().shippingInfoDto.comCode,
+                        "purchaseOrderCurrency": oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentCurrency,
+                        "supplierBankCountry": formatter.fnFetchDescription(oView.getModel("oLookUpModel").getData().Country, oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry)
+                    }
+                    var sUrl = "/comjabilsurveyform/plcm_portal_services/api/v1/bank/matrix";
+                    var bModel = new JSONModel();
+
+                    bModel.loadData(sUrl, JSON.stringify(requestData), true, "POST", false, true, {
+                        "Content-Type": "application/json"
+                    });
+                    bModel.attachRequestCompleted(function (oEvent) {
+
+
+                        if (oEvent.getParameter("success")) {
+                            var bankFields = that.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidationRemit;
+                            bankFields.bankName = oEvent.getSource().oData.bankName === "Mandatory" ? true : false;
+                            bankFields.bankBranch = oEvent.getSource().oData.bankBranch === "Mandatory" ? true : false;
+                            bankFields.bankStreet = oEvent.getSource().oData.bankStreet === "Mandatory" ? true : false;
+                            bankFields.bankCity = oEvent.getSource().oData.bankCity === "Mandatory" ? true : false;
+                            bankFields.benificiaryAccountNumber = oEvent.getSource().oData.benificiaryAccountNumber === "Mandatory" ? true : false;
+                            bankFields.swiftCode = oEvent.getSource().oData.swiftCode === "Mandatory" ? true : false;
+                            bankFields.bankNumber = oEvent.getSource().oData.bankNumber === "Mandatory" ? true : false;
+                            bankFields.bankCountry = oEvent.getSource().oData.bankCountry === "Mandatory" ? true : false;
+                            bankFields.benificiaryAccHolderName = oEvent.getSource().oData.benificiaryAccHolderName === "Mandatory" ? true : false;
+                            bankFields.bankKey = oEvent.getSource().oData.bankKey === "Mandatory" ? true : false;
+                            bankFields.benificiaryAccCurrency = oEvent.getSource().oData.benificiaryAccCurrency === "Mandatory" ? true : false;
+                            bankFields.instructionKey = oEvent.getSource().oData.instructionKey === "Mandatory" ? true : false;
+                            bankFields.bankControlKey = oEvent.getSource().oData.bankControlKey === "Mandatory" ? true : false;
+                            bankFields.referenceDetails = oEvent.getSource().oData.referenceDetails === "Mandatory" ? true : false;
+                            bankFields.iban = oEvent.getSource().oData.iban === "Mandatory" ? true : false;
+                            bankFields.ibanLength = parseInt(oEvent.getSource().oData.ibanLength);
+                            bankFields.bankControlKeyLogic = oEvent.getSource().oData.bankControlKeyLogic;
+                            bankFields.bankControlKeyDigitsLogic = oEvent.getSource().oData.bankControlKeyDigitsLogic;
+                            bankFields.companyCodeCountry = oEvent.getSource().oData.companyCodeCountry;
+                            bankFields.bankKeyVal1 = oEvent.getSource().oData.bankKeyVal1;
+                            bankFields.bankKeyVal2 = oEvent.getSource().oData.bankKeyVal2;
+                            bankFields.bankKeyVal3 = oEvent.getSource().oData.bankKeyVal3;
+                            that.getOwnerComponent().getModel("oVisibilityModel").refresh();
+
+                        }
+                        else {
+
+                        }
+                    });
+                }
+                else {
+                    var bankFields = that.getOwnerComponent().getModel("oVisibilityModel").getData().bankValidationRemit;
+                    bankFields.bankName = false;
+                    bankFields.bankBranch = false;
+                    bankFields.bankStreet = false;
+                    bankFields.bankCity = false;
+                    bankFields.benificiaryAccountNumber = false;
+                    bankFields.swiftCode = false;
+                    bankFields.bankNumber = false;
+                    bankFields.bankCountry = false;
+                    bankFields.benificiaryAccHolderName = false;
+                    bankFields.bankKey = false;
+                    bankFields.benificiaryAccCurrency = false;
+                    bankFields.instructionKey = false;
+                    bankFields.bankControlKey = false;
+                    bankFields.referenceDetails = false;
+                    bankFields.iban = false;
+                    bankFields.ibanLength = null;
+                    bankFields.bankControlKeyLogic = null;
+                    bankFields.bankControlKeyDigitsLogic = null;
+                    bankFields.companyCodeCountry = "";
+                    bankFields.bankKeyVal1 = "";
+                    bankFields.bankKeyVal2 = "";
+                    bankFields.bankKeyVal3 = "";
+                    that.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                }
+            },
+            fnFileUploadBtnRemit: function (oEvt) {
+                var that = this;
+                this.getOwnerComponent().getModel("oVisibilityModel").getData().DocTypeSelected = false;
+                this.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                if (!that.oPopup) {
+                    that.oPopup = sap.ui.xmlfragment(
+                        "com.jabil.surveyform.fragments.selectDocType", that);
+                    oView.addDependent(that.oPopup);
+                }
+                that.oPopup.open();
+            },
+            fnOpenBankAttachmentRemit: function () {
+                var that = this;
+                this.getOwnerComponent().getModel("oVisibilityModel").getData().bankDocTypeSelected = false;
+                this.getOwnerComponent().getModel("oVisibilityModel").refresh();
+                if (!that.oPopup) {
+                    that.oPopup = sap.ui.xmlfragment(
+                        "com.jabil.surveyform.fragments.selectDocTypeBankRemit", that);
+                    oView.addDependent(that.oPopup);
+                }
+                that.oPopup.open();
+            },
+
+
+
         });
     });

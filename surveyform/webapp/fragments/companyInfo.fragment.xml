@@ -279,7 +279,12 @@
             <Input valueLiveUpdate="true" maxLength="11" value="{remitModel>/rPostOffZipCode}" enabled="{oEnableMdl>/rPostOffZipCodeEnb}" liveChange="fnLiveInputValueChange" class="inputStyle" />
             <!-- <html:input type="text" id="iPostOfZipR"   class="cl_HTMLInput" ></html:input>  -->
          </VBox>
+         
       </l:Grid>
+      <VBox visible="{remitModel>/isRemitToAddress}" >
+      	<core:Fragment fragmentName="com.jabil.surveyform.fragments.bankInfoRemit" type="XML"/>
+      </VBox>
+      
    </l:VerticalLayout>
    <!-- <VBox visible="{=${companyInfoModel>/oCountry} === 'USA' &amp;&amp; ${companyInfoModel>/isOrderFromAddress} ? true: false}" class="fontStyle sapUiSizeCompact">
       <Label required="true" labelFor="divCert" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>divCertText}:${oi18n_En>divCertText}+'/ '+${i18n>divCertText}}" wrapping="true" class="sapUiTinyMarginTop sapUiTinyMarginBegin" />

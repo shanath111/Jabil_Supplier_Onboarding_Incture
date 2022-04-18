@@ -1,0 +1,326 @@
+<mvc:View controllerName="com.jabil.surveyform.controller.BankInfoRemit" xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f" xmlns:t="sap.ui.table" async="true" >
+	<Page id="page" class="surveyPageBackgroundBank" showHeader="false">
+	
+		<Toolbar class="toolbarBackground">
+     
+         <Title text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepBankInfo}:${oi18n_En>wizardStepBankInfo} +'/&#160;' +${i18n>wizardStepBankInfo}}"  class="toolbarfont sapUiSizeCompact sapUiSmallMarginBegin"/>
+		</Toolbar>
+		<content>
+		
+	<Panel width="99%" class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginEnd panelPadding">
+		<content>
+
+        <VBox visible="{oVisibilityModel>/FinanceReviewVis}">
+        <Label text="{i18n>BankReviewText}" class="fontStyle  sapUiTinyMarginBegin" wrapping="true"></Label>
+        </VBox>
+          <HBox visible="{oVisibilityModel>/FinanceReviewVis}" class="cl_BPCBlockSep">
+                                      </HBox>
+        
+        <VBox class="fontStyle sapUiSizeCompact">
+
+
+         <Label  text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankInformation2}:${oi18n_En>bankInformation2} +'/&#160;' +${i18n>bankInformation2}}" visible="{oVisibilityModel>/FinanceSaveVis1}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+           <Label  text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankInformation3}:${oi18n_En>bankInformation3} +'/&#160;' +${i18n>bankInformation3}}" visible="{oVisibilityModel>/FinanceReviewVis1}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+        <RadioButtonGroup id="isSCFC1" select="fnRadioButtonChange" class="inputStyle" columns="2" enabled="{oVisibilityModel>/_CompletedTask}" selectedIndex="0">
+			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oVisibilityModel>/sc}"></RadioButton>
+			<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>no}}" selected="{=!${oVisibilityModel>/sc}}"></RadioButton>
+		</RadioButtonGroup>
+          </VBox>
+            	<l:Grid visible="{oVisibilityModel>/sc}" containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding sapUiTinyMarginTop">
+			<VBox  class="fontStyle">
+					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankCountry}:${oi18n_En>bankCountry}+ '&#10;' +${i18n>bankCountry}}" required="true"></Label>
+					<ComboBox width="100%" editable="{oVisibilityModel>/_FinanceReviewEdit}"  items="{oLookUpModel>/Country}" showSecondaryValues="true" filterSecondaryValues="true" selectedKey="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}" valueState="{oErrorModel>/bankCountryE}" valueStateText="{oErrorModel>/bankCountryM}"  change="fnLiveValueBankInput" class="inputStyle">
+                     <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+				</VBox>
+            	<VBox  class="fontStyle">
+					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankName}:${oi18n_En>bankName}+ '&#10;' +${i18n>bankName}}" wrapping="true" required="{oVisibilityModel>/bankValidation/bankName}"></Label>
+					<Input maxLength="61"  editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankName}" valueState="{oErrorModel>/bankNameE}" valueStateText="{oErrorModel>/bankNameM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+				</VBox>
+				  <VBox class="fontStyle">
+					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankAddr}:${oi18n_En>bankAddr}+ '&#10;' +${i18n>bankAddr}}"  wrapping="true" required="{oVisibilityModel>/bankValidation/bankStreet}"></Label>
+					<Input maxLength="34"  editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankAddress}" valueState="{oErrorModel>/bankAddrE}" valueStateText="{oErrorModel>/bankAddrM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+				</VBox>
+                <VBox class="fontStyle">
+					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankCity}:${oi18n_En>bankCity}+ '&#10;' +${i18n>bankCity}}" wrapping="true" required="{oVisibilityModel>/bankValidation/bankCity}"></Label>
+					<Input maxLength="36"  editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCity}" valueState="{oErrorModel>/bankCityE}" valueStateText="{oErrorModel>/bankCityM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>
+			<VBox  class="fontStyle">
+					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>state}:${oi18n_En>state}+ '&#10;' +${i18n>state}}" wrapping="true" required="false"></Label>
+				  <ComboBox width="100%" items="{oLookUpModel>/BankRegion}" filterSecondaryValues="true" showSecondaryValues="true" editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}" selectedKey="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankState}"  placeholder="{i18n>select}" valueState="{oErrorModel>/bankStateE}" valueStateText="{oErrorModel>/bankStateM}" selectionChange="fnLiveValueChange" required="true" class="inputStyle">
+                  <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
+                  </ComboBox>
+                </VBox>
+				
+				<VBox class="fontStyle">
+					<Label wrapping="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankBranch}:${oi18n_En>bankBranch}+ '&#10;' +${i18n>bankBranch}}"  required="{oVisibilityModel>/bankValidation/bankBranch}"></Label>
+					<Input maxLength="41"  editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankBranch}"  valueState="{oErrorModel>/bankBranchE}" valueStateText="{oErrorModel>/bankBranchM}" change="fnInputBankAccNumber" required="true" class="inputStyle"></Input>
+				</VBox>
+                <VBox  class="fontStyle">
+					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>swift}:${oi18n_En>swift}+ '&#10;' +${i18n>swift}}" wrapping="true" required="{oVisibilityModel>/bankValidation/swiftCode}"></Label>
+					<Input maxLength="12" editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/swiftCode}" valueState="{oErrorModel>/bankSwiftE}" valueStateText="{oErrorModel>/bankSwiftM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+				</VBox>
+                <VBox class="fontStyle">
+					<Label tooltip="{oi18n_En>bankNumTT}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankNum}:${oi18n_En>bankNum} + '&#10;' +${i18n>bankNum}}" wrapping="true" required="{oVisibilityModel>/bankValidation/bankNumber}"></Label>
+					<Input maxLength="19"  editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankNumber}" valueState="{oErrorModel>/bankNumE}" valueStateText="{oErrorModel>/bankNumM}"  liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>
+                <VBox class="fontStyle" >
+					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>accHolderName}:${oi18n_En>accHolderName}+ '&#10;' +${i18n>accHolderName}}" wrapping="true" required="{oVisibilityModel>/bankValidation/benificiaryAccHolderName}"></Label>
+					<Input maxLength="61" editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/benefAccHolderName}" valueState="{oErrorModel>/benifAccHNameE}" valueStateText="{oErrorModel>/benifAccHNameM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+				</VBox>
+				<VBox  class="fontStyle">
+					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankAccNum}:${oi18n_En>bankAccNum}+ '&#10;' +${i18n>bankAccNum}}" wrapping="true" required="{oVisibilityModel>/bankValidation/benificiaryAccountNumber}"></Label>
+					<Input maxLength="19" editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankAccNum}" valueState="{oErrorModel>/bankAccNumE}" valueStateText="{oErrorModel>/bankAccNumM}" change="fnInputConfirmBankAccNumber1" required="true" class="inputStyle">
+                    </Input>
+				</VBox>
+                <VBox  class="fontStyle">
+                    <HBox>
+                        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>confirmBankAccNum}:${oi18n_En>bankAccNum}+ '&#10;' +${i18n>bankAccNum}}" wrapping="true" required="{oVisibilityModel>/bankValidation/benificiaryAccountNumber}"></Label>
+                       
+                    </HBox>
+					<Input maxLength="19" id="bankAccNumConfirmField" editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankAccNumConfirm}"  valueState="{oErrorModel>/bankAccNumConfirmE}" valueStateText="{oErrorModel>/bankAccNumConfirmM}" change="fnInputConfirmBankAccNumber" required="true" class="inputStyle">
+                    </Input>
+				</VBox>
+                 <VBox  class="fontStyle">
+					<Label tooltip="{oi18n_En>refDetTT}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>refDetails}:${oi18n_En>refDetails}+ '&#10;' +${i18n>refDetails}}" wrapping="true" required="{oVisibilityModel>/bankValidation/referenceDetails}"></Label>
+					<Input editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/refBankDetails}" valueState="{oErrorModel>/bankRefE}" valueStateText="{oErrorModel>/bankRefM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>
+                
+				<VBox class="fontStyle">
+					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>iban}:${oi18n_En>iban} + '&#10;' +${i18n>iban}}" wrapping="true" required="{oVisibilityModel>/bankValidation/iban}"></Label>
+					<Input maxLength="{oVisibilityModel>/bankValidation/ibanLength}" editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/ibanNum}" valueState="{oErrorModel>/ibanE}" valueStateText="{oErrorModel>/ibanM}"  change="fnInputConfirmIban1" class="inputStyle"></Input>
+				</VBox>
+                <VBox class="fontStyle">
+					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>ibanConfirm}:${oi18n_En>ibanConfirm} + '&#10;' +${i18n>ibanConfirm}}" wrapping="true" required="{oVisibilityModel>/bankValidation/iban}"></Label>
+					<Input id="ibanConfirmField" maxLength="{oVisibilityModel>/bankValidation/ibanLength}"  value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/ibanNumConfirm}" editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}"  valueState="{oErrorModel>/ibanConfirmE}" valueStateText="{oErrorModel>/ibanConfirmM}"  change="fnInputConfirmIban" class="inputStyle"></Input>
+				</VBox>
+				 <!-- <VBox  class="fontStyle">
+					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankKey}:${oi18n_En>bankKey}+ '&#10;' +${i18n>bankKey}}" wrapping="true" required="{oVisibilityModel>/bankValidation/bankKey}"></Label>
+					<Input maxLength="5" editable="{=${oVisibilityModel>/_SupplierBankEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCode}"  liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>  -->
+                <VBox  class="fontStyle">
+					<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankPKey}:${oi18n_En>bankPKey}+ '&#10;' +${i18n>bankPKey}}" wrapping="true" required="{oVisibilityModel>/bankValidation/benificiaryAccCurrency}"></Label>
+					
+				<ComboBox width="100%" items="{oLookUpModel>/Currency}" showSecondaryValues="true" filterSecondaryValues="true" valueState="{oErrorModel>/benifAccCurrE}" valueStateText="{oErrorModel>/benifAccCurrM}"  change="fnLiveValueChange" selectedKey="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/partnerBankType}" editable="{=${oVisibilityModel>/_FinanceReviewEdit} &amp;&amp; (${oDataModel>/shippingInfoDto/paymentCurrency} &amp;&amp; ${oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}? true: false)}" placeholder="{i18n>select}" class="inputStyle">
+                     <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/></ComboBox>
+                </VBox>	
+			</l:Grid>
+
+ <Label  visible="{=!${oVisibilityModel>/sc}}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>EnterContactDetails}:${oi18n_En>financeContact1} +'/&#160;' + ${i18n>financeContact1}}"  class="inputStyle sapUiTinyMarginBegin fontStyleItalic sapUiTinyMarginBottom"/>
+    <l:Grid containerQuery="true"  visible="{=!${oVisibilityModel>/sc}}" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBottom">
+								<VBox>
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>firstName}:${oi18n_En>firstName} +'/&#160;' + ${i18n>firstName}}" class="fontStyle" required="true"></Label>
+									 <Input maxLength="35" value="{JMTarnsfer>/firstName}" editable="{oEnableMdl>/finance1FNameEnb}" valueState="{oErrorModel>/finance1FNameE}" valueStateText="{oErrorModel>/finance1FNameM}" liveChange="fnLiveInputAlphaValueChange" class="inputStyle"></Input> 
+     
+								</VBox>
+								<VBox >
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>lastName}:${oi18n_En>lastName} +'/&#160;' + ${i18n>lastName}}" class="fontStyle" required="true"></Label>
+									<Input maxLength="35" value="{JMTarnsfer>/lastName}" editable="{oEnableMdl>/finance1LNameEnb}"  valueState="{oErrorModel>/finance1LNameE}" valueStateText="{oErrorModel>/finance1LNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+								
+                                </VBox>
+								<VBox >
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>jobTitle}:${oi18n_En>jobTitle} +'/&#160;' + ${i18n>jobTitle}}" class="fontStyle"></Label>
+									<Input value="{JMTarnsfer>/jobTitle}" editable="{oEnableMdl>/finance1jobTitleEnb}" valueState="{oErrorModel>/finance1JobTitleE}" valueStateText="{oErrorModel>/finance1JobTitleM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+								
+                                </VBox>
+								<VBox >
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>eMail}:${oi18n_En>eMail} +'/&#160;' + ${i18n>eMail}}" class="fontStyle" required="true"></Label>
+									<Input maxLength="242" value="{JMTarnsfer>/email}" editable="{oEnableMdl>/finance1eMailEnb}" valueState="{oErrorModel>/finance1EmailE}" valueStateText="{oErrorModel>/finance1EmailM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+								
+                                </VBox>
+
+                                <VBox class="fontStyle">
+                                        <Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
+                                            <Label required="true" text="{oi18n_En>countryCode}&#10;{i18n>countryCode}"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+                                            <VBox>
+                                             <ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="true" items="{oLookUpModel>/countryContactCode}" selectedKey="{JMTarnsfer>/countryContactCode}" class="inputStyle" valueState="{oErrorModel>/finance1CountryContCodeE}" valueStateText="{oErrorModel>/finance1CountryContCodeM}" change="fnLiveValueChange">
+                                                    <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>code}" additionalText="{oLookUpModel>description}"/>
+                                                </ComboBox>
+                                                <!-- <ComboBox width="100%" items="" selectedKey="001" class="inputStyle" enabled="{oEnableMdl>/finance1contactEnb}">
+                                                    <core:ListItem key="001" text="001"/>
+                                                </ComboBox> -->
+                                            </VBox>
+                                            <layoutData>
+                                                <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox class="fontStyle">
+                                        <Label text="{i18n>phoneNum}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
+                                        <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+                                        <Input maxLength="31" value="{JMTarnsfer>/contact}" editable="{oEnableMdl>/finance1phoneNumEnb}" valueState="{oErrorModel>/finance1ContE}" valueStateText="{oErrorModel>/finance1ContM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
+                                            
+                                        <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
+                                            <layoutData>
+                                                <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData>
+                                            </layoutData>
+                                        </VBox>     
+                                <!-- <VBox>
+                                <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNum}:${oi18n_En>phoneNum} +'/&#160;' + ${i18n>phoneNum}}" class="fontStyle" required="true"></Label>
+											<Input maxLength="31" value="{oDataModel>/comInfoDto/invoiceBankDto/financeContact1/contact}"  valueState="{oErrorModel>/finance1ContE}" valueStateText="{oErrorModel>/finance1ContM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
+                            
+                            
+                                        </VBox>  -->
+                                                       
+									
+								
+						 <VBox >
+									<Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>extension}:${oi18n_En>extension} +'/&#160;' + ${i18n>extension}}" class="fontStyle"></Label>
+									<Input maxLength="4" value="{JMTarnsfer>/extension}" editable="{oEnableMdl>/finance1extensionEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+                            
+								</VBox>
+                                
+                                <VBox class="fontStyle">
+                                        <Label text="{i18n>countryCode}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
+                                            <Label required="true" text="{oi18n_En>countryCode}&#10;{i18n>countryCode}"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
+                                            <VBox>
+                                             <ComboBox width="100%" showSecondaryValues="true" filterSecondaryValues="true" items="{oLookUpModel>/countryContactCode}" selectedKey="{JMTarnsfer>/mobilecountryContactCode}" class="inputStyle" valueState="{oErrorModel>/finance1mobileCountryContCodeE}" valueStateText="{oErrorModel>/finance1mobileCountryContCodeM}" change="fnLiveValueChange">
+                                                    <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>code}" additionalText="{oLookUpModel>description}"/>
+                                                </ComboBox>
+                                                <!-- <ComboBox width="100%" items="" selectedKey="001" class="inputStyle" enabled="{oEnableMdl>/finance1contactEnb}">
+                                                    <core:ListItem key="001" text="001"/>
+                                                </ComboBox> -->
+                                            </VBox>
+                                            <layoutData>
+                                                <l:GridData spanM="12" spanL="1" spanXL="1"></l:GridData>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox class="fontStyle">
+                                        <VBox>
+                                <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>mobPhone}:${oi18n_En>mobPhone} +'/&#160;' + ${i18n>mobPhone}}" class="fontStyle" required="true"></Label>
+											<Input maxLength="31" value="{JMTarnsfer>/mobile}" editable="{oEnableMdl>/finance1mobPhoneEnb}" valueState="{oErrorModel>/finance1MobE}" valueStateText="{oErrorModel>/finance1MobM}" liveChange="fnLiveInputNumericValueChange" class="inputStyle"></Input>
+                                
+                            
+                                        </VBox> 
+                                            
+                                        <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
+                                            <layoutData>
+                                                <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData>
+                                            </layoutData>
+                                        </VBox>  
+                                 
+							</l:Grid>
+       
+		</content>
+		<layoutData>
+			<FlexItemData minWidth="100%"/>
+		</layoutData>
+	</Panel>
+       <!-- <VBox class="sapUiSizeCompact" visible="{oVisibilityModel>/sc}">
+       
+          <CheckBox enabled="{oVisibilityModel>/_FinanceReviewEdit}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBank}:${oi18n_En>interMBank}+ '/ ' +${i18n>interMBank}}" selected="{oDataModel>/comInfoDto/invoiceBankDto/isIntermediateBankProvided}" class=" sapUiTinyMarginTop fontStyle inputStyle" />
+			<HBox>	<u:FileUploader  visible="{=${oDataModel>/comInfoDto/invoiceBankDto/isIntermediateBankProvided} === true}" id="fileUploader_BIA" buttonOnly="true" iconOnly="true" icon="sap-icon://attachment" multiple="true"
+					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{oVisibilityModel>/_FinanceReviewEdit}"
+					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin addMoreBtn paperClipOuter">
+                      
+                    </u:FileUploader>
+                     <Label class="sapUiSmallMarginTop" required="{=${oDataModel>/comInfoDto/invoiceBankDto/isIntermediateBankProvided} === true}"/>
+            <Text wrapping="true" class="sapUiSmallMarginTop sapUiTinyMarginbegin" visible="{=${oDataModel>/comInfoDto/invoiceBankDto/isIntermediateBankProvided} === true}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>interMBankAttachVerbiage}:${oi18n_En>interMBankAttachVerbiage}+ '&#10;' +${i18n>interMBankAttachVerbiage}}"/>
+              </HBox>
+               <Label visible="{=${oDataModel>/comInfoDto/invoiceBankDto/isIntermediateBankProvided} === true}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>docVerbiage}:${oi18n_En>docVerbiage}+ '/&#160;'+${i18n>docVerbiage}}" wrapping="true" class="fontStyleBlue sapUiTinyMarginTop sapUiTinyMarginBegin"/></VBox>
+			 <HBox wrap="Wrap" visible="{oVisibilityModel>/sc}">	
+           
+  <g:GridList width="auto" items="{oAttachmentList>/0/bankINDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiSmallMarginBegin">
+					<g:customLayout>
+						<grid:GridResponsiveLayout>
+							<grid:layoutS>
+								<grid:GridSettings gridTemplateColumns="1fr" gridGap="1rem"/>
+							</grid:layoutS>
+							<grid:layoutM>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr" gridGap="1rem"/>
+							</grid:layoutM>
+							<grid:layoutL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutL>
+							<grid:layoutXL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutXL>
+						</grid:GridResponsiveLayout>
+					</g:customLayout>
+					<g:GridListItem>
+						<HBox>
+							<HBox width="90%" class="sapUiTinyMarginBegin sapUiSizeCompact">
+								<core:Icon src="{path:'oAttachmentList>fileExt',formatter:'com.jabil.surveyform.formatter.formatter.mediaTypeformatter'}"
+									class="attachmentIcon sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom" size="2.5rem" color="#48639d"/>
+								<VBox><Text text="{oAttachmentList>name}" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+							<Text text="{oAttachmentList>fileSize}" class="sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+                            </VBox></HBox>
+							<VBox alignItems="Center" class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">
+								<core:Icon src="sap-icon://decline" class="docIconStyle" visible="{oVisibilityModel>/_FinanceReviewEdit}"  press="fnOnCancelAttachment"/>
+								<core:Icon src="sap-icon://download" class="docIconStyle" press="fnOnDownlAttachment"/>
+							</VBox>
+						</HBox>
+					</g:GridListItem>
+				</g:GridList>
+		
+   </HBox> -->
+   	<!-- </VBox> -->
+  
+   <VBox class="sapUiMediumMarginTop" visible="{oVisibilityModel>/sc}">
+		<Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>Attachments}:${oi18n_En>Attachments}+ '/&#160;'+${i18n>Attachments}}" class="fontBold  sapUiTinyMarginBegin"/>
+<HBox><Label required="true" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankAttachText1}:${oi18n_En>bankAttachText1}+ '/&#160;'+${i18n>bankAttachText1}}" wrapping="true" class="fontBold sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+		  
+        	<Button tooltip="{oPopoverModel>/bankInfoInfoText/info}" icon="sap-icon://message-information" type="Transparent" class="sapUiSizeCompact infoBtn"/>
+           </HBox> <HBox wrap="Wrap">
+				<!-- <u:FileUploader id="fileUploader_BA" buttonOnly="true" buttonText="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" iconFirst="true" icon="sap-icon://add" multiple="true"
+					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{oVisibilityModel>/_FinanceReviewEdit}"
+					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"></u:FileUploader> -->
+                  <VBox>
+              <Link text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>indemnityLink}:${oi18n_En>indemnityLink} + '/&#160;' +${i18n>indemnityLink}}"  enabled="{oVisibilityModel>/_FinanceReviewEdit}"
+                    target="_blank"
+                    href="https://www.jabil.com/dam/jcr:66991576-2dda-44b4-b635-9115b1a4d656/Sample%20of%20Letter%20of%20Indemnity" 
+                    class="sapUiContentPadding sapUiTinyMarginBegin"
+                    wrapping="true"/>     
+           <Button id="fileUploader_Button" class="sapUiSizeCompact  sapUiTinyMarginBegin" enabled="{oVisibilityModel>/_FinanceReviewEdit}" press="fnOpenBankAttachment" icon="sap-icon://add" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" />
+			  </VBox>
+            	<g:GridList width="auto" items="{oAttachmentList>/0/bankDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">
+					<g:customLayout>
+						<grid:GridResponsiveLayout>
+							<grid:layoutS>
+								<grid:GridSettings gridTemplateColumns="1fr" gridGap="1rem"/>
+							</grid:layoutS>
+							<grid:layoutM>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr" gridGap="1rem"/>
+							</grid:layoutM>
+							<grid:layoutL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutL>
+							<grid:layoutXL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutXL>
+						</grid:GridResponsiveLayout>
+					</g:customLayout>
+					<g:GridListItem>
+						<HBox>
+							<HBox width="90%" class="sapUiTinyMarginBegin sapUiSizeCompact">
+								<core:Icon src="{path:'oAttachmentList>fileExt',formatter:'com.jabil.surveyform.formatter.formatter.mediaTypeformatter'}"
+									class="attachmentIcon sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom" size="2.5rem" color="#48639d"/>
+								<VBox><Text text="{oAttachmentList>name}" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+							<Text text="{oAttachmentList>fileSize}" class="sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+                            </VBox></HBox>
+							<VBox alignItems="Center" class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">
+								<core:Icon src="sap-icon://decline" class="docIconStyle" visible="{oVisibilityModel>/_FinanceReviewEdit}" press="fnOnCancelAttachment"/>
+								<core:Icon src="sap-icon://download" class="docIconStyle" press="fnOnDownlAttachment"/>
+							</VBox>
+						</HBox>
+					</g:GridListItem>
+				</g:GridList>
+			</HBox>
+	</VBox>
+                            
+		</content>
+        		<footer>
+                	<OverflowToolbar class="cl_BPCFooterClr">
+				<ToolbarSpacer/>
+							<Button  visible="{oVisibilityModel>/FinanceSaveVis}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>save}:${oi18n_En>save} + '/&#160;' + ${i18n>save}}"  class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" enabled="{oVisibilityModel>/_CompletedTask}" press="fnSaveAsDraft"></Button>
+                            <Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>Transfer}:${oi18n_En>Transfer} + '/&#160;' + ${i18n>Transfer}}" visible="{=!${oVisibilityModel>/sc}}" class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" enabled="{oVisibilityModel>/_CompletedTask}" press="fnTransfer"></Button>
+							<Button text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>submit}:${oi18n_En>submit} + '/&#160;' + ${i18n>submit}}"  class="actionButtonSave sapUiSizeCompact sapUiTinyMarginEnd" visible="{oVisibilityModel>/FinanceSaveVis}" enabled="{oVisibilityModel>/_CompletedTask}" press="fnSubmit"></Button>
+                        
+				
+                <Button text="{i18n>Accept}" visible="{oVisibilityModel>/FinanceReviewVis}"  type="Accept" press="fnOpenBankCommentsApp" enabled="{oVisibilityModel>/_CompletedTask}" class="cl_BPCDraft  sapUiSizeCompact" />
+                  <Button text="{i18n>Reject}" enabled="{oVisibilityModel>/_CompletedTask}"  visible="{oVisibilityModel>/FinanceReviewVis}" press="fnOpenBankCommentsReject" type="Reject" class="  cl_BPCDraft1 sapUiSizeCompact" />         
+			</OverflowToolbar>
+					
+				</footer>
+	</Page>
+</mvc:View>

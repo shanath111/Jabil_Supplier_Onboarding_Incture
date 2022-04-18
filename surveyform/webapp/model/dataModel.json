@@ -112,10 +112,10 @@
         "postBlockedInd": "",
         "altPayeePartyAllowedInd": "",
         "valueAddedTaxRelInd": "",
-        "taxAuthorityPartyId":"",
-        "corporateGroupName":"",
-        "procurementTransactionBlockingCode":"",
-        "receiverRespTaxOfficePartyInternalId":"",
+        "taxAuthorityPartyId": "",
+        "corporateGroupName": "",
+        "procurementTransactionBlockingCode": "",
+        "receiverRespTaxOfficePartyInternalId": "",
         "tax": [
             {
                 "country": "",
@@ -148,64 +148,64 @@
             "mobile": ""
         },
         "corpHeaderQuartersAddress": [
-                {        
-                    "addressId": "",
-                    "addressInSection": "Corporate_Headquarters",
-                    "postal": [
-                        {
-                            "address1": "",
-                            "address2": "",
-                            "address3": "",
-                            "address4": "",
-                            "address5": "",
-                            "city": "",
-                            "country": "",
-                            "countryCode": "",
-                            "district": "",
-                            "email": [
-                                {
-                                    "email": "",
-                                    "emailId":""
-                                }
-                            ],
-                            "fax": [
-                                {
-                                    "faxId": "",
-                                    "faxNum": ""
-                                }
-                            ],
-                            "name": "",
-                            "postOfficeBox": "",
-                            "postOfficeBoxZipCode": "",
-                            "postalCode": "",
-                            "postalId": "",
-                            "poBoxPostalCode": "",
-                            "region": "",
-                            "regionCode": "",
-                            "telephone": [
-                                {
-                                    "isMobileNumber": false,
-                                    "telephoneId": "",
-                                    "telephoneNum": "",
-                                    "telephoneCountryCode":"",
-                                    "extension": ""
-                                }
-                            ],
-                            "url": [
-                                {
-                                    "webId": "",
-                                    "websiteUrl": ""
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ],
-        "corpHeadquartersLegalBusinessName1":"",
-        "corpHeadquartersLegalBusinessName2":"",
-        "isCorpHeadquartersDunsRegistered":null,
-        "corpHeadquartersDunsRegNum":"",
-        "corpHeadquartersDnbLegalBusinessName":""
+            {
+                "addressId": "",
+                "addressInSection": "Corporate_Headquarters",
+                "postal": [
+                    {
+                        "address1": "",
+                        "address2": "",
+                        "address3": "",
+                        "address4": "",
+                        "address5": "",
+                        "city": "",
+                        "country": "",
+                        "countryCode": "",
+                        "district": "",
+                        "email": [
+                            {
+                                "email": "",
+                                "emailId": ""
+                            }
+                        ],
+                        "fax": [
+                            {
+                                "faxId": "",
+                                "faxNum": ""
+                            }
+                        ],
+                        "name": "",
+                        "postOfficeBox": "",
+                        "postOfficeBoxZipCode": "",
+                        "postalCode": "",
+                        "postalId": "",
+                        "poBoxPostalCode": "",
+                        "region": "",
+                        "regionCode": "",
+                        "telephone": [
+                            {
+                                "isMobileNumber": false,
+                                "telephoneId": "",
+                                "telephoneNum": "",
+                                "telephoneCountryCode": "",
+                                "extension": ""
+                            }
+                        ],
+                        "url": [
+                            {
+                                "webId": "",
+                                "websiteUrl": ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "corpHeadquartersLegalBusinessName1": "",
+        "corpHeadquartersLegalBusinessName2": "",
+        "isCorpHeadquartersDunsRegistered": null,
+        "corpHeadquartersDunsRegNum": "",
+        "corpHeadquartersDnbLegalBusinessName": ""
     },
     "businessPartnerId": "",
     "caseId": "",
@@ -363,6 +363,87 @@
                 ]
             }
         ],
+        "invoiceAddrPaymentCurrency": "",
+        "invoiceAddrPaymentMethod": "",
+        "invoiceAddrPaymentTerms": "",
+        "invoiceBankDto": {
+            "bankInfoDto": [
+                {
+                    "accountGroup": "Z004",
+                    "bankAccNum": "",
+                    "bankAccNumConfirm": "",
+                    "bankAddress": "",
+                    "bankBranch": "",
+                    "bankCity": "",
+                    "bankCode": "",
+                    "bankControlKey": "",
+                    "bankCountry": "",
+                    "bankDetailsId": "",
+                    "bankKey": "",
+                    "bankName": "",
+                    "bankNumber": "",
+                    "bankState": "",
+                    "benefAccHolderName": "",
+                    "ibanNum": "",
+                    "ibanNumConfirm": "",
+                    "instructionKey": "",
+                    "localAddress": "",
+                    "localBranch": "",
+                    "localCity": "",
+                    "localName": "",
+                    "mdgBankDetailsId": "",
+                    "partnerBankType": "",
+                    "refBankDetails": "",
+                    "swiftCode": "",
+                    "validationIndicator": "0"
+                }
+            ],
+            "financeContact1": {
+                "contact": "",
+                "contactId": "",
+                "contactInSection": "",
+                "contactName": "",
+                "contactType": "",
+                "countryContactCode": "",
+                "countryMobileCode": "",
+                "dateCreated": null,
+                "dateUpdated": null,
+                "department": "",
+                "email": "",
+                "entityName": "",
+                "extension": "",
+                "firstName": "",
+                "jobTitle": "",
+                "lastName": "",
+                "mobile": "",
+                "userCreated": "",
+                "userUpdated": ""
+            },
+            "financeContact2": {
+                "contact": "",
+                "contactId": "",
+                "contactInSection": "",
+                "contactName": "",
+                "contactType": "",
+                "countryContactCode": "",
+                "countryMobileCode": "",
+                "dateCreated": null,
+                "dateUpdated": null,
+                "department": "",
+                "email": "",
+                "entityName": "",
+                "extension": "",
+                "firstName": "",
+                "jobTitle": "",
+                "lastName": "",
+                "mobile": "",
+                "userCreated": "",
+                "userUpdated": ""
+            },
+            "isBankProvided": true,
+            "isIntermediateBankProvided": false,
+            "isbankdetailsHidden": true
+        },
         "companyWebsite": "",
         "isRemitToAddress": false,
         "isOrderToAddress": true,
@@ -518,8 +599,8 @@
         "newpaymentTerms": "",
         "newincoterm": "",
         "newincotermNamedPlace": "",
-        "isPaymentTermsAgreed":null,
-        "paymentTermsComments":""
+        "isPaymentTermsAgreed": null,
+        "paymentTermsComments": ""
     },
     "surveyInfoDto": {
         "altContact": {
