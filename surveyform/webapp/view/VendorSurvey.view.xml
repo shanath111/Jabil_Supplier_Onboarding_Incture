@@ -32,26 +32,26 @@
                               <Label text="{i18n>BPCCorporationName}" required="true" class="cl_VRLablCls "></Label>
 								 <Label text="{i18n>CoprportionInfor}" required="false" class="cl_VRLablCls "></Label>
                                  </HBox>
-                                 <l:Grid defaultSpan="XL3 L3 M12 S12" class="sapUiSizeCompact ">
+                                 <l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12"  class="sapUiSizeCompact gridSpacing">
                                
 								<VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="cl_VRInputCls" maxLength="35" editable="{oConfigMdl>/screenEditable}" liveChange="fnLiveChangeCorporationName" change="fnInputSpaceCheck" valueState="{JMBPCreate>/corporationNamee}" valueStateText="{JMBPCreate>/corporationNamem}" value="{JMBPCreate>/corporationName}"></Input>
+										<Input width="95%" class="inputStyle" maxLength="35" liveChange="fnLiveChangeCorporationName" change="fnInputSpaceCheck" valueState="{oErrorModel>/corporationNameE}" valueStateText="{oErrorModel>/corporationNameM}" value="{oDataModel>/bpCentral/0/organisationName1}"></Input>
 								
                                 	</VBox>
                                  <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}"  maxLength="35" change="fnInputSpaceCheck"  value="{JMBPCreate>/corporationName2}"></Input>
+										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck"  value="{oDataModel>/bpCentral/0/organisationName2}"></Input>
 								
                                 	</VBox>
                                     <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}"  maxLength="35" change="fnInputSpaceCheck" value="{JMBPCreate>/corporationName3}"></Input>
+										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck" value="{oDataModel>/bpCentral/0/organisationName3}"></Input>
 								
                                 	</VBox>
                                     <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}"  maxLength="35" change="fnInputSpaceCheck" value="{JMBPCreate>/corporationName4}"></Input>
+										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck" value="{oDataModel>/bpCentral/0/organisationName4}"></Input>
                                 	</VBox>   
 
 								</l:Grid>

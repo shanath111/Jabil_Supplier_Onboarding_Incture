@@ -2150,6 +2150,16 @@ sap.ui.define([
                     }
                     iError = true;
                 }
+                if(!oView.getModel("oDataModel").getData().bpCentral[0].organisationName1 ||spaceRegex.test(oView.getModel("oDataModel").getData().bpCentral[0].organisationName1)){
+                    oView.getModel("oErrorModel").getData().corporationNameE = "Error";
+                    if (isDefaultLan) {
+                        oView.getModel("oErrorModel").getData().corporationNameM = oi18n.getText("mandatoryCorporationName");
+                    } else {
+                        oView.getModel("oErrorModel").getData().corporationNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCorporationName + "\n" + oi18n.getText("mandatoryCorporationName");
+                    }
+
+                    iError = true;
+                }
                 if (!oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1 || spaceRegex.test(oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].address1)) {
                     oView.getModel("oErrorModel").getData().address1E = "Error";
                     if (isDefaultLan) {
@@ -9785,7 +9795,7 @@ sap.ui.define([
                 if (!oView.getModel("oEnableMdl").getData().nextBtnExtensionDisplayVsb) {
                     if (currentStepId == "basicInfo") {
                         this._fnValidateBasicInfo();
-
+                        this._fnUpdateBPCorpName();
                         oView.byId('businessPartnerInfo').addEventDelegate({
                             onAfterRendering: function () {
                                 if (isNew) {
@@ -11467,6 +11477,7 @@ sap.ui.define([
                     "context": {
                         "bpNumber": bp,
                         "caseId": oView.getModel("oUserModel").getData().caseId,
+                        "corporationName": oView.getModel("oDataModel").getData().bpCentral[0].organisationName1,
                         "isEULAAccepted": true,
                         "supplierAction": "EULA_accepted",
                         "ndaQuestion": vNDAQuetion,
@@ -13270,6 +13281,63 @@ sap.ui.define([
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");
                     }
+                }
+            },
+            fnLiveChangeCorporationName: function (oEvent) {
+                var vLength = oEvent.getParameter("value").length;
+                if (vLength > 35) {
+                    oView.getModel("oErrorModel").getData().corporationNameE = "Error";
+                    oView.getModel("oErrorModel").getData().corporationNameM = oi18n.getProperty("maxLengthExceed");
+                    oView.getModel("oErrorModel").refresh();
+                } else {
+                    if (oView.getModel("oErrorModel").getData().corporationNameE == "Error") {
+                        oView.getModel("oErrorModel").getData().corporationNameE = "None";
+                        oView.getModel("oErrorModel").getData().corporationNameM = "";
+                        oView.getModel("oErrorModel").refresh();
+                    }
+                }
+            },
+            _fnUpdateBPCorpName: function(){
+                var sUrl = "/nsBuyerRegistration/plcm_portal_services/case/updateBP";
+                var oPayload = oView.getModel("oBuyerModel").getData();
+                var supplierData = oView.getModel("oDataModel").getData().bpCentral[0];
+                var corpNameUpdated = supplierData.organisationName1;
+                if(supplierData.organisationName2){
+                    corpNameUpdated = corpNameUpdated + supplierData.organisationName2;
+                }
+                if(supplierData.organisationName3){
+                    corpNameUpdated = corpNameUpdated + supplierData.organisationName3;
+                }
+                if(supplierData.organisationName4){
+                    corpNameUpdated = corpNameUpdated + supplierData.organisationName4;
+                }
+
+                var bpCorpName = oPayload.bpRequestScope.corporationName;
+                if(oPayload.bpRequestScope.corporationName2){
+                    bpCorpName = bpCorpName + oPayload.bpRequestScope.corporationName2;
+                }
+                if(oPayload.bpRequestScope.corporationName3){
+                    bpCorpName = bpCorpName + oPayload.bpRequestScope.corporationName3;
+                }
+                if(oPayload.bpRequestScope.corporationName4){
+                    bpCorpName = bpCorpName + oPayload.bpRequestScope.corporationName4;
+                }
+
+                if(bpCorpName != corpNameUpdated){
+                    oPayload.bpRequestScope.corporationName = supplierData.organisationName1;
+                    oPayload.bpRequestScope.corporationName2 = supplierData.organisationName2;
+                    oPayload.bpRequestScope.corporationName3 = supplierData.organisationName3;
+                    oPayload.bpRequestScope.corporationName4 = supplierData.organisationName4;
+                    var oModel = new JSONModel();
+                    oModel.loadData(sUrl, JSON.stringify(oPayload), true, "PUT", false, true, {
+                        "Content-Type": "application/json"
+                    });
+                    oModel.attachRequestCompleted(function (oEvent) {
+
+                        if (oEvent.getParameter("success")) {
+                        }
+                    });
+
                 }
             }
         });
