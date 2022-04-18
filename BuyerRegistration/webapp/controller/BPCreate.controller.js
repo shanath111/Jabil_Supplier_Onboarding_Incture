@@ -681,13 +681,16 @@ sap.ui.define([
                         vError = true;
                         oView.getModel("JMBPCreate").refresh();
                     }
-
-                    if (!oView.getModel("JMBPCreate").getData().incotermNameLocatione) {
-                        oView.getModel("JMBPCreate").getData().incotermNameLocatione = "Error";
-                        oView.getModel("JMBPCreate").getData().incotermNameLocationm = oi18n.getProperty("BPCMandatoryValidationIncotermNamedLoc");
+                    if (oView.getModel("JMBPCreate").getData().incotermNameLocatione == "Error") {
                         vError = true;
-                        oView.getModel("JMBPCreate").refresh();
                     }
+
+                    // if (!oView.getModel("JMBPCreate").getData().incotermNameLocation) {
+                    //     oView.getModel("JMBPCreate").getData().incotermNameLocatione = "Error";
+                    //     oView.getModel("JMBPCreate").getData().incotermNameLocationm = oi18n.getProperty("BPCMandatoryValidationIncotermNamedLoc");
+                    //     vError = true;
+                    //     oView.getModel("JMBPCreate").refresh();
+                    // }
                     if (!oView.getModel("JMBPCreate").getData().corporationName) {
                         oView.getModel("JMBPCreate").getData().corporationNamee = "Error";
                         oView.getModel("JMBPCreate").getData().corporationNamem = oi18n.getProperty("BPCMandatoryValidationCorpName");

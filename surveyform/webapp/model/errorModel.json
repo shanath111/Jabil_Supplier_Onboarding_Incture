@@ -286,5 +286,7 @@
 "paymentTermCmtE":"None",
 "paymentTermCmtM":"",
 "taxC1E":"None",
-"taxC1M":""
+"taxC1M":"",
+"corporationNameE": "None",
+"corporationNameM":""
 }

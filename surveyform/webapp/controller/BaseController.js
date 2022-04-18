@@ -101,6 +101,9 @@ sap.ui.define([
                             that.getView().getModel("oUserModel").setProperty("/bankCompName", oEvent.getSource().getData().bpRequestScope.corporationName);
                             
                             that.getView().getModel("oUserModel").refresh();
+
+                            that.getView().getModel("oBuyerModel").setData(oEvent.getSource().getData());
+                            that.getView().getModel("oBuyerModel").refresh();
                             oDeferred.resolve();
 
                         }
