@@ -14689,7 +14689,6 @@ sap.ui.define([
                     }
                 }
             },
-<<<<<<< HEAD
 
 
 
@@ -14926,7 +14925,6 @@ sap.ui.define([
 
 
 
-=======
             fnLiveChangeCorporationName: function (oEvent) {
                 var vLength = oEvent.getParameter("value").length;
                 if (vLength > 35) {
@@ -14984,6 +14982,5 @@ sap.ui.define([
 
                 }
             }
->>>>>>> 6a620789d59b78c27f47c08e6225a49442eaddb0
         });
     });
