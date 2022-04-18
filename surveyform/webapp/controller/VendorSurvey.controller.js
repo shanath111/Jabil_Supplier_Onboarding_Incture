@@ -12906,6 +12906,7 @@ sap.ui.define([
                         },
 
                         "ipAuditWfDto": {
+                            "ipAuditWfId":"",
                             "bankAccountNumber": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum,
                             "bankAddress": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAddress,
                             "bankBranch": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch,
@@ -12920,12 +12921,13 @@ sap.ui.define([
                             "financeContact2": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email,
                             "ibanNum": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum,
                             "instructionKey": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].instructionKey,
-                            "isBankProvided": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].isBankProvided,
+                            "isBankProvided": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isBankProvided,
                             "partnerBankType": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].partnerBankType,
                             "refBankDetails": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails,
                             "swiftCode": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode
                         },
-                        "invoiceBankDetailsProvided": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].isBankProvided,
+                        "isInvoiceBankdetailsHidden" :oView.getModel("oDataModel").getData().bankDto.invoiceBankDto.isbankdetailsHidden ? "YES" : "NO",                   
+                        "invoiceBankDetailsProvided": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isBankProvided,
                         "invoiceFinanceContact1": {
                             "email": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email,
                             "firstName": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.firstName,
