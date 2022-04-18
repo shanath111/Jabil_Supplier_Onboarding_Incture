@@ -61,7 +61,7 @@
 									<l:GridData span="XL1 L1 M1 S1" />
 								</layoutData> -->
 							</Input>
-							<Input class="cl_VRInputCls" visible="{LocalModel>/ComCodeInputV}" placeholder="Company code desc" value="{LocalModel>/CompanyCodeDesc}"></Input>
+							<Input class="cl_VRInputCls" visible="{LocalModel>/ComCodeInputV}" placeholder="Company code description" value="{LocalModel>/CompanyCodeDesc}"></Input>
 							<layoutData>
 								<l:GridData span="XL1 L1 M1 S1" />
 							</layoutData>
@@ -85,7 +85,7 @@
 									<l:GridData span="XL1 L1 M1 S1" />
 								</layoutData>
 							</Input>
-							<Input class="cl_VRInputCls" visible="{LocalModel>/PurcOrgInputV}" placeholder="Purchase org Desc" value="{LocalModel>/PurOrgDesc}" ></Input>
+							<Input class="cl_VRInputCls" visible="{LocalModel>/PurcOrgInputV}" placeholder="Purchase org description" editable="false" value="{LocalModel>/PurOrgDesc}" ></Input>
 							<!-- <layoutData>
 								<l:GridData span="XL1 L1 M1 S1" />
 							</layoutData> -->
