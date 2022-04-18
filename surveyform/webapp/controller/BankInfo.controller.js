@@ -211,10 +211,20 @@ sap.ui.define([
                 });
             },
             fnLiveInputValueChange: function (oEvent) {
+                var spaceRegex = /^\s+$/;
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
+                var isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
+                if (spaceRegex.test(oEvent.getSource().getValue())) {
+                    oEvent.getSource().setValue("");
+                }
                 if (oEvent.getSource().getValue()) {
                     if (oEvent.getSource().getValue().length == oEvent.getSource().getMaxLength()) {
                         oEvent.getSource().setValueState("Error");
-                        oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                        if (isDefaultLan) {
+                            oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                        } else {
+                            oEvent.getSource().setValueStateText(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.maxLengthExceed + "\n" + oi18n.getText("maxLengthExceed"));
+                        }
                     } else if (oEvent.getSource().getValue()) {
                         oEvent.getSource().setValueState("None");
                         oEvent.getSource().setValueStateText("");
@@ -499,45 +509,68 @@ sap.ui.define([
             fnTransfer: function () {
                 var that = this;
                 var iError = false;
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
+                    isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 if (!oView.getModel("JMTarnsfer").getData().firstName) {
                     oView.getModel("oErrorModel").getData().finance1FNameE = "Error";
-                    oView.getModel("oErrorModel").getData().finance1FNameM = oi18n.getText("mandatoryFName");
-
+                    if(isDefaultLan){
+                        oView.getModel("oErrorModel").getData().finance1FNameM = oi18n.getText("mandatoryFName");
+                    } else{
+                        oView.getModel("oErrorModel").getData().finance1FNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryFName + "\n" + oi18n.getText("mandatoryFName");
+                    }
                     iError = true;
                 } if (!oView.getModel("JMTarnsfer").getData().lastName) {
                     oView.getModel("oErrorModel").getData().finance1LNameE = "Error";
-                    oView.getModel("oErrorModel").getData().finance1LNameM = oi18n.getText("mandatoryLName");
-
+                    if(isDefaultLan){
+                        oView.getModel("oErrorModel").getData().finance1LNameM = oi18n.getText("mandatoryLName");
+                    } else{
+                        oView.getModel("oErrorModel").getData().finance1LNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryLName + "\n" + oi18n.getText("mandatoryLName");
+                    }
                     iError = true;
                 }
                 if (!oView.getModel("JMTarnsfer").getData().email) {
 
                     oView.getModel("oErrorModel").getData().finance1EmailE = "Error";
-                    oView.getModel("oErrorModel").getData().finance1EmailM = oi18n.getText("mandatoryEmail");
-
+                    if(isDefaultLan){
+                        oView.getModel("oErrorModel").getData().finance1EmailM = oi18n.getText("mandatoryEmail");
+                    } else{
+                        oView.getModel("oErrorModel").getData().finance1EmailM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryEmail + "\n" + oi18n.getText("mandatoryEmail");
+                    }
                     iError = true;
                 } if (!oView.getModel("JMTarnsfer").getData().contact) {
                     oView.getModel("oErrorModel").getData().finance1ContE = "Error";
-                    oView.getModel("oErrorModel").getData().finance1ContM = oi18n.getText("mandatoryContact");
-
+                    if(isDefaultLan){
+                        oView.getModel("oErrorModel").getData().finance1ContM = oi18n.getText("mandatoryContact");
+                    } else{
+                        oView.getModel("oErrorModel").getData().finance1ContM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryContact + "\n" + oi18n.getText("mandatoryContact");
+                    }
                     iError = true;
                 }
                 if (!oView.getModel("JMTarnsfer").getData().mobile) {
                     oView.getModel("oErrorModel").getData().finance1MobE = "Error";
-                    oView.getModel("oErrorModel").getData().finance1MobM = oi18n.getText("mandatoryMContact");
-
+                    if(isDefaultLan){
+                        oView.getModel("oErrorModel").getData().finance1MobM = oi18n.getText("mandatoryMContact");
+                    } else{
+                        oView.getModel("oErrorModel").getData().finance1MobM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryMContact + "\n" + oi18n.getText("mandatoryMContact");
+                    }
                     iError = true;
                 }
                 if (!oView.getModel("JMTarnsfer").getData().countryContactCode) {
                     oView.getModel("oErrorModel").getData().finance1CountryContCodeE = "Error";
-                    oView.getModel("oErrorModel").getData().finance1CountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
-
+                    if(isDefaultLan){
+                        oView.getModel("oErrorModel").getData().finance1CountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
+                    } else{
+                        oView.getModel("oErrorModel").getData().finance1CountryContCodeM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountryConatactCode + "\n" + oi18n.getText("mandatoryCountryConatactCode");
+                    }
                     iError = true;
                 }
                 if (!oView.getModel("JMTarnsfer").getData().mobilecountryContactCode) {
                     oView.getModel("oErrorModel").getData().finance1mobileCountryContCodeE = "Error";
-                    oView.getModel("oErrorModel").getData().finance1mobileCountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
-
+                    if(isDefaultLan){
+                        oView.getModel("oErrorModel").getData().finance1mobileCountryContCodeM = oi18n.getText("mandatoryCountryConatactCode");
+                    } else{
+                        oView.getModel("oErrorModel").getData().finance1mobileCountryContCodeM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountryConatactCode + "\n" + oi18n.getText("mandatoryCountryConatactCode");
+                    }
                     iError = true;
                 }
                 if (oView.getModel("JMTarnsfer").getData().firstName && oView.getModel("JMTarnsfer").getData().firstName.length > 34) {
@@ -675,103 +708,150 @@ sap.ui.define([
                 if (visiblility.sc) {
                     if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry) {
                         oView.getModel("oErrorModel").getData().bankCountryE = "Error";
-                        oView.getModel("oErrorModel").getData().bankCountryM = oi18n.getText("mandatoryCountry");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().bankCountryM = oi18n.getText("mandatoryCountry");
+                        }else {
+                            oView.getModel("oErrorModel").getData().bankCountryM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountry + "\n" + oi18n.getText("mandatoryCountry");
+                        }
                         iError = true;
                     }
 
                     if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankName && bankFields.bankName) {
                         oView.getModel("oErrorModel").getData().bankNameE = "Error";
-                        oView.getModel("oErrorModel").getData().bankNameM = oi18n.getText("mandatoryName");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().bankNameM = oi18n.getText("mandatoryName");
+                        }else {
+                            oView.getModel("oErrorModel").getData().bankNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryName + "\n" + oi18n.getText("mandatoryName");
+                        }
+                        
                         iError = true;
                     }
 
                     if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAddress && bankFields.bankStreet) {
                         oView.getModel("oErrorModel").getData().bankAddrE = "Error";
-                        oView.getModel("oErrorModel").getData().bankAddrM = oi18n.getText("mandatoryAddr1");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().bankAddrM = oi18n.getText("mandatoryAddr1");
+                        }else {
+                            oView.getModel("oErrorModel").getData().bankAddrM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryAddr1 + "\n" + oi18n.getText("mandatoryAddr1");
+                        }
                         iError = true;
                     }
                     if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCity && bankFields.bankCity) {
                         oView.getModel("oErrorModel").getData().bankCityE = "Error";
-                        oView.getModel("oErrorModel").getData().bankCityM = oi18n.getText("mandatoryCity");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().bankCityM = oi18n.getText("mandatoryCity");
+                        }else {
+                            oView.getModel("oErrorModel").getData().bankCityM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCity + "\n" + oi18n.getText("mandatoryCity");
+                        }
                         iError = true;
                     }
 
                     if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum && bankFields.benificiaryAccountNumber) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum)) {
                         oView.getModel("oErrorModel").getData().bankAccNumE = "Error";
-                        oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("mandatoryAccNum");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().bankAccNumM = oi18n.getText("mandatoryAccNum");
+                        }else {
+                            oView.getModel("oErrorModel").getData().bankAccNumM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryAccNum + "\n" + oi18n.getText("mandatoryAccNum");
+                        }
                         iError = true;
                     }
 
                     if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm && bankFields.benificiaryAccountNumber) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm)) {
                         oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
-                        oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("mandatoryAccNumConfirm");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("mandatoryAccNumConfirm");
+                        }else {
+                            oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryAccNumConfirm + "\n" + oi18n.getText("mandatoryAccNumConfirm");
+                        }
                         iError = true;
                     } else if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm) {
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm !== oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum) {
                             oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
-                            oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
+                            }else {
+                                oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.identicalValuesRequiredAccNum + "\n" + oi18n.getText("identicalValuesRequiredAccNum");
+                            }
                             iError = true;
                         }
                     }
 
                     if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].benefAccHolderName && bankFields.benificiaryAccHolderName) {
                         oView.getModel("oErrorModel").getData().benifAccHNameE = "Error";
-                        oView.getModel("oErrorModel").getData().benifAccHNameM = oi18n.getText("mandatoryHolderName");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().benifAccHNameM = oi18n.getText("mandatoryHolderName");
+                        }else {
+                            oView.getModel("oErrorModel").getData().benifAccHNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryHolderName + "\n" + oi18n.getText("mandatoryHolderName");
+                        }
                         iError = true;
                     }
 
                     if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].swiftCode && bankFields.swiftCode) {
                         oView.getModel("oErrorModel").getData().bankSwiftE = "Error";
-                        oView.getModel("oErrorModel").getData().bankSwiftM = oi18n.getText("mandatorySwftCd");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().bankSwiftM = oi18n.getText("mandatorySwftCd");
+                        }else {
+                            oView.getModel("oErrorModel").getData().bankSwiftM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatorySwftCd + "\n" + oi18n.getText("mandatorySwftCd");
+                        }
                         iError = true;
                     }
 
                     if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch && bankFields.bankBranch) {
                         // if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankCountry == "CN" && !oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankBranch) {
                         oView.getModel("oErrorModel").getData().bankBranchE = "Error";
-                        oView.getModel("oErrorModel").getData().bankBranchM = oi18n.getText("mandatoryBranch");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().bankBranchM = oi18n.getText("mandatoryBranch");
+                        }else {
+                            oView.getModel("oErrorModel").getData().bankBranchM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryBranch + "\n" + oi18n.getText("mandatoryBranch");
+                        }
                         iError = true;
                     }
                     if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].refBankDetails && bankFields.referenceDetails) {
                         oView.getModel("oErrorModel").getData().bankRefE = "Error";
-                        oView.getModel("oErrorModel").getData().bankRefM = oi18n.getText("mandatoryRefDet");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().bankRefM = oi18n.getText("mandatoryRefDet");
+                        }else {
+                            oView.getModel("oErrorModel").getData().bankRefM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryRefDet + "\n" + oi18n.getText("mandatoryRefDet");
+                        }
                         iError = true;
                     }
                     if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankNumber && bankFields.bankNumber) {
                         oView.getModel("oErrorModel").getData().bankNumE = "Error";
-                        oView.getModel("oErrorModel").getData().bankNumM = oi18n.getText("mandatoryBankNum");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().bankNumM = oi18n.getText("mandatoryBankNum");
+                        }else {
+                            oView.getModel("oErrorModel").getData().bankNumM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryBankNum + "\n" + oi18n.getText("mandatoryBankNum");
+                        }
                         iError = true;
                     }
                     if ((!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm && bankFields.iban) || spaceRegex.test(oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm)) {
 
                         oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
-                        oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("mandatoryIbanConfirm");
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("mandatoryIbanConfirm");
+                        }else {
+                            oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryIbanConfirm + "\n" + oi18n.getText("mandatoryIbanConfirm");
+                        }
                         iError = true;
 
                     } else if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm) {
                         if (oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm !== oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum) {
                             oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
-                            oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
-
+                            if(isDefaultLan){
+                                oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
+                            }else {
+                                oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.identicalValuesRequiredIBAN + "\n" + oi18n.getText("identicalValuesRequiredIBAN");
+                            }
                             iError = true;
                         }
                     }
                     if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].partnerBankType && bankFields.benificiaryAccCurrency) {
                         oView.getModel("oErrorModel").getData().benifAccCurrE = "Error";
-                        oView.getModel("oErrorModel").getData().benifAccCurrM = oi18n.getText("mandatoryAccCurr");
-
+                        if(isDefaultLan){
+                            oView.getModel("oErrorModel").getData().benifAccCurrM = oi18n.getText("mandatoryAccCurr");
+                        }else {
+                            oView.getModel("oErrorModel").getData().benifAccCurrM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryAccCurr + "\n" + oi18n.getText("mandatoryAccCurr");
+                        }
                         iError = true;
                     }
                     // if (!oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankControlKey && bankFields.bankControlKey) {
@@ -837,11 +917,17 @@ sap.ui.define([
 
             fnLiveInputAlphaValueChange: function (oEvent) {
                 var alphaRegex = /^[A-Za-z]*$/;
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
+                var isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 var val = oEvent.getSource().getValue();
                 if (oEvent.getSource().getValue()) {
                     if (val.length == oEvent.getSource().getMaxLength()) {
                         oEvent.getSource().setValueState("Error");
-                        oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                        if (isDefaultLan) {
+                            oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                        } else {
+                            oEvent.getSource().setValueStateText(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.maxLengthExceed + "\n" + oi18n.getText("maxLengthExceed"));
+                        }
                     } else if (!alphaRegex.test(oEvent.getSource().getValue())) {
                         oEvent.getSource().setValue(oEvent.getSource().getValue().slice(0, -1));
                         // var newval = val.substring(0, val.length - 1);
@@ -857,10 +943,16 @@ sap.ui.define([
 
             fnLiveInputNumericValueChange: function (oEvent) {
                 var numRegex = /^[0-9]*$/;
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
+                var isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 var val = oEvent.getSource().getValue();
                 if (val.length == oEvent.getSource().getMaxLength()) {
                     oEvent.getSource().setValueState("Error");
-                    oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                    if (isDefaultLan) {
+                        oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                    } else {
+                        oEvent.getSource().setValueStateText(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.maxLengthExceed + "\n" + oi18n.getText("maxLengthExceed"));
+                    }
                 } else if (!numRegex.test(oEvent.getSource().getValue())) {
                     oEvent.getSource().setValue(oEvent.getSource().getValue().replace(/\D+/g, ''));
 
@@ -896,10 +988,16 @@ sap.ui.define([
             },
 
             fnInputConfirmBankAccNumber: function (oEvent) {
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
+                var isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 if (oEvent.getSource().getValue()) {
                     if (oEvent.getSource().getValue().length == oEvent.getSource().getMaxLength()) {
                         oEvent.getSource().setValueState("Error");
-                        oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                        if (isDefaultLan) {
+                            oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                        } else {
+                            oEvent.getSource().setValueStateText(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.maxLengthExceed + "\n" + oi18n.getText("maxLengthExceed"));
+                        }
                     } else if (oEvent.getSource().getValue()) {
                         oEvent.getSource().setValueState("None");
                         oEvent.getSource().setValueStateText("");
@@ -911,7 +1009,12 @@ sap.ui.define([
                 var InputBankAccNum = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum;
                 if (confirmBankAccNum !== InputBankAccNum) {
                     oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
-                    oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
+                    if (isDefaultLan) {
+                        oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
+                    } else {
+                        oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.identicalValuesRequiredAccNum + "\n" + oi18n.getText("identicalValuesRequiredAccNum");
+                    }
+                    
                     oView.getModel("oErrorModel").refresh();
                     // that.emailValidResult = true;
                     // sap.m.MessageBox.alert(oView.getModel("i18n").getResourceBundle().getText("identicalValuesRequired"), {
@@ -925,10 +1028,16 @@ sap.ui.define([
                 }
             },
             fnInputConfirmBankAccNumber1: function (oEvent) {
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
+                var isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 if (oEvent.getSource().getValue()) {
                     if (oEvent.getSource().getValue().length == oEvent.getSource().getMaxLength()) {
                         oEvent.getSource().setValueState("Error");
-                        oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                        if (isDefaultLan) {
+                            oEvent.getSource().setValueStateText(oi18n.getText("maxLengthExceed"));
+                        } else {
+                            oEvent.getSource().setValueStateText(oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.maxLengthExceed + "\n" + oi18n.getText("maxLengthExceed"));
+                        }
                     } else if (oEvent.getSource().getValue()) {
                         oEvent.getSource().setValueState("None");
                         oEvent.getSource().setValueStateText("");
@@ -965,7 +1074,11 @@ sap.ui.define([
                 var InputBankAccNum = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNumConfirm;
                 if (confirmBankAccNum !== InputBankAccNum) {
                     oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
-                    oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
+                    if (isDefaultLan) {
+                        oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
+                    } else {
+                        oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.identicalValuesRequiredAccNum + "\n" + oi18n.getText("identicalValuesRequiredAccNum");
+                    }
                     oView.getModel("oErrorModel").refresh();
                     // that.emailValidResult = true;
                     // sap.m.MessageBox.alert(oView.getModel("i18n").getResourceBundle().getText("identicalValuesRequired"), {
@@ -982,6 +1095,8 @@ sap.ui.define([
                 }
             },
             fnInputConfirmIban1: function (oEvent) {
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
+                var isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 if (oEvent.getSource().getValue()) {
 
                     if (oEvent.getSource().getMaxLength() && oEvent.getSource().getValue().length !== oEvent.getSource().getMaxLength()) {
@@ -1010,7 +1125,12 @@ sap.ui.define([
                 var InputIBAN = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNumConfirm;
                 if (confirmIBAN !== InputIBAN) {
                     oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
-                    oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
+                    if (isDefaultLan) {
+                        oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
+                    } else {
+                        oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.identicalValuesRequiredIBAN + "\n" + oi18n.getText("identicalValuesRequiredIBAN");
+                    }
+                    
                     oView.getModel("oErrorModel").refresh();
                     // that.emailValidResult = true;
                     // sap.m.MessageBox.alert(oView.getModel("i18n").getResourceBundle().getText("identicalValuesRequired"), {
@@ -1027,6 +1147,8 @@ sap.ui.define([
                 }
             },
             fnInputConfirmIban: function (oEvent) {
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
+                var isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 if (oEvent.getSource().getValue()) {
 
                     if (oEvent.getSource().getMaxLength() && oEvent.getSource().getValue().length !== oEvent.getSource().getMaxLength()) {
@@ -1045,7 +1167,12 @@ sap.ui.define([
                 var InputIBAN = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].ibanNum;
                 if (confirmIBAN !== InputIBAN) {
                     oView.getModel("oErrorModel").getData().ibanConfirmE = "Error";
-                    oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
+                    if (isDefaultLan) {
+                        oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n.getText("identicalValuesRequiredIBAN");
+                    } else {
+                        oView.getModel("oErrorModel").getData().ibanConfirmM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.identicalValuesRequiredIBAN + "\n" + oi18n.getText("identicalValuesRequiredIBAN");
+                    }
+                    
                     oView.getModel("oErrorModel").refresh();
                     // that.emailValidResult = true;
                     // sap.m.MessageBox.alert(oView.getModel("i18n").getResourceBundle().getText("identicalValuesRequired"), {
@@ -1083,14 +1210,19 @@ sap.ui.define([
             },
 
             fnSubmitComments: function () {
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
+                var isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 if (oView.getModel("JMBankComments").getData().Action == "RJ") {
                     if (oView.getModel("JMBankComments").getData().Comments) {
                         this.fnApproveSub("RJ");
                         this.oBankComments.close();
                     } else {
                         oView.getModel("JMBankComments").getData().Commentse = "Error";
-                        oView.getModel("JMBankComments").getData().Commentsm = oi18n.getText("EnterCommentsTxt");
-
+                        if (isDefaultLan) {
+                            oView.getModel("JMBankComments").getData().Commentsm = oi18n.getText("EnterCommentsTxt");
+                        } else {
+                            oView.getModel("JMBankComments").getData().Commentsm = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.EnterCommentsTxt + "\n" + oi18n.getText("EnterCommentsTxt");
+                        }
                         oView.getModel("JMBankComments").refresh();
                     }
                 } else {
@@ -2028,17 +2160,25 @@ sap.ui.define([
                 this.oPopup = undefined;
             },
             fnSearchAccuityBank: function (oEvent) {
+                var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
+                    isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                 var vError = false;
                 if (!oView.getModel("bankSearchModel").getData().banksearchParam.bankCountry) {
                     oView.getModel("oErrorModel").getData().bankSearchCountryE = "Error";
-                    oView.getModel("oErrorModel").getData().bankSearchCountryM = oi18n.getText("mandatoryCountry");
-
+                    if (isDefaultLan) {
+                        oView.getModel("oErrorModel").getData().bankSearchCountryM = oi18n.getText("mandatoryCountry");
+                    } else {
+                        oView.getModel("oErrorModel").getData().bankSearchCountryM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryCountry + "\n" + oi18n.getText("mandatoryCountry");
+                    }
                     vError = true;
                 }
                 if (!oView.getModel("bankSearchModel").getData().banksearchParam.bankName && oView.getModel("oVisibilityModel").getData().bankNameSearchMandate) {
                     oView.getModel("oErrorModel").getData().bankSearchNameE = "Error";
-                    oView.getModel("oErrorModel").getData().bankSearchNameM = oi18n.getText("mandatoryBName");
-
+                    if (isDefaultLan) {
+                        oView.getModel("oErrorModel").getData().bankSearchNameM = oi18n.getText("mandatoryBName");
+                    } else {
+                        oView.getModel("oErrorModel").getData().bankSearchNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.mandatoryBName + "\n" + oi18n.getText("mandatoryBName");
+                    }
                     vError = true;
                 }
                 oView.getModel("oErrorModel").refresh();
