@@ -440,9 +440,9 @@
                 "userCreated": "",
                 "userUpdated": ""
             },
-            "isBankProvided": true,
+            "isBankProvided": null,
             "isIntermediateBankProvided": false,
-            "isbankdetailsHidden": true
+            "isbankdetailsHidden": false
         },
         "companyWebsite": "",
         "isRemitToAddress": false,
