@@ -12906,6 +12906,7 @@ sap.ui.define([
                         },
 
                         "ipAuditWfDto": {
+                            "ipAuditWfId":"",
                             "bankAccountNumber": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum,
                             "bankAddress": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAddress,
                             "bankBranch": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch,
