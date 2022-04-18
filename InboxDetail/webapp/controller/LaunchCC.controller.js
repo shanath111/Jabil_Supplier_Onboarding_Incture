@@ -77,6 +77,9 @@ sap.ui.define([
                 oView.getModel("LocalModel").setProperty("/ComCodeDDV",true);
                 oView.getModel("LocalModel").setProperty("/PurcOrgDDV",true);
                 oView.getModel("LocalModel").setProperty("/PurcOrgInputV",false);
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDesc","");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDesc","");
+                oView.getModel("LocalModel").setProperty("/PurOrgDesc","");
                 //oView.getModel("LocalModel").setProperty("/PurcOrgInputV",true);
                 // user story 596896
                 

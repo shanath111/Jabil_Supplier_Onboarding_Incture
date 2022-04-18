@@ -56,12 +56,12 @@
 						</ComboBox>
 						<!-- new Changes user Story 596896 -->
 						<!-- <HBox visible="{LocalModel>/ComCodeInputV}"> -->
-							<Input  visible="{LocalModel>/ComCodeInputV}" placeholder="Company code" value="{JMFilter1>/companyCode}" maxLength="4">
+							<Input class="cl_VRLablCls" visible="{LocalModel>/ComCodeInputV}" placeholder="Company code" value="{JMFilter1>/companyCode}" maxLength="4">
 								<!-- <layoutData> 
 									<l:GridData span="XL1 L1 M1 S1" />
 								</layoutData> -->
 							</Input>
-							<Input visible="{LocalModel>/ComCodeInputV}" placeholder="Company code desc" value="{LocalModel>/CompanyCodeDesc}"></Input>
+							<Input class="cl_VRLablCls" visible="{LocalModel>/ComCodeInputV}" placeholder="Company code desc" value="{LocalModel>/CompanyCodeDesc}"></Input>
 							<layoutData>
 								<l:GridData span="XL1 L1 M1 S1" />
 							</layoutData>
@@ -80,12 +80,12 @@
 						</c:ExtComboBox>
 						<!-- new Changes user Story 596896 -->
 						<!-- <HBox visible="{LocalModel>/PurcOrgInputV}"> -->
-							<Input visible="{LocalModel>/PurcOrgInputV}" maxLength="4" placeholder="Purchase org" editable="false" value="{JMFilter1>/purchasingOrganisation}">
+							<Input class="cl_VRLablCls" visible="{LocalModel>/PurcOrgInputV}" maxLength="4" placeholder="Purchase org" editable="false" value="{JMFilter1>/purchasingOrganisation}">
 								<layoutData>
 									<l:GridData span="XL1 L1 M1 S1" />
 								</layoutData>
 							</Input>
-							<Input visible="{LocalModel>/PurcOrgInputV}" placeholder="Purchase org Desc" value="{LocalModel>/PurOrgDesc}" editable="false"></Input>
+							<Input class="cl_VRLablCls" visible="{LocalModel>/PurcOrgInputV}" placeholder="Purchase org Desc" value="{LocalModel>/PurOrgDesc}" ></Input>
 							<!-- <layoutData>
 								<l:GridData span="XL1 L1 M1 S1" />
 							</layoutData> -->

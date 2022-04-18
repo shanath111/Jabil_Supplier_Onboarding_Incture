@@ -100,10 +100,19 @@ sap.ui.define([
                     } else {
                         // if (oEvent.getSource().getData().eulaInSection == "Finance Provider") {
                         if (oEvent.getSource().getData().eulaStatus == "Accepted") {
-                            that.getOwnerComponent().getRouter().navTo("BankInfo", {
-                                contextPath: wView.getModel("oUserModel").getData().taskId,
-                                Name: vAppName
-                            });
+                            
+                            if(vAppName.includes("Remit")){
+                                that.getOwnerComponent().getRouter().navTo("BankInfoRemit", {
+                                    contextPath: wView.getModel("oUserModel").getData().taskId,
+                                    Name: vAppName
+                                });
+                            }else{
+                                that.getOwnerComponent().getRouter().navTo("BankInfo", {
+                                    contextPath: wView.getModel("oUserModel").getData().taskId,
+                                    Name: vAppName
+                                });
+                            }
+                           
                             that.getView().getModel("oUserModel").setProperty("/language", oEvent.getSource().getData().language);
                             that.getView().getModel("oUserModel").refresh();
                             if (oEvent.getSource().getData().language) {
