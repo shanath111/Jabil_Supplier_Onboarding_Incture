@@ -87,9 +87,12 @@ sap.ui.define([
             var vSuppSection;
             if (vAppName == "SupplierFinance") {
                 vSuppSection = "Finance Provider";
-            } else {
+            } else if(vAppName == "SupplierFinanceReviewer") {
                 vSuppSection = "Finance Reviewer";
+            }else{
+                vSuppSection =  vAppName;
             }
+            
             var sUrl = "/comjabilsurveyform/plcm_portal_services/eula/findByIdAndSection/" + caseId + "/" + vSuppSection;
             oModel.loadData(sUrl);
             oModel.attachRequestCompleted(function (oEvent) {
@@ -252,7 +255,7 @@ sap.ui.define([
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/workflow/taskComplete"
 
 
-                if (vAppName == "SupplierFinance") {
+                if (vAppName == "SupplierFinance" || vAppName == "SupplierFinanceRemit") {
                     var wPayload =
 
                     {
@@ -328,8 +331,10 @@ sap.ui.define([
             var vSuppSection;
             if (vAppName == "SupplierFinance") {
                 vSuppSection = "Finance Provider";
-            } else {
+            } else if(vAppName == "SupplierFinanceReviewer") {
                 vSuppSection = "Finance Reviewer";
+            }else{
+                vSuppSection =  vAppName;
             }
             var oModelDB = new JSONModel(),
                 selectedLan = sap.ui.getCore().getConfiguration().getLanguage();

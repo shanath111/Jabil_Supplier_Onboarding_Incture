@@ -5233,7 +5233,7 @@ sap.ui.define([
                         //     iError = true;
                         // }
 
-                        if (oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === false || oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === null || oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === undefined) {
+                        if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === false || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === null || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === undefined) {
                             if (visiblility.invoiceBankDto.isBankProvided === null) {
                                 oView.getModel("oErrorModel").getData().isBankProvidedE = "Error";
                                 iError = true;
@@ -5943,7 +5943,7 @@ sap.ui.define([
                         //     oView.byId("bankInfo").setValidated(true);
                         // }
                         if (!iError) {
-                            if (oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === false || oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === null || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === undefined) {
+                            if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === false || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === null || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.invoiceBankDto.isbankdetailsHidden === undefined) {
                                 if (visiblility.invoiceBankDto.isBankProvided === false) {
                                     if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email !== "" && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email !== "") {
                                         if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email == oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email) {
@@ -12927,7 +12927,7 @@ sap.ui.define([
                             "refBankDetails": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails,
                             "swiftCode": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode
                         },
-                        "isInvoiceBankdetailsHidden" :oView.getModel("oDataModel").getData().bankDto.invoiceBankDto.isbankdetailsHidden ? "YES" : "NO",                   
+                        "isInvoiceBankdetailsHidden" :oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden ? "YES" : "NO",                   
                         "invoiceBankDetailsProvided": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isBankProvided,
                         "invoiceFinanceContact1": {
                             "email": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email,
@@ -14722,7 +14722,7 @@ sap.ui.define([
                     url: sUrl,
                     type: 'GET',
                     success: function (data) {
-                        oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden = data.paymentVisibility.toLowerCase() === "optional" ? true : false;
+                        oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden = data.paymentVisibility.toLowerCase() === "optional" ? true : false;
                         oView.getModel("oDataModel").refresh();
                     },
                     async: false,
