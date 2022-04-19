@@ -412,7 +412,8 @@ sap.ui.define([
                                         "isBankProvided": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].isBankProvided,
                                         "partnerBankType":oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].partnerBankType,
                                         "refBankDetails": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails,
-                                        "swiftCode": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode
+                                        "swiftCode": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode,
+                                        "ipAuditwfId":""
                                     }
                                   
                                     // "financeContact1": {
