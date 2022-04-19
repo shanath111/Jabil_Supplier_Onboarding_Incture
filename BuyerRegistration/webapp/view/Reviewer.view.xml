@@ -7,6 +7,9 @@
 					<Panel width="auto" expandable="false" expanded="true" class="cl_VRPanelClass sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
 						<content>
 								<VBox class="cl_TIVBoxShadow">
+                                <l:VerticalLayout class="sapUiContentPadding" width="100%">
+                                <Label visible="{oConfigMdl>/ValidateVisible}"	wrapping="true" text="{oToolTipModel>/tooltiptextRevier}" />
+                                </l:VerticalLayout>
 									<Toolbar height="3rem" class="cl_TIToolbarBorder sapUiTinyMarginTop">
 										<SegmentedButton  id="id_SegmentedBtn" selectionChange="fnSegmentButtonChange" class="sapUiTinyMarginBottom cl_TISegmentBtn">
 											<items>
