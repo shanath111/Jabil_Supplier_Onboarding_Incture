@@ -196,10 +196,22 @@ sap.ui.define([
             // var alreadyAccepted = true;
             this._fnUpdateDB("Accepted");
 
-            this.getOwnerComponent().getRouter().navTo("BankInfo", {
-                contextPath: wView.getModel("oUserModel").getData().taskId,
-                Name: vAppName
-            });
+            // this.getOwnerComponent().getRouter().navTo("BankInfo", {
+            //     contextPath: wView.getModel("oUserModel").getData().taskId,
+            //     Name: vAppName
+            // });
+            
+            if(vAppName.includes("Remit")){
+                this.getOwnerComponent().getRouter().navTo("BankInfoRemit", {
+                    contextPath: wView.getModel("oUserModel").getData().taskId,
+                    Name: vAppName
+                });
+            }else{
+                this.getOwnerComponent().getRouter().navTo("BankInfo", {
+                    contextPath: wView.getModel("oUserModel").getData().taskId,
+                    Name: vAppName
+                });
+            }
             // var oModelWf = new JSONModel();
             // var sUrl = "/comjabilsurveyform/plcm_portal_services/workflow/taskComplete"
             // var wPayload =

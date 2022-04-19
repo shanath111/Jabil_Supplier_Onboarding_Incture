@@ -1796,7 +1796,7 @@ sap.ui.define([
                     success: function (data) {
                         $.each(data, function (index, value) {
                             if (value.docInSection == "bankDArrayR") {
-                                that.getView().getModel("oAttachmentList").getData()[0].bankDArray.push(value);
+                                that.getView().getModel("oAttachmentList").getData()[0].bankDArrayR.push(value);
                             } else if (value.docInSection == "bankIntermediateInfo") {
                                 that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.push(value);
                             }
@@ -1832,7 +1832,7 @@ sap.ui.define([
                 this.oPopup.destroy();
                 this.oPopup = undefined;
             },
-            fnOnFileUploadBPBank: function (oEvt) {
+            fnOnFileUploadBPBankRemit: function (oEvt) {
                 var that = this;
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
                 var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
@@ -2019,6 +2019,7 @@ sap.ui.define([
                 this.oPopup.destroy();
                 this.oPopup = undefined;
             },
+            
             fnSearchAccuityBank: function (oEvent) {
                 var vError = false;
                 if (!oView.getModel("bankSearchModel").getData().banksearchParam.bankCountry) {
