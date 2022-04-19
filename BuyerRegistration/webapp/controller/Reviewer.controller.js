@@ -24,6 +24,7 @@ sap.ui.define([
                 oBusyDilog = new BusyDialog({
                     text: oi18n.getProperty("BusyTxt") //initialize Busy Dialog
                 });
+                
 
                 var oRouter = this.getOwnerComponent().getRouter();
                 oRouter.getRoute("Reviewer").attachPatternMatched(this.fnReviewerRoute, this);

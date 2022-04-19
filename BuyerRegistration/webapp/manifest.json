@@ -105,6 +105,10 @@
             "oAttachmentListBank": {
                 "type": "sap.ui.model.json.JSONModel",
                 "uri": "model/attachmentData.json"
+            },
+            "oToolTipModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/Tooltip.json"
             }
         },
         "resources": {
