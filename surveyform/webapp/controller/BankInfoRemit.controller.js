@@ -333,10 +333,13 @@ sap.ui.define([
                     var that = this;
                     oBusyDialog.open();
                     var vActionTxt = "";
+                    var vBankProvide;
                     if (this.getView().byId("isSCFC1").getSelectedIndex() == 0) {
                         vActionTxt = "provided";
+                        vBankProvide = true;
                     } else {
                         vActionTxt = "forwarded";
+                        vBankProvide = false;
                     }
 
                     var oPayloadSupp = that.getView().getModel("oDataModel").getData();
@@ -409,7 +412,7 @@ sap.ui.define([
                                         "financeContact2": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email,
                                         "ibanNum": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum,
                                         "instructionKey": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].instructionKey,
-                                        "isBankProvided": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].isBankProvided,
+                                        "isBankProvided": vBankProvide,
                                         "partnerBankType": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].partnerBankType,
                                         "refBankDetails": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails,
                                         "swiftCode": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode,
@@ -1104,6 +1107,7 @@ sap.ui.define([
                 this.oBankComments.close();
             },
 
+
             fnSubmitComments: function () {
                 if (oView.getModel("JMBankComments").getData().Action == "RJ") {
                     if (oView.getModel("JMBankComments").getData().Comments) {
@@ -1182,6 +1186,7 @@ sap.ui.define([
                     vCommentsActn = "disqualify";
                 }
 
+
                 var oModel = new JSONModel();
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/workflow/taskComplete"
                 var vBnkaPayload = {
@@ -1213,6 +1218,14 @@ sap.ui.define([
                 } else {
                     vInterMedbank = false;
                 }
+                var vBankProvide;
+                if (this.getView().byId("isSCFC1").getSelectedIndex() == 0) {
+                  
+                    vBankProvide = true;
+                } else {
+                  
+                    vBankProvide = false;
+                }
                 var oPayload = {
                     "context": {
                         "bpNumber": oView.getModel("oUserModel").getData().bpNumber,
@@ -1237,7 +1250,7 @@ sap.ui.define([
                             "financeContact2": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email,
                             "ibanNum": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum,
                             "instructionKey": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].instructionKey,
-                            "isBankProvided": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].isBankProvided,
+                            "isBankProvided":vBankProvide,
                             "partnerBankType": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].partnerBankType,
                             "refBankDetails": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails,
                             "swiftCode": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode,

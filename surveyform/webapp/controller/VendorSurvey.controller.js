@@ -13002,9 +13002,6 @@ sap.ui.define([
                 var oView = this.getView();
                 var txt = popOverModel.getProperty("/" + BtnId).info;
 
-
-
-
                 if (!this._pPopover) {
                     this._pPopover = sap.ui.xmlfragment("idFragment", "com.jabil.surveyform.fragments.infoPopover", this);
                     //    oDialog.refreshAggregation()
