@@ -275,8 +275,8 @@ sap.ui.define([
                     var findBankDoc = this.getView().getModel("oAttachmentList").getProperty("/0/" + "bankDArrayR").findIndex(function (doc) {
                         return doc.docFormType !== "Indemnity Letter";
                     });
-                if(findBankDoc == -1){
-                  //  if (that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
+                    if (findBankDoc == -1) {
+                        //  if (that.getView().getModel("oAttachmentList").getData()[0].bankDArray.length == 0) {
                         var oi18n_En = this.getOwnerComponent().getModel("oi18n_En"),
                             isDefaultLan = this.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
                         if (isDefaultLan) {
@@ -333,10 +333,13 @@ sap.ui.define([
                     var that = this;
                     oBusyDialog.open();
                     var vActionTxt = "";
+                    var vBankProvide;
                     if (this.getView().byId("isSCFC1").getSelectedIndex() == 0) {
                         vActionTxt = "provided";
+                        vBankProvide = true;
                     } else {
                         vActionTxt = "forwarded";
+                        vBankProvide = false;
                     }
 
                     var oPayloadSupp = that.getView().getModel("oDataModel").getData();
@@ -398,23 +401,24 @@ sap.ui.define([
                                         "bankAccountNumber": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum,
                                         "bankAddress": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAddress,
                                         "bankBranch": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch,
-                                        "bankCity":oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCity,
-                                        "bankCountryKey":oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry,
+                                        "bankCity": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCity,
+                                        "bankCountryKey": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry,
                                         "bankName": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankName,
                                         "bankNumber": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankNumber,
                                         "bankState": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankState,
-                                        "benfAccHolderName":oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].benefAccHolderName,
+                                        "benfAccHolderName": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].benefAccHolderName,
                                         "caseId": oView.getModel("oUserModel").getData().caseId,
                                         "financeContact1": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isBankProvided ? "" : oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email,
                                         "financeContact2": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email,
                                         "ibanNum": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum,
                                         "instructionKey": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].instructionKey,
-                                        "isBankProvided": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].isBankProvided,
-                                        "partnerBankType":oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].partnerBankType,
+                                        "isBankProvided": vBankProvide,
+                                        "partnerBankType": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].partnerBankType,
                                         "refBankDetails": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails,
-                                        "swiftCode": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode
+                                        "swiftCode": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode,
+                                        "ipAuditwfId": ""
                                     }
-                                  
+
                                     // "financeContact1": {
                                     //     "firstName": "",
                                     //     "lastName": "",
@@ -1103,6 +1107,7 @@ sap.ui.define([
                 this.oBankComments.close();
             },
 
+
             fnSubmitComments: function () {
                 if (oView.getModel("JMBankComments").getData().Action == "RJ") {
                     if (oView.getModel("JMBankComments").getData().Comments) {
@@ -1181,6 +1186,7 @@ sap.ui.define([
                     vCommentsActn = "disqualify";
                 }
 
+
                 var oModel = new JSONModel();
                 var sUrl = "/comjabilsurveyform/plcm_portal_services/workflow/taskComplete"
                 var vBnkaPayload = {
@@ -1212,6 +1218,14 @@ sap.ui.define([
                 } else {
                     vInterMedbank = false;
                 }
+                var vBankProvide;
+                if (this.getView().byId("isSCFC1").getSelectedIndex() == 0) {
+                  
+                    vBankProvide = true;
+                } else {
+                  
+                    vBankProvide = false;
+                }
                 var oPayload = {
                     "context": {
                         "bpNumber": oView.getModel("oUserModel").getData().bpNumber,
@@ -1221,6 +1235,27 @@ sap.ui.define([
                         "bank_details_provider_comment": oView.getModel("JMBankComments").getData().Comments,
                         "bnkaPayload": vBnkaPayload,
                         "isIntermediateBankProvided": vInterMedbank,
+                        "ipAuditWfDto": {
+                            "bankAccountNumber": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum,
+                            "bankAddress": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAddress,
+                            "bankBranch": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch,
+                            "bankCity": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCity,
+                            "bankCountryKey": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry,
+                            "bankName": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankName,
+                            "bankNumber": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankNumber,
+                            "bankState": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankState,
+                            "benfAccHolderName": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].benefAccHolderName,
+                            "caseId": oView.getModel("oUserModel").getData().caseId,
+                            "financeContact1": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isBankProvided ? "" : oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email,
+                            "financeContact2": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email,
+                            "ibanNum": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum,
+                            "instructionKey": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].instructionKey,
+                            "isBankProvided":vBankProvide,
+                            "partnerBankType": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].partnerBankType,
+                            "refBankDetails": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails,
+                            "swiftCode": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode,
+                            "ipAuditwfId": ""
+                        }
                         // "financeContact2": {
                         //     "firstName": "",
                         //     "lastName": "",
@@ -1796,7 +1831,7 @@ sap.ui.define([
                     success: function (data) {
                         $.each(data, function (index, value) {
                             if (value.docInSection == "bankDArrayR") {
-                                that.getView().getModel("oAttachmentList").getData()[0].bankDArray.push(value);
+                                that.getView().getModel("oAttachmentList").getData()[0].bankDArrayR.push(value);
                             } else if (value.docInSection == "bankIntermediateInfo") {
                                 that.getView().getModel("oAttachmentList").getData()[0].bankINDArray.push(value);
                             }
@@ -1832,7 +1867,7 @@ sap.ui.define([
                 this.oPopup.destroy();
                 this.oPopup = undefined;
             },
-            fnOnFileUploadBPBank: function (oEvt) {
+            fnOnFileUploadBPBankRemit: function (oEvt) {
                 var that = this;
                 var oi18n_En = this.getOwnerComponent().getModel("oi18n_En");
                 var isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
@@ -2019,6 +2054,7 @@ sap.ui.define([
                 this.oPopup.destroy();
                 this.oPopup = undefined;
             },
+
             fnSearchAccuityBank: function (oEvent) {
                 var vError = false;
                 if (!oView.getModel("bankSearchModel").getData().banksearchParam.bankCountry) {
@@ -2341,11 +2377,11 @@ sap.ui.define([
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");
                     }
-                } else{
+                } else {
                     this.getOwnerComponent().getModel("oVisibilityModel").getData().bankDocTypeSelected = true;
                 }
                 this.getOwnerComponent().getModel("oVisibilityModel").refresh(true);
-                
+
             }
 
         });

@@ -273,7 +273,7 @@
                     wrapping="true"/>     
            <Button id="fileUploader_Button" class="sapUiSizeCompact  sapUiTinyMarginBegin" enabled="{oVisibilityModel>/_FinanceReviewEdit}" press="fnOpenBankAttachment" icon="sap-icon://add" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>addAttachment}:${oi18n_En>addAttachment} + '/&#160;' +${i18n>addAttachment}}" />
 			  </VBox>
-            	<g:GridList width="auto" items="{oAttachmentList>/0/bankDArray}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">
+            	<g:GridList width="auto" items="{oAttachmentList>/0/bankDArrayR}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">
 					<g:customLayout>
 						<grid:GridResponsiveLayout>
 							<grid:layoutS>

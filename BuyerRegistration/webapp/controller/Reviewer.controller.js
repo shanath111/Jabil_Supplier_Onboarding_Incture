@@ -51,8 +51,6 @@ sap.ui.define([
                 oView.getModel("oConfigMdl").getData().bankNotFoundTitle = false;
                 oView.getModel("oConfigMdl").getData().NDAScreenReconVis = false;
                 oView.getModel("oConfigMdl").getData().NonMDGVis = false;
-              
-
                 if (oContext.Name == "Buyer") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = true;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;
