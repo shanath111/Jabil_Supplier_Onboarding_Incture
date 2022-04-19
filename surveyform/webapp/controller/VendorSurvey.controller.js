@@ -12840,6 +12840,11 @@ sap.ui.define([
                 if(oView.getModel("oDataModel").getData().comInfoDto.isRemitToAddress){
                     vRemitance = "YES";
                 }
+                var vInvociceBank = "NO";
+                if(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isBankProvided){
+                    vInvociceBank = "YES";
+                }
+                
 
                 var wPayload =
                 {
@@ -12928,7 +12933,7 @@ sap.ui.define([
                             "swiftCode": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode
                         },
                         "isInvoiceBankdetailsHidden" :oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden ? "YES" : "NO",                   
-                        "invoiceBankDetailsProvided": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isBankProvided,
+                        "invoiceBankDetailsProvided": vInvociceBank,
                         "invoiceFinanceContact1": {
                             "email": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email,
                             "firstName": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.firstName,
