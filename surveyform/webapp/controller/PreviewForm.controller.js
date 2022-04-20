@@ -1937,6 +1937,7 @@ sap.ui.define([
                 that.getView().getModel("oAttachmentList").getData()[0].ownerDArray = [];
                 that.getView().getModel("oAttachmentList").getData()[0].compDArray = [];
                 that.getView().getModel("oAttachmentList").getData()[0].bankDArray = [];
+                that.getView().getModel("oAttachmentList").getData()[0].bankDArrayR = [];
                 that.getView().getModel("oAttachmentList").getData()[0].bankINDArray = [];
                 that.getView().getModel("oAttachmentList").getData()[0].shippingDArray = [];
                 that.getView().getModel("oAttachmentList").getData()[0].compProdDArray = [];
@@ -1964,6 +1965,10 @@ sap.ui.define([
                             } else if (value.docInSection == "bankInfo") {
                                 //that.getView().getModel("oAttachmentList").getData()[0].bankDArray = [];
                                 that.getView().getModel("oAttachmentList").getData()[0].bankDArray.push(value);
+                            }
+                            else if (value.docInSection == "bankDArrayR") {
+                                //that.getView().getModel("oAttachmentList").getData()[0].bankDArray = [];
+                                that.getView().getModel("oAttachmentList").getData()[0].bankDArrayR.push(value);
                             }
                              else if (value.docInSection == "bankIntermediateInfo") {
                                // that.getView().getModel("oAttachmentList").getData()[0].bankINDArray = [];
