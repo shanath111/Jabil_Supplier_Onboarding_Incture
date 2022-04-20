@@ -28,10 +28,14 @@
  <HBox  class="cl_BPCBlockSep sapUiTinyMarginBottom">
                                       </HBox>
 </VBox>
-                        <HBox class="sapUiTinyMarginBegin">
-                              <Label text="{i18n>BPCCorporationName}" required="true" class="cl_VRLablCls "></Label>
-								 <Label text="{i18n>CoprportionInfor}" required="false" class="cl_VRLablCls "></Label>
-                                 </HBox>
+                            <HBox visible="{oVisibilityModel>/isdefaultLan}">
+                                <Label text="{i18n>BPCCorporationName}" required="true" class="fontBold sapUiSizeCompact sapUiTinyMarginBegin "></Label>
+								<Label text="{i18n>CoprportionInfor}" required="false" class="sapUiSizeCompact sapUiTinyMarginBegin "></Label>
+                            </HBox>
+                            <HBox visible="{=!${oVisibilityModel>/isdefaultLan}}">
+                                <Label text="{oi18n_En>BPCCorporationName}/{i18n>BPCCorporationName}" required="true" class="fontBold sapUiSizeCompact sapUiTinyMarginBegin "></Label>
+								 <Label text="{oi18n_En>CoprportionInfor}/{i18n>CoprportionInfor}" required="false" wrapping="true" class="sapUiSizeCompact sapUiTinyMarginBegin "></Label>
+                            </HBox>
                                  <l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12"  class="sapUiSizeCompact gridSpacing">
                                
 								<VBox class="VRVboxStyle1">
