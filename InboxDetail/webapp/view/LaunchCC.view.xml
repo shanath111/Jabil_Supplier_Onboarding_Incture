@@ -49,7 +49,7 @@
 					</VBox>
 					<VBox class="VRVboxStyle1" >
 						<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls"></Label>
-						<ComboBox visible="{LocalModel>/ComCodeDDV}" width="95%"  items="{oBPLookUpMdl>/CompanyCode1}"  autocomplete="false" valueState="{JMFilter>/companyCodee}" valueStateText="{JMFilter>/companyCodem}"
+						<ComboBox visible="{LocalModel>/ComCodeDDV}" width="95%"  items="{oBPLookUpMdl>/CompanyCode1}"  autocomplete="false" valueState="{LocalModel>/CompanyCodeVS}" valueStateText="{LocalModel>/CompanyCodeVStext}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeCompCode1" showSecondaryValues="true" selectedKey="{JMFilter1>/companyCode}"
 											class="cl_VRInputCls">
 							<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>

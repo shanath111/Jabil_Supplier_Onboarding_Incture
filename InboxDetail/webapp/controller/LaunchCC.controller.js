@@ -249,10 +249,17 @@ sap.ui.define([
 
                 oView.getModel("JMFilter").getData().purchasingOrg = "";
                 oView.getModel("JMFilter").refresh();
-                if (oView.getModel("JMFilter").getData().companyCodee == "Error") {
-                    oView.getModel("JMFilter").getData().companyCodee = "None";
-                    oView.getModel("JMFilter").getData().companyCodem = "";
+                // if (oView.getModel("JMFilter").getData().companyCodee == "Error") {
+                //     oView.getModel("JMFilter").getData().companyCodee = "None";
+                //     oView.getModel("JMFilter").getData().companyCodem = "";
+                //     oView.getModel("JMFilter").refresh();
+                // }
+                if (oView.getModel("LocalModel").getData().CompanyCodeVS == "Error") {
+                    oView.getModel("LocalModel").getData().CompanyCodeVS = "None";
+                    oView.getModel("LocalModel").getData().CompanyCodeVStext = "";
+                    oView.getModel("LocalModel").refresh();
                     oView.getModel("JMFilter").refresh();
+                    
                 }
 
             },
@@ -286,10 +293,17 @@ sap.ui.define([
                 oView.getModel("JMFilter1").getData().purchasingOrganisation = "";
                 
                 oView.getModel("JMFilter1").refresh();
-                if (oView.getModel("JMFilter1").getData().companyCodee == "Error") {
-                    oView.getModel("JMFilter1").getData().companyCodee = "None";
-                    oView.getModel("JMFilter1").getData().companyCodem = "";
-                    oView.getModel("JMFilter1").refresh();
+                // if (oView.getModel("JMFilter1").getData().companyCodee == "Error") {
+                //     oView.getModel("JMFilter1").getData().companyCodee = "None";
+                //     oView.getModel("JMFilter1").getData().companyCodem = "";
+                //     oView.getModel("JMFilter1").refresh();
+                // }
+                if (oView.getModel("LocalModel").getData().CompanyCodeVS == "Error") {
+                    oView.getModel("LocalModel").getData().CompanyCodeVS = "None";
+                    oView.getModel("LocalModel").getData().CompanyCodeVStext = "";
+                    oView.getModel("LocalModel").refresh();
+                    oView.getModel("JMFilter").refresh();
+                    
                 }
 
             },
