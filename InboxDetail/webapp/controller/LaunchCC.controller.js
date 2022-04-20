@@ -34,6 +34,10 @@ sap.ui.define([
                  "PurcOrgDDV":true,
                  "PurcOrgInputV":false,
                 "CompanyCodeDesc":"",
+                "CompanyCodeDescVS":"None",
+                "CompanyCodeVS":"None",
+                "CompanyCodeVStext":"",
+                "CompanyCodeDescVStext":"",
                 "PurOrgDesc":"For Non PRD Sites"
               }),"LocalModel");
              
@@ -465,6 +469,26 @@ sap.ui.define([
                 }
 
             },
+
+
+ccLiveChange:function(oEvent){
+    numericFilter(oEvent.getSource().getValue());
+    function numericFilter(txb) {
+        oEvent.getSource().setValue(txb.replace(/[^\0-9]/ig, ""));
+      if(oEvent.getSource().getValue().length<4){
+        oEvent.getSource().setValueStateText("Company code must be exactly 4 digits numarical");
+        oEvent.getSource().setValueState("Error");
+    }else if(oEvent.getSource().getValue().length===4){
+        oEvent.getSource().setValueStateText("");
+        oEvent.getSource().setValueState("None");
+    }
+     }
+},
+
+
+
+
+
             fnFetchDescriptionCommon(aArray, value, vFieldName) {
                 if (aArray) {
                     if (value) {
@@ -485,11 +509,20 @@ sap.ui.define([
             fnSubmitCCPO: function () {
                 var vError = false;
 
-                if (oView.getModel("JMFilter1").getData().companyCode == "") {
+                if (oView.getModel("JMFilter1").getData().companyCode == "" || oView.getModel("JMFilter1").getData().companyCode.length<4 ) {
+                    vError = true;
+                    oView.getModel("LocalModel").setProperty("/CompanyCodeVS","Error");
+                    oView.getModel("LocalModel").setProperty("/CompanyCodeVStext","Company code must be exactly 4 digits numarical");
+                }
+                 if (oView.getModel("JMFilter1").getData().purchasingOrganisation == "") {
                     vError = true;
                 }
-                if (oView.getModel("JMFilter1").getData().purchasingOrganisation == "") {
-                    vError = true;
+                if (oView.getModel("LocalModel").getProperty("/CompanyCodeDesc") == "") {
+                                        vError = true;
+                   
+
+oView.getModel("LocalModel").setProperty("/CompanyCodeDescVS","Error");
+oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext","Please enter company code description");
                 }
                 if (oView.getModel("JMFilter1").getData().siteName == "") {
                     vError = true;
@@ -513,10 +546,7 @@ sap.ui.define([
                         oView.getModel("JMFilter1").refresh();
 
                     }
-///////////////////// 596896 ///////////////
-vError = (oView.getModel("LocalModel").getProperty("/CompanyCodeDesc")===""|| oView.getModel("LocalModel").getProperty("/PurOrgDesc") ==="") ? true:false;
-                                          
-////////////////////596896///////////////////// 
+
               }
 
                
