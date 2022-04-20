@@ -475,10 +475,10 @@ ccLiveChange:function(oEvent){
     numericFilter(oEvent.getSource().getValue());
     function numericFilter(txb) {
         oEvent.getSource().setValue(txb.replace(/[^\0-9]/ig, ""));
-      if(txb.length<4){
+      if(oEvent.getSource().getValue().length<4){
         oEvent.getSource().setValueStateText("Company code must be exactly 4 digits numarical");
         oEvent.getSource().setValueState("Error");
-    }else if(txb.length===4){
+    }else if(oEvent.getSource().getValue().length===4){
         oEvent.getSource().setValueStateText("");
         oEvent.getSource().setValueState("None");
     }
