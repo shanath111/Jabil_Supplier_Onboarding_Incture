@@ -1452,7 +1452,7 @@
                                 <l:Grid defaultSpan="XL12 L12 M12 S12"  class="cl_PreviewGrid ">
 									<HBox>
 										<Label text="{i18n>isIncoAgree}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
-                                        <Label text="{oi18n_En>isIncoAgree}&#10;{i18n>isIncoAgree}"  wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
+                                        <Label text="{oi18n_En>isIncoAgree}/&#160;{i18n>isIncoAgree}"  wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
 										<Label text="{=${oDataModel>/shippingInfoDto/agreeWithIncotermAndNamedLoc}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue sapUiTinyMarginBegin"></Label>
 									</HBox>
 
