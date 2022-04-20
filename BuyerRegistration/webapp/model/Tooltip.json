@@ -1,3 +1,5 @@
 {
-"tooltiptextRevier":"The following Vendor Management Maintenance form data, local document, and basic screening responses have been received. Please click the View Supplier Details button to review the Case information for completeness and accuracy.  If complete, update the additional required information for the Onboarding Details, Default Fields, and Partner Functions as applicable, and then submit this case to the Operational Site Reviewers for further processing.Please note: Selecting View Supplier Details after you have entered information, will erase those values."
+    "tooltiptextRevier":"The following Vendor Management Maintenance form data, local document, and basic screening responses have been received.",
+    "tooltiptextRevier1":"Please click the View Supplier Details button to review the Case information for completeness and accuracy.  If complete, update the additional required information for the Onboarding Details, Default Fields, and Partner Functions as applicable, and then submit this case to the Operational Site Reviewers for further processing.",
+    "tooltiptextRevier2":"Please note: Selecting View Supplier Details after you have entered information, will erase those values."
 }
