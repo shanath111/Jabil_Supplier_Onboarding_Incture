@@ -36,22 +36,22 @@
                                
 								<VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="inputStyle" maxLength="35" liveChange="fnLiveChangeCorporationName" change="fnInputSpaceCheck" valueState="{oErrorModel>/corporationNameE}" valueStateText="{oErrorModel>/corporationNameM}" value="{oDataModel>/bpCentral/0/organisationName1}"></Input>
+										<Input width="95%" class="inputStyle" maxLength="35" liveChange="fnLiveChangeCorporationName" change="fnInputSpaceCheck" valueState="{oErrorModel>/corporationNameE}" valueStateText="{oErrorModel>/corporationNameM}" value="{oDataModel>/bpCentral/0/organisationName1}" enabled="{oEnableMdl>/corpNameEnb}"></Input>
 								
                                 	</VBox>
                                  <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck"  value="{oDataModel>/bpCentral/0/organisationName2}"></Input>
+										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck"  value="{oDataModel>/bpCentral/0/organisationName2}" enabled="{oEnableMdl>/corpNameEnb}"></Input>
 								
                                 	</VBox>
                                     <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck" value="{oDataModel>/bpCentral/0/organisationName3}"></Input>
+										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck" value="{oDataModel>/bpCentral/0/organisationName3}" enabled="{oEnableMdl>/corpNameEnb}"></Input>
 								
                                 	</VBox>
                                     <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck" value="{oDataModel>/bpCentral/0/organisationName4}"></Input>
+										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck" value="{oDataModel>/bpCentral/0/organisationName4}" enabled="{oEnableMdl>/corpNameEnb}"></Input>
                                 	</VBox>   
 
 								</l:Grid>

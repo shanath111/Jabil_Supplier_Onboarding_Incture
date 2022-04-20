@@ -133,7 +133,7 @@
     
 									</VBox>
                                     <VBox class="VRVboxStyle1">
-										<Label text="{i18n>BPCIncotermNameLocation}" required="false" class="cl_VRLablCls "></Label>
+										<Label text="{i18n>BPCIncotermNameLocation}" required="true" class="cl_VRLablCls "></Label>
 										<Input width="95%" class="cl_VRInputCls" editable="{oConfigMdl>/screenEditable}"  liveChange="fnLiveChangeIncotermLoc"  value="{JMBPCreate>/incotermNameLocation}" valueState="{JMBPCreate>/incotermNameLocatione}" valueStateText="{JMBPCreate>/incotermNameLocationm}" ></Input>
 								</VBox>
                                     

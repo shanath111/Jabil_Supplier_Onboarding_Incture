@@ -585,6 +585,8 @@
         "incoterm": "",
         "incotermNamedPlace": "",
         "isDeliver": null,
+        "agreeWithIncotermAndNamedLoc": null,
+        "agreeWithIncotermAndNamedLocComments": "",
         "paymentCurrency": "",
         "paymentMethod": "",
         "paymentTerms": "",
