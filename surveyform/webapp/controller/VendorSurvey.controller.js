@@ -5943,7 +5943,7 @@ sap.ui.define([
                         //     oView.byId("bankInfo").setValidated(true);
                         // }
                         if (!iError) {
-                            if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === false || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === null || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.invoiceBankDto.isbankdetailsHidden === undefined) {
+                            if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === false || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === null || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === undefined) {
                                 if (visiblility.invoiceBankDto.isBankProvided === false) {
                                     if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email !== "" && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email !== "") {
                                         if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email == oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email) {
