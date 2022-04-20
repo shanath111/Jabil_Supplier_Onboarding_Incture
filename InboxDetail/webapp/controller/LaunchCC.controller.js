@@ -38,7 +38,11 @@ sap.ui.define([
                 "CompanyCodeVS":"None",
                 "CompanyCodeVStext":"",
                 "CompanyCodeDescVStext":"",
-                "PurOrgDesc":"For Non PRD Sites"
+                "PurOrgDesc":"For Non PRD Sites",
+                "siteNameVS":"None",
+                "siteNameVStext":"",
+                "erpSystemVS":"None",
+                "erpSystemVStext":""
               }),"LocalModel");
              
                 oView.getModel("oBPLookUpMdl").setData([]);
@@ -82,8 +86,17 @@ sap.ui.define([
                 oView.getModel("LocalModel").setProperty("/PurcOrgDDV",true);
                 oView.getModel("LocalModel").setProperty("/PurcOrgInputV",false);
                 oView.getModel("LocalModel").setProperty("/CompanyCodeDesc","");
-                oView.getModel("LocalModel").setProperty("/CompanyCodeDesc","");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVS","None");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext","");              
                 oView.getModel("LocalModel").setProperty("/PurOrgDesc","");
+                oView.getModel("LocalModel").setProperty("/erpSystemVS","None");
+                oView.getModel("LocalModel").setProperty("/erpSystemVStext","");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeVS","None");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeVStext","");
+                oView.getModel("LocalModel").setProperty("/siteNameVS","None");
+                oView.getModel("LocalModel").setProperty("/siteNameVStext","");
+                
+                
                 //oView.getModel("LocalModel").setProperty("/PurcOrgInputV",true);
                 // user story 596896
                 
@@ -102,7 +115,13 @@ sap.ui.define([
             },
             fnChangeERPSystem: function () {
                 oView.getModel("JMFilter1").getData().paymentMethod = [{"code":"","description":"","codee":"None","codem":"","descriptione":"None","descriptionm":"","codeEnabled":true, "descEnabled":true}];
-                
+                oView.getModel("LocalModel").setProperty("/erpSystemVS","None");
+                oView.getModel("LocalModel").setProperty("/erpSystemVStext","");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeVS","None");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeVStext","");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDesc","");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVS","None");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext","");
                 if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {                               
             
                     // oView.byId("id_PaymentMetod").setEnabled(true);
@@ -127,8 +146,7 @@ sap.ui.define([
                     oView.getModel("LocalModel").setProperty("/ComCodeDDV",true);
                     oView.getModel("LocalModel").setProperty("/PurcOrgDDV",true);
                     oView.getModel("LocalModel").setProperty("/PurcOrgInputV",false);  
-                    oView.getModel("JMFilter1").setProperty("/purchasingOrganisation",""); 
-                    oView.getModel("LocalModel").setProperty("/CompanyCodeDesc",""); 
+                    oView.getModel("JMFilter1").setProperty("/purchasingOrganisation","");                     
                     oView.getModel("LocalModel").setProperty("/PurOrgDesc",""); 
                     oView.getModel("JMFilter1").setProperty("/companyCode","");                    
                    //Changes User story 596896
@@ -526,9 +544,13 @@ oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext","Please enter 
                 }
                 if (oView.getModel("JMFilter1").getData().siteName == "") {
                     vError = true;
+                    oView.getModel("LocalModel").setProperty("/siteNameVS","Error");
+oView.getModel("LocalModel").setProperty("/siteNameVStext","Please enter site name");
                 }
                 if (oView.getModel("JMFilter1").getData().erpSystem == "") {
                     vError = true;
+                    oView.getModel("LocalModel").setProperty("/erpSystemVS","Error");
+                    oView.getModel("LocalModel").setProperty("/erpSystemVStext","Please enter erp system");
                 }
                 var aPaymentMethod = oView.getModel("JMFilter1").getData().paymentMethod;
                 if(oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP" && aPaymentMethod.length>0){
