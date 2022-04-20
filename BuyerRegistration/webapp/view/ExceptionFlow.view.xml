@@ -8,16 +8,18 @@
 						<content>
 						
 								<VBox class="cl_TIVBoxShadow">
-									<Toolbar height="3rem" class="cl_TIToolbarBorder sapUiTinyMarginTop">
+									 <VBox visible="{oConfigMdl>/MitgatnReasonVis}">
+                                    <Label  text="Please Review the {JMEulaComments>/subject} risk and select the appropriate Level 1 and Level 2 responses. Once complete, submit your responses to the Buyer." wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop"></Label>
+                                    </VBox>
+                                    <Toolbar height="3rem" class="cl_TIToolbarBorder ">
                                      <!-- <Label visible="{oConfigMdl>/COIVis}" text="{i18n>LegalTxtGovtOffice}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>
                                        <Label visible="{oConfigMdl>/CyberSecVis}" text="{i18n>CyberSecHeader}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label> -->
-										<ToolbarSpacer ></ToolbarSpacer>
+										 <Label  text="Please note: Selecting View Supplier Details after you have entered information, will erase those values." wrapping="true" class="cl_TIDescTxt1 "></Label>
+                                        <ToolbarSpacer ></ToolbarSpacer>
 										<Button text="{i18n>TIViewDetails}"  press="fnViewDetails" class="cl_VRActnBtnClear sapUiTinyMarginBottom"/>
                                         
 									</Toolbar>
-                                    <VBox visible="{oConfigMdl>/MitgatnReasonVis}">
-                                    <Label  text="Please Review the {JMEulaComments>/subject} risk and select the appropriate Level 1 and Level 2 responses. Once complete, submit your responses to the Buyer." wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop  "></Label>
-                                    </VBox>
+                                   
  <l:Grid defaultSpan="XL3 L3 M12 S12" visible="{oConfigMdl>/MitgatnReasonVis}" class="sapUiSizeCompact  sapUiTinyMarginTop"> 
  	<VBox fitContainer="true" alignContent="Center" class="sapUiSizeCompact sapUiTinyMarginBottom">   
             <Label required="true" text="{i18n>FirstLevelReason}" class="sapUiTinyMarginTop "  wrapping="true"></Label>

@@ -4,42 +4,42 @@
     <content>
    <l:Grid containerQuery="true" visible="{=!${oUserModel>/isNew}}" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 				<VBox  class="fontStyle">
-					<Label text="{i18n>incoterm}" visible= "{oVisibilityModel>/isdefaultLan}" required="true"></Label>
-                    <Label text="{oi18n_En>incoterm}&#10;{i18n>incoterm}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+					<Label text="{i18n>incoterm}" visible= "{oVisibilityModel>/isdefaultLan}" required="false"></Label>
+                    <Label text="{oi18n_En>incoterm}&#10;{i18n>incoterm}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="false"></Label>
                     <Label class="fontStyleBold" text="{parts:['oLookUpModel>/Incoterm','oDataModel>/shippingInfoDto/incoterm'], formatter: 'com.jabil.surveyform.formatter.formatter.fnFetchDescription'}"/>
 				</VBox>
 				<VBox class="fontStyle">
-					<Label text="{i18n>incotermNamedPlace}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
-                    <Label text="{oi18n_En>incotermNamedPlace}&#10;{i18n>incotermNamedPlace}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
+					<Label text="{i18n>incotermNamedPlace}" required="false" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
+                    <Label text="{oi18n_En>incotermNamedPlace}&#10;{i18n>incotermNamedPlace}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="false"></Label>
 						<Label  class="fontStyleBold" text="{oDataModel>/shippingInfoDto/incotermNamedPlace}"/>
 				</VBox>
 			</l:Grid>
-             <Label visible="{=!${oUserModel>/isNew}}" class="sapUiTinyMarginTop fontStyleBold sapUiTinyMarginBegin" wrapping="true" text="{i18n>incotermNewTerms}"></Label>
+             <!-- <Label visible="{=!${oUserModel>/isNew}}" class="sapUiTinyMarginTop fontStyleBold sapUiTinyMarginBegin" wrapping="true" text="{i18n>incotermNewTerms}"></Label> -->
     <l:Grid containerQuery="true" visible="{oUserModel>/isNew}" defaultSpan="XL3 L3 M12 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
-				<VBox class="fontStyle" >
+				<!-- <VBox class="fontStyle" >
 					<Label text="{i18n>vendorName}" visible= "{oVisibilityModel>/isdefaultLan}" required="false"></Label>
                     <Label text="{oi18n_En>vendorName}&#10;{i18n>vendorName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="false"></Label>
 					<Input valueLiveUpdate="true" maxLength="31" class="inputStyle" value="{oDataModel>/shippingInfoDto/vendor}" enabled="{oEnableMdl>/vendorEnb}" valueState="{oErrorModel>/vendorE}" valueStateText="{oErrorModel>/vendorM}" liveChange="fnLiveInputValueChange"/>
-				</VBox>
+				</VBox> -->
 				<VBox  class="fontStyle">
-					<Label text="{i18n>incoterm}" visible= "{oVisibilityModel>/isdefaultLan}" required="true"></Label>
-                    <Label text="{oi18n_En>incoterm}&#10;{i18n>incoterm}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-					<ComboBox width="100%" items="{oLookUpModel>/Incoterm}" showSecondaryValues="true" filterSecondaryValues="true"  placeholder="{i18n>select}" selectedKey="{oDataModel>/shippingInfoDto/incoterm}" enabled="{oEnableMdl>/incotermEnb}" valueState="{oErrorModel>/incotermE}" valueStateText="{oErrorModel>/incotermM}" selectionChange="fnLiveValueChange" class="inputStyle">
+					<Label text="{i18n>incoterm}" visible= "{oVisibilityModel>/isdefaultLan}" required="false"></Label>
+                    <Label text="{oi18n_En>incoterm}&#10;{i18n>incoterm}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="false"></Label>
+					<ComboBox editable="false" width="100%" items="{oLookUpModel>/Incoterm}" showSecondaryValues="true" filterSecondaryValues="true"  placeholder="{i18n>select}" selectedKey="{oDataModel>/shippingInfoDto/incoterm}" enabled="{oEnableMdl>/incotermEnb}" valueState="{oErrorModel>/incotermE}" valueStateText="{oErrorModel>/incotermM}" selectionChange="fnLiveValueChange" class="inputStyle">
                      <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
                      </ComboBox>
 				</VBox>
 				<VBox class="fontStyle">
-					<Label text="{i18n>incotermNamedPlace}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
-                    <Label text="{oi18n_En>incotermNamedPlace}&#10;{i18n>incotermNamedPlace}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true"></Label>
-						<Input valueLiveUpdate="true" maxLength="29" class="inputStyle" value="{oDataModel>/shippingInfoDto/incotermNamedPlace}" enabled="{oEnableMdl>/incotermNamedPlaceEnb}" valueState="{oErrorModel>/incotermNPE}" valueStateText="{oErrorModel>/incotermNPM}" liveChange="fnLiveInputValueChange"/>
+					<Label text="{i18n>incotermNamedPlace}" required="false" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
+                    <Label text="{oi18n_En>incotermNamedPlace}&#10;{i18n>incotermNamedPlace}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="false"></Label>
+						<Input editable="false" valueLiveUpdate="true" maxLength="29" class="inputStyle" value="{oDataModel>/shippingInfoDto/incotermNamedPlace}" enabled="{oEnableMdl>/incotermNamedPlaceEnb}" valueState="{oErrorModel>/incotermNPE}" valueStateText="{oErrorModel>/incotermNPM}" liveChange="fnLiveInputValueChange"/>
 				</VBox>
 			</l:Grid>
             <l:Grid containerQuery="true" visible="{=!${oUserModel>/isNew}}" defaultSpan="XL3 L3 M12 S12" class="sapUiTinyMarginTop gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
-				<VBox class="fontStyle" >
+				<!-- <VBox class="fontStyle" >
 					<Label text="{i18n>vendorName}" visible= "{oVisibilityModel>/isdefaultLan}" required="false"></Label>
                     <Label text="{oi18n_En>vendorName}&#10;{i18n>vendorName}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="false"></Label>
 					<Input valueLiveUpdate="true" maxLength="31" class="inputStyle" value="{oDataModel>/shippingInfoDto/vendor}" enabled="{oEnableMdl>/vendorEnb}" valueState="{oErrorModel>/vendorE}" valueStateText="{oErrorModel>/vendorM}" liveChange="fnLiveInputValueChange"/>
-				</VBox>
+				</VBox> -->
 				<VBox  class="fontStyle">
 					<Label text="{i18n>newincoterm}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                     <Label text="{oi18n_En>newincoterm}&#10;{i18n>newincoterm}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
@@ -53,27 +53,40 @@
 						<Input valueLiveUpdate="true" maxLength="29" class="inputStyle" value="{oDataModel>/shippingInfoDto/newincotermNamedPlace}" enabled="{oEnableMdl>/incotermNamedPlaceEnb}" valueState="{oErrorModel>/incotermNPE}" valueStateText="{oErrorModel>/incotermNPM}" liveChange="fnLiveInputValueChange"/>
 				</VBox>
 			</l:Grid>
-             <l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="fontStyle gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+
+            <!-- change property name for selectedIndex -->
+            <VBox class="fontStyle sapUiSizeCompact">
+					<Label required="true" labelFor="incoAgree" text="{i18n>isIncoAgree}" wrapping="true"  visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact sapUiTinyMarginBegin"></Label>
+                    <Label required="true" text="{oi18n_En>isIncoAgree}&#10;{i18n>isIncoAgree}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiSizeCompact sapUiTinyMarginBegin"></Label>
+					<RadioButtonGroup id="incoAgree" class="inputStyle" columns="2" selectedIndex="{=${oDataModel>/shippingInfoDto/agreeWithIncotermAndNamedLoc} === true? 0 :(${oDataModel>/shippingInfoDto/agreeWithIncotermAndNamedLoc}=== false ?1: -1)}"  valueState="{oErrorModel>/isIncoAgreeE}" select="fnClearValueState" enabled="{oEnableMdl>/isIncoAgreeEnb}">
+						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/shippingInfoDto/agreeWithIncotermAndNamedLoc}"/>
+						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>yes}}" select="fnSelectionChange"/>
+					</RadioButtonGroup>
+                    <Label required="true" text="{i18n>prvdComment}" visible="{=${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oDataModel>/shippingInfoDto/agreeWithIncotermAndNamedLoc} === false}"  class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
+                    <Label  required="true"  text="{oi18n_En>prvdComment}/&#160;{i18n>prvdComment}"  visible= "{=!${oVisibilityModel>/isdefaultLan} &amp;&amp; ${oDataModel>/shippingInfoDto/agreeWithIncotermAndNamedLoc} === false}" wrapping="true" class="fontStyle sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
+                            <TextArea value="{oDataModel>/shippingInfoDto/agreeWithIncotermAndNamedLocComments}" enabled="{oEnableMdl>/isIncoAgreeEnb}" visible="{=${oDataModel>/shippingInfoDto/agreeWithIncotermAndNamedLoc} === false}"  liveChange="fnLiveInputValueChange" valueState="{oErrorModel>/incoTermCmtE}" valueStateText="{oErrorModel>/incoTermCmtM}" width="50%" maxLength="255" class="inputStyle sapUiSizeCompact sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+				</VBox>
+             <!-- <l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="fontStyle gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
             <VBox class="fontStyle">
 										<Label text="{i18n>deliveryLoc}"  required="false"  visible= "{oVisibilityModel>/isdefaultLan}" ></Label>
 					<Label text="{oi18n_En>deliveryLoc}&#10;{i18n>deliveryLoc}"  required="false" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" ></Label>
                     <Input valueLiveUpdate="true" value="{oDataModel>/shippingInfoDto/deliveryLocation}" maxLength="21" enabled="{oEnableMdl>/deliveryLocationEnb}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
                     </VBox>
-                    </l:Grid>
-            <VBox class="fontStyle sapUiSizeCompact">
+                    </l:Grid> -->
+            <!-- <VBox class="fontStyle sapUiSizeCompact">
 					<Label required="true" labelFor="shippingRep" text="{i18n>shippingRep}" wrapping="true"  visible= "{oVisibilityModel>/isdefaultLan}" class="sapUiSizeCompact sapUiTinyMarginBegin"></Label>
                     <Label required="true" text="{oi18n_En>shippingRep}&#10;{i18n>shippingRep}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" class="sapUiSizeCompact sapUiTinyMarginBegin"></Label>
 					<RadioButtonGroup id="shippingRep" class="inputStyle" columns="2" selectedIndex="{=${oDataModel>/shippingInfoDto/isDeliver} === true? 0 :(${oDataModel>/shippingInfoDto/isDeliver}=== false ?1: -1)}"  valueState="{oErrorModel>/isDeliverE}" select="fnClearValueState" enabled="{oEnableMdl>/isDeliverEnb}">
 						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>yes}:${oi18n_En>yes} +'/&#160;' +${i18n>yes}}" selected="{oDataModel>/shippingInfoDto/isDeliver}"/>
 						<RadioButton text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>no}:${oi18n_En>no} +'/&#160;' +${i18n>yes}}" select="fnSelectionChange"/>
 					</RadioButtonGroup>
-				</VBox>
-                 <l:Grid visible="{=${oDataModel>/shippingInfoDto/isDeliver}=== true}" containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="fontStyle gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+				</VBox> -->
+                 <!-- <l:Grid visible="{=${oDataModel>/shippingInfoDto/isDeliver}=== true}" containerQuery="true" defaultSpan="XL3 L3 M12 S12" class="fontStyle gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
 				<VBox class="fontStyle" >
 					<Label text="{i18n>companyNameM}" required="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                     <Label text="{oi18n_En>companyNameM}&#10;{i18n>companyNameM}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required="true" ></Label>
 					<Input valueLiveUpdate="true" maxLength="36" value="{oDataModel>/shippingInfoDto/deliverRepName}" enabled="{oEnableMdl>/deliverRepNameEnb}" valueState="{oErrorModel>/dRespNameE}" valueStateText="{oErrorModel>/dRespNameM}" liveChange="fnLiveInputValueChange" class="inputStyle"/>
-				</VBox>
+				</VBox> -->
 				<!-- <VBox  class="fontStyle"> 
 					<Label text="{i18n>address}"  required="false"  visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                     <Label text="{oi18n_En>address}&#10;{i18n>address}"  required="true"  wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" ></Label>
@@ -89,7 +102,7 @@
                         <core:ListItem key="D4" text="Delivery Location4" additionalText=""/>
                         </ComboBox>
 				</VBox> -->
-                <VBox class="fontStyle">
+                <!-- <VBox class="fontStyle">
 					<Label text="{i18n>supplierLogis1}" required ="true"  visible= "{oVisibilityModel>/isdefaultLan}" ></Label>
                     <Label text="{oi18n_En>supplierLogis1}&#10;{i18n>supplierLogis1}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" required ="true"></Label>
 						<Input valueLiveUpdate="true" maxLength="41" value="{oDataModel>/shippingInfoDto/supplierContactInLogistics}" valueState="{oErrorModel>/dRespLogistE}" valueStateText="{oErrorModel>/dRespLogistM}" liveChange="fnLiveInputValueChange" enabled="{oEnableMdl>/supplierContactInLogisticsEnb}" class="inputStyle"/>
@@ -117,7 +130,7 @@
                                 <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>phoneNumHelpText}:${oi18n_En>phoneNumHelpText}+ '&#10;' +${i18n>phoneNumHelpText}}" textAlign="End" class="disabledFontClr"/>
                                 <layoutData>
                                   <l:GridData spanM="12" spanL="2" spanXL="2"></l:GridData></layoutData>
-                                        </VBox> 			
+                                        </VBox> 			 -->
                 <!-- <VBox class="fontStyle">
 					<Label text="{i18n>phoneNum}" required ="true" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                     <Label text="{oi18n_En>phoneNum}&#10;{i18n>phoneNum}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" ></Label> -->
@@ -140,7 +153,7 @@
                     <Label text="{oi18n_En>fax}&#10;{i18n>fax}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}" ></Label>
 						<Input class="inputStyle" value="{oDataModel>/shippingInfoDto/deliverRepFax}" enabled="{oEnableMdl>/deliverRepFaxEnb}" />
 				</VBox> -->
-			</l:Grid>
+			<!-- </l:Grid> -->
     </content>
     </Panel>
 <!-- <Panel width="100%" class="sapUiTinyMarginTop panelPadding">

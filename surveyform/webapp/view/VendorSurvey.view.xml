@@ -28,30 +28,34 @@
  <HBox  class="cl_BPCBlockSep sapUiTinyMarginBottom">
                                       </HBox>
 </VBox>
-                        <HBox class="sapUiTinyMarginBegin">
-                              <Label text="{i18n>BPCCorporationName}" required="true" class="cl_VRLablCls "></Label>
-								 <Label text="{i18n>CoprportionInfor}" required="false" class="cl_VRLablCls "></Label>
-                                 </HBox>
+                            <HBox visible="{oVisibilityModel>/isdefaultLan}">
+                                <Label text="{i18n>BPCCorporationName}" required="true" class="fontBold sapUiSizeCompact sapUiTinyMarginBegin "></Label>
+								<Label text="{i18n>CoprportionInfor}" required="false" class="sapUiSizeCompact sapUiTinyMarginBegin "></Label>
+                            </HBox>
+                            <HBox visible="{=!${oVisibilityModel>/isdefaultLan}}">
+                                <Label text="{oi18n_En>BPCCorporationName}/{i18n>BPCCorporationName}" required="true" class="fontBold sapUiSizeCompact sapUiTinyMarginBegin "></Label>
+								 <Label text="{oi18n_En>CoprportionInfor}/{i18n>CoprportionInfor}" required="false" wrapping="true" class="sapUiSizeCompact sapUiTinyMarginBegin "></Label>
+                            </HBox>
                                  <l:Grid containerQuery="true" defaultSpan="XL3 L3 M12 S12"  class="sapUiSizeCompact gridSpacing">
                                
 								<VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="inputStyle" maxLength="35" liveChange="fnLiveChangeCorporationName" change="fnInputSpaceCheck" valueState="{oErrorModel>/corporationNameE}" valueStateText="{oErrorModel>/corporationNameM}" value="{oDataModel>/bpCentral/0/organisationName1}"></Input>
+										<Input width="95%" class="inputStyle" maxLength="35" liveChange="fnLiveChangeCorporationName" change="fnInputSpaceCheck" valueState="{oErrorModel>/corporationNameE}" valueStateText="{oErrorModel>/corporationNameM}" value="{oDataModel>/bpCentral/0/organisationName1}" enabled="{oEnableMdl>/corpNameEnb}"></Input>
 								
                                 	</VBox>
                                  <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck"  value="{oDataModel>/bpCentral/0/organisationName2}"></Input>
+										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck"  value="{oDataModel>/bpCentral/0/organisationName2}" enabled="{oEnableMdl>/corpNameEnb}"></Input>
 								
                                 	</VBox>
                                     <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck" value="{oDataModel>/bpCentral/0/organisationName3}"></Input>
+										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck" value="{oDataModel>/bpCentral/0/organisationName3}" enabled="{oEnableMdl>/corpNameEnb}"></Input>
 								
                                 	</VBox>
                                     <VBox class="VRVboxStyle1">
 										<!-- <Label text="" required="false" class="cl_VRLablCls "></Label> -->
-										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck" value="{oDataModel>/bpCentral/0/organisationName4}"></Input>
+										<Input width="95%" class="inputStyle"  maxLength="35" change="fnInputSpaceCheck" value="{oDataModel>/bpCentral/0/organisationName4}" enabled="{oEnableMdl>/corpNameEnb}"></Input>
                                 	</VBox>   
 
 								</l:Grid>

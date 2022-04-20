@@ -222,6 +222,8 @@ sap.ui.define([
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");
+                        oView.getModel("JMFilter").getData().purchasingOrg = "";
+                oView.getModel("JMFilter").refresh();
                     }
 
                 }
@@ -427,7 +429,7 @@ sap.ui.define([
 
                     var oPayload = {
                         "companyCode": oView.getModel("JMFilter").getData().companyCode,
-                        "purchasingOrganisation": oView.getModel("JMFilter").getData().purchasingOrganisation,
+                        "purchasingOrganisation": oView.getModel("JMFilter").getData().purchasingOrg,
                         "siteName": oView.getModel("JMFilter").getData().siteName,
                         "erpSystem": oView.getModel("JMFilter").getData().erpSystem,
 
@@ -614,8 +616,8 @@ oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext","Please enter 
                                
 
                                 var oPayload = {
-                                    "companyCode": oView.getModel("JMFilter1").getData().purchasingOrganisation,
-                                    "purchasingOrganisation": oView.getModel("JMFilter1").getData().companyCode,
+                                    "companyCode": oView.getModel("JMFilter1").getData().companyCode,
+                                    "purchasingOrganisation": oView.getModel("JMFilter1").getData().purchasingOrganisation,
                                     "companyCodeDescription": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().CompanyCode1, oView.getModel("JMFilter1").getData().companyCode, "CompanyCode"),
                                     "purchasingOrganisationDescription": that.fnFetchDescriptionCommon(oView.getModel("oBPLookUpMdl").getData().PurOrg1, oView.getModel("JMFilter1").getData().purchasingOrganisation, "PurchOrg"),
                                     "siteName": oView.getModel("JMFilter1").getData().siteName,
