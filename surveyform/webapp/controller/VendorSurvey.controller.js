@@ -5243,7 +5243,7 @@ sap.ui.define([
                         //     iError = true;
                         // }
 
-                        if (oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === false || oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === null || oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === undefined) {
+                        if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === false || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === null || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === undefined) {
                             if (visiblility.invoiceBankDto.isBankProvided === null) {
                                 oView.getModel("oErrorModel").getData().isBankProvidedE = "Error";
                                 iError = true;
@@ -5953,7 +5953,7 @@ sap.ui.define([
                         //     oView.byId("bankInfo").setValidated(true);
                         // }
                         if (!iError) {
-                            if (oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === false || oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden === null || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === undefined) {
+                            if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === false || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === null || oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden === undefined) {
                                 if (visiblility.invoiceBankDto.isBankProvided === false) {
                                     if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email !== "" && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email !== "") {
                                         if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email && oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email == oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact2.email) {
@@ -9890,11 +9890,12 @@ sap.ui.define([
                     //     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod =    oEvent.getSource().getSelectedKeys()[0];
                     // }else{
                     for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
-                        if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod) {
-                            oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oEvent.getSource().getSelectedKeys()[i];
-                        } else {
-                            oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod + "," + oEvent.getSource().getSelectedKeys()[i];
-                        }
+                        // if (!oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod) {
+                        //     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oEvent.getSource().getSelectedKeys()[i];
+                        // } else {
+                        //     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod + "," + oEvent.getSource().getSelectedKeys()[i];
+                        // }
+                          oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod  + oEvent.getSource().getSelectedKeys()[i];
                     }
 
 
@@ -12867,6 +12868,11 @@ sap.ui.define([
                 if(oView.getModel("oDataModel").getData().comInfoDto.isRemitToAddress){
                     vRemitance = "YES";
                 }
+                var vInvociceBank = "NO";
+                if(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isBankProvided){
+                    vInvociceBank = "YES";
+                }
+                
 
                 var wPayload =
                 {
@@ -12954,8 +12960,8 @@ sap.ui.define([
                             "refBankDetails": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails,
                             "swiftCode": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode
                         },
-                        "isInvoiceBankdetailsHidden" :oView.getModel("oDataModel").getData().bankDto.invoiceBankDto.isbankdetailsHidden ? "YES" : "NO",                   
-                        "invoiceBankDetailsProvided": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isBankProvided,
+                        "isInvoiceBankdetailsHidden" :oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden ? "YES" : "NO",                   
+                        "invoiceBankDetailsProvided": vInvociceBank,
                         "invoiceFinanceContact1": {
                             "email": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email,
                             "firstName": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.firstName,
@@ -13023,9 +13029,6 @@ sap.ui.define([
                 var BtnId = oEvent.getSource().getAggregation("tooltip");
                 var oView = this.getView();
                 var txt = popOverModel.getProperty("/" + BtnId).info;
-
-
-
 
                 if (!this._pPopover) {
                     this._pPopover = sap.ui.xmlfragment("idFragment", "com.jabil.surveyform.fragments.infoPopover", this);
@@ -14733,11 +14736,12 @@ sap.ui.define([
                     //     oView.getModel("oDataModel").getData().comInfoDto.paymentMethod =    oEvent.getSource().getSelectedKeys()[0];
                     // }else{
                     for (var i = 0; i < oEvent.getSource().getSelectedKeys().length; i++) {
-                        if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod) {
-                            oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oEvent.getSource().getSelectedKeys()[i];
-                        } else {
-                            oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod + "," + oEvent.getSource().getSelectedKeys()[i];
-                        }
+                        // if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod) {
+                        //     oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oEvent.getSource().getSelectedKeys()[i];
+                        // } else {
+                        //     oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod + "," + oEvent.getSource().getSelectedKeys()[i];
+                        // }
+                        oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod  + oEvent.getSource().getSelectedKeys()[i];
                     }
 
 
@@ -14750,7 +14754,7 @@ sap.ui.define([
                     url: sUrl,
                     type: 'GET',
                     success: function (data) {
-                        oView.getModel("oDataModel").getData().comInfoDto.isbankdetailsHidden = data.paymentVisibility.toLowerCase() === "optional" ? true : false;
+                        oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden = data.paymentVisibility.toLowerCase() === "optional" ? true : false;
                         oView.getModel("oDataModel").refresh();
                     },
                     async: false,

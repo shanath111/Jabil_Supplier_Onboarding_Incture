@@ -95,7 +95,7 @@
 			<FlexItemData minWidth="100%"/>
 		</layoutData>
 	</Panel>
-	<Panel width="100%"  visible="{=${oDataModel>/comInfoDto/isbankdetailsHidden}=== true? false: true}" class="sapUiTinyMarginTop panelPadding">
+	<Panel width="100%"  visible="{=${oDataModel>/comInfoDto/invoiceBankDto/isbankdetailsHidden}=== true? false: true}" class="sapUiTinyMarginTop panelPadding">
 		<content>
         <VBox visible="{oUserModel>/isNew}" class="fontStyle sapUiSizeCompact">
          <Label required="true" visible="{oUserModel>/isNew}" labelFor="isSCFC1" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>bankInformation2}:${oi18n_En>bankInformation2} +'/&#160;' +${i18n>bankInformation2}}" wrapping="true" class="fontStyle sapUiTinyMarginTop sapUiTinyMarginBegin"/>
@@ -279,7 +279,7 @@
 	</Panel>
     <Panel width="100%" visible="{oUserModel>/isNew}" class="sapUiTinyMarginTop panelPadding">
         <content>
-       <l:VerticalLayout width="100%" class="fontStyle sapUiSizeCompact" visible="{=${oDataModel>/comInfoDto/isbankdetailsHidden}=== true? false: true}">
+       <l:VerticalLayout width="100%" class="fontStyle sapUiSizeCompact" visible="{=${oDataModel>/comInfoDto/invoiceBankDto/isbankdetailsHidden}=== true? false: true}">
        <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>wizardStepFinancialInfo}:${oi18n_En>wizardStepFinancialInfo} +'/&#160;' + ${i18n>wizardStepFinancialInfo}}" class="fontBold sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
         <!-- <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>financeVerbiage}:${oi18n_En>financeVerbiage} +'/&#160;' + ${i18n>financeVerbiage}}" class="fontBold fontStyleItalic sapUiTinyMarginBegin sapUiTinyMarginBottom"/> -->
         <Label  visible="{=${oDataModel>/comInfoDto/invoiceBankDto/isBankProvided} === false || ${oDataModel>/comInfoDto/invoiceBankDto/isBankProvided} === null}" text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>financeContact1}:${oi18n_En>financeContact1} +'/&#160;' + ${i18n>financeContact1}}"  class="inputStyle sapUiTinyMarginBegin fontStyleItalic sapUiTinyMarginBottom"/>

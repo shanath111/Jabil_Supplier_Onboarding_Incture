@@ -66,7 +66,7 @@ com.jabil.surveyform.formatter.formatter = {
         return true;
     },
 
-    fnCheckTaxType1: function(value) {
+    fnCheckTaxType1: function (value) {
         if (value == "oDataModel") {
             var oContext = this.getBindingContext(value).sPath.split("/")[3];
         } else {
@@ -77,7 +77,7 @@ com.jabil.surveyform.formatter.formatter = {
         }
         return false;
     },
-    fnCheckTaxType2: function(value) {
+    fnCheckTaxType2: function (value) {
         if (value == "oDataModel") {
             var oContext = this.getBindingContext(value).sPath.split("/")[3];
         } else {
@@ -88,7 +88,7 @@ com.jabil.surveyform.formatter.formatter = {
         }
         return false;
     },
-    fnCheckTaxType3: function(value) {
+    fnCheckTaxType3: function (value) {
         if (value == "oDataModel") {
             var oContext = this.getBindingContext(value).sPath.split("/")[3];
         } else {
@@ -99,7 +99,7 @@ com.jabil.surveyform.formatter.formatter = {
         }
         return false;
     },
-    fnCheckTaxType4: function(value) {
+    fnCheckTaxType4: function (value) {
         if (value == "oDataModel") {
             var oContext = this.getBindingContext(value).sPath.split("/")[3];
         } else {
@@ -110,7 +110,7 @@ com.jabil.surveyform.formatter.formatter = {
         }
         return false;
     },
-    fnCheckTaxType5: function(value) {
+    fnCheckTaxType5: function (value) {
         if (value == "oDataModel") {
             var oContext = this.getBindingContext(value).sPath.split("/")[3];
         } else {
@@ -121,7 +121,7 @@ com.jabil.surveyform.formatter.formatter = {
         }
         return false;
     },
-    fnCheckTaxType6: function(value) {
+    fnCheckTaxType6: function (value) {
         if (value == "oDataModel") {
             var oContext = this.getBindingContext(value).sPath.split("/")[3];
         } else {
@@ -132,7 +132,7 @@ com.jabil.surveyform.formatter.formatter = {
         }
         return false;
     },
-    fnCheckTaxType7: function(value) {
+    fnCheckTaxType7: function (value) {
         if (value == "oDataModel") {
             var oContext = this.getBindingContext(value).sPath.split("/")[3];
         } else {
@@ -143,7 +143,7 @@ com.jabil.surveyform.formatter.formatter = {
         }
         return false;
     },
-    fnCheckTaxType8: function(value) {
+    fnCheckTaxType8: function (value) {
         if (value == "oDataModel") {
             var oContext = this.getBindingContext(value).sPath.split("/")[3];
         } else {
@@ -154,7 +154,7 @@ com.jabil.surveyform.formatter.formatter = {
         }
         return false;
     },
-   
+
 
 
     fnFormatDate: function (oVal) {
@@ -174,35 +174,35 @@ com.jabil.surveyform.formatter.formatter = {
     },
 
     fnFormatDateMonth: function (oVal) {
-        if(oVal) {
+        if (oVal) {
             var date = new Date(oVal);
-            var month = date.toLocaleString('default', {month: 'short'});
+            var month = date.toLocaleString('default', { month: 'short' });
             var day = date.getDate();
             var year = date.getFullYear();
-            var formatDate = month + " " + day + ", "+ year;
+            var formatDate = month + " " + day + ", " + year;
             return formatDate;
         }
-        
-    },
-    fnFetchDescription: function(aArray, value){
-        if (aArray) {
-                    if (value) {
-                        var item = aArray.find(item => item.code == value);
-                        if (item) {
-                            return item.description;
-                        } else {
-                            return '---';
-                        }
 
-                    } else {
-                       return '---';
-                    }
+    },
+    fnFetchDescription: function (aArray, value) {
+        if (aArray) {
+            if (value) {
+                var item = aArray.find(item => item.code == value);
+                if (item) {
+                    return item.description;
                 } else {
                     return '---';
                 }
+
+            } else {
+                return '---';
+            }
+        } else {
+            return '---';
+        }
     },
 
-    fnFetchValue: function(aArray, val){
+    fnFetchValue: function (aArray, val) {
         if (aArray) {
             if (val) {
                 var item = aArray.find(item => item.key == val);
@@ -213,79 +213,102 @@ com.jabil.surveyform.formatter.formatter = {
                 }
 
             } else {
-               return '---';
+                return '---';
             }
         } else {
             return '---';
         }
     },
-     fnFetchAdditionalDescription: function(aArray, value){
- if (aArray) {
-                    if (value) {
-                        var item = aArray.find(item => item.code == value);
-                        if (item) {
-                            return item.additionalDescription;
-                        } else {
-                            return '';
-                        }
-
-                    } else {
-                       return '';
-                    }
+    fnFetchAdditionalDescription: function (aArray, value) {
+        if (aArray) {
+            if (value) {
+                var item = aArray.find(item => item.code == value);
+                if (item) {
+                    return item.additionalDescription;
                 } else {
                     return '';
                 }
-    },
-    fnFetchCode: function(aArray, value){
- if (aArray) {
-                    if (value) {
-                        var item = aArray.find(item => item.description == value);
-                        if (item) {
-                            return value + ' (' + item.code + ')';
-                        } else {
-                            var item = aArray.find(item => item.key == value);
-                           if(item){
-                            return item.description + ' (' + item.code + ')';
-                           }else{
-                            return '';
-                           }
-                           
-                        }
 
-                    } else {
-                       return '';
-                    }
-                } else {
-                    return '';
-                }
-    },
-//     stringToArrays: function(stringValue){
-//         if(stringValue){
-//             var a= [];
-//             var stringlistLen = stringValue.length;
-//             if(stringlistLen === 1){
-//                 a.push(stringValue);
-//             } else if(stringlistLen > 1){
-// for(var i=0; i<stringlistLen;i++){
-//     a.push(stringValue[i]);
-// }
-//             }
-//         }
-//         return a;
-//     },
-    stringToArrays: function(stringValue){
-        var a= [];
-                if(stringValue){
-                  
-                    a = stringValue.split(",");
-                 
-                return a;
+            } else {
+                return '';
             }
-        },
+        } else {
+            return '';
+        }
+    },
+    fnFetchCode: function (aArray, value) {
+        if (aArray) {
+            if (value) {
+                var item = aArray.find(item => item.description == value);
+                if (item) {
+                    return value + ' (' + item.code + ')';
+                } else {
+                    var item = aArray.find(item => item.key == value);
+                    if (item) {
+                        return item.description + ' (' + item.code + ')';
+                    } else {
+                        return '';
+                    }
+
+                }
+
+            } else {
+                return '';
+            }
+        } else {
+            return '';
+        }
+    },
+    stringToArrays: function (stringValue) {
+        if (stringValue) {
+            var a = [];
+            var stringlistLen = stringValue.length;
+            if (stringlistLen === 1) {
+                a.push(stringValue);
+            } else if (stringlistLen > 1) {
+                for (var i = 0; i < stringlistLen; i++) {
+                    a.push(stringValue[i]);
+                }
+            }
+        }
+        return a;
+    },
+    // stringToArrays: function(stringValue){
+    //     var a= [];
+    //             if(stringValue){
+
+    //                 a = stringValue.split(",");
+
+    //             return a;
+    //         }
+    //     },
+    // fnFetchDescMultiplePayment: function (aArray, value) {
+    //     if (aArray) {
+    //         if (value) {
+    //             value = value.split(",");
+    //             var itemDesc = "";
+    //             for (var i = 0; i < value.length; i++) {
+    //                 var item = aArray.find(item => item.code == value[i]);
+    //                 if (item) {
+    //                     itemDesc = itemDesc + item.description + ',';
+    //                 }
+    //             } if (itemDesc) {
+    //                 return itemDesc.replace(/,([^,]*)$/, '$1')
+    //             }
+    //             else {
+    //                 return '---';
+    //             }
+
+    //         } else {
+    //             return '---';
+    //         }
+    //     } else {
+    //         return '---';
+    //     }
+    // },
     fnFetchDescMultiplePayment: function(aArray, value){
         if (aArray) {
                            if (value) {
-                            value = value.split(",");
                                var itemDesc ="";
                                for(var i=0;i<value.length;i++){
                                var item = aArray.find(item => item.code == value[i]);
@@ -307,11 +330,11 @@ com.jabil.surveyform.formatter.formatter = {
                        }
            },
 
-        fnBankInfoValidated: function(sValue){
-            if(!sValue || sValue=="0"){
-                return false;
-            } else if(sValue =="1") {
-                return true;
-            }
+    fnBankInfoValidated: function (sValue) {
+        if (!sValue || sValue == "0") {
+            return false;
+        } else if (sValue == "1") {
+            return true;
         }
+    }
 };

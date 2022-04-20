@@ -24,6 +24,7 @@ sap.ui.define([
                 oBusyDilog = new BusyDialog({
                     text: oi18n.getProperty("BusyTxt") //initialize Busy Dialog
                 });
+                
 
                 var oRouter = this.getOwnerComponent().getRouter();
                 oRouter.getRoute("Reviewer").attachPatternMatched(this.fnReviewerRoute, this);
@@ -50,8 +51,6 @@ sap.ui.define([
                 oView.getModel("oConfigMdl").getData().bankNotFoundTitle = false;
                 oView.getModel("oConfigMdl").getData().NDAScreenReconVis = false;
                 oView.getModel("oConfigMdl").getData().NonMDGVis = false;
-              
-
                 if (oContext.Name == "Buyer") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = true;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;

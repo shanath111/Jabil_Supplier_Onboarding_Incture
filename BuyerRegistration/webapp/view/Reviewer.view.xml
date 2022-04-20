@@ -7,6 +7,13 @@
 					<Panel width="auto" expandable="false" expanded="true" class="cl_VRPanelClass sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
 						<content>
 								<VBox class="cl_TIVBoxShadow">
+                                <l:VerticalLayout  visible="{oConfigMdl>/ValidateVisible}" width="100%">
+                              
+                                <Label 	wrapping="true" class="sapUiTinyMarginTop cl_VRLablCls" text="{oToolTipModel>/tooltiptextRevier}" />
+                                 <Label wrapping="true" class="cl_VRLablCls" text="{oToolTipModel>/tooltiptextRevier1}" />
+                                  <Label 	wrapping="true" class="cl_VRLablCls" text="{oToolTipModel>/tooltiptextRevier2}" />
+                               
+                                </l:VerticalLayout>
 									<Toolbar height="3rem" class="cl_TIToolbarBorder sapUiTinyMarginTop">
 										<SegmentedButton  id="id_SegmentedBtn" selectionChange="fnSegmentButtonChange" class="sapUiTinyMarginBottom cl_TISegmentBtn">
 											<items>
