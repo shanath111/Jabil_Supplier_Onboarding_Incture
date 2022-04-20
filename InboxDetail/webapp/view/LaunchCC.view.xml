@@ -56,12 +56,12 @@
 						</ComboBox>
 						<!-- new Changes user Story 596896 -->
 						<!-- <HBox visible="{LocalModel>/ComCodeInputV}"> -->
-							<Input class="cl_VRInputCls" visible="{LocalModel>/ComCodeInputV}" placeholder="Company code" value="{JMFilter1>/companyCode}" maxLength="4">
+							<Input class="cl_VRInputCls" visible="{LocalModel>/ComCodeInputV}" placeholder="Company code" valueState="{LocalModel>/CompanyCodeVS}" valueStateText="{LocalModel>/CompanyCodeVStext}" value="{JMFilter1>/companyCode}" maxLength="4" liveChange="ccLiveChange" >
 								<!-- <layoutData> 
 									<l:GridData span="XL1 L1 M1 S1" />
 								</layoutData> -->
 							</Input>
-							<Input class="cl_VRInputCls" visible="{LocalModel>/ComCodeInputV}" placeholder="Company code description" value="{LocalModel>/CompanyCodeDesc}"></Input>
+							<Input class="cl_VRInputCls" change="fnChangeInputVal" valueState="{LocalModel>/CompanyCodeDescVS}" valueStateText="{LocalModel>/CompanyCodeDescVStext}" visible="{LocalModel>/ComCodeInputV}" placeholder="Company code description" value="{LocalModel>/CompanyCodeDesc}"></Input>
 							<layoutData>
 								<l:GridData span="XL1 L1 M1 S1" />
 							</layoutData>
