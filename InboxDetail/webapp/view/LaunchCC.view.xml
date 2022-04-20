@@ -73,7 +73,7 @@
 					</VBox>
 					<VBox class="VRVboxStyle1">
 						<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
-						<c:ExtComboBox width="95%" visible="{LocalModel>/PurcOrgDDV}" items="{oBPLookUpMdl>/PurOrg1}" valueState="{JMFilter>/purchasingOrganisatione}" valueStateText="{JMFilter>/purchasingOrganisationm}"
+						<c:ExtComboBox width="95%" visible="{LocalModel>/PurcOrgDDV}" items="{oBPLookUpMdl>/PurOrg1}" valueState="{LocalModel>/PurOrgVS}" valueStateText="{LocalModel>/PurOrgVStext}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg1" click="fnLiveChangePurchOrg1" showSecondaryValues="true" selectedKey="{JMFilter1>/purchasingOrganisation}"
 											class="cl_VRInputCls" >
 							<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
