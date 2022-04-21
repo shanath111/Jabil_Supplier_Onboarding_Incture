@@ -9183,7 +9183,7 @@ sap.ui.define([
 
                 var that = this;
                 var confirmBankAccNum = oEvent.getSource().getValue();
-                var InputBankAccNum = oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum;
+                var InputBankAccNum = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum;
                 if (confirmBankAccNum !== InputBankAccNum) {
                     oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
                     oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
