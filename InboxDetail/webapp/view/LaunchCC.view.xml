@@ -31,14 +31,14 @@
 						<!-- <ComboBox width="95%"   autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter1>/siteName}"
                                     class="cl_VRInputCls" change="onChangeLookupValue" ></ComboBox>
                                  -->
-						<Input maxLength="100" width="95%" value="{JMFilter1>/siteName}" class="cl_VRInputCls" />
+						<Input maxLength="100" change="fnChangeInputVal" valueState="{LocalModel>/siteNameVS}" valueStateText="{LocalModel>/siteNameVStext}" width="95%" value="{JMFilter1>/siteName}" class="cl_VRInputCls" />
 						<layoutData>
 							<l:GridData  span="XL2 L2 M2 S2"></l:GridData>
 						</layoutData>
 					</VBox>
 					<VBox class="VRVboxStyle1">
 						<Label text="{i18n>ERPSystem}" required="true" class="cl_VRLablCls "></Label>
-						<ComboBox width="95%" selectionChange="fnChangeERPSystem"   autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter1>/erpSystem}"
+						<ComboBox valueStateText="{LocalModel>/erpSystemVStext}" valueState="{LocalModel>/erpSystemVS}" width="95%" selectionChange="fnChangeERPSystem"   autocomplete="false" filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" showSecondaryValues="true" selectedKey="{JMFilter1>/erpSystem}"
                                     class="cl_VRInputCls" change="onChangeLookupValue" >
 							<core:ListItem key="Jabil's MDG"  text="Jabil's MDG" additionalText="{oBPLookUpMdl>description}"/>
 							<core:ListItem key="Site's ERP"  text="Site's ERP" additionalText="{oBPLookUpMdl>description}"/>
@@ -49,7 +49,7 @@
 					</VBox>
 					<VBox class="VRVboxStyle1" >
 						<Label text="{i18n>BPCCompanyCode}" required="true" class="cl_VRLablCls"></Label>
-						<ComboBox visible="{LocalModel>/ComCodeDDV}" width="95%"  items="{oBPLookUpMdl>/CompanyCode1}"  autocomplete="false" valueState="{JMFilter>/companyCodee}" valueStateText="{JMFilter>/companyCodem}"
+						<ComboBox visible="{LocalModel>/ComCodeDDV}" width="95%"  items="{oBPLookUpMdl>/CompanyCode1}"  autocomplete="false" valueState="{LocalModel>/CompanyCodeVS}" valueStateText="{LocalModel>/CompanyCodeVStext}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangeCompCode1" showSecondaryValues="true" selectedKey="{JMFilter1>/companyCode}"
 											class="cl_VRInputCls">
 							<core:ListItem key="{oBPLookUpMdl>code}"  text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>
@@ -73,7 +73,7 @@
 					</VBox>
 					<VBox class="VRVboxStyle1">
 						<Label text="{i18n>BPPurchasingOrg}" required="true" class="cl_VRLablCls "></Label>
-						<c:ExtComboBox width="95%" visible="{LocalModel>/PurcOrgDDV}" items="{oBPLookUpMdl>/PurOrg1}" valueState="{JMFilter>/purchasingOrganisatione}" valueStateText="{JMFilter>/purchasingOrganisationm}"
+						<c:ExtComboBox width="95%" visible="{LocalModel>/PurcOrgDDV}" items="{oBPLookUpMdl>/PurOrg1}" valueState="{LocalModel>/PurOrgVS}" valueStateText="{LocalModel>/PurOrgVStext}"
 											filterSecondaryValues="true" editable="{oConfigMdl>/screenEditable}" change="fnLiveChangePurchOrg1" click="fnLiveChangePurchOrg1" showSecondaryValues="true" selectedKey="{JMFilter1>/purchasingOrganisation}"
 											class="cl_VRInputCls" >
 							<core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>code}" additionalText="{oBPLookUpMdl>description}"/>

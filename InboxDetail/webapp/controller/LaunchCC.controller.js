@@ -33,12 +33,18 @@ sap.ui.define([
                  "ComCodeDDV":true,
                  "PurcOrgDDV":true,
                  "PurcOrgInputV":false,
-                "CompanyCodeDesc":"",
-                "CompanyCodeDescVS":"None",
-                "CompanyCodeVS":"None",
-                "CompanyCodeVStext":"",
-                "CompanyCodeDescVStext":"",
-                "PurOrgDesc":"For Non PRD Sites"
+                 "CompanyCodeDesc":"",
+                 "CompanyCodeDescVS":"None",
+                 "CompanyCodeVS":"None",
+                 "CompanyCodeVStext":"",
+                 "CompanyCodeDescVStext":"",
+                 "PurOrgDesc":"For Non PRD Sites",
+                 "PurOrgVS":"None",
+                 "PurOrgVStext":"",
+                 "siteNameVS":"None",
+                 "siteNameVStext":"",
+                 "erpSystemVS":"None",
+                 "erpSystemVStext":""
               }),"LocalModel");
              
                 oView.getModel("oBPLookUpMdl").setData([]);
@@ -82,8 +88,21 @@ sap.ui.define([
                 oView.getModel("LocalModel").setProperty("/PurcOrgDDV",true);
                 oView.getModel("LocalModel").setProperty("/PurcOrgInputV",false);
                 oView.getModel("LocalModel").setProperty("/CompanyCodeDesc","");
-                oView.getModel("LocalModel").setProperty("/CompanyCodeDesc","");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVS","None");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext","");  
+                oView.getModel("LocalModel").setProperty("/PurOrgVS","None");
+                oView.getModel("LocalModel").setProperty("/PurOrgVStext",""); 
+                oView.getModel("LocalModel").setProperty("/PurOrgVS","None");
+                oView.getModel("LocalModel").setProperty("/PurOrgVStext","");
                 oView.getModel("LocalModel").setProperty("/PurOrgDesc","");
+                oView.getModel("LocalModel").setProperty("/erpSystemVS","None");
+                oView.getModel("LocalModel").setProperty("/erpSystemVStext","");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeVS","None");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeVStext","");
+                oView.getModel("LocalModel").setProperty("/siteNameVS","None");
+                oView.getModel("LocalModel").setProperty("/siteNameVStext","");
+                
+                
                 //oView.getModel("LocalModel").setProperty("/PurcOrgInputV",true);
                 // user story 596896
                 
@@ -102,7 +121,15 @@ sap.ui.define([
             },
             fnChangeERPSystem: function () {
                 oView.getModel("JMFilter1").getData().paymentMethod = [{"code":"","description":"","codee":"None","codem":"","descriptione":"None","descriptionm":"","codeEnabled":true, "descEnabled":true}];
-                
+                oView.getModel("LocalModel").setProperty("/erpSystemVS","None");
+                oView.getModel("LocalModel").setProperty("/erpSystemVStext","");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeVS","None");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeVStext","");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDesc","");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVS","None");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext","");
+                oView.getModel("LocalModel").setProperty("/PurOrgVS","None");
+                oView.getModel("LocalModel").setProperty("/PurOrgVStext","");
                 if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {                               
             
                     // oView.byId("id_PaymentMetod").setEnabled(true);
@@ -127,8 +154,7 @@ sap.ui.define([
                     oView.getModel("LocalModel").setProperty("/ComCodeDDV",true);
                     oView.getModel("LocalModel").setProperty("/PurcOrgDDV",true);
                     oView.getModel("LocalModel").setProperty("/PurcOrgInputV",false);  
-                    oView.getModel("JMFilter1").setProperty("/purchasingOrganisation",""); 
-                    oView.getModel("LocalModel").setProperty("/CompanyCodeDesc",""); 
+                    oView.getModel("JMFilter1").setProperty("/purchasingOrganisation","");                     
                     oView.getModel("LocalModel").setProperty("/PurOrgDesc",""); 
                     oView.getModel("JMFilter1").setProperty("/companyCode","");                    
                    //Changes User story 596896
@@ -217,6 +243,7 @@ sap.ui.define([
                 });
             },
             fnLiveChangeCompCode: function (oEvent) {
+               
                 var vSelected = oEvent.getParameter("itemPressed");
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
@@ -231,10 +258,17 @@ sap.ui.define([
 
                 oView.getModel("JMFilter").getData().purchasingOrg = "";
                 oView.getModel("JMFilter").refresh();
-                if (oView.getModel("JMFilter").getData().companyCodee == "Error") {
-                    oView.getModel("JMFilter").getData().companyCodee = "None";
-                    oView.getModel("JMFilter").getData().companyCodem = "";
+                // if (oView.getModel("JMFilter").getData().companyCodee == "Error") {
+                //     oView.getModel("JMFilter").getData().companyCodee = "None";
+                //     oView.getModel("JMFilter").getData().companyCodem = "";
+                //     oView.getModel("JMFilter").refresh();
+                // }
+                if (oView.getModel("LocalModel").getData().CompanyCodeVS == "Error") {
+                    oView.getModel("LocalModel").getData().CompanyCodeVS = "None";
+                    oView.getModel("LocalModel").getData().CompanyCodeVStext = "";
+                    oView.getModel("LocalModel").refresh();
                     oView.getModel("JMFilter").refresh();
+                    
                 }
 
             },
@@ -256,6 +290,8 @@ sap.ui.define([
             },
             fnLiveChangeCompCode1: function (oEvent) {
                 var vSelected = oEvent.getParameter("itemPressed");
+                oView.getModel("LocalModel").getData().PurOrgVS = "None";
+                oView.getModel("LocalModel").getData().PurOrgVStext = "";
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
@@ -268,10 +304,17 @@ sap.ui.define([
                 oView.getModel("JMFilter1").getData().purchasingOrganisation = "";
                 
                 oView.getModel("JMFilter1").refresh();
-                if (oView.getModel("JMFilter1").getData().companyCodee == "Error") {
-                    oView.getModel("JMFilter1").getData().companyCodee = "None";
-                    oView.getModel("JMFilter1").getData().companyCodem = "";
-                    oView.getModel("JMFilter1").refresh();
+                // if (oView.getModel("JMFilter1").getData().companyCodee == "Error") {
+                //     oView.getModel("JMFilter1").getData().companyCodee = "None";
+                //     oView.getModel("JMFilter1").getData().companyCodem = "";
+                //     oView.getModel("JMFilter1").refresh();
+                // }
+                if (oView.getModel("LocalModel").getData().CompanyCodeVS == "Error") {
+                    oView.getModel("LocalModel").getData().CompanyCodeVS = "None";
+                    oView.getModel("LocalModel").getData().CompanyCodeVStext = "";
+                    oView.getModel("LocalModel").refresh();
+                    oView.getModel("JMFilter").refresh();
+                    
                 }
 
             },
@@ -475,10 +518,10 @@ ccLiveChange:function(oEvent){
     numericFilter(oEvent.getSource().getValue());
     function numericFilter(txb) {
         oEvent.getSource().setValue(txb.replace(/[^\0-9]/ig, ""));
-      if(txb.length<4){
+      if(oEvent.getSource().getValue().length<4){
         oEvent.getSource().setValueStateText("Company code must be exactly 4 digits numarical");
         oEvent.getSource().setValueState("Error");
-    }else if(txb.length===4){
+    }else if(oEvent.getSource().getValue().length===4){
         oEvent.getSource().setValueStateText("");
         oEvent.getSource().setValueState("None");
     }
@@ -516,6 +559,8 @@ ccLiveChange:function(oEvent){
                 }
                  if (oView.getModel("JMFilter1").getData().purchasingOrganisation == "") {
                     vError = true;
+                    oView.getModel("LocalModel").setProperty("/PurOrgVS","Error");
+                oView.getModel("LocalModel").setProperty("/PurOrgVStext","Please enter purchase organisation");
                 }
                 if (oView.getModel("LocalModel").getProperty("/CompanyCodeDesc") == "") {
                                         vError = true;
@@ -526,9 +571,13 @@ oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext","Please enter 
                 }
                 if (oView.getModel("JMFilter1").getData().siteName == "") {
                     vError = true;
+                    oView.getModel("LocalModel").setProperty("/siteNameVS","Error");
+oView.getModel("LocalModel").setProperty("/siteNameVStext","Please enter site name");
                 }
                 if (oView.getModel("JMFilter1").getData().erpSystem == "") {
                     vError = true;
+                    oView.getModel("LocalModel").setProperty("/erpSystemVS","Error");
+                    oView.getModel("LocalModel").setProperty("/erpSystemVStext","Please enter erp system");
                 }
                 var aPaymentMethod = oView.getModel("JMFilter1").getData().paymentMethod;
                 if(oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP" && aPaymentMethod.length>0){
@@ -779,10 +828,20 @@ oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext","Please enter 
                         oEvent.getSource().setValue("");
                     }
                 }
+                if (oView.getModel("LocalModel").getData().PurOrgVS == "Error") {
+                    oView.getModel("LocalModel").getData().PurOrgVS = "None";
+                    oView.getModel("LocalModel").getData().PurOrgVStext = "";
+                    oView.getModel("LocalModel").refresh();
+                    oView.getModel("JMFilter").refresh();
+                    
+                }
             },
 
             fnLiveChangePurchOrg1: function (oEvent) {
                 var compCode = oView.getModel("JMFilter1").getData().companyCode;
+                oView.getModel("LocalModel").setProperty("/PurOrgVS","None");
+                oView.getModel("LocalModel").setProperty("/PurOrgVStext","");
+            //  oView.getModel("LocalModel").updateBindings();
                 if (compCode === "" || compCode === undefined) {
                     sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
 
