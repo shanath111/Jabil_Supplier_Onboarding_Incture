@@ -484,6 +484,7 @@ sap.ui.define([
                         "Content-Type": "application/json"
                     });
                     oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                        that.fnLoadCompanyCode();
                         if (oEvent.getParameter("success")) {
 
                             oBusyDilog.close();
@@ -496,11 +497,11 @@ sap.ui.define([
                             var oJsonCompSearch = new sap.ui.model.json.JSONModel();
                             oJsonCompSearch.setData([]);
                             oView.setModel(oJsonCompSearch, "JMCompSearchResult")
-                            var sErMsg = oEvent.getParameter("errorobject").responseText;
-                            MessageBox.show(sErMsg, {
-                                icon: MessageBox.Icon.ERROR,
-                                title: "Error"
-                            });
+                            // var sErMsg = oEvent.getParameter("errorobject").responseText;
+                            // MessageBox.show(sErMsg, {
+                            //     icon: MessageBox.Icon.ERROR,
+                            //     title: "Error"
+                            // });
 
 
                         }
@@ -694,6 +695,7 @@ sap.ui.define([
                                     "Content-Type": "application/json"
                                 });
                                 oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                                    that.fnLoadCompanyCode();
                                     if (oEvent.getParameter("success")) {
                                         var temp = {};
                                         var vSccuessTxt = oi18n.getProperty("CCCPPLaunchedSuccess");
@@ -769,16 +771,18 @@ sap.ui.define([
                                     oBusyDilog.close();
                                     that.oBPSuccess.open();
                                     that.fnSearchCompanyCode();
+                                    that.fnLoadCompanyCode();
 
                                 },
                                 async: false,
                                 error: function (data) {
                                     oBusyDilog.close();
-                                    var sErMsg = data.responseText;
-                                    MessageBox.show(sErMsg, {
-                                        icon: MessageBox.Icon.ERROR,
-                                        title: "Error"
-                                    });
+                                    that.fnLoadCompanyCode();
+                                    // var sErMsg = data.responseText;
+                                    // MessageBox.show(sErMsg, {
+                                    //     icon: MessageBox.Icon.ERROR,
+                                    //     title: "Error"
+                                    // });
                                 }
                             });
 

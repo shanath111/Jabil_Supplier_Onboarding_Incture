@@ -127,6 +127,10 @@
 									</VBox>
 								</l:Grid>
     <HBox>
+        <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>authorityCheck}:${oi18n_En>authorityCheck} +'/&#160;' + ${i18n>authorityCheck}}" class="cl_PreviewLablCls sapUiSmallMarginTop sapUiTinyMarginBegin"/>
+        <Label text="{=${oDataModel>/surveyInfoDto/isAuthority}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
+    </HBox>
+    <HBox>
         <Label text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>ismainContact}:${oi18n_En>ismainContact} +'/&#160;' + ${i18n>ismainContact}}" class="cl_PreviewLablCls sapUiSmallMarginTop sapUiTinyMarginBegin"/>
         <Label text="{=${oDataModel>/surveyInfoDto/isJabilMainContact}?${oi18n_En>yes}:${oi18n_En>no}}" class="cl_PreviewLablClsValue sapUiSmallMarginTop sapUiTinyMarginBegin"></Label>
     </HBox>
