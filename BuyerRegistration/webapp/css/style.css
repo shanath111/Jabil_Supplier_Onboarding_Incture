@@ -637,6 +637,9 @@ display:flex
 .gList .sapMLIBSelectS, .sapMLIBSelectM {
 width:0
 }
+.cl_TIDtxtMargin{
+    margin-left: 4px !important;
+}
 
 html.sap-desktop .sapMScrollContVH::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb {
