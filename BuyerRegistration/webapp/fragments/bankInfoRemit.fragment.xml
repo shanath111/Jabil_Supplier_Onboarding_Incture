@@ -1,0 +1,164 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified" xmlns:grid="sap.ui.layout.cssgrid" xmlns:g="sap.f" async="true">
+	<Panel width="100%" class="sapUiTinyMarginTop panelPadding">
+		<content>
+        <!-- ACCUITY validated msg -->
+            <!-- <VBox>
+                <Text text="{i18n>bankNotValidatedMsg}" class="sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+                <Text text="{i18n>bankInformation}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+            </VBox> -->
+        <Text text="{i18n>bankInformation}" class="cl_TIDescTxt sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+		<l:Grid  containerQuery="true" defaultSpan="XL2 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+			<VBox  class="fontStyle">
+					<Label wrapping="true" text="{i18n>bankCountry}"></Label>
+					<ComboBox width="100%" editable="{oConfigMdl>/BankFieldsEdit}"  items="{oBPLookUpMdl>/Country}" showSecondaryValues="true" filterSecondaryValues="true" selectedKey="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCountry}" valueState="{oErrorModel>/bankCountryE}" valueStateText="{oErrorModel>/bankCountryM}"  change="fnLiveValueBankInput" class="inputStyle">
+                     <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/></ComboBox>
+				</VBox>
+            	<VBox  class="fontStyle">
+					<Label text="{i18n>bankName}" wrapping="true" required="true"></Label>
+					<Input maxLength="61" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankName}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+				</VBox>
+				  <VBox class="fontStyle">
+					<Label text="{i18n>bankAddr}"  wrapping="true" required="false"></Label>
+					<Input maxLength="34" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankAddress}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+				</VBox>
+                <VBox class="fontStyle">
+					<Label text="{i18n>bankCity}" wrapping="true"></Label>
+					<Input maxLength="36" editable="{oConfigMdl>/BankFieldsEdit}" valueStateText="{oErrorModel>/bankCityM}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCity}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>
+				<VBox  class="fontStyle">
+					<Label text="{i18n>state}" wrapping="true" required="false"></Label>
+					  <ComboBox width="100%" items="{oBPLookUpMdl>/BankRegion}" filterSecondaryValues="true" showSecondaryValues="true"   editable="false" selectedKey="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankState}"  placeholder="{i18n>select}" valueState="{oErrorModel>/bankStateE}" valueStateText="{oErrorModel>/bankStateM}" selectionChange="fnLiveValueChange" required="true" class="inputStyle">
+                  <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/>
+                  </ComboBox>
+				</VBox>
+				
+				<VBox class="fontStyle">
+					<Label wrapping="true" text="{i18n>bankBranch}"  required="true"></Label>
+					<Input maxLength="41" editable="{oConfigMdl>/BankFieldsEdit}"  value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankBranch}"  change="fnInputBankAccNumber" required="true" class="inputStyle"></Input>
+				</VBox>
+                <VBox class="fontStyle" >
+					<Label text="{i18n>accHolderName}" wrapping="true" required="true"></Label>
+					<Input maxLength="61" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/benefAccHolderName}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+				</VBox>
+				<VBox  class="fontStyle">
+					<Label text="{i18n>bankAccNum}" wrapping="true" required="true"></Label>
+					<Input maxLength="19" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankAccNum}" valueState="{oErrorModel>/bankAccNumE}" valueStateText="{oErrorModel>/bankAccNumM}" change="fnInputBankAccNumber" required="true" class="inputStyle">
+                    </Input>
+				</VBox>
+                 <VBox  class="fontStyle">
+					<Label tooltip="{oi18n_En>refDetTT}" text="{i18n>refDetails}" wrapping="true" required="{oVisibilityModel>/bankValidation/referenceDetails}"></Label>
+					<Input editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/refBankDetails}" valueState="{oErrorModel>/bankRefE}" valueStateText="{oErrorModel>/bankRefM}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>
+                <VBox  class="fontStyle">
+					<Label text="{i18n>swift}" wrapping="true" required="true"></Label>
+					<Input maxLength="12" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/swiftCode}" valueState="{oErrorModel>/bankSwiftE}" valueStateText="{oErrorModel>/bankSwiftM}" liveChange="fnLiveInputValueChange" required="true" class="inputStyle"></Input>
+				</VBox>
+                <VBox class="fontStyle">
+					<Label tooltip="{oi18n_En>bankNumTT}" text="{i18n>bankNum}" wrapping="true" required="{oVisibilityModel>/bankValidation/bankNumber}"></Label>
+					<Input maxLength="19" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankNumber}" valueState="{oErrorModel>/bankNumE}" valueStateText="{oErrorModel>/bankNumM}"  liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>
+				<VBox class="fontStyle">
+				<Label text="{i18n>iban}" wrapping="true"></Label>
+					<Input maxLength="{oVisibilityModel>/bankValidation/ibanLength}" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/ibanNum}" valueState="{oErrorModel>/ibanE}" valueStateText="{oErrorModel>/ibanM}"  change="fnInputIban" class="inputStyle"></Input>
+				</VBox>
+				<!-- <VBox  class="fontStyle">
+						<Label text="{i18n>bankKey}" wrapping="true"></Label>
+					<Input maxLength="5" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankCode}"  liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox> -->
+                <VBox  class="fontStyle">
+				<Label text="{i18n>bankPKey}" wrapping="true" required="{oVisibilityModel>/bankValidation/benificiaryAccCurrency}"></Label>
+				
+				<ComboBox width="100%" items="{oBPLookUpMdl>/Currency}"  showSecondaryValues="true" filterSecondaryValues="true" valueState="{oErrorModel>/benifAccCurrE}" valueStateText="{oErrorModel>/benifAccCurrM}"  change="fnLiveValueChange" selectedKey="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/partnerBankType}" editable="{oConfigMdl>/BankFieldsEdit}" placeholder="{i18n>select}" class="inputStyle">
+                     <core:ListItem key="{oBPLookUpMdl>code}" text="{oBPLookUpMdl>description}" additionalText="{oBPLookUpMdl>code}"/></ComboBox>
+                </VBox>
+			
+				<!-- <VBox  class="fontStyle">
+						<Label wrapping="true" text="{i18n>bankCtrlKey}"></Label>
+					<Input maxLength="3"  value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankControlKey}" valueState="{oErrorModel>/bankCtrlKeyE}" valueStateText="{oErrorModel>/bankCtrlKeyM}"  liveChange="fnLiveInputValueChange"  editable="{oConfigMdl>/BankFieldsEdit}" class="inputStyle"></Input>
+                    
+				</VBox> -->
+				<!-- <VBox class="fontStyle">
+					<Label wrapping="true" text="{i18n>instKey}" ></Label>
+					<Input maxLength="4" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/instructionKey}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+                     
+				</VBox> -->
+                <!-- <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>instKeyHint}:${oi18n_En>instKeyHint}+ '&#10;' +${i18n>instKeyHint}}" textAlign="End" class="disabledFontClr"/> -->
+                  <VBox  class="fontStyle">
+					<Label wrapping="true" required="true" text="{i18n>bankKeyGBS}"></Label>
+					<Input  id="id_BankKey" change="fnInputSpaceCheck" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankKey}" liveChange="fnLiveChangeBankKey"  class="inputStyle"></Input>
+                   
+				</VBox>
+                
+			</l:Grid>
+            <!-- accuity local bank fields -->
+            <!-- <l:Grid  containerQuery="true" defaultSpan="XL2 L3 M4 S12" class="gridSpacing sapUiSizeCompact sapUiNoContentPadding ">
+                <VBox class="fontStyle">
+				<Label text="{i18n>bankNameLocal}" wrapping="true"></Label>
+					<Input maxLength="61" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/localName}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>
+                <VBox class="fontStyle">
+				<Label text="{i18n>bankAddressLocal}" wrapping="true"></Label>
+					<Input maxLength="36" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/localAddress}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>
+                <VBox class="fontStyle">
+				<Label text="{i18n>bankCityLocal}" wrapping="true"></Label>
+					<Input maxLength="36" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/localCity}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>
+                <VBox class="fontStyle">
+				<Label text="{i18n>bankBranchLocal}" wrapping="true"></Label>
+					<Input maxLength="41" editable="{oConfigMdl>/BankFieldsEdit}" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/localBranch}" liveChange="fnLiveInputValueChange" class="inputStyle"></Input>
+				</VBox>
+            </l:Grid> -->
+            <!-- accuity local bank fields -->
+    
+    
+    
+    	</content>
+		<layoutData>
+			<FlexItemData minWidth="100%"/>
+		</layoutData>
+	</Panel>
+	
+	<VBox class="sapUiMediumMarginTop">
+		<Text text="{i18n>Attachments}" class="fontBold gridSpacing sapUiTinyMarginBegin"/>
+
+			<HBox wrap="Wrap">
+				<u:FileUploader id="fileUploader_BA" buttonOnly="true" buttonText="{i18n>addAttachment}" iconFirst="true" icon="sap-icon://add" multiple="true"
+					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{oConfigMdl>/BankFieldsEdit}"
+					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"></u:FileUploader>
+				<g:GridList width="auto" items="{oAttachmentListBank>/0/bankDArrayR}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">
+					<g:customLayout>
+						<grid:GridResponsiveLayout>
+							<grid:layoutS>
+								<grid:GridSettings gridTemplateColumns="1fr" gridGap="1rem"/>
+							</grid:layoutS>
+							<grid:layoutM>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr" gridGap="1rem"/>
+							</grid:layoutM>
+							<grid:layoutL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutL>
+							<grid:layoutXL>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridGap="1rem"/>
+							</grid:layoutXL>
+						</grid:GridResponsiveLayout>
+					</g:customLayout>
+					<g:GridListItem>
+						<HBox>
+							<HBox width="90%" class="sapUiTinyMarginBegin sapUiSizeCompact">
+								<core:Icon src="{path:'oAttachmentListBank>fileExt',formatter:'ns.BuyerRegistration.util.formatter.mediaTypeformatter'}"
+									class="attachmentIcon sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom" size="2.5rem" color="#48639d"/>
+								<VBox><Text text="{oAttachmentListBank>name}" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+							<Text text="{oAttachmentListBank>fileSize}" class="sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiLargeMarginEnd"/>
+                            </VBox></HBox>
+							<VBox alignItems="Center" class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">
+								<core:Icon src="sap-icon://decline" visible="false" class="docIconStyle" press="fnOnCancelAttachment"/>
+								<core:Icon src="sap-icon://download" class="docIconStyle" press="fnOnDownlAttachment1"/>
+							</VBox>
+						</HBox>
+					</g:GridListItem>
+				</g:GridList>
+			</HBox>
+	</VBox>
+</core:FragmentDefinition>

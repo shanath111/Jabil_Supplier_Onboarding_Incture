@@ -51,6 +51,7 @@ sap.ui.define([
                 oView.getModel("oConfigMdl").getData().bankNotFoundTitle = false;
                 oView.getModel("oConfigMdl").getData().NDAScreenReconVis = false;
                 oView.getModel("oConfigMdl").getData().NonMDGVis = false;
+                oView.getModel("oConfigMdl").getData().BankDetailsRemit = false;
                 if (oContext.Name == "Buyer") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = true;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;
@@ -122,7 +123,30 @@ sap.ui.define([
                     oView.getModel("oConfigMdl").getData().viewAttachments = false;
                     this._fnLoadCurrency();
 
-                } else if (oContext.Name == "Approver1") {
+                }  else if (oContext.Name == "GBSBankRemit") {
+                    oView.getModel("oConfigMdl").getData().ValidateVisible = false;
+                    oView.getModel("oConfigMdl").getData().NDAVisible = false;
+                    oView.getModel("oConfigMdl").getData().SegmBtnTxt = oi18n.getProperty("TIBuyerDataBankData");
+                    oView.getModel("oConfigMdl").getData().ApproveButtonVis = true;
+                    oView.getModel("oConfigMdl").getData().BankFieldsEdit = false;
+                    oView.getModel("oConfigMdl").getData().RejectBtnVis = false;
+                    oView.getModel("oConfigMdl").getData().SegmentVisible = true;
+                    oView.getModel("oConfigMdl").getData().ApproveBtnName = "Submit";
+                    oView.getModel("oConfigMdl").getData().RjectBtnName = "Reject";
+                    oView.getModel("oConfigMdl").getData().MitgationVis = false;
+                    oView.getModel("oConfigMdl").getData().BankDetails = false;
+                    oView.getModel("oConfigMdl").getData().BankDetailsRemit = true;
+                    oView.getModel("oConfigMdl").getData().buyerData = false;
+                    oView.getModel("oConfigMdl").getData().onBoardDet = false;
+                    oView.getModel("oConfigMdl").getData().SegmentVisibleP = false;
+                    oView.byId("id_SegmentedBtn").setSelectedKey("BuyerData");
+                    oView.getModel("oConfigMdl").getData().PartnerFunctionVis = false;
+                    oView.getModel("oConfigMdl").getData().defaultEnable = true;
+                    oView.getModel("oConfigMdl").getData().bankNotFoundTitle = false;
+                    oView.getModel("oConfigMdl").getData().viewAttachments = false;
+                    this._fnLoadCurrency();
+
+                }else if (oContext.Name == "Approver1") {
                     oView.getModel("oConfigMdl").getData().ValidateVisible = false;
                     oView.getModel("oConfigMdl").getData().NDAVisible = false;
                     oView.getModel("oConfigMdl").getData().RejectBtnVis = false;
@@ -1017,7 +1041,7 @@ sap.ui.define([
                                     //     that._fnReadDocumentList(temp.caseId, that);
                                     // }
                                     that._fnReadDocumentList(temp.caseId, that);
-                                    if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GBSBank") {
+                                    if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GBSBank" || oView.getModel("oConfigMdl").getData().contextPath.Name == "GBSBankRemit") {
                                         that._fnReadDocumentList1(temp.caseId, that);
                                     }
                                     // if (oView.getModel("oConfigMdl").getData().contextPath.Name == "Buyer") {
@@ -1174,7 +1198,14 @@ sap.ui.define([
                         oView.byId("id_BankKey").setValueStateText(oi18n.getProperty("pleaseProvideBankKey"));
                         return;
                     }
-                } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "NDARejectLegal") {
+                }else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GBSBankRemit") {
+                    if (!oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankKey) {
+                        oView.byId("id_BankKeyR").setValueState("Error");
+                        oView.byId("id_BankKeyR").setValueStateText(oi18n.getProperty("pleaseProvideBankKey"));
+                        return;
+                    }
+                }
+                 else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "NDARejectLegal") {
                     if (this.getView().getModel("oAttachmentList").getData().NDADocuments.length == 0) {
                         var sErMsg = "Please upload the jointly executed NDA to the Supplier onboarding form";
                         MessageBox.show(sErMsg, {
@@ -1586,7 +1617,7 @@ sap.ui.define([
                         "action": vCommentsActn,
                         "comments": oView.getModel("JMAppvrComments").getData().Comments
                     }
-                } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GBSBank") {
+                } else if (oView.getModel("oConfigMdl").getData().contextPath.Name == "GBSBank" || oView.getModel("oConfigMdl").getData().contextPath.Name == "GBSBankRemit") {
                     if (vBtn == "AP") {
                         var oPayloadSupp = that.getView().getModel("oDataModel").getData();
                         oPayloadSupp.userUpdated = oView.getModel("oConfigMdl").getData().usrData.givenName
@@ -2174,6 +2205,8 @@ sap.ui.define([
                         $.each(data, function (index, value) {
                             if (value.docInSection == "bankInfo") {
                                 that.getView().getModel("oAttachmentListBank").getData()[0].bankDArray.push(value);
+                            }else if (value.docInSection == "bankDArrayR") {
+                                that.getView().getModel("oAttachmentListBank").getData()[0].bankDArrayR.push(value);
                             }
                         });
                         that.getView().getModel("oAttachmentListBank").refresh();
