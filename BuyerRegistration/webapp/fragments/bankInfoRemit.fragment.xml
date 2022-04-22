@@ -86,7 +86,7 @@
                 <!-- <Text text="{= ${oVisibilityModel>/isdefaultLan}?${oi18n_En>instKeyHint}:${oi18n_En>instKeyHint}+ '&#10;' +${i18n>instKeyHint}}" textAlign="End" class="disabledFontClr"/> -->
                   <VBox  class="fontStyle">
 					<Label wrapping="true" required="true" text="{i18n>bankKeyGBS}"></Label>
-					<Input  id="id_BankKey" change="fnInputSpaceCheck" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankKey}" liveChange="fnLiveChangeBankKey"  class="inputStyle"></Input>
+					<Input  id="id_BankKeyR" change="fnInputSpaceCheck" value="{oDataModel>/comInfoDto/invoiceBankDto/bankInfoDto/0/bankKey}" liveChange="fnLiveChangeBankKey"  class="inputStyle"></Input>
                    
 				</VBox>
                 
@@ -124,7 +124,7 @@
 		<Text text="{i18n>Attachments}" class="fontBold gridSpacing sapUiTinyMarginBegin"/>
 
 			<HBox wrap="Wrap">
-				<u:FileUploader id="fileUploader_BA" buttonOnly="true" buttonText="{i18n>addAttachment}" iconFirst="true" icon="sap-icon://add" multiple="true"
+				<u:FileUploader id="fileUploader_BAR" buttonOnly="true" buttonText="{i18n>addAttachment}" iconFirst="true" icon="sap-icon://add" multiple="true"
 					useMultipart="true" change="fnOnFileUpload" sameFilenameAllowed="true" uploadComplete="fnOnUploadComplete" enabled="{oConfigMdl>/BankFieldsEdit}"
 					class="sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin"></u:FileUploader>
 				<g:GridList width="auto" items="{oAttachmentListBank>/0/bankDArrayR}" growing="true" class="attachmentList1 sapUiSizeCompact addMoreBtn attachmentMargin sapUiMediumMarginBegin">
