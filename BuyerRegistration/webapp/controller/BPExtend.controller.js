@@ -2868,10 +2868,10 @@ sap.ui.define([
             //         }
             //     }
             // },
+           
             fnLoadPartnerData: function (vActn, vFilter, vSelData) {
 
                 var aFilter = vFilter;
-
                 var aFilter = oView.getModel("JMSearchFilter").getData();
                 var vCount = 0;
                 for (var key in aFilter) {
@@ -2904,6 +2904,13 @@ sap.ui.define([
                     var oModel = new JSONModel();
                     var sUrl = "/nsBuyerRegistration/plcm_portal_services/api/v1/ehana/search";
                     aFilter.limit = 10;
+                    // User Story 578292
+                    if(vActn!==undefined && typeof vActn !=='string' ){
+                            if(vActn.getSource().getText()==='Search'){                               
+                                oView.getModel("oVendorListModel").getData().currentPage=1;
+                            }
+                    }
+                    // User Story 578292
                     aFilter.pageNo = oView.getModel("oVendorListModel").getData().currentPage - 1;
 
                     oModel.loadData(sUrl, JSON.stringify(aFilter), true, "POST", false, true, {
