@@ -2904,7 +2904,7 @@ sap.ui.define([
                     var oModel = new JSONModel();
                     var sUrl = "/nsBuyerRegistration/plcm_portal_services/api/v1/ehana/search";
                     aFilter.limit = 10;
-                    // User Story 578292
+                    // User Stor 578292 
                     if(vActn!==undefined && typeof vActn !=='string' ){
                             if(vActn.getSource().getText()==='Search'){                               
                                 oView.getModel("oVendorListModel").getData().currentPage=1;
