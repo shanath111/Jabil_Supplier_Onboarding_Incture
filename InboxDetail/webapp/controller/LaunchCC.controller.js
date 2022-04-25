@@ -10,7 +10,7 @@ sap.ui.define([
     'sap/m/Token'
 ],
 
-    function (Controller, formatter, JSONModel, Filter, FilterOperator, MessageBox, BusyDialog, Sorter,Token) {
+    function (Controller, formatter, JSONModel, Filter, FilterOperator, MessageBox, BusyDialog, Sorter, Token) {
         "use strict";
         var that, oView, oBusyDilog, oi18n;
         return Controller.extend("InboxDetail.controller.LaunchCC", {
@@ -28,25 +28,25 @@ sap.ui.define([
             },
 
             fnLaucnhCCRoute: function (oEvent) {
-                oView.setModel(new JSONModel({
-                 "ComCodeInputV":false,
-                 "ComCodeDDV":true,
-                 "PurcOrgDDV":true,
-                 "PurcOrgInputV":false,
-                 "CompanyCodeDesc":"",
-                 "CompanyCodeDescVS":"None",
-                 "CompanyCodeVS":"None",
-                 "CompanyCodeVStext":"",
-                 "CompanyCodeDescVStext":"",
-                 "PurOrgDesc":"For Non PRD Sites",
-                 "PurOrgVS":"None",
-                 "PurOrgVStext":"",
-                 "siteNameVS":"None",
-                 "siteNameVStext":"",
-                 "erpSystemVS":"None",
-                 "erpSystemVStext":""
-              }),"LocalModel");
-             
+                oView.setModel(new JSONModel({
+                    "ComCodeInputV": false,
+                    "ComCodeDDV": true,
+                    "PurcOrgDDV": true,
+                    "PurcOrgInputV": false,
+                    "CompanyCodeDesc": "",
+                    "CompanyCodeDescVS": "None",
+                    "CompanyCodeVS": "None",
+                    "CompanyCodeVStext": "",
+                    "CompanyCodeDescVStext": "",
+                    "PurOrgDesc": "For Non PRD Sites",
+                    "PurOrgVS": "None",
+                    "PurOrgVStext": "",
+                    "siteNameVS": "None",
+                    "siteNameVStext": "",
+                    "erpSystemVS": "None",
+                    "erpSystemVStext": ""
+                }), "LocalModel");
+
                 oView.getModel("oBPLookUpMdl").setData([]);
                 oView.getModel("oBPLookUpMdl").setSizeLimit(10000);
 
@@ -77,71 +77,71 @@ sap.ui.define([
                     "companyCode": "",
                     "purchasingOrganisation": "",
                     "siteName": "",
-                    "paymentMethod": [{"code":"","description":"","codee":"None","codem":"","descriptione":"None","descriptionm":"","codeEnabled":false,"descEnabled":false}],
+                    "paymentMethod": [{ "code": "", "description": "", "codee": "None", "codem": "", "descriptione": "None", "descriptionm": "", "codeEnabled": false, "descEnabled": false }],
                     "erpSystem": ""
                 };
                 oJsonFilter.setData(temp);
                 oView.setModel(oJsonFilter, "JMFilter1");
                 // user story 596896               
-                oView.getModel("LocalModel").setProperty("/ComCodeInputV",false);
-                oView.getModel("LocalModel").setProperty("/ComCodeDDV",true);
-                oView.getModel("LocalModel").setProperty("/PurcOrgDDV",true);
-                oView.getModel("LocalModel").setProperty("/PurcOrgInputV",false);
-                oView.getModel("LocalModel").setProperty("/CompanyCodeDesc","");
-                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVS","None");
-                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext","");  
-                oView.getModel("LocalModel").setProperty("/PurOrgVS","None");
-                oView.getModel("LocalModel").setProperty("/PurOrgVStext",""); 
-                oView.getModel("LocalModel").setProperty("/PurOrgVS","None");
-                oView.getModel("LocalModel").setProperty("/PurOrgVStext","");
-                oView.getModel("LocalModel").setProperty("/PurOrgDesc","");
-                oView.getModel("LocalModel").setProperty("/erpSystemVS","None");
-                oView.getModel("LocalModel").setProperty("/erpSystemVStext","");
-                oView.getModel("LocalModel").setProperty("/CompanyCodeVS","None");
-                oView.getModel("LocalModel").setProperty("/CompanyCodeVStext","");
-                oView.getModel("LocalModel").setProperty("/siteNameVS","None");
-                oView.getModel("LocalModel").setProperty("/siteNameVStext","");
-                
-                
+                oView.getModel("LocalModel").setProperty("/ComCodeInputV", false);
+                oView.getModel("LocalModel").setProperty("/ComCodeDDV", true);
+                oView.getModel("LocalModel").setProperty("/PurcOrgDDV", true);
+                oView.getModel("LocalModel").setProperty("/PurcOrgInputV", false);
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDesc", "");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVS", "None");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext", "");
+                oView.getModel("LocalModel").setProperty("/PurOrgVS", "None");
+                oView.getModel("LocalModel").setProperty("/PurOrgVStext", "");
+                oView.getModel("LocalModel").setProperty("/PurOrgVS", "None");
+                oView.getModel("LocalModel").setProperty("/PurOrgVStext", "");
+                oView.getModel("LocalModel").setProperty("/PurOrgDesc", "");
+                oView.getModel("LocalModel").setProperty("/erpSystemVS", "None");
+                oView.getModel("LocalModel").setProperty("/erpSystemVStext", "");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeVS", "None");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeVStext", "");
+                oView.getModel("LocalModel").setProperty("/siteNameVS", "None");
+                oView.getModel("LocalModel").setProperty("/siteNameVStext", "");
+
+
                 //oView.getModel("LocalModel").setProperty("/PurcOrgInputV",true);
                 // user story 596896
-                
-               // oView.byId("id_PaymentMetod").setEnabled(false);
-              //  oView.byId("id_PaymentMethodLbl").setRequired(false);
+
+                // oView.byId("id_PaymentMetod").setEnabled(false);
+                //  oView.byId("id_PaymentMethodLbl").setRequired(false);
 
                 // var oMultiInput1 = oView.byId("id_PaymentMetod");
                 // oMultiInput1.destroyTokens();
                 // var fnValidator = function(args){
                 //     var text = args.text;
-    
+
                 //     return new Token({key: text, text: text});
                 // };
-    
+
                 // oMultiInput1.addValidator(fnValidator);
             },
             fnChangeERPSystem: function () {
-                oView.getModel("JMFilter1").getData().paymentMethod = [{"code":"","description":"","codee":"None","codem":"","descriptione":"None","descriptionm":"","codeEnabled":true, "descEnabled":true}];
-                oView.getModel("LocalModel").setProperty("/erpSystemVS","None");
-                oView.getModel("LocalModel").setProperty("/erpSystemVStext","");
-                oView.getModel("LocalModel").setProperty("/CompanyCodeVS","None");
-                oView.getModel("LocalModel").setProperty("/CompanyCodeVStext","");
-                oView.getModel("LocalModel").setProperty("/CompanyCodeDesc","");
-                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVS","None");
-                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext","");
-                oView.getModel("LocalModel").setProperty("/PurOrgVS","None");
-                oView.getModel("LocalModel").setProperty("/PurOrgVStext","");
-                if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {                               
-            
+                oView.getModel("JMFilter1").getData().paymentMethod = [{ "code": "", "description": "", "codee": "None", "codem": "", "descriptione": "None", "descriptionm": "", "codeEnabled": true, "descEnabled": true }];
+                oView.getModel("LocalModel").setProperty("/erpSystemVS", "None");
+                oView.getModel("LocalModel").setProperty("/erpSystemVStext", "");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeVS", "None");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeVStext", "");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDesc", "");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVS", "None");
+                oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext", "");
+                oView.getModel("LocalModel").setProperty("/PurOrgVS", "None");
+                oView.getModel("LocalModel").setProperty("/PurOrgVStext", "");
+                if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {
+
                     // oView.byId("id_PaymentMetod").setEnabled(true);
                     oView.byId("id_PaymentMethodLbl").setRequired(true);
 
                     // Changes user story 596896
-                    oView.getModel("LocalModel").setProperty("/ComCodeInputV",true);
-                    oView.getModel("LocalModel").setProperty("/ComCodeDDV",false);
-                    oView.getModel("LocalModel").setProperty("/PurcOrgDDV",false);
-                    oView.getModel("LocalModel").setProperty("/PurcOrgInputV",true);   
-                    oView.getModel("JMFilter1").setProperty("/purchasingOrganisation","9999");  
-                    oView.getModel("LocalModel").setProperty("/PurOrgDesc","For Non PRD Sites"); 
+                    oView.getModel("LocalModel").setProperty("/ComCodeInputV", true);
+                    oView.getModel("LocalModel").setProperty("/ComCodeDDV", false);
+                    oView.getModel("LocalModel").setProperty("/PurcOrgDDV", false);
+                    oView.getModel("LocalModel").setProperty("/PurcOrgInputV", true);
+                    oView.getModel("JMFilter1").setProperty("/purchasingOrganisation", "9999");
+                    oView.getModel("LocalModel").setProperty("/PurOrgDesc", "For Non PRD Sites");
                     // Changes user story 596896
                 } else {
                     // oView.byId("id_PaymentMetod").setEnabled(false);
@@ -150,19 +150,19 @@ sap.ui.define([
                     oView.byId("id_PaymentMethodLbl").setRequired(false);
 
                     //Changes User story 596896
-                     oView.getModel("LocalModel").setProperty("/ComCodeInputV",false);
-                    oView.getModel("LocalModel").setProperty("/ComCodeDDV",true);
-                    oView.getModel("LocalModel").setProperty("/PurcOrgDDV",true);
-                    oView.getModel("LocalModel").setProperty("/PurcOrgInputV",false);  
-                    oView.getModel("JMFilter1").setProperty("/purchasingOrganisation","");                     
-                    oView.getModel("LocalModel").setProperty("/PurOrgDesc",""); 
-                    oView.getModel("JMFilter1").setProperty("/companyCode","");                    
-                   //Changes User story 596896
+                    oView.getModel("LocalModel").setProperty("/ComCodeInputV", false);
+                    oView.getModel("LocalModel").setProperty("/ComCodeDDV", true);
+                    oView.getModel("LocalModel").setProperty("/PurcOrgDDV", true);
+                    oView.getModel("LocalModel").setProperty("/PurcOrgInputV", false);
+                    oView.getModel("JMFilter1").setProperty("/purchasingOrganisation", "");
+                    oView.getModel("LocalModel").setProperty("/PurOrgDesc", "");
+                    oView.getModel("JMFilter1").setProperty("/companyCode", "");
+                    //Changes User story 596896
                 }
-                
-                
+
+
                 oView.getModel("JMFilter1").refresh();
-                
+
             },
 
             fnLivePaymentMethodChange: function (oEvent) {
@@ -243,14 +243,14 @@ sap.ui.define([
                 });
             },
             fnLiveChangeCompCode: function (oEvent) {
-               
+
                 var vSelected = oEvent.getParameter("itemPressed");
                 if (oEvent.getParameter("itemPressed") !== undefined && !oEvent.getParameter("itemPressed") && !oEvent.getSource().getSelectedKey()) {
                     var vSelected = oEvent.getParameter("itemPressed");
                     if (vSelected == false) {
                         oEvent.getSource().setValue("");
                         oView.getModel("JMFilter").getData().purchasingOrg = "";
-                oView.getModel("JMFilter").refresh();
+                        oView.getModel("JMFilter").refresh();
                     }
 
                 }
@@ -268,7 +268,7 @@ sap.ui.define([
                     oView.getModel("LocalModel").getData().CompanyCodeVStext = "";
                     oView.getModel("LocalModel").refresh();
                     oView.getModel("JMFilter").refresh();
-                    
+
                 }
 
             },
@@ -302,7 +302,7 @@ sap.ui.define([
                 this.fnLoadPurOrg1(oView.getModel("JMFilter1").getData().companyCode, oEvent.getSource().getSelectedItem().getAdditionalText());
                 this.fnLoadPaymentMethod(oView.getModel("JMFilter1").getData().companyCode);
                 oView.getModel("JMFilter1").getData().purchasingOrganisation = "";
-                
+
                 oView.getModel("JMFilter1").refresh();
                 // if (oView.getModel("JMFilter1").getData().companyCodee == "Error") {
                 //     oView.getModel("JMFilter1").getData().companyCodee = "None";
@@ -314,7 +314,7 @@ sap.ui.define([
                     oView.getModel("LocalModel").getData().CompanyCodeVStext = "";
                     oView.getModel("LocalModel").refresh();
                     oView.getModel("JMFilter").refresh();
-                    
+
                 }
 
             },
@@ -484,6 +484,7 @@ sap.ui.define([
                         "Content-Type": "application/json"
                     });
                     oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                        that.fnLoadCompanyCode();
                         if (oEvent.getParameter("success")) {
 
                             oBusyDilog.close();
@@ -496,11 +497,11 @@ sap.ui.define([
                             var oJsonCompSearch = new sap.ui.model.json.JSONModel();
                             oJsonCompSearch.setData([]);
                             oView.setModel(oJsonCompSearch, "JMCompSearchResult")
-                            var sErMsg = oEvent.getParameter("errorobject").responseText;
-                            MessageBox.show(sErMsg, {
-                                icon: MessageBox.Icon.ERROR,
-                                title: "Error"
-                            });
+                            // var sErMsg = oEvent.getParameter("errorobject").responseText;
+                            // MessageBox.show(sErMsg, {
+                            //     icon: MessageBox.Icon.ERROR,
+                            //     title: "Error"
+                            // });
 
 
                         }
@@ -514,19 +515,19 @@ sap.ui.define([
             },
 
 
-ccLiveChange:function(oEvent){
-    numericFilter(oEvent.getSource().getValue());
-    function numericFilter(txb) {
-        oEvent.getSource().setValue(txb.replace(/[^\0-9]/ig, ""));
-      if(oEvent.getSource().getValue().length<4){
-        oEvent.getSource().setValueStateText("Company code must be exactly 4 digits numarical");
-        oEvent.getSource().setValueState("Error");
-    }else if(oEvent.getSource().getValue().length===4){
-        oEvent.getSource().setValueStateText("");
-        oEvent.getSource().setValueState("None");
-    }
-     }
-},
+            ccLiveChange: function (oEvent) {
+                numericFilter(oEvent.getSource().getValue());
+                function numericFilter(txb) {
+                    oEvent.getSource().setValue(txb.replace(/[^\0-9]/ig, ""));
+                    if (oEvent.getSource().getValue().length < 4) {
+                        oEvent.getSource().setValueStateText("Company code must be exactly 4 digits numarical");
+                        oEvent.getSource().setValueState("Error");
+                    } else if (oEvent.getSource().getValue().length === 4) {
+                        oEvent.getSource().setValueStateText("");
+                        oEvent.getSource().setValueState("None");
+                    }
+                }
+            },
 
 
 
@@ -552,53 +553,55 @@ ccLiveChange:function(oEvent){
             fnSubmitCCPO: function () {
                 var vError = false;
 
-                if (oView.getModel("JMFilter1").getData().companyCode == "" || oView.getModel("JMFilter1").getData().companyCode.length<4 ) {
+                if (oView.getModel("JMFilter1").getData().companyCode == "" || oView.getModel("JMFilter1").getData().companyCode.length < 4) {
                     vError = true;
-                    oView.getModel("LocalModel").setProperty("/CompanyCodeVS","Error");
-                    oView.getModel("LocalModel").setProperty("/CompanyCodeVStext","Company code must be exactly 4 digits numarical");
+                    oView.getModel("LocalModel").setProperty("/CompanyCodeVS", "Error");
+                    oView.getModel("LocalModel").setProperty("/CompanyCodeVStext", "Company code must be exactly 4 digits numarical");
                 }
-                 if (oView.getModel("JMFilter1").getData().purchasingOrganisation == "") {
+                if (oView.getModel("JMFilter1").getData().purchasingOrganisation == "") {
                     vError = true;
-                    oView.getModel("LocalModel").setProperty("/PurOrgVS","Error");
-                oView.getModel("LocalModel").setProperty("/PurOrgVStext","Please enter purchase organisation");
+                    oView.getModel("LocalModel").setProperty("/PurOrgVS", "Error");
+                    oView.getModel("LocalModel").setProperty("/PurOrgVStext", "Please enter purchase organisation");
                 }
+                if(oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP"){
                 if (oView.getModel("LocalModel").getProperty("/CompanyCodeDesc") == "") {
-                                        vError = true;
-                   
+                    vError = true;
 
-oView.getModel("LocalModel").setProperty("/CompanyCodeDescVS","Error");
-oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext","Please enter company code description");
+
+                    oView.getModel("LocalModel").setProperty("/CompanyCodeDescVS", "Error");
+                    oView.getModel("LocalModel").setProperty("/CompanyCodeDescVStext", "Please enter company code description");
                 }
+            }
                 if (oView.getModel("JMFilter1").getData().siteName == "") {
                     vError = true;
-                    oView.getModel("LocalModel").setProperty("/siteNameVS","Error");
-oView.getModel("LocalModel").setProperty("/siteNameVStext","Please enter site name");
+                    oView.getModel("LocalModel").setProperty("/siteNameVS", "Error");
+                    oView.getModel("LocalModel").setProperty("/siteNameVStext", "Please enter site name");
                 }
                 if (oView.getModel("JMFilter1").getData().erpSystem == "") {
                     vError = true;
-                    oView.getModel("LocalModel").setProperty("/erpSystemVS","Error");
-                    oView.getModel("LocalModel").setProperty("/erpSystemVStext","Please enter erp system");
+                    oView.getModel("LocalModel").setProperty("/erpSystemVS", "Error");
+                    oView.getModel("LocalModel").setProperty("/erpSystemVStext", "Please enter erp system");
                 }
                 var aPaymentMethod = oView.getModel("JMFilter1").getData().paymentMethod;
-                if(oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP" && aPaymentMethod.length>0){
-                    for(let i=0; i<aPaymentMethod.length; i++){
-                        if(aPaymentMethod[i].code === ""){
+                if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP" && aPaymentMethod.length > 0) {
+                    for (let i = 0; i < aPaymentMethod.length; i++) {
+                        if (aPaymentMethod[i].code === "") {
                             vError = true;
-                            oView.getModel("JMFilter1").getData().paymentMethod[i].codee="Error";
-                            oView.getModel("JMFilter1").getData().paymentMethod[i].codem="Please enter payment method Code.";
+                            oView.getModel("JMFilter1").getData().paymentMethod[i].codee = "Error";
+                            oView.getModel("JMFilter1").getData().paymentMethod[i].codem = "Please enter payment method Code.";
                         }
-                        if(aPaymentMethod[i].description === ""){
+                        if (aPaymentMethod[i].description === "") {
                             vError = true;
-                            oView.getModel("JMFilter1").getData().paymentMethod[i].descriptione="Error";
-                            oView.getModel("JMFilter1").getData().paymentMethod[i].descriptionm="Please enter payment method description.";
+                            oView.getModel("JMFilter1").getData().paymentMethod[i].descriptione = "Error";
+                            oView.getModel("JMFilter1").getData().paymentMethod[i].descriptionm = "Please enter payment method description.";
                         }
                         oView.getModel("JMFilter1").refresh();
 
                     }
 
-              }
+                }
 
-               
+
 
 
 
@@ -607,20 +610,20 @@ oView.getModel("LocalModel").setProperty("/siteNameVStext","Please enter site na
 
 
                 oView.getModel("JMFilter1").refresh();
-            //     var vPaymentMethodVal = "";
-            //     if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {       
-            //     if (vPaymentMethod.length == 0) {
-            //         vError = true;
-            //     }else{
-            //       for (var i=0;i<vPaymentMethod.length;i++){
-            //           if(!vPaymentMethodVal){
-            //             vPaymentMethodVal = vPaymentMethod[i].getText();
-            //           }else{
-            //             vPaymentMethodVal = vPaymentMethodVal + ","+vPaymentMethod[i].getText();
-            //           }
-            //       }                }
-            // }
-                
+                //     var vPaymentMethodVal = "";
+                //     if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {       
+                //     if (vPaymentMethod.length == 0) {
+                //         vError = true;
+                //     }else{
+                //       for (var i=0;i<vPaymentMethod.length;i++){
+                //           if(!vPaymentMethodVal){
+                //             vPaymentMethodVal = vPaymentMethod[i].getText();
+                //           }else{
+                //             vPaymentMethodVal = vPaymentMethodVal + ","+vPaymentMethod[i].getText();
+                //           }
+                //       }                }
+                // }
+
                 // if(aPaymentMethod && aPaymentMethod.length>0){
                 //     for(let i=0; i<aPaymentMethod.length; i++){
                 //         if(aPaymentMethod[i].code != "" && aPaymentMethod[i].description === ""){
@@ -652,17 +655,17 @@ oView.getModel("LocalModel").setProperty("/siteNameVStext","Please enter site na
 
                                 }
 
-                                if(oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP"){
+                                if (oView.getModel("JMFilter1").getData().erpSystem == "Site's ERP") {
                                     var vPaymentMethodVal = [];
-                                    for(let i=0; i<aPaymentMethod.length; i++){
-                                        var paymentMethodObj = {"code":aPaymentMethod[i].code, "description":aPaymentMethod[i].description};
+                                    for (let i = 0; i < aPaymentMethod.length; i++) {
+                                        var paymentMethodObj = { "code": aPaymentMethod[i].code, "description": aPaymentMethod[i].description };
                                         vPaymentMethodVal.push(paymentMethodObj);
                                     }
-                                } else{
-                                    vPaymentMethodVal="";
+                                } else {
+                                    vPaymentMethodVal = "";
                                 }
-                                
-                               
+
+
 
                                 var oPayload = {
                                     "companyCode": oView.getModel("JMFilter1").getData().companyCode,
@@ -677,12 +680,12 @@ oView.getModel("LocalModel").setProperty("/siteNameVStext","Please enter site na
                                     "createdBy": vBuyer
                                     //"updatedBy": "Updated Again"
                                 };
-                             // user story 596896     
-                                if(oView.getModel("JMFilter1").getProperty("/erpSystem")==="Site's ERP"){
+                                // user story 596896     
+                                if (oView.getModel("JMFilter1").getProperty("/erpSystem") === "Site's ERP") {
                                     oPayload.companyCodeDescription = oView.getModel("LocalModel").getProperty("/CompanyCodeDesc");
                                     oPayload.purchasingOrganisationDescription = oView.getModel("LocalModel").getProperty("/PurOrgDesc");
 
-                                    
+
                                 }
                                 // user story 596896     
 
@@ -692,6 +695,7 @@ oView.getModel("LocalModel").setProperty("/siteNameVStext","Please enter site na
                                     "Content-Type": "application/json"
                                 });
                                 oModel.attachRequestCompleted(function onCompleted(oEvent) {
+                                    that.fnLoadCompanyCode();
                                     if (oEvent.getParameter("success")) {
                                         var temp = {};
                                         var vSccuessTxt = oi18n.getProperty("CCCPPLaunchedSuccess");
@@ -767,16 +771,18 @@ oView.getModel("LocalModel").setProperty("/siteNameVStext","Please enter site na
                                     oBusyDilog.close();
                                     that.oBPSuccess.open();
                                     that.fnSearchCompanyCode();
+                                    that.fnLoadCompanyCode();
 
                                 },
                                 async: false,
                                 error: function (data) {
                                     oBusyDilog.close();
-                                    var sErMsg = data.responseText;
-                                    MessageBox.show(sErMsg, {
-                                        icon: MessageBox.Icon.ERROR,
-                                        title: "Error"
-                                    });
+                                    that.fnLoadCompanyCode();
+                                    // var sErMsg = data.responseText;
+                                    // MessageBox.show(sErMsg, {
+                                    //     icon: MessageBox.Icon.ERROR,
+                                    //     title: "Error"
+                                    // });
                                 }
                             });
 
@@ -798,7 +804,7 @@ oView.getModel("LocalModel").setProperty("/siteNameVStext","Please enter site na
                 var temp = {
                     "companyCode": "",
                     "purchasingOrganisation": "",
-                    "paymentMethod": [{"code":"","description":"","codee":"None","codem":"","descriptione":"None","descriptionm":"","codeEnabled":false, "descEnabled":false}]
+                    "paymentMethod": [{ "code": "", "description": "", "codee": "None", "codem": "", "descriptione": "None", "descriptionm": "", "codeEnabled": false, "descEnabled": false }]
                 };
                 oJsonFilter1.setData(temp);
                 oView.setModel(oJsonFilter1, "JMFilter1");
@@ -833,15 +839,15 @@ oView.getModel("LocalModel").setProperty("/siteNameVStext","Please enter site na
                     oView.getModel("LocalModel").getData().PurOrgVStext = "";
                     oView.getModel("LocalModel").refresh();
                     oView.getModel("JMFilter").refresh();
-                    
+
                 }
             },
 
             fnLiveChangePurchOrg1: function (oEvent) {
                 var compCode = oView.getModel("JMFilter1").getData().companyCode;
-                oView.getModel("LocalModel").setProperty("/PurOrgVS","None");
-                oView.getModel("LocalModel").setProperty("/PurOrgVStext","");
-            //  oView.getModel("LocalModel").updateBindings();
+                oView.getModel("LocalModel").setProperty("/PurOrgVS", "None");
+                oView.getModel("LocalModel").setProperty("/PurOrgVStext", "");
+                //  oView.getModel("LocalModel").updateBindings();
                 if (compCode === "" || compCode === undefined) {
                     sap.m.MessageToast.show(oi18n.getProperty("SelectCompanyCode"));
 
@@ -854,35 +860,35 @@ oView.getModel("LocalModel").setProperty("/siteNameVStext","Please enter site na
                 }
             },
 
-            addPaymentMethod: function(oEvent){
+            addPaymentMethod: function (oEvent) {
                 var pmCount = this.getView().getModel("JMFilter1").getData().paymentMethod.length;
-                
+
                 this.getView().getModel("JMFilter1").getData().paymentMethod.push({
                     "code": "",
                     "description": ""
                 });
-                
+
                 this.getView().getModel("JMFilter1").refresh();
             },
-            fnDeleteContainerlayout: function(oEvent){
+            fnDeleteContainerlayout: function (oEvent) {
                 var index = oEvent.getSource().getBindingContext("JMFilter1").sPath.split("/paymentMethod/")[1];
                 this.getView().getModel("JMFilter1").getData().paymentMethod.splice(
                     index, 1);
                 this.getView().getModel("JMFilter1").refresh();
             },
-            fnChangeInputVal: function(oEvent){
+            fnChangeInputVal: function (oEvent) {
                 if (oEvent.getSource().getValue()) {
                     oEvent.getSource().setValueState("None");
                     oEvent.getSource().setValueStateText("");
                 }
             },
-            fnViewPaymentMethod: function(oEvent){
+            fnViewPaymentMethod: function (oEvent) {
                 var that = this;
                 var index = oEvent.getParameter('id').split('-')[2];
-                var aPMList =JSON.parse(oView.getModel("JMCompSearchResult").getData()[index].paymentMethod);
+                var aPMList = JSON.parse(oView.getModel("JMCompSearchResult").getData()[index].paymentMethod);
                 // if()
                 var oJsonPM = new sap.ui.model.json.JSONModel();
-                
+
                 oJsonPM.setData(aPMList);
                 oView.setModel(oJsonPM, "PMList");
                 if (!that.oPopup) {
@@ -891,7 +897,7 @@ oView.getModel("LocalModel").setProperty("/siteNameVStext","Please enter site na
                     this.getView().addDependent(that.oPopup);
                 }
                 that.oPopup.openBy(oEvent.getSource());
-                
+
             }
 
             // onChangeDocLink: function(oEvent) {

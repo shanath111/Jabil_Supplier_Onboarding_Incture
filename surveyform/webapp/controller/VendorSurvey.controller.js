@@ -2156,7 +2156,7 @@ sap.ui.define([
                     }
                     iError = true;
                 }
-                if(!oView.getModel("oDataModel").getData().bpCentral[0].organisationName1 ||spaceRegex.test(oView.getModel("oDataModel").getData().bpCentral[0].organisationName1)){
+                if (!oView.getModel("oDataModel").getData().bpCentral[0].organisationName1 || spaceRegex.test(oView.getModel("oDataModel").getData().bpCentral[0].organisationName1)) {
                     oView.getModel("oErrorModel").getData().corporationNameE = "Error";
                     if (isDefaultLan) {
                         oView.getModel("oErrorModel").getData().corporationNameM = oi18n.getText("mandatoryCorporationName");
@@ -2681,13 +2681,13 @@ sap.ui.define([
                 if (oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].poBoxPostalCode && oView.getModel("oDataModel").getData().surveyInfoDto.address[0].postal[0].poBoxPostalCode.length > 10) {
                     iError = true;
                 }
-                if(oView.getModel("oVisibilityModel").getData().isCorpDuplicate){
+                if (oView.getModel("oVisibilityModel").getData().isCorpDuplicate) {
                     if (isDefaultLan) {
                         oView.getModel("oErrorModel").getData().corporationNameM = oi18n.getText("duplicateCorpNameFound");
                     } else {
                         oView.getModel("oErrorModel").getData().corporationNameM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.duplicateCorpNameFound + "\n" + oi18n.getText("duplicateCorpNameFound");
                     }
-                    oView.getModel("oErrorModel").getData().corporationNameE ="Error";
+                    oView.getModel("oErrorModel").getData().corporationNameE = "Error";
                     iError = true;
                 }
 
@@ -6132,7 +6132,7 @@ sap.ui.define([
                     if (oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace && oView.getModel("oDataModel").getData().shippingInfoDto.incotermNamedPlace.length > 28) {
                         iError = true;
                     }
-                    
+
                 } else {
                     if (oView.getModel("oDataModel").getData().shippingInfoDto.newincotermNamedPlace && oView.getModel("oDataModel").getData().shippingInfoDto.newincotermNamedPlace.length > 28) {
                         iError = true;
@@ -6151,7 +6151,7 @@ sap.ui.define([
                     // }
 
                 }
-                
+
                 // if (!oView.getModel("oDataModel").getData().shippingInfoDto.vendor || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.vendor)) {
                 //     oView.getModel("oErrorModel").getData().vendorE = "Error";
                 //     oView.getModel("oErrorModel").getData().vendorM = oi18n.getText("mandatoryVendor");
@@ -6165,14 +6165,14 @@ sap.ui.define([
                 }
                 if (oView.getModel("oDataModel").getData().shippingInfoDto.agreeWithIncotermAndNamedLoc === false) {
                     if (!oView.getModel("oDataModel").getData().shippingInfoDto.agreeWithIncotermAndNamedLocComments || spaceRegex.test(oView.getModel("oDataModel").getData().shippingInfoDto.agreeWithIncotermAndNamedLocComments)) {
-                                oView.getModel("oErrorModel").getData().incoTermCmtE = "Error";
-                                if (isDefaultLan) {
-                                    oView.getModel("oErrorModel").getData().incoTermCmtM = oi18n.getText("EnterCommentsTxt");
-                                } else {
-                                    oView.getModel("oErrorModel").getData().incoTermCmtM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.EnterCommentsTxt + "\n" + oi18n.getText("EnterCommentsTxt");
-                                }
-                                iError = true;
-                            }
+                        oView.getModel("oErrorModel").getData().incoTermCmtE = "Error";
+                        if (isDefaultLan) {
+                            oView.getModel("oErrorModel").getData().incoTermCmtM = oi18n.getText("EnterCommentsTxt");
+                        } else {
+                            oView.getModel("oErrorModel").getData().incoTermCmtM = oi18n_En._oResourceBundle.aPropertyFiles[0].mProperties.EnterCommentsTxt + "\n" + oi18n.getText("EnterCommentsTxt");
+                        }
+                        iError = true;
+                    }
                 }
                 // if (oView.getModel("oDataModel").getData().shippingInfoDto.vendor && oView.getModel("oDataModel").getData().shippingInfoDto.vendor.length > 30) {
                 //     iError = true;
@@ -9183,7 +9183,7 @@ sap.ui.define([
 
                 var that = this;
                 var confirmBankAccNum = oEvent.getSource().getValue();
-                var InputBankAccNum = oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum;
+                var InputBankAccNum = oView.getModel("oDataModel").getData().bankDto.bankInfoDto[0].bankAccNum;
                 if (confirmBankAccNum !== InputBankAccNum) {
                     oView.getModel("oErrorModel").getData().bankAccNumConfirmE = "Error";
                     oView.getModel("oErrorModel").getData().bankAccNumConfirmM = oi18n.getText("identicalValuesRequiredAccNum");
@@ -9895,7 +9895,7 @@ sap.ui.define([
                         // } else {
                         //     oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod + "," + oEvent.getSource().getSelectedKeys()[i];
                         // }
-                          oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod  + oEvent.getSource().getSelectedKeys()[i];
+                        oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod = oView.getModel("oDataModel").getData().shippingInfoDto.paymentMethod + oEvent.getSource().getSelectedKeys()[i];
                     }
 
 
@@ -11090,18 +11090,18 @@ sap.ui.define([
             // @ts-ignore
             nextStep: function (event) {
                 // @ts-ignore      
-                
+
                 this.oWizard = this.getView().byId("surveyWizard");
                 var currentStepId = this.oWizard.getCurrentStep().split("container-surveyform---VendorSurvey--")[1];
                 var isNew = oView.getModel("oUserModel").getData().isNew;
                 if (!oView.getModel("oEnableMdl").getData().nextBtnExtensionDisplayVsb) {
                     if (currentStepId == "basicInfo") {
 
-                        
-                     
+
+
                         this._fnUpdateBPCorpName();
                         this._fnValidateBasicInfo();
-                       
+
                         oView.byId('businessPartnerInfo').addEventDelegate({
                             onAfterRendering: function () {
                                 if (isNew) {
@@ -11593,6 +11593,93 @@ sap.ui.define([
                         oPayload.bankDto.financeContact1.contactInSection = "";
                         oPayload.bankDto.financeContact2.contactInSection = "Reviewer";
                     }
+
+                     //Remittance Bank
+                   if(oPayload.comInfoDto.invoiceBankDto.isbankdetailsHidden){
+                    if (oPayload.comInfoDto.invoiceBankDto.isbankdetailsHidden === true) {
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankName = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankAddress = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankCity = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankState = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].benefAccHolderName = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankNumber = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNumConfirm = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNumConfirm = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankCode = "";
+                        oPayload.bankDto.bankInfoDto[0].partnerBankType = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankControlKey = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.firstName = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.lastName = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.jobTitle = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.email = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.contact = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.extension = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.mobile = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.countryContactCode = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.countryMobileCode = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.contactInSection = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.firstName = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.lastName = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.jobTitle = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.email = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.contact = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.extension = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.mobile = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.countryContactCode = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.countryMobileCode = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.contactInSection = "";
+                    }
+                }
+                if(oPayload.comInfoDto.invoiceBankDto.isBankProvided){
+                    if (oPayload.comInfoDto.invoiceBankDto.isBankProvided === false) {
+                        if (oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry === "") {
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankName = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankAddress = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankCity = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankState = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch = "";
+                            oPayload.bankDto.bankInfoDto[0].benefAccHolderName = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankNumber = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNumConfirm = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNumConfirm = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankCode = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].partnerBankType = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankControlKey = "";
+                        }
+                        // oPayload.bankDto.bankInfoDto[0].instructionKey = ""; // commented since the key is default value in all screens- siva ---- date:01/10/2021
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.contactInSection = "FinanceSupplier";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.contactInSection = "Reviewer";
+
+                    } else {
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.firstName = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.lastName = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.jobTitle = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.email = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.contact = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.extension = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.mobile = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.countryContactCode = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.countryMobileCode = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.contactInSection = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.contactInSection = "Reviewer";
+                    }
+                }
+
+
+
+
+
 
                     if (oPayload.financeInfoDto.financeAuditedLast12M === false) {
                         oPayload.financeInfoDto.userAudited = "";
@@ -12330,6 +12417,90 @@ sap.ui.define([
                         oPayload.bankDto.financeContact2.contactInSection = "Reviewer";
                     }
 
+
+                    //Remittance Bank
+                   if(oPayload.comInfoDto.invoiceBankDto.isbankdetailsHidden){
+                    if (oPayload.comInfoDto.invoiceBankDto.isbankdetailsHidden === true) {
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankName = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankAddress = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankCity = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankState = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].benefAccHolderName = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankNumber = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNumConfirm = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNumConfirm = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankCode = "";
+                        oPayload.bankDto.bankInfoDto[0].partnerBankType = "";
+                        oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankControlKey = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.firstName = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.lastName = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.jobTitle = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.email = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.contact = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.extension = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.mobile = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.countryContactCode = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.countryMobileCode = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.contactInSection = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.firstName = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.lastName = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.jobTitle = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.email = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.contact = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.extension = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.mobile = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.countryContactCode = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.countryMobileCode = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.contactInSection = "";
+                    }
+                }
+                if(oPayload.comInfoDto.invoiceBankDto.isBankProvided){
+                    if (oPayload.comInfoDto.invoiceBankDto.isBankProvided === false) {
+                        if (oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry === "") {
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankName = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankAddress = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankCity = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankState = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankCountry = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch = "";
+                            oPayload.bankDto.bankInfoDto[0].benefAccHolderName = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankNumber = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNumConfirm = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNum = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].ibanNumConfirm = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankCode = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].partnerBankType = "";
+                            oPayload.comInfoDto.invoiceBankDto.bankInfoDto[0].bankControlKey = "";
+                        }
+                        // oPayload.bankDto.bankInfoDto[0].instructionKey = ""; // commented since the key is default value in all screens- siva ---- date:01/10/2021
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.contactInSection = "FinanceSupplier";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.contactInSection = "Reviewer";
+
+                    } else {
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.firstName = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.lastName = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.jobTitle = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.email = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.contact = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.extension = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.mobile = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.countryContactCode = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.countryMobileCode = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact1.contactInSection = "";
+                        oPayload.comInfoDto.invoiceBankDto.financeContact2.contactInSection = "Reviewer";
+                    }
+                }
+
+
                     if (oPayload.financeInfoDto.financeAuditedLast12M === false) {
                         oPayload.financeInfoDto.userAudited = "";
                     }
@@ -12865,14 +13036,14 @@ sap.ui.define([
                     vNDAQuetion = "YES";
                 }
                 var vRemitance = "NO";
-                if(oView.getModel("oDataModel").getData().comInfoDto.isRemitToAddress){
+                if (oView.getModel("oDataModel").getData().comInfoDto.isRemitToAddress) {
                     vRemitance = "YES";
                 }
                 var vInvociceBank = "NO";
-                if(oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isBankProvided){
+                if (oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isBankProvided) {
                     vInvociceBank = "YES";
                 }
-                
+
 
                 var wPayload =
                 {
@@ -12940,7 +13111,7 @@ sap.ui.define([
                         },
 
                         "ipAuditWfDto": {
-                            "ipAuditWfId":"",
+                            "ipAuditWfId": "",
                             "bankAccountNumber": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAccNum,
                             "bankAddress": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankAddress,
                             "bankBranch": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].bankBranch,
@@ -12960,7 +13131,7 @@ sap.ui.define([
                             "refBankDetails": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].refBankDetails,
                             "swiftCode": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.bankInfoDto[0].swiftCode
                         },
-                        "isInvoiceBankdetailsHidden" :oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden ? "YES" : "NO",                   
+                        "isInvoiceBankdetailsHidden": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.isbankdetailsHidden ? "YES" : "NO",
                         "invoiceBankDetailsProvided": vInvociceBank,
                         "invoiceFinanceContact1": {
                             "email": oView.getModel("oDataModel").getData().comInfoDto.invoiceBankDto.financeContact1.email,
@@ -13194,7 +13365,7 @@ sap.ui.define([
                         "invoiceAddrPaymentCurrency": this.getView().getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentCurrency,
                         "invoiceAddrPaymentMethod": this.getView().getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod,
                         "invoiceAddrPaymentTerms": this.getView().getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentTerms,
-                        
+
                         "address": [{ "addressInSection": "" }],
                         "isRemitToAddress": oView.getModel("remitModel").getData().isRemitToAddress || false,
                         "haveDiversityCertifications": oView.getModel("companyInfoModel").getData().haveDiversityCertifications,
@@ -14741,7 +14912,7 @@ sap.ui.define([
                         // } else {
                         //     oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod + "," + oEvent.getSource().getSelectedKeys()[i];
                         // }
-                        oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod  + oEvent.getSource().getSelectedKeys()[i];
+                        oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod = oView.getModel("oDataModel").getData().comInfoDto.invoiceAddrPaymentMethod + oEvent.getSource().getSelectedKeys()[i];
                     }
 
 
@@ -14975,84 +15146,84 @@ sap.ui.define([
                     }
                 }
             },
-            _fnUpdateBPCorpName: function(odeferred){
+            _fnUpdateBPCorpName: function (odeferred) {
                 oView.byId("basicInfo").setValidated(false);
                 // var dfd = $.Deferred();
                 var that = this;
                 var oi18n_En = that.getOwnerComponent().getModel("oi18n_En"),
                     isDefaultLan = that.getOwnerComponent().getModel("oVisibilityModel").getData().isdefaultLan;
-                
+
                 var sUrl = "/nsBuyerRegistration/plcm_portal_services/case/updateBP";
                 var oPayload = oView.getModel("oBuyerModel").getData();
                 var supplierData = oView.getModel("oDataModel").getData().bpCentral[0];
                 var corpNameUpdated = supplierData.organisationName1;
-                if(supplierData.organisationName2){
+                if (supplierData.organisationName2) {
                     corpNameUpdated = corpNameUpdated + supplierData.organisationName2;
                 }
-                if(supplierData.organisationName3){
+                if (supplierData.organisationName3) {
                     corpNameUpdated = corpNameUpdated + supplierData.organisationName3;
                 }
-                if(supplierData.organisationName4){
+                if (supplierData.organisationName4) {
                     corpNameUpdated = corpNameUpdated + supplierData.organisationName4;
                 }
 
                 var bpCorpName = oPayload.bpRequestScope.corporationName;
-                if(oPayload.bpRequestScope.corporationName2){
+                if (oPayload.bpRequestScope.corporationName2) {
                     bpCorpName = bpCorpName + oPayload.bpRequestScope.corporationName2;
                 }
-                if(oPayload.bpRequestScope.corporationName3){
+                if (oPayload.bpRequestScope.corporationName3) {
                     bpCorpName = bpCorpName + oPayload.bpRequestScope.corporationName3;
                 }
-                if(oPayload.bpRequestScope.corporationName4){
+                if (oPayload.bpRequestScope.corporationName4) {
                     bpCorpName = bpCorpName + oPayload.bpRequestScope.corporationName4;
                 }
 
-                if(bpCorpName != corpNameUpdated){
+                if (bpCorpName != corpNameUpdated) {
                     oPayload.bpRequestScope.corporationName = supplierData.organisationName1;
                     oPayload.bpRequestScope.corporationName2 = supplierData.organisationName2;
                     oPayload.bpRequestScope.corporationName3 = supplierData.organisationName3;
                     oPayload.bpRequestScope.corporationName4 = supplierData.organisationName4;
-                  
-                    
-                // @ts-ignore
-                $.ajax({
-                    url: sUrl,
-                    data: JSON.stringify(oPayload),
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
+
+
+                    // @ts-ignore
+                    $.ajax({
+                        url: sUrl,
+                        data: JSON.stringify(oPayload),
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
                         },
-                    type: 'PUT',
-                    async:false,
-                   
-                    success: function (data) {
-                        oView.getModel("oVisibilityModel").getData().isCorpDuplicate =false;
+                        type: 'PUT',
+                        async: false,
+
+                        success: function (data) {
+                            oView.getModel("oVisibilityModel").getData().isCorpDuplicate = false;
+                            oView.getModel("oVisibilityModel").refresh();
+
+                        },
+                        error: function (data) {
+
+                            if (data.status == 409) {
+                                //    oView.getModel("oVisibilityModel").getData().isCorpDuplicate = JSON.parse(oEvent.getParameter("errorobject").responseText).bpDuplicatesFound;
+                                oView.getModel("oVisibilityModel").getData().isCorpDuplicate = true;
                                 oView.getModel("oVisibilityModel").refresh();
-                          
-                    },
-                    error: function (data) {
 
-                        if (data.status == 409) {
-                        //    oView.getModel("oVisibilityModel").getData().isCorpDuplicate = JSON.parse(oEvent.getParameter("errorobject").responseText).bpDuplicatesFound;
-                        oView.getModel("oVisibilityModel").getData().isCorpDuplicate = true;
-                        oView.getModel("oVisibilityModel").refresh();
-                          
-                           
-                            
-                        } 
-                    }
-                });
 
-                  
-                  
-                  
-                   
-                   
-                  
-                }else{
-                   
+
+                            }
+                        }
+                    });
+
+
+
+
+
+
+
+                } else {
+
                 }
-                
+
             }
         });
     });

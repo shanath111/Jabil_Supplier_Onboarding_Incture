@@ -9,7 +9,7 @@
 						
 								<VBox class="cl_TIVBoxShadow">
 									 <VBox visible="{oConfigMdl>/MitgatnReasonVis}">
-                                    <Label  text="Please Review the {JMEulaComments>/subject} risk and select the appropriate Level 1 and Level 2 responses. Once complete, submit your responses to the Buyer." wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop"></Label>
+                                    <Label  text="Please Review the {JMEulaComments>/subject} risk and select the appropriate Level 1 and Level 2 responses. Once complete, submit your responses to the Buyer." wrapping="true" class="cl_TIDescTxt1 cl_TIDtxtMargin sapUiTinyMarginTop "></Label>
                                     </VBox>
                                     <Toolbar height="3rem" class="cl_TIToolbarBorder ">
                                      <!-- <Label visible="{oConfigMdl>/COIVis}" text="{i18n>LegalTxtGovtOffice}" wrapping="true" class="cl_TIDescTxt1 sapUiTinyMarginTop sapUiTinyMarginBegin "></Label>

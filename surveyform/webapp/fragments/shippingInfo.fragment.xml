@@ -43,14 +43,14 @@
 				<VBox  class="fontStyle">
 					<Label text="{i18n>newincoterm}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                     <Label text="{oi18n_En>newincoterm}&#10;{i18n>newincoterm}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-					<ComboBox width="100%" items="{oLookUpModel>/Incoterm}" showSecondaryValues="true" filterSecondaryValues="true"  placeholder="{i18n>select}" selectedKey="{oDataModel>/shippingInfoDto/newincoterm}" enabled="{oEnableMdl>/incotermEnb}" valueState="{oErrorModel>/incotermE}" valueStateText="{oErrorModel>/incotermM}" selectionChange="fnLiveValueChange" class="inputStyle">
+					<ComboBox width="100%" items="{oLookUpModel>/Incoterm}" showSecondaryValues="true" filterSecondaryValues="true"  placeholder="{i18n>select}" selectedKey="{oDataModel>/shippingInfoDto/newincoterm}" enabled="{oEnableMdl>/incotermEnb}" editable="false" valueState="{oErrorModel>/incotermE}" valueStateText="{oErrorModel>/incotermM}" selectionChange="fnLiveValueChange" class="inputStyle">
                      <core:ListItem key="{oLookUpModel>code}" text="{oLookUpModel>description}" additionalText="{oLookUpModel>code}"/>
                      </ComboBox>
 				</VBox>
 				<VBox class="fontStyle">
 					<Label text="{i18n>newincotermNamedPlace}" visible= "{oVisibilityModel>/isdefaultLan}"></Label>
                     <Label text="{oi18n_En>newincotermNamedPlace}&#10;{i18n>newincotermNamedPlace}" wrapping="true" visible= "{=!${oVisibilityModel>/isdefaultLan}}"></Label>
-						<Input valueLiveUpdate="true" maxLength="29" class="inputStyle" value="{oDataModel>/shippingInfoDto/newincotermNamedPlace}" enabled="{oEnableMdl>/incotermNamedPlaceEnb}" valueState="{oErrorModel>/incotermNPE}" valueStateText="{oErrorModel>/incotermNPM}" liveChange="fnLiveInputValueChange"/>
+						<Input valueLiveUpdate="true" maxLength="29" class="inputStyle" value="{oDataModel>/shippingInfoDto/newincotermNamedPlace}" enabled="{oEnableMdl>/incotermNamedPlaceEnb}" editable="false" valueState="{oErrorModel>/incotermNPE}" valueStateText="{oErrorModel>/incotermNPM}" liveChange="fnLiveInputValueChange"/>
 				</VBox>
 			</l:Grid>
 

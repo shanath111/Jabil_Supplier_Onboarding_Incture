@@ -390,6 +390,9 @@
                                 <VBox visible="{oConfigMdl>/BankDetails}" >
                                 <core:Fragment fragmentName="ns.BuyerRegistration.fragments.bankInfo" type="XML"/>
                                 </VBox>
+                                  <VBox visible="{oConfigMdl>/BankDetailsRemit}" >
+                                <core:Fragment fragmentName="ns.BuyerRegistration.fragments.bankInfoRemit" type="XML"/>
+                                </VBox>
                                    <VBox visible="{oConfigMdl>/PartnerFunctionVis}" >
                                    <VBox>
                                   <CheckBox wrapping="true" text="{i18n>newPartnerCreatioExtText} " select="fnCompanyRTAClick"  selected="{oConfigMdl>/orderingAddNew}" enabled="{oConfigMdl>/orderingAddNewEnb}" class="fontBold inputStyle  sapUiTinyMarginTop " />

@@ -116,6 +116,13 @@
         "finance1MobileCode":"",
         "finance2ContactCode":"",
         "finance2MobileCode":"",
+
+
+        "finance1ContactCodeRemit":"",
+        "finance1MobileCodeRemit":"",
+        "finance2ContactCodeRemit":"",
+        "finance2MobileCodeRemit":"",
+        
         "deliveryRepContactCode":"",
         "cocContactCode":"",
         "itCyberContactCode":"",
