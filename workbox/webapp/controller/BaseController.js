@@ -53,7 +53,7 @@ sap.ui.define([
                         var aADGroups = JSON.parse(aUsrData.adGroups);
                         if (aADGroups) {
                             for (var i = 0; i < aADGroups.length; i++) {
-                                if (aADGroups[i] == "IAM_P_SCP_PLC_ADMIN" || aADGroups[i] == "IAM_S_SCP_SUP_PORTAL_APPROVER") {
+                                if (aADGroups[i] == "IAM_D_SCP_PLC_ADMIN" || aADGroups[i] == "IAM_S_SCP_PLC_ADMIN"  || aADGroups[i] == "IAM_D_SCP_SUP_PORTAL_APPROVER" || aADGroups[i] == "IAM_S_SCP_SUP_PORTAL_APPROVER") {
                                     this.getView().getModel("oConfigMdl").getData().claimVisible = true;
                                    // this.getView().getModel("oConfigMdl").getData().ListMode = "SingleSelectLeft";
                                    this.getView().getModel("oConfigMdl").getData().ListMode = "SingleSelectLeft";
