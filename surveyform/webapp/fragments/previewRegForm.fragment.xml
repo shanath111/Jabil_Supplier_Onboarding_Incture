@@ -1093,7 +1093,7 @@
 
 									</VBox>
 								</l:Grid>  
-                                <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop" visible="{=${oDataModel>/bankDto/isBankProvided} &amp;&amp; ${oUserModel>/isNew}}">
+                                <l:Grid defaultSpan="XL3 L3 M3 S12"  class="cl_PreviewGrid sapUiSmallMarginTop" visible="{=${oDataModel>/comInfoDto/invoiceBankDto/isBankProvided} &amp;&amp; ${oUserModel>/isNew}}">
 										  <VBox class="VRVboxStyle1">
 										<Label text="{i18n>bankCountry}" visible="{oVisibilityModel>/isdefaultLan}" class="cl_PreviewLablCls "></Label>
                                         <Label text="{oi18n_En>bankCountry}&#10;{i18n>bankCountry}" wrapping="true" visible="{=!${oVisibilityModel>/isdefaultLan}}"  class="cl_PreviewLablCls "></Label>
