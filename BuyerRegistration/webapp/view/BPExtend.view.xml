@@ -33,7 +33,7 @@
 	  <Panel width="auto" expandable="true"  id="id_FilterPanel" expand="fnPanelCollapse" expanded="true" class="cl_VRPanelClass sapUiSizeCompact sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginEnd">
 						<headerToolbar >
 							<Toolbar height="2rem" class="cl_VRHeaderBackGrndPnl">
-								<Title text="{i18n>VRFilter1}"/>
+								<Title text="{i18n>VRFilter1}"/>                               
 								<ToolbarSpacer/>
 								<Button text="{i18n>VRClear}" enabled="{oConfigMdl>/searchEnable}" press="fnClearData" class="cl_VRActnBtnClear"/>
 								<Button text="{i18n>VRApply1}" enabled="{oConfigMdl>/searchEnable}" press="fnLoadPartnerData" class="cl_VRActnBtnApply sapUiSmallMarginEnd"/>
