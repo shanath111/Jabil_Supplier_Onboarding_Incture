@@ -123,10 +123,5 @@
                 }
             }
         }
-    },
-    "sap.platform.cf": {
-        "oAuthScopes": [
-            "$XSAPPNAME.processFlow"
-        ]
     }
 }

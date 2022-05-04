@@ -257,10 +257,5 @@
                 }
             }
         }
-    },
-    "sap.platform.cf": {
-        "oAuthScopes": [
-            "$XSAPPNAME.Surveyform"
-        ]
     }
 }

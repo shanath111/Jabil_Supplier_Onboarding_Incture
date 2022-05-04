@@ -229,10 +229,5 @@
                 }
             }
         }
-    },
-    "sap.platform.cf": {
-        "oAuthScopes": [
-            "$XSAPPNAME.Inbox"
-        ]
     }
 }

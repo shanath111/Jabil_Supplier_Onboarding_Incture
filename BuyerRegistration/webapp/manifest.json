@@ -223,10 +223,5 @@
                 }
             }
         }
-    },
-    "sap.platform.cf": {
-        "oAuthScopes": [
-            "$XSAPPNAME.BuyerRegistration"
-        ]
     }
 }

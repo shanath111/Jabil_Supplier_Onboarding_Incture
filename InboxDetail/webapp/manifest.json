@@ -220,10 +220,5 @@
 
             }
         }
-    },
-    "sap.platform.cf": {
-        "oAuthScopes": [
-            "$XSAPPNAME.CRResubmit"
-        ]
     }
 }

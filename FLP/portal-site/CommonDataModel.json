@@ -27,10 +27,6 @@
 			},
 			"payload": {
 				"viz": [{
-					"id": "com.jabil.surveyform-0-1642591424182",
-					"appId": "com.jabil.surveyform",
-					"vizId": "surveyform-Display"
-				}, {
 					"id": "ns.BuyerRegistration-1-1642591424182",
 					"appId": "ns.BuyerRegistration",
 					"vizId": "buyerRegistration-Display"
