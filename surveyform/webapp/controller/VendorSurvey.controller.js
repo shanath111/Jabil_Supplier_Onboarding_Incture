@@ -1220,10 +1220,22 @@ sap.ui.define([
                                         d.organisationName4 = oEvent.getSource().getData().bpRequestScope.corporationName4;
                                         e.instructionKey = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.instructionKey;
                                         f.pointOfContact.email = oEvent.getSource().getData().bpRequestScope.buyerEmailId;
+                                        if(oEvent.getSource().getData().bpRequestScope.buyerName.split("_")){
                                         var firstNameLowerCase = oEvent.getSource().getData().bpRequestScope.buyerName.split("_")[0].toLowerCase();
+                                        }else{
+                                            var firstNameLowerCase = ""; 
+                                        }
+                                        if(firstNameLowerCase){
                                         f.pointOfContact.firstName = firstNameLowerCase.charAt(firstNameLowerCase[0]).toUpperCase() + firstNameLowerCase.slice(1);
+                                        }
+                                        if(oEvent.getSource().getData().bpRequestScope.buyerName.split("_")[1]){
                                         var lastNameLowerCase = oEvent.getSource().getData().bpRequestScope.buyerName.split("_")[1].toLowerCase();
+                                        }else{
+                                            var lastNameLowerCase = ""; 
+                                        }
+                                        if(lastNameLowerCase){
                                         f.pointOfContact.lastName = lastNameLowerCase.charAt(lastNameLowerCase[0]).toUpperCase() + lastNameLowerCase.slice(1);
+                                        }
                                         f.pointOfContact.jobTitle = "Buyer";
                                         address.address1 = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.address1;
                                         address.address2 = oEvent.getSource().getData().bpRequestScope.bpRequestScopeAddlDetails.address2;

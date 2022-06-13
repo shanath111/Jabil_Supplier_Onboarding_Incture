@@ -47,8 +47,8 @@ sap.ui.define([
                     that.getView().getModel("oConfigMdl").refresh();
 
                     var aUsrData = this.getView().getModel("oConfigMdl").getData().usrData;
-                    this.getView().getModel("oConfigMdl").getData().claimVisible = false;
-                    this.getView().getModel("oConfigMdl").getData().ListMode = "None";
+                    this.getView().getModel("oConfigMdl").getData().claimVisible = true;
+                    this.getView().getModel("oConfigMdl").getData().ListMode = "SingleSelectLeft";
                     if (aUsrData) {
                         var aADGroups = JSON.parse(aUsrData.adGroups);
                         if (aADGroups) {
